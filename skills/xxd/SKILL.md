@@ -1,6 +1,6 @@
 ---
 name: xxd
-description: Inspect exact file bytes and reconstruct deliberate hex artifacts with xxd. Use when offsets, endianness, partial dumps or reverse-mode patch behavior could corrupt binary evidence.
+description: Inspect exact bytes and reconstruct hex artifacts with xxd. Use when offsets, partial dumps, reverse-mode patching or hex-versus-text encoding could corrupt binary evidence.
 ---
 
 # Keep byte offsets and display formats distinct
@@ -26,4 +26,14 @@ Normal reverse mode uses the dump's addresses. A dump beginning at a nonzero off
 
 Passing an existing output filename directly to `xxd -r` can patch it without truncating its old tail. Use a new reconstruction artifact, check its length and compare its digest/bytes against an independent original or expected fixture. A correct prefix alone does not prove the rest of the file survived.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Attended pp. 30–31. Sources: [xxd manual](https://github.com/vim/vim/blob/master/runtime/doc/xxd.1), [OpenSSH envelope](https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.key).
+## Hex bytes are not yet decoded text
+
+For a captured registry value, isolate just its complete hex payload into `hex_file`; choose a fresh `raw` output. Check for an even number of hex digits and only the expected whitespace before decoding:
+
+~~~bash
+(set -C; xxd -r -p "$hex_file" > "$raw") && xxd -g 1 "$raw"
+~~~
+
+In an **illustrative** field, `41000101ac20` becomes `41 00 01 01 ac 20`. If the producing format establishes UTF-16LE, those bytes encode `Aā€`; the zeros are part of the encoding. Deleting `00` with `sed` before decoding corrupts the value and can even remove pairs across byte boundaries. Preserve bytes first, then use an encoding-aware decoder such as `iconv -f UTF-16LE -t UTF-8`. Treat a trailing NUL according to the field format, not as permission to strip every zero. A registry value named `PasswordHash` does not establish a hash algorithm.
+
+Consult the [xxd manual](https://github.com/vim/vim/blob/master/runtime/doc/xxd.1) for reverse-mode caveats and the [OpenSSH envelope specification](https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.key) when interpreting that format.

@@ -217,3 +217,11 @@ Original live-debugging reference footer:
 Documentation reviewed 2026-10-09; Linux execution untested. Case: Attended pp. 20–25, adapted from OpenBSD. Sources: [starting](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Starting.html), [machine code](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Machine-Code.html), [memory](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Memory.html), [registers](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Registers.html).
 
 Pilot command review also checked [source listing](https://sourceware.org/gdb/current/onlinedocs/gdb.html/List.html) and [frame information](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Frame-Info.html) on 2026-10-10. The new assertion example is explicitly illustrative, not an executed debugger transcript.
+
+## Overnight intake, 2026-10-10
+
+The [sequential intake report](ctf-writeups-overnight-2026-10-10.md) records per-document sources and actual checks. After Bighead, all 103 skill packages and 195 Bash blocks passed structural/syntax checks, and three affected frontmatters passed the skill validator. Five synthetic xxd/iconv conversion cases passed using Windows Git tools, including non-ASCII and truncated-input cases. This does not validate Linux execution, KeePass password recovery or agent performance. Further overnight results are recorded in the intake report.
+
+After Bitlab, 103 packages, 138 Markdown files, 186 local links and 197 Bash blocks passed structural/syntax checks; the three enriched skills passed the skill validator. Git hook-path resolution was checked with a temporary command-line override on Windows. Hook execution and PHP/PostgreSQL behavior were not exercised; PHP was absent from PATH. See the overnight intake report for the source mapping and retained earlier source trails.
+
+After Bizness, 105 packages, 140 Markdown files, 188 local links and 199 Bash blocks passed structural/syntax checks; feroxbuster, derby-ij and hashcat passed the skill validator. Eight Windows Python conversion fixtures verified published/synthetic encodings, malformed-input rejection and overwrite protection. Feroxbuster, Derby, Hashcat backend, Linux and worker execution were not tested. See the overnight report for source/page mapping and the retained Hashcat history.

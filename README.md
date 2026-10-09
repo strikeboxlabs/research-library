@@ -24,24 +24,27 @@ Skills add useful tool knowledge for agents that already use the CLI competently
 | [cryptsetup](skills/cryptsetup/SKILL.md) | Inspect and unlock LUKS image copies with read-only mappings and filesystem-aware mounting. |
 | [curl](skills/curl/SKILL.md) | Preserve HTTP evidence, construct API requests and distinguish proxy forwarding, CONNECT and bypass rules. |
 | [dd](skills/dd/SKILL.md) | Extract measured image byte ranges without hardcoded header sizes, overwrite or unnoticed short copies. |
+| [derby-ij](skills/derby-ij/SKILL.md) | Inspect consistent Derby copies with embedded JDBC, schema discovery, bounded SQL and understood display/lock limits. |
 | [dirsearch](skills/dirsearch/SKILL.md) | Discover scoped web paths; handle wordlist expansion, soft 404s, redirects and incomplete scans. |
 | [docker](skills/docker/SKILL.md) | Reproduce pinned tool environments with explicit bind mounts, ownership, network and runtime boundaries. |
 | [dotnet](skills/dotnet/SKILL.md) | Select SDK/runtime context and build or run reviewed projects with explicit restore and launch behavior. |
 | [evil-winrm](skills/evil-winrm/SKILL.md) | Establish WinRM sessions with known credentials and diagnose transport, access and transfer issues. |
 | [exiftool](skills/exiftool/SKILL.md) | Read image/document metadata while preserving tag groups and treating identities as leads. |
+| [feroxbuster](skills/feroxbuster/SKILL.md) | Bound web discovery and interpret recursion, wildcard responses, parent paths and interrupted scans. |
 | [ffuf](skills/ffuf/SKILL.md) | Compare paths/vhosts with bounded requests, method context, measured baselines and understood filters. |
 | [file](skills/file/SKILL.md) | Classify artifacts without confusing format labels, managed assemblies, transfer integrity and runtime compatibility. |
 | [find](skills/find/SKILL.md) | Scope file searches and interpret emptiness, traversal errors, predicate grouping and action boundaries. |
 | [ftp](skills/ftp/SKILL.md) | Retrieve selected binary files, distinguish client-specific HTTP fetching and diagnose data-channel failures. |
 | [gdb](skills/gdb/SKILL.md) | Follow native core frames/state to a bounded diagnosis, or inspect a controlled live reproduction. |
 | [gdbserver](skills/gdbserver/SKILL.md) | Debug controlled remote programs over SSH with understood transport, connection modes and process lifetime. |
-| [git](skills/git/SKILL.md) | Inspect historical file content and renames without changing the checkout. |
+| [git](skills/git/SKILL.md) | Inspect historical files and diagnose local hook paths, pull outcomes and execution context. |
 | [go](skills/go/SKILL.md) | Build reviewed CLI projects with explicit module, toolchain, dependency-change and target context. |
 | [gobuster](skills/gobuster/SKILL.md) | Choose web discovery modes and interpret wildcard, redirect, method and validation responses. |
 | [gpp-decrypt](skills/gpp-decrypt/SKILL.md) | Decode captured GPP cpassword values; distinguish the Ruby and Python implementations. |
 | [grafana2hashcat](skills/grafana2hashcat/SKILL.md) | Convert and verify compatible Grafana records; distinguish malformed input, wrong encodings and recovery. |
 | [grep](skills/grep/SKILL.md) | Filter literal or regex text while preserving alternative/combined conditions, binary handling and error evidence. |
-| [hashcat](skills/hashcat/SKILL.md) | Check application, Ansible Vault and NT/Kerberos records or binary containers with correct input and recovery handling. |
+| [hashcat](skills/hashcat/SKILL.md) | Check application, salted SHA-1, Ansible Vault and NT/Kerberos records or binary containers with correct input and recovery handling. |
+| [iconv](skills/iconv/SKILL.md) | Convert captured text with explicit encodings; distinguish UTF-16 byte order, terminators and lossy recovery. |
 | [ilspycmd](skills/ilspycmd/SKILL.md) | Inspect .NET types and property/serialization paths from Linux without launching the inspected assembly. |
 | [impacket-getnpusers](skills/impacket-getnpusers/SKILL.md) | Check selected accounts for AS-REP material without password guessing. |
 | [impacket-getst](skills/impacket-getst/SKILL.md) | Request selected Kerberos service tickets and interpret SPNs, existing delegation and saved cache identity. |
@@ -54,7 +57,7 @@ Skills add useful tool knowledge for agents that already use the CLI competently
 | [iptables](skills/iptables/SKILL.md) | Inspect the selected firewall backend, family, table and chain with understood ordering, counters and live mutations. |
 | [iptables-save](skills/iptables-save/SKILL.md) | Capture ruleset evidence while distinguishing output-file effects, coverage, restore and persistence. |
 | [jdb](skills/jdb/SKILL.md) | Attach to a JVM, reach relevant breakpoints and inspect suspended frames with understood evaluation effects. |
-| [john](skills/john/SKILL.md) | Run bounded Jumbo checks on NT/NetNTLMv2/AS-REP, ZIP, raw SHA-256 and original HS256 JWT artifacts. |
+| [john](skills/john/SKILL.md) | Run bounded Jumbo checks on NT/NetNTLMv2/AS-REP, ZIP, KeePass with key files, phpass, raw SHA-256 and HS256 JWT artifacts. |
 | [jq](skills/jq/SKILL.md) | Validate JSON types, preserve returned text and serialize requests while recognizing upstream text transformations. |
 | [jwt-tool](skills/jwt-tool/SKILL.md) | Inspect and modify local JWT fixtures with explicit algorithms, key bytes and verification limits. |
 | [kerbrute](skills/kerbrute/SKILL.md) | Check a bounded candidate username list against a selected KDC and interpret incomplete results. |
@@ -72,7 +75,7 @@ Skills add useful tool knowledge for agents that already use the CLI competently
 | [nmap](skills/nmap/SKILL.md) | Keep TCP/UDP and IPv4/IPv6 coverage explicit; interpret service probes and uncertain states. |
 | [objdump](skills/objdump/SKILL.md) | Inspect headers and bounded disassembly while separating bytes, source lines and runtime evidence. |
 | [openssl](skills/openssl/SKILL.md) | Inspect requests, certificates and PKCS#12 bundles while separating private keys, encodings, identity and trust. |
-| [php](skills/php/SKILL.md) | Match CLI and web configuration, lint controlled sources and interpret PHAR or image-header behavior. |
+| [php](skills/php/SKILL.md) | Inspect CLI/web configuration and PostgreSQL extension failures; reproduce PHAR and image-header behavior accurately. |
 | [pip](skills/pip/SKILL.md) | Match interpreter, wheel ABI and platform while controlling dependency resolution and source-build fallback. |
 | [proxychains](skills/proxychains/SKILL.md) | Route compatible TCP clients with explicit SOCKS/HTTP CONNECT context and verified DNS/transport limits. |
 | [ps](skills/ps/SKILL.md) | Inspect process identity/state and targeted procfs evidence without confusing NUL-separated or mutable metadata. |
@@ -110,10 +113,10 @@ Skills add useful tool knowledge for agents that already use the CLI competently
 | [vim](skills/vim/SKILL.md) | Control startup/modelines and recover copied swap artifacts with understood completeness limits. |
 | [wfuzz](skills/wfuzz/SKILL.md) | Compare HTTP hosts/parameters with baselines, response filters, bounded ID ranges and known session state. |
 | [wpscan](skills/wpscan/SKILL.md) | Scope WordPress inventory and distinguish enumeration sets, detection modes and incomplete vulnerability evidence. |
-| [xxd](skills/xxd/SKILL.md) | Inspect exact byte ranges and reconstruct hex artifacts without silent patching or truncation mistakes. |
+| [xxd](skills/xxd/SKILL.md) | Inspect and reconstruct exact bytes; distinguish offsets, patching, hex representation and text encoding. |
 | [ysoserial](skills/ysoserial/SKILL.md) | Generate selected Java serialization fixtures without confusing producer failures, binary output and target effects. |
 
-The 102 skills are documentation-reviewed but have not been executed or evaluated with an agent on Linux. See the [validation record](docs/validation.md). Source coverage, corrections and deferred candidates are recorded for [batch 1](docs/ctf-writeups-ingestion.md), [batch 2](docs/ctf-writeups-batch2.md), [batch 3](docs/ctf-writeups-batch3.md), [batch 4](docs/ctf-writeups-batch4.md), [batch 5](docs/ctf-writeups-batch5.md), [batch 6](docs/ctf-writeups-batch6.md), [batch 7](docs/ctf-writeups-batch7.md) and [batch 8](docs/ctf-writeups-batch8.md).
+The 105 skills are documentation-reviewed but have not been executed or evaluated with an agent on Linux. See the [validation record](docs/validation.md). Source coverage, corrections and deferred candidates are recorded for [batch 1](docs/ctf-writeups-ingestion.md), [batch 2](docs/ctf-writeups-batch2.md), [batch 3](docs/ctf-writeups-batch3.md), [batch 4](docs/ctf-writeups-batch4.md), [batch 5](docs/ctf-writeups-batch5.md), [batch 6](docs/ctf-writeups-batch6.md), [batch 7](docs/ctf-writeups-batch7.md), [batch 8](docs/ctf-writeups-batch8.md) and the [overnight intake](docs/ctf-writeups-overnight-2026-10-10.md).
 
 ## Simple structure
 

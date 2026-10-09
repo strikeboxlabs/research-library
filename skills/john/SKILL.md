@@ -1,6 +1,6 @@
 ---
 name: john
-description: Run bounded offline checks with John the Ripper Jumbo on NT, NetNTLMv2, Kerberos, ZIP, raw SHA-256 or HS256 JWT artifacts. Use to choose formats, preserve records and interpret session results.
+description: Run bounded offline checks with John the Ripper Jumbo on NT, NetNTLMv2, Kerberos, ZIP, KeePass, phpass, raw SHA-256 or HS256 JWT artifacts. Use to choose formats, preserve records and interpret session results.
 ---
 
 # John the Ripper offline checks
@@ -30,6 +30,17 @@ zip2john "$archive" >"$hashes" 2>"$conversion_log"
 
 Inspect the converter's record type and installed formats before choosing `format`: traditional PKZIP and WinZip AES use different parsers. Preserve full output, including filename/colon fields, and retain the archive because some records refer back to it. No usable record can mean unencrypted entries, unsupported encryption or damaged input. Verify any recovered candidate by testing/decrypting the relevant archive entries; different entries can use different passwords.
 
+For a KeePass database whose master key includes a key file, define `database` and `keyfile` as intact acquired copies, with fresh private `hashes` and `conversion_log` outputs:
+
+~~~bash
+umask 077
+keepass2john -k "$keyfile" "$database" >"$hashes" 2>"$conversion_log"
+~~~
+
+Omit `-k` only for a password-only database. A saved configuration association is a lead; it can be stale. An arbitrary key file, including a PNG, contributes its exact bytes: opening and re-saving the image can change the key without visibly changing the picture. Compare transfer digests before testing candidates. Missing key components cannot be repaired by trying more passwords.
+
+Inspect diagnostics and require a complete record accepted by the installed KeePass format. Converter exit zero alone is insufficient; unsupported input can produce diagnostics without a usable record. KDBX version, KDF and key-file support depend on the installed Jumbo build. Use `format=keepass` only when that format accepts the converted record. Confirm any recovered password by opening a copy with the same key components in a compatible KeePass reader. An exhausted wordlist can also reflect the wrong key file; it does not prove the database has no recoverable password.
+
 Define `hashes` and `wordlist` as existing absolute paths, `pot` as a private case-specific pot file, and `session` as a unique session name/path. Choose `seconds` for the task's time budget:
 
 ~~~bash
@@ -44,4 +55,4 @@ On Unix, optional `--fork=N` creates N processes, not N threads. Formats using O
 
 `No password hashes loaded` suggests a format/build/input problem. Check wrapped lines, copied banners and parser compatibility. `No password hashes left to crack` can mean results already exist in the pot; inspect `--show`. A completed wordlist with no recovery says only that the tested candidates failed. A timed-out run is incomplete. Record loaded count, chosen format, candidate source and termination condition; recovered values need not appear in the user-facing report.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Absolute p. 6; Acute p. 16; Anubis p. 10; APT p. 7; Awkward pp. 8–9, 14–15; BigBang pp. 11–12. Sources: [Jumbo options](https://github.com/openwall/john/blob/bleeding-jumbo/doc/OPTIONS), [AS-REP parser](https://github.com/openwall/john/blob/bleeding-jumbo/src/krb5_asrep_fmt_plug.c), [usage examples](https://www.openwall.com/john/doc/EXAMPLES.shtml), [ZIP converter](https://github.com/openwall/john/blob/bleeding-jumbo/src/zip2john.c), [NetNTLMv2 parser](https://github.com/openwall/john/blob/bleeding-jumbo/src/NETNTLMv2_fmt_plug.c), [raw SHA-256](https://github.com/openwall/john/blob/bleeding-jumbo/src/rawSHA256_fmt_plug.c), [HMAC/JWT parser](https://github.com/openwall/john/blob/bleeding-jumbo/src/hmacSHA256_fmt_plug.c), [phpass parser](https://github.com/openwall/john/blob/bleeding-jumbo/src/phpassMD5_fmt_plug.c).
+Consult [Jumbo options](https://github.com/openwall/john/blob/bleeding-jumbo/doc/OPTIONS) for session controls, the [KeePass converter](https://github.com/openwall/john/blob/bleeding-jumbo/src/keepass2john.c) for installed-format differences, and [KeePass key components](https://keepass.info/help/base/keys.html) when recovery requires more than a password.
