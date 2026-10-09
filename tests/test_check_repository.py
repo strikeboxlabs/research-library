@@ -52,16 +52,9 @@ class RepositoryChecks(unittest.TestCase):
         self.write(self.root / "skills" / "orphan" / "guide.md", "A guide without discovery metadata.\n")
         self.assertTrue(any("Skill folder has no SKILL.md" in error for error in CHECKER.check_repository(self.root)["errors"]))
 
-    def test_source_ids_in_skill_local_provenance(self):
-        provenance = self.skill / "references" / "provenance.md"
-        self.write(provenance, "- S1: A source.\n\nClaim supported by S2.\n")
-        self.assertTrue(any("Undefined source IDs" in error for error in CHECKER.check_repository(self.root)["errors"]))
-        self.write(provenance, "- S1: A source.\n\nClaim supported by S1.\n")
-        self.assertEqual(CHECKER.check_repository(self.root)["errors"], [])
-
     def test_template_links_are_checked_after_materialising(self):
         template = self.root / "authoring" / "skill.template.md"
-        self.write(template, "[provenance](references/provenance.md)\n")
+        self.write(template, "[sources](references/sources.md)\n")
         report = CHECKER.check_repository(self.root)
         self.assertEqual(report["errors"], [])
         self.assertEqual(report["template_links_deferred"], 1)

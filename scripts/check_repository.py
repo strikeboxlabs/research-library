@@ -101,13 +101,6 @@ def check_repository(root, bash=None):
         description = fields.get("description", "")
         if not description or len(description) > 1024 or description in {"|", ">", "|-", ">-"}:
             errors.append(f"Expected a nonempty one-line MVP description: {path.relative_to(root)}")
-        provenance = path.parent / "references" / "provenance.md"
-        if provenance.is_file():
-            content = provenance.read_text(encoding="utf-8")
-            defined = set(re.findall(r"^- (S\d+):", content, re.M))
-            used = set(re.findall(r"\bS\d+\b", content))
-            if used - defined:
-                errors.append(f"Undefined source IDs in {provenance.relative_to(root)}: {sorted(used - defined)}")
 
     parsed = 0
     if bash:

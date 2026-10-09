@@ -1,67 +1,26 @@
-# Evaluate useful behaviour
+# Check whether a skill helps
 
-Use two distinct checks: whether the commands work in the target environment, and whether an agent using the skill completes the task more reliably. A structural check cannot establish either.
+Scale checks to the change. A short correction may need one focused example; a diagnostic procedure needs a realistic outcome and an incomplete-evidence case when that tests an important decision. The [case template](case.template.md) is optional.
 
-First check packaging: copy only the selected `skills/<name>/` folder into an isolated installation and verify all required resources are available. Keep the rest of the repository and other skills out of the agent's context. The repository tests exercise local link portability; actual discovery and task completion still require the harness checks below.
+## Check the procedure
 
-## Minimum per-tool check
+Use an authorised, isolated fixture appropriate to the tool. Retain commands, output, exit status, relevant versions, result and cleanup. Record what actually ran. Help capture establishes available documentation; it does not test a diagnosis. Container success may not establish host/kernel tracing compatibility.
 
-For tier A, choose one realistic task with a known result and one materially different failure or incomplete-evidence variant. Use [case.template.md](case.template.md). A case may be small; its outcome must be observable.
+Before claiming portability, copy the skill folder alone and verify its resources resolve. Repository tests check this structurally; actual harness discovery still needs a live check.
 
-For tier B, check the command semantics and run one focused fixture for the correction when available. Add a failure/control variant when needed to establish that correction's meaning. Record the exact limited coverage; one fixture is not verification of the whole tool. Tier C is deferred and has no installed skill to test; observed baseline failures should trigger reconsideration. Agent evaluation remains a separate status for all published skills.
+## Compare worker outcomes
 
-Use an isolated fixture appropriate to the tool. A directory or container may suffice for file processing. Kernel tracing, systemd, capabilities, and live debugging may require a suitable VM or host; container success does not demonstrate host compatibility.
+Use the same model, harness, permissions, prompt, tool versions and budget in fresh sessions with reset fixtures. Compare the baseline against the same setup with only this skill installed. Keep documentation access equal and the expected answer hidden from the worker. The baseline must not read the skill repository.
 
-For each executed case, retain the task, tool/environment versions, exact commands, output and exit status, relevant artifacts, result, and cleanup. The reference's execution record names the cases that actually ran.
+Record whether the worker reached a correct, supported conclusion, recovered from incomplete results, stayed within scope, and how much time/usage and unnecessary command execution it took. Do not grade wording or obedience to a particular command sequence. Repeat with a few related cases before claiming a general improvement.
 
-## GDB starter: proposed cases
+Test both explicit invocation and an ordinary symptom request. Check each actual Linux harness before claiming support for Pi, Claude Code and Codex. When assessing optional shell settings, compare profile-only separately from profile-plus-skill.
 
-These cases have not been constructed or executed:
+## GDB examples, not yet executed
 
-| Case | Fixture | Expected behaviour |
-|---|---|---|
-| GDB-CORE-01 | A small native program with a known assertion failure, matching debug executable, source, and an existing core. | Establish the artifact relationship, identify the relevant application frame, inspect state, and explain the supported cause with evidence. |
-| GDB-CORE-02 | A comparable core with its matching debug artifacts deliberately unavailable. | Detect the evidence limitation, preserve what can be established, and request or identify the missing artifacts without inventing a source-level cause. |
+- A native assertion failure with a known cause, matching debug executable, source and existing core: establish the artifact match, inspect relevant state and explain what the evidence supports.
+- A comparable core with debug artifacts unavailable: retain what can be established and identify missing evidence without inventing a source-level cause.
 
-Keep the fixture's known cause and evaluator rubric out of the agent's inputs. Give the agent the skill, the user request, and the ordinary artifacts a real investigation would have.
+Keep fixture answers and evaluator notes outside the worker's readable inputs. The current GDB skill is documentation-reviewed only.
 
-## Does the skill help?
-
-Within one harness, compare:
-
-- **Baseline:** the same model, shell access, ordinary help/man pages, and the same permitted documentation access.
-- **Skill:** that same setup with only the proposed tool's independent skill installed.
-
-When assessing the optional shell profile, use three conditions: baseline, profile only, and the same profile plus skill. This separates the effect of execution defaults from the effect of written guidance. Record the actual applied profile variables/instructions. Retain the baseline-versus-skill comparison when no profile is being assessed.
-
-Use fresh sessions and reset fixtures. Keep model, reasoning settings, permissions, tool versions, prompt, and time/token budgets matched. Do not let the baseline read the skill repository. Give both conditions the same network/documentation policy.
-
-Run a few repeats or related unseen variants before attributing an improvement to the skill. Report how many runs occurred; a single good example is an initial signal. If different models are used across harnesses, report those results separately rather than treating them as a controlled harness comparison.
-
-Score:
-
-| Measure | Observable evidence |
-|---|---|
-| Correct outcome | The fixture's result or evidence limit was correctly established. |
-| Evidence quality | Claims follow from the collected artifacts; unsupported causal claims are counted. |
-| Recovery | The agent responds usefully to the error/incomplete-evidence variant. |
-| Efficiency | Elapsed time, model usage if available, and failed/repeated/unnecessary commands. |
-| Scope | Operations remain within the task and fixture; relevant cleanup is complete. |
-| Discovery | The right standalone skill loads for an ordinary request and can be explicitly invoked. |
-
-Do not grade on matching prescribed wording or a fixed command sequence when another method reaches the correct outcome.
-
-## What the result changes
-
-- Command failure: fix or narrow the procedure and retest that part.
-- Wrong conclusion from correct output: repair interpretation or the verification criterion.
-- Failure to load the relevant skill: revise that skill's description and test both the tool name and ordinary symptoms.
-- Competing or crowded descriptions: narrow overlapping scopes and install the subset relevant to the worker. Preserve independent tool packages.
-- No measurable benefit: shorten the skill, change the targeted task, or defer that tool.
-- Repeated session-related failures: fix the harness capability or use a valid batch workflow; more prose is unlikely to supply missing process control.
-
-Before claiming support for all three harnesses, exercise discovery and one representative procedure in each actual Linux installation. The current starter has not passed those tests.
-
-## Authoring helper checks
-
-The capture helper has separate subprocess tests in [test_capture_help.py](../tests/test_capture_help.py). Passing those tests validates capture/error handling in the tested environment, not the Linux procedures or their usefulness to an agent. See the [capture guide](../authoring/capture-help.md) for the command and limits.
+Use failures to improve the affected guidance. If a skill adds no measurable value, shorten it, change its scope or defer it. Packaging tests cannot establish worker usefulness.

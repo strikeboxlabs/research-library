@@ -59,7 +59,7 @@ Read the captures and compare relevant options, defaults and failure messages. U
 
 ## Accept evidence without overstating it
 
-Keep raw captures in ignored `work/sources/`. In the tracked provenance companion, record the relevant command/claim, exact tool version, environment identity, source locator and a concise non-sensitive finding. Preserve any required attribution. A durable finding must remain reviewable without access to a contributor's ignored scratch directory.
+Keep raw captures in ignored `work/sources/`. Retain useful findings, exact versions and source locators in concise tracked notes, such as an optional skill-local `references/sources.md`. Preserve required attribution; accepted guidance should remain reviewable without a contributor's private scratch files.
 
 Help capture establishes available documentation and observed output, not that a recipe works or its diagnosis is correct. Run a separate fixture for procedure execution and use the [evaluation design](../evaluation/README.md) for agent behaviour.
 

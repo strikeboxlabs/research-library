@@ -1,10 +1,17 @@
 # Validation record
 
-Date: 2026-10-09. Current packaging/schema: v0.3. Earlier starter and migration checks are retained below. This is not a completed tool catalogue or a measured agent-performance result.
+Date: 2026-10-09. Current packaging/schema: v0.4. Earlier starter and migration checks are retained below. This is not a completed tool catalogue or a measured agent-performance result.
 
-## Independent tool skills, v0.3
+## Simplified authoring and GDB guidance, v0.4
 
-GDB is now an independently installable folder with its procedure directly in `skills/gdb/SKILL.md` and its source companion in `skills/gdb/references/provenance.md`. The old umbrella, runtime index and shared runtime guide have been removed. The authoring schema, A/B templates, generation/review prompts and Linux setup guide now create and install individual tool skills. Tier C records a deferral without creating a runtime package.
+- GDB's working skill went from 811 to 424 words. Its source notes went from 552 to 142 words and are now named `references/sources.md`. The batch command, follow-up commands and all eight upstream source URLs were retained.
+- The schema went from 1,314 to 442 words; the authoring prompt from 1,361 to 347. One adaptable template replaces the full/delta templates. Tier labels, compulsory section headings, a mandatory source companion and per-command source mapping were removed. Supporting files are optional.
+- Fifteen tests passed on Windows, including isolated skill-copy checks. The retired source-ID checker and its test were removed with that mandatory format. The skill-creator validator accepted GDB; local links and skill boundaries passed, and 17 Bash blocks parsed successfully without being executed.
+- Linux checkout, host adaptation and source-ingestion instructions remain in the shorter getting-started guide. GDB execution and agent performance remain untested. Reduced word counts are not a performance benchmark.
+
+## Earlier independent tool packaging, v0.3
+
+At this stage, GDB became an independently installable folder with its procedure directly in `skills/gdb/SKILL.md` and its source companion in `skills/gdb/references/provenance.md`. The old umbrella, runtime index and shared runtime guide were removed. The authoring schema and templates then used A/B tiers, with C recording a deferral. These conventions were simplified in v0.4 above.
 
 Executed on Windows:
 
@@ -35,7 +42,7 @@ The Windows sandbox's default temporary directory initially prevented the subpro
 - Actual loading, automatic discovery and task completion in Pi, Claude Code or Codex on Linux.
 - Any claim of improved agent performance or broad tool-version compatibility.
 
-The GDB skill therefore retains checked source review, `Execution: not-run` and `Agent evaluation: not-run`. Harness configuration examples were checked against the official documentation linked in the [deployment guide](harnesses.md); successful snippet parsing is not proof of runtime application.
+The GDB skill therefore notes that documentation has been reviewed while Linux execution and agent performance remain untested. Harness configuration examples were checked against the official documentation linked in the [deployment guide](harnesses.md); successful snippet parsing is not proof of runtime application.
 
 Run the [evaluation process](../evaluation/README.md) on the intended Linux system before claiming those outcomes.
 

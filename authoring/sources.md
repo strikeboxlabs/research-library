@@ -40,43 +40,16 @@ site:<upstream-repository> <error> reproducer
 
 Follow search results to the original material. A search result, an article copying another article, or an LLM-generated explanation is a lead to verify.
 
-## A small intake process
+## Keep collection small
 
-Use [intake.template.md](intake.template.md). Collect:
+Start with the task, relevant practical material and evidence for uncertain command semantics. The [intake template](intake.template.md) is optional. A short correction may need one source; a diagnostic workflow needs enough evidence to support its decisions. Follow observed agent failures when choosing what to add.
 
-- one concrete task the agent should handle;
-- relevant passages or a retrievable link to a practical source;
-- a semantics reference for uncertain flags/defaults;
-- an example of failure, ambiguity, or verification when available;
-- known environment/version constraints.
+The [help-capture helper](capture-help.md) can record installed documentation. Check the relevant manual too when short help omits meanings or combinations. For transcripts, retain the original question, environment, commands, outcomes and the reasoning that connected them.
 
-Three sources are a useful starting shape, not a quota. A strong maintainer walkthrough may cover everything. Ten shallow lists may still leave interpretation missing.
+Keep raw/private input in ignored `work/`. Retain useful citations, version context and concise non-sensitive findings inline or in an optional skill-local `references/sources.md`. Detailed claim maps are useful only when complexity or disputed advice warrants them. Preserve required attribution and remove credentials or identifying incident data from reusable examples.
 
-Match intake effort to the tier. A needs evidence for the investigation and its decisions. B may need only a documented correction and the failure that motivated it. C needs no fabricated source packet or skill. Capture real baseline failures early and use them to choose the next useful addition.
+## Resolve gaps before broadening coverage
 
-Use the [help-capture helper and workflow](capture-help.md) for version-labelled output, then pair it with applicable manual sections. Record both successful and failed captures accurately. A captured option's existence does not validate a pipeline, diagnostic inference or combination of flags.
+If invocation is documented but interpretation is missing, narrow the draft and identify the unanswered question. When sources disagree, compare versions, platforms, inputs and privileges; newer documentation may not apply to the installed tool.
 
-For a supplied transcript, retain the initial question, environment, commands, stdout/stderr and exit codes when available, revisions to the hypothesis, and the final verification. A transcript that ends after a command ran cannot prove task completion.
-
-Store only the needed source material or locators in a private/local intake area when appropriate. Remove credentials and identifying incident data before turning a private transcript into reusable examples. Publish concise paraphrases and citations; retain any required attribution for reused material.
-
-Keep durable sources and command/claim mappings in the tracked [provenance companion](provenance.template.md) inside the portable skill. Raw intake can stay in `work/`; accepted provenance must not rely on that ignored directory. Keep verification statuses and material limitations in the runtime skill so ordinary loading stays concise.
-
-## When evidence is incomplete
-
-If the sources explain invocation but not interpretation, produce a draft covering invocation and name the missing diagnostic evidence. Do not invent a root cause or a recovery sequence.
-
-Prefer one well-supported workflow over a broad claim of tool expertise. It is legitimate to say: "This skill covers examining an existing native core dump; live attach and reverse debugging are outside its current coverage."
-
-If sources disagree, first compare versions, platforms, inputs, and privileges. Record an unresolved contradiction and exclude the disputed command or interpretation until checked. Newer material is not automatically more applicable to an older installed tool.
-
-## Your best source after the first release
-
-Use real agent runs as a backlog:
-
-- The agent chose a tool that could not answer the question: improve selection.
-- A command failed because of a version or environment assumption: improve preconditions.
-- Correct output led to a wrong conclusion: improve interpretation.
-- The agent stopped too soon or repeated itself: improve the next-step or completion criteria.
-
-Keep the original run evidence outside the installed skill. Promote only the smallest general lesson supported by the run. Do not turn a single unusual incident into a rule for every use of the tool.
+Use real worker failures to improve the affected instruction: selection, execution, interpretation or follow-up. Preserve the smallest general lesson supported by the evidence. Avoid turning an unusual incident into a rule for every use of the tool.
