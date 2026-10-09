@@ -1,7 +1,7 @@
 # {{case-id}}
 
 Status: proposed / executed
-Tool and reference revision:
+Tool, skill name and revision:
 Purpose:
 
 ## Agent-facing request
@@ -34,6 +34,7 @@ Keep this section and the answer key outside the agent's readable workspace.
 - Harness/version:
 - Model/settings and budget:
 - Skill revision or baseline:
+- Installed skill folders and confirmation that no repository/other-skill resources were required:
 - Condition: {{baseline / skill / profile-only / profile-plus-skill; actual applied profile settings if any}}
 - Commands, stdout/stderr, exit status and artifact locations:
 - Outcome:

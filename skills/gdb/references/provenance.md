@@ -1,6 +1,6 @@
 # GDB core-analysis provenance
 
-Companion to [the GDB card](../gdb.md). The card retains current verification status and material limits; this file supplies the detailed evidence on demand.
+Companion to [the GDB skill](../SKILL.md). The skill retains current verification status and material limits; this file supplies the detailed evidence on demand.
 
 ## Sources
 
@@ -16,7 +16,7 @@ Reviewed on 2026-10-09. These are rolling upstream manuals, not captured help fr
 
 ## Command and claim mapping
 
-| Card section / command / claim | Support | Scope and limits |
+| Skill section / command / claim | Support | Scope and limits |
 |---|---|---|
 | Preconditions: core, executable, format and symbols | S1 file/symbol/core sections; S2 positional arguments | Documented artifact roles. Requiring independent build provenance is conservative synthesis; lack of a warning is not proof of a match. |
 | `gdb --version`, `-q`, `-nx`, `-batch` | S3 version, quiet, startup and batch options | Documented invocation semantics; no installed-version capture is available. |

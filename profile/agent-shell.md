@@ -1,6 +1,6 @@
 # Optional shared shell guidance
 
-Merge the bullets below into the instruction file already loaded by your harness only if you want them active outside this skill. This file is not an installer. Keep existing task permissions and intentional interactive workflows.
+Merge the bullets below into the instruction file already loaded by your harness only if these reminders address an observed problem. The tool skills do not require this file. It is not an installer. Keep existing task permissions and intentional interactive workflows.
 
 - Prefer a documented batch form when it preserves the task. For interaction, establish that the harness can retain a session, send input, collect output and cancel it. Avoid unattended password, pager and editor prompts.
 - Give potentially long commands an appropriate timeout or a managed session with a stop condition. Distinguish completed results from a timed-out sample.

@@ -62,10 +62,11 @@ def check_repository(root, bash=None):
             if "{{" in text:
                 errors.append(f"Unfinished runtime placeholder: {relative}")
         for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", outside):
-            if "{{" in target and ".template." in path.name:
-                template_links += 1
-                continue
             if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", target) or target.startswith("#"):
+                continue
+            if not skill_root and ".template." in path.name:
+                # Template links resolve in the future skill folder, not authoring/.
+                template_links += 1
                 continue
             resolved = (path.parent / unquote(target.split("#", 1)[0].strip("<>"))).resolve()
             links += 1
@@ -76,7 +77,11 @@ def check_repository(root, bash=None):
             if skill_root and not resolved.is_relative_to(skill_root):
                 errors.append(f"Runtime link escapes skill: {relative} -> {target}")
 
-    skills = sorted((root / "skills").glob("*/SKILL.md"))
+    skill_dirs = sorted(path for path in (root / "skills").glob("*") if path.is_dir() and path.name not in IGNORED)
+    for directory in skill_dirs:
+        if not (directory / "SKILL.md").is_file():
+            errors.append(f"Skill folder has no SKILL.md: {directory.relative_to(root)}")
+    skills = [directory / "SKILL.md" for directory in skill_dirs if (directory / "SKILL.md").is_file()]
     if not skills:
         errors.append("No skills/*/SKILL.md found")
     for path in skills:
@@ -96,7 +101,8 @@ def check_repository(root, bash=None):
         description = fields.get("description", "")
         if not description or len(description) > 1024 or description in {"|", ">", "|-", ">-"}:
             errors.append(f"Expected a nonempty one-line MVP description: {path.relative_to(root)}")
-        for provenance in (path.parent / "references" / "provenance").glob("*.md"):
+        provenance = path.parent / "references" / "provenance.md"
+        if provenance.is_file():
             content = provenance.read_text(encoding="utf-8")
             defined = set(re.findall(r"^- (S\d+):", content, re.M))
             used = set(re.findall(r"\bS\d+\b", content))
@@ -113,7 +119,7 @@ def check_repository(root, bash=None):
     return {
         "markdown_files": markdown_files,
         "local_links_checked": links,
-        "template_link_placeholders": template_links,
+        "template_links_deferred": template_links,
         "skills_checked": len(skills),
         "bash_blocks_parsed": parsed,
         "bash_status": "parsed only; commands not executed" if bash else "skipped; Bash unavailable or not selected",

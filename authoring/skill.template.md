@@ -1,3 +1,8 @@
+---
+name: "{{skill-name}}"
+description: "{{Specific supported tasks, symptoms and tool; no promises beyond the included coverage}}"
+---
+
 # {{tool}} — {{practical capability}}
 
 Tier: A.
@@ -48,4 +53,4 @@ Tier: A.
 - Agent evaluation: not-run.
 - Known gaps: {{unsupported modes, version uncertainty, missing evidence}}
 
-Sources and claim mapping: [provenance](provenance/{{tool}}.md). Read when checking evidence, compatibility or maintenance history.
+Sources and claim mapping: [provenance](references/provenance.md). Read when checking evidence, compatibility or maintenance history.

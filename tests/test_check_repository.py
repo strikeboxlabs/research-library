@@ -1,5 +1,6 @@
 import importlib.util
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 
@@ -38,6 +39,45 @@ class RepositoryChecks(unittest.TestCase):
         self.write(self.root / "authoring.md", "Authoring only.\n")
         self.write(self.skill / "reference.md", "[outside](../../authoring.md)\n")
         self.assertTrue(any("Runtime link escapes skill" in error for error in CHECKER.check_repository(self.root)["errors"]))
+
+    def test_runtime_cannot_depend_on_another_installed_skill(self):
+        other = self.root / "skills" / "other"
+        self.write(other / "SKILL.md", "---\nname: other\ndescription: Another tool.\n---\n")
+        self.write(self.skill / "reference.md", "[other skill](../other/SKILL.md)\n")
+        report = CHECKER.check_repository(self.root)
+        self.assertEqual(report["skills_checked"], 2)
+        self.assertTrue(any("Runtime link escapes skill" in error for error in report["errors"]))
+
+    def test_each_skill_folder_needs_its_own_entrypoint(self):
+        self.write(self.root / "skills" / "orphan" / "guide.md", "A guide without discovery metadata.\n")
+        self.assertTrue(any("Skill folder has no SKILL.md" in error for error in CHECKER.check_repository(self.root)["errors"]))
+
+    def test_source_ids_in_skill_local_provenance(self):
+        provenance = self.skill / "references" / "provenance.md"
+        self.write(provenance, "- S1: A source.\n\nClaim supported by S2.\n")
+        self.assertTrue(any("Undefined source IDs" in error for error in CHECKER.check_repository(self.root)["errors"]))
+        self.write(provenance, "- S1: A source.\n\nClaim supported by S1.\n")
+        self.assertEqual(CHECKER.check_repository(self.root)["errors"], [])
+
+    def test_template_links_are_checked_after_materialising(self):
+        template = self.root / "authoring" / "skill.template.md"
+        self.write(template, "[provenance](references/provenance.md)\n")
+        report = CHECKER.check_repository(self.root)
+        self.assertEqual(report["errors"], [])
+        self.assertEqual(report["template_links_deferred"], 1)
+        self.write(self.skill / "guide.md", template.read_text(encoding="utf-8"))
+        self.assertTrue(any("Missing link" in error for error in CHECKER.check_repository(self.root)["errors"]))
+
+    def test_published_skills_pass_when_copied_without_the_repository(self):
+        published = sorted((SCRIPT.parents[1] / "skills").glob("*/SKILL.md"))
+        self.assertTrue(published, "At least one independently installable skill must exist")
+        for entrypoint in published:
+            with self.subTest(skill=entrypoint.parent.name):
+                isolated = self.root / "isolated" / entrypoint.parent.name
+                shutil.copytree(entrypoint.parent, isolated / "skills" / entrypoint.parent.name)
+                report = CHECKER.check_repository(isolated)
+                self.assertEqual(report["skills_checked"], 1)
+                self.assertEqual(report["errors"], [])
 
     def test_unresolved_runtime_template_is_reported(self):
         self.write(self.skill / "reference.md", "Use {{tool}}.\n")

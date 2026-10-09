@@ -52,7 +52,7 @@ Use [intake.template.md](intake.template.md). Collect:
 
 Three sources are a useful starting shape, not a quota. A strong maintainer walkthrough may cover everything. Ten shallow lists may still leave interpretation missing.
 
-Match intake effort to the tier. A needs evidence for the investigation and its decisions. B may need only a documented correction and the failure that motivated it. C needs no fabricated source packet or card. Capture real baseline failures early and use them to choose the next useful addition.
+Match intake effort to the tier. A needs evidence for the investigation and its decisions. B may need only a documented correction and the failure that motivated it. C needs no fabricated source packet or skill. Capture real baseline failures early and use them to choose the next useful addition.
 
 Use the [help-capture helper and workflow](capture-help.md) for version-labelled output, then pair it with applicable manual sections. Record both successful and failed captures accurately. A captured option's existence does not validate a pipeline, diagnostic inference or combination of flags.
 
@@ -60,13 +60,13 @@ For a supplied transcript, retain the initial question, environment, commands, s
 
 Store only the needed source material or locators in a private/local intake area when appropriate. Remove credentials and identifying incident data before turning a private transcript into reusable examples. Publish concise paraphrases and citations; retain any required attribution for reused material.
 
-Keep durable sources and command/claim mappings in the tracked [provenance companion](provenance.template.md) inside the portable skill. Raw intake can stay in `work/`; accepted provenance must not rely on that ignored directory. Keep verification statuses and material limitations in the runtime card so ordinary loading stays concise.
+Keep durable sources and command/claim mappings in the tracked [provenance companion](provenance.template.md) inside the portable skill. Raw intake can stay in `work/`; accepted provenance must not rely on that ignored directory. Keep verification statuses and material limitations in the runtime skill so ordinary loading stays concise.
 
 ## When evidence is incomplete
 
 If the sources explain invocation but not interpretation, produce a draft covering invocation and name the missing diagnostic evidence. Do not invent a root cause or a recovery sequence.
 
-Prefer one well-supported workflow over a broad claim of tool expertise. It is legitimate to say: "This card covers examining an existing native core dump; live attach and reverse debugging are outside its current coverage."
+Prefer one well-supported workflow over a broad claim of tool expertise. It is legitimate to say: "This skill covers examining an existing native core dump; live attach and reverse debugging are outside its current coverage."
 
 If sources disagree, first compare versions, platforms, inputs, and privileges. Record an unresolved contradiction and exclude the disputed command or interpretation until checked. Newer material is not automatically more applicable to an older installed tool.
 

@@ -55,7 +55,7 @@ These commands are a Linux-side authoring example. Supply locally prepared image
 
 The example uses the resolved local image ID so a moving tag is not the recorded environment identity. It mounts only the helper directory and capture destination. Container commands and mounts follow [Docker's run documentation](https://docs.docker.com/engine/containers/run/). The image ID is supplied by the caller; the Python helper does not independently attest it.
 
-Read the captures and compare relevant options, defaults and failure messages. Use version-matched manual sections for missing detail. Help differences belong in the card only when they change the supported task; do not paste an entire distro diff into runtime guidance.
+Read the captures and compare relevant options, defaults and failure messages. Use version-matched manual sections for missing detail. Help differences belong in the skill only when they change the supported task; do not paste an entire distro diff into runtime guidance.
 
 ## Accept evidence without overstating it
 

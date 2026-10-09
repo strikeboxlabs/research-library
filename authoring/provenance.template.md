@@ -1,6 +1,6 @@
 # {{tool}} provenance
 
-Companion to [the tool card](../{{tool}}.md). Read for source checking and maintenance; the runtime card contains the current verification status and material limits.
+Companion to [the skill](../SKILL.md). Read for source checking and maintenance; the skill contains the current verification status and material limits.
 
 ## Sources
 
@@ -10,10 +10,10 @@ Companion to [the tool card](../{{tool}}.md). Read for source checking and maint
 
 ## Claim mapping
 
-| Card section / command / claim | Support | Scope and limits |
+| Skill section / command / claim | Support | Scope and limits |
 |---|---|---|
 | {{specific guidance}} | {{S1 and precise locator}} | {{documented semantics, observed example or synthesis; applicable version or unknown version relation}} |
 
 ## Execution evidence
 
-{{Not-run, or durable summary of named cases, exact commands, environment/tool versions, outcomes and evidence locators. Capturing help/version output is not execution of the card's procedure.}}
+{{Not-run, or durable summary of named cases, exact commands, environment/tool versions, outcomes and evidence locators. Capturing help/version output is not execution of the skill's procedure.}}

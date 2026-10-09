@@ -1,8 +1,22 @@
 # Validation record
 
-Date: 2026-10-09. This record describes the v0.2 starter update, not a completed tool catalogue.
+Date: 2026-10-09. Current packaging/schema: v0.3. Earlier starter and migration checks are retained below. This is not a completed tool catalogue or a measured agent-performance result.
 
-## Executed checks
+## Independent tool skills, v0.3
+
+GDB is now an independently installable folder with its procedure directly in `skills/gdb/SKILL.md` and its source companion in `skills/gdb/references/provenance.md`. The old umbrella, runtime index and shared runtime guide have been removed. The authoring schema, A/B templates, generation/review prompts and Linux setup guide now create and install individual tool skills. Tier C records a deferral without creating a runtime package.
+
+Executed on Windows:
+
+- Sixteen tests passed: six capture-helper tests and ten repository checks. The new checks cover copying the actual GDB folder into an isolated directory without the repository, rejecting sibling-skill dependencies, requiring each skill folder's own entrypoint, checking local provenance source IDs, and checking template links after materialisation.
+- The repository checker resolved all local links, checked each skill boundary and parsed 19 Bash blocks with Git Bash. Template destinations are deferred until instantiated in a skill folder. Shell examples were parsed only, not executed.
+- The skill-creator validator accepted `skills/gdb/`. Its name matches its folder and its description remains scoped to existing native core dumps.
+- Compared with the pre-refactor Git version, the GDB procedure, executable commands, decision branches and failure recovery are unchanged. Source review remains recorded separately from unrun execution and agent evaluation.
+- `git diff --check` passed, and the existing methodology has no changes.
+
+These checks establish local packaging and helper behaviour. They do not establish Linux GDB compatibility, discovery in a live harness or improved worker performance. No installed agent configuration, commit or push was performed by this refactor.
+
+## Earlier starter checks, v0.2
 
 - Six capture-helper tests passed using Python 3.12 on Windows. They exercised real child processes for version/help output, separate stdout/stderr and nonzero status, partial output on timeout, a missing executable, rejection of invalid timeouts, and refusal to overwrite an existing capture.
 - The skill-creator validator accepted the skill's frontmatter and structure. Runtime references contain no unfinished template placeholders.
@@ -21,7 +35,7 @@ The Windows sandbox's default temporary directory initially prevented the subpro
 - Actual loading, automatic discovery and task completion in Pi, Claude Code or Codex on Linux.
 - Any claim of improved agent performance or broad tool-version compatibility.
 
-The GDB card therefore retains checked source review, `Execution: not-run` and `Agent evaluation: not-run`. Harness configuration examples were checked against the official documentation linked in the [deployment guide](harnesses.md); successful snippet parsing is not proof of runtime application.
+The GDB skill therefore retains checked source review, `Execution: not-run` and `Agent evaluation: not-run`. Harness configuration examples were checked against the official documentation linked in the [deployment guide](harnesses.md); successful snippet parsing is not proof of runtime application.
 
 Run the [evaluation process](../evaluation/README.md) on the intended Linux system before claiming those outcomes.
 

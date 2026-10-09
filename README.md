@@ -1,163 +1,107 @@
 # Research library
 
-**Start with [GETTING_STARTED.md](GETTING_STARTED.md).** It explains where to clone on Linux, how to expose the skill to Pi/Claude Code/Codex, how to adapt it to the actual binaries and versions, and how to ingest documentation to add a tool and commit the result.
+**Start with [GETTING_STARTED.md](GETTING_STARTED.md).** It covers the Linux checkout, installing selected skills in Pi/Claude Code/Codex, adapting them to the actual machine, and creating a new skill from documentation.
 
-This repository also contains the existing [Arcanum-inspired LLM assessment methodology](methodologies/arcanum-llm-assessment.md). The CLI collection lives directly in this repository root.
+This repository contains independent Linux tool skills and the existing [Arcanum-inspired LLM assessment methodology](methodologies/arcanum-llm-assessment.md).
 
-## Linux CLI skills: practical MVP
+## Independent Linux tool skills
 
-Design date: 2026-10-09. Schema: v0.2. Target: agents working on Linux through Pi, Claude Code, or Codex.
+Design date: 2026-10-09. Schema: v0.3. Target: agents that already use the Linux CLI competently.
 
-Build one small, portable skill that finds and reads a procedure for the current tool. Keep the tool knowledge in ordinary Markdown. Start with a few useful investigations, then expand the catalogue when those investigations work.
+Each tool's guidance is its own installable skill under `skills/<name>/`. The useful procedure goes directly in that skill's `SKILL.md`, with its own discovery description. Sources and any substantial optional detail stay inside that same folder. Copy or link the folders a worker needs; each works independently of the rest of this repository.
 
-This starter contains a tiered schema, authoring/review prompts, source capture guidance and helper, an optional user-side shell profile, deployment instructions, an evaluation design, and a populated GDB reference with provenance loaded on demand. The GDB procedure has been checked against documentation but has not been executed here. This is a design and starter package, not a completed collection or a measured improvement in agent performance.
+There is no umbrella skill, required runtime index or shared runtime dependency. Shared authoring prompts, templates and checks stay at repository level for maintainers. Progressive loading still works inside an individual skill: the agent discovers its description, reads its instructions, then consults supporting references when needed. See the [Agent Skills specification](https://agentskills.io/specification).
 
-## Start here
+## Available skills
 
-1. Read the [schema and its rationale](authoring/schema.md).
-2. Assign A (full procedure), B (short delta), or C (index only). For A/B, fill the [source intake](authoring/intake.template.md) with the specific knowledge gap and relevant material. Use [help capture](authoring/capture-help.md) when useful for grounding options.
-3. Give an LLM the [authoring prompt](authoring/create-tool-card.prompt.md), [A template](authoring/tool-card.template.md) or [B template](authoring/delta-card.template.md), [provenance template](authoring/provenance.template.md), schema, and source packet. C needs only the index row and triage reason.
-4. Use the [review prompt](authoring/review-tool-card.prompt.md) to check the result against its evidence, then the [evaluation procedure](evaluation/README.md) to test commands and agent behaviour at the appropriate depth.
-5. Add accepted coverage to the [tool index](skills/linux-cli/references/index.md), then copy the complete skill folder into the desired harness location using the [deployment guide](docs/harnesses.md).
-
-The [GDB card](skills/linux-cli/references/gdb.md) shows the intended depth: one bounded job, observable evidence, and useful next steps.
-
-A development index may include a source-reviewed reference whose execution status is visibly `not-run`, as this starter does. Claiming tested support for an environment requires the actual execution and harness checks described below.
-
-See the [validation record](docs/validation.md) for checks executed during this update and the Linux/harness work still untested.
-
-## The four gaps
-
-The previous discussion separated verification from continuation. This design groups them into four knowledge gaps:
-
-| Gap | What a useful reference supplies |
-|---|---|
-| Selection | The question this tool can answer, conditions where it applies, and an alternative when it cannot answer that question. |
-| Reliable execution | Relevant prerequisites, exact commands, defined inputs, effects, output handling, and session requirements. |
-| Interpretation | What an observation supports, what it cannot establish, and common misleading results. |
-| Follow-up and verification | A next action tied to the observation, a way to test the explanation, and a condition for finishing or reporting an unresolved blocker. |
-
-The [source strategy](authoring/sources.md) maps each gap to useful kinds of material and concrete starting points.
-
-## Architecture
-
-Use one discoverable `linux-cli` skill for the MVP. Its description names the symptoms and tools actually covered; its body directs the agent to a short index and the relevant reference. A/B tools have a card and a provenance companion; C tools have an index row only. These references are not separate discovered skills.
-
-| Tier | Content | Initial planning estimate for 200 tools |
+| Skill | Tier | Current scope |
 |---|---|---|
-| A | Full procedures, decision branches, recovery and verification. | About 40 complex tools. |
-| B | Only the non-obvious correction, failure or variant. | About 100 short cards. |
-| C | Selection terms and scope in the index; no specialised card. | About 60 entries. |
+| [gdb](skills/gdb/SKILL.md) | A | Examine an existing native core dump with its matching executable; interpret stacks, missing symbols and inconclusive evidence. |
 
-These are estimates, not quotas. Use observed agent failures to allocate effort and revisit tiers. A familiar tool can still need guidance for a difficult task. The current accepted index contains only GDB (A); no additional tool coverage is claimed by introducing the tier system.
+The GDB procedure is source-reviewed. Linux execution and agent evaluation are **not-run**; its skill and provenance contain the full record. A source-reviewed skill may be useful to evaluate, but it is not a claim of tested compatibility or improved agent performance. See the [validation record](docs/validation.md).
 
-This uses the standard distinction between a skill entrypoint and references loaded as needed. See the [Agent Skills specification](https://agentskills.io/specification). A tool-named request can go straight to its indexed file; a symptom-named request uses the index to choose a tool.
+This catalogue is an overview for maintainers and installers. Installed skills do not read or depend on it. It lists accepted coverage only; no placeholder skills have been created for planned tools.
 
-The initial layout is:
+## Repository layout
 
 ~~~text
 research-library/
-├── README.md
-├── GETTING_STARTED.md
-├── AGENTS.md
-├── CLAUDE.md
-├── .gitattributes
-├── .gitignore
+├── README.md                         # available skills and project overview
+├── GETTING_STARTED.md                # Linux setup and authoring workflow
+├── AGENTS.md                         # instructions for repository maintenance
+├── CLAUDE.md                         # imports AGENTS.md
 ├── authoring/
 │   ├── schema.md
-│   ├── create-tool-card.prompt.md
-│   ├── review-tool-card.prompt.md
-│   ├── intake.template.md
-│   ├── local-machine.template.md
-│   ├── adapt-to-host.prompt.md
-│   ├── tool-card.template.md
-│   ├── delta-card.template.md
+│   ├── create-skill.prompt.md
+│   ├── review-skill.prompt.md
+│   ├── skill.template.md             # full skill (A), including frontmatter
+│   ├── delta-skill.template.md       # compact skill (B), including frontmatter
 │   ├── provenance.template.md
+│   ├── intake.template.md
+│   ├── adapt-to-host.prompt.md
+│   ├── local-machine.template.md
 │   ├── sources.md
 │   └── capture-help.md
-├── docs/
-│   ├── harnesses.md
-│   └── validation.md
-├── evaluation/
-│   ├── README.md
-│   └── case.template.md
-├── profile/
-│   ├── display-env.sh
-│   └── agent-shell.md
-├── scripts/
-│   ├── capture_help.py
-│   └── check_repository.py
+├── docs/                             # harness setup and validation record
+├── evaluation/                       # cases and evaluation method
+├── profile/                          # optional user-side shell settings
+├── scripts/                          # authoring capture and repository checks
 ├── tests/
-│   ├── test_capture_help.py
-│   └── test_check_repository.py
 ├── methodologies/
 │   └── arcanum-llm-assessment.md
 └── skills/
-    └── linux-cli/
+    └── gdb/                          # copy this folder alone to install GDB
         ├── SKILL.md
         └── references/
-            ├── index.md
-            ├── runtime.md
-            ├── gdb.md
-            └── provenance/
-                └── gdb.md
+            └── provenance.md
 ~~~
 
-The installed runtime unit is only `skills/linux-cli/`. Everything else supports authors and maintainers. All resources needed during tool use live inside that installed folder, so it can be copied without breaking links.
+A future strace skill would have its own `skills/strace/SKILL.md` and local resources. A simple skill needs no additional routing document. Larger tool skills may keep substantial mode-specific guidance in their own `references/`; they still ship as one independent folder.
 
-As A/B tools are accepted, add their cards, provenance companions and index rows. For C, add the row alone. Keep raw captures and drafts in ignored `work/`; retain durable evidence in tracked provenance. Do not create empty files for the planned catalogue.
+## Create another skill
 
-Domain playbooks can connect accepted tool cards inside the same skill: symptom, discriminating check, interpretation, next tool, sufficient evidence. Add one when a supported task needs that progression. At roughly 30-40 indexed tools, review discovery and context cost; this is a checkpoint, not an automatic split. Introduce separate domain entrypoints when symptom-based evaluations show that routing needs them. Keep each resulting skill self-contained. A vector database, generated API, custom MCP server, and central knowledge service are unnecessary for this MVP.
+1. Choose a useful task and the guidance gap. Select A (full procedure), B (compact correction) or C (defer) using the [schema and rationale](authoring/schema.md).
+2. For A/B, fill the [source intake](authoring/intake.template.md). Gather practical examples and focused semantics evidence using the [source strategy](authoring/sources.md) and, when useful, [help capture](authoring/capture-help.md).
+3. Give the authoring agent the [generation prompt](authoring/create-skill.prompt.md), [A template](authoring/skill.template.md) or [B template](authoring/delta-skill.template.md), [provenance template](authoring/provenance.template.md), schema and packet. It creates an independent skill package. C records a deferral reason and creates no installed skill.
+4. Use the [review prompt](authoring/review-skill.prompt.md), then the [evaluation process](evaluation/README.md). Record source review, procedure execution and agent evaluation separately.
+5. Place accepted content in `skills/<name>/`, add its README catalogue row, and install only that folder using the [deployment guide](docs/harnesses.md). Drafts stay in ignored `work/`.
 
-## What is essential
+A and B differ in the amount of useful guidance; both are independently discoverable and portable. Do not produce a full tutorial when one correction is enough. Do not produce an empty skill just to reach a tool-count target.
 
-The runtime needs `SKILL.md`, the index, shared execution guidance, and the actual tool references. The authoring schema and prompt make generation consistent. The evaluation template provides a repeatable way to find errors.
+The getting-started guide includes a complete strace authoring request, exact source-packet paths, host-adaptation steps and Git commands.
 
-`AGENTS.md` instructs agents maintaining this repository. `CLAUDE.md` imports it for compatibility. These repository files are not installed as global instructions and do not carry the tool catalogue.
+## The four knowledge gaps
 
-The optional [display profile](profile/display-env.sh) and [short shell instructions](profile/agent-shell.md) can be applied separately using the [harness guide](docs/harnesses.md). Installing the skill does not apply them. Display defaults are separate from authentication/package-operation settings; editors are never replaced by a successful no-op.
+| Gap | What useful guidance supplies |
+|---|---|
+| Selection | The question this tool can answer, conditions where it applies, and an alternative when it cannot answer that question. |
+| Reliable execution | Relevant prerequisites, supported commands, defined inputs, effects, output handling and session requirements. |
+| Interpretation | What an observation supports, what it cannot establish, and common misleading results. |
+| Follow-up and verification | A next action tied to the observation, a way to test the explanation, and evidence for finishing or identifying a specific blocker. |
 
-The [capture helper](scripts/capture_help.py) runs known help/version invocations in its current environment, including a prepared container. Its [tests](tests/test_capture_help.py) check evidence capture and failure handling. Captured help is not a successful workflow test.
+Start with real tasks: search/filtering failures (`rg`, `find`, `jq`), HTTP/connectivity failures (`curl`, `ss`), service failures (`systemctl`, `journalctl`), stuck processes (`ps`, `lsof`, `strace`), native crashes (`gdb`) or CPU usage (`perf`). These are candidates, not claims of implemented coverage. Use observed agent failures to prioritise which tools deserve skills.
 
-`.gitattributes` keeps text suitable for Linux checkouts; `.gitignore` excludes local scratch work and run artifacts. Add a repository license when you choose the distribution terms. No license choice is assumed in this starter.
+## Authoring companions and checks
 
-A small [repository checker](scripts/check_repository.py) validates local links, the runtime boundary and the current simple frontmatter. Optional later: an installer that reports conflicts, a Pi package manifest, Codex UI metadata, and CI for repeatable fixtures. Add them when repeated maintenance work justifies them. A checker can establish structure, not diagnostic competence.
+`AGENTS.md` and `CLAUDE.md` apply to maintaining this repository. They are not global instructions for machines installing a skill. The optional [display profile](profile/display-env.sh) and [shell instruction snippet](profile/agent-shell.md) can be applied separately; installing a skill does not apply or require them.
 
-## Producing a larger catalogue
+The [capture helper](scripts/capture_help.py) records known help/version invocations. Help output is evidence about documentation and invocation, not a successful diagnostic workflow. Keep raw captures and machine facts in ignored `work/` and run artifacts in ignored `runs/`; retain durable citations and non-sensitive findings in each skill's provenance.
 
-Organise production around user tasks, then add the tools those tasks require. A proposed first group is:
+From the repository root:
 
-| Investigation | Candidate tools | An observable result |
-|---|---|---|
-| Find relevant configuration or log evidence | `rg`, `find`, `jq` | Locate the right record despite filtering or format complications. |
-| Explain an HTTP connection failure | `curl`, `ss` | Identify the failed stage and obtain evidence for the next check. |
-| Explain a service failure | `systemctl`, `journalctl` | Connect the service state to the relevant event and verify the explanation. |
-| Investigate a stuck process | `ps`, `lsof`, `strace` | Distinguish a plausible wait from evidence of the actual fault. |
-| Examine a native crash | `gdb` | Localise the crash using matching artifacts and state the limits of the conclusion. |
-| Investigate CPU usage | `perf` | Attribute sampled work within the limits of available symbols and permissions. |
+~~~bash
+python3 scripts/check_repository.py
+python3 -B -m unittest discover -s tests -v
+~~~
 
-These are 12 candidate tools, not 12 implemented references. The supplied GDB example is the first format specimen. Start by refining that specimen and one basic tool such as `rg`; expand to the first group after both survive realistic tests.
+The [checker](scripts/check_repository.py) validates local links, per-skill boundaries, source IDs and simple frontmatter. Tests include copying each skill alone to an isolated directory and checking it there. These are structural/helper checks; Linux fixtures and actual agent behaviour need separate evaluation.
 
-For each tool:
+`.gitattributes` keeps text suitable for Linux checkouts. Add a repository license when you choose distribution terms; no license choice is assumed here.
 
-1. Identify the task and guidance gap, choose a provisional tier, and gather only the evidence needed for it. A practical walkthrough, semantics reference and failure example often suffice for A. B can be much smaller; C needs no invented card pipeline.
-2. Let the authoring model produce the appropriate card and provenance companion, or C index row. Missing evidence becomes a research question or excluded scope.
-3. Review semantics against captured help and applicable manual sections, then run the smallest useful Linux fixture. B needs a focused correction check; A also needs a failure/incomplete-evidence variant.
-4. For a card, evaluate whether an agent using it reaches the right outcome. Keep the answer key outside its workspace.
-5. Accept the supported workflows and update the index. Keep incomplete drafts under `work/`, outside the installed skill.
-6. Record actual failures from use. Revise the affected guidance and reconsider its tier instead of expanding every card.
+## Current limits
 
-The LLM can do source extraction, drafting, reference checking, fixture preparation, and run analysis. Your recurring input can be limited to choosing useful tasks and resolving source conflicts or intended operating scope. Better prose alone does not justify marking a procedure as tested.
-
-## MVP shortcomings and triggers for expansion
-
-- **Retrieval is initially simple.** A broad skill can fail to activate; an index can miss the user's phrasing. Test explicit invocation and ordinary requests separately. Add aliases or split domains when observed failures justify it.
-- **Coverage is narrow.** One to three procedures will not capture an entire debugger or system utility. Put excluded modes in the card and use authoritative documentation for unsupported work.
-- **Compatibility is declared, not exhaustive.** GNU, BusyBox, distribution, kernel, and tool-version differences need targeted checks. Add a tested environment matrix as actual runs accumulate.
-- **Source review is not execution.** A checked tutorial can still yield a bad local command. Record exact test coverage and keep unexecuted status visible.
-- **Captures check documentation, not diagnosis.** Compare relevant versions and semantics, then test the procedure separately. When assessing the optional profile, compare baseline, profile only, and profile plus skill to distinguish the sources of improvement.
-- **Procedures influence behaviour without guaranteeing it.** Test conclusions, recovery, and unnecessary commands. Do not grade by how closely an agent repeats the document.
-- **Runtime capabilities remain external.** A reference cannot create a persistent terminal, add permissions, or extend a run budget. The shared runtime guide explains when a workflow needs those capabilities.
-- **Maintenance is manual at first.** Use source locators, review dates, and Git history. Automate freshness checks after there is enough content to maintain.
-
-For the mechanical problems discussed earlier: native shell access permits normal CLI composition; selective reference loading limits catalogue context; batch procedures reduce session requirements where appropriate; explicit evidence and next-step criteria help sustain an investigation. Each still needs an execution test in the actual harness.
+- GDB covers existing cores only. Live attachment, stepping, core collection and other debugger modes need their own supported procedures before being advertised.
+- Tool versions, GNU/BusyBox differences and kernel/session capabilities need checks on the actual host. A skill cannot provide missing executables or permissions.
+- Independent skills let workers install a relevant subset. Keep descriptions concise and evaluate ordinary task discovery as well as explicit invocation; publishing many skills does not require loading all of them into every worker.
+- Source review, command execution and useful agent performance are different results. Measure outcomes, recovery and unnecessary commands against a baseline; shorten or defer guidance that adds no value.
+- Freshness and source maintenance are manual initially. Use source locators, recorded versions, review dates and Git history; add automation when actual maintenance work justifies it.

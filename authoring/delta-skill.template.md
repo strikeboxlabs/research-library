@@ -1,3 +1,8 @@
+---
+name: "{{skill-name}}"
+description: "{{Specific correction or variant, when it applies, and tool; no promises beyond the included coverage}}"
+---
+
 # {{tool}} — {{specific correction or variant}}
 
 Tier: B.
@@ -21,4 +26,4 @@ Tier: B.
 - Agent evaluation: not-run.
 - Known gaps: {{material untested conditions or excluded work}}
 
-Sources and claim mapping: [provenance](provenance/{{tool}}.md).
+Sources and claim mapping: [provenance](references/provenance.md).

@@ -1,4 +1,9 @@
-# gdb — examine an existing native core dump
+---
+name: gdb
+description: Analyse existing native core dumps with GDB. Use for SIGSEGV or SIGABRT crashes, stack traces, missing symbols, and inconclusive backtraces when a core dump and matching executable are available.
+---
+
+# GDB — examine an existing native core dump
 
 Tier: A.
 
@@ -6,11 +11,11 @@ Tier: A.
 
 - Executable: `gdb`; aliases/search terms: GNU debugger, native crash, core dump, SIGSEGV, SIGABRT, stack trace.
 - Use for: locating a crash in a native program using an existing core and its matching executable.
-- Choose another approach when: the failure is a managed-runtime exception without a useful native core, or the question is about a running process's historical behaviour. This card does not cover those investigations.
+- Choose another approach when: the failure is a managed-runtime exception without a useful native core, or the question is about a running process's historical behaviour. This skill does not cover those investigations.
 
 ## Preconditions
 
-An installed GDB must support the core's target architecture/format. The core and executable must be readable. Establish the executable's build identity from artifact provenance; a familiar filename or absence of a GDB warning alone does not prove a match. Source-level interpretation also needs suitable debug information.
+Requires Linux with file access and shell command execution. The installed GDB must support the core's target architecture/format. The core and executable must be readable. Establish the executable's build identity from artifact provenance; a familiar filename or absence of a GDB warning alone does not prove a match. Source-level interpretation also needs suitable debug information.
 
 This procedure uses batch commands and local artifacts. It does not require a persistent terminal or a live process. Record `gdb --version` for reproducibility.
 
@@ -58,4 +63,4 @@ For a targeted follow-up, reopen the same core in batch mode and add `-ex 'threa
 - Agent evaluation: not-run.
 - Known gaps: no measured version/platform matrix, live attach, core collection, remote targets, reverse debugging, or deadlock diagnosis. The recipe and its diagnostic branches still need an isolated Linux execution test.
 
-Sources and claim mapping: [GDB provenance](provenance/gdb.md). Read for source checks, version conflicts or maintenance.
+Sources and claim mapping: [GDB provenance](references/provenance.md). Read for source checks, version conflicts or maintenance.
