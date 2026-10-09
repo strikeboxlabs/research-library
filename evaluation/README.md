@@ -23,4 +23,6 @@ Test both explicit invocation and an ordinary symptom request. Check each actual
 
 Keep fixture answers and evaluator notes outside the worker's readable inputs. The current GDB skill is documentation-reviewed only.
 
+The [four-skill pilot cases](pilot-cases.md) provide requests, fixture conditions and evaluator criteria for GDB, pwntools, SCP and the Grafana converter. They are prepared cases, not successful run records. Use changed inputs to test transfer of the guidance rather than memorization of its examples.
+
 Use failures to improve the affected guidance. If a skill adds no measurable value, shorten it, change its scope or defer it. Packaging tests cannot establish worker usefulness.

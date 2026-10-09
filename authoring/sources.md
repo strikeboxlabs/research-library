@@ -46,7 +46,7 @@ Start with the task, relevant practical material and evidence for uncertain comm
 
 The [help-capture helper](capture-help.md) can record installed documentation. Check the relevant manual too when short help omits meanings or combinations. For transcripts, retain the original question, environment, commands, outcomes and the reasoning that connected them.
 
-Keep raw/private input in ignored `work/`. Retain useful citations, version context and concise non-sensitive findings inline or in an optional skill-local `references/sources.md`. Detailed claim maps are useful only when complexity or disputed advice warrants them. Preserve required attribution and remove credentials or identifying incident data from reusable examples.
+Keep raw/private input in ignored `work/`. Map source URLs/sections, originating document/pages, review dates and actual test findings to the affected skill in existing intake reports and `docs/validation.md`. Keep actionable version conditions and useful documentation fallback links in the skill. Preserve attribution and source mappings when relocating old notes; workers need no maintenance-file dependency. Remove credentials and identifying incident data from examples. Label invented output as illustrative.
 
 ## Resolve gaps before broadening coverage
 

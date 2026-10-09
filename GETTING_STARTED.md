@@ -110,7 +110,7 @@ mkdir -p work/sources/strace
 
 Put practical walkthroughs, documentation, notes, command transcripts or agent failures there. A `links.txt` with one URL per line works when the agent can fetch them. Supply readable extracts for formats the agent cannot open. The [source guide](authoring/sources.md) lists useful starting points.
 
-For a batch of documents covering several tools, `ingest/` is also available as a local, Git-ignored inbox. Ask the agent to read the documents, select useful tool-specific guidance, verify it against upstream sources and follow the same authoring workflow. Originals stay local; extracted notes belong in `work/`. The [first PDF batch](docs/ctf-writeups-ingestion.md) records an example of this process and its remaining candidates.
+For a batch of documents covering several tools, `ingest/` is also available as a local, Git-ignored inbox. Ask the agent to read all documents, compare them with existing skill coverage, and add only a useful task, interpretation, recovery branch or correction. Verify consequential semantics against upstream sources. An additional writeup need not create another skill or example. Originals stay local; extracted notes belong in `work/`. Record source-to-skill mappings and coverage decisions in the existing batch reports under `docs/`. The [first PDF batch](docs/ctf-writeups-ingestion.md) shows an intake record.
 
 Tell the agent the task, target environment if known, whether it may research further, and what it may execute. You can use the optional [intake template](authoring/intake.template.md) or put those facts directly in your request. No full man page or formal source packet is required.
 
@@ -125,8 +125,11 @@ You may retrieve upstream documentation and inspect the installed strace.
 If installed, test only disposable programs owned by this task under runs/;
 do not attach to unrelated processes or install packages.
 
-Write concise working instructions in skills/strace/SKILL.md. Add a short
-sources file or other resources only when useful, inside that same folder.
+Write concise working instructions in skills/strace/SKILL.md. Connect commands
+to meaningful output, interpretation and the next decision where an example
+helps. Label invented output as illustrative. Keep operational limits in the
+skill; save fuller source trails and test history in docs/ maintenance records.
+Add skill-local references only for substantial conditional working detail.
 Review commands and interpretations, remove repetition, check independent
 packaging and update the README catalogue. Keep incomplete drafts in work/.
 
@@ -141,7 +144,7 @@ capture_id=$(date -u '+%Y%m%dT%H%M%SZ')
 python3 scripts/capture_help.py strace --output "work/sources/strace/$capture_id"
 ~~~
 
-The result starts with `skills/strace/SKILL.md`. A `references/sources.md`, longer reference or helper script is optional. It should need no other skill or repository file. Keep raw/private inputs in `work/` and raw test output in `runs/`; retain useful sources and test findings in tracked content.
+The result starts with `skills/strace/SKILL.md`. A conditional working reference or useful helper script is optional; every required resource stays inside that skill. Keep useful documentation fallback links and compatibility conditions near the relevant procedure. Put review dates, source-document/page trails and actual test history in intake/validation records under `docs/`, mapped to the skill. Workers do not need those records. Keep raw/private inputs in `work/` and raw test output in `runs/`.
 
 Use the [review prompt](authoring/review-skill.prompt.md) for another review when useful. Test a small correction with a focused check; test a diagnostic workflow's conclusions and relevant incomplete-evidence branch. The [evaluation guide](evaluation/README.md) covers comparisons with an unassisted worker.
 

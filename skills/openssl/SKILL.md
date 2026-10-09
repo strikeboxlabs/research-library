@@ -26,6 +26,8 @@ openssl x509 -inform DER -in "$der_cert" -outform PEM -out "$pem_cert"
 
 Use a separate `-noout -text` inspection when needed; do not mix a textual dump into the file intended as a clean PEM trust input. A parser error calls for checking object type, encoding and transfer completeness before regenerating keys or requests.
 
+For a trust-directory layout explicitly requiring the old subject hash, use `openssl x509 -in "$pem_cert" -noout -subject_hash_old`. This is a subject-name lookup key, not the certificate fingerprint or a trust decision. Hash collisions use numbered suffixes such as `.0`, `.1`; inspect existing entries rather than overwriting `.0`. The platform's store format, permissions and actual application trust policy remain separate. Format conversion and a matching filename do not install trust.
+
 Define `ca_bundle` as independently trusted CA certificates and `intermediates` as the supplied intermediate chain:
 
 ~~~bash
@@ -36,4 +38,4 @@ Omit `-untrusted` if no intermediate file is needed. Choose the intended verific
 
 For certificate-based login, confirm the matching private key exists and is readable by the intended process without printing it. Record certificate fingerprints and verification diagnostics, not private-key contents.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Anubis pp. 7, 16–17. Sources: [req](https://docs.openssl.org/3.5/man1/openssl-req/), [x509](https://docs.openssl.org/3.5/man1/openssl-x509/), [verify](https://docs.openssl.org/3.5/man1/openssl-verify/).
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Anubis pp. 7, 16–17; BigBang pp. 19–20. Sources: [req](https://docs.openssl.org/3.5/man1/openssl-req/), [x509](https://docs.openssl.org/3.5/man1/openssl-x509/), [verify](https://docs.openssl.org/3.5/man1/openssl-verify/), [hash-directory naming](https://docs.openssl.org/3.5/man1/openssl-rehash/).

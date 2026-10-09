@@ -14,6 +14,8 @@ readelf -W -h -l -S "$binary"
 
 Read the class, byte order, machine and object type together. An ELF header is not a promise that the file can execute on this Linux host: a foreign OS ABI, interpreter or dependency can still differ. `ET_DYN` can describe a shared object or a position-independent executable; inspect program headers/interpreter information rather than treating that field alone as a complete classification.
 
+If tables or sections extend beyond EOF, preserve the truncated artifact and check acquisition length/encoding against its source. Appending NUL bytes can silence a bounds error without recovering the missing contents. A parser accepting a padded file does not establish an intact library or trustworthy offsets/symbols; obtain the exact bytes or keep the finding inconclusive.
+
 Sections describe file organization; program headers describe loadable segments. For an address inside a file-backed `PT_LOAD` range, map the linked virtual address using that segment's `p_offset + (address - p_vaddr)`. Check the range against `p_filesz`, not only `p_memsz`: extra in-memory bytes can be zero-filled and have no corresponding file content. A relocated runtime address needs its load bias removed first.
 
 For a named section observed in the table, define `section` and inspect its bytes:
@@ -29,4 +31,4 @@ Use `readelf -W -s "$binary"` for available symbols and `--dyn-syms` for dynamic
 
 Finish with artifact identity, relevant segment/section and the address space being described. Keep claims about runtime contents or permissions separate from file metadata.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Attended p. 24, adapted from OpenBSD. Sources: [GNU readelf](https://sourceware.org/binutils/docs/binutils/readelf.html), [ELF program headers](https://gabi.xinuos.com/elf/07-pheader.html).
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Attended p. 24, adapted from OpenBSD; BigBang p. 8. Sources: [GNU readelf](https://sourceware.org/binutils/docs/binutils/readelf.html), [ELF program headers](https://gabi.xinuos.com/elf/07-pheader.html).

@@ -19,6 +19,8 @@ file -E -h -- "$artifact"
 
 For MIME-based routing, use `--mime-type` with the same explicit link handling. `application/octet-stream` or `data` means classification is limited, not that the artifact is empty or unusable. The default classifier stops at a successful test; `-k` can expose additional matches but is not a validator for every embedded object.
 
+A recognizable image prefix can label a mixed-format or malformed file as GIF. Report that as classification, then use the intended image decoder; the label does not prove valid pixels or exclude executable/archive content elsewhere in the bytes.
+
 Do not add `-z` or `-s` indiscriminately: compressed-content inspection can invoke decompressors, while special-file reads can touch devices/FIFOs. Start with the saved ordinary file. Finish by selecting the appropriate parser and checking its result; do not execute an artifact merely to confirm file's guess.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Bagel p. 8. Sources: [file manual](https://man7.org/linux/man-pages/man1/file.1.html), [.NET portable binaries and native dependencies](https://learn.microsoft.com/en-us/dotnet/core/deploying/).
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Bagel p. 8; BigBang pp. 4–7. Sources: [file manual](https://man7.org/linux/man-pages/man1/file.1.html), [.NET portable binaries and native dependencies](https://learn.microsoft.com/en-us/dotnet/core/deploying/), [image-header detection limits](https://www.php.net/manual/en/function.getimagesize.php).

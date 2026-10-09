@@ -9,10 +9,10 @@ description: "{{Actual tool capability and when it applies}}"
 
 ## Usage
 
-{{Useful procedure or correction, with defined inputs and commands. Include version/environment conditions and effects only when they matter.}}
+{{Teach the supported task with defined inputs and commands. Where useful, connect a short result excerpt to its interpretation and next action. Label invented output as illustrative. Include version/environment conditions and effects where they change execution.}}
 
 ## Interpretation and pitfalls
 
-{{What results mean, what they cannot establish, and useful follow-up or recovery. A short correction may not need this separate section.}}
+{{A consequential failure or incomplete-evidence case and what to do next. Merge this into the worked procedure if clearer. Add examples for distinct decisions, not a fixed count.}}
 
-{{State material limitations or untested status briefly. Add sources or links to supporting files only when useful.}}
+{{Keep a documentation link or skill-local conditional reference only when useful to the worker. Save review dates, source-document/page trails and test history in repository maintenance records.}}

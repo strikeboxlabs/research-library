@@ -10,7 +10,8 @@ Skills add useful tool knowledge for agents that already use the CLI competently
 
 | Skill | Current scope |
 |---|---|
-| [7z](skills/7z/SKILL.md) | Inspect, test and extract archives; distinguish unsupported encryption from password or integrity failures. |
+| [7z](skills/7z/SKILL.md) | Inspect archives and supported disk-image layers; distinguish format, encryption and integrity limitations. |
+| [adb](skills/adb/SKILL.md) | Inspect a selected Android device and separate reverse routing, transfer privileges, proxy settings and CA trust. |
 | [ansible-vault](skills/ansible-vault/SKILL.md) | Extract and decrypt vault objects without loading playbooks or confusing vault passwords with plaintext values. |
 | [aureport](skills/aureport/SKILL.md) | Interpret existing TTY audit records and correlate events without misattributing copied logs. |
 | [awk](skills/awk/SKILL.md) | Separate program source, literal data and regexes; recognize quoted CSV and binary-transfer limits. |
@@ -32,12 +33,13 @@ Skills add useful tool knowledge for agents that already use the CLI competently
 | [file](skills/file/SKILL.md) | Classify artifacts without confusing format labels, managed assemblies, transfer integrity and runtime compatibility. |
 | [find](skills/find/SKILL.md) | Scope file searches and interpret emptiness, traversal errors, predicate grouping and action boundaries. |
 | [ftp](skills/ftp/SKILL.md) | Retrieve selected binary files, distinguish client-specific HTTP fetching and diagnose data-channel failures. |
-| [gdb](skills/gdb/SKILL.md) | Examine matching native cores or controlled live instruction/memory state with explicit address and ASLR context. |
+| [gdb](skills/gdb/SKILL.md) | Follow native core frames/state to a bounded diagnosis, or inspect a controlled live reproduction. |
 | [gdbserver](skills/gdbserver/SKILL.md) | Debug controlled remote programs over SSH with understood transport, connection modes and process lifetime. |
 | [git](skills/git/SKILL.md) | Inspect historical file content and renames without changing the checkout. |
 | [go](skills/go/SKILL.md) | Build reviewed CLI projects with explicit module, toolchain, dependency-change and target context. |
 | [gobuster](skills/gobuster/SKILL.md) | Choose web discovery modes and interpret wildcard, redirect, method and validation responses. |
 | [gpp-decrypt](skills/gpp-decrypt/SKILL.md) | Decode captured GPP cpassword values; distinguish the Ruby and Python implementations. |
+| [grafana2hashcat](skills/grafana2hashcat/SKILL.md) | Convert and verify compatible Grafana records; distinguish malformed input, wrong encodings and recovery. |
 | [grep](skills/grep/SKILL.md) | Filter literal or regex text while preserving alternative/combined conditions, binary handling and error evidence. |
 | [hashcat](skills/hashcat/SKILL.md) | Check application, Ansible Vault and NT/Kerberos records or binary containers with correct input and recovery handling. |
 | [ilspycmd](skills/ilspycmd/SKILL.md) | Inspect .NET types and property/serialization paths from Linux without launching the inspected assembly. |
@@ -63,16 +65,19 @@ Skills add useful tool knowledge for agents that already use the CLI competently
 | [marshalsec](skills/marshalsec/SKILL.md) | Select unmarshalling fixtures and distinguish local test execution, JNDI stages and runtime dependencies. |
 | [mdbtools](skills/mdbtools/SKILL.md) | Inventory and export selected Access database tables without corrupting field interpretation. |
 | [mount-cifs](skills/mount-cifs/SKILL.md) | Mount selected SMB shares read-only and distinguish dialect, authentication and local/server permissions. |
+| [msf-pattern](skills/msf-pattern/SKILL.md) | Pair Metasploit pattern generation and offset lookup without confusing heuristic matches or overwritten fields. |
 | [mysql](skills/mysql/SKILL.md) | Diagnose connection/account identity, run bounded batch queries and understand server/LOCAL file access. |
 | [ncat](skills/ncat/SKILL.md) | Interact with simple TCP services and distinguish line endings, EOF and connection/idle timeouts. |
 | [netexec](skills/netexec/SKILL.md) | Control known credential pairs and interpret password statuses, share probes and path-specific access. |
 | [nmap](skills/nmap/SKILL.md) | Keep TCP/UDP and IPv4/IPv6 coverage explicit; interpret service probes and uncertain states. |
 | [objdump](skills/objdump/SKILL.md) | Inspect headers and bounded disassembly while separating bytes, source lines and runtime evidence. |
 | [openssl](skills/openssl/SKILL.md) | Inspect requests, certificates and PKCS#12 bundles while separating private keys, encodings, identity and trust. |
+| [php](skills/php/SKILL.md) | Match CLI and web configuration, lint controlled sources and interpret PHAR or image-header behavior. |
 | [pip](skills/pip/SKILL.md) | Match interpreter, wheel ABI and platform while controlling dependency resolution and source-build fallback. |
 | [proxychains](skills/proxychains/SKILL.md) | Route compatible TCP clients with explicit SOCKS/HTTP CONNECT context and verified DNS/transport limits. |
 | [ps](skills/ps/SKILL.md) | Inspect process identity/state and targeted procfs evidence without confusing NUL-separated or mutable metadata. |
 | [pspy](skills/pspy/SKILL.md) | Correlate short-lived processes with jobs/actions while retaining exact paths, identities and visibility limits. |
+| [pwntools](skills/pwntools/SKILL.md) | Complete framed exchanges and distinguish success, buffered timeouts, partial EOF and unsafe replay. |
 | [pygpoabuse](skills/pygpoabuse/SKILL.md) | Plan isolated lab GPO task tests with explicit commands, client scope, before-state and incomplete-cleanup handling. |
 | [python-http-server](skills/python-http-server/SKILL.md) | Serve a dedicated directory temporarily and interpret transfer/callback evidence. |
 | [readelf](skills/readelf/SKILL.md) | Map ELF headers, segments, symbols and section bytes without confusing file and runtime addresses. |
@@ -80,6 +85,8 @@ Skills add useful tool knowledge for agents that already use the CLI competently
 | [redis-cli](skills/redis-cli/SKILL.md) | Inspect selected Redis values with known authentication, explicit databases and bounded cursor scans. |
 | [restic](skills/restic/SKILL.md) | Select backup snapshots/paths and restore into a new directory with understood helpers, filters and locks. |
 | [ropgadget](skills/ropgadget/SKILL.md) | Inspect gadget candidates with understood search depth, address filters and complete instruction effects. |
+| [samdump2](skills/samdump2/SKILL.md) | Extract matching legacy SAM/SYSTEM records and detect unsupported formats or misleading empty-password values. |
+| [scp](skills/scp/SKILL.md) | Transfer selected files and recover from authentication, SFTP-subsystem, path or partial-copy failures. |
 | [screen](skills/screen/SKILL.md) | Identify and resume sessions with understood sharing, ownership, terminal and multiuser requirements. |
 | [script](skills/script/SKILL.md) | Allocate a util-linux PTY or capture a terminal session with correct exit/logging semantics. |
 | [searchsploit](skills/searchsploit/SKILL.md) | Search and inspect local exploit candidates without confusing title matches with applicability. |
@@ -102,21 +109,21 @@ Skills add useful tool knowledge for agents that already use the CLI competently
 | [text2wave](skills/text2wave/SKILL.md) | Generate speech fixtures while separating text normalization, audio output and downstream recognition. |
 | [vim](skills/vim/SKILL.md) | Control startup/modelines and recover copied swap artifacts with understood completeness limits. |
 | [wfuzz](skills/wfuzz/SKILL.md) | Compare HTTP hosts/parameters with baselines, response filters, bounded ID ranges and known session state. |
+| [wpscan](skills/wpscan/SKILL.md) | Scope WordPress inventory and distinguish enumeration sets, detection modes and incomplete vulnerability evidence. |
 | [xxd](skills/xxd/SKILL.md) | Inspect exact byte ranges and reconstruct hex artifacts without silent patching or truncation mistakes. |
 | [ysoserial](skills/ysoserial/SKILL.md) | Generate selected Java serialization fixtures without confusing producer failures, binary output and target effects. |
 
-The 94 skills are documentation-reviewed but have not been executed or evaluated with an agent on Linux. See the [validation record](docs/validation.md). Source coverage, corrections and deferred candidates are recorded for [batch 1](docs/ctf-writeups-ingestion.md), [batch 2](docs/ctf-writeups-batch2.md), [batch 3](docs/ctf-writeups-batch3.md), [batch 4](docs/ctf-writeups-batch4.md), [batch 5](docs/ctf-writeups-batch5.md), [batch 6](docs/ctf-writeups-batch6.md) and [batch 7](docs/ctf-writeups-batch7.md).
+The 102 skills are documentation-reviewed but have not been executed or evaluated with an agent on Linux. See the [validation record](docs/validation.md). Source coverage, corrections and deferred candidates are recorded for [batch 1](docs/ctf-writeups-ingestion.md), [batch 2](docs/ctf-writeups-batch2.md), [batch 3](docs/ctf-writeups-batch3.md), [batch 4](docs/ctf-writeups-batch4.md), [batch 5](docs/ctf-writeups-batch5.md), [batch 6](docs/ctf-writeups-batch6.md), [batch 7](docs/ctf-writeups-batch7.md) and [batch 8](docs/ctf-writeups-batch8.md).
 
 ## Simple structure
 
 ~~~text
 skills/<tool>/
     SKILL.md                   # metadata and working instructions
-    references/                # optional, only when useful
-        sources.md             # optional source/maintenance notes
+    references/                # optional conditional working guidance
 
 authoring/                     # schema, prompts and optional templates
-docs/                          # harness setup and validation history
+docs/                          # source/intake records, setup and validation history
 ingest/                        # local source documents, ignored by Git
 evaluation/                    # optional test design and case template
 scripts/                       # help capture and repository checker
@@ -124,14 +131,14 @@ tests/
 profile/                       # optional shell settings
 ~~~
 
-One `SKILL.md` is enough for a small skill. Use ordinary Markdown with the standard [Agent Skills frontmatter](https://agentskills.io/specification). Add references for substantial conditional detail, sources for useful maintenance evidence, or scripts for repeated executable logic. Required resources stay inside their own skill folder.
+One `SKILL.md` is enough for a small skill. Use ordinary Markdown with the standard [Agent Skills frontmatter](https://agentskills.io/specification). Add references for substantial conditional working detail or scripts for useful repeated execution. Required resources stay inside their own skill folder. Review dates, full source trails and test history live in `docs/`; keep actionable compatibility conditions and useful documentation links in the worker instructions.
 
 ## Create or improve a skill
 
 1. Choose a task or known mistake. Collect practical documentation, examples or transcripts using the [source guide](authoring/sources.md).
-2. Use the [authoring prompt](authoring/create-skill.prompt.md) and [schema](authoring/schema.md). The [single template](authoring/skill.template.md) is optional. A short correction may be enough; skip tools with no useful guidance gap.
-3. Review accuracy and remove repetition. The [review prompt](authoring/review-skill.prompt.md) and [evaluation guide](evaluation/README.md) support deeper checks when needed.
-4. Add accepted skills to the catalogue above. Keep drafts/raw sources in ignored `work/` and test artifacts in `runs/`; retain useful portable findings in the skill or source notes.
+2. Use the [authoring prompt](authoring/create-skill.prompt.md) and [schema](authoring/schema.md). The [single template](authoring/skill.template.md) is optional. Identify the capability gap against existing coverage; a short correction may be enough.
+3. Connect commands, relevant results, interpretation and the next decision where examples help. Label invented output as illustrative. Review accuracy, scope and repetition with the [review prompt](authoring/review-skill.prompt.md); the [evaluation guide](evaluation/README.md) covers actual worker comparisons.
+4. Add accepted skills to the catalogue above. Keep drafts/raw sources in ignored `work/` and test artifacts in `runs/`. Record source-to-skill mappings and test results in the intake/validation records; workers need only their selected skill folders.
 
 Commands, interpretations and recovery advice need evidence. Documentation review, procedure execution and improved agent performance are different claims. Record only what was actually established.
 

@@ -1,6 +1,43 @@
 # Validation record
 
-Date: 2026-10-09. Current packaging/schema: v0.4. Earlier starter and migration checks are retained below. This is not a completed tool catalogue or a measured agent-performance result.
+Date: 2026-10-10. Current authoring schema: v0.5; independent packaging unchanged. Earlier starter and migration checks are retained below. This is not a completed tool catalogue or a measured agent-performance result.
+
+## Worked-guidance pilot, 2026-10-10
+
+Authoring schema v0.5 now asks for supported tasks and connected commands, results, interpretation and next decisions. Example count is task-dependent; invented output must be labelled illustrative. AGENTS, authoring prompts/template, source/help-capture guidance and the getting-started workflow agree on keeping review dates, document/page trails and test history in maintenance records. Operational conditions and useful documentation links stay with the worker procedure.
+
+Four pilot packages were revised: GDB adds an illustrative assertion investigation and missing-evidence branch; pwntools distinguishes complete exchanges, buffered timeouts, partial EOF and uncertain request replay; SCP connects error classes to SFTP inspection or a justified legacy retry; grafana2hashcat shows a concrete conversion and byte-level interpretation. The scope remains bounded; these are not complete manuals. Other skill folders retain their prior content pending outcome evidence.
+
+The original GDB source file was relocated into the source-trail section below; its live-debugging metadata was retained there too. The three batch-8 footers and their full links are preserved in the [eighth intake record](ctf-writeups-batch8.md#source-notes-retained-for-the-2026-10-10-pilot). No required worker resource points outside its skill. Source attribution was preserved rather than discarded.
+
+Executed on Windows:
+
+- All 15 repository/helper tests passed, including independent copies of all 102 skill folders.
+- The skill-creator validator accepted all four revised packages.
+- The repository checker passed independent skill boundaries and local links; all 192 Bash blocks parsed with Git Bash without executing their commands. Git Bash initialization required execution outside the sandbox.
+- The documented Grafana `secret`/`pepper` fixture produced the exact printed record. Independent PBKDF2 calculation and base64/hex decoding verified the cost, salt and 50-byte digest. Header-bearing and missing-salt inputs both failed without creating output. The converter code matches the earlier reviewed copy after newline normalization; the raw downloaded file has SHA-256 `043751491e1a5e11cae4e38bf73842feb13f6b84faadf152176a200f93289bb8`. No password recovery was attempted.
+- The pwntools example parsed as Python; pwntools was unavailable in the checked Python environment, so its tube behavior was not executed. GDB/SCP sample diagnostics are explicitly illustrative, not captures.
+- Final local-link and whitespace checks passed. The catalogue still matches all 102 folders. Source-trail preservation was checked against the original pilot files; a before/after content audit confirmed that the other 98 skill folders and unrelated repository work were preserved. Ignored input PDFs were outside this authoring audit and were not changed by this task.
+
+[Linux pilot cases](../evaluation/pilot-cases.md) are prepared with worker requests, fixture conditions and evaluator criteria. The WSL command reports that WSL is not installed; Docker is unavailable on PATH. No Linux procedure or baseline-versus-skill worker comparison was run. No Linux improvement claim follows from these checks. The examples and cases remain candidates for the intended Linux host.
+
+Primary review additionally checked [pwntools tube implementation](https://github.com/Gallopsled/pwntools/blob/stable/pwnlib/tubes/tube.py), [SCP protocol options](https://man.openbsd.org/scp), [SFTP inspection commands](https://man.openbsd.org/sftp) and the [Grafana converter](https://github.com/iamaldi/grafana2hashcat/blob/main/grafana2hashcat.py). GDB source history and review references are retained below.
+
+## Eighth CTF writeup batch
+
+Eight standalone skills were added and six existing skills enriched, bringing the catalogue to 102. Each new skill is one file. The [eighth ingestion record](ctf-writeups-batch8.md) accounts for all three PDFs, corrections, coverage decisions and source fingerprints.
+
+Executed on Windows:
+
+- All 15 repository/helper tests passed, including copying each of the 102 skill folders into isolation without the repository.
+- The skill-creator validator accepted all 102 folders. The README catalogue matches those folders exactly.
+- The repository checker passed local links and skill boundaries. All 188 Bash blocks parsed with Git Bash; documented Bash tool commands were not executed. Git Bash required initialization outside the sandbox.
+- The reviewed Grafana converter produced the independently expected output for two synthetic records, including a non-ASCII salt. Its output file excluded banners, and a header-bearing input was rejected without creating an output file. These checks exercised conversion only, not password recovery. The pwntools Python example passed syntax parsing without import or network execution.
+- Tracked changes passed `git diff --check`; changed/new files were checked for trailing whitespace. All three original PDF hashes match the extraction manifest and intake report. Comparison with the start-of-batch hashes confirms that previous batches and unrelated files were preserved.
+
+All 57 physical pages were text-extracted and read; 23 selected pages were rendered and visually inspected. Primary-source review covered tube framing and offset lookup, legacy hive fallbacks, OpenSSH protocol/path behavior, WordPress enumeration, PHP version/configuration, password representations, Android routing/privileges and certificate-directory naming. Extraction and rendering completed without warnings. Outdated source paths were resolved using the current WPScan tree and Debian's packaged samdump2 source.
+
+No target scan, remote authentication, password recovery, debugger target execution, Android/configuration modification, tool installation or harness change was performed. No commit or push was made. Linux procedures and actual worker performance remain untested.
 
 ## Seventh CTF writeup batch
 
@@ -141,14 +178,14 @@ The Windows sandbox's default temporary directory initially prevented the subpro
 
 ## Still untested
 
-- The 93 added CTF-derived skills' Linux procedures and meaningful failure cases.
+- The 101 added CTF-derived skills' Linux procedures and meaningful failure cases.
 - GDB procedures and proposed diagnostic cases on Linux.
 - Help collection in the prepared distro containers.
 - The capture helper's POSIX process-group timeout path.
 - Actual loading, automatic discovery and task completion in Pi, Claude Code or Codex on Linux.
 - Any claim of improved agent performance or broad tool-version compatibility.
 
-The GDB skill therefore notes that documentation has been reviewed while Linux execution and agent performance remain untested. Harness configuration examples were checked against the official documentation linked in the [deployment guide](harnesses.md); successful snippet parsing is not proof of runtime application.
+GDB documentation has been reviewed; Linux execution and agent performance remain untested. This status is maintained here rather than in the revised worker instructions. Harness configuration examples were checked against the official documentation linked in the [deployment guide](harnesses.md); successful snippet parsing is not proof of runtime application.
 
 Run the [evaluation process](../evaluation/README.md) on the intended Linux system before claiming those outcomes.
 
@@ -159,3 +196,24 @@ On 2026-10-09, the 27-file starter was placed directly at the existing `research
 The [getting-started guide](../GETTING_STARTED.md) now contains checkout/install commands, host adaptation, source ingestion, reusable agent requests and Git publication steps. A saved host-adaptation prompt and local-machine template support that workflow.
 
 Eleven subprocess/repository-check tests passed on Windows. The [portable checker](../scripts/check_repository.py) found no broken local links or runtime references outside the skill, and the skill-creator validator accepted the skill. The Linux shell examples were syntax-checked using Git Bash; no clone, installation link, Linux fixture or Git publication command from the guide was executed here. Linux runtime and harness validation remain pending as listed above.
+
+## GDB source trail retained during the 2026-10-10 pilot
+
+The following rolling upstream manual sections were reviewed on 2026-10-09. They are not tied to an installed GDB version:
+
+- [Files](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Files.html): executable, core and symbol artifacts; `info files`.
+- [File options](https://sourceware.org/gdb/current/onlinedocs/gdb.html/File-Options.html): positional inputs and `-iex`/`-ex` ordering.
+- [Mode options](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Mode-Options.html): `-q`, `-nx`, `-batch` and version reporting.
+- [Backtraces](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Backtrace.html): stack depth, frame interpretation and optimized-out values.
+- [Threads](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Threads.html): thread selection and all-thread backtraces.
+- [Startup](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Startup.html): early automatic-loading control.
+- [Frame information](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Frame-Info.html): frame selection, arguments and locals.
+- [Sample session](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Sample-Session.html): a worked investigation informing the follow-up steps.
+
+The offline-core sequence combines these documented commands with diagnostic judgement. Independent build matching, the initial 12-frame bound and completion criteria are choices made for this procedure. Linux execution and agent evaluation have not been run; compatibility across versions remains unmeasured.
+
+Original live-debugging reference footer:
+
+Documentation reviewed 2026-10-09; Linux execution untested. Case: Attended pp. 20–25, adapted from OpenBSD. Sources: [starting](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Starting.html), [machine code](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Machine-Code.html), [memory](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Memory.html), [registers](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Registers.html).
+
+Pilot command review also checked [source listing](https://sourceware.org/gdb/current/onlinedocs/gdb.html/List.html) and [frame information](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Frame-Info.html) on 2026-10-10. The new assertion example is explicitly illustrative, not an executed debugger transcript.
