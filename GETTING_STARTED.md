@@ -1,6 +1,6 @@
 # Start on a Linux machine
 
-Use a normal Git checkout for editing and install individual skill folders for workers. The current GDB skill covers existing native core dumps; broader debugging modes need additional guidance.
+Use a normal Git checkout for editing and install individual skill folders for workers. Choose tools and supported tasks from the [catalogue](README.md#tool-skills); each skill has a deliberately bounded scope.
 
 1. [Check out and install](#1-check-out-and-install)
 2. [Adapt to this machine](#2-adapt-to-this-machine)
@@ -109,6 +109,8 @@ mkdir -p work/sources/strace
 ~~~
 
 Put practical walkthroughs, documentation, notes, command transcripts or agent failures there. A `links.txt` with one URL per line works when the agent can fetch them. Supply readable extracts for formats the agent cannot open. The [source guide](authoring/sources.md) lists useful starting points.
+
+For a batch of documents covering several tools, `ingest/` is also available as a local, Git-ignored inbox. Ask the agent to read the documents, select useful tool-specific guidance, verify it against upstream sources and follow the same authoring workflow. Originals stay local; extracted notes belong in `work/`. The [first PDF batch](docs/ctf-writeups-ingestion.md) records an example of this process and its remaining candidates.
 
 Tell the agent the task, target environment if known, whether it may research further, and what it may execute. You can use the optional [intake template](authoring/intake.template.md) or put those facts directly in your request. No full man page or formal source packet is required.
 

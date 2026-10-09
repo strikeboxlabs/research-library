@@ -2,6 +2,51 @@
 
 Date: 2026-10-09. Current packaging/schema: v0.4. Earlier starter and migration checks are retained below. This is not a completed tool catalogue or a measured agent-performance result.
 
+## Third CTF writeup batch
+
+Twenty-one standalone skills were added and 10 existing skills enriched, bringing the catalogue to 51. All new skills are single files, about 277–357 words each including metadata/sources. Secretsdump adds one conditional offline NTDS reference inside its own package. The [third ingestion record](ctf-writeups-batch3.md) maps all ten PDFs to accepted guidance, corrections, deliberate omissions and source fingerprints.
+
+Executed on Windows:
+
+- All 15 repository/helper tests passed, including copying each of the 51 skill folders into isolation without the repository.
+- The skill-creator validator accepted all 51 folders. The README catalogue matches those folders exactly.
+- The repository checker passed local links and skill boundaries. All 94 Bash blocks parsed with Git Bash; none of the documented tool commands were executed. Git Bash required initialization outside the sandbox.
+- `git diff --check` passed. All ten original PDF hashes match both the extraction manifest and the saved intake report. GDB and the existing assessment methodology have no changes.
+
+All 180 pages were text-extracted and read; 51 selected pages were rendered and visually inspected. Consequential semantics were checked against primary manuals/source, including SNMP BITS formatting, RPC call side effects, RemoteRegistry service lifecycle, ffuf filter logic and MIT PKINIT. Documentation review is not a replay of the writeups or a Linux compatibility test.
+
+No target scan, remote authentication, password recovery, remote modification, tool installation, harness configuration change, commit or push was performed. Linux execution and agent usefulness remain untested. Prior source inbox batches may have been replaced; their durable intake records identify them independently.
+
+## Second CTF writeup batch
+
+Thirteen standalone skills were added and five existing skills enriched, bringing the catalogue to 30. Each new package contains only `SKILL.md`, roughly 300–370 words including metadata and sources. The [second ingestion record](ctf-writeups-batch2.md) maps all five PDFs to accepted guidance, corrections and deferred candidates.
+
+Executed on Windows:
+
+- All 15 repository/helper tests passed, including copying each of the 30 skill folders into isolation without the repository.
+- The skill-creator validator accepted all 30 folders.
+- The repository checker passed local links and skill boundaries. All 60 Bash blocks parsed with Git Bash; none of their documented tool commands were executed. Git Bash required execution outside the sandbox to initialize.
+- `git diff --check` passed. All five supplied PDF hashes match the intake manifest. GDB and the existing assessment methodology have no changes.
+
+All 94 source pages were text-extracted and read; 29 selected pages were rendered and visually inspected. CLI semantics were reviewed against primary manuals/source, including collector generations, credential pairing, Hashcat's binary input/potfile exception and sudo package backports. These are documentation and packaging checks, not Linux execution or measured worker performance.
+
+No target scan, remote authentication, password recovery or remote modification was performed. No tool installation, harness configuration change, commit or push was made. The host still requires the adaptation and Linux fixture work described below; no Linux environment was installed for this batch.
+
+## First CTF writeup batch
+
+Sixteen skills were added from five supplied PDFs, bringing the catalogue to 17. Each new skill is a single file of roughly 220–400 words, including metadata/source notes, with no dependency on a sibling skill or the intake documents. The [ingestion record](ctf-writeups-ingestion.md) lists source pages, substantive corrections and remaining candidates.
+
+Executed on Windows:
+
+- All 15 repository/helper tests passed. The isolated-copy test now checks every one of the 17 skill folders without the rest of the repository.
+- The skill-creator validator accepted all 17 folders.
+- The repository checker checked 61 local links and all skill boundaries with no errors. All 42 Bash blocks parsed using Git Bash; none of their tool commands were executed. Git Bash again required execution outside the sandbox to initialize.
+- `git diff --check` passed. The five source PDFs' SHA-256 hashes match the intake manifest; GDB and the existing assessment methodology have no changes.
+
+The five documents were text-extracted in full and 33 relevant pages were visually inspected. Commands and interpretations were compared with upstream source/manuals or distribution-maintained documentation. This is documentation review, not a replay of the CTFs. WSL reports that it is not installed here; no Linux execution fixture or live harness evaluation was available. No target scan, authentication attempt, password recovery or remote modification was performed.
+
+Before claiming Linux compatibility, adapt selected skills to the actual installed programs and exercise both successful and incomplete/failing cases in the intended lab. No commit, push, tool installation or agent configuration change was made.
+
 ## Simplified authoring and GDB guidance, v0.4
 
 - GDB's working skill went from 811 to 424 words. Its source notes went from 552 to 142 words and are now named `references/sources.md`. The batch command, follow-up commands and all eight upstream source URLs were retained.
@@ -36,6 +81,7 @@ The Windows sandbox's default temporary directory initially prevented the subpro
 
 ## Still untested
 
+- The 50 CTF-derived skills' Linux procedures and meaningful failure cases.
 - GDB procedures and proposed diagnostic cases on Linux.
 - Help collection in the prepared distro containers.
 - The capture helper's POSIX process-group timeout path.
