@@ -1,6 +1,6 @@
 ---
 name: netexec
-description: Validate known SMB credentials with NetExec on selected lab hosts. Use to avoid unintended user/password combinations and distinguish authentication, local admin indicators and access to other protocols.
+description: Validate known SMB credentials and interpret share checks with NetExec on selected lab hosts. Use to avoid unintended credential combinations and distinguish authentication, password status, privilege indicators and path permissions.
 ---
 
 # NetExec credential checks
@@ -21,6 +21,10 @@ By default a successful authentication can stop further attempts for that host. 
 
 Record host, protocol, domain/account, status and which checks actually ran. A positive SMB login does not prove read access to every share, WinRM access or remote execution. The admin indicator reflects NetExec's protocol-specific privilege check. Errors/timeouts and stopped runs leave coverage incomplete; never interpret an empty result as universal credential invalidity.
 
+`STATUS_PASSWORD_MUST_CHANGE` and `STATUS_PASSWORD_EXPIRED` are distinct account/password states, not generic bad-password results. Preserve the exact status. Changing a known password is a separate state-changing operation; do not treat the status as permission to reset accounts or continue guessing.
+
+For selected share enumeration, inspect this version's `--shares` implementation. The reviewed current code checks write access by opening the share root with requested access masks; `--file-write-check` instead creates/deletes a probe directory/file and may leave artifacts after failure. Older versions can differ. A share-level READ/WRITE result does not establish permission to read, replace or delete a particular nested file; preserve path-level evidence separately.
+
 Old NTDS records may contain stale credentials. A generic logon failure can also reflect domain selection, account restrictions or authentication policy. Keep the original failure and distinguish those causes before retrying. Switching to Kerberos is not an unlimited-attempt workaround: failed Kerberos authentication can count toward account lockout. Preserve the same account/request budget across protocols.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Administrator p. 8; APT pp. 8–9. Sources: [credential CLI](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/cli.py), [pairing and stop behaviour](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/connection.py), [SMB options](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/protocols/smb/proto_args.py), [account lockout and Kerberos retries](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/account-lockout-threshold).
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Administrator p. 8; APT pp. 8–9; Baby p. 5; BabyTwo pp. 2–6. Sources: [credential CLI](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/cli.py), [pairing and stop behaviour](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/connection.py), [SMB options](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/protocols/smb/proto_args.py), [share-check implementation](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/protocols/smb.py), [password statuses](https://github.com/fortra/impacket/blob/master/impacket/nt_errors.py), [account lockout and Kerberos retries](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/account-lockout-threshold).

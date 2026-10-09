@@ -2,6 +2,36 @@
 
 Date: 2026-10-09. Current packaging/schema: v0.4. Earlier starter and migration checks are retained below. This is not a completed tool catalogue or a measured agent-performance result.
 
+## Seventh CTF writeup batch
+
+Seven standalone skills were added and seven existing skills enriched, bringing the catalogue to 94. Each new skill is one file; curl adds a conditional HTTP-proxy reference. ILSpyCmd is a researched Linux CLI alternative to the source's dnSpy workflow. The [seventh ingestion record](ctf-writeups-batch7.md) accounts for all three PDFs, corrections, coverage decisions and source fingerprints.
+
+Executed on Windows:
+
+- All 15 repository/helper tests passed, including copying each of the 94 skill folders into isolation without the repository.
+- The skill-creator validator accepted all 94 folders. The README catalogue matches those folders exactly.
+- The repository checker passed local links and skill boundaries. All 175 Bash blocks parsed with Git Bash; documented tool commands were not executed. Git Bash required initialization outside the sandbox.
+- Tracked changes passed `git diff --check`; this batch's changed/new files were also checked for trailing whitespace. All three original PDF hashes match the extraction manifest and intake report. Comparison with the start-of-batch hashes confirms that unrelated files and previous uncommitted work were preserved.
+
+All 51 physical pages were text-extracted and read; 26 selected pages were rendered and visually inspected, including the screenshot-heavy .NET code review. Primary-source review covered managed-binary interpretation, decompiler modes, restore/build execution, Go module/toolchain behavior, firewall serialization, LinPEAS option effects, proxy routing and process evidence. Some PDF objects produced xref warnings; extraction and selected-page rendering completed, and originals were preserved. The inaccessible Netfilter source endpoint was replaced by upstream-manual evidence; the intake records that retrieval limitation.
+
+No target scan, authentication attempt, password recovery, firewall change, inspected-assembly execution, application/account modification, tool installation or harness configuration change was performed. No commit or push was made by this ingestion task. These are documentation and packaging checks; Linux behavior and worker performance remain untested.
+
+## Sixth CTF writeup batch
+
+Nine standalone skills were added and nine existing skills enriched, bringing the catalogue to 87. Each new skill is one file; curl adds a conditional API-request reference. The [sixth ingestion record](ctf-writeups-batch6.md) accounts for all five PDFs, corrections, coverage decisions and source fingerprints.
+
+Executed on Windows:
+
+- All 15 repository/helper tests passed, including copying each of the 87 skill folders into isolation without the repository.
+- The skill-creator validator accepted all 87 folders. The README catalogue matches those folders exactly.
+- The repository checker passed local links and skill boundaries. All 164 Bash blocks parsed with Git Bash; documented tool commands were not executed. Git Bash required initialization outside the sandbox.
+- Tracked changes passed `git diff --check`; this batch's changed/new files were also checked for trailing whitespace. All five original PDF hashes match the extraction manifest and intake report. Comparison with the start-of-batch hashes confirms that unrelated files and previous uncommitted work were preserved.
+
+All 73 physical pages were text-extracted and read; 29 selected pages were rendered and visually inspected. Primary-source review covered JSON/text bytes, request encoding, JWT mode/key handling, remote debugger transport, process metadata, Screen session conditions, password statuses, share-check effects and GPO partial writes/cleanup. Some PDF objects produced xref warnings; extraction and selected-page rendering completed, and originals were preserved.
+
+No target scan, remote authentication, password change/recovery, debugger fixture execution, GPO or application modification, tool installation or harness configuration change was performed. This ingestion task made no commit or push; an external commit during the run already captured some additions and was left intact. These are documentation and packaging checks; Linux behavior and worker performance remain untested.
+
 ## Fifth CTF writeup batch
 
 Thirteen standalone skills were added and seven existing skills enriched, bringing the catalogue to 78. Each new skill is one file. GDB adds a conditional live-debugging reference while retaining its core-dump workflow; OpenSSL adds a conditional PKCS#12 reference. The [fifth ingestion record](ctf-writeups-batch5.md) accounts for all four PDFs, corrections, coverage decisions and source fingerprints.
@@ -111,7 +141,7 @@ The Windows sandbox's default temporary directory initially prevented the subpro
 
 ## Still untested
 
-- The 77 added CTF-derived skills' Linux procedures and meaningful failure cases.
+- The 93 added CTF-derived skills' Linux procedures and meaningful failure cases.
 - GDB procedures and proposed diagnostic cases on Linux.
 - Help collection in the prepared distro containers.
 - The capture helper's POSIX process-group timeout path.

@@ -11,7 +11,7 @@ Use ticarpi's `jwt_tool.py`, not an unrelated package with a similar name. Check
 python3 "$jwt_script" "$token"
 ~~~
 
-This decodes locally when no target/request options are supplied. The three segments are base64url-encoded header, payload and signature bytes; decoding does not verify the signature or establish that the service accepts the claims. Preserve the original string. Tokens appear in process arguments and this tool can retain them in local logs under `~/.jwt_tool`; use private fixture material and inspect its configuration before working with sensitive captures.
+This decodes locally when no target/request options are supplied. The first invocation may initialize configuration/keys and exit with status 1; inspect that setup message and rerun rather than diagnosing a token failure. The three segments are base64url-encoded header, payload and signature bytes; decoding does not verify the signature or establish that the service accepts the claims. Preserve the original string. Tokens appear in process arguments and this tool can retain them in local logs under `~/.jwt_tool`; use private fixture material and inspect its configuration before working with sensitive captures.
 
 Read `alg`, claim types and timestamps, then establish the service's actual allowed algorithm and key source independently. A field named `API_KEY` is not necessarily the signing secret; BackendTwo established the connection through the application's settings. A changed account record also does not rewrite an already issued token. Obtain a fresh authorized login token when testing updated account state.
 

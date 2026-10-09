@@ -19,6 +19,8 @@ If wildcard checks prevent scanning, inspect the negative response first. Use su
 
 Keep redirects visible initially. A `302` to login is a discovered route with an authentication requirement, not successful access to its contents. Re-request an interesting result with the same session context; a browser's authenticated result may differ. A parent path returning `403` can still contain individually readable files. Selected child requests or a more specific prefix can be more useful than a much larger root wordlist.
 
+For an explicitly scoped API method test, supported `dir --method POST` changes the method but does not construct the required body. Empty POSTs are not inherently read-only. A FastAPI `422` can be a validation clue; a `405` can identify a valid path with another method. Inspect before blacklisting either. Preserve the exact scheme and route: `/user` and `/users` are different paths, even when a walkthrough confuses them.
+
 Retain URL, status, redirect and distinguishing body evidence. An empty report is bounded by mode, base path, wordlist, extensions, authentication, filters and completion state. For `vhost` work with bare labels, verify this version's `--append-domain` behaviour; finding an HTTP host is not evidence of DNS resolution.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: AdmirerToo pp. 5–6; Agile p. 3. Sources: [modes and release changes](https://github.com/OJ/gobuster), [directory filters](https://github.com/OJ/gobuster/blob/master/cli/dir/dir.go), [worker options](https://github.com/OJ/gobuster/blob/master/cli/options.go).
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: AdmirerToo pp. 5–6; Agile p. 3; Backend pp. 2–4; BackendTwo pp. 3–5. Sources: [modes and release changes](https://github.com/OJ/gobuster), [directory filters](https://github.com/OJ/gobuster/blob/master/cli/dir/dir.go), [worker options](https://github.com/OJ/gobuster/blob/master/cli/options.go).

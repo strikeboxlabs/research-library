@@ -1,6 +1,6 @@
 ---
 name: proxychains
-description: Route compatible Linux TCP clients through an explicit ProxyChains-NG configuration. Use when SOCKS reachability, DNS behavior or unsupported raw/UDP traffic causes misleading failures.
+description: Route compatible Linux TCP clients through an explicit ProxyChains-NG configuration. Use when SOCKS or HTTP CONNECT policy, DNS behavior or unsupported raw/UDP traffic causes misleading failures.
 ---
 
 # ProxyChains-NG routing checks
@@ -28,8 +28,10 @@ proxychains4 -f "$proxy_config" curl --connect-timeout 5 --max-time 20 "$url"
 
 Keep proxy diagnostics visible until the connection and exit path are established. A wrapper banner alone does not prove all network traffic used the proxy. Confirm using an endpoint/log you control, not an unrelated public address-checking service. For tools with native SOCKS support, explicit native configuration is usually easier to verify; DNS-at-proxy support remains a separate choice.
 
+An `http host port` entry uses CONNECT, including for an HTTP destination. The proxy must allow tunneling to that destination/port; ordinary HTTP forwarding support is insufficient. A CONNECT denial is not proof the destination is closed. Avoid layering an inherited curl proxy on top of interception unintentionally. For a plain HTTP request, native curl `--proxy` makes forwarding versus tunneling easier to select and inspect.
+
 For selected numeric targets/ports with Nmap, use TCP connect mode `-sT -Pn -n` through the wrapper, not raw-packet discovery. This limits protocol mismatch; it does not make scanning cost-free or guarantee every Nmap subsystem is proxied.
 
 Kerberos libraries may try UDP first. MIT's `udp_preference_limit = 1` in a task-specific configuration makes normal requests prefer TCP, but fallback is still possible. Verify the real client transport rather than declaring UDP tunneled. DNS errors, proxy authentication errors and destination refusals require different fixes. Report the actual application, configuration and tested route.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Anubis pp. 8–9, 17. Sources: [NG compatibility](https://github.com/rofl0r/proxychains-ng), [configuration](https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf), [MIT transport preference](https://web.mit.edu/kerberos/krb5-latest/doc/admin/conf_files/krb5_conf.html#libdefaults).
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Anubis pp. 8–9, 17; Bamboo pp. 3–6. Sources: [NG compatibility](https://github.com/rofl0r/proxychains-ng), [configuration](https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf), [HTTP tunnel implementation](https://github.com/rofl0r/proxychains-ng/blob/master/src/core.c), [MIT transport preference](https://web.mit.edu/kerberos/krb5-latest/doc/admin/conf_files/krb5_conf.html#libdefaults).

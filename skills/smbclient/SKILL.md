@@ -31,4 +31,6 @@ smbclient "//$server/$share" --use-krb5-ccache="FILE:$cache" -N
 
 That option requires Kerberos rather than silently falling back. Use `-I "$server_ip"` if an explicit connection address is needed while retaining the service hostname. Check cache identity/expiry and name resolution before treating authentication failure as an incorrect password. Do not infer write access from successful reads.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Active PDF pp. 3–6. Maintenance source: [Samba smbclient manual](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html).
+Share-level access labels do not settle a particular file's permissions. Read, create, overwrite and delete are distinct operations. For a requested file replacement, preserve its content and relevant metadata first; `del` followed by `put` leaves a gap and can change metadata, so it is not an atomic update. A successful upload of a logon script proves transfer, not execution or the identity of a future process. Keep the exact account, share, path and observed operation with the result.
+
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Active pp. 3–6; BabyTwo pp. 3–8. Maintenance source: [Samba smbclient manual](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html).

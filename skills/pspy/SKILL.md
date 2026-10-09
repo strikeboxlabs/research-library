@@ -22,4 +22,6 @@ For a focused investigation, `-r directory` watches recursively and `-d director
 
 Correlate timestamps, UID, PID and command with the suspected job. Seeing UID 0 execute a script does not establish that you can modify the script or its dependencies. Check the actual file/configuration separately. No observed event during one window does not establish that no scheduled job exists. Finish with the observation interval and visibility limitations.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Alert p. 13. Source: [upstream operation, flags and builds](https://github.com/DominicBreuker/pspy).
+For a task that already permits an application action, capture a baseline, perform one identifiable action and compare the subsequent process sequence. Background maintenance can appear at the same time; temporal proximity alone is not causation. Preserve the exact absolute path and interpreter. `/bin/sh /absolute/script` selects that file directly, so a writable entry in the observer's PATH does not explain its execution. Check both file-content permissions and directory replacement rights before describing a writable-script finding.
+
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Alert p. 13; Bamboo pp. 9–12. Source: [upstream operation, flags and builds](https://github.com/DominicBreuker/pspy).

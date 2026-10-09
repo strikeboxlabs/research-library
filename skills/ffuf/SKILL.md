@@ -13,10 +13,12 @@ ffuf -w "$wordlist:FUZZ" -u "$base_url/FUZZ" -mc all -t 2 -rate 5 -timeout 10 -m
 
 Include a known absent path and, when available, a known positive. Compare status, body, redirect, bytes, words and lines. A `200` can be a fallback page; a `401` or `403` can identify a distinct protected application. Inspect representative responses individually before excluding them.
 
+For a specifically scoped API method test, `-X POST` changes the method; even an empty POST can mutate state. A FastAPI `422` may reveal a route needing fields or a different encoding. A `405` is a method clue, so copying a `-fc 404,405` filter can hide valid paths. Retain method/body/authentication context and prefer a known OpenAPI schema to blind method expansion.
+
 For HTTP virtual hosts, define `target_ip` and `domain`, use bare labels in the list, and replace the URL with `http://$target_ip/` plus `-H "Host: FUZZ.$domain"`. This tests server routing, not DNS existence. HTTPS additionally needs correct TLS SNI/certificate routing; changing Host alone does not change SNI, and `-sni` does not accept a fuzz keyword.
 
 Only after measuring stable negatives, add appropriate `-fs` byte, `-fw` word or `-fl` line filters. Their default combination is **OR**: any matching filter hides a response. Use `-fmode and` only when all selected dimensions must match. Reflected hostnames may vary bytes while leaving word count stable. Recheck positives after filtering; `-ac` is a calibration heuristic, not proof of coverage.
 
 `-e .php,.txt` expands extension candidates at `FUZZ`; include the dots and account for the increased requests. A custom keyword must match its `-w file:KEYWORD` declaration. Leave recursion/redirect following off until destinations and budget are understood. A time limit, errors or throttling leave an incomplete scan; JSON contains selected results, not proof every candidate was tested.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Alert pp. 3–5; Analysis p. 4. Source: [upstream options and examples](https://github.com/ffuf/ffuf#usage).
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Alert pp. 3–5; Analysis p. 4; Backend pp. 4–7. Source: [upstream options and examples](https://github.com/ffuf/ffuf#usage).

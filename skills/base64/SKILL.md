@@ -1,6 +1,6 @@
 ---
 name: base64
-description: Decode transferred binary artifacts and encode digest bytes with GNU base64. Use when PEM-style wrappers, line endings, partial output or confusion between raw and hexadecimal digests causes corruption.
+description: Decode transferred binary artifacts and encode digest bytes or base64url text with GNU base64. Use when wrappers, line endings, partial output or alphabet/digest confusion causes corruption.
 ---
 
 # Preserve the bytes behind the encoding
@@ -32,4 +32,12 @@ openssl dgst -sha512 -binary "$artifact" > "$digest" && base64 --wrap=0 "$digest
 
 Encoding the printed hexadecimal digest gives different bytes. JSON-wrapped bcrypt records likewise need decoding to the complete `$2...` record before selecting a hash mode; base64 itself is not that mode.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Arkham pp. 13–14; Artificial p. 11; Atom p. 11. Sources: [GNU base64](https://www.gnu.org/software/coreutils/manual/html_node/base64-invocation.html), [OpenSSL dgst](https://docs.openssl.org/3.5/man1/openssl-dgst/).
+For an endpoint specifically requiring **unpadded base64url**, define `path_text` as the exact textual value, without NUL bytes:
+
+~~~bash
+printf '%s' "$path_text" | base64 --wrap=0 | tr '/+' '_-' | tr -d '='
+~~~
+
+Quoting and `printf` preserve spaces without adding a newline; GNU `--wrap=0` avoids its default line wrapping. The translated alphabet is different from ordinary base64 and HTTP percent encoding. Remove padding only when the consuming format specifies that convention. Decoding unpadded base64url requires reversing the alphabet and restoring valid padding; `--ignore-garbage` cannot perform that conversion.
+
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Arkham pp. 13–14; Artificial p. 11; Atom p. 11; BackendTwo pp. 10–11, 16. Sources: [GNU base64](https://www.gnu.org/software/coreutils/manual/html_node/base64-invocation.html), [OpenSSL dgst](https://docs.openssl.org/3.5/man1/openssl-dgst/), [RFC 4648 base64url](https://www.rfc-editor.org/rfc/rfc4648.html).

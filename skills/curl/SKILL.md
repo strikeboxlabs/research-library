@@ -1,6 +1,6 @@
 ---
 name: curl
-description: Capture HTTP responses with curl while preserving hostname routing, TLS identity and request-path semantics. Use when status, transport failures, redirects or normalized paths obscure a result.
+description: Capture HTTP responses and construct API requests with curl while preserving hostname routing, TLS identity and request-path semantics. Use when encoding, status, transport failures or redirects obscure a result.
 ---
 
 # curl HTTP evidence
@@ -25,5 +25,9 @@ curl --silent --show-error --connect-timeout 5 --max-time 30 --resolve "$host:$p
 For an intentionally literal path test, `--path-as-is` preserves dot segments that curl otherwise normalizes; `--globoff` separately disables URL glob expansion. Neither prevents normalization by a proxy or server. Save the requested path and observed response together.
 
 Inspect Location before adding `--location`; redirects can change hostname, method or authentication context. Do not forward credentials to new hosts automatically. A `500` after a mutating request does not prove rollback, so inspect state before retrying. Prefer structured status/body evidence over piping everything through `grep` for a version string.
+
+For JSON/form APIs, validation errors and bearer-token handling, use [API request construction](references/api-requests.md).
+
+For an HTTP proxy, explicit bypass control and CONNECT-versus-forwarding diagnosis, use [proxy requests](references/proxy-requests.md).
 
 Documentation reviewed 2026-10-09; Linux execution untested. Cases: Ambassador pp. 5–7; Analytics pp. 3–5. Source: [curl manual](https://curl.se/docs/manpage.html).
