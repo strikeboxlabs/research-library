@@ -2,6 +2,36 @@
 
 Date: 2026-10-09. Current packaging/schema: v0.4. Earlier starter and migration checks are retained below. This is not a completed tool catalogue or a measured agent-performance result.
 
+## Fifth CTF writeup batch
+
+Thirteen standalone skills were added and seven existing skills enriched, bringing the catalogue to 78. Each new skill is one file. GDB adds a conditional live-debugging reference while retaining its core-dump workflow; OpenSSL adds a conditional PKCS#12 reference. The [fifth ingestion record](ctf-writeups-batch5.md) accounts for all four PDFs, corrections, coverage decisions and source fingerprints.
+
+Executed on Windows:
+
+- All 15 repository/helper tests passed, including copying each of the 78 skill folders into isolation without the repository.
+- The skill-creator validator accepted all 78 folders. The README catalogue matches those folders exactly.
+- The repository checker passed local links and skill boundaries. All 147 Bash blocks parsed with Git Bash; documented tool commands were not executed. Git Bash required initialization outside the sandbox.
+- Tracked changes passed `git diff --check`; this batch's changed/new files were also checked for trailing whitespace. All four original PDF hashes match the extraction manifest and intake report. Comparison with the start-of-batch hashes confirms that unrelated files and previous uncommitted work were preserved.
+
+All 83 physical pages were text-extracted and read; 32 selected pages were rendered and visually inspected. Primary-source review covered mail implementation differences, SMTP classification, vault conversion, current certificate mapping, service-ticket identity, debugger launch settings, binary address spaces and editor recovery. Some PDF objects produced xref warnings; extraction and selected-page rendering completed, and originals were preserved.
+
+No target scan, remote authentication, mail submission, password recovery, debugger fixture execution, directory modification, tool installation or harness configuration change was performed. No commit or push was made. These are documentation and packaging checks; Linux behavior and worker performance remain untested.
+
+## Fourth CTF writeup batch
+
+Fourteen standalone skills were added and four existing skills enriched, bringing the catalogue to 65. Each new skill contains one file. Hashcat adds a conditional binary-container reference, incorporating its existing Password Safe workflow and new LUKS1 guidance. The [fourth ingestion record](ctf-writeups-batch4.md) accounts for all five PDFs, source corrections, scope decisions and exact source fingerprints.
+
+Executed on Windows:
+
+- All 15 repository/helper tests passed, including copying each of the 65 skill folders into isolation without the repository.
+- The skill-creator validator accepted all 65 folders. The README catalogue matches those folders exactly.
+- The repository checker passed local links and skill boundaries. All 124 Bash blocks parsed with Git Bash; documented tool commands were not executed. Git Bash required initialization outside the sandbox.
+- Tracked changes passed `git diff --check`; newly added files were also checked for trailing whitespace. All five original PDF hashes match the extraction manifest and intake report. GDB and the existing assessment methodology have no changes.
+
+All 93 physical pages were text-extracted and read; 27 selected pages were rendered and visually inspected. Primary-source review covered consequential details including Hashcat's binary parser/potfile exception, filesystem journal replay, SMBMap write probes, marshalsec local test execution, SQLite WAL consistency and restic restore locks. Some PDFs produced xref warnings; extraction and selected-page rendering completed, and the originals were preserved.
+
+No target scan, remote authentication, password recovery, container execution, mount, tool installation or harness configuration change was performed. No commit or push was made. These are documentation and packaging checks; Linux behavior and worker performance remain untested.
+
 ## Third CTF writeup batch
 
 Twenty-one standalone skills were added and 10 existing skills enriched, bringing the catalogue to 51. All new skills are single files, about 277–357 words each including metadata/sources. Secretsdump adds one conditional offline NTDS reference inside its own package. The [third ingestion record](ctf-writeups-batch3.md) maps all ten PDFs to accepted guidance, corrections, deliberate omissions and source fingerprints.
@@ -81,7 +111,7 @@ The Windows sandbox's default temporary directory initially prevented the subpro
 
 ## Still untested
 
-- The 50 CTF-derived skills' Linux procedures and meaningful failure cases.
+- The 77 added CTF-derived skills' Linux procedures and meaningful failure cases.
 - GDB procedures and proposed diagnostic cases on Linux.
 - Help collection in the prepared distro containers.
 - The capture helper's POSIX process-group timeout path.

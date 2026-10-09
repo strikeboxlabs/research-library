@@ -26,6 +26,8 @@ In a second terminal, use the intended application against the local listener. F
 | `administratively prohibited` | Inspect allowed forwarding destinations/policy; password retries are irrelevant. |
 | Wrong page or TLS identity error | Check destination, application hostname and TLS naming. |
 
-Use `ssh -v` for this connection when necessary; inspect effective options with `ssh -G "$user@$ssh_host"` if configuration is unexpected. A quiet foreground tunnel is normal. Stop it with Ctrl-C and confirm the local listener closes before claiming cleanup. If deliberately using multiplexing/background forwarding, track that separate connection's lifetime.
+Use `ssh -v` for this connection when necessary; inspect effective options with `ssh -G "$user@$ssh_host"` if configuration is unexpected. Read unfamiliar configuration as text first: `Match exec` can execute a local command even while `-G` evaluates configuration. `ProxyCommand` also executes locally when the connection is made. A copied config is not passive connection data; do not load it merely to understand it.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: AdmirerToo p. 17; Agile p. 18; APT p. 8. Sources: [ssh manual](https://man.openbsd.org/ssh.1), [forwarding configuration](https://man.openbsd.org/ssh_config.5).
+A quiet foreground tunnel is normal. Stop it with Ctrl-C and confirm the local listener closes before claiming cleanup. If deliberately using multiplexing/background forwarding, track that separate connection's lifetime.
+
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: AdmirerToo p. 17; Agile p. 18; APT p. 8; Attended p. 16. Sources: [ssh manual](https://man.openbsd.org/ssh.1), [forwarding configuration](https://man.openbsd.org/ssh_config.5).

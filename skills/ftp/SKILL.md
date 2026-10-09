@@ -7,6 +7,8 @@ description: Retrieve selected files with a traditional Linux ftp client without
 
 Identify the installed implementation through its package/version and interactive `help`. GNU inetutils, tnftp and other clients differ in passive-mode defaults and switches. `sftp` is a different protocol, not a spelling of FTP.
 
+An OpenBSD writeup's `ftp http://...` is an HTTP fetch supported by that client, not an FTP transaction. Verify URL-fetch support before transplanting it to Linux; otherwise select an HTTP client. Protocol choice determines the relevant transport and diagnostics, regardless of the executable's name.
+
 Define `server` as the intended FTP host and `out` as a new private local directory. Connect from that directory and enter the known credentials at the client prompts:
 
 ~~~bash
@@ -22,4 +24,4 @@ A login/control connection can succeed while `ls` or `get` stalls: both need a s
 
 Plain FTP exposes credentials and data on the network. If the service requires FTPS, use a client that actually supports its TLS policy; this interactive recipe does not add TLS. Record transfer mode, source, destination and integrity result separately from authentication success.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Administrator p. 7; Admirer pp. 7–8. Source: [NetBSD/tnftp manual](https://github.com/NetBSD/src/blob/trunk/usr.bin/ftp/ftp.1). Check local client help for implementation differences.
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Administrator p. 7; Admirer pp. 7–8; Attended p. 10. Sources: [NetBSD/tnftp manual](https://github.com/NetBSD/src/blob/trunk/usr.bin/ftp/ftp.1), [OpenBSD URL fetching](https://man.openbsd.org/ftp.1). Check local client help for implementation differences.

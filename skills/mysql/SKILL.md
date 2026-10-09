@@ -26,8 +26,16 @@ SHOW DATABASES;
 
 Select an observed database with `USE`, inspect `SHOW TABLES` and `SHOW COLUMNS FROM` the chosen table, then request only relevant columns with a bounded `SELECT ... LIMIT`. Use actual identifiers with SQL quoting; shell variable syntax does not interpolate at this prompt. An empty table and a denied query are different outcomes. Avoid importing a supplied SQL dump merely to inspect it: scripts can contain writes.
 
+When an interactive database shell is inconvenient, define `database` as the observed database name and `query` as one reviewed, bounded SELECT using its actual schema:
+
+~~~bash
+mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database" --batch --execute="$query"
+~~~
+
+This still prompts for the password. Batch output is tab-separated with special characters escaped by default; it is not CSV. Check the exit status before interpreting an empty result. `--execute`/`--batch` change execution/output style, not SQL privileges or side effects. A supplied query file can still write data; avoid `SELECT *` when selected columns answer the question.
+
 `LOAD DATA INFILE` reads on the database server. `LOAD DATA LOCAL INFILE` reads through the client process; for Adminer, that client is the web application host. It also loads data into a table. Enabling local-infile changes file-access exposure and is not required for normal SELECT queries or an authentication repair.
 
 `LOAD_FILE()` instead returns a server-side file as a value. It needs FILE privilege, a readable absolute server path, applicable `secure_file_priv` permission and size below `max_allowed_packet`; NULL can mean any unmet condition. Successful reading does not establish write access to that directory. `SELECT ... INTO OUTFILE` creates a server-side file and refuses an existing path; it is a write operation despite beginning with SELECT. An application's HTTP 500 after a database write does not prove rollback: inspect state before retrying.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Admirer pp. 11–16; Agile pp. 13–14; Altered pp. 11–17. Sources: [connections](https://dev.mysql.com/doc/refman/8.4/en/connecting.html), [identity functions](https://dev.mysql.com/doc/refman/8.4/en/information-functions.html), [metadata](https://dev.mysql.com/doc/refman/8.4/en/getting-information.html), [LOCAL file access](https://dev.mysql.com/doc/refman/8.4/en/load-data-local-security.html), [LOAD_FILE](https://dev.mysql.com/doc/refman/8.4/en/string-functions.html#function_load-file), [OUTFILE](https://dev.mysql.com/doc/refman/8.4/en/select-into.html).
+Documentation reviewed 2026-10-09; Linux execution untested. Cases: Admirer pp. 11–16; Agile pp. 13–14; Altered pp. 11–17; Armageddon pp. 6–7. Sources: [connections](https://dev.mysql.com/doc/refman/8.4/en/connecting.html), [identity functions](https://dev.mysql.com/doc/refman/8.4/en/information-functions.html), [metadata](https://dev.mysql.com/doc/refman/8.4/en/getting-information.html), [batch mode](https://dev.mysql.com/doc/refman/8.4/en/batch-mode.html), [LOCAL file access](https://dev.mysql.com/doc/refman/8.4/en/load-data-local-security.html), [LOAD_FILE](https://dev.mysql.com/doc/refman/8.4/en/string-functions.html#function_load-file), [OUTFILE](https://dev.mysql.com/doc/refman/8.4/en/select-into.html).

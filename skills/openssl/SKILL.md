@@ -1,11 +1,13 @@
 ---
 name: openssl
-description: Inspect and convert X.509 certificates and certificate requests with OpenSSL. Use to distinguish CSR signatures, issued identities, file encodings and trust-chain validation.
+description: Inspect X.509 certificates, requests and PKCS#12 bundles with OpenSSL. Use to distinguish signatures, identities, encodings, private-key extraction and trust-chain validation.
 ---
 
 # OpenSSL certificate evidence
 
 Record `openssl version` and inspect subcommand help. Identify whether the input is a CSR, certificate, private key or bundle; a `.cer` extension alone does not distinguish DER from PEM. Work on copies and choose fresh output paths.
+
+For a PFX/P12 containing certificates and private keys, use [PKCS#12 inspection and extraction](references/pkcs12.md). It separates bundle passwords, encrypted key output and legacy-provider failures.
 
 Define `csr` as an existing PEM request and `cert` as an issued PEM certificate:
 

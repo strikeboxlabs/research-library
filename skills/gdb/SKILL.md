@@ -1,11 +1,11 @@
 ---
 name: gdb
-description: Examine existing Linux native core dumps with GDB. Use for crashes, stack traces, missing symbols and inconclusive frames when a core and matching executable are available.
+description: Examine Linux native core dumps or a controlled live reproduction with GDB. Use for crashes, stack traces, missing symbols, instruction boundaries and before/after memory evidence with a matching executable.
 ---
 
-# GDB core analysis
+# GDB native analysis
 
-Establish that the core and executable come from the same build; filenames or the absence of a GDB warning are insufficient. GDB must support the core's architecture/format. Source-level interpretation needs matching debug information. This skill covers existing cores; live debugging and core collection are outside its scope.
+For an existing core, establish that it and the executable come from the same build; filenames or the absence of a GDB warning are insufficient. GDB must support the target architecture/format. Source-level interpretation needs matching debug information. For an explicitly requested controlled reproduction, use [live instruction and memory inspection](references/live-debugging.md). Core collection is outside this skill's scope.
 
 ## Inspect the core
 
