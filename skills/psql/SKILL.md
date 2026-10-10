@@ -1,13 +1,13 @@
 ---
 name: psql
-description: Connect to a known PostgreSQL database, inspect schema, export bounded results and administer selected server files/WAL archiving with psql. Use when socket versus TCP authentication, SQL role, startup files, quoting or partial output obscures a result.
+description: Connect to a known PostgreSQL database, inspect schema, export selected Django/Sentry authentication records or other bounded results and administer selected server files/WAL archiving with psql. Use when socket versus TCP authentication, SQL role, startup files, quoting or partial output obscures a result.
 ---
 
 # Establish the PostgreSQL connection
 
 Read this entire SKILL.md before acting; reuse complete current context. Establish the actual server/database/role, inspect the selected schema and retain query status with bounded results. A failed reconnect or export remains incomplete; do not infer permissions or database identity from a prompt alone.
 
-For an explicitly approved server-file/configuration operation or WAL archive hook, read [large objects and archive configuration](references/server-files-and-archiving.md) fully first. These are server-side effects, separate from ordinary query export.
+For a legacy Django/Sentry database or a wrapped authentication record, read [selected auth records](references/django-auth-records.md) fully first. For an explicitly approved server-file/configuration operation or WAL archive hook, read [large objects and archive configuration](references/server-files-and-archiving.md) fully first. These are server-side effects, separate from ordinary query export.
 
 Check `psql --version` separately from the server version. Define `service` as an existing reviewed libpq service name with the intended host, port, database, role and TLS policy. Use known credentials through its protected password file; on Linux, a password file with group/world access is ignored.
 

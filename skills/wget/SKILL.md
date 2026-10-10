@@ -1,11 +1,13 @@
 ---
 name: wget
-description: Retrieve a selected HTTP/HTTPS artifact with GNU Wget and diagnose partial, redirected or resumed downloads. Use when the installed Wget client fits file transfer and output naming or retry behavior matters.
+description: Retrieve a selected HTTP/HTTPS artifact with GNU Wget and diagnose partial, redirected or resumed downloads. Use when the installed Wget client fits file transfer and output naming, page requisites, relocated form/asset origins or retry behavior matters.
 ---
 
 # Preserve the intended artifact and inspect the response
 
 Read this entire file before acting. Define the requested URL and a new output path before downloading. Finish with the transfer result, file identity and any remaining integrity uncertainty; a filename extension alone is not evidence of content type.
+
+For a page captured as an owned template or relocated assets/forms, read [page capture boundaries](references/page-capture.md) fully first.
 
 Confirm GNU Wget with `wget --version`; BusyBox and other implementations have different option sets. Define `url`, `download_file` and a private `response_log`:
 

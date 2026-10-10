@@ -1,12 +1,13 @@
 ---
 name: hashcat
-description: Generate pattern-based candidates, select Hashcat modes and run bounded offline checks on application or NT/Kerberos records, Password Safe v3 files and LUKS1 images. Use when Grafana/Gitea PBKDF2 or salted SHA-1 conversion, binary inputs, potfile exceptions or exhausted runs need interpretation.
+description: Generate pattern-based candidates, select Hashcat modes and run bounded offline checks on application or NT/Kerberos records, Password Safe v3 files and LUKS1 images. Use when Django/Grafana/Gitea PBKDF2 or salted SHA-1 conversion, binary inputs, potfile exceptions or exhausted runs need interpretation.
 ---
 
 # Hashcat candidates and offline checks
 
 Read this entire SKILL.md before acting; complete current context need not be re-read. Complete the applicable input checks before a bounded run; preserve status and report recovered, exhausted or incomplete honestly. Candidate generation alone establishes no recovery.
 
+- A complete Django `pbkdf2_sha256$...` record: read [Django PBKDF2](references/django-pbkdf2.md) fully before mode selection or full-verifier confirmation.
 - Pattern-supported seeds, rule-generated wordlists or a shortlist for another checker: read [rule candidates](references/rule-candidates.md) fully before generation or handoff.
 - Historical Grafana SQLite rows, literal salts or hardcoded converter cost: read [Grafana PBKDF2](references/grafana-pbkdf2.md) fully before conversion or full-verifier confirmation.
 - Required for Gitea PBKDF2: read [record conversion](references/gitea-pbkdf2.md) before preparing input; use its parameter-preserving converter for the supported format.
@@ -19,6 +20,7 @@ Match the input representation to the mode, using its acquisition context and th
 
 | Known artifact | Mode |
 |---|---|
+| Complete verified Django `pbkdf2_sha256$iterations$salt$base64_digest` record | `10000`; literal salt, with the linked Django checks. |
 | Raw NT hash from a SAM account | `1000` |
 | Complete NetNTLMv2 `user::domain:challenge:response:blob` exchange | `5600`; retain all fields, not just the response hex. |
 | Complete md5crypt `$1$salt$checksum` record | `500`; retain the prefix, salt and checksum, not the surrounding SQLite row. Different from raw MD5 `0` and Apache APR1 `1600`. |

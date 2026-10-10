@@ -1,11 +1,11 @@
 ---
 name: ghidra
-description: Decompile selected native-binary functions from the CLI with Ghidra headless analysis. Trace privilege guards, database fields, filename construction and file operations while separating reconstructed code from runtime evidence.
+description: Decompile selected native-binary functions from the CLI with Ghidra headless analysis. Recover exact Rust cipher/compare bytes or trace privilege guards, database fields, filename construction and file operations while separating reconstructed code from runtime evidence.
 ---
 
 # Ghidra headless function analysis
 
-Read this entire SKILL.md before acting; reuse complete current context. Use an acquired binary copy and the installed Ghidra/JDK pair. The required helper [scripts/DecompileSelected.java](scripts/DecompileSelected.java) inventories functions or exports selected decompilations; use it for the procedure below. For interpreting database-to-file code, read [file data flow](references/file-data-flow.md) fully before that analysis. Finish with the selected function addresses, recovered logic and unresolved calls/analysis failures; decompiled text is not observed execution.
+Read this entire SKILL.md before acting; reuse complete current context. Use an acquired binary copy and the installed Ghidra/JDK pair. The required helper [scripts/DecompileSelected.java](scripts/DecompileSelected.java) inventories functions or exports selected decompilations; use it for the procedure below. For interpreting database-to-file code, read [file data flow](references/file-data-flow.md) fully before that analysis. For a Rust stream-cipher predicate or selected key/IV/ciphertext range, read [Rust cryptographic inputs](references/rust-crypto.md) fully; its byte-export task requires `scripts/ReadSelectedBytes.java`. Finish with the selected function addresses, recovered logic and unresolved calls/analysis failures; decompiled text is not observed execution.
 
 Define `headless` as the verified installed `support/analyzeHeadless` launcher and `skill_dir` as this package's absolute directory. Use the installed release's JDK requirements; do not copy an old walkthrough's install commands. Define `binary` as one local executable/object, `project_parent` as an existing private working directory, and `project_name` as a fresh project name. Ghidra imports a program database without executing the specimen. It writes that project and analysis logs.
 

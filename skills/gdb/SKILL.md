@@ -1,13 +1,13 @@
 ---
 name: gdb
-description: Examine Linux native core dumps or a controlled live reproduction with GDB. Use for crashes, stack traces, missing symbols, instruction boundaries and before/after memory evidence with a matching executable.
+description: Examine Linux native core dumps or a controlled live reproduction with GDB. Use for crashes, stack traces, missing symbols, instruction boundaries, controlled execution changes and before/after memory evidence with a matching executable.
 ---
 
 # GDB native analysis
 
 Read this entire SKILL.md before acting. Select offline core inspection or the conditional live procedure below, and read that reference fully before executing a target. Finish with build/stop context and supporting state, not a backtrace or discovered string alone.
 
-For an existing core, establish that it and the executable come from the same build; filenames or the absence of a GDB warning are insufficient. GDB must support the target architecture/format. Source-level interpretation needs matching debug information. For an explicitly requested controlled reproduction, use [live instruction and memory inspection](references/live-debugging.md). Core collection is outside this skill's scope.
+For an existing core, establish that it and the executable come from the same build; filenames or the absence of a GDB warning are insufficient. GDB must support the target architecture/format. Source-level interpretation needs matching debug information. For an explicitly requested controlled reproduction, use [live instruction and memory inspection](references/live-debugging.md). For an explicitly requested change to the next instruction, read [controlled execution changes](references/control-flow.md) fully as well as the live procedure. Core collection is outside this skill's scope.
 
 ## Inspect the core
 

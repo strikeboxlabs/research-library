@@ -1,11 +1,11 @@
 ---
 name: sudo
-description: Interpret sudo policy, RunAs identities, helper paths, environment handling and sudoedit on Linux. Use when a permitted command behaves differently under sudo or a walkthrough overstates privilege from a policy listing.
+description: Interpret sudo policy, RunAs identities, helper paths, authenticator/key-enrollment inputs, environment handling and sudoedit on Linux. Use when a permitted command behaves differently under sudo or a walkthrough overstates privilege from a policy listing.
 ---
 
 # Understand the permitted operation
 
-Read this entire SKILL.md before acting; reuse complete current context. Establish the exact RunAs identity, command/argument restrictions and authentication tags. For scripts, helpers, environment-dependent children, Git hooks, SSH client commands or Python module presets, read [permitted-program behavior](references/permitted-programs.md) fully before attributing privilege. Finish with the policy and supported effects; listing a command is not an executed result.
+Read this entire SKILL.md before acting; reuse complete current context. Establish the exact RunAs identity, command/argument restrictions and authentication tags. For scripts, helpers, environment-dependent children, Git hooks, SSH client commands or Python module presets, read [permitted-program behavior](references/permitted-programs.md) fully before attributing privilege. For a permitted password-gated program with a public-key enrollment branch, read [authenticator inputs and effects](references/authenticator-inputs.md) fully before invoking it. Finish with the policy and supported effects; listing a command is not an executed result.
 
 Read the effective listing before selecting an elevated command:
 

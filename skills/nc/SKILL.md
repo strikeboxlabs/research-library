@@ -5,7 +5,7 @@ description: Use the installed nc/netcat implementation for a selected TCP excha
 
 # Netcat TCP exchanges
 
-Read this entire SKILL.md before acting; reuse complete current context. Identify the installed implementation with `nc -h` and its manual before selecting a command below. For an authorized executable attached to a TCP stream, read [traditional process streams](references/process-streams.md) fully first. Finish with the received bytes and protocol/identity evidence; connecting alone is not application success.
+Read this entire SKILL.md before acting; reuse complete current context. Identify the installed implementation with `nc -h` and its manual before selecting a command below. For an authorized executable attached to a TCP stream, read [executable or FIFO process streams](references/process-streams.md) fully first. Finish with the received bytes and protocol/identity evidence; connecting alone is not application success.
 
 Define `host`/`port` as the selected TCP endpoint and `request`/`response`/`log` as exact input and fresh private output files. For ordinary traditional or OpenBSD-style TCP interaction:
 
