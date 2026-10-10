@@ -16,7 +16,7 @@ Read this entire SKILL.md before acting; reuse complete current context. Use the
 - Authorized SQL testing carried by an observed WebSocket message: [application/query boundary](references/websocket-query.md), which also requires the exchange reference.
 - Authorized LDAP-backed HTTP form testing with layered encoding or a response oracle: [form/oracle boundaries](references/ldap-form-oracle.md).
 - MySQL CLI unavailable but a trusted Python environment already has PyMySQL: [bounded database inspection](references/pymysql-inspection.md).
-- Serve a selected owned file tree for a bounded transfer: [local file server](references/local-file-server.md).
+- Serve selected owned files or a cross-origin browser test module with an explicit response policy: [local file server](references/local-file-server.md).
 - An authorized Unix child needs a pseudo-terminal: [PTY session](references/pty-session.md).
 
 ## Locate evaluation calls without importing source

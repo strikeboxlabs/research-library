@@ -1,11 +1,15 @@
 ---
 name: mysql
-description: Use mysql for explicit socket/TCP connections and database metadata. Diagnose account matching, native function registration, string comparison and client/server execution boundaries.
+description: Use mysql for explicit socket/TCP connections, database metadata and selected Mattermost account records. Diagnose account matching, password-format context, native functions, string comparison and client/server execution boundaries.
 ---
 
 # MySQL connection and inspection
 
-Read this entire SKILL.md before acting; complete current context need not be re-read. Establish the client/server and connection identity for a database task; native loadable-function metadata is covered below. For truncation, padding or collation surprises, read [string comparison](references/string-comparison.md). For server/client file access or wrapper/query-file execution, read [execution boundaries](references/execution-boundaries.md). Read the selected reference fully before its procedure; leave unrelated branches unloaded. Finish with the actual query/result and its scope; a denied query, empty result or client-side effect is not interchangeable with a server finding.
+Read this entire SKILL.md before acting; complete current context need not be re-read. Establish the client/server and connection identity for a database task; native loadable-function metadata is covered below. Read the selected reference fully before its procedure; leave unrelated branches unloaded. Finish with the actual query/result and its scope; a denied query, empty result or client-side effect is not interchangeable with a server finding.
+
+- Mattermost config/DSN and selected user-password records: [account record context](references/mattermost-records.md).
+- Truncation, padding or collation surprises: [string comparison](references/string-comparison.md).
+- Server/client file access or wrapper/query-file execution: [execution boundaries](references/execution-boundaries.md).
 
 Check `mysql --version` and local help. The command can come from MySQL or a MariaDB compatibility package; TLS/authentication options are not identical across releases/vendors. The client version does not establish the server version.
 

@@ -29,4 +29,14 @@ curl --silent --show-error --connect-timeout 5 --max-time 30 --data-urlencode "d
 
 Curl performs the outer form encoding, including `+`, `/` and `=`; give it unescaped base64, not an already percent-encoded string. The file form avoids shell newline transformations and an added `echo` newline. Check curl's exit status and the application's response separately. Decoding a response to XML or PHP bytes establishes the recovered representation, not that a database write or code execution occurred. Preserve bytes and their declared character encoding before displaying them as text.
 
+
+## Browser callback query values
+
+The same outer-encoding issue applies to a callback URL query. Isolate the exact selected query value before decoding. A raw `+` can become a space through a form-style query parser; percent encoding with encodeURIComponent preserves the base64 alphabet. Do not repair this by deleting whitespace or ignoring invalid input when the original bytes are unknown.
+
+JavaScript btoa consumes characters whose values fit one byte and can reject arbitrary Unicode text. If the sender explicitly uses TextEncoder to produce UTF-8 bytes before base64, decode back to those bytes and then UTF-8; a btoa-only Latin-1-style string has a different contract. Preserve the sender's encoding and complete capture rather than assuming HTML text was always UTF-8 base64. URL-length limits, a truncated server log or a SNIP marker leave incomplete evidence even if the remaining string decodes. The decoded page may reveal a link/role-specific view, but decoding alone does not establish authentication or successful follow-on action.
+
 References: [GNU base64](https://www.gnu.org/software/coreutils/manual/html_node/base64-invocation.html), [curl form encoding](https://curl.se/docs/manpage.html#--data-urlencode), [form decoding semantics](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.unquote_plus) and [RFC 4648 alphabets](https://www.rfc-editor.org/rfc/rfc4648.html).
+
+
+See [btoa byte constraints](https://developer.mozilla.org/en-US/docs/Web/API/Window/btoa) for the browser producer boundary.

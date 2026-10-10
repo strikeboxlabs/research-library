@@ -5,6 +5,8 @@ description: Filter text evidence with GNU grep while preserving match logic and
 
 # State what a selected line proves
 
+Read this entire SKILL.md before acting; reuse complete current context. Select literal/regex and record boundaries deliberately, retain producer/filter errors, and finish with the actual matches or qualified no-match result. A match in partial output does not establish that the producer completed.
+
 Define `input` as an existing text file, `needle` as a literal value and `matches` as a fresh output file:
 
 ~~~bash

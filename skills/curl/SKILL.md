@@ -1,6 +1,6 @@
 ---
 name: curl
-description: Capture HTTP responses and construct API, GraphQL, Grafana file-read or Spring Boot management requests with curl while preserving hostname routing, TLS identity and request-path semantics. Use when encoding, partial results, transport failures, config-driven transfers or redirects obscure a result.
+description: Capture HTTP responses and construct API, GraphQL, Rails reports, helpdesk/signup, Grafana file-read or Spring Boot management requests with curl while preserving hostname routing, TLS identity and request-path semantics. Use when encoding, partial results, transport failures, config-driven transfers or redirects obscure a result.
 ---
 
 # curl HTTP evidence
@@ -8,11 +8,13 @@ description: Capture HTTP responses and construct API, GraphQL, Grafana file-rea
 Read this entire skill before acting; complete current context need not be re-read. Preserve the intended URL/route, capture status and body from the same request, and distinguish transport completion from application success. Read the applicable reference fully before its procedure; leave unrelated branches unloaded.
 
 - Grafana CVE-2021-43798 applicability, literal plugin paths and selected SQLite acquisition: [Grafana file reads](references/grafana-file-read.md).
+- Company-domain ticket reply addresses used for registration/verification: [helpdesk email trust](references/ticket-email-trust.md).
 - Controlled contact-mail routing and browser-rendered HTML: [mail application tests](references/mail-routing-and-html.md).
 - Webhook callbacks, outbound method injection, alias/file transformations or mass-assigned account fields: [controlled application tests](references/webhook-and-file-tests.md), using the API/session references as applicable.
 - A server-side TCP testing route, including read-only Memcached protocol operations: [HTTP socket bridge](references/tcp-socket-bridge.md).
 - Neo4j/Cypher authentication queries or shell-running custom procedures: [Cypher and process boundaries](references/cypher-and-procedures.md).
 - JSON/form APIs, multipart uploads, file PUTs and token handling: [API request construction](references/api-requests.md).
+- Rails report downloads, hidden path fields, same-origin session riding or leading-pipe file/process inputs: [Rails report boundaries](references/rails-reports.md).
 - Cookie-bound CSRF requests or a browser-only failure: [session and preflight diagnosis](references/session-and-preflight.md).
 - GraphQL schema, variables and operation errors: [GraphQL requests](references/graphql.md).
 - Spring Boot management discovery and mapping interpretation: [Actuator responses](references/spring-actuator.md).

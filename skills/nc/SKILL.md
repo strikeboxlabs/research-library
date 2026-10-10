@@ -1,39 +1,42 @@
 ---
 name: nc
-description: Open a selected TCP connection or listener using OpenBSD-style nc on Linux. Use for bidirectional callbacks, stdin EOF, listener binding and netcat-variant option differences.
+description: Use the installed nc/netcat implementation for a selected TCP exchange or incoming callback. Choose traditional versus OpenBSD options and diagnose EOF/listener differences; load process-stream attachment only when that task is authorized.
 ---
 
-# Selected netcat transport
+# Netcat TCP exchanges
 
-Read this entire SKILL.md before acting; reuse complete current context. Confirm that the installed `nc` implements the OpenBSD-style options below, identify which side connects/listens and use the worker's session budget. Finish with peer/received-byte evidence and the protocol or effective-identity result actually observed; a socket alone proves neither.
+Read this entire SKILL.md before acting; reuse complete current context. Identify the installed implementation with `nc -h` and its manual before selecting a command below. For an authorized executable attached to a TCP stream, read [traditional process streams](references/process-streams.md) fully first. Finish with the received bytes and protocol/identity evidence; connecting alone is not application success.
 
-Read `nc -h` and the installed manual. Traditional netcat, OpenBSD nc, BusyBox nc and Nmap Ncat have different CLI contracts. A copied `nc -lvp PORT` is not universal: upstream OpenBSD nc does not combine `-l` with source-port `-p`. This package uses a positional listening port. Do not assume `-e` starts a shell; implementations assign different meanings or omit it.
-
-For one intended incoming TCP connection, define `bind_ip` as a selected local address reachable from the connecting side and `port` as an available unprivileged port. Keep the listener foreground:
-
-~~~bash
-nc -l -n -v "$bind_ip" "$port"
-~~~
-
-stdin sends bytes to the peer; received bytes go to stdout and diagnostics to stderr. An explicit loopback bind is reachable only locally. A listener cannot repair callback routing/firewall policy, and an accepted peer can be a relay. `-w` does not bound this implementation's listening wait: use the worker's overall deadline and stop this owned process. `-k` deliberately accepts further connections; shared output then loses per-connection boundaries.
-
-For a selected outgoing connection, define `host` as its numeric address:
-
-~~~bash
-nc -n -v -w 5 "$host" "$port"
-~~~
-
-`-w` limits connection/idle waits rather than a busy session's total duration. With `-n`, use actual numeric addresses. A silent connection can be waiting for the protocol's request. Do not confuse displayed line editing with the remote process having a terminal.
-
-For a finite reviewed protocol request, define `request_file` as its exact framed bytes and `response_file` as a new private output. On a verified implementation supporting `-N`:
+Define `host`/`port` as the selected TCP endpoint and `request`/`response`/`log` as exact input and fresh private output files. For ordinary traditional or OpenBSD-style TCP interaction:
 
 ~~~bash
 umask 077
-(set -C; nc -n -N -w 5 "$host" "$port" < "$request_file" > "$response_file")
+nc -n -v -w 5 "$host" "$port" <"$request" >"$response" 2>"$log"
 ~~~
 
-`-N` shuts down the socket's sending side after stdin EOF, allowing servers that wait for EOF to finish; it still receives their reply. Other nc variants use different EOF options. Preserve final status and framing/completeness; timeout bytes can be partial. A raw listener does not generate an HTTP response automatically.
+Use numeric `host` with `-n`. Choose framing from the actual protocol; nc does not turn arbitrary bytes into an HTTP request or guarantee a CRLF/body terminator. Check status, stderr and the complete protocol reply. EOF/timeout semantics vary: OpenBSD `-N` half-closes the sending side on stdin EOF, while traditional Debian `-q` controls delay before quitting after EOF. Do not add a short quit delay when the required reply may arrive later. BusyBox nc and Linux ports can differ too; match the installed contract.
 
-An already authorized command channel is two-way transport, not a terminal or privilege transition. Correlate the actual remote `id`/result with the selected channel; a root-looking prompt or callback after a file write is insufficient alone. Shell/FIFO plumbing can block or retain children independently of nc; do not copy a compound cleanup/launch string merely to test transport. Stop the owned session and its tracked components when the selected question ends.
+For a finite request on a verified OpenBSD-style implementation supporting `-N`, retain the reply after sending EOF and avoid replacing an existing response file:
 
-Reference: [OpenBSD nc manual](https://man.openbsd.org/nc). Match its option subset against the Linux image's installed port before use.
+~~~bash
+(set -C; nc -n -N -w 5 "$host" "$port" <"$request" >"$response" 2>"$log")
+~~~
+
+Check final status and the received protocol's framing/completeness; timeout output can be partial. A silent interactive connection can be waiting for a request, not proving the service absent.
+
+## Listen on an explicit interface
+
+Define `bind_ip` as the authorized reachable address and `port` as an available permitted port. Select **one** command matching the installed implementation, in a tracked foreground session:
+
+~~~bash
+# Traditional netcat:
+nc -n -v -l -s "$bind_ip" -p "$port" >"$response" 2>"$log"
+# OpenBSD-style nc:
+nc -n -v -l "$bind_ip" "$port" >"$response" 2>"$log"
+~~~
+
+The options are alternatives, not two listeners to start together. On upstream OpenBSD, `-p`/`-s` cannot accompany `-l`, and `-w` is ignored in listen mode. Linux ports can differ; local help/manual wins. OpenBSD `-k` deliberately accepts further connections; shared output loses per-connection boundaries. Stop the owned listener under the worker's overall budget; a connect timeout is not a guaranteed bound waiting for the first callback. A bind failure leaves no listener. Loopback is reachable only from that host.
+
+Capture peer/time diagnostics separately from bytes. An HTTP request received on this stream does not imply a valid HTTP response, imported JavaScript execution or authenticated identity. A remote process stream is also different from a pseudo-terminal; missing prompt/echo is not evidence of changed privilege. Shell/FIFO plumbing can block or retain children independently of nc; track those components separately instead of copying an unexplained cleanup/launch string. Keep the observed protocol/identity result and stop the owned session when finished.
+
+References: [Debian traditional netcat](https://manpages.debian.org/bookworm/netcat-traditional/nc.1.en.html) and [upstream OpenBSD nc](https://man.openbsd.org/nc). These are different implementations; the OpenBSD `-e` TLS-name option is not traditional netcat's execute option.

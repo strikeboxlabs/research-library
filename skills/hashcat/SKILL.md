@@ -1,12 +1,13 @@
 ---
 name: hashcat
-description: Select Hashcat modes and run bounded offline checks on application or NT/Kerberos records, Password Safe v3 files and LUKS1 images. Use when Grafana/Gitea PBKDF2 or salted SHA-1 conversion, binary inputs, potfile exceptions or exhausted runs need interpretation.
+description: Generate pattern-based candidates, select Hashcat modes and run bounded offline checks on application or NT/Kerberos records, Password Safe v3 files and LUKS1 images. Use when Grafana/Gitea PBKDF2 or salted SHA-1 conversion, binary inputs, potfile exceptions or exhausted runs need interpretation.
 ---
 
-# Hashcat offline checks
+# Hashcat candidates and offline checks
 
-Read this entire SKILL.md before acting; complete current context need not be re-read. Complete the applicable input checks before a bounded run; preserve status and report recovered, exhausted or incomplete honestly.
+Read this entire SKILL.md before acting; complete current context need not be re-read. Complete the applicable input checks before a bounded run; preserve status and report recovered, exhausted or incomplete honestly. Candidate generation alone establishes no recovery.
 
+- Pattern-supported seeds, rule-generated wordlists or a shortlist for another checker: read [rule candidates](references/rule-candidates.md) fully before generation or handoff.
 - Historical Grafana SQLite rows, literal salts or hardcoded converter cost: read [Grafana PBKDF2](references/grafana-pbkdf2.md) fully before conversion or full-verifier confirmation.
 - Required for Gitea PBKDF2: read [record conversion](references/gitea-pbkdf2.md) before preparing input; use its parameter-preserving converter for the supported format.
 - Required for Password Safe/LUKS1: read [binary containers](references/binary-containers.md) before choosing input or reporting recovery; the ordinary potfile procedure does not apply.

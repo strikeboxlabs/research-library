@@ -467,3 +467,22 @@ Repository: **403 Markdown, 685 local links, 247 packages, 645 Bash blocks synta
 Data final maintenance-record check: 403 Markdown files, 696 local links and 247 packages passed after the records were saved. The unchanged 645 Bash blocks were previously syntax checked, not executed. Runtime hashes, catalogue, whitespace and source SHA-256 passed. Data completed; Delegate.pdf remains pending for the next heartbeat.
 
 Data checkpoint recovery: the first acceptance attempt saved both records but failed on a Windows default-codepage read; Data remained in_progress. Explicit UTF-8 and reuse of the identical saved records resolved it without duplicate entries before queue acceptance.
+
+## Delegate user-requested deferral — 2026-10-10
+
+All ten pages/text/images reviewed and initial queued hash verified; the user requested skipping before packaging. No runtime files changed and no per-PDF skill/runtime pass claimed. The [intake deferral](ctf-writeups-overnight-2026-10-10.md#delegatepdf--user-requested-deferral-2026-10-10) and ignored REVIEW-CHECKPOINT.json retain the unfinished coverage and source corrections. Delegate remains deferred, not completed. Continue at Delivery under the same execution boundaries.
+
+
+## Delivery continuation — 2026-10-10
+
+Delivery.pdf: all **14 physical pages**, 6,425 extracted text characters and fourteen 125-dpi page images individually reviewed; p8's zero-text SSH screenshot and p10–14's record/build/statistics evidence were inspected. No extraction warning; fixed SHA-256/4,543,545-byte source unchanged before opening and acceptance. [The intake record](ctf-writeups-overnight-2026-10-10.md#deliverypdf--continuation-2026-10-10) maps all active tools, explicit CLI/browser adaptations and source qualifications.
+
+Schema v0.8: **four new independent packages** (make, su, sucrack, zip), **four enriched/conformed** (curl, grep, hashcat, mysql), **ten reviewed unchanged** (bash, gcc, git, id, john, nmap, python3, ssh, unzip, wget); eighteen affected-task reviews and 251 accepted packages. The new conditional references preserve ticket/email organization trust, configuration/selected verifier context, seed/rule handoff and configured-build/online-authentication depth. No overlap-based omission or unavailable-Linux rejection of those supported tasks. Delegate remains deferred by user request and unaccepted; its notes were preserved.
+
+Eighteen focused validators/early route checks, complete affected contexts, fifteen existing tests, exact unique alphabetical catalogue, local-link/package checks, Bash syntax only, Git whitespace and edited-runtime/source digests passed. Initial sandbox Git Bash startup failed with MSYS named-object access denied; the approved validation then found a redundant report EOF blank line, which was trimmed before the final pass. Failed attempts are retained separately and not counted passed. Frontmatter shim/manual review is not full YAML/spec or worker validation. Upstream source was read in memory with URL/hash metadata, never stored/imported/run. Failed Mattermost filename lookup was corrected to the actual user model.
+
+No new authored operational fixture, Linux/tool build, source password check, local/remote authentication, ticket/signup action, target attack or worker outcome. No installation, power/system/Defender settings change, original move/delete, commit/push. Source version/identity, ticket-ID mismatch, generation-versus-recovery and optional-statistics versus authentication behavior are qualified in the intake. Verified absolute image invocations and live trials remain the later Linux pass.
+
+Repository before records: 412 Markdown files, 708 local links, 251 packages, 657 syntax-only Bash blocks; no errors.
+
+Delivery final maintenance-record check: 412 Markdown files, 717 local links and 251 packages passed after saving the records. The unchanged 657 Bash blocks passed syntax parsing in the approved retry, not operational execution. Runtime/source digests, catalogue and whitespace passed. Delivery accepted; Delegate remains deferred and Derailed remains pending for the next heartbeat.

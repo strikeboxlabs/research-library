@@ -5,6 +5,8 @@ description: Generate Metasploit patterns and locate observed four-byte fragment
 
 # Metasploit pattern offsets
 
+Read this entire SKILL.md before acting; reuse complete current context. Generate and locate using the same pattern family/length, require an exact unambiguous result and confirm its field boundary. For browser/Emscripten display corruption, read [WebAssembly fields](references/wasm-fields.md) fully first; that offset does not imply native control-flow execution.
+
 Locate the installed pair: packages may expose `msf-pattern_create` and `msf-pattern_offset`, or the framework's `tools/exploit/pattern_create.rb` and `pattern_offset.rb`. Define `pattern_create` and `pattern_offset` as their executable paths; inspect each with `-h`.
 
 Define `length` as a bounded size appropriate for the controlled fixture and `pattern_file` as a fresh output:
@@ -25,6 +27,6 @@ Pass the same length and any custom `-s` character sets to both tools. The looku
 
 Require an **Exact match** and check for multiple matches. **Possible match** is a heuristic after an exact lookup failed; investigate transformation, truncation, query order or the wrong pattern family. Diagnostics and exit status alone are insufficient: these scripts can report errors without a failing exit code. Confirm the measured boundary with a short controlled marker before drawing a layout conclusion.
 
-Offsets count from the start of the generated pattern. They describe the particular observed field: Bankrobber's overwritten executable-path string is not evidence of a saved return-address overwrite. Keep offsets tied to the exact binary, input path and framing. Metasploit and default pwntools cyclic patterns are different sequences; pair generation and lookup implementations.
+Offsets count from the start of the generated pattern. They describe the particular observed field: An overwritten executable-path string is not evidence of a saved return-address overwrite. Keep offsets tied to the exact binary, input path and framing. Metasploit and default pwntools cyclic patterns are different sequences; pair generation and lookup implementations.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Bankrobber pp. 15–16. Sources: [generator](https://github.com/rapid7/metasploit-framework/blob/master/tools/exploit/pattern_create.rb), [lookup parser and match handling](https://github.com/rapid7/metasploit-framework/blob/master/tools/exploit/pattern_offset.rb), [pwntools pattern families](https://docs.pwntools.com/en/stable/util/cyclic.html).
+See the upstream [generator](https://github.com/rapid7/metasploit-framework/blob/master/tools/exploit/pattern_create.rb), [lookup parser and match handling](https://github.com/rapid7/metasploit-framework/blob/master/tools/exploit/pattern_offset.rb), and [pwntools pattern families](https://docs.pwntools.com/en/stable/util/cyclic.html) when resolving generation/lookup differences.
