@@ -1,11 +1,11 @@
 ---
 name: ssh
-description: Forward remote loopback services with OpenSSH and distinguish client hooks from remote commands. Use for tunnel failures, configuration side effects or confusing local process privilege with the remote login.
+description: Use OpenSSH for selected-key logins and remote loopback forwarding. Diagnose key passphrases, server authentication, client hooks and configuration effects without confusing local and remote identities.
 ---
 
-# SSH local forwarding
+# SSH connections and local forwarding
 
-Read this entire SKILL.md before acting; reuse complete current context. Map the client, SSH server and destination before connecting. If options/configuration can execute local helpers or a privileged launcher is involved, read [client commands](references/client-commands.md) fully first. Finish with observed tunnel/application behavior or the supported configuration finding; authenticated transport alone is not destination success.
+Read this entire SKILL.md before acting; reuse complete current context. Map the client, SSH server and destination before connecting. If options/configuration can execute local helpers or a privileged launcher is involved, read [client commands](references/client-commands.md) fully first. For a selected private key or confusing password prompt, read [key authentication](references/key-authentication.md) fully first. Finish with observed authentication/tunnel behavior or the supported configuration finding; authenticated transport alone is not destination success.
 
 Map both ends before connecting: the listener is on the Linux client; the destination is reached from the SSH server. In `-L`, destination `127.0.0.1` means the SSH server's own loopback, not the workstation's.
 

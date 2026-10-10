@@ -1,6 +1,6 @@
 ---
 name: unzip
-description: Inspect ZIP member names and integrity, then recover selected files with Info-ZIP UnZip on Linux. Use to distinguish stored names, platform-dependent extraction paths, CRC failures and skipped or partial output.
+description: Inspect ZIP/JAR member names and integrity, then recover selected files or packaged Spring Boot settings with Info-ZIP UnZip on Linux. Use to distinguish stored names, platform-dependent extraction paths, CRC failures and skipped or partial output.
 ---
 
 # Inspect the archive before choosing an extraction
