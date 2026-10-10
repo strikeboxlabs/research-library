@@ -5,6 +5,8 @@ description: Inspect object-file headers and bounded disassembly with GNU objdum
 
 # Read the right representation
 
+Read this entire SKILL.md before acting; reuse complete current context. Establish the artifact format and address space, select headers/bytes/disassembly below, and retain the bounded output supporting the requested conclusion. Missing symbols or static-only evidence must remain explicit; this procedure does not establish runtime reachability.
+
 Define `binary` as an existing artifact copy. Establish the object format and architecture before selecting disassembler options:
 
 ~~~bash
@@ -39,4 +41,4 @@ These are not raw file offsets. Relocation and load bias can make live addresses
 
 Check actual instruction bytes, boundaries, operand widths and following instructions. A mnemonic found by grep may hide extra register writes, memory accesses or a return's stack effects. Disassembling from another byte offset can produce a different instruction stream; static output does not prove that execution reaches it. Use matching debugger state for runtime claims and the target OS/architecture ABI for syscall meanings, not a table selected only by CPU family.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Attended pp. 22–25, adapted from OpenBSD. Source: [GNU objdump options and interpretation](https://sourceware.org/binutils/docs/binutils/objdump.html).
+See [GNU objdump options and interpretation](https://sourceware.org/binutils/docs/binutils/objdump.html).

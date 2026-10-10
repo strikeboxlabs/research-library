@@ -22,4 +22,4 @@ The first command selects certificates associated with the identity rather than 
 
 Inspect the resulting certificate's identity, usage and fingerprint, and verify that the intended key matches before configuring a consumer. Do not assume a multi-identity bundle yields exactly one object or that every consumer accepts bag attributes/multiple PEM objects. Successful extraction does not establish trust, certificate mapping or acceptance by PKINIT/Schannel. Retain private keys and passphrases locally; report fingerprints and diagnostics.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Authority p. 13. Source: [OpenSSL pkcs12](https://docs.openssl.org/3.5/man1/openssl-pkcs12/).
+See [OpenSSL pkcs12](https://docs.openssl.org/3.5/man1/openssl-pkcs12/).
