@@ -1,6 +1,6 @@
 ---
 name: python3
-description: Inspect Python source without importing it, trace evaluation and output/byte errors, decode SAML Redirect captures or use an existing PyMySQL driver for bounded database inspection.
+description: Inspect Python source without importing it, trace evaluation and output/byte errors, decode SAML captures, use an existing PyMySQL driver or diagnose a token-based WebSocket exchange.
 ---
 
 # Python operational inspection
@@ -11,6 +11,7 @@ Read this entire SKILL.md before acting; reuse complete current context. Use the
 - Missing child output or ambiguous return values: [subprocess output](references/subprocess-output.md).
 - Changed signatures or multipart bytes: [binary evidence](references/binary-evidence.md).
 - Captured SAML HTTP Redirect URL: [offline decoding](references/saml-redirect.md).
+- Native WebSocket with greeting tokens or interleaved heartbeat messages: [WebSocket exchange](references/websocket-exchange.md).
 - MySQL CLI unavailable but a trusted Python environment already has PyMySQL: [bounded database inspection](references/pymysql-inspection.md).
 
 ## Locate evaluation calls without importing source

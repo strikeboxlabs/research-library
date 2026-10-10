@@ -1,4 +1,4 @@
-# Tool skill schema, MVP v0.7
+# Tool skill schema, MVP v0.8
 
 The default deliverable is **one independently installable `skills/<name>/SKILL.md`**. Use the [GDB skill](../skills/gdb/SKILL.md) as an example, not a required length or layout.
 
@@ -15,6 +15,18 @@ Help a capable CLI worker recognize an existing tool that fits its task, then su
 Workers operate within a task graph, revisit skills and can adapt their investigation. Teach useful conditions, system behavior, observations and next decisions; do not prescribe a complete investigation or duplicate the task graph. A supported partial result can be enough for the current task. Preserve essential ordering where correctness depends on it, while leaving incidental command choices flexible.
 
 The entrypoint carries selection, a useful starting point and routes to deeper tasks. Package-local references carry substantial conditional procedures, option choices, examples/output interpretation and domain detail. Keep a short cohesive workflow inline: neither an empty link directory nor a reference for every paragraph improves use.
+
+## Coverage decisions during ingestion
+
+Tool discovery and task depth are separate acceptance questions. An actively used tool with a useful, verifiable task deserves its own discoverable package even when another tool serves a similar purpose. Do not reject it because its invocation is short, its flags are familiar, or accepting it would not introduce a novel technique. A name-only mention still does not justify inventing a workflow. Accumulate evidence across earlier sources before deferring a repeatedly demonstrated tool.
+
+For each tool actually used in the source, account for the demonstrated task in the existing intake report: already covered (identify its skill/section), added/enriched, or deferred with a concrete missing fact. Group incidental shell plumbing where appropriate; no new runtime fields or per-skill ledger are required. Reading all PDF pages and covering its useful operational lessons are different claims. A no-change outcome must explain where the useful task is already supported or why it cannot yet be supported.
+
+Do not let a concise entrypoint erase domain knowledge. Preserve useful prerequisites, reasoning, command choices, successful and failed results, recovery and next decisions in conditional references. If the source demonstrates an operational action, do not silently replace that task with merely inspecting whether the action might be possible. Scope the actual procedure and its effects, or record the specific evidence missing. A Linux CLI that operates on Windows services remains in scope.
+
+Restrictions on authoring execution govern what the ingestion agent may run. They do not by themselves prohibit documenting authorized administration or security-testing procedures. Documentation-reviewed commands can be accepted with honest runtime limitations; an unavailable Linux fixture is not a blanket rejection gate. Require a fixture before claiming behavior that documentation cannot establish, rather than before admitting the entire tool. Remove source secrets and target-specific assumptions, not the operational lesson.
+
+Reject duplicate text, not useful overlapping tools. Keep exclusions such as missing command semantics, an unidentified implementation, or a genuinely GUI-only workflow specific and actionable. Avoid a generic requirement for a broader workflow, complete tool mastery, or extra examples. Packaging checks verify packaging; only a source-to-task coverage review and eventual worker trials assess whether knowledge was retained and helps the worker.
 
 ## Required format
 

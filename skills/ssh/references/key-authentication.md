@@ -15,10 +15,13 @@ ssh -p "$ssh_port" -i "$key" -o IdentitiesOnly=yes "$user@$ssh_host"
 | Observation (illustrative) | Meaning and next decision |
 |---|---|
 | `Enter passphrase for key ...` | Local key decryption. It is not the remote account's password prompt; successful unlocking does not prove server acceptance. |
-| `user@host's password:` | Server password authentication, possibly after key authentication failed. Do not assume the local key passphrase is the account password. |
+| `user@host's password:` | Server authentication: either fallback after a key failure or a required additional factor. Check the preceding trace; the local key passphrase is not this credential. |
+| `Authenticated ... with partial success` | One method succeeded, but policy still requires another. Preserve the accepted identity and inspect the remaining methods; do not replace the key merely because another prompt follows. |
 | `Permission denied (publickey)` | Server authentication failed. Check actual endpoint, account, offered key and server policy rather than repeatedly changing the key's passphrase. |
 | `Authenticated ... using "publickey"` in verbose output | Key authentication succeeded; shell/command access remains subject to server restrictions. |
 
 For a bounded diagnostic retry use `-v` with the same intended connection. `BatchMode=yes` suppresses interactive password/passphrase questions, so an encrypted key needing a prompt can fail in a worker although it works interactively. Use the deployment's approved unlocked-agent/key mechanism rather than embedding a passphrase in arguments. A web application's login success establishes that service/account only.
 
-References: [identity selection and prompts](https://man.openbsd.org/ssh.1), [IdentitiesOnly, IdentityFile and BatchMode](https://man.openbsd.org/ssh_config.5).
+A server policy such as `AuthenticationMethods publickey,password` requires both methods in order. Space-separated lists are alternative acceptable sequences; check applicable Match blocks and the authentication backend. A password-shaped prompt can request an OTP; keyboard-interactive can also carry challenge/response. Establish the actual configured factor before selecting a tool: Yubico OTP is not OATH TOTP, and a generic TOTP generator cannot substitute for it. Report completed authentication separately from partial success.
+
+References: [required methods](https://man.openbsd.org/sshd_config#AuthenticationMethods), [identity selection and prompts](https://man.openbsd.org/ssh.1), [IdentitiesOnly, IdentityFile and BatchMode](https://man.openbsd.org/ssh_config.5).
