@@ -1,9 +1,11 @@
 ---
 name: jq
-description: Validate JSON fields, construct request bodies and inspect configuration transformations with jq. Use when missing fields, false values, escaping or added newlines can turn a plausible response into corrupted evidence.
+description: Validate JSON fields, extract account maps, construct request bodies and inspect configuration transformations with jq. Use when missing fields, false values, escaping or added newlines can turn a plausible response into corrupted evidence.
 ---
 
 # Preserve JSON types and extracted text
+
+Read this entire SKILL.md before acting. For decoded username-to-value objects, read [account-map extraction](references/account-maps.md) fully first. Keep the original, validate the selected structure and finish with correctly framed extracted data or an explicit parse/schema gap. Other API/configuration tasks are below.
 
 Check `jq --version`. Save the HTTP status, headers and body separately before parsing; `curl ... | jq` can hide curl's failure behind jq's exit status. Valid JSON is not proof of a successful API operation.
 

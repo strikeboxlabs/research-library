@@ -8,6 +8,7 @@ description: Capture HTTP responses and construct API, GraphQL or Spring Boot ma
 Read this entire skill before acting; complete current context need not be re-read. Preserve the intended URL/route, capture status and body from the same request, and distinguish transport completion from application success. Read the applicable reference fully before its procedure; leave unrelated branches unloaded.
 
 - Webhook callbacks, outbound method injection, alias/file transformations or mass-assigned account fields: [controlled application tests](references/webhook-and-file-tests.md), using the API/session references as applicable.
+- A server-side TCP testing route, including read-only Memcached protocol operations: [HTTP socket bridge](references/tcp-socket-bridge.md).
 - Neo4j/Cypher authentication queries or shell-running custom procedures: [Cypher and process boundaries](references/cypher-and-procedures.md).
 - JSON/form APIs, multipart uploads, file PUTs and token handling: [API request construction](references/api-requests.md).
 - Cookie-bound CSRF requests or a browser-only failure: [session and preflight diagnosis](references/session-and-preflight.md).

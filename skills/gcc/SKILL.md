@@ -1,11 +1,11 @@
 ---
 name: gcc
-description: Compile a selected C utility with GCC and distinguish preprocessing, compilation, linking and runtime compatibility failures. Use when building an existing tool or a diagnostic fixture with the Linux image's available compiler.
+description: Compile a selected C utility or ABI-matched shared library with GCC and distinguish preprocessing, compilation, linking and runtime compatibility failures. Use when building an existing tool or a diagnostic fixture with the Linux image's available compiler.
 ---
 
 # Diagnose the build stage before changing flags
 
-Read this entire file before acting. Identify the reviewed source, target architecture and required libraries. Finish with the build command, diagnostics and artifact identity; successful compilation does not establish that running the program is appropriate or correct.
+Read this entire SKILL.md before acting. For a diagnostic shared object or an existing caller ABI, read [shared-library builds](references/shared-libraries.md) fully first. Identify the reviewed source, target architecture and required libraries. Finish with the build command, diagnostics and artifact identity; successful compilation does not establish that running the program is appropriate or correct.
 
 Define `source` as the intended C file and `output` as a new output path. For a debuggable build:
 

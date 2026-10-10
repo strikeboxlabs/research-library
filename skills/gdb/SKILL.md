@@ -5,6 +5,8 @@ description: Examine Linux native core dumps or a controlled live reproduction w
 
 # GDB native analysis
 
+Read this entire SKILL.md before acting. Select offline core inspection or the conditional live procedure below, and read that reference fully before executing a target. Finish with build/stop context and supporting state, not a backtrace or discovered string alone.
+
 For an existing core, establish that it and the executable come from the same build; filenames or the absence of a GDB warning are insufficient. GDB must support the target architecture/format. Source-level interpretation needs matching debug information. For an explicitly requested controlled reproduction, use [live instruction and memory inspection](references/live-debugging.md). Core collection is outside this skill's scope.
 
 ## Inspect the core

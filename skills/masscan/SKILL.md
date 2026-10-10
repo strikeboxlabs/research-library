@@ -5,6 +5,8 @@ description: Discover scoped TCP listeners with Masscan, preserve host and proto
 
 # Masscan discovery and follow-up
 
+Read this entire SKILL.md before acting. Review effective scope/interface/rate before sending probes; preserve per-host/protocol discovery and follow-up evidence. Finish with completed coverage and separately confirmed services or the specific route/loss gap.
+
 Masscan sends raw packets using its own network stack. Use it for port discovery; a responsive port still needs protocol confirmation. Check the installed version and raw-packet privileges. Targets are IP addresses/ranges, not DNS names. A working TCP connection through a VPN or proxy does not establish that Masscan's selected adapter can send and receive raw probes there.
 
 For one scoped IPv4 address, define `target`, an explicit comma-separated TCP `ports` selection, a packet-per-second `rate`, and the verified outbound `interface`. Use fresh absolute `results` and `config` paths in an existing directory. Preview the effective configuration without scanning:

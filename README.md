@@ -59,7 +59,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [firefox-decrypt](skills/firefox-decrypt/SKILL.md) | Recover saved logins from one authorized offline Mozilla profile; diagnose key/NSS compatibility and incomplete records. |
 | [forge](skills/forge/SKILL.md) | Diagnose Foundry builds with explicit project/compiler context and correctly interpreted helper trace logs. |
 | [ftp](skills/ftp/SKILL.md) | Transfer selected files, diagnose data channels and verify an authorised upload-to-web mapping without inferring code execution. |
-| [gcc](skills/gcc/SKILL.md) | C utility builds, build-stage diagnosis and target-runtime compatibility. |
+| [gcc](skills/gcc/SKILL.md) | Compile selected C tools/shared libraries; distinguish build stages, ABI, declarations and runtime compatibility. |
 | [gdb](skills/gdb/SKILL.md) | Follow native core frames/state to a bounded diagnosis, or inspect a controlled live reproduction. |
 | [gdbserver](skills/gdbserver/SKILL.md) | Debug controlled remote programs over SSH with understood transport, connection modes and process lifetime. |
 | [getcap](skills/getcap/SKILL.md) | Verify file capabilities and distinguish stored flags, execution conditions and current process authority. |
@@ -81,6 +81,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [httpie](skills/httpie/SKILL.md) | Construct JSON API requests offline and interpret selected lookups with explicit input and status handling. |
 | [hydra](skills/hydra/SKILL.md) | Perform scoped protocol/form authentication tests with bounded attempts and verified response classification. |
 | [iconv](skills/iconv/SKILL.md) | Convert captured text with explicit encodings; distinguish UTF-16 byte order, terminators and lossy recovery. |
+| [id](skills/id/SKILL.md) | Verify real/effective user/group IDs in the current context and distinguish named-account lookup from execution privilege. |
 | [iis-shortname-scanner](skills/iis-shortname-scanner/SKILL.md) | Check IIS short-name disclosure and distinguish partial aliases, response ambiguity and confirmed full paths. |
 | [ike-scan](skills/ike-scan/SKILL.md) | Interpret an IKE endpoint's initial proposal response, notify errors and vendor fingerprints without claiming authentication. |
 | [ilspycmd](skills/ilspycmd/SKILL.md) | Inspect .NET types, time-seeded crypto, serialization and archive-write paths without launching the assembly. |
@@ -117,13 +118,15 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [jenkins-cli](skills/jenkins-cli/SKILL.md) | Verify controller identity/permissions and inspect an existing build log; distinguish transports, local authentication files and historical disclosure evidence. |
 | [jenkins-offline-decrypt](skills/jenkins-offline-decrypt/SKILL.md) | Matched-backup Jenkins Secret recovery and implementation/parser limits. |
 | [john](skills/john/SKILL.md) | Run bounded Jumbo checks on NT/NetNTLMv2/AS-REP, ZIP, KeePass with key files, OpenPGP secret keys, bcrypt, phpass, raw MD5/SHA-256 and HS256 JWT artifacts. |
-| [jq](skills/jq/SKILL.md) | Validate JSON types, preserve text, serialize requests and distinguish config transformations from path validation. |
+| [jq](skills/jq/SKILL.md) | Preserve JSON types, select decoded account maps and construct requests/config transformations without corrupting evidence. |
 | [jwt-tool](skills/jwt-tool/SKILL.md) | Inspect JWT fixtures and original-token HMAC matches; separate signing, claim mappings and application sessions. |
 | [keepassxc-cli](skills/keepassxc-cli/SKILL.md) | Inspect a database with known unlock factors and retrieve exact entries/fields without broad disclosure. |
 | [kerbrute](skills/kerbrute/SKILL.md) | Check a bounded candidate username list against a selected KDC and interpret incomplete results. |
 | [kinit](skills/kinit/SKILL.md) | Obtain MIT Kerberos tickets in an explicit cache, including existing-certificate PKINIT. |
 | [ldapsearch](skills/ldapsearch/SKILL.md) | Query AD or POSIX identities, groups, deleted objects and policy with explicit schema, authentication and coverage. |
 | [ldbsearch](skills/ldbsearch/SKILL.md) | Inspect offline SSSD cache records with DN/attribute context and distinguish missing, stale and unparseable evidence. |
+| [ldconfig](skills/ldconfig/SKILL.md) | Inspect/refresh library caches and exercise a scoped writable-directory load with actual identity evidence. |
+| [ldd](skills/ldd/SKILL.md) | Resolve trusted ELF dependencies and distinguish missing objects, unexpected paths and privileged-launch limits. |
 | [lftp](skills/lftp/SKILL.md) | Use verified explicit FTPS for selected transfers and diagnose transport, data-channel and virtual-user access differences. |
 | [linpeas](skills/linpeas/SKILL.md) | Scope enumeration checks and verify unfamiliar SUID helpers, execution conditions and vendor package evidence. |
 | [logrotate](skills/logrotate/SKILL.md) | Preview actual rotation jobs and interpret state, skip conditions, permissions and hook identities. |
@@ -158,6 +161,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [pacman](skills/pacman/SKILL.md) | Inspect Arch package metadata, payloads, scriptlets and ownership before choosing an installation transaction. |
 | [passthecert](skills/passthecert/SKILL.md) | Python certificate LDAP authentication and selected RBCD change/read-back/removal. |
 | [pd4cmd](skills/pd4cmd/SKILL.md) | Convert reviewed HTML with PD4ML; diagnose entrypoints, resource access, layout and stale PDF output. |
+| [peda](skills/peda/SKILL.md) | Load the installed GDB extension explicitly and correlate x86 registers, code, stack and call arguments. |
 | [phantomjs](skills/phantomjs/SKILL.md) | Legacy CLI rendering, document capture and load/result interpretation. |
 | [php](skills/php/SKILL.md) | Serve a reviewed local web test and inspect PHP configuration, extensions, PHARs, encoding and upload validation. |
 | [phpggc](skills/phpggc/SKILL.md) | Select serialization chains by dependency and trigger; preserve bytes and validate the actual parser/object lifecycle. |
@@ -206,6 +210,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [ss](skills/ss/SKILL.md) | Inspect actual listeners/connections, address families, process visibility and namespaces. |
 | [ssh](skills/ssh/SKILL.md) | Use selected keys and loopback forwards; distinguish key unlocking, client hooks, partial authentication and additional factors. |
 | [ssh-keygen](skills/ssh-keygen/SKILL.md) | Derive public keys and compare fingerprints while preserving private artifacts and format distinctions. |
+| [ssh-username-enum](skills/ssh-username-enum/SKILL.md) | Selected OpenSSH malformed-authentication account oracle with legacy-helper compatibility and control/result limits. |
 | [stoken](skills/stoken/SKILL.md) | Import selected SecurID software tokens, generate codes and diagnose state/PIN/time differences. |
 | [strace](skills/strace/SKILL.md) | Trace file/network failures and interpret acquired reads with process, descriptor, byte-count and tracing-side-effect context. |
 | [strings](skills/strings/SKILL.md) | Extract binary text with offsets/alternate encodings; retain record context before assigning database values to accounts. |
@@ -225,9 +230,9 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [unzip](skills/unzip/SKILL.md) | Inspect ZIP names/CRCs and selected Spring Boot configuration; distinguish extraction from runtime settings. |
 | [username-anarchy](skills/username-anarchy/SKILL.md) | Name-preserving username candidate generation and format selection. |
 | [vault](skills/vault/SKILL.md) | Inspect Vault status and SSH OTP roles; distinguish policy, credential issuance and remote login. |
-| [vim](skills/vim/SKILL.md) | Control startup/modelines and recover copied swap artifacts with understood completeness limits. |
+| [vim](skills/vim/SKILL.md) | Controlled inspection, literal substitutions and copied-swap recovery with startup/format limits. |
 | [vtysh](skills/vtysh/SKILL.md) | Diagnose FRR/Quagga BGP sessions, prefix selection and advertisement policy against forwarding evidence. |
-| [wfuzz](skills/wfuzz/SKILL.md) | Compare HTTP hosts/Origin policies/parameters with baselines, response filters, bounded ID ranges and known session state. |
+| [wfuzz](skills/wfuzz/SKILL.md) | HTTP path/host/Origin, form/cookie and server-side socket comparisons with meaningful controls and coverage. |
 | [wget](skills/wget/SKILL.md) | Selected artifact retrieval, output/response evidence and resume pitfalls. |
 | [whatweb](skills/whatweb/SKILL.md) | Fingerprint a selected HTTP response, bound redirects/aggression and distinguish plugin evidence from vulnerability claims. |
 | [whois](skills/whois/SKILL.md) | Query explicit registration sources and interpret referrals, redactions and differences from live DNS. |
