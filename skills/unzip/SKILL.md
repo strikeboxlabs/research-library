@@ -5,6 +5,8 @@ description: Inspect ZIP member names and integrity, then recover selected files
 
 # Inspect the archive before choosing an extraction
 
+Read this entire SKILL.md before acting; reuse complete current context. Check names, size limits and status before extracting selected members. For a Spring Boot application archive, read [packaged configuration](references/spring-boot-config.md) fully before attributing its settings to a running service. Finish with selected bytes, source member and any integrity or coverage limitation.
+
 Use `unzip -v` and `unzip -hh` to identify the implementation, compiled features and environment defaults. BusyBox and other similarly named tools can differ. Info-ZIP's `UNZIP`, `UNZIPOPT`, `ZIPINFO` and `ZIPINFOOPT` variables can inject options; account for them when a command's behavior differs from its written flags. Define `archive` as an absolute path to the preserved ZIP working copy.
 
 ~~~bash

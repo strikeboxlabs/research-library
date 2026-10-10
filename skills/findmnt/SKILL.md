@@ -5,6 +5,8 @@ description: Identify the filesystem backing a path and inspect mount roots in t
 
 # Distinguish a path's filesystem from an exact mountpoint
 
+Read this entire SKILL.md before acting; reuse complete current context. Query the path in the relevant namespace and distinguish a covering filesystem from an exact mountpoint. Finish with the observed mount/source and any unresolved host-path or access interpretation.
+
 Check `findmnt --version` and the available columns in `findmnt --help`. Define `path` as an existing absolute path in the namespace being examined:
 
 ~~~bash
@@ -22,6 +24,8 @@ No match can produce status 1, which also covers errors; inspect diagnostics bef
 In an **illustrative** row with `TARGET=/root`, `SOURCE=/dev/vda1[/srv/worker-home]` and `FSROOT=/srv/worker-home`, the mount exposes a subtree of that filesystem at `/root` in this namespace. It does not establish that the host's own `/root` is exposed. Several mounts with the same source device can expose different subtrees.
 
 Kernel mount information describes the process's view. `/proc/self/mountinfo` records the filesystem root and namespace-relative mountpoint separately; it is useful when formatted output omits needed detail. Filesystem-root paths are not automatically absolute paths in the daemon host's namespace. To establish a Docker bind source, correlate with the selected container's `Mounts` metadata from the correct daemon, when that access is already available. Without it, retain the source-path uncertainty.
+
+When diagnosing an empty directory in a backup, compare its mount with the source tree and the backup command. A separate FUSE mount such as Proxmox pmxcfs at `/etc/pve` can be excluded by a parent-tree backup using `--one-file-system`. Present-day mount state supports an explanation; it does not establish what was mounted when a historical backup ran. Verify archive members and backup logs before claiming omission or deletion.
 
 `rw` permits writes at the mount layer; file permissions, ACLs, identity mappings and other controls still apply. This inspection neither mounts/remounts anything nor proves that a particular user can modify a file.
 

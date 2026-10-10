@@ -19,4 +19,12 @@ Check curl's exit status before accepting a body; transport errors/timeouts can 
 
 A scanner that classifies responses using one Squid error phrase can misidentify an endpoint. Validate an interesting result with a bounded request and the actual protocol; an HTTP-only probe is not a general TCP port inventory.
 
+## Forwarded headers do not choose the network route
+
+`--header "X-Forwarded-For: $claimed_ip"` changes HTTP request content. It does not use a proxy, bind a source address or make the connection originate at that claimed IP. Preserve the real route and distinguish its connected peer from application-reported client identity.
+
+For an authorised comparison of header-dependent behavior, first capture the selected URL with the entrypoint's normal command. Keep URL, method, cookies and route unchanged; use fresh output files for the second request and add only the header with the agreed test value. Compare complete status/body pairs, including login/fallback/error content. A changed response supports a dependency on that input in this context, not independent proof of the entire authentication path. Repeated uncontrolled guesses change the task and obscure the comparison.
+
+A proxy may append, replace or strip supplied forwarding headers. Security decisions need the configured trusted proxy chain and observed server-side handling; neither the first comma-separated value nor any client-supplied address is inherently authoritative. Request traces can help show what curl sent, while server/proxy logs are needed to establish what was trusted. See [forwarded-header trust and parsing](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For).
+
 Consult the [curl proxy, environment and write-out manual](https://curl.se/docs/manpage.html) for option precedence and platform differences.

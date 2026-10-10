@@ -5,11 +5,13 @@ description: Select Hashcat modes and run bounded offline checks on application 
 
 # Hashcat offline checks
 
-Read this entire SKILL.md before acting. Complete the applicable input checks before a bounded run; preserve status and report recovered, exhausted or incomplete honestly.
+Read this entire SKILL.md before acting; complete current context need not be re-read. Complete the applicable input checks before a bounded run; preserve status and report recovered, exhausted or incomplete honestly.
 
 - Required for Gitea PBKDF2: read [record conversion](references/gitea-pbkdf2.md) before preparing input; use its parameter-preserving converter for the supported format.
 - Required for Password Safe/LUKS1: read [binary containers](references/binary-containers.md) before choosing input or reporting recovery; the ordinary potfile procedure does not apply.
-- Otherwise select the supported format below, then follow its conversion/interpretation and bounded run. Leave unrelated references unloaded; missing format parameters prevent a justified mode choice.
+- For salted MD5/SHA-1 or a legacy OFBiz `$SHA$` record, read [salted digest formats](references/salted-digests.md) before conversion or salt encoding.
+- For a MySQL/MariaDB native-password record, read [native-password input](references/mysql-native-password.md) before removing storage wrappers or choosing mode 300.
+- Otherwise select the supported format below, then follow its interpretation and bounded run. Leave unrelated references unloaded; missing format parameters prevent a justified mode choice.
 
 Match the input representation to the mode, using its acquisition context and the installed version's examples. A 32- or 40-character hexadecimal string alone does not identify its algorithm or salt handling.
 
@@ -22,9 +24,10 @@ Match the input representation to the mode, using its acquisition context and th
 | Apache `$apr1$...` record from htpasswd | `1600`; not raw MD5 mode `0`. |
 | Drupal 7 `$S$...` password record | `7900` |
 | Complete supported bcrypt `$2...` record | `3200` |
+| Verified MySQL 4.1-style `mysql_native_password` record | `300`; prepare its storage representation as described in the linked native-password reference. Not single SHA-1. |
 | Confirmed unsalted SHA-1 | `100`; raw hexadecimal digest. |
 | Verified SHA-1 of password bytes followed by salt bytes | `110`; `hex_digest:literal_salt`, preserving the actual salt bytes. |
-| Verified SHA-1 of salt bytes followed by password bytes | `120`; encode digest and salt as described below. |
+| Verified SHA-1 of salt bytes followed by password bytes | `120`; use the linked salted-digest procedure. |
 | Raw MD5 established from the producing application | `0`; length alone is insufficient. |
 | Verified MD5 of salt bytes followed by password bytes | `20`; `hex_digest:literal_salt`. |
 | Verified MD5 of password bytes followed by salt bytes | `10`; same record layout, different digest computation. |
@@ -58,44 +61,6 @@ hashcat -m "$mode" "$hashes" --show --potfile-path "$pot"
 ~~~
 
 Use the same mode and pot when showing results. An existing pot can explain an immediate already-recovered result. Keep it instead of discarding recovery evidence with `--potfile-disable`.
-
-## Confirm salted MD5 before choosing a mode
-
-A configured salt plus a 32-digit digest does not establish concatenation order. Verify the producer or a known synthetic pair: `md5(salt + password)` is mode `20`, while `md5(password + salt)` is `10`. These are different from md5crypt `500`, even though all names contain MD5. Preserve the literal salt after `:` and account mapping separately; use verified byte encoding and `--hex-salt` on both run and show when representing salt bytes as hex. A walkthrough's successful recovery supports its case, not every application's format.
-
-The [mode 20 module](https://github.com/hashcat/hashcat/blob/master/src/modules/module_00020.c) and [mode 10 module](https://github.com/hashcat/hashcat/blob/master/src/modules/module_00010.c) include public self-test pairs for checking the distinction.
-
-## Distinguish SHA-1 salt order
-
-A database excerpt showing only a password digest may omit its salt. For example, historical [Bludit 3.10.0 code](https://github.com/bludit/bludit/blob/3.10.0/bl-kernel/users.class.php) computes `sha1(password + salt)`. Confirm the actual producing version and complete user record before selecting a mode: a nonempty appended salt maps to `110`, while confirmed unsalted or empty-salt hashing maps to `100`. Missing salt evidence is not evidence of an empty salt. The OFBiz procedure below uses the opposite order, mode `120`.
-
-For mode `110`, preserve literal salt bytes after the digest separator. If delimiters or non-ASCII data make that representation ambiguous, encode the salt bytes as hex and add `--hex-salt` to both the run and `--show`; establish the application's byte encoding first. Do not reuse the OFBiz record decoder for a different application's storage format.
-
-## Convert a verified legacy OFBiz record
-
-For the legacy `$SHA$salt$base64url_digest` format, first confirm the producing version's [HashCrypt implementation](https://github.com/apache/ofbiz-framework/blob/release18.12/framework/base/src/main/java/org/apache/ofbiz/base/crypto/HashCrypt.java): it hashes UTF-8 salt bytes followed by password bytes, then stores unpadded base64url. This maps to mode `120`, `sha1(salt.pass)`. An application's current default hash setting does not prove the format of an older stored record; other OFBiz formats need different handling.
-
-Define `record` as a UTF-8 file containing one complete verified record and `hashes` as a new output file. This conversion requires Python 3 and writes `hex_digest:hex_salt`; hex salt preserves delimiters and non-ASCII bytes without ambiguity:
-
-~~~bash
-umask 077
-python3 - "$record" "$hashes" <<'PY'
-import base64, pathlib, re, sys
-parts = pathlib.Path(sys.argv[1]).read_text(encoding='utf-8').rstrip('\r\n').split('$')
-if len(parts) != 4 or parts[:2] != ['', 'SHA']:
-    raise SystemExit('Expected one complete legacy $SHA$ record')
-salt, encoded = parts[2:]
-if not re.fullmatch(r'[A-Za-z0-9_-]{27}', encoded):
-    raise SystemExit('Expected unpadded base64url of a 20-byte SHA-1 digest')
-digest = base64.b64decode(encoded + '=', altchars=b'-_', validate=True)
-if len(digest) != 20 or base64.urlsafe_b64encode(digest).decode().rstrip('=') != encoded:
-    raise SystemExit('Invalid or noncanonical digest encoding')
-with open(sys.argv[2], 'x', encoding='ascii', newline='\n') as output:
-    output.write(digest.hex() + ':' + salt.encode('utf-8').hex() + '\n')
-PY
-~~~
-
-Require successful conversion before using the output. For this file, set `mode=120` and add **`--hex-salt` to both the bounded run and `--show` commands above**. Without it, hexadecimal characters become the literal salt and the candidates will not match. A known candidate can be checked independently against the original application's byte formula; no recovery result establishes that an online account accepts it.
 
 ## Other inputs and incomplete runs
 

@@ -5,7 +5,7 @@ description: Use mysql for explicit socket/TCP connections and database metadata
 
 # MySQL connection and inspection
 
-Read this entire SKILL.md before acting. Establish the client/server and connection identity for a database task; native loadable-function metadata is covered below. For truncation, padding or collation surprises, read [string comparison](references/string-comparison.md). For server/client file access or wrapper/query-file execution, read [execution boundaries](references/execution-boundaries.md). Read the selected reference fully before its procedure; leave unrelated branches unloaded. Finish with the actual query/result and its scope; a denied query, empty result or client-side effect is not interchangeable with a server finding.
+Read this entire SKILL.md before acting; complete current context need not be re-read. Establish the client/server and connection identity for a database task; native loadable-function metadata is covered below. For truncation, padding or collation surprises, read [string comparison](references/string-comparison.md). For server/client file access or wrapper/query-file execution, read [execution boundaries](references/execution-boundaries.md). Read the selected reference fully before its procedure; leave unrelated branches unloaded. Finish with the actual query/result and its scope; a denied query, empty result or client-side effect is not interchangeable with a server finding.
 
 Check `mysql --version` and local help. The command can come from MySQL or a MariaDB compatibility package; TLS/authentication options are not identical across releases/vendors. The client version does not establish the server version.
 
@@ -29,6 +29,8 @@ SHOW DATABASES;
 `USER()` describes the connecting identity; direct `CURRENT_USER()` identifies the account matched for authentication. Its host component matters. Across a tunnel, the server sees the connection from the SSH endpoint, which can match a different account rule. `DATABASE()` can be NULL until one is selected. Database visibility is privilege-dependent.
 
 Select an observed database with `USE`, inspect `SHOW TABLES` and `SHOW COLUMNS FROM` the chosen table, then request only relevant columns with a bounded `SELECT ... LIMIT`. Use actual identifiers with SQL quoting; shell variable syntax does not interpolate at this prompt. An empty table and a denied query are different outcomes. Avoid importing a supplied SQL dump merely to inspect it: scripts can contain writes.
+
+Prefer separate rows over a `GROUP_CONCAT` string when identity or completeness matters. Its `group_concat_max_len` bounds returned bytes, NULL expressions can omit tuples, and an outer `LIMIT` limits result rows rather than entries within the aggregate. Inspect `@@SESSION.group_concat_max_len` and immediate `SHOW WARNINGS` when diagnosing truncation. For account metadata, preserve both user and host; repeated usernames can identify different accounts. Inspect the actual schema/plugin before assuming a legacy `password` column exists. See [MariaDB aggregate semantics](https://mariadb.com/docs/server/reference/sql-functions/aggregate-functions/group_concat).
 
 When an interactive database shell is inconvenient, define `database` as the observed database name and `query` as one reviewed, bounded SELECT using its actual schema:
 

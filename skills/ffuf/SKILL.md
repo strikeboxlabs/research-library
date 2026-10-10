@@ -5,6 +5,8 @@ description: Compare HTTP paths or virtual hosts with ffuf using measured baseli
 
 # ffuf response comparison
 
+Read this entire SKILL.md before acting; reuse complete current context. Select a bounded candidate set and controls before filtering. Finish with confirmed response differences and completed versus interrupted coverage; a result list alone does not establish route validity.
+
 Check `ffuf -V` and `ffuf -h`; inspect any automatically loaded ffufrc for inherited headers, proxies or filters. Define `base_url` as the scoped scheme/authority without a trailing slash, `wordlist` as a small file of path candidates, and `results` as a fresh JSON output path. Start without filters:
 
 ~~~bash
@@ -12,6 +14,8 @@ ffuf -w "$wordlist:FUZZ" -u "$base_url/FUZZ" -mc all -t 2 -rate 5 -timeout 10 -m
 ~~~
 
 Include a known absent path and, when available, a known positive. Compare status, body, redirect, bytes, words and lines. A `200` can be a fallback page; a `401` or `403` can identify a distinct protected application. Inspect representative responses individually before excluding them.
+
+Use an observed framework clue to narrow the next wordlist: a Spring-style error page can justify selected framework paths, but does not establish an exact version or that every management endpoint exists. Reuse the same controls and request budget. If an endpoint returns a discovery map, inspect its advertised paths/methods before expanding another scan. `-ic` ignores wordlist comments; it does not validate, deduplicate or authorize the remaining candidates.
 
 For a specifically scoped API method test, `-X POST` changes the method; even an empty POST can mutate state. A FastAPI `422` may reveal a route needing fields or a different encoding. A `405` is a method clue, so copying a `-fc 404,405` filter can hide valid paths. Retain method/body/authentication context and prefer a known OpenAPI schema to blind method expansion.
 
@@ -21,4 +25,4 @@ Only after measuring stable negatives, add appropriate `-fs` byte, `-fw` word or
 
 `-e .php,.txt` expands extension candidates at `FUZZ`; include the dots and account for the increased requests. A custom keyword must match its `-w file:KEYWORD` declaration. Leave recursion/redirect following off until destinations and budget are understood. A time limit, errors or throttling leave an incomplete scan; JSON contains selected results, not proof every candidate was tested.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Alert pp. 3–5; Analysis p. 4; Backend pp. 4–7. Source: [upstream options and examples](https://github.com/ffuf/ffuf#usage).
+Reference: [upstream options and examples](https://github.com/ffuf/ffuf#usage).

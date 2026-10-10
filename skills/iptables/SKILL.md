@@ -5,7 +5,7 @@ description: Inspect Linux packet-filter rules with explicit backend, table, cha
 
 # Identify the ruleset being inspected
 
-Read this entire SKILL.md before acting. Identify the backend, family, namespace and packet path before listing rules; use the actual ports and state of the flow when interpreting them. Finish with applicable ordered rules/counters and any unverified configuration or traffic assumptions.
+Read this entire SKILL.md before acting; reuse complete current context. Identify the backend, family, namespace and packet path before listing rules; use the actual ports and state of the flow when interpreting them. Finish with applicable ordered rules/counters and any unverified configuration or traffic assumptions.
 
 Check `iptables --version` and the actual selected executable. The version identifies `legacy` versus `nf_tables`; these are different kernel interfaces. Do not switch alternatives to make a listing look familiar. `iptables` covers IPv4, while `ip6tables` covers IPv6. Commands inspect the current network namespace, which may differ between host and container.
 
@@ -21,6 +21,8 @@ iptables -w 5 -t "$table" -L "$chain" -n -v -x --line-numbers
 Rules are order-sensitive. An appended ACCEPT may never be reached after an earlier terminating rule; a built-in policy applies when traversal reaches the end. Counters describe matching traffic, not necessarily application success. Do not combine listing with `-Z`: that resets counters and destroys the observation baseline. Rule numbers can change between observations and should not become stale deletion targets.
 
 An acquired `rules.v4` is saved configuration, not proof of the currently installed rules. Read state and port predicates together: an OUTPUT rule matching TCP `--sport 80` tests the source port, not a request's destination port. An earlier `ESTABLISHED,RELATED` accept may permit replies despite a DROP policy. Describe the specific flow and chain traversal rather than concluding that every outbound packet is blocked.
+
+For an OUTPUT owner match such as `-m owner ! --uid-owner 0 -p tcp --dport 2049`, the UID test concerns a locally generated packet's socket owner. It does not test the UID asserted inside an NFS operation, and it does not explain forwarded traffic. Read the negation, port and preceding rules together. A hanging `showmount -e` queries the separate MOUNT/RPC path, so a saved TCP/2049 rule alone does not establish the cause of that hang.
 
 A missing callback or listener event alone does not identify a firewall drop. Check the application's attempted operation, endpoint/address family, route and applicable rule counters; lack of execution or another network failure can produce the same absence. See [state and TCP match definitions](https://man7.org/linux/man-pages/man8/iptables-extensions.8.html).
 

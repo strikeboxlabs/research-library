@@ -1,9 +1,11 @@
 ---
 name: ssh
-description: Reach a remote loopback service using OpenSSH local port forwarding. Use when diagnosing bind errors, remote destination failures, virtual-host mismatches or tunnel cleanup from Linux.
+description: Forward remote loopback services with OpenSSH and distinguish client hooks from remote commands. Use for tunnel failures, configuration side effects or confusing local process privilege with the remote login.
 ---
 
 # SSH local forwarding
+
+Read this entire SKILL.md before acting; reuse complete current context. Map the client, SSH server and destination before connecting. If options/configuration can execute local helpers or a privileged launcher is involved, read [client commands](references/client-commands.md) fully first. Finish with observed tunnel/application behavior or the supported configuration finding; authenticated transport alone is not destination success.
 
 Map both ends before connecting: the listener is on the Linux client; the destination is reached from the SSH server. In `-L`, destination `127.0.0.1` means the SSH server's own loopback, not the workstation's.
 
@@ -26,8 +28,8 @@ In a second terminal, use the intended application against the local listener. F
 | `administratively prohibited` | Inspect allowed forwarding destinations/policy; password retries are irrelevant. |
 | Wrong page or TLS identity error | Check destination, application hostname and TLS naming. |
 
-Use `ssh -v` for this connection when necessary; inspect effective options with `ssh -G "$user@$ssh_host"` if configuration is unexpected. Read unfamiliar configuration as text first: `Match exec` can execute a local command even while `-G` evaluates configuration. `ProxyCommand` also executes locally when the connection is made. A copied config is not passive connection data; do not load it merely to understand it.
+Use `ssh -v` for this connection when necessary. For unexpected configuration, follow the client-command reference before using `-G`: evaluating a config can itself execute `Match exec`. A copied config is not passive connection data.
 
 A quiet foreground tunnel is normal. Stop it with Ctrl-C and confirm the local listener closes before claiming cleanup. If deliberately using multiplexing/background forwarding, track that separate connection's lifetime.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: AdmirerToo p. 17; Agile p. 18; APT p. 8; Attended p. 16. Sources: [ssh manual](https://man.openbsd.org/ssh.1), [forwarding configuration](https://man.openbsd.org/ssh_config.5).
+References: [ssh manual](https://man.openbsd.org/ssh.1), [forwarding configuration](https://man.openbsd.org/ssh_config.5).

@@ -5,6 +5,8 @@ description: Connect to a known PostgreSQL database, inspect schema and export b
 
 # Establish the PostgreSQL connection
 
+Read this entire SKILL.md before acting; reuse complete current context. Establish the actual server/database/role, inspect the selected schema and retain query status with bounded results. A failed reconnect or export remains incomplete; do not infer permissions or database identity from a prompt alone.
+
 Check `psql --version` separately from the server version. Define `service` as an existing reviewed libpq service name with the intended host, port, database, role and TLS policy. Use known credentials through its protected password file; on Linux, a password file with group/world access is ignored.
 
 ~~~bash
@@ -17,7 +19,7 @@ Explicit `host=localhost` uses TCP in the client's network namespace; omitting h
 
 ## Inspect before selecting rows
 
-For an interactive session, reuse the connection options without `-c`; then inspect the relevant schema with metadata commands. The following `public.users` name is **illustrative**; replace it with the observed relation:
+For an interactive session, reuse the connection options without `-c`. `\list` lists databases, not their tables or permission to use them. If the selected database differs, use `\connect` with its exact observed name, then recheck `\conninfo` and `SELECT current_database(), current_user;`. A failed interactive reconnect can leave the old connection active; a noninteractive reconnect failure closes the old connection. Then inspect the relevant schema with metadata commands. The following `public.users` name is **illustrative**; replace it with the observed relation:
 
 ~~~text
 \conninfo
@@ -25,7 +27,7 @@ For an interactive session, reuse the connection options without `-c`; then insp
 \d public.users
 ~~~
 
-The table list and description establish names/types, not permission to read every row. Schema-qualify queries: an unqualified name depends on `search_path`. A missing relation can mean the wrong database/schema/case; permission denial does not mean an empty table. Preserve account-to-record mappings when extracting selected application fields; a column named `password` does not establish its hash format.
+Bare `\dt` is limited to tables visible through the current schema search path; it is not a complete database inventory. `\dt public.*` explicitly selects that schema; `\dt *.*` broadens the metadata listing across schemas when needed. These are psql patterns, not shell globs. The table list and description establish names/types, not permission to read every row. Schema-qualify queries: an unqualified name depends on `search_path`. A missing relation can mean the wrong database/schema/case; permission denial does not mean an empty table. Preserve account-to-record mappings when extracting selected application fields; a column named `password` does not establish its hash format.
 
 ## Export one bounded, reviewed selection
 

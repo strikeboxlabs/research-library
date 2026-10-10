@@ -5,6 +5,8 @@ description: Inspect existing SQLite files with the sqlite3 CLI, bounded queries
 
 # Inspect an existing database copy
 
+Read this entire SKILL.md before acting; reuse complete current context. Work from a coherent database copy, inspect the actual schema and retain query status with selected records. For Firefox history or extension storage, read [browser databases](references/firefox-storage.md) before interpreting those tables. Finish with the requested rows and their supported meaning; missing tables, sidecars or decoding remain explicit limitations.
+
 Define `database` as an existing absolute working-copy path. Opening a misspelled filename normally creates a new empty database; use read-only mode for inspection:
 
 ~~~bash

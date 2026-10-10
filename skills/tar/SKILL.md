@@ -5,6 +5,8 @@ description: Inspect GNU tar backups and extract selected members into a new dir
 
 # Inspect before restoring files
 
+Read this entire SKILL.md before acting; reuse complete current context. List the archive and select exact members before extraction into a fresh directory. If expected mounted content is absent, read [backup boundaries](references/backup-boundaries.md). Finish with selected members, final status and whether coverage is complete or partial.
+
 Define `archive` as an existing absolute local path. Inspect actual member names and types before choosing an extraction:
 
 ~~~bash

@@ -5,6 +5,8 @@ description: Query an NFS server's advertised exports with showmount. Use to dis
 
 # Inspect an NFS export advertisement
 
+Read this entire SKILL.md before acting; reuse complete current context. Query one approved server and retain status/diagnostics with the export advertisement. Finish with what MOUNT disclosed; timeout or an empty result does not establish NFSv4 absence or effective permissions.
+
 Define `server` as one approved NFS host and `listing` as a fresh local output file. Check the nfs-utils entrypoint, then query its MOUNT service:
 
 ~~~bash

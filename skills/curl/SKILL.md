@@ -5,6 +5,13 @@ description: Capture HTTP responses and construct API or GraphQL requests with c
 
 # curl HTTP evidence
 
+Read this entire skill before acting; complete current context need not be re-read. Preserve the intended URL/route, capture status and body from the same request, and distinguish transport completion from application success. Read the applicable reference fully before its procedure; leave unrelated branches unloaded.
+
+- JSON/form APIs, multipart uploads, file PUTs and token handling: [API request construction](references/api-requests.md).
+- GraphQL schema, variables and operation errors: [GraphQL requests](references/graphql.md).
+- Spring Boot management discovery and mapping interpretation: [Actuator responses](references/spring-actuator.md).
+- Proxy routing, CONNECT and forwarded-header interpretation: [proxy requests](references/proxy-requests.md).
+
 Check `curl --version` for protocols/TLS backend and inspect local help for version-dependent switches. Define `url` as the exact scoped URL and `headers`/`body` as fresh private files:
 
 ~~~bash
@@ -33,12 +40,5 @@ A 200 body can be a login page, fallback page or application error. Compare the 
 Inspect Location before adding `--location`; redirects can change hostname, method or authentication context. Do not forward credentials to new hosts automatically. A `500` after a mutating request does not prove rollback, so inspect state before retrying. Prefer structured status/body evidence over piping everything through `grep` for a version string.
 
 When comparing cached responses, keep method, URL, cookies and relevant request headers constant and preserve each response in fresh header/body files. An `Age: 0` response is not a universal cache-miss test, and Age is not the object's configured TTL: it estimates time since origin generation/validation, potentially across caches. Compare Date, Cache-Control, Vary, response content and available cache diagnostics; do not infer a fixed refresh interval from one observed age. A custom `X-Cache` label follows that deployment's configuration. Varnish's usual two-number `X-Varnish` form identifies the current request and cached object's transaction; on the ordinary one-number miss form it is the second number that is absent. Headers can be rewritten, so correlate with cache logs/configuration where that distinction matters. See [HTTP Age semantics](https://www.rfc-editor.org/rfc/rfc9111.html#section-5.1) and [Varnish response construction](https://github.com/varnishcache/varnish-cache/blob/6.6/bin/varnishd/cache/cache_req_fsm.c).
-
-For JSON/form APIs, file PUTs, validation errors and bearer-token handling, use [API request construction](references/api-requests.md).
-
-For GraphQL schema inspection, typed variables and HTTP-versus-operation errors, use [GraphQL requests](references/graphql.md).
-
-For an HTTP proxy, explicit bypass control and CONNECT-versus-forwarding diagnosis, use [proxy requests](references/proxy-requests.md).
-
 
 Consult the [curl option reference](https://curl.se/docs/manpage.html) for version-specific behavior.
