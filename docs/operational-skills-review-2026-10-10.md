@@ -145,3 +145,17 @@ The user confirmed that no reliable tool/path inventory reaches workers, then cl
 Schema v0.7, authoring/review and host-adaptation prompts, setup/source guidance and the continuation workflow now encode this direction. Every existing package revisited during intake is reconciled with the schema, not merely appended to. Existing intake reports record which skills were reviewed and what changed; conforming/no-change outcomes count as reviews. At batch completion, report remaining unreviewed skills rather than assuming the entire library migrated. The user's future 300+ PDFs are not silently added to the current fixed queue.
 
 Small operational comparisons remain useful for repeated weaknesses, but are not a prerequisite to each ingestion or incremental cleanup. No universal performance gain, live worker evaluation or complete-library conformity is claimed.
+
+
+## Hermes contributions and controlled-image review — 2026-10-10
+
+Reviewed four new Hermes-authored packages against schema v0.8: **binwalk, chntpw, nikto and sslscan**. All four were untracked files in the shared checkout reached by the Hermes and Pi skill-directory symlinks. Existing GitHub changes were retained before integrating this batch. These four complete entrypoints, including their first 150 lines, were reviewed; the other 265 packages were not reviewed for schema conformity in this batch. No new supporting resources are required by these short, independent workflows.
+
+| Package | Accepted task and corrections |
+|---|---|
+| binwalk | Signature identification, entropy interpretation and selected extraction/carving. Clarified Python implementation versus Binwalk release numbering, current-directory output base, regex carving and root/extractor identity. A local fixture exposed an entropy JIT failure despite exit status zero; documented the tested per-command workaround and remaining diagnostics. |
+| chntpw | Offline local-account listing and selected edits on a preserved hive copy. Separated account selection from the interactive menu, save evidence from login success, and allocation constraints from safe logical edits; documented the manual's automatic-save behavior for `-L`. |
+| nikto | Scoped web survey and candidate interpretation. Corrected `-Format txt` and information-disclosure tuning category `3`; made active requests, bounded coverage and confirmation evidence explicit. |
+| sslscan | Active TLS protocol/cipher and certificate survey. Removed the undocumented `--no-failed` argument, qualified cipher/Heartbleed conclusions and connection failures, and identified SNI/STARTTLS prerequisites. |
+
+All four now use observed absolute executable paths and early completion evidence. Removed routine review-date footers and unsupported claims that sample transcripts were verified captures; retained useful examples as explicitly illustrative. Version/option sources, actual execution and limits are in the [validation record](validation.md#hermes-skill-contributions--2026-10-10). This batch does not establish Linux runtime behavior for the other packages or worker performance.

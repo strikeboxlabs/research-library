@@ -589,3 +589,21 @@ Schema v0.8: new pswm; enriched curl/nc/php/sudo; unchanged reviewed bash/grep/h
 No Linux fixture/worker evaluation, pswm/cryptocode/PHP/nc runtime, target scan/login, callback/PTY/sudo/root execution. No attack/install/system/power/Defender change, original move/delete, commit/push. Full normal curl sink and target exact builds are unresolved environment details, explicitly distinguished from verified current upstream semantics. Documentation-reviewed tasks accepted with these limits.
 
 Down final record links: 469 Markdown / 949 local links; 265 packages, all756 Bash blocks covered by the completed syntax-only pass. Queue after acceptance: 71 completed / 1 deferred / 42 pending / 0 in_progress; next Download.pdf, unopened. Completed 2026-10-10T22:26:27.758455+02:00.
+
+
+## Hermes skill contributions — 2026-10-10
+
+Accepted **binwalk, chntpw, nikto and sslscan** under schema v0.8; see the [review and coverage mapping](operational-skills-review-2026-10-10.md#hermes-contributions-and-controlled-image-review--2026-10-10). This adds four independent packages and catalogue entries on top of the existing GitHub changes. Only these four skills were reviewed for conformity; the other 265 packages are outside this batch's review.
+
+Installed primary sources inspected on the controlled Linux image:
+
+- `/usr/bin/binwalk --help`, package `2.4.3+dfsg1-3`, plus installed `binwalk/modules/extractor.py` for output-directory, regex, carving and privilege behavior. Installed Numba `core/config.py` and `core/decorators.py` establish the per-command `NUMBA_DISABLE_JIT` switch.
+- `/usr/sbin/chntpw -h`, package `140201-1.3`, installed `README.txt.gz` and `chntpw.8.gz`. The manual documents that `-L` also saves without prompting; no hive was edited or login tested.
+- `/usr/bin/nikto -Help`, package `1:2.6.1-0kali1`, and the [upstream scan-tuning guide](https://github.com/sullo/nikto/wiki/Scan-Tuning) for category meanings. Installed help establishes the accepted `txt` output format and time-unit syntax.
+- `/usr/bin/sslscan --help`, package `2.1.5-1`, reporting OpenSSL `3.6.4`. This help lists SNI, STARTTLS and probe controls but not `--no-failed`; the option was removed rather than retaining an unverified compatibility assumption.
+
+Actual execution: a disposable binary containing 4,096 zero bytes followed by a standard-library-generated gzip member was identified by Binwalk at offset `4096 / 0x1000`. Its input hash stayed unchanged. The initial `-E -N` run returned status zero but emitted a Numba `TypingError` and no completed entropy result. With `NUMBA_DISABLE_JIT=1` scoped to a second invocation, entropy rows were produced; a NumPy warning about `where` without `out` remained. This verifies the failure/recovery path, not numerical accuracy for arbitrary inputs. Raw help, package versions, fixture and outputs are retained locally in ignored `runs/hermes-skills-2026-10-10/`.
+
+The 19 existing repository unit tests passed, including independent skill-folder packaging. No extraction utility, SAM edit, web/TLS target scan or worker evaluation was run for this batch. Former purported real-output examples were not treated as executed evidence. No tool installation or persistent tool/model configuration change was made.
+
+Repository checker passed: **473 Markdown files, 955 local links, 269 skill packages and 763 Bash blocks parsed**, with no errors. The README exactly matches all 269 unique package names in alphabetical order. Combining the updated library with the other local skills produces 328 Hermes names and 269 Pi names, with no collisions in either harness. These are structural discovery checks, not live worker evaluations.

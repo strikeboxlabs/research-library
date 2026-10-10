@@ -23,6 +23,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [bash](skills/bash/SKILL.md) | Diagnose startup, restricted sessions, pattern comparisons, data reparsing, environment inheritance, filename expansion and redirection order. |
 | [bbot](skills/bbot/SKILL.md) | Select reconnaissance presets/modules, retain scan evidence and diagnose custom-module or privileged loader behavior. |
 | [bee](skills/bee/SKILL.md) | Select Backdrop sites, inspect CLI context and evaluate PHP with understood process/sudo and artifact effects. |
+| [binwalk](skills/binwalk/SKILL.md) | Identify embedded signatures, inspect entropy and extract selected data from firmware or binary files. |
 | [bloodhound-python](skills/bloodhound-python/SKILL.md) | Collect scoped AD directory evidence with BloodHound.py from Linux. Use when selecting CE versus legacy collectors, diagnosing Kerberos/DNS failures or distinguishing collected rights from current access. |
 | [bloodyad](skills/bloodyad/SKILL.md) | Selected AD object reads, membership/owner changes and read-back with bloodyAD. |
 | [bmap](skills/bmap/SKILL.md) | Inspect trailing filesystem slack with the legacy reader while preserving allocation and qualifying recovery evidence. |
@@ -33,6 +34,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [cewl](skills/cewl/SKILL.md) | Collect scoped website vocabulary with deliberate depth, filtering and plain-word output for offline audits. |
 | [chisel](skills/chisel/SKILL.md) | Build and diagnose explicit Chisel port forwards or reverse SOCKS connections. Use when client/server direction, listener exposure, endpoint reachability or fingerprint authentication is unclear. |
 | [chmod](skills/chmod/SKILL.md) | Selected Linux file mode and setuid-bit changes with verified ownership/access and execution limits. |
+| [chntpw](skills/chntpw/SKILL.md) | List Windows local accounts and edit selected SAM account settings on an offline hive copy. |
 | [composer](skills/composer/SKILL.md) | PHP dependency/lock inspection, selected installs and project-script execution context. |
 | [consul](skills/consul/SKILL.md) | Inspect selected KV data, distinguish ACL permissions and validate configuration before reload decisions. |
 | [cp](skills/cp/SKILL.md) | Copy selected files/directories and verify bytes, ownership, path and metadata differences. |
@@ -170,6 +172,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [netexec](skills/netexec/SKILL.md) | Validate known SMB credentials, interpret share checks, read selected user metadata and inspect LDAP protection, AD CS endpoints and machine-account quota with NetExec on selected lab hosts. Use to avoid unintended credential combinations and distinguish authentication, password status, privilege indicators and path permissions. |
 | [netstat](skills/netstat/SKILL.md) | Linux TCP/UDP listeners, bound addresses and process visibility |
 | [nginx](skills/nginx/SKILL.md) | Inspect selected configuration, worker/file authority, WebDAV conditions and validation-versus-live-state evidence. |
+| [nikto](skills/nikto/SKILL.md) | Survey a scoped web server for configuration and vulnerability candidates with Nikto. |
 | [nimble](skills/nimble/SKILL.md) | Nim dependency inspection, selected provisioning and build-context diagnosis. |
 | [nmap](skills/nmap/SKILL.md) | Keep protocol, address and IPsec vantage explicit; interpret service probes and uncertain states. |
 | [node](skills/node/SKILL.md) | Resolve CommonJS dependencies, reproduce selected module precedence and receive a bounded Socket.IO event. |
@@ -238,6 +241,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [ssh-keygen](skills/ssh-keygen/SKILL.md) | Generate selected key pairs, derive public fingerprints and validate complete transferred private-key artifacts. |
 | [ssh-username-enum](skills/ssh-username-enum/SKILL.md) | Selected OpenSSH malformed-authentication account oracle with legacy-helper compatibility and control/result limits. |
 | [sshpass](skills/sshpass/SKILL.md) | Provide selected SSH password input through a descriptor and distinguish prompt, key and authentication failures. |
+| [sslscan](skills/sslscan/SKILL.md) | Enumerate supported TLS protocols, cipher suites and certificate details on a scoped endpoint. |
 | [stoken](skills/stoken/SKILL.md) | Import selected SecurID software tokens, generate codes and diagnose state/PIN/time differences. |
 | [strace](skills/strace/SKILL.md) | Trace file/network failures and interpret acquired reads with process, descriptor, byte-count and tracing-side-effect context. |
 | [strings](skills/strings/SKILL.md) | Triage binary files with GNU strings while retaining offsets and checking alternate encodings. Use when paths, error messages or UTF-16 text guide subsequent binary analysis. |
