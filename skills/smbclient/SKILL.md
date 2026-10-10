@@ -19,7 +19,7 @@ Define `share` from the listing and `domain`/`user` for the chosen known identit
 smbclient "//$server/$share" -U "$domain/$user"
 ~~~
 
-For an anonymous connection, replace `-U "$domain/$user"` with `-U '%' -N`. Inside the SMB prompt, use `ls`, `cd` and `get` for selected remote files; `lcd` sets their local destination. Quote names containing spaces. Record the remote share/path alongside downloaded files.
+For an anonymous connection, replace `-U "$domain/$user"` with `-U '%' -N`. For an explicitly intended guest account with an empty password, use `-U "$domain/guest%" -N`. These are different requests. Omitting `-U` can select a local environment/cache identity, and a prior NetExec login is not inherited. A server may also map a request to guest; successful listing alone does not prove which identity it granted. Inside the SMB prompt, use `ls`, `cd` and `get` for selected remote files; `lcd` sets their local destination. Quote names containing spaces. Record the remote share/path alongside downloaded files.
 
 For a deliberately selected subtree, `recurse ON`, `prompt OFF` and `mget *` enable bulk retrieval. Set a fresh local directory and narrow the remote directory first. These session settings persist; `mget *` at the share root can copy much more than intended. A denied directory/file is a partial result, even when other downloads succeed.
 
@@ -33,4 +33,4 @@ That option requires Kerberos rather than silently falling back. Use `-I "$serve
 
 Share-level access labels do not settle a particular file's permissions. Read, create, overwrite and delete are distinct operations. For a requested file replacement, preserve its content and relevant metadata first; `del` followed by `put` leaves a gap and can change metadata, so it is not an atomic update. A successful upload of a logon script proves transfer, not execution or the identity of a future process. Keep the exact account, share, path and observed operation with the result.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Active pp. 3–6; BabyTwo pp. 3–8. Maintenance source: [Samba smbclient manual](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html).
+Resolve identity defaults and authentication switches against the installed version of the [Samba smbclient manual](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html).

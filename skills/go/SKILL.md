@@ -1,6 +1,6 @@
 ---
 name: go
-description: Build reviewed Go CLI projects with explicit module, toolchain and target context. Use when dependency repair, go.mod edits, workspace selection or compile-versus-run confusion affects a reproducible tool build.
+description: Build reviewed Go CLI projects and trace command construction versus execution. Use when module imports, generated bindings, subprocess calls or unchecked errors undermine a reproducible result.
 ---
 
 # Establish the module before building
@@ -26,6 +26,18 @@ go build -mod=readonly -o "$binary" .
 
 Compilation does not run the resulting CLI, but `go run` does. `go generate` explicitly runs source-defined commands and is not an automatic build prerequisite. Run the built tool only after reviewing its actual options/defaults; a program named `squidscan` can start a full scan without arguments, so even an assumed `--help` invocation is unsafe if its source never parses options.
 
-Bamboo's linked scanner hardcodes its proxy, target loopback, worker count and port range. A successful build establishes only a build result, not correct target selection or reliable open-port classification. Record source revision, toolchain, dependency changes and output identity separately from any later network test.
+A scanner can hardcode its proxy, target loopback, worker count and port range. A successful build establishes only a build result, not correct target selection or reliable open-port classification. Record source revision, toolchain, dependency changes and output identity separately from any later network test.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Bamboo pp. 2–3. Sources: [Go command reference](https://go.dev/cmd/go/), [modules](https://go.dev/ref/mod), [toolchain selection](https://go.dev/doc/toolchain), [reviewed scanner source](https://gist.githubusercontent.com/xct/597d48456214b15108b2817660fdee00/raw/f1fff423d457655b0740699acf4a61126804d16f/squidscan.go).
+## Resolve generated imports within the project
+
+When generated bindings import a bare package name, inspect the module declaration and the generated package's actual directory/import path. A package name is not automatically its module import path. Keep generated source under the project, or use an intentional local module/workspace dependency with its own module metadata. Do not move application packages into `GOROOT/src` to imitate an old walkthrough. Review generator package-prefix settings before regenerating; tidy cannot infer the intended local package from an unrelated path.
+
+## Trace whether a constructed command actually runs
+
+While reading source, distinguish `exec.Command(name, args...)` from methods that launch it: `Run`, `Start`, `Output` and `CombinedOutput`. Command construction alone starts nothing; `Start` also needs `Wait` to establish completion. `exec.Command{...}` is not a valid call to the standard-library function, so a rendered snippet containing that syntax does not establish executable source.
+
+Go's exec package does not normally invoke a shell. An explicit `/bin/sh -c` changes that: the command string is parsed by the shell. Trace any untrusted value into that string and then to the actual launch method. Formatting a value inside quoted shell text is not equivalent to passing it as a separate argument. For a logging operation, writing the data through Go file APIs avoids introducing a shell solely for echo/redirection.
+
+Check earlier and later effects independently. `os.Create` truncates an existing file before later processing. A scanner loop can stop on an error as well as EOF; inspect `scanner.Err()`. Also inspect subprocess errors and exit handling before treating a returned text such as **illustrative** `Log file processed` as proof that every line or command succeeded. The server's working directory controls relative output paths, not the remote client's directory.
+
+See [os/exec](https://pkg.go.dev/os/exec), [os.Create](https://pkg.go.dev/os#Create), [Scanner.Err](https://pkg.go.dev/bufio#Scanner.Err), [modules](https://go.dev/ref/mod), the [Go command reference](https://go.dev/cmd/go/) and [toolchain selection](https://go.dev/doc/toolchain).

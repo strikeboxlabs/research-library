@@ -7,6 +7,8 @@ description: Decode transferred binary artifacts and encode digest bytes or base
 
 Base64 describes a representation, not encryption or a password-hash algorithm. Preserve the captured input and identify its container before decoding. Do not run decoding over an entire JSON object, mail message or terminal transcript; extract the actual field/body first.
 
+For a MIME email attachment, select the exact part by its headers and boundary context; confirm that part's `Content-Transfer-Encoding` is `base64`. Decode only its body, excluding MIME headers and boundary delimiters. A MIME parser may already have decoded the payload, so check its API before applying another base64 pass. An `.enc` filename or an `X-Attached` header alone establishes neither transfer encoding nor encryption. After decoding, inspect the resulting file/container; a PEM private key can still be encrypted independently of its mail transport. See [MIME encoding](https://www.rfc-editor.org/rfc/rfc2045) and [multipart boundaries](https://www.rfc-editor.org/rfc/rfc2046).
+
 For a Windows certutil-style transfer using exactly the certificate envelope below, define `captured` as the original text and `body` and `decoded` as new working-file paths:
 
 ~~~bash
@@ -40,4 +42,17 @@ printf '%s' "$path_text" | base64 --wrap=0 | tr '/+' '_-' | tr -d '='
 
 Quoting and `printf` preserve spaces without adding a newline; GNU `--wrap=0` avoids its default line wrapping. The translated alphabet is different from ordinary base64 and HTTP percent encoding. Remove padding only when the consuming format specifies that convention. Decoding unpadded base64url requires reversing the alphabet and restoring valid padding; `--ignore-garbage` cannot perform that conversion.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Arkham pp. 13–14; Artificial p. 11; Atom p. 11; BackendTwo pp. 10–11, 16. Sources: [GNU base64](https://www.gnu.org/software/coreutils/manual/html_node/base64-invocation.html), [OpenSSL dgst](https://docs.openssl.org/3.5/man1/openssl-dgst/), [RFC 4648 base64url](https://www.rfc-editor.org/rfc/rfc4648.html).
+## Keep HTTP form encoding outside base64
+
+For an `application/x-www-form-urlencoded` capture, parse the actual body and select the intended field, undoing form encoding once **before** base64 decoding. `%2B` becomes a literal base64 `+`; a raw `+` in a form represents a space. Do not run a second form decode on the recovered value or use `--ignore-garbage` to hide this corruption. A `%3D` sequence is percent-encoded padding, not a different base64 alphabet. Duplicate fields need the application's selection rules; do not silently concatenate them.
+
+For an authorized endpoint that expects a base64 value in a form field named `data`, define `payload` as the exact reviewed input file, `encoded` as a fresh file, `url` as the endpoint, and `headers`/`response` as fresh response files:
+
+~~~bash
+base64 --wrap=0 "$payload" > "$encoded" &&
+curl --silent --show-error --connect-timeout 5 --max-time 30 --data-urlencode "data@$encoded" --dump-header "$headers" --output "$response" "$url"
+~~~
+
+Curl performs the outer form encoding, including `+`, `/` and `=`; give it unescaped base64, not an already percent-encoded string. The file form avoids shell newline transformations and an added `echo` newline. Check curl's exit status and the application's response separately. Decoding a response to XML or PHP bytes establishes the recovered representation, not that a database write or code execution occurred. Preserve bytes and their declared character encoding before displaying them as text.
+
+References: [GNU base64](https://www.gnu.org/software/coreutils/manual/html_node/base64-invocation.html), [curl form encoding](https://curl.se/docs/manpage.html#--data-urlencode), [form decoding semantics](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.unquote_plus) and [RFC 4648 alphabets](https://www.rfc-editor.org/rfc/rfc4648.html).

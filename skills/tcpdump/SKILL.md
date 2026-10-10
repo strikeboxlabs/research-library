@@ -28,4 +28,19 @@ Record timestamps, directions, interface/filter and capture/drop counts. An echo
 
 Permission errors are not empty captures. If privilege dropping prevents writing the file, check the configured capture user and directory rather than broadening directory permissions. Keep captures private, and check reported truncation/drops before relying on payload completeness.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: AdmirerToo pp. 11–12. Source: [upstream tcpdump manual](https://github.com/the-tcpdump-group/tcpdump/blob/master/tcpdump.1.in).
+## Preserve a selected container-side TCP conversation
+
+Choose the interface and endpoint **as seen at the capture point**. Docker's default bridge is often `docker0`; user-defined networks, host networking and other namespaces can take different paths. A host publication such as port 8002 can correspond to container port 443 on the bridge, so a filter copied from the browser URL can miss the traffic.
+
+Define `iface` as the verified interface, `peer` as the selected numeric endpoint, `port` as its observed TCP port and `pcap` as a fresh private path. Capture under the established privileges, starting before the relevant handshake:
+
+~~~bash
+umask 077
+tcpdump -i "$iface" -nn -s 0 -w "$pcap" "host $peer and tcp port $port"
+~~~
+
+Stop with Ctrl-C at the agreed deadline and retain the final drop statistics. `-s 0` selects the implementation's large default snapshot length; it is not unlimited storage or a duration bound. This capture includes both directions for the selected host/port. Check packet lengths and gaps before handing it to a TLS analyzer. More `-v` flags do not decrypt TLS or add missing bytes to a saved packet.
+
+File capabilities can permit capture without sudo, but neither their presence nor an interface named docker0 proves that every container flow is visible. If the handshake is absent, preserve that limitation instead of inferring that the server key or application password is wrong.
+
+See the [tcpdump manual](https://github.com/the-tcpdump-group/tcpdump/blob/master/tcpdump.1.in) and [Docker bridge behavior](https://docs.docker.com/engine/network/drivers/bridge/).

@@ -22,4 +22,8 @@ Record the concrete path seen in the trace. Config locations can be compiled in 
 
 For a running process, `-p PID` changes this into an attachment and needs appropriate ptrace permission. Check ownership, namespace and ptrace policy before assuming root is required. Tracing can affect timing and privileged-program behaviour. Prefer a disposable reproduction; protect traces containing arguments or payloads, stop when the needed event is captured and retain the process outcome alongside the trace.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: AdmirerToo p. 19. Source: [upstream strace manual](https://github.com/strace/strace/blob/master/doc/strace.1.in).
+When a privileged helper behaves differently under tracing, add `%creds` to the filter for an already approved, non-destructive reproduction. Linux can suppress set-user-ID/set-group-ID and file-capability transitions when the process is ptraced. An **illustrative** sequence `setreuid(...) = -1 EPERM`, then `access(..., R_OK) = -1 EACCES`, describes that traced context; it does not prove the file is absent or normally unreadable by the helper. `access()` tests real IDs, while an actual open normally uses effective credentials; `faccessat` flags can change that comparison. Preserve the failed identity transition before interpreting the path check.
+
+A final `exit_group(0)` only reports the program's chosen status, even if it printed an error. Inspect ownership/mode, mount restrictions and the helper's code before deciding on another execution. Do not rerun a database-reset/delete action outside the tracer merely to recover its usual privileges. See [execve privilege rules](https://man7.org/linux/man-pages/man2/execve.2.html) and [access identity semantics](https://man7.org/linux/man-pages/man2/access.2.html).
+
+Resolve filter and tracing options with the [upstream strace manual](https://github.com/strace/strace/blob/master/doc/strace.1.in).

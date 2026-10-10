@@ -5,7 +5,7 @@ description: Enumerate AD CS templates and interpret Certipy findings from Linux
 
 # Collect the evidence behind a template finding
 
-Use ly4k's Certipy AD CS tool, commonly packaged as `certipy-ad`; an executable named `certipy` can belong to unrelated software. Confirm the banner and `find -h`. The walkthrough uses v4.8.2; use the installed generation's flags and output formats.
+Use ly4k's Certipy AD CS tool, commonly packaged as `certipy-ad`; an executable named `certipy` can belong to unrelated software. Confirm the banner and `find -h`. Check the installed generation's flags and output formats; v4 and v5 findings use different labels.
 
 Define `certipy_bin` as the verified executable, `upn` as the known account UPN, `dc_ip` as the intended DC address, and `prefix` as a fresh absolute report prefix in a private directory. Start with directory-only collection:
 
@@ -20,8 +20,24 @@ Omitting the password prompts for it in the reviewed CLI. Supply the correct AD 
 
 First retain the full directory result. `-vulnerable` filters findings according to the tool's rules and the selected account's nested groups; an empty filtered report is not a clean bill of health. For an ESC1 hypothesis, read the template's actual publication/enabled state, enrollment rights, subject/SAN control, authentication EKUs, approval/signature requirements and relevant CA policy together. A suggestive template name is insufficient. MachineAccountQuota is a separate directory setting and does not itself grant template enrollment rights.
 
-Historical certificate issuance does not establish present authentication. Windows strong certificate-mapping enforcement changed after this 2023 writeup; inspect the issued certificate's SID/mapping information and the target's actual patch/configuration state. A SAN username alone does not guarantee that identity will authenticate. PKINIT and Schannel are different authentication paths; a PKINIT error alone neither invalidates every use of the certificate nor proves a universal workaround.
+Historical certificate issuance does not establish present authentication. Windows strong certificate-mapping enforcement has changed across updates; inspect the issued certificate's SID/mapping information and the target's actual patch/configuration state. A SAN username alone does not guarantee that identity will authenticate. PKINIT and Schannel are different authentication paths; a PKINIT error alone neither invalidates every use of the certificate nor proves a universal workaround.
+
+## Resolve a missing security extension finding
+
+For ESC9, confirm `NoSecurityExtension` in the template's enrollment flags, then publication, authentication EKUs, enrollment rights and approval/signature conditions. This setting suppresses the issued certificate's SID security extension; it does not grant permission to change any account's UPN. If a proposed path relies on changing `userPrincipalName`, verify those directory rights separately.
+
+A historical UPN-only certificate path depends on the DC accepting that mapping. Microsoft's [enforcement guidance](https://support.microsoft.com/en-us/servicing/os/windows-server/2022/05/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers) makes installed updates and the actual mapping path decisive; an old compatibility-mode registry value is not proof it is still honored. Conversely, a missing SID extension alone does not prove all authentication fails: other strong mappings and combined CA conditions require separate evidence. If CA policy was omitted by `-dc-only`, leave that part unresolved. The [upstream ESC9 conditions](https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation) distinguish template findings from complete paths.
+
+Keep key-trust credential changes (`msDS-KeyCredentialLink`) separate from CA-issued template findings. A PFX filename alone does not identify which trust path produced it. Restoring a UPN also does not revoke an issued certificate or remove other directory changes.
+
+## Interpret enrollment-agent findings and issuance errors
+
+For an ESC3 finding, separate the agent-issuing template from the destination authentication template. Check the agent EKU, enrollment rights, approval/signature requirements and publication; then check whether the destination template permits agent enrollment, its schema/signature policies, the intended subject's enrollment rights and CA enrollment-agent restrictions. A group description stating that members issue certificates is not an ACL or effective-rights result. Missing CA policy under `-dc-only` remains unknown. See the [upstream ESC3 explanation](https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation) for version-specific finding labels.
+
+When reviewing an existing failed request with `0x80094812` / `CERTSRV_E_SUBJECT_EMAIL_REQUIRED`, inspect the template's `SubjectRequireEmail` / `SubjectAltRequireEmail` flags and the subject account's directory `mail` value. A nonempty UPN or an email-shaped login name is not that attribute. Microsoft's [name-flag rules](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wcce/a1f27ffb-7f74-4fa1-8841-7cde4ba0bcfe) explain why a CA can require directory data and ignore caller-supplied subject information. Report the unmet requirement; changing the account or template is a separate write, not a collection fix.
+
+A logged request ID and an offer to save a private key do not establish certificate issuance. Distinguish request disposition, issued certificate plus matching private key, KDC authentication, saved credential cache and any later credential-recovery result. A PFX is not locally converted into a TGT: authentication requires a live KDC exchange, with its own identity, trust, mapping and time conditions.
 
 This skill stops at evidence collection and interpretation. Requests, account creation, template edits and delegation writes are separate operations with persistent state.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Authority pp. 9–13. Sources: [find CLI](https://github.com/ly4k/Certipy/blob/main/certipy/commands/parsers/find.py), [implementation](https://github.com/ly4k/Certipy/blob/main/certipy/commands/find.py), [Microsoft mapping enforcement](https://support.microsoft.com/en-us/servicing/os/windows-server/2022/05/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers).
+For collection and mapping differences, see [find CLI](https://github.com/ly4k/Certipy/blob/main/certipy/commands/parsers/find.py), [implementation](https://github.com/ly4k/Certipy/blob/main/certipy/commands/find.py), [Microsoft mapping enforcement](https://support.microsoft.com/en-us/servicing/os/windows-server/2022/05/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers).

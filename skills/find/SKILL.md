@@ -1,6 +1,6 @@
 ---
 name: find
-description: Locate files and interpret GNU find predicates without confusing incomplete searches or executing unintended actions. Use for scoped module searches, empty-directory checks and safe filename handling.
+description: Locate files and interpret GNU find predicates without confusing incomplete searches or executing unintended actions. Use for scoped module searches, permission predicates, empty-directory checks and safe filename handling.
 ---
 
 # Separate selection from actions
@@ -11,7 +11,9 @@ Confirm GNU find with `find --version`. Define `search_root` as an existing abso
 find -P "$search_root" -xdev -type f -name "$name_pattern" -print0 > "$matches" 2> "$errors"
 ~~~
 
-Check exit status and diagnostics before claiming absence. `-xdev` skips other filesystems and `-P` does not follow symlinks; both bound coverage. A `-type f` search can omit a symlink with the desired name. Inspect relevant link targets or mount boundaries deliberately instead of silently broadening to `/`. Suppressing all stderr, as in the writeup, conceals permission and traversal failures. Consume `-print0` output with a NUL-aware reader, not line splitting.
+Check exit status and diagnostics before claiming absence. `-xdev` skips other filesystems and `-P` does not follow symlinks; both bound coverage. A `-type f` search can omit a symlink with the desired name. Inspect relevant link targets or mount boundaries deliberately instead of silently broadening to `/`. Suppressing all stderr conceals permission and traversal failures. Consume `-print0` output with a NUL-aware reader, not line splitting.
+
+Match the predicate to the access question. `-type d -perm -o=r` selects directories with the other-read bit set; it neither lists regular files nor proves you can traverse every parent or read their contents. `-perm 004` is an exact mode match, `-perm -004` requires that bit, and `-perm /044` accepts either group-read or other-read. For files readable by the current user, use `-type f -readable` within the same scoped search and retain its diagnostics. `-readable` considers access checks including ACLs, with NFS identity-mapping limitations; it does not establish another user's access or guarantee a later open will succeed.
 
 To test whether **one directory itself** is empty, define `directory` and use:
 
@@ -25,4 +27,4 @@ Implicit AND binds more tightly than `-o`; group alternatives with escaped paren
 
 `-exec` runs a command for matches. Its terminating semicolon must reach find as an argument, normally `\;` or `';'`; an unquoted shell semicolon terminates the shell command instead. The command-line display in a process listing need not preserve original shell quoting. Preview matches with printing before choosing an action; `-delete` and session-launching commands are mutations, not search flags. For deliberate file processing, pass names as arguments rather than interpolating them into shell code.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Backdoor pp. 12–14; BackendTwo p. 18. Source: [GNU find manual](https://man7.org/linux/man-pages/man1/find.1.html).
+Consult the [GNU find manual](https://man7.org/linux/man-pages/man1/find.1.html) for permission predicates and access-check limits.

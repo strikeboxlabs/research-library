@@ -1,6 +1,6 @@
 ---
 name: impacket-secretsdump
-description: Parse existing Windows SAM/SYSTEM or NTDS snapshots, or perform a selected-account AD replication audit with Impacket secretsdump. Use to distinguish offline evidence, current credentials and incomplete results.
+description: Parse existing Windows SAM/SYSTEM, SECURITY or NTDS snapshots, or perform a selected-account AD replication audit with Impacket secretsdump. Use to distinguish offline evidence, current credentials and incomplete results.
 ---
 
 # Impacket secretsdump
@@ -24,6 +24,21 @@ A SAM `Administrator` record and an NTDS domain `Administrator` record are not t
 
 Before reporting success, inspect extraction errors and the new `.sam` file. Caught errors can leave partial results without a failing exit code. On failure, check binary transfer completeness, hive identity/pairing and version support before concluding the source contains no accounts. A recovered hash does not establish the account's enabled state or present network access.
 
+## Existing SECURITY hive
+
+For a separate task examining cached domain logons and LSA secrets, define `security_hive` as the raw SECURITY hive from the same machine/acquisition as `system_hive`, and `security_prefix` as a fresh private output prefix:
+
+~~~bash
+umask 077
+impacket-secretsdump -security "$security_hive" -system "$system_hive" -outputfile "$security_prefix" LOCAL
+~~~
+
+This leaves SAM and NTDS out of the requested inputs. Inspect both diagnostics and emitted files: the implementation writes `.cached` and `.secrets` only when corresponding items were recovered. A missing file may therefore mean no extracted items or a failed stage; check the error context before deciding.
+
+Cached domain logon verifiers, including `$DCC2$` records, are not raw NT hashes. LSA results can include machine-account or service secrets and DPAPI key material; retain their labels instead of treating every value as a user's login password. **Illustrative:** a `.cached` record labelled for a domain user and a `.secrets` entry labelled `DPAPI_SYSTEM` establish different artifact types, not two interchangeable authentication values. Keep the source machine and snapshot date with each.
+
+Use the [CLI and output implementation](https://github.com/fortra/impacket/blob/master/examples/secretsdump.py) to check release-specific flags; do not add remote acquisition options to repair a local parsing error.
+
 ## Selected-account replication audit
 
 For an already acquired **NTDS database snapshot**, use the separate [offline NTDS procedure](references/offline-ntds.md). Its file inputs and account-selection limits differ from both SAM parsing and live replication below.
@@ -38,5 +53,3 @@ impacket-secretsdump "$domain/$user@$dc_host" -just-dc-user "$subject" -just-dc-
 This makes remote DRSUAPI replication requests and requires the applicable directory replication rights. It is not local hive parsing and does not require pretending the requesting user is a DC computer account. `-just-dc-user` selects one account and implies `-just-dc`; bare `-just-dc` has no such account limit. `-just-dc-ntlm` limits material to NTLM records. The selector does not support VSS mode.
 
 Inspect errors and `${remote_prefix}.ntds` before reporting extraction. For an ambiguous account name, use the verified NetBIOS domain-qualified selector, not an assumed DNS-domain prefix. A permission failure is not evidence that no directory secrets exist; do not broaden the dump or switch acquisition method automatically. Protect the output as credential material and retain the requested account mapping.
-
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Acute pp. 15–16; Administrator p. 10; Baby pp. 6–10. Sources: [secretsdump CLI](https://github.com/fortra/impacket/blob/master/examples/secretsdump.py), [SAM/NTDS implementations](https://github.com/fortra/impacket/blob/master/impacket/examples/secretsdump.py).

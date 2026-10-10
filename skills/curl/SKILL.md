@@ -1,6 +1,6 @@
 ---
 name: curl
-description: Capture HTTP responses and construct API requests with curl while preserving hostname routing, TLS identity and request-path semantics. Use when encoding, status, transport failures or redirects obscure a result.
+description: Capture HTTP responses and construct API or GraphQL requests with curl while preserving hostname routing, TLS identity and request-path semantics. Use when encoding, partial results, transport failures or redirects obscure a result.
 ---
 
 # curl HTTP evidence
@@ -14,6 +14,8 @@ curl --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$hea
 
 Check curl's exit status immediately. Without `--fail`/`--fail-with-body`, a completed `404` or `500` response can still return zero. Keeping the body is useful for diagnosis; `--fail-with-body` gives an HTTP-error exit while retaining it on supporting versions. Transport failure with a partial body is not a complete response.
 
+A name mentioned inside `Access-Control-Expose-Headers` or `Access-Control-Allow-Headers` is CORS policy data, not evidence that a response contains that named header. Likewise, allowed methods do not prove those operations are accepted or authorized. Check actual header fields, status and body before fingerprinting a service or inferring object versioning. A generic JSON health response establishes only what that request returned.
+
 When DNS differs from the desired server, define `host`, `port` and `target_ip` and use a URL containing that hostname:
 
 ~~~bash
@@ -24,10 +26,19 @@ curl --silent --show-error --connect-timeout 5 --max-time 30 --resolve "$host:$p
 
 For an intentionally literal path test, `--path-as-is` preserves dot segments that curl otherwise normalizes; `--globoff` separately disables URL glob expansion. Neither prevents normalization by a proxy or server. Save the requested path and observed response together.
 
+For an **illustrative local fixture**, a URL ending `/docs/../probe.txt` normally sends `/probe.txt`; adding `--path-as-is` sends `/docs/../probe.txt`. A changed response can therefore reflect a changed request target, not a changed server. Use the capture command above with the needed path flag and collect status, headers and body from that same GET. Discarding the first body with `-o /dev/null` and fetching again pairs the first status with a potentially different response.
+
+A 200 body can be a login page, fallback page or application error. Compare the expected content and a known control before claiming file disclosure. A nonzero curl exit can leave both a status and a partial body; keep it as incomplete evidence. If transmission remains uncertain, a private verbose/trace capture can show the outgoing target, but also records authentication headers and content.
+
 Inspect Location before adding `--location`; redirects can change hostname, method or authentication context. Do not forward credentials to new hosts automatically. A `500` after a mutating request does not prove rollback, so inspect state before retrying. Prefer structured status/body evidence over piping everything through `grep` for a version string.
 
-For JSON/form APIs, validation errors and bearer-token handling, use [API request construction](references/api-requests.md).
+When comparing cached responses, keep method, URL, cookies and relevant request headers constant and preserve each response in fresh header/body files. An `Age: 0` response is not a universal cache-miss test, and Age is not the object's configured TTL: it estimates time since origin generation/validation, potentially across caches. Compare Date, Cache-Control, Vary, response content and available cache diagnostics; do not infer a fixed refresh interval from one observed age. A custom `X-Cache` label follows that deployment's configuration. Varnish's usual two-number `X-Varnish` form identifies the current request and cached object's transaction; on the ordinary one-number miss form it is the second number that is absent. Headers can be rewritten, so correlate with cache logs/configuration where that distinction matters. See [HTTP Age semantics](https://www.rfc-editor.org/rfc/rfc9111.html#section-5.1) and [Varnish response construction](https://github.com/varnishcache/varnish-cache/blob/6.6/bin/varnishd/cache/cache_req_fsm.c).
+
+For JSON/form APIs, file PUTs, validation errors and bearer-token handling, use [API request construction](references/api-requests.md).
+
+For GraphQL schema inspection, typed variables and HTTP-versus-operation errors, use [GraphQL requests](references/graphql.md).
 
 For an HTTP proxy, explicit bypass control and CONNECT-versus-forwarding diagnosis, use [proxy requests](references/proxy-requests.md).
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Ambassador pp. 5–7; Analytics pp. 3–5. Source: [curl manual](https://curl.se/docs/manpage.html).
+
+Consult the [curl option reference](https://curl.se/docs/manpage.html) for version-specific behavior.

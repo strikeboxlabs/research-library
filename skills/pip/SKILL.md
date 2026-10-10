@@ -1,11 +1,26 @@
 ---
 name: pip
-description: Install and inspect Python tool dependencies in a selected Linux interpreter environment. Use when legacy wheels, Python ABI/platform tags, accidental source builds or the wrong pip cause reproduction failures.
+description: Install and inspect Python tool dependencies in a selected Linux interpreter environment. Use when manifest versus installed versions, wheel compatibility, source builds or the wrong pip cause reproduction failures.
 ---
 
 # Match the interpreter before installing
 
 Call pip through the intended Python interpreter. A bare `pip` may belong to another environment; installing successfully there does not resolve imports in the program's actual interpreter.
+
+## Inspect the existing environment before recreating it
+
+A downloaded `requirements.txt` describes installation inputs, not necessarily the running service's packages. Use the service's actual trusted interpreter path as `python` and the distribution's metadata name as `distribution`:
+
+~~~bash
+"$python" -m pip --version
+"$python" -m pip show "$distribution"
+~~~
+
+Record Version and Location alongside that interpreter. A missing-distribution warning only establishes absence of matching metadata in this environment; check the selected virtual environment, distribution name and vendored source before declaring the application unaffected. Distribution and import names need not match. Reading package metadata avoids importing the suspect application merely to ask its version.
+
+An **illustrative** manifest pin `library==1.2` plus installed metadata `Version: 1.3` is a mismatch to investigate, not a reason to downgrade the live service. Even matching metadata needs package-origin/patch and reachable-code checks for a vulnerability conclusion. Installing the downloaded requirements first changes the evidence and can execute build code.
+
+## Prepare a separate reproduction environment
 
 Define `python` as the intended interpreter's absolute path and `environment` as a new virtual-environment directory:
 
@@ -31,4 +46,4 @@ This confines normal dependency lookup to the provided wheel location and reject
 
 For online resolution, select the approved index and versions explicitly. Do not use certificate-validation bypasses as a routine fix. Building an sdist can execute its build backend; a successful wheel install still does not make its code safe to import. `pip show` reports metadata/location, and `pip check` checks declared dependency consistency, not native-library loading or application behavior. Run the smallest relevant fixture separately; loading a supplied model or constructing a callback-bearing model can execute code locally.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Artificial pp. 4–5. Sources: [pip install](https://pip.pypa.io/en/stable/cli/pip_install/), [pip show](https://pip.pypa.io/en/stable/cli/pip_show/), [pip check](https://pip.pypa.io/en/stable/cli/pip_check/).
+Use the [requirements format](https://pip.pypa.io/en/stable/reference/requirements-file-format/), [pip show](https://pip.pypa.io/en/stable/cli/pip_show/) and [distribution/import distinction](https://packaging.python.org/en/latest/discussions/distribution-package-vs-import-package/) when reconciling source and environment evidence.

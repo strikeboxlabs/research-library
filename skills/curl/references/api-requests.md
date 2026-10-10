@@ -23,4 +23,32 @@ A bearer token is not automatically a cookie. A protected documentation page and
 
 `405` can identify a route with the wrong method; inspect Allow/schema evidence. `422` in these FastAPI cases identifies request validation failure, not proof that the guessed operation is safe or correctly authorized. A success-looking response field does not establish the resulting state. After an ambiguous mutating response, inspect state before retrying. Review redirect destinations before forwarding authentication.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Backend pp. 4–10, 14–16; BackendTwo pp. 5–16. Sources: [curl options](https://curl.se/docs/manpage.html), [FastAPI form data](https://fastapi.tiangolo.com/tutorial/request-forms/).
+
+## Send a multipart file form
+
+For an authorized upload, use the endpoint's actual field names, authentication and CSRF requirements. Define `url`, `file_field`, `upload_file` as a reviewed absolute local path, `note_field`/`note` as a documented text field/value, and fresh `headers`/`body` paths. This example assumes ordinary field names and a path without double quotes, commas, semicolons or newlines:
+
+~~~bash
+umask 077
+curl --silent --show-error --connect-timeout 5 --max-time 30 \
+  --form "$file_field=@$upload_file" --form-string "$note_field=$note" \
+  --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
+~~~
+
+`--form` constructs multipart POST data and its boundary; setting Content-Type alone does not build that body. `@` attaches file bytes, while `<` supplies a form value from a file without file-upload metadata. `--form-string` preserves text such as `@name` literally. Use curl's form-value quoting rules for more complex filenames; shell quotes alone do not disable curl's own form syntax.
+
+A per-part `;type=...` only labels the content; it neither converts nor verifies the bytes. Do not combine this form body with a JSON header or `--upload-file` PUT. A UI error can coexist with a successful stored upload, and a 200 can contain an application error. Inspect the response and the selected object's state before retrying a write or claiming execution. Omit the text field when it is not part of the contract.
+
+## Upload exact file bytes with HTTP PUT
+
+For an authorized file replacement, define `upload_file` as the exact local file (without upload-glob metacharacters) and `url` as the complete destination URL including its filename. Use fresh `headers`/`body` response files and the endpoint's required authentication:
+
+~~~bash
+curl --silent --show-error --connect-timeout 5 --max-time 30 --upload-file "$upload_file" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
+~~~
+
+For HTTP(S), `--upload-file` selects PUT. A trailing-slash URL instead lets curl append the local filename. `-X PUT` changes the method word; it does not repair body transformations. In Bash, `"$(cat file)"` loses trailing newlines before curl sees the value. Use a file-based upload for exact bytes.
+
+A zero curl exit or empty response body does not establish replacement. Inspect HTTP status and, when the endpoint supports it, retrieve the selected object to compare bytes. A timeout leaves the write outcome uncertain; inspect state before retrying. PUT can overwrite existing data, so choose the destination deliberately.
+
+See [curl's upload/body options](https://curl.se/docs/manpage.html) and the [FastAPI form-data distinction](https://fastapi.tiangolo.com/tutorial/request-forms/).

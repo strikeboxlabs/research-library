@@ -18,8 +18,10 @@ umask 077
 
 Compare the resulting SHA-256 fingerprint with the independently obtained public key using the same `-l -E sha256` options. Comments can differ without changing key identity. A fingerprint identifies key material; it does not prove who owns the key or that any server currently authorizes it. `ssh-keygen -L -f` inspects an SSH certificate's principals, validity and restrictions; those are distinct from the underlying key fingerprint and server trust policy.
 
+A private-key file read from a remote home directory after an SSH login need not be the credential used for that login. Compare independently obtained public fingerprints before claiming they are the same key. An encrypted Jenkins credential field is also a different object from a passphrase-protected OpenSSH key file; `ssh-keygen` needs the actual supported key artifact, not application ciphertext.
+
 On `invalid format`, check object type, complete delimiters, wrapping and transfer integrity before regenerating anything. An OpenSSH `openssh-key-v1` private-key envelope contains length-prefixed metadata and key data; it is not simply the public-key base64 field or an interchangeable ASN.1 object. Hardcoded byte offsets from a particular key are not a portable parser. Prefer supported parsing/conversion over hand-editing lengths or key integers.
 
 Keep `-p` passphrase changes and key regeneration separate from inspection: they can modify or replace artifacts. Do not copy a writeup's unusually large RSA key size as an operational requirement. An SSH server's `AuthorizedKeysCommand` `%k` token supplies the offered **public** key/certificate blob, not the user's private key; a copied configuration still needs independent confirmation on the actual server.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Attended pp. 18–21, 26–31. Sources: [ssh-keygen](https://man.openbsd.org/ssh-keygen.1), [OpenSSH private-key format](https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.key), [sshd tokens](https://man.openbsd.org/sshd_config.5#TOKENS).
+For format and option details, see [ssh-keygen](https://man.openbsd.org/ssh-keygen.1), [OpenSSH private-key format](https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.key), [sshd tokens](https://man.openbsd.org/sshd_config.5#TOKENS).

@@ -1,4 +1,4 @@
-# Tool skill schema, MVP v0.5
+# Tool skill schema, MVP v0.6
 
 The default deliverable is **one independently installable `skills/<name>/SKILL.md`**. Use the [GDB skill](../skills/gdb/SKILL.md) as an example, not a required length or layout.
 
@@ -18,6 +18,20 @@ Include only what helps a capable agent use this tool better:
 | Evidence sufficient to finish | Answer the user's question accurately. |
 
 These are content considerations, not mandatory headings. Describe the tasks actually supported; a narrow procedure does not establish general mastery of the tool. Before expanding an existing skill, identify the task or decision the new material improves. Skip additions that repeat existing coverage. There are no tiers, recipe quotas or word-count targets.
+
+## Make the first read sufficient to choose and load the task
+
+The description is discovery text: lead with the supported task and useful trigger, not instructions that the worker must execute. Put an activation contract near the top of the body, before procedure commands. It tells the worker to read the **entire SKILL.md before acting**, and makes applicable prerequisites, required steps/resources and completion evidence discoverable. Loading or invoking a skill does not itself establish that the model followed it.
+
+For several workflows or substantial resources, add a compact task map or checklist. Distinguish:
+
+- **Required:** the steps and resources needed for the selected task, including an exact skill-relative helper/template path when it is part of the workflow. State when to use it and what result it produces; do not replace a required supplied helper silently.
+- **Conditional:** name the situation that requires the section/reference, with a direct link. Read that material completely before its procedure, including any dependencies it requires. Keep unrelated references unloaded. An external documentation link for troubleshooting is not automatically a mandatory read.
+- **Completion:** identify the requested evidence or artifact. Report a missing prerequisite, failure or unresolved step honestly; never convert a summary of intended work into a successful result. For a multi-step checklist, record done with evidence, not applicable with a reason, or blocked with the missing requirement. Do not invent a separate report file for a task that does not need one.
+
+A short single-task skill may express this in two or three sentences; do not add empty checklists or a standard ritual. Keep shared requirements early and specific caveats beside their command. Whole-entrypoint reading remains affordable by moving substantial alternative workflows into conditional files within the same skill, when useful.
+
+During ingestion/review, inspect only the **first 150 lines**, including frontmatter, and ask whether every supported workflow and required resource can be found from there. Put the route near the beginning, well before line 150. Then read the full skill and selected references to check for hidden requirements. Treat 150 as our conservative partial-read review boundary, **not a documented universal harness cutoff**, a target length or proof of compliance. Do not compress commands onto long lines to meet it. See [loading behavior and rationale](../docs/harnesses.md#skill-loading-and-the-first-read).
 
 ## Worked guidance
 

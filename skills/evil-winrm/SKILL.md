@@ -1,6 +1,6 @@
 ---
 name: evil-winrm
-description: Open a Windows WinRM session from Linux with Evil-WinRM using known credentials. Use for transport/authentication diagnosis, selected file transfers and distinguishing WinRM access from SMB login success.
+description: Open a Windows WinRM session from Linux with Evil-WinRM using known credentials. Use for transport/authentication diagnosis, current token inspection, selected file transfers and distinguishing WinRM access from SMB login success.
 ---
 
 # Evil-WinRM sessions
@@ -19,6 +19,15 @@ For an HTTPS listener, use `-S` (default port 5986); HTTP defaults to 5985. A cu
 
 Once connected, use `whoami` and `Get-Location` to establish identity and working directory. A prompt is not proof of administrator rights. `download` copies remote to local and `upload` copies local to remote; use the session's `menu` help, explicit paths and one selected file first. Confirm local size/hash where a trusted remote comparison exists.
 
+When the question concerns the session's authority, inspect its current Windows token inside the remote prompt:
+
+~~~powershell
+whoami /user
+whoami /priv
+~~~
+
+Keep the account SID and privilege state. An illustrative `SeBackupPrivilege ... Enabled` is a property of this token; a listed but disabled privilege is not currently active. File access through backup privilege requires an enabled privilege and an API using [backup semantics](https://learn.microsoft.com/en-us/windows/win32/fileio/file-security-and-access-rights#backup-and-restore-access-rights). It does not make every `Get-Content` or download bypass ACLs, or grant arbitrary write access. Check the intended operation's API and actual error before concluding that a token privilege is ineffective. Registry export is a separate operation that creates a potentially sensitive file; a privilege listing alone neither performs nor validates a backup.
+
 For failures, separate connection refusal/timeouts from authentication errors and command authorization. Repeated password retries do not repair listener, realm or access-policy problems. Remote path completion warnings can be local Ruby limitations. Session logs and downloaded files may contain secrets. End with `exit`; preserve only needed evidence and account for uploaded artifacts.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Administrator pp. 5, 8, 11. Sources: [upstream usage](https://github.com/Hackplayers/evil-winrm), [option and transfer implementation](https://github.com/Hackplayers/evil-winrm/blob/master/evil-winrm.rb).
+For option or transfer differences, consult [upstream usage](https://github.com/Hackplayers/evil-winrm) and the [client implementation](https://github.com/Hackplayers/evil-winrm/blob/master/evil-winrm.rb).

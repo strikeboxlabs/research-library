@@ -22,4 +22,20 @@ Capture stderr and completion status. A timeout or missing helper leaves incompl
 
 Treat highlights as leads. Bamboo's writable PATH entry describes the collecting user's environment, not a privileged process's PATH. Establish the actual privileged invocation and inspect the exact file plus containing-directory permissions. File-content writes and directory-entry replacement are different rights. The observed absolute `/bin/sh /path/server-command` execution demonstrates a writable-script issue, not PATH lookup. Finish with evidence for the specific finding and what remains unobserved.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Bamboo pp. 7–12. Sources: [LinPEAS guidance](https://github.com/peass-ng/PEASS-ng/blob/master/linPEAS/README.md), [current flag implementation](https://github.com/peass-ng/PEASS-ng/blob/master/linPEAS/builder/linpeas_parts/linpeas_base/0_variables_base.sh), [shared file caching](https://github.com/peass-ng/PEASS-ng/blob/master/linPEAS/builder/linpeas_parts/linpeas_base/2_caching_finds.sh).
+
+## Verify an unfamiliar SUID finding
+
+`Unknown SUID binary!` is the collector's classification, not proof of a vulnerability or absence from the package database. Preserve the exact helper path: a desktop program, its privileged helper and a similarly named authentication utility can have different behavior.
+
+Define `binary` as the verified absolute regular-file path, resolving any symlink deliberately. Inspect it without invoking the helper:
+
+~~~bash
+stat -c '%A %a %u:%g %n' -- "$binary"
+findmnt --target "$binary" --output TARGET,OPTIONS
+~~~
+
+Retain mode, numeric owner/group and the containing mount from the relevant execution namespace. The SUID bit and root ownership do not alone establish a successful privileged transition: `nosuid`, the caller's `no_new_privs` or tracing can suppress it, and program logic can drop privilege. Missing mount/process evidence leaves that condition unknown.
+
+Map the exact file to its installed package and complete vendor version, then check the advisory's affected helper and distribution fixes. A parent's `--version` output or a version embedded in a directory name is only a lead; invoking an unreviewed privileged helper for help/version still executes it. Separately retain any actual UID/effect evidence. A tool's success banner, or an intermediate error line, alone does not establish the final result.
+
+Use the [SUID check implementation](https://github.com/peass-ng/PEASS-ng/blob/master/linPEAS/builder/linpeas_parts/8_interesting_perms_files/1_SUID.sh), [Linux exec credential rules](https://man7.org/linux/man-pages/man2/execve.2.html), [stat fields](https://man7.org/linux/man-pages/man1/stat.1.html) and [findmnt target selection](https://man7.org/linux/man-pages/man8/findmnt.8.html) to resolve these distinctions.

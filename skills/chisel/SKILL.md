@@ -21,8 +21,10 @@ chisel client --fingerprint "$fingerprint" "$server_url" "R:127.0.0.1:$forward_p
 
 The forward listens on the **server's** loopback and connects to the destination **from the client**. Choose a high local port even if the destination uses a privileged port. Explicit loopback avoids the all-interface default for ordinary port forwards. A destination of `127.0.0.1` means the client's loopback in this reverse example.
 
+This fixed TCP forward expects the application's own protocol. Run the consumer on the server side against `127.0.0.1:$forward_port`; do not configure that endpoint as a SOCKS proxy. The transport port, forwarded listener and destination port have distinct roles even when two numbers happen to match. If the application opens a separate outbound connection, the forward does not automatically carry it; inspect that connection's endpoint and route separately.
+
 For reverse SOCKS, replace the remote with `R:127.0.0.1:1080:socks` and permit that reverse listener in the auth map. Consumers connect to the server-side SOCKS port; their traffic exits from the client. Server `--socks5` is for the other, server-side SOCKS mode and is not required by reverse SOCKS.
 
 Diagnose transport connectivity/authentication, listener bind and destination reachability separately. Check actual listener addresses and a known application response. Keep TLS validation when using HTTPS in addition to the Chisel fingerprint. Stop the foreground client/server processes you started and verify both listeners close; reconnecting clients can otherwise restore tunnels.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Antique p. 8; Anubis p. 8; Appsanity p. 15. Source: [upstream remote syntax and authentication](https://github.com/jpillora/chisel#usage).
+See [upstream remote syntax and authentication](https://github.com/jpillora/chisel#usage).

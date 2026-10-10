@@ -21,9 +21,12 @@ Before filtering, compare a known path and a deliberately nonexistent path under
 | Observation | Interpretation and next check |
 |---|---|
 | Many `/content/WEB-INF/...` paths return identical 404 bodies | Likely generic handling. Verify the parent `/content/` separately; a missing child does not establish that its parent is absent. |
+| `/assets/` returns 403 while an observed CSS/JS child returns 200 | Directory listing may be disabled while individual files are served. Verify that known child under the same session; do not interpret the parent as wholly inaccessible or infer a traversal flaw. |
 | A parent redirects to a login page | An application route may exist; this does not establish access. Inspect the Location and scope before enabling `--redirects`. |
 | A selected path gives 500 | Preserve the specific response and compare a control path; the status alone proves neither content disclosure nor code execution. |
 | Timeout, 429 or repeated connection failures | Reduce load or stop and resolve transport/rate restrictions; a truncated scan has incomplete coverage. |
+
+Aiohttp, for example, returns 403 for static directories by default unless directory indexes are enabled; see its [static-file behavior](https://docs.aiohttp.org/en/stable/web_advanced.html#static-file-handling). A route prefix and a version banner do not establish the backing filesystem path or configuration. Check the deployed route/options before attributing a version-specific file-access vulnerability.
 
 For private CAs, use the installed version's `--server-certs` support. `--insecure` disables TLS verification; it does not repair DNS, SNI or a wrong virtual host. Record any deliberate use when interpreting results.
 

@@ -1,6 +1,6 @@
 ---
 name: snmpwalk
-description: Query bounded SNMP subtrees and individual OIDs with Net-SNMP. Use when default walk coverage, timeouts, numeric OIDs or BITS/hex output lead to incorrect conclusions.
+description: Query bounded SNMP subtrees and individual OIDs with Net-SNMP. Use when default walk coverage, timeouts, hardware inventory, numeric OIDs or BITS/hex output lead to incorrect conclusions.
 ---
 
 # Net-SNMP query interpretation
@@ -22,4 +22,24 @@ Timeout can mean filtering, credentials, version or reachability; it does not id
 
 Decode output according to its type. Net-SNMP's normal `BITS` rendering includes hex bytes **followed by set-bit numbers/names**. Concatenating all whitespace-separated tokens corrupts the value. Re-query the selected OID with `-Oqv` when appropriate; the reviewed BITS formatter then emits quoted hex without the bit annotations. Check the actual output before decoding. `-Ox` controls string rendering and does not universally override BITS formatting or MIB display hints. Not every octet value represents text.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Antique pp. 3–5. Sources: [snmpwalk](https://www.net-snmp.org/docs/man/snmpwalk.html), [snmpcmd](https://www.net-snmp.org/docs/man/snmpcmd.html), [BITS formatter](https://github.com/net-snmp/net-snmp/blob/master/snmplib/mib.c).
+## Match hardware inventory to its table row
+
+For a device inventory question, the ENTITY-MIB physical table is `.1.3.6.1.2.1.47.1.1.1`; its serial-number **column** is `.1.3.6.1.2.1.47.1.1.1.1.11`. A particular serial needs the row index after that column. Using the same known `agent`/`community`, retain numeric OIDs and types:
+
+~~~bash
+snmpwalk -v2c -c "$community" -t 2 -r 1 -On "$agent" .1.3.6.1.2.1.47.1.1.1.1.11
+~~~
+
+**Illustrative:** `.1.3.6.1.2.1.47.1.1.1.1.11.7 = STRING: "LAB-SERIAL-7"` identifies row 7, not necessarily the chassis. Define `index` as that observed integer, then query associated fields:
+
+~~~bash
+snmpget -v2c -c "$community" -t 2 -r 1 -On "$agent" \
+  ".1.3.6.1.2.1.47.1.1.1.1.2.$index" \
+  ".1.3.6.1.2.1.47.1.1.1.1.4.$index" \
+  ".1.3.6.1.2.1.47.1.1.1.1.5.$index" \
+  ".1.3.6.1.2.1.47.1.1.1.1.7.$index"
+~~~
+
+These are description, containing-entity index, physical class and name. Join columns by index, not output order; the first serial may belong to a module. A zero-length serial is permitted when unknown or inapplicable. Missing/denied inventory does not prove that the device lacks a serial. Preserve the exact value; stripping vendor prefixes or interpreting inventory as an application credential requires separate product evidence.
+
+References: [walk coverage](https://www.net-snmp.org/docs/man/snmpwalk.html), [Net-SNMP options](https://www.net-snmp.org/docs/man/snmpcmd.html), [ENTITY-MIB definitions](https://www.rfc-editor.org/rfc/rfc6933.html), [BITS formatter](https://github.com/net-snmp/net-snmp/blob/master/snmplib/mib.c).

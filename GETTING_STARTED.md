@@ -110,7 +110,7 @@ mkdir -p work/sources/strace
 
 Put practical walkthroughs, documentation, notes, command transcripts or agent failures there. A `links.txt` with one URL per line works when the agent can fetch them. Supply readable extracts for formats the agent cannot open. The [source guide](authoring/sources.md) lists useful starting points.
 
-For a batch of documents covering several tools, `ingest/` is also available as a local, Git-ignored inbox. Ask the agent to read all documents, compare them with existing skill coverage, and add only a useful task, interpretation, recovery branch or correction. Verify consequential semantics against upstream sources. An additional writeup need not create another skill or example. Originals stay local; extracted notes belong in `work/`. Record source-to-skill mappings and coverage decisions in the existing batch reports under `docs/`. The [first PDF batch](docs/ctf-writeups-ingestion.md) shows an intake record.
+For a batch of documents covering several tools, `ingest/` is also available as a local, Git-ignored inbox. Ask the agent to read all documents, compare them with existing skill coverage, and add only a useful task, interpretation, recovery branch or correction. Verify consequential semantics against upstream sources. An additional writeup need not create another skill or example. Apply the [first-read authoring rule](authoring/schema.md#make-the-first-read-sufficient-to-choose-and-load-the-task) to every skill created or enriched: whole-entrypoint reading, early required steps/helpers, conditional references and evidence-based completion. Review the first 150 lines for discoverability, then the complete selected workflow for hidden requirements. Originals stay local; extracted notes belong in `work/`. Record source-to-skill mappings and coverage decisions in the existing batch reports under `docs/`. The [first PDF batch](docs/ctf-writeups-ingestion.md) shows an intake record.
 
 Tell the agent the task, target environment if known, whether it may research further, and what it may execute. You can use the optional [intake template](authoring/intake.template.md) or put those facts directly in your request. No full man page or formal source packet is required.
 
@@ -129,6 +129,10 @@ Write concise working instructions in skills/strace/SKILL.md. Connect commands
 to meaningful output, interpretation and the next decision where an example
 helps. Label invented output as illustrative. Keep operational limits in the
 skill; save fuller source trails and test history in docs/ maintenance records.
+Put the activation contract near the top: read the whole SKILL.md before acting,
+identify required steps/helpers and completion evidence for the selected task.
+Link conditional references with their triggers; read them before their procedure.
+Review the first 150 lines for discoverability, then the whole selected workflow.
 Add skill-local references only for substantial conditional working detail.
 Review commands and interpretations, remove repetition, check independent
 packaging and update the README catalogue. Keep incomplete drafts in work/.

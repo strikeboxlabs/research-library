@@ -1,6 +1,6 @@
 ---
 name: jq
-description: Validate and extract JSON API fields or construct request bodies with jq. Use when missing fields, false values, escaping or added newlines can turn a plausible response into corrupted evidence.
+description: Validate JSON fields, construct request bodies and inspect configuration transformations with jq. Use when missing fields, false values, escaping or added newlines can turn a plausible response into corrupted evidence.
 ---
 
 # Preserve JSON types and extracted text
@@ -29,4 +29,18 @@ jq -n --rawfile content "$source_text" '{file: $content}' > "$request"
 
 This escapes embedded quotes, backslashes and newlines without search-and-replace chains. Use `--arg` for literal strings and `--argjson` for validated JSON values: `"true"` and `true` are different. Never interpolate external text into the jq program itself. Constructing a request file does not submit it; verify the intended fields and HTTP operation before use.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Backend pp. 2–4, 12–15; BackendTwo pp. 11–16; Bagel pp. 16, 21–22. Source: [jq manual](https://jqlang.org/manual/).
+## Inspect a configuration transformation before replacing input
+
+`.directories_to_archive |= map(gsub(...))` transforms that field while retaining other fields; it does not validate the whole task. Check its array/string types and every field the downstream program consumes, including destinations or optional operations.
+
+`gsub` replaces non-overlapping matches in the input once; it does not keep applying the rule to newly formed text. This harmless example distinguishes one pass from two:
+
+~~~bash
+jq -n '"aabb" | {once:gsub("ab"; ""), twice:(gsub("ab"; "") | gsub("ab"; ""))}'
+~~~
+
+The **illustrative** result is `{"once":"ab","twice":""}`. Removing substrings is not path canonicalization, and a string prefix cannot establish containment through `..` or symlinks.
+
+Write a transformed candidate to a separate fresh file and check jq's status before reviewing or consuming it. Redirecting output onto the input path truncates it before jq reads; separately saving a failed command's empty output can destroy it too. Do not treat `for path in $values` over `jq -r` output as one iteration per JSON string: shell splitting and globbing can change boundaries. Keep the list as JSON or use an explicit lossless framing contract.
+
+Use the [jq manual](https://jqlang.org/manual/) for update assignment, raw output and regex semantics.

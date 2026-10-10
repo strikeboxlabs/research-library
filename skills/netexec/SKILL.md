@@ -1,6 +1,6 @@
 ---
 name: netexec
-description: Validate known SMB credentials and interpret share checks with NetExec on selected lab hosts. Use to avoid unintended credential combinations and distinguish authentication, password status, privilege indicators and path permissions.
+description: Validate known SMB credentials, interpret share checks, read selected user metadata and inspect LDAP machine-account quota with NetExec on selected lab hosts. Use to avoid unintended credential combinations and distinguish authentication, password status, privilege indicators and path permissions.
 ---
 
 # NetExec credential checks
@@ -27,4 +27,27 @@ For selected share enumeration, inspect this version's `--shares` implementation
 
 Old NTDS records may contain stale credentials. A generic logon failure can also reflect domain selection, account restrictions or authentication policy. Keep the original failure and distinguish those causes before retrying. Switching to Kerberos is not an unlimited-attempt workaround: failed Kerberos authentication can count toward account lockout. Preserve the same account/request budget across protocols.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Administrator p. 8; APT pp. 8–9; Baby p. 5; BabyTwo pp. 2–6. Sources: [credential CLI](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/cli.py), [pairing and stop behaviour](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/connection.py), [SMB options](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/protocols/smb/proto_args.py), [share-check implementation](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/protocols/smb.py), [password statuses](https://github.com/fortra/impacket/blob/master/impacket/nt_errors.py), [account lockout and Kerberos retries](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/account-lockout-threshold).
+
+# Read selected user metadata
+
+If this release supports `smb --users USER`, define `requested_user` as one known account name in the target's account domain. Reuse the single known login pair above:
+
+~~~bash
+"$nxc_bin" smb "$target" -d "$domain" -u "$users_file" -p "$passwords_file" --no-bruteforce --users "$requested_user"
+~~~
+
+Current [SAMR handling](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/protocols/smb/samruser.py) resolves that name before querying its details; omitting the name enumerates users. Record the returned account domain: a member server's local SAM and a DC's AD domain are different contexts. A missing row or RPC error is not an empty description or proof the account does not exist.
+
+The description is administrator-supplied text; a password-like string there is an exposure finding, not evidence of a current valid credential. Preserve only the needed redacted evidence. `BadPW`/historical `badpwdcount` is not a remaining-attempt allowance. AD's [badPwdCount](https://learn.microsoft.com/en-us/windows/win32/adschema/a-badpwdcount) is maintained per DC without replication and can reset after successful authentication; zero does not establish a clean domain-wide history. Keep DC/time with the observation and use effective account policy separately when evaluating lockout risk.
+
+# Read the domain machine-account quota
+
+When the question concerns domain join policy, inspect `ldap --help` and this installation's `maq` module. Reuse the single known pair above, with `target` set to the selected domain controller:
+
+~~~bash
+"$nxc_bin" ldap "$target" -d "$domain" -u "$users_file" -p "$passwords_file" --no-bruteforce -M maq
+~~~
+
+The module reads `ms-DS-MachineAccountQuota`; it does not create a computer. An illustrative `MachineAccountQuota: 10` is a domain policy value, not ten accounts still available to this user. Existing quota usage, domain join rights and permissions on the intended container need separate evidence. Zero does not negate explicitly delegated computer-creation rights. An empty LDAP result or failed bind is unknown, not zero; preserve the error and domain/DC before deciding whether another query is warranted.
+
+A disabled `SeMachineAccountPrivilege` in one process token does not settle directory creation rights. Conversely, a positive quota does not establish permission to change another object's delegation settings or impersonate users. See the [module implementation](https://github.com/Pennyw0rth/NetExec/blob/main/nxc/modules/maq.py) and [domain join permission rules](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/active-directory-domain-join-permissions) for these separate conditions.

@@ -21,4 +21,14 @@ Compare interesting responses with the nonexistent-path baseline. A `200` may be
 
 Re-request promising paths with the same method/session and retain URL, status, redirect destination and relevant body evidence. A browser's authenticated response can differ from the scan. A parent path returning `403` may still contain readable child files; test relevant filenames or a selected subdirectory instead of assuming the entire tree is blocked. Discovery of an admin page does not establish access. An empty report is limited by the wordlist, extensions, authentication and filters used.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Academy pp. 4–5; Admirer pp. 4–5; Agile p. 3. Maintenance sources: [upstream usage](https://github.com/maurosoria/dirsearch/blob/master/docs/usage.md) and [option parser](https://github.com/maurosoria/dirsearch/blob/master/lib/parse/cmdline.py). Output-format switches differ across releases; check local help before requesting a particular format.
+## Use partial-name evidence to narrow discovery
+
+An IIS short alias such as the **illustrative** `TRANSF~1.ASP` constrains candidates without revealing the full filename or distinguishing `.asp` from `.aspx`. Select plausible stems from a local wordlist using that prefix and the observed framework; inspect the reduced list before scanning. For an ASP.NET hypothesis, define `candidates` as that small stem list and `candidate_report` as a fresh output path:
+
+~~~bash
+dirsearch -u "$url" -w "$candidates" -e aspx -f -t 1 --max-rate 2 -o "$candidate_report"
+~~~
+
+If candidates already contain complete filenames, omit extension forcing. Older dirsearch examples may expand entries differently; verify the installed help instead of assuming `-e` expands every bare stem. A redirect can reveal a canonical directory spelling, but the short alias alone cannot. Recheck promising full URLs and bodies before claiming the guessed filename exists.
+
+Output-format switches differ across releases; check local help before requesting a particular format. See [upstream usage](https://github.com/maurosoria/dirsearch/blob/master/docs/usage.md) and the [option parser](https://github.com/maurosoria/dirsearch/blob/master/lib/parse/cmdline.py) for expansion and version differences.

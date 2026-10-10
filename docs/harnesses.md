@@ -20,6 +20,28 @@ Pi also has native skill locations, normally `~/.pi/agent/skills/` and `.pi/skil
 
 For each installation, inspect an existing destination and avoid overwriting local changes. Keep the source revision in the deployment record. For symlinks, confirm the target checkout and reload/start a fresh agent session after updates. For copies, review and replace the complete owned copy; blindly overlaying directories can leave removed references behind. The getting-started guide also covers replacing the earlier `linux-cli` installation with `gdb`.
 
+## Skill loading and the first read
+
+Our authoring rule is to put the activation contract and any task map near the top. A worker must read the whole `SKILL.md` before acting, then read the references required by the selected workflow. Required steps/helpers and conditional branches should be distinguishable from the opening. Completion means the requested result is evidenced, with missing prerequisites or unperformed steps reported honestly. This improves navigation and makes omissions easier to detect; Markdown checklists do not enforce execution.
+
+This rule adopts the practical pattern in the Jason Haddix post and screenshot supplied by the user on 2026-10-10: an early mandatory contract, an explicit list of required work, and separate references loaded only when their conditions arise. The original X post was not independently retrieved. Its reported 150-line reading pattern is treated as an operational observation worth designing for, rather than a verified hard limit across products.
+
+Official documentation and upstream code reviewed on 2026-10-10 distinguish three things: discovery metadata, loading the body, and the model actually following it:
+
+| Harness | What the reviewed source establishes |
+|---|---|
+| Codex | Names/descriptions appear first; full SKILL.md instructions load when the skill is selected. The listing itself has a context budget and can shorten descriptions or omit entries. [Official skills documentation](https://learn.chatgpt.com/docs/build-skills). |
+| Claude Code | Normal discovery exposes descriptions; invocation loads the skill. Supporting files are loaded as needed. Its guidance recommends keeping SKILL.md below 500 lines; it does not establish the claimed 150-line invocation cutoff. [Official skills documentation](https://code.claude.com/docs/en/skills). |
+| Pi | Discovery exposes metadata. Current upstream `/skill:name` expansion reads the entire file and inserts the body. Ordinary `read` calls accept a chosen line limit; default truncation is 2,000 lines or 50 KiB, whichever comes first. [Skills documentation](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md), [explicit expansion](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/src/core/agent-session.ts), [reader](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/src/core/tools/read.ts), [default limits](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/src/core/tools/truncate.ts). |
+
+These are documentation/source findings, not an evaluation of the installed Linux workers. The local Codex installation exposed executables, not loader source; Pi and Claude Code were not on the inspected PATH. Upstream `main` can change. Model-selected partial reads, wrappers, context budgets and missed instructions can still make an early contract useful even when the full body is available.
+
+The [schema](../authoring/schema.md) makes the **first 150 lines a review boundary**: every workflow and required resource must be discoverable from the opening, preferably long before that boundary. It is neither a required length nor a reason to read every reference. Avoid generic obligations such as running a version check for every trivial invocation unless the task needs it. A required helper should have its exact skill-relative path and purpose stated early; if unavailable, report the specific gap rather than silently replacing the workflow.
+
+The completion pattern scales with the task. A multi-stage assessment can need a persisted checklist and artifacts. A CLI inspection may need only a command result and a supported conclusion. Mark not-applicable branches with a reason and missing required evidence as blocked or incomplete; never invent artifacts or execute unrelated steps merely to clear boxes.
+
+Verify reading behavior with both explicit invocation and automatic selection on the actual worker: observe what was loaded, required helper use, the handling of a missing reference, and whether conditional references stay unopened when irrelevant. The [evaluation guide](../evaluation/README.md) describes the comparison. Do not claim reliability gains from a line count or passing Markdown checks.
+
 ## Repository companion files
 
 `AGENTS.md` contains instructions for agents editing this repository. It is not a global operating policy for systems that install the skill.

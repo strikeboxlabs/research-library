@@ -1,6 +1,6 @@
 ---
 name: bloodhound-python
-description: Collect scoped AD directory evidence with BloodHound.py from Linux. Use when selecting CE versus legacy collectors, diagnosing Kerberos/DNS failures or assessing incomplete graph imports.
+description: Collect scoped AD directory evidence with BloodHound.py from Linux. Use when selecting CE versus legacy collectors, diagnosing Kerberos/DNS failures or distinguishing collected rights from current access.
 ---
 
 # BloodHound.py collection
@@ -25,4 +25,16 @@ An alternative DNS server is not a replacement for every operating-system hostna
 
 Retain collection methods, errors and object counts with the archive. Verify import completion and expected objects in the receiving server. A ZIP file proves neither a successful import nor complete collection; failed methods can explain missing edges. A graph edge records a modeled relationship at collection time, not a completed remote action.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Administrator pp. 3–4. Sources: [generation and collection guidance](https://github.com/dirkjanm/BloodHound.py), [CE CLI](https://github.com/dirkjanm/BloodHound.py/blob/bloodhound-ce/bloodhound/__init__.py), [legacy CLI](https://github.com/dirkjanm/BloodHound.py/blob/master/bloodhound/__init__.py).
+## Turn a graph path into specific evidence questions
+
+Keep each edge's source principal, destination object and collection time. A user marked owned is an operator annotation; it does not verify a credential or session. Evaluate different edge types separately:
+
+| Edge or observation | What to verify next |
+|---|---|
+| `WriteOwner` over a group | Current owner and applicable DACL. Changing ownership, changing the DACL and changing membership are separate operations; the edge does not mean the user is already a member. |
+| `WriteDacl`, `GenericWrite` or `GenericAll` | The exact destination and requested operation. Inspect applicable ACEs, property/extended-right GUIDs, group context and restrictions; a broad graph label is not a completed attribute write. |
+| `CanPSRemote` to a computer | Current account context, reachable WinRM endpoint and session-configuration permissions. This is a graph relationship, not an AD user attribute or proof of an established remote session. |
+
+Ownership normally brings implicit DACL control, but `OWNER RIGHTS` ACEs and server/object-specific restrictions can change that conclusion. Resolve uncertain ownership paths against Microsoft's [owner-rights conditions](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/fb7c101d-ec8b-4fbf-bca8-7d7c2d747d0c) and [SID definitions](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers). A historical graph cannot settle the current object's state.
+
+Use [collector generation and method guidance](https://github.com/dirkjanm/BloodHound.py), [CE CLI](https://github.com/dirkjanm/BloodHound.py/blob/bloodhound-ce/bloodhound/__init__.py), [legacy CLI](https://github.com/dirkjanm/BloodHound.py/blob/master/bloodhound/__init__.py) and the [CanPSRemote definition](https://bloodhound.specterops.io/resources/edges/can-ps-remote) when resolving format or edge differences.

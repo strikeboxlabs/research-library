@@ -22,6 +22,11 @@ For a focused investigation, `-r directory` watches recursively and `-d director
 
 Correlate timestamps, UID, PID and command with the suspected job. Seeing UID 0 execute a script does not establish that you can modify the script or its dependencies. Check the actual file/configuration separately. No observed event during one window does not establish that no scheduled job exists. Finish with the observation interval and visibility limitations.
 
+A command-line password can disappear before a scan because some MySQL clients overwrite it during initialization. A masked argument or missed event does not prove it was never exposed. Conversely, a captured value establishes argument exposure in that process, not successful database authentication or reuse as an operating-system password. Preserve a private original only when required; redact the value in the finding while retaining the executable, option, UID and timestamp. A shorter polling interval still cannot guarantee capture; see the client's [documented startup exposure window](https://dev.mysql.com/doc/refman/8.4/en/password-security-user.html).
+
 For a task that already permits an application action, capture a baseline, perform one identifiable action and compare the subsequent process sequence. Background maintenance can appear at the same time; temporal proximity alone is not causation. Preserve the exact absolute path and interpreter. `/bin/sh /absolute/script` selects that file directly, so a writable entry in the observer's PATH does not explain its execution. Check both file-content permissions and directory replacement rights before describing a writable-script finding.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Alert p. 13; Bamboo pp. 9–12. Source: [upstream operation, flags and builds](https://github.com/DominicBreuker/pspy).
+
+If observation appears stuck, inspect the existing process and log before restarting. In a terminal with job control, Ctrl-Z normally suspends the foreground job; it does not terminate a hung collector. Use `jobs -l` to identify a job suspended from the current shell and resume or stop that specific instance through normal job control. Do not accumulate suspended collectors. `--debug` exposes diagnostics; it is not a documented crash repair or guarantee of complete event coverage.
+
+See [upstream flags and operation](https://github.com/DominicBreuker/pspy) and [Bash job control](https://man7.org/linux/man-pages/man1/bash.1.html).

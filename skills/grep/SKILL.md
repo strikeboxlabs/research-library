@@ -22,4 +22,17 @@ BackendTwo's word-list filters require several letters and exclude others. That 
 
 Binary input can produce a generic match message; `-I` can hide it entirely. Do not reflexively use `-a` on arbitrary bytes and print control characters to a terminal. Decode the actual container first, or retain binary evidence for an appropriate reader. Locale affects classes and case handling; the example's `LC_ALL=C` deliberately uses byte-oriented matching, not language-aware case folding.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Baby pp. 3–5; BackendTwo pp. 17–19. Source: [GNU grep manual](https://www.gnu.org/software/grep/manual/grep.html).
+## Search captured text, not a filename containing that text
+
+In `grep -F -- "$needle" "$text"`, the last argument names a file. Quoting it prevents shell splitting but does not turn it into input content. A health check that passes captured HTML there can return an error and trigger recovery even when the desired text is present.
+
+If `text` already holds the intended text and `needle` is the literal marker:
+
+~~~bash
+printf '%s\n' "$text" | LC_ALL=C grep -nF -- "$needle"
+status=$?
+~~~
+
+Branch on 0 (selected text), 1 (no selected text), or 2 (grep error); do not combine both nonzero cases into an application-failure diagnosis. Check the producing command's status separately: finding a marker in partial/error output does not make that producer successful. Shell command substitution also discards trailing newlines and cannot preserve NUL bytes; retain a file when exact input matters.
+
+See the [GNU grep input rules](https://www.gnu.org/software/grep/doc/html_node/grep-Programs.html) and [exit-status/pipeline guidance](https://www.gnu.org/software/grep/manual/html_node/Usage.html).

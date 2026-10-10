@@ -26,4 +26,15 @@ Parse it as CSV, not by splitting on commas or newlines. The default pipe-separa
 
 With WAL-mode databases, committed rows may still reside in `database-wal`. Preserve a consistent database/WAL set and any captured `-shm`; do not discard sidecars to clear an error. Modern SQLite can read WAL databases under documented sidecar/directory conditions, but read-only database access can still require sidecar handling. Use working copies. For a live acquisition, use SQLite's backup API or an application-coordinated snapshot instead of independently copying changing files. `immutable=1` is a promise that files cannot change, not a universal lock-error workaround.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Artificial pp. 6, 8. Sources: [SQLite CLI](https://sqlite.org/cli.html), [WAL behavior](https://sqlite.org/wal.html), [backup API](https://sqlite.org/backup.html).
+
+## Keep an encoded field attached to its record
+
+Before exporting a suspected encrypted value, inspect its storage type and retain the account/domain plus a stable row identifier. For the **illustrative schema** `LDAP(Id, Uname, Domain, Pwd)`, after confirming those columns exist:
+
+~~~bash
+sqlite3 -init /dev/null -readonly -batch -bail -header -column "$database" 'SELECT Id, Uname, Domain, typeof(Pwd) AS storage_type, length(CAST(Pwd AS BLOB)) AS stored_bytes FROM LDAP ORDER BY Id LIMIT 20;'
+~~~
+
+These are stored bytes, not decoded ciphertext length. `NULL`, empty text and a BLOB are different states; none identifies a cipher. Export the required field for the selected identifier using the reviewed CSV query above, then trace the consuming application's decoding/decryption path. Unreadable decoded bytes are insufficient evidence of encryption.
+
+An application doing `SELECT *` followed by a single reader `Read()` consumes one row, not every account. Without `ORDER BY`, SQLite does not guarantee which row appears first. If multiple rows exist, preserve that ambiguity instead of silently treating your sorted first row as the application's selected identity; an empty result needs separate handling too.

@@ -16,6 +16,14 @@ Record whether the worker reached a correct, supported conclusion, recovered fro
 
 Test both explicit invocation and an ordinary symptom request. Check each actual Linux harness before claiming support for Pi, Claude Code and Codex. When assessing optional shell settings, compare profile-only separately from profile-plus-skill.
 
+## Check whether the reading contract works
+
+For a changed branching skill, try explicit invocation and ordinary symptom-based selection separately. In permitted fixtures, cover a task needing its conditional reference/helper, one that does not, and an unavailable required resource or prerequisite. Do not modify a production installation to manufacture the failure; use a disposable skill copy.
+
+Inspect the actual message/tool trace: was the full entrypoint available/read before action, was the applicable reference read, was a required helper used, and did the worker stop or narrow its conclusion when necessary? Was completion supported by the requested evidence? Count unnecessary reference reads and context cost as well as omissions. Full text being injected into context and the model following it are different observations. A first-150-lines author review is not an agent evaluation.
+
+Record harness/model versions, invocation route and any wrappers or explicit read limits. Compare against the same task without the new contract; do not claim improvement without running that comparison.
+
 ## GDB examples, not yet executed
 
 - A native assertion failure with a known cause, matching debug executable, source and existing core: establish the artifact match, inspect relevant state and explain what the evidence supports.

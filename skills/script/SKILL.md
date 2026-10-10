@@ -13,6 +13,8 @@ For an interactive Bash under a local PTY without a transcript:
 script -q -e -c /bin/bash /dev/null
 ~~~
 
+The token after `-c` is the command; the final positional path is the transcript. Reversing `/bin/bash` and `/dev/null` attempts to execute the null device and can create an unintended log file.
+
 This starts a child shell; leave it with `exit` before closing the outer session. Confirm that `/bin/bash` is the intended installed shell. Do not infer that an existing basic network shell now has every property of an SSH terminal.
 
 For a terminal-dependent program, define `transcript` as a fresh private output file and use a deliberately constructed fixed command after `-c`. For example, to record a shell session:
@@ -28,4 +30,4 @@ The transcript contains terminal output and echoed input, including escape seque
 
 Piped stdin can leave a child waiting after EOF; prefer direct noninteractive execution when a PTY is unnecessary. Record whether the child exited normally, timed out or was interrupted, and retain the raw transcript separately from any cleaned presentation.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Altered p. 18. Source: [util-linux script manual](https://github.com/util-linux/util-linux/blob/master/term-utils/script.1.adoc).
+Consult the [util-linux script manual](https://github.com/util-linux/util-linux/blob/master/term-utils/script.1.adoc) for version-specific command and logging options.

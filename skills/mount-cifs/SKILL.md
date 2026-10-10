@@ -1,6 +1,6 @@
 ---
 name: mount-cifs
-description: Mount an SMB share for read-only Linux file inspection with mount.cifs. Use when choosing a kernel mount, handling credentials and dialect failures, or distinguishing local ownership from server permissions.
+description: Mount an SMB share for read-only Linux file inspection with mount.cifs. Use when choosing a kernel mount, handling credentials, remote timestamps and dialect failures, or distinguishing local ownership from server permissions.
 ---
 
 # Mount a selected SMB share
@@ -23,4 +23,18 @@ For interactive authentication, use `username=` and optional `domain=` instead o
 
 Finish local readers and run `sudo umount "$mountpoint"`. A busy mount needs investigation of open files/current directories; lazy unmount is not proof that all users have released it. Confirm the mount is absent before removing a temporary credentials file.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Arkham p. 4. Sources: [cifs-utils mount.cifs manual](https://man7.org/linux/man-pages/man8/mount.cifs.8.html), [util-linux mount manual](https://github.com/util-linux/util-linux/blob/master/sys-utils/mount.8.adoc).
+
+## Read remote modification time without confusing it with download time
+
+After verifying the mount above, define `remote_file` as an observed regular file beneath that mountpoint. With GNU coreutils:
+
+~~~bash
+date -u -r "$remote_file" '+%Y-%m-%dT%H:%M:%SZ'
+date -r "$remote_file" '+%s'
+~~~
+
+`-r` reads last modification time, not creation time or the current clock. A downloader may preserve or replace timestamps; inspecting the acquired local copy alone does not settle the remote value. Record the share/path and acquisition time with the observation. Attribute caching and concurrent server changes mean a mount is not an immutable snapshot.
+
+If source code seeds a generator before writing the output, output mtime supplies a candidate time, not proof of the exact seed: execution delay, timestamp precision and subsequent writes can differ. `serverino` selects server-provided file identifiers; it neither repairs timestamps nor asks the server to generate new unique identifiers. `sec=ntlmsspi` forces signing in addition to NTLMSSP authentication; it does not request SMB encryption. `vers=3.0` pins an SMB dialect, not a timestamp-preservation mode.
+
+Resolve metadata and option differences with the [cifs-utils manual source](https://github.com/piastry/cifs-utils/blob/master/mount.cifs.rst) and [GNU date implementation/help](https://github.com/coreutils/coreutils/blob/master/src/date.c).

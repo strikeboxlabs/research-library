@@ -27,8 +27,12 @@ The selection uses the archive name, not the destination pathname. Selecting a d
 
 `--keep-old-files` returns an error on collisions; do not call that a complete extraction or rerun with overwrite enabled reflexively. `--no-same-permissions` applies the current umask; it does not remove every executable bit. Inspect paths, symlink/hardlink targets and file types before using the output. Avoid `--absolute-names`, extracting into an application tree or running scripts from the backup merely to understand them.
 
+During creation, a warning about removing a leading prefix describes stored member names. It does not mean tar refused to read that source directory or confined source traversal to an allowed root. Confirm the actual source arguments separately from the archive listing; do not enable `--absolute-names` to silence the warning.
+
+Files extracted as an ordinary user normally belong to that user. A restored directory named `root/` with your ownership neither proves the original files were owned by you nor grants a root shell. Use the verbose archive listing for stored owner metadata and keep it separate from extraction permissions and current process identity.
+
 A SQLite database inside a backup may have same-basename `-wal` and `-shm` files. Retain that coherent captured set instead of selecting only the main database and claiming it contains the latest committed data. Archive extraction does not establish that the backup was taken consistently while its application was writing.
 
 Record the archive identity, selected names, extraction status and resulting files. Missing members, permission errors and a corrupt archive require different next steps.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Artificial pp. 8, 11; Awkward pp. 17–18. Sources: [GNU extraction](https://www.gnu.org/software/tar/manual/html_section/extract.html), [option semantics](https://www.gnu.org/software/tar/manual/html_node/Option-Summary.html), [SQLite WAL files](https://sqlite.org/wal.html).
+See the [GNU tar manual](https://www.gnu.org/software/tar/manual/tar.html) for member-name handling, ownership defaults and extraction options.

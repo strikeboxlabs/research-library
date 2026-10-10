@@ -21,4 +21,6 @@ Embedded library names, C++ namespace text or managed-runtime markers are leads,
 
 No match can mean the wrong encoding/minimum length, compression, encryption, runtime construction or an incomplete artifact. Lower the minimum or choose another encoding based on evidence; do not conclude the application lacks a capability solely from absent strings. Preserve the original file/hash and record the exact extraction options. Running `strings` does not require executing the artifact.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Appsanity p. 22, adapted from a Windows strings workflow. Source: [GNU binutils strings manual](https://sourceware.org/binutils/docs/binutils/strings.html).
+For a database or cache, text extraction does not preserve logical records. `sort -u` destroys original order and repetition, and `head` limits the view; neither identifies the account associated with a password-like string. Even adjacent file offsets can belong to stale/deleted pages or unrelated records. Use a format-aware reader on a consistent working copy to recover the DN/row and named attribute before assigning ownership or choosing a password-hash mode. An SSSD cache is an LDB database; a structured `ldbsearch` query can retain that association, whereas `strings` is only a lead.
+
+Resolve encoding/offset options with the [GNU binutils strings manual](https://sourceware.org/binutils/docs/binutils/strings.html).
