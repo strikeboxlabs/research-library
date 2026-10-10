@@ -7,6 +7,8 @@ description: Capture HTTP evidence and test API, stored-template and other appli
 
 Read this entire skill before acting; complete current context need not be re-read. Preserve the intended URL/route, capture status and body from the same request, and distinguish transport completion from application success. Read the applicable reference fully before its procedure; leave unrelated branches unloaded.
 
+- URL-checking forms whose value reaches a curl command line, multiple URLs or protocol filters: [URL-checker boundaries](references/url-checker.md).
+- Backdrop packaging-version files and query-routed CMS paths: [Backdrop evidence](references/backdrop-evidence.md).
 - Joomla manifest/version evidence and CVE-2023-23752 configuration access: [Joomla webservices](references/joomla-webservices.md).
 - Grafana CVE-2021-43798 applicability, literal plugin paths and selected SQLite acquisition: [Grafana file reads](references/grafana-file-read.md).
 - Company-domain ticket reply addresses used for registration/verification: [helpdesk email trust](references/ticket-email-trust.md).

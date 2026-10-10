@@ -9,6 +9,7 @@ Read this entire SKILL.md before acting. Choose the requested task and complete 
 
 - Acquiring a selected upstream source: [source checkout](references/source-checkout.md). Read this reference fully before its procedure.
 - Removed/replaced files, patch search or ambiguous diff endpoints: [historical content](references/history-recovery.md). Read it fully before selecting/extracting a revision.
+- Exposed application settings or a redundant restore after acquisition: [configuration evidence](references/exposed-settings.md). Read it fully before recovery.
 - Stored URLs: [remote configuration](#inspect-an-acquired-remote-configuration).
 - Hook behavior: [local hook diagnosis](#diagnose-a-missing-or-unexpected-local-hook).
 - Patch validation: [scoped patch checks](#prepare-and-check-a-scoped-patch).

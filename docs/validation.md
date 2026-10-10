@@ -548,3 +548,44 @@ Sixteen owned inert Windows Python 3.12.14 / curl 8.21.0 Schannel / GNU diffutil
 Devzat final maintenance-record check: 452 Markdown files, 857 local links, 260 packages and 723 Bash blocks passed syntax only after saving records. Runtime/source hashes and whitespace passed. Queue after acceptance: 68 completed, one deferred, 45 pending, zero in_progress. Next source: Doctor.pdf, unopened. Completed at 2026-10-10T21:16:37.469182+02:00.
 
 Devzat final semantic clarification: the documented scoped JWT test accepts a selected username/configuration hypothesis, labels it and uses actual diagnostics to guide revision; prior proof of a vulnerable live account/configuration is not an authoring acceptance gate. Two focused validators and repository structural/link checks passed; all affected Bash blocks were byte-identical to the final 723-block syntax pass.
+
+
+## Doctor continuation, 2026-10-10
+
+Schema v0.8: one new splunkwhisperer2, three enriched curl/grep/groups, nine unchanged reviewed bash/git/id/nano/nc/nmap/ps/python3/su; 13 actual reviews and 261 packages. Full 11-page text/screenshot coverage with pypdf trailer-recovery diagnostics and clean Poppler rendering; source SHA/size checked before read and acceptance. Detailed mapping/corrections and primary sources are in [the intake report](ctf-writeups-overnight-2026-10-10.md#doctorpdf--continuation-2026-10-10).
+
+13 focused basic validators with existing shim, first150/whole affected contexts, exact alphabetical catalogue and whitespace passed. Initial checker rejected legitimate Jinja delimiters; corrected scaffold heuristic and added four regression tests, retaining named/descriptive/unclosed placeholder rejection. 19 unit tests passed, including independently copied skill-package checks. Repository: 456 Markdown, 861 local links, 261 skills, 731 Bash blocks syntax only. Source/runtime/checker/test hashes recorded.
+
+Eight owned inert Windows Python3.12.14/curl8.21.0 Schannel/GNU grep3.0 fixtures passed: form bytes/session, separate read, stored state after HTTP500, expired session, recursive disjoint alternatives, no-match and missing-file error. Mock does not evaluate templates or authenticate to a target. Server/temp files cleaned. Restricted MSYS invocation initially failed; authorized fixture succeeded without system changes. Jinja2 unavailable; no install, actual template/Splunk/shell/callback/PTY/Linux/worker execution or evaluation. No targets, originals, Defender/settings, commits or push affected.
+
+Doctor final record links: 456 Markdown / 881 local links; all syntax blocks unchanged from the 731-pass run. Queue 69 completed / 1 deferred / 44 pending / 0 in_progress; next Dog.pdf, unopened. Completed 2026-10-10T21:37:45.769949+02:00.
+
+
+## Dog continuation, 2026-10-10
+
+All nine physical pages, 9,986 extracted characters and nine individually inspected 1900-pixel renders reviewed with empty captured pypdf warnings and clean Poppler result. Fixed 790,115-byte source SHA-256 matched before reading and acceptance. [The intake report](ctf-writeups-overnight-2026-10-10.md#dogpdf--continuation-2026-10-10) maps actual tools/tasks, screenshots, primary semantics, attribution, author adaptations and deferred environment details.
+
+Schema v0.8: new bee/sshpass/virtualenv; enriched chmod/cp/curl/ffuf/git/php/sudo/tar; unchanged reviewed bash/git-dumper/id/nc/nmap/pip/python3/ssh/stty/whoami. Twenty-one actual package reviews, 264 packages. Six new conditional task references preserve operational procedures and deeper reasoning; earlier branches/methodologies intact. No wholesale migration/guessed paths/empty environment files.
+
+21 basic validators with existing shim, first150 discovery/whole affected contexts, exact unique alphabetical catalogue and 19 existing tests passed, including package independence. Three touched validators refreshed after final refinements. Broad pass covered 748 Bash blocks, followed by one added block parsed separately; reconstructed prior hashes verify the two prose/link-only changes and exact one-block addition. All749 current blocks covered, syntax only; no command execution. Final structural/link/whitespace/source/runtime checks passed.
+
+Eleven owned inert Windows Python3.12.14/GNU tar1.35/Git2.55.0.windows.5/curl8.21.0 Schannel cases passed: gzip layout/bytes, existing-output precondition only, invalid archive, index blob/default restore/absent path, metadata/q route controls and literal encoding. No mock command execution/authentication. Initial MSYS path/gzip-PATH failure and subsequent CRLF fixture expectation corrected in owned inputs/process-local environment; all cases rerun successfully. Server/temp cleanup verified; no Git commit. Primary executable sources read only in memory; direct fetch/console-encoding limitations and primary fallbacks recorded.
+
+No Linux fixture/worker evaluation, actual Bee/PHP/sshpass/virtualenv/ffuf/git-dumper/target authentication/upload/callback/PTY/sudo/setuid/mode test. No attack/install/system/power/Defender change, original deletion/move, commit/push or invented image paths. Documentation-reviewed guidance accepted with these honest limits.
+
+Dog final record links: 465 Markdown / 923 local links; 264 packages, 749 blocks covered by the completed syntax-only passes. Queue after acceptance: 70 completed / 1 deferred / 43 pending / 0 in_progress; next Down.pdf, unopened. Completed 2026-10-10T21:58:38.194897+02:00.
+
+
+## Down continuation, 2026-10-10
+
+All eight physical pages/7,734 characters and eight individually inspected 1900-pixel renders reviewed; fixed 1,531,592-byte SHA-256 matched before extraction and acceptance. Captured pypdf warnings list empty but stderr warned about wrong object offsets10/20; all-page visual coverage retained. Poppler zero/empty stderr. [Intake record](ctf-writeups-overnight-2026-10-10.md#downpdf--continuation-2026-10-10) maps actual tasks, primary semantics, author inferences, attribution and limits.
+
+Schema v0.8: new pswm; enriched curl/nc/php/sudo; unchanged reviewed bash/grep/hostname/id/ncat/nmap/python3/ssh/sshpass/stty/su. Sixteen actual reviews; 265 packages. Three new conditional references preserve actual form/file-read, original-versus-coerced arguments and bounded offline recovery procedures; existing workflows intact. Native pswm retrieval is a primary-source adaptation, not a claimed PDF invocation. No wholesale migration or guessed image paths.
+
+16 focused basic validators with existing shim, first150 discoverability/whole affected contexts, exact unique alphabetical catalogue and 19 existing tests passed, including independent package checks. Broad pass: 469 Markdown/927 local links/756 Bash blocks parsed only. Python recovery example syntax compiled, not executed; cryptocode absent. Whitespace/source/runtime hashes passed. No checker/test change.
+
+14 inert Windows checks passed: nine actual curl8.21.0 transfer/encoding/protocol/status cases, four public scrypt/AES-GCM/envelope cases using installed cryptography50.0.2 and Python3.12.14, one original-marker integrity check. Same-format crypto fixture is not pswm/cryptocode runtime validation or a replacement cipher. Loopback mock receives literal fields without backend commands/authentication. No fixture failure; server/temp cleanup verified. Executable sources read only in memory; raw source not saved/imported/executed.
+
+No Linux fixture/worker evaluation, pswm/cryptocode/PHP/nc runtime, target scan/login, callback/PTY/sudo/root execution. No attack/install/system/power/Defender change, original move/delete, commit/push. Full normal curl sink and target exact builds are unresolved environment details, explicitly distinguished from verified current upstream semantics. Documentation-reviewed tasks accepted with these limits.
+
+Down final record links: 469 Markdown / 949 local links; 265 packages, all756 Bash blocks covered by the completed syntax-only pass. Queue after acceptance: 71 completed / 1 deferred / 42 pending / 0 in_progress; next Download.pdf, unopened. Completed 2026-10-10T22:26:27.758455+02:00.

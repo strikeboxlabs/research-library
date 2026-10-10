@@ -24,6 +24,16 @@ For a finite request on a verified OpenBSD-style implementation supporting `-N`,
 
 Check final status and the received protocol's framing/completeness; timeout output can be partial. A silent interactive connection can be waiting for a request, not proving the service absent.
 
+## Check one selected TCP port without sending application data
+
+On a verified traditional/OpenBSD-style implementation supporting these flags:
+
+~~~bash
+nc -n -v -z -w 5 "$host" "$port"
+~~~
+
+Use a numeric host and one selected positive TCP port. A successful TCP connection tests that endpoint at this vantage/time, not the service's authentication or future reachability. Retain status/stderr; a timeout differs from an explicit refusal. -z selects zero-I/O scanning, not a security boundary for additional options. Do not combine it with an executable-attachment option merely to reproduce a reachability check.
+
 ## Listen on an explicit interface
 
 Define `bind_ip` as the authorized reachable address and `port` as an available permitted port. Select **one** command matching the installed implementation, in a tracked foreground session:

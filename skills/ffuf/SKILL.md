@@ -5,7 +5,7 @@ description: Compare HTTP paths or virtual hosts with ffuf using measured baseli
 
 # ffuf response comparison
 
-Read this entire SKILL.md before acting; reuse complete current context. Select a bounded candidate set and controls before filtering. Finish with confirmed response differences and completed versus interrupted coverage; a result list alone does not establish route validity.
+Read this entire SKILL.md before acting; reuse complete current context. Select a bounded candidate set and controls before filtering. For username candidates derived from CMS profile aliases, read [account alias comparisons](references/account-aliases.md) fully before that procedure. Finish with confirmed response differences and completed versus interrupted coverage; a result list alone does not establish route validity.
 
 Check `ffuf -V` and `ffuf -h`; inspect any automatically loaded ffufrc for inherited headers, proxies or filters. Define `base_url` as the scoped scheme/authority without a trailing slash, `wordlist` as a small file of path candidates, and `results` as a fresh JSON output path. Start without filters:
 

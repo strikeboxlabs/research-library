@@ -1,9 +1,11 @@
 ---
 name: cp
-description: Copy a selected Linux directory with deliberate path and metadata handling, and diagnose why copied sensitive files have different permissions or ownership.
+description: Copy selected Linux files or directories with deliberate path and metadata handling, and diagnose why copied sensitive files have different permissions or ownership.
 ---
 
 # Copy paths and preserve the intended metadata
+
+Read this entire SKILL.md before acting. Select the exact source/destination and intended ownership/mode treatment; finish with verified bytes, resulting metadata and any partial-copy limits.
 
 This guidance targets GNU `cp`; check `cp --version`. Use it for a bounded, reviewed directory copy. A live application's files may change during traversal; cp alone does not produce a consistent database or application snapshot.
 
@@ -19,6 +21,8 @@ Define `source` as the selected real directory without a trailing slash and `des
 The copy runs only if the destination directory was newly created. It creates `dest/basename(source)/`, including dotfiles. An existing destination is a reason to inspect the intended layout, not to remove it automatically. Copying `"$source"/.` instead places the contents directly in the destination, but archive mode can then replace that destination directory's metadata too. Keep the separate private outer directory when access containment matters.
 
 `-a` copies recursively, retains symlinks as links and requests metadata preservation. The private outer directory limits access while preserving source modes inside it; umask alone does not override preserved modes. Review symlinks and special files before treating the result as ordinary data.
+
+For a single selected regular file and a fresh `copied_file`, `cp -- "$original_file" "$copied_file"` performs an ordinary copy after both paths are defined/checked. A new file normally belongs to the copying effective user; its source owner is not retained without preservation. For a privileged executable copy, inspect the new owner, special mode bits and bytes separately. Adding a setuid bit later does not change that owner or establish runtime elevation; do not overwrite an existing experiment artifact during retry.
 
 For a selected regular file, define `original_file` and `copied_file` as the corresponding paths:
 

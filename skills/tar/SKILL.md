@@ -1,11 +1,11 @@
 ---
 name: tar
-description: Inspect GNU tar backups and extract selected members into a new directory. Use when member names, compression, ownership or SQLite sidecar files make a quick extraction misleading.
+description: Create GNU tar gzip packages with verified member layout, inspect backups and extract selected members into a new directory. Use when member names, compression, ownership or SQLite sidecar files make a quick extraction misleading.
 ---
 
 # Inspect before restoring files
 
-Read this entire SKILL.md before acting; reuse complete current context. List the archive and select exact members before extraction into a fresh directory. If expected mounted content is absent, read [backup boundaries](references/backup-boundaries.md). Finish with selected members, final status and whether coverage is complete or partial.
+Read this entire SKILL.md before acting; reuse complete current context. For creation or a ZIP-unavailable installer, read [package creation](references/package-creation.md) fully first. For extraction, list the archive and select exact members before using a fresh directory. If expected mounted content is absent, read [backup boundaries](references/backup-boundaries.md). Finish with selected members, final status and whether coverage is complete or partial.
 
 Define `archive` as an existing absolute local path. Inspect actual member names and types before choosing an extraction:
 

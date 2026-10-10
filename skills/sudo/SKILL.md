@@ -18,7 +18,11 @@ Listing may require authentication. For unattended inspection, `sudo -n -l` fail
 
 An additional PAM prompt can be a separate authentication requirement, not another request for the account password. Inspect readable `/etc/pam.d/sudo` and its included stacks when diagnosing it. A failed `required` module can still allow later prompts before the stack rejects authentication. Keep authentication failure distinct from sudo policy denial; an interrupted challenge does not establish the effective policy. Diagnose the configured requirement without editing PAM to bypass it.
 
+Membership in a group named sudo is a policy lead, not the effective grant. An observed `(ALL : ALL) ALL` entry permits arbitrary matching commands as the selected RunAs identity under that policy, including a selected root shell; it still does not mean NOPASSWD. Choose the actual target explicitly when reproducing it and verify identity inside the resulting session. `sudo su` additionally uses su's environment/session behavior; it is not equivalent to a login-style shell.
+
 `NOPASSWD` affects authentication for matching entries; it does not grant arbitrary commands. `SETENV` changes environment restrictions for the matching operation. `env_reset` and `secure_path` can explain why a program works normally but finds different variables or executables under sudo.
+
+For a permitted Backdrop Bee executable, the allowed `eval`/`php-script` inputs can execute PHP after application bootstrap with the RunAs process context. A path-only grant is not restricted to administrative status checks, and env_reset/secure_path do not remove an allowed evaluation subcommand. Establish the selected site, actual wrapper and observed child identity; a CMS login name is separate from OS privilege.
 
 A sudoers command entry with no argument specification permits any arguments; an explicit `""` argument specification permits none. Thus a path-only daemon grant can include options selecting a different configuration. For Nginx, inspect permitted `-c`/`-g` inputs, included files and module paths: configuration controls worker identities, listeners and file operations. Record that authority without launching a replacement privileged service. A configuration-test flag does not make arbitrary module/configuration loading passive.
 
