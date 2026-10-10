@@ -5,7 +5,7 @@ description: Interpret sudo policy, RunAs identities, helper paths, environment 
 
 # Understand the permitted operation
 
-Read this entire SKILL.md before acting; reuse complete current context. Establish the exact RunAs identity, command/argument restrictions and authentication tags. For scripts, helpers, environment-dependent children, Git hooks or SSH client commands, read [permitted-program behavior](references/permitted-programs.md) fully before attributing privilege. Finish with the policy and supported effects; listing a command is not an executed result.
+Read this entire SKILL.md before acting; reuse complete current context. Establish the exact RunAs identity, command/argument restrictions and authentication tags. For scripts, helpers, environment-dependent children, Git hooks, SSH client commands or Python module presets, read [permitted-program behavior](references/permitted-programs.md) fully before attributing privilege. Finish with the policy and supported effects; listing a command is not an executed result.
 
 Read the effective listing before selecting an elevated command:
 
@@ -33,6 +33,5 @@ sudoedit -u "$run_as" -- "$file"
 `sudoedit` edits temporary copies as the invoking user, then uses privilege to copy changes back. It is different from launching an editor itself under sudo. A saved editor buffer does not prove the final copy-back succeeded; inspect errors and the resulting file. File/path safety checks can reject an otherwise listed edit.
 
 When evaluating a historical sudo vulnerability, inspect the installed distribution package and its advisory/patch status. The upstream-looking string from `sudo --version` alone does not establish that a distro build is vulnerable. Record observed policy and behaviour separately from an exploitation hypothesis.
-
 
 Consult the [sudoers policy manual](https://github.com/sudo-project/sudo/blob/main/docs/sudoers.man.in) for command matching and [Git's hook events](https://git-scm.com/docs/githooks) for the permitted program's behavior.

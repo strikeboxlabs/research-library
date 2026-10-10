@@ -7,6 +7,8 @@ description: Discover services on scoped Linux or Windows lab hosts with Nmap an
 
 Read this entire skill before acting; complete current context need not be re-read. Select the scoped host, protocol and useful port range before probing. Retain scan completion, vantage and confirmed versus uncertain services; a skipped or interrupted scan is incomplete evidence.
 
+For scoped subnet discovery from a container/internal namespace or a transferred static binary, read [network vantage and host discovery](references/network-vantage.md) fully first.
+
 Separate port discovery from service interrogation. Define `target` as one in-scope host/IP and `discovery` as a fresh output prefix in an existing directory. Record `nmap --version`.
 
 ~~~bash

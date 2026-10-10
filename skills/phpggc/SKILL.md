@@ -5,7 +5,7 @@ description: Select and generate PHP serialization gadget chains with PHPGGC for
 
 # Match a chain to the application
 
-Read this entire file before acting. Read [serialization and validation](references/serialization-and-validation.md) before transporting or testing a generated chain. Finish with the selected chain, compatibility evidence, exact artifact and observed test result; generating an object is not proof that a target is vulnerable.
+Read this entire file before acting. Read [serialization and validation](references/serialization-and-validation.md) before transporting or testing a generated chain. For a Laravel gadget carried in a selected Redis session, also read [session delivery and trigger](references/redis-session.md) fully first. Finish with the selected chain, compatibility evidence, exact artifact and observed test result; generating an object is not proof that a target is vulnerable.
 
 Use the installed `phpggc` entrypoint or its verified PHP/script invocation. Find chains matching the actual dependency, then inspect the selected chain:
 

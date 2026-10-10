@@ -1,16 +1,20 @@
 ---
 name: curl
-description: Capture HTTP responses and construct API or GraphQL requests with curl while preserving hostname routing, TLS identity and request-path semantics. Use when encoding, partial results, transport failures or redirects obscure a result.
+description: Capture HTTP responses and construct API, GraphQL or Spring Boot management requests with curl while preserving hostname routing, TLS identity and request-path semantics. Use when encoding, partial results, transport failures, config-driven transfers or redirects obscure a result.
 ---
 
 # curl HTTP evidence
 
 Read this entire skill before acting; complete current context need not be re-read. Preserve the intended URL/route, capture status and body from the same request, and distinguish transport completion from application success. Read the applicable reference fully before its procedure; leave unrelated branches unloaded.
 
+- Webhook callbacks, outbound method injection, alias/file transformations or mass-assigned account fields: [controlled application tests](references/webhook-and-file-tests.md), using the API/session references as applicable.
+- Neo4j/Cypher authentication queries or shell-running custom procedures: [Cypher and process boundaries](references/cypher-and-procedures.md).
 - JSON/form APIs, multipart uploads, file PUTs and token handling: [API request construction](references/api-requests.md).
+- Cookie-bound CSRF requests or a browser-only failure: [session and preflight diagnosis](references/session-and-preflight.md).
 - GraphQL schema, variables and operation errors: [GraphQL requests](references/graphql.md).
 - Spring Boot management discovery and mapping interpretation: [Actuator responses](references/spring-actuator.md).
 - Proxy routing, CONNECT and forwarded-header interpretation: [proxy requests](references/proxy-requests.md).
+- Scheduled `-K` transfers, writable URL/output configs or inherited curlrc: [config transfer boundaries](references/config-transfers.md).
 
 Check `curl --version` for protocols/TLS backend and inspect local help for version-dependent switches. Define `url` as the exact scoped URL and `headers`/`body` as fresh private files:
 

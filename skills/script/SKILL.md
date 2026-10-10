@@ -5,6 +5,8 @@ description: Use util-linux script to allocate a pseudoterminal or capture termi
 
 # util-linux script and PTYs
 
+Read this entire SKILL.md before acting. Select the intended child shell/program, transcript policy and util-linux version before allocating a PTY. Finish with the observed child/terminal behavior and exit status, preserving any intended transcript and exiting the child. Local relay settings and remote dimensions remain separate prerequisites when applicable.
+
 Check `script --version` and `script --help`: BSD and util-linux syntax differ. `script` runs a child through a pseudoterminal. It can help an application requiring a TTY, but does not repair the surrounding network transport, forward signals reliably across every relay or choose correct terminal dimensions automatically.
 
 For an interactive Bash under a local PTY without a transcript:

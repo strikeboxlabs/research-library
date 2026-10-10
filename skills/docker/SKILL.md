@@ -1,11 +1,11 @@
 ---
 name: docker
-description: Run a pinned Linux tool environment or distinguish saved image layers from a container filesystem export. Use when old Python or Java dependencies, bind-mount ownership, configured environment values, remote daemons or published ports complicate reproduction.
+description: Run a pinned Linux tool environment or distinguish saved image layers from a container filesystem export. Use when old Python or Java dependencies, bind-mount ownership, configured environment values, remote daemons, registry source acquisition or published ports complicate reproduction.
 ---
 
 # Reproduce the tool environment
 
-Read this entire SKILL.md before acting; reuse complete current context. Select the intended daemon and image before execution. Read [inspection](references/inspection.md) for mounts or configured environment values, or [image archives](references/image-archives.md) for layer history, exports and offline image transfer. Finish with the requested artifact or daemon observation and its status; an image, container UID or mount path alone does not prove host access.
+Read this entire SKILL.md before acting; reuse complete current context. Select the intended daemon and image before execution. For a selected registry image, source acquisition or its approved inspection shell, read [registry and source inspection](references/registry-source.md) fully. Read [inspection](references/inspection.md) for mounts or configured environment values, or [image archives](references/image-archives.md) for layer history, exports and offline image transfer. Finish with the requested artifact or daemon observation and its status; an image, container UID or mount path alone does not prove host access.
 
 Separate the tool's runtime from the system being investigated. A legacy Python/Java image may reproduce artifact generation without reproducing the target application's runtime, dependencies or mitigations. Record the image ID/digest, architecture, tool version and invocation; a mutable tag alone is weak reproduction evidence.
 

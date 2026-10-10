@@ -1,6 +1,6 @@
 ---
 name: python3
-description: Inspect Python source without importing it, trace evaluation and output/byte errors, decode SAML captures, use an existing PyMySQL driver or use bounded HTTP-form/LDAP, WebSocket/query, owned file-serving and Unix PTY procedures.
+description: Inspect Python source without importing it, trace evaluation and output/byte errors, decode SAML captures, use an existing PyMySQL driver or use bounded HTTP-form/LDAP, WebSocket/query, owned file-serving, exact RESP/JSON protocol framing and Unix PTY procedures.
 ---
 
 # Python operational inspection
@@ -9,6 +9,7 @@ Read this entire SKILL.md before acting; reuse complete current context. Use the
 
 - Untrusted input, validation order or a misleading rejection: [evaluation flow](references/evaluation-flow.md).
 - Missing child output or ambiguous return values: [subprocess output](references/subprocess-output.md).
+- RESP argument/byte lengths or JSON-carried protocol data: [protocol framing](references/resp-framing.md), requiring `scripts/resp_frame.py`.
 - Changed signatures or multipart bytes: [binary evidence](references/binary-evidence.md).
 - Captured SAML HTTP Redirect URL: [offline decoding](references/saml-redirect.md).
 - Native WebSocket with greeting tokens or interleaved heartbeat messages: [WebSocket exchange](references/websocket-exchange.md).

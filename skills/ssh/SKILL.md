@@ -1,11 +1,19 @@
 ---
 name: ssh
-description: Use OpenSSH for selected-key logins and remote loopback forwarding. Diagnose key passphrases, server authentication, client hooks and configuration effects without confusing local and remote identities.
+description: Use OpenSSH for selected-account/key logins and remote loopback forwarding. Diagnose key passphrases, server authentication, client hooks and configuration effects without confusing local and remote identities.
 ---
 
 # SSH connections and local forwarding
 
 Read this entire SKILL.md before acting; reuse complete current context. Map the client, SSH server and destination before connecting. If options/configuration can execute local helpers or a privileged launcher is involved, read [client commands](references/client-commands.md) fully first. For a selected private key or confusing password prompt, read [key authentication](references/key-authentication.md) fully first. Finish with observed authentication/tunnel behavior or the supported configuration finding; authenticated transport alone is not destination success.
+
+For an authorized interactive login, define `ssh_host`, `ssh_port` and `user` as the verified SSH endpoint and selected OS account. Confirm its host key through the established trust process, then use the intended credential mechanism:
+
+~~~bash
+ssh -p "$ssh_port" "$user@$ssh_host"
+~~~
+
+A password obtained from a database setup file is a candidate for that database account, not automatically this Linux account. An authentication failure is specific to the endpoint, account, method and attempt; it does not disprove a separately evidenced reuse with another selected account. Check the server authentication trace before attributing the failure to the secret. Do not put a password in the command line; use the approved prompt/credential mechanism. An authenticated session and observed remote identity establish the login result; a changed prompt alone does not.
 
 Map both ends before connecting: the listener is on the Linux client; the destination is reached from the SSH server. In `-L`, destination `127.0.0.1` means the SSH server's own loopback, not the workstation's.
 

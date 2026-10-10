@@ -1,13 +1,13 @@
 ---
 name: wfuzz
-description: Use Wfuzz for controlled HTTP virtual-host, Origin-policy and parameter comparisons. Use when wildcard responses, filters, paired payload counts or changing authentication state obscure real findings.
+description: Use Wfuzz for controlled HTTP path, virtual-host, Origin-policy and parameter comparisons. Use when wildcard responses, filters, paired payload counts or changing authentication state obscure real findings.
 ---
 
 # Wfuzz HTTP comparison
 
 Read this entire SKILL.md before acting; reuse complete current context. Establish the endpoint, negative/positive controls and bounded request set before filtering. Finish with confirmed response distinctions and completed coverage; a filtered display or status code alone does not prove a valid host, parameter or identity.
 
-For Origin allowlist comparisons, read [Origin policy](references/origin-policy.md) fully before that procedure. Keep unrelated references unloaded.
+For scoped paths, API routes or a selected alias-mapping hypothesis, read [path discovery](references/path-discovery.md) fully first. For Origin allowlist comparisons, read [Origin policy](references/origin-policy.md) fully before that procedure. Keep unrelated references unloaded.
 
 This procedure varies HTTP's Host header against one known server. It does not perform DNS discovery and does not prove that a discovered name has a public DNS record. Check the installed `wfuzz --help`; use a small relevant wordlist before increasing requests.
 

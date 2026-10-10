@@ -11,11 +11,13 @@ Define `compressed` as the existing absolute input and `decoded` as a fresh abso
 
 ~~~bash
 umask 077
-bzip2 --version
+bzip2 --help
 bzip2 -t -- "$compressed" &&
 (set -C; bzip2 -dc -- "$compressed" > "$decoded") &&
 file -E -h -- "$decoded"
 ~~~
+
+Use the help banner for a passive version/options probe. Version/license flags can continue into normal compression on implementations such as bzip2 1.0.8; do not attach them to an unknown data stream.
 
 `-t` tests the complete compressed stream without producing decoded output; `-d` decompresses and `-c` writes stdout, retaining the input. The two passes cost extra I/O; a bounded single `-dc` pass can also supply the result when its final status is captured and failed output stays partial. Shell noclobber protects the new destination; it does not bound expansion size. Apply the worker's byte/time budget and check available space.
 

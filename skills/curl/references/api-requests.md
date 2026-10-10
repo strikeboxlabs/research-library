@@ -2,7 +2,7 @@
 
 Establish the exact route, method, authentication and request schema. An application's signup endpoint may accept JSON while its login endpoint accepts form data. Similar names do not imply identical formats. Prefer the application's available OpenAPI schema over guessing fields or repeatedly sending malformed writes.
 
-For an intended JSON request, define `url`, `method` (such as `POST` or `PUT`), `request_json` as the reviewed UTF-8 JSON file, `auth_headers` as a private file containing the required `Authorization: Bearer ...` header, and `headers`/`body` as fresh private response files:
+For an intended JSON request, define `url`, `method` (such as `POST` or `PUT`), `request_json` as the reviewed UTF-8 JSON file, `auth_headers` as a private file containing the actual required authentication header (such as `Authorization: Bearer ...`, `x-access-token` or `x-api-key`), and `headers`/`body` as fresh private response files:
 
 ~~~bash
 umask 077

@@ -1,11 +1,11 @@
 ---
 name: php
-description: Use PHP CLI for a selected local web test, configuration checks and PostgreSQL connection diagnosis through the pgsql extension. Use for CLI/web SAPI differences, missing extensions, PHAR behavior, HTML output encoding or misleading upload/image validation.
+description: Use PHP CLI for a selected local web test, configuration checks and PostgreSQL connection diagnosis through the pgsql extension. Use for CLI/web SAPI differences, missing extensions, PHAR behavior, HTML output encoding misleading upload/image validation or offline Laravel CBC cookie/session analysis.
 ---
 
 # PHP CLI reproduction context
 
-Read this entire SKILL.md before acting. Establish the selected binary/SAPI, then choose configuration/source inspection, PHAR/upload review, PostgreSQL diagnosis or output encoding. When psql is unavailable and the task requires PostgreSQL diagnosis, read [the PHP connection procedure](references/postgresql-connection.md) fully before its commands; it requires an existing libpq service and a reviewed local snippet. For HTML encoding or dynamic SQL construction, read [output and SQL context](references/output-and-sql-context.md) fully before its checks. For serving a selected disposable web test, read [local web server](references/local-web-server.md) fully first. Finish with the observed configuration, served response, exact transformation or verified database identity; lint or a CLI result alone cannot establish web-runtime behavior.
+Read this entire SKILL.md before acting. Establish the selected binary/SAPI, then choose configuration/source inspection, PHAR/upload review, PostgreSQL diagnosis or output encoding. When psql is unavailable and the task requires PostgreSQL diagnosis, read [the PHP connection procedure](references/postgresql-connection.md) fully before its commands; it requires an existing libpq service and a reviewed local snippet. For HTML encoding or dynamic SQL construction, read [output and SQL context](references/output-and-sql-context.md) fully before its checks. For offline Laravel CBC cookie/session analysis, read [cookie decryption](references/laravel-cookie.md) fully first; it requires the actual cipher and authorized key/envelope files. For serving a selected disposable web test, read [local web server](references/local-web-server.md) fully first. Finish with the observed configuration, served response, exact transformation or verified database identity; lint or a CLI result alone cannot establish web-runtime behavior.
 
 Define `php_bin` as the intended executable, which may be a versioned binary rather than the default `php`:
 

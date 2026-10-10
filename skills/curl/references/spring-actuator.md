@@ -9,7 +9,7 @@ umask 077
 curl --silent --show-error --connect-timeout 5 --max-time 20 --max-filesize 1048576 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$management_url"
 ~~~
 
-Check curl's exit, response status, content type and body together. With curl 8.4.0 or later the size limit also stops unknown-length transfers; older versions cannot enforce it when the size is not known before download; a rejected/truncated large response is incomplete, not malformed server JSON. Do not follow redirects or cross-origin discovery links without checking their destination and credential scope.
+Check curl's exit, response status, content type and body together. With curl 8.4.0 or later the size limit also stops unknown-length transfers; older versions cannot enforce it when the size is not known before download. A rejected/truncated large response is incomplete, not malformed server JSON. Do not follow redirects or cross-origin discovery links without checking their destination and credential scope.
 
 **Illustrative:** a successful JSON discovery body contains `_links` with a `health` entry but no `mappings` entry. This supports what discovery advertised to that caller, not that mapping code is absent. Distinguish implementation availability, management exposure and request authorization. A 401/403 is not an absent endpoint; a 404 can reflect the management address, proxy route or disabled exposure. A login/fallback HTML body is not management JSON even with status 200.
 
