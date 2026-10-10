@@ -51,3 +51,7 @@ Windows-native steps such as `cmdkey`, `runas`, JEA/PowerShell commands, KrbRela
 ## Linux follow-through
 
 Use the [host-adaptation workflow](../GETTING_STARTED.md#2-adapt-to-this-machine) for the selected tools. Start with disposable local artifacts for metadata, archives, mail, audit logs and password-format handling. Exercise directory/network skills against an explicitly scoped lab, including denied/empty/expired or incomplete cases. Keep installed versions and evidence in `work/` or `runs/`, and record only portable corrections and actual results. [Validation](validation.md) distinguishes packaging checks from tool execution and agent outcomes.
+
+## Coverage correction — 2026-10-10
+
+The historical deferrals above are not current acceptance rules. The [coverage repair record](ctf-writeups-overnight-2026-10-10.md#coverage-repair-after-the-crossfit-review--2026-10-10) maps newly accepted independent tools and deeper procedures back to these sources. Overlap, short invocations and an unavailable Linux fixture no longer disqualify documentation-supported tasks; authoring execution restrictions do not prohibit documenting authorized operations. Original page coverage and test history remain unchanged.

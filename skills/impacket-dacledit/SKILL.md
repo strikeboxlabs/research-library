@@ -1,9 +1,11 @@
 ---
 name: impacket-dacledit
-description: Inspect and save a selected AD object's DACL with Impacket dacledit from Linux. Use when checking graph-derived permission claims, interpreting trustee filters and inheritance, or assessing the scope of an existing DACL backup.
+description: Inspect, back up and change selected AD DACL rights with Impacket dacledit from Linux. Use to resolve trustee/inheritance evidence, apply a precise delegation and verify removal or restoration.
 ---
 
 # Inspect a selected directory DACL
+
+Read this entire file before acting. For an authorized grant, removal or restore, read [selected rights changes](references/selected-rights-change.md) fully. Finish with the selected object, actual ACE/state evidence and any unresolved change; an exit code alone is insufficient.
 
 Check local help for `impacket-dacledit` or `dacledit.py`; packaged releases differ from upstream development versions. This procedure requires support for `-dc-host`, `-dc-ip`, `-use-ldaps` and the target selector below. Use a known, authorized directory identity and preserve required authentication/transport policy.
 

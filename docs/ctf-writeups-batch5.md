@@ -56,3 +56,7 @@ SHA-256 identifies the exact originals even after the ignored inbox is replaced.
 | Axlle.pdf | `cbf548ee1a8f609ae62082ad0c8e992ad463314bc237b4ff1564cd3b266ce4c8` |
 
 See the [validation record](validation.md) for checks actually executed. The [Linux adaptation guide](../GETTING_STARTED.md#2-adapt-to-this-machine) describes installed-help checks and meaningful success/failure fixtures on the intended host.
+
+## Coverage correction — 2026-10-10
+
+The historical deferrals above are not current acceptance rules. The [coverage repair record](ctf-writeups-overnight-2026-10-10.md#coverage-repair-after-the-crossfit-review--2026-10-10) maps newly accepted independent tools and deeper procedures back to these sources. Overlap, short invocations and an unavailable Linux fixture no longer disqualify documentation-supported tasks; authoring execution restrictions do not prohibit documenting authorized operations. Original page coverage and test history remain unchanged.

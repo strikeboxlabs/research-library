@@ -68,3 +68,7 @@ The original review/source footers for the three revised batch-8 skills are reta
 **scp:** Documentation reviewed 2026-10-09; Linux execution untested. Cases: Bastion p. 8; BigBang p. 13. Source: [OpenSSH scp manual](https://man.openbsd.org/scp).
 
 **grafana2hashcat:** Documentation reviewed 2026-10-09; two synthetic conversion records and header rejection checked on Windows. Linux execution untested. Case: BigBang pp. 13–14. Sources: [converter implementation](https://github.com/iamaldi/grafana2hashcat/blob/main/grafana2hashcat.py), [historical Grafana parameters](https://github.com/iamaldi/grafana2hashcat/blob/main/README.md), [Hashcat mode parser](https://github.com/hashcat/hashcat/blob/master/src/modules/module_10900.c), [Hashcat syntax](https://hashcat.net/wiki/doku.php?id=hashcat).
+
+## Coverage correction — 2026-10-10
+
+The historical deferrals above are not current acceptance rules. The [coverage repair record](ctf-writeups-overnight-2026-10-10.md#coverage-repair-after-the-crossfit-review--2026-10-10) maps newly accepted independent tools and deeper procedures back to these sources. Overlap, short invocations and an unavailable Linux fixture no longer disqualify documentation-supported tasks; authoring execution restrictions do not prohibit documenting authorized operations. Original page coverage and test history remain unchanged.

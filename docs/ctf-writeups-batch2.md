@@ -62,3 +62,7 @@ SHA-256 of the exact supplied PDFs:
 | Agile.pdf | `aca9b57bf43851e41bc4fde893b6bf7c50a63a885f22b702ad113459027ef86a` |
 
 See the [validation record](validation.md) for checks actually run. Linux procedure execution and agent usefulness remain untested. Use the existing [host-adaptation workflow](../GETTING_STARTED.md#2-adapt-to-this-machine) to adapt selected skills to the real Linux machine and exercise success and failure cases. No writeup targets were contacted or supplied credentials/flags copied into skills.
+
+## Coverage correction — 2026-10-10
+
+The historical deferrals above are not current acceptance rules. The [coverage repair record](ctf-writeups-overnight-2026-10-10.md#coverage-repair-after-the-crossfit-review--2026-10-10) maps newly accepted independent tools and deeper procedures back to these sources. Overlap, short invocations and an unavailable Linux fixture no longer disqualify documentation-supported tasks; authoring execution restrictions do not prohibit documenting authorized operations. Original page coverage and test history remain unchanged.

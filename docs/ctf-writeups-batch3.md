@@ -72,3 +72,7 @@ SHA-256 identifies the exact input even if the ignored inbox is replaced by the 
 | APT.pdf | `9007726d4c0d362991fca91f56fdad7e7256153a78266169af89f069e1adee16` |
 
 See the [validation record](validation.md) for checks actually executed. The [Linux getting-started guide](../GETTING_STARTED.md#2-adapt-to-this-machine) remains the next step for local binary/help adaptation and success/failure fixtures. Documentation and packaging review do not establish improved worker performance.
+
+## Coverage correction — 2026-10-10
+
+The historical deferrals above are not current acceptance rules. The [coverage repair record](ctf-writeups-overnight-2026-10-10.md#coverage-repair-after-the-crossfit-review--2026-10-10) maps newly accepted independent tools and deeper procedures back to these sources. Overlap, short invocations and an unavailable Linux fixture no longer disqualify documentation-supported tasks; authoring execution restrictions do not prohibit documenting authorized operations. Original page coverage and test history remain unchanged.
