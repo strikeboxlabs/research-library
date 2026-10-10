@@ -1,18 +1,23 @@
 ---
 name: curl
-description: Capture HTTP responses and construct API, GraphQL, Rails reports, helpdesk/signup, Grafana file-read or Spring Boot management requests with curl while preserving hostname routing, TLS identity and request-path semantics. Use when encoding, partial results, transport failures, config-driven transfers or redirects obscure a result.
+description: Capture HTTP evidence and test API, stored-template and other application boundaries with curl. Use when hostname/TLS routing, encoding, authentication, partial results, redirects or config-driven transfers obscure an operational result.
 ---
 
 # curl HTTP evidence
 
 Read this entire skill before acting; complete current context need not be re-read. Preserve the intended URL/route, capture status and body from the same request, and distinguish transport completion from application success. Read the applicable reference fully before its procedure; leave unrelated branches unloaded.
 
+- Joomla manifest/version evidence and CVE-2023-23752 configuration access: [Joomla webservices](references/joomla-webservices.md).
 - Grafana CVE-2021-43798 applicability, literal plugin paths and selected SQLite acquisition: [Grafana file reads](references/grafana-file-read.md).
 - Company-domain ticket reply addresses used for registration/verification: [helpdesk email trust](references/ticket-email-trust.md).
 - Controlled contact-mail routing and browser-rendered HTML: [mail application tests](references/mail-routing-and-html.md).
 - Webhook callbacks, outbound method injection, alias/file transformations or mass-assigned account fields: [controlled application tests](references/webhook-and-file-tests.md), using the API/session references as applicable.
 - A server-side TCP testing route, including read-only Memcached protocol operations: [HTTP socket bridge](references/tcp-socket-bridge.md).
 - Neo4j/Cypher authentication queries or shell-running custom procedures: [Cypher and process boundaries](references/cypher-and-procedures.md).
+- Stored post/title values evaluated only by a later feed or alternate renderer: [stored template boundaries](references/stored-template-tests.md).
+- XML uploads with reflected external-entity file content or a newly recovered handler: [XML processing boundaries](references/xml-upload.md).
+- InfluxDB v1 HTTP queries, measurement records, JWT authentication and partial results: [InfluxDB v1 queries](references/influxdb-v1.md).
+- A recovered JSON handler explicitly passing a field to a shell: [shell-backed JSON requests](references/shell-backed-json.md).
 - JSON/form APIs, multipart uploads, file PUTs and token handling: [API request construction](references/api-requests.md).
 - Rails report downloads, hidden path fields, same-origin session riding or leading-pipe file/process inputs: [Rails report boundaries](references/rails-reports.md).
 - Cookie-bound CSRF requests or a browser-only failure: [session and preflight diagnosis](references/session-and-preflight.md).

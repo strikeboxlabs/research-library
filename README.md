@@ -14,6 +14,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [adb](skills/adb/SKILL.md) | Inspect a selected Android device and separate reverse routing, transfer privileges, proxy settings and CA trust. |
 | [ansible-vault](skills/ansible-vault/SKILL.md) | Extract and decrypt vault objects without loading playbooks or confusing vault passwords with plaintext values. |
 | [apktool](skills/apktool/SKILL.md) | Decode APK resources, resolve framework gaps and distinguish a rebuild from valid Android signing. |
+| [apport-cli](skills/apport-cli/SKILL.md) | Collect/view selected Apport reports and assess privileged pager behavior with full package, terminal and child-identity evidence. |
 | [aureport](skills/aureport/SKILL.md) | Interpret existing TTY audit records and correlate events without misattributing copied logs. |
 | [awk](skills/awk/SKILL.md) | Separate program source, literal data and regexes; recognize quoted CSV and binary-transfer limits. |
 | [aws](skills/aws/SKILL.md) | Inspect explicit S3/DynamoDB endpoints, bound reads and interpret pagination, object keys and composite keys. |
@@ -30,16 +31,18 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [certipy](skills/certipy/SKILL.md) | Enumerate AD CS configuration, request selected certificates, authenticate with a PFX, recover through a permitted key-credential write and update selected UPNs from Linux. Use to connect template/CA findings to enrollment prerequisites, issuance results and current certificate-mapping behavior. |
 | [cewl](skills/cewl/SKILL.md) | Collect scoped website vocabulary with deliberate depth, filtering and plain-word output for offline audits. |
 | [chisel](skills/chisel/SKILL.md) | Build and diagnose explicit Chisel port forwards or reverse SOCKS connections. Use when client/server direction, listener exposure, endpoint reachability or fingerprint authentication is unclear. |
+| [chmod](skills/chmod/SKILL.md) | Selected Linux file mode changes and private-artifact access |
 | [composer](skills/composer/SKILL.md) | PHP dependency/lock inspection, selected installs and project-script execution context. |
 | [consul](skills/consul/SKILL.md) | Inspect selected KV data, distinguish ACL permissions and validate configuration before reload decisions. |
 | [cp](skills/cp/SKILL.md) | Copy selected directories and diagnose path, permission and metadata-preservation differences. |
 | [credentialmanager](skills/credentialmanager/SKILL.md) | Read a selected stored Windows credential through the installed CredentialManager PowerShell module in a remote session. Use from a Linux worker when network-logon or SYSTEM context differs from the intended user credential set. |
 | [cryptsetup](skills/cryptsetup/SKILL.md) | Inspect and unlock LUKS image copies with read-only mappings and filesystem-aware mounting. |
-| [curl](skills/curl/SKILL.md) | Capture HTTP/API evidence, Rails report boundaries, helpdesk email/signup trust and Grafana file reads while preserving routing, bytes and application-result distinctions. |
+| [curl](skills/curl/SKILL.md) | Capture HTTP/API and stored-template application evidence with routing, encoding, execution boundaries and result interpretation. |
 | [dd](skills/dd/SKILL.md) | Extract measured image byte ranges without hardcoded header sizes, overwrite or unnoticed short copies. |
 | [derby-ij](skills/derby-ij/SKILL.md) | Inspect consistent Derby copies with embedded JDBC, schema discovery, bounded SQL and understood display/lock limits. |
-| [diff](skills/diff/SKILL.md) | Compare acquired trees against a matching baseline and distinguish content changes from incomplete comparisons. |
+| [diff](skills/diff/SKILL.md) | Compare acquired trees or application variants and trace added commands, guards, paths and deployment assumptions. |
 | [dig](skills/dig/SKILL.md) | Query explicit DNS servers and compare authoritative, cached, negative and application resolver views. |
+| [dirbuster](skills/dirbuster/SKILL.md) | Discover selected web paths using the headless CLI, explicit wordlists and controlled expansion; preserve report/completion and confirm real routes. |
 | [dirsearch](skills/dirsearch/SKILL.md) | Discover scoped web paths; narrow partial-name candidates and handle expansion, soft 404s and redirects. |
 | [dive](skills/dive/SKILL.md) | Inspect local image layers, distinguish deletion markers and recover selected historical file bytes. |
 | [dnstool](skills/dnstool/SKILL.md) | Query, add and remove a selected AD-integrated DNS A record with krbrelayx dnstool from Linux. Use to distinguish LDAP bind, DNS-node permissions, stored changes and actual DNS resolution. |
@@ -70,14 +73,14 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [getent](skills/getent/SKILL.md) | Resolve NSS users/groups and distinguish directory membership from current process privileges. |
 | [getfacl](skills/getfacl/SKILL.md) | Explain POSIX ACL masks, named identities, parent traversal and default inheritance for access failures. |
 | [ghidra](skills/ghidra/SKILL.md) | Headless selected decompilation, bounded mapped bytes and Rust cipher/comparison or database/file data-flow analysis. |
-| [git](skills/git/SKILL.md) | Inspect history, stored links/submodules and remote URLs; check scoped patches and diagnose local hooks. |
+| [git](skills/git/SKILL.md) | Recover historical blobs with explicit diff endpoints; inspect stored links/submodules and remote URLs; check scoped patches and diagnose local hooks. |
 | [git-dumper](skills/git-dumper/SKILL.md) | Recover exposed Git data within an isolated environment and distinguish missing objects, checkout failures and incomplete history. |
 | [go](skills/go/SKILL.md) | Build reviewed CLI projects; resolve generated imports and distinguish command construction, execution and unchecked results. |
-| [gobuster](skills/gobuster/SKILL.md) | Choose web discovery modes and interpret wildcard, redirect, method and validation responses. |
+| [gobuster](skills/gobuster/SKILL.md) | Discover web paths and HTTP virtual hosts with version-aware hostname construction, filters and redirect controls. |
 | [gpg](skills/gpg/SKILL.md) | Decrypt a selected OpenPGP backup with GnuPG using its known passphrase or matching secret key. Use to distinguish symmetric encryption, key material, pinentry behavior and partial plaintext from a valid recovery. |
 | [gpp-decrypt](skills/gpp-decrypt/SKILL.md) | Decode captured GPP cpassword values; distinguish the Ruby and Python implementations. |
-| [grafana2hashcat](skills/grafana2hashcat/SKILL.md) | Convert verified historical Grafana records with iamaldi’s installed converter; preserve literal salts, cost, row mapping and full-verifier interpretation. |
-| [grep](skills/grep/SKILL.md) | Filter literal or regex text while preserving alternative/combined conditions, binary handling and error evidence. |
+| [grafana2hashcat](skills/grafana2hashcat/SKILL.md) | Convert verified historical Grafana records with iamaldiâ€™s installed converter; preserve literal salts, cost, row mapping and full-verifier interpretation. |
+| [grep](skills/grep/SKILL.md) | Filter text or readable log trees with exact match/error semantics and interpret misplaced credential candidates. |
 | [groups](skills/groups/SKILL.md) | Inspect the current Linux process group names or a selected account lookup with GNU groups. Use to distinguish live session membership from directory membership and application authorization. |
 | [gzip](skills/gzip/SKILL.md) | Recover selected gzip streams; interpret suffixes, concatenation and failed integrity checks. |
 | [h2csmuggler](skills/h2csmuggler/SKILL.md) | Distinguish h2c upgrade acceptance, tunneled application replies and actual access-control differences. |
@@ -128,7 +131,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [jenkins-offline-decrypt](skills/jenkins-offline-decrypt/SKILL.md) | Matched-backup Jenkins Secret recovery and implementation/parser limits. |
 | [john](skills/john/SKILL.md) | Run bounded offline checks with John the Ripper Jumbo on NT, NetNTLMv2, Kerberos, ZIP, KeePass, OpenPGP secret keys, bcrypt, phpass, raw MD5/SHA-256, sha512crypt or HS256 JWT artifacts. Use to choose formats, preserve records and interpret session results. |
 | [jq](skills/jq/SKILL.md) | Preserve JSON types, select decoded account maps and construct requests/config transformations without corrupting evidence. |
-| [jwt-tool](skills/jwt-tool/SKILL.md) | Inspect JWT fixtures and original-token HMAC matches; separate signing, claim mappings and application sessions. |
+| [jwt-tool](skills/jwt-tool/SKILL.md) | Inspect/check/sign controlled JWTs, including scoped InfluxDB v1 HMAC candidates, without conflating claims and application access. |
 | [keepassxc-cli](skills/keepassxc-cli/SKILL.md) | Inspect a database with known unlock factors and retrieve exact entries/fields without broad disclosure. |
 | [kerbrute](skills/kerbrute/SKILL.md) | Check a bounded candidate username list against a selected KDC and interpret incomplete results. |
 | [kinit](skills/kinit/SKILL.md) | Obtain MIT Kerberos tickets in an explicit cache, including existing-certificate PKINIT. |
@@ -138,7 +141,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [ldbsearch](skills/ldbsearch/SKILL.md) | Inspect records in an offline SSSD LDB cache while preserving identity and attribute context. Use when strings output cannot map a value to an account or a cache query appears empty. |
 | [ldconfig](skills/ldconfig/SKILL.md) | Inspect/refresh library caches and exercise a scoped writable-directory load with actual identity evidence. |
 | [ldd](skills/ldd/SKILL.md) | Resolve trusted ELF dependencies and distinguish missing objects, unexpected paths and privileged-launch limits. |
-| [less](skills/less/SKILL.md) | Inspect an existing Linux text artifact interactively with less while preserving literal content and search context. Use when wrapped configuration lines or embedded terminal controls obscure the evidence. |
+| [less](skills/less/SKILL.md) | Inspect literal text and assess a selected pager child without confusing wrapping, secure mode or parent privilege. |
 | [lftp](skills/lftp/SKILL.md) | Use verified explicit FTPS for selected transfers and diagnose transport, data-channel and virtual-user access differences. |
 | [linpeas](skills/linpeas/SKILL.md) | Scope enumeration checks and verify unfamiliar SUID helpers, execution conditions and vendor package evidence. |
 | [logrotate](skills/logrotate/SKILL.md) | Preview actual rotation jobs and interpret state, skip conditions, permissions and hook identities. |
@@ -146,7 +149,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [mail](skills/mail/SKILL.md) | Distinguish GNU Mailutils and S-nail flags, subject handling, attachments and submission evidence. |
 | [make](skills/make/SKILL.md) | Build reviewed existing tool targets; diagnose configured features, compiler failures and stale artifacts without implying installation. |
 | [marshalsec](skills/marshalsec/SKILL.md) | Select unmarshalling fixtures and distinguish local test execution, JNDI stages and runtime dependencies. |
-| [masscan](skills/masscan/SKILL.md) | Discover scoped TCP listeners with explicit configuration and host/protocol-preserving service follow-up. |
+| [masscan](skills/masscan/SKILL.md) | Discover scoped TCP/UDP responders with explicit configuration and host/protocol-preserving service follow-up. |
 | [md5sum](skills/md5sum/SKILL.md) | Reproduce exact legacy checksum bytes and distinguish malformed, missing or mismatching manifests. |
 | [mdbtools](skills/mdbtools/SKILL.md) | Inventory and export selected Access database tables without corrupting field interpretation. |
 | [memcached-tool](skills/memcached-tool/SKILL.md) | Inspect cache/slab statistics and bounded key/value exports with the existing protocol-aware helper. |
@@ -157,12 +160,14 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [msf-pattern](skills/msf-pattern/SKILL.md) | Pair Metasploit pattern generation and offset lookup without confusing heuristic matches or overwritten fields. |
 | [msfconsole](skills/msfconsole/SKILL.md) | Select and configure Framework modules; manage matching handlers, jobs and sessions with explicit outcome checks. |
 | [msfvenom](skills/msfvenom/SKILL.md) | Generate selected payload artifacts with matching platform, architecture, format and handler requirements. |
-| [mysql](skills/mysql/SKILL.md) | Explicit connection/account context, selected Mattermost records, string semantics and native/client/server execution boundaries. |
+| [mysql](skills/mysql/SKILL.md) | Explicit connection/account context, selected Joomla/Mattermost records, string semantics and native/client/server execution boundaries. |
 | [mysqldump](skills/mysqldump/SKILL.md) | Back up a selected database and distinguish SQL failures, compression integrity, object coverage and validated recovery. |
+| [nano](skills/nano/SKILL.md) | Interactive selected-artifact editing, save and format verification |
 | [nc](skills/nc/SKILL.md) | Identify installed Netcat; exchange bytes, listen or attach authorized executable/FIFO process streams. |
 | [ncat](skills/ncat/SKILL.md) | Exchange framed service data, capture callbacks, receive authorized two-way streams or inspect Memcached. |
 | [neo4j-admin](skills/neo4j-admin/SKILL.md) | Set the native database password before first startup; distinguish setup history from current database/OS credentials. |
 | [netexec](skills/netexec/SKILL.md) | Validate known SMB credentials, interpret share checks, read selected user metadata and inspect LDAP protection, AD CS endpoints and machine-account quota with NetExec on selected lab hosts. Use to avoid unintended credential combinations and distinguish authentication, password status, privilege indicators and path permissions. |
+| [netstat](skills/netstat/SKILL.md) | Linux TCP/UDP listeners, bound addresses and process visibility |
 | [nginx](skills/nginx/SKILL.md) | Inspect selected configuration, worker/file authority, WebDAV conditions and validation-versus-live-state evidence. |
 | [nimble](skills/nimble/SKILL.md) | Nim dependency inspection, selected provisioning and build-context diagnosis. |
 | [nmap](skills/nmap/SKILL.md) | Keep protocol, address and IPsec vantage explicit; interpret service probes and uncertain states. |
@@ -178,7 +183,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [pd4cmd](skills/pd4cmd/SKILL.md) | Convert reviewed HTML with PD4ML; diagnose entrypoints, resource access, layout and stale PDF output. |
 | [peda](skills/peda/SKILL.md) | Load the installed GDB extension explicitly and correlate x86 registers, code, stack and call arguments. |
 | [phantomjs](skills/phantomjs/SKILL.md) | Legacy CLI rendering, document capture and load/result interpretation. |
-| [php](skills/php/SKILL.md) | Serve a reviewed local web test and inspect PHP configuration, extensions, PHARs, encoding and upload validation. |
+| [php](skills/php/SKILL.md) | Serve a reviewed local web test and inspect PHP configuration, extensions, PHARs, encoding, upload validation and authorized Joomla template process actions. |
 | [phpggc](skills/phpggc/SKILL.md) | Select serialization chains by dependency and trigger; preserve bytes and validate the actual parser/object lifecycle. |
 | [pip](skills/pip/SKILL.md) | Match an installed Python/pip environment, legacy dependency versions, wheel compatibility and authorized reproduction inputs. |
 | [printerbug](skills/printerbug/SKILL.md) | Trigger one authorized Windows spooler RPC authentication callback with krbrelayx printerbug from Linux. Use to distinguish RPC bind, notification errors and independently observed NTLM or Kerberos backconnects. |
@@ -192,7 +197,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [pygpoabuse](skills/pygpoabuse/SKILL.md) | Plan isolated lab GPO task tests with explicit commands, client scope, before-state and incomplete-cleanup handling. |
 | [pypykatz](skills/pypykatz/SKILL.md) | Inspect LSASS snapshots and derive known-password NT values while preserving identity and artifact type. |
 | [python-http-server](skills/python-http-server/SKILL.md) | Serve selected local files or receive a bounded controlled POST callback with Python's http.server. Use when bind addresses, directory exposure, transfer verification or callback logs need interpretation. |
-| [python2](skills/python2/SKILL.md) | Use a matching existing Python 2.7/Django environment for legacy signed-cookie construction and selected deserialization checks. |
+| [python2](skills/python2/SKILL.md) | Use existing Python 2.7 for raw-pickle or Django signed-cookie contracts and a selected Unix PTY child; distinguish generation, server effects and terminal authority. |
 | [python3](skills/python3/SKILL.md) | Inspect source and exact bytes; reproduce AES-CTR, SAML, driver, HTTP, WebSocket, RESP and PTY tasks on demand. |
 | [rdate](skills/rdate/SKILL.md) | Diagnose clock skew with print-only SNTP queries and distinguish protocol, timezone and synchronization issues. |
 | [readelf](skills/readelf/SKILL.md) | Map ELF layouts and inspect dynamic dependencies/symbols while separating artifact metadata from runtime behavior. |
@@ -223,11 +228,12 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [smtp-user-enum](skills/smtp-user-enum/SKILL.md) | Compare scoped SMTP recipient responses without treating tool classifications as mailbox proof. |
 | [snap](skills/snap/SKILL.md) | Inspect revisions, confinement and change tasks; distinguish signature checks from executable install hooks. |
 | [snmpwalk](skills/snmpwalk/SKILL.md) | Query bounded OIDs, distinguish contact text from credentials and load hardware inventory guidance on demand. |
+| [splunkwhisperer2](skills/splunkwhisperer2/SKILL.md) | Authenticated remote Splunk app/script execution with callback routing, service identity, failed-response and cleanup interpretation. |
 | [sqlite3](skills/sqlite3/SKILL.md) | Inspect coherent SQLite copies and export selected Grafana verifier rows without confusing storage metadata, salt bytes or account mapping. |
 | [sqlmap](skills/sqlmap/SKILL.md) | Test a selected HTTP parameter and inspect scoped database metadata or samples with request/session fidelity. |
 | [ss](skills/ss/SKILL.md) | Inspect actual listeners/connections, address families, process visibility and namespaces. |
-| [ssh](skills/ssh/SKILL.md) | Selected account/key login, authorized public-key file changes, GSSAPI identity and loopback forwarding with explicit result/cleanup. |
-| [ssh-keygen](skills/ssh-keygen/SKILL.md) | Derive public keys and compare fingerprints while preserving private artifacts and format distinctions. |
+| [ssh](skills/ssh/SKILL.md) | Selected account/key login, SSH application/chat commands, public-key enrollment, GSSAPI identity and loopback forwarding. |
+| [ssh-keygen](skills/ssh-keygen/SKILL.md) | Generate selected key pairs, derive public fingerprints and validate complete transferred private-key artifacts. |
 | [ssh-username-enum](skills/ssh-username-enum/SKILL.md) | Selected OpenSSH malformed-authentication account oracle with legacy-helper compatibility and control/result limits. |
 | [stoken](skills/stoken/SKILL.md) | Import selected SecurID software tokens, generate codes and diagnose state/PIN/time differences. |
 | [strace](skills/strace/SKILL.md) | Trace file/network failures and interpret acquired reads with process, descriptor, byte-count and tracing-side-effect context. |

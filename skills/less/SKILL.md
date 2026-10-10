@@ -1,12 +1,12 @@
 ---
 name: less
-description: Inspect an existing Linux text artifact interactively with less while preserving literal content and search context. Use when wrapped configuration lines or embedded terminal controls obscure the evidence.
+description: Inspect an existing Linux text artifact interactively with less while preserving literal content and search context. Use when wrapped lines, terminal controls, inherited secure mode or a privileged parent obscure content or child identity.
 ---
 
 
 # Inspect literal text before interpreting it
 
-Read this entire SKILL.md before acting. Use an existing working copy; identify what configuration/history is in scope. Finish with the needed source lines and their context, not a conclusion drawn from a wrapped display.
+Read this entire SKILL.md before acting. Use an existing working copy; identify what configuration/history is in scope. For a selected pager shell/privilege assessment, read [pager process context](references/process-context.md) fully before that action. Finish with the needed source lines or actual child identity and its context, not a conclusion drawn from a wrapped display or parent prompt.
 
 Define `file` as the selected path. For plain configuration text with possible long lines:
 

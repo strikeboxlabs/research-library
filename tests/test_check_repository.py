@@ -76,6 +76,30 @@ class RepositoryChecks(unittest.TestCase):
         self.write(self.skill / "reference.md", "Use {{tool}}.\n")
         self.assertTrue(any("Unfinished runtime placeholder" in error for error in CHECKER.check_repository(self.root)["errors"]))
 
+    def test_documented_template_arithmetic_is_not_scaffolding(self):
+        self.write(self.skill / "reference.md", "Compare `{{7*7}}` and `{{7*'7'}}`.\n")
+        self.assertEqual(CHECKER.check_repository(self.root)["errors"], [])
+
+    def test_jinja_working_examples_allow_variables_and_attribute_calls(self):
+        self.write(self.skill / "reference.md",
+                   "~~~jinja\n{{ name }}\n{{ object.method() }}\n~~~\n")
+        self.assertEqual(CHECKER.check_repository(self.root)["errors"], [])
+
+    def test_named_slots_in_inline_and_shell_code_remain_errors(self):
+        for text in ("Use `{{tool}}`.\n", "~~~bash\n{{tool}} --help\n~~~\n"):
+            with self.subTest(text=text):
+                self.write(self.skill / "reference.md", text)
+                self.assertTrue(any("Unfinished runtime placeholder" in error
+                                    for error in CHECKER.check_repository(self.root)["errors"]))
+
+    def test_descriptive_and_unclosed_authoring_slots_remain_errors(self):
+        for text in ("{{State the prerequisite and completion evidence.}}\n",
+                     "Use {{tool\n"):
+            with self.subTest(text=text):
+                self.write(self.skill / "reference.md", text)
+                self.assertTrue(any("Unfinished runtime placeholder" in error
+                                    for error in CHECKER.check_repository(self.root)["errors"]))
+
     def test_unclosed_fence_is_reported(self):
         self.write(self.root / "README.md", "~~~bash\nprintf 'example'\n")
         self.assertTrue(any("Unclosed code fence" in error for error in CHECKER.check_repository(self.root)["errors"]))

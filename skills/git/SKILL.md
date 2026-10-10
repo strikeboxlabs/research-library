@@ -8,46 +8,13 @@ description: Acquire a selected upstream checkout or inspect historical files, s
 Read this entire SKILL.md before acting. Choose the requested task and complete its relevant checks; report the observed evidence and remaining limits, not just command success. Use an existing trusted repository or isolated evidence copy.
 
 - Acquiring a selected upstream source: [source checkout](references/source-checkout.md). Read this reference fully before its procedure.
-- History and historical files: use the opening procedure below.
+- Removed/replaced files, patch search or ambiguous diff endpoints: [historical content](references/history-recovery.md). Read it fully before selecting/extracting a revision.
 - Stored URLs: [remote configuration](#inspect-an-acquired-remote-configuration).
 - Hook behavior: [local hook diagnosis](#diagnose-a-missing-or-unexpected-local-hook).
 - Patch validation: [scoped patch checks](#prepare-and-check-a-scoped-patch).
 - Link/submodule types: [stored modes and metadata](#inspect-stored-symlinks-and-submodules-without-checking-them-out).
 
-Define `repo` as its absolute path and `path` as one repository-root-relative file path:
-
-~~~bash
-git -C "$repo" status --short
-git -C "$repo" rev-parse --is-shallow-repository
-git -C "$repo" --no-pager log --all --follow --format='%H %ad %s' --date=iso-strict -- "$path"
-~~~
-
-`--follow` follows one file across detected renames, not an entire directory. `--all` traverses locally available refs, not every remote commit or deleted unreachable object. Shallow/partial clones can limit results; a partial clone may fetch missing objects on demand. Record the repository state before treating an empty history as evidence that content never existed.
-
-Choose `revision` from an observed commit and `historical_path` as the path at that revision, which can differ after a rename. Define `output_file` as a fresh private destination:
-
-~~~bash
-umask 077
-git -C "$repo" show "$revision:$historical_path" >"$output_file"
-~~~
-
-This reads a blob without checking out the old revision, changing branches or disturbing uncommitted files. Verify exit status and output before using it. A missing path can mean the file was renamed/deleted at that commit; inspect the parent or the commit's path changes rather than assuming the repository is corrupt.
-
-For changes to the chosen path, use `git -C "$repo" --no-pager log -p --no-ext-diff --no-textconv -- "$path"`. External diff/text-conversion helpers can execute configured programs; the explicit flags keep that comparison textual. Large/binary files need a format-specific reader after extraction.
-
-When a known code line remains but its value changed, search changed lines rather than reading every patch. With `repo` and `path` defined above, set `marker_regex` to a relevant regular expression and `patch_file` to a fresh private file. The illustrative marker locates calls to an encoding API without putting a secret in the search argument:
-
-~~~bash
-umask 077
-marker_regex='Encoding[.]ASCII[.]GetBytes'
-git -C "$repo" --no-pager log --all --follow -n 20 -p \
-  --no-ext-diff --no-textconv -G "$marker_regex" -- "$path" >"$patch_file"
-~~~
-
-`-G` selects changes whose added/removed lines match. `-S` instead detects a changed number of occurrences of a string: replacing one literal argument with another can leave the marker count unchanged and be missed by `-S`. The output limit bounds displayed commits, not history traversal cost. Check status and both sides of the selected patch, then extract the relevant revision/path using `show` above. Empty output can reflect the path, regex, refs or history limits. See [Git's patch-search semantics](https://git-scm.com/docs/git-log).
-
-A historical secret proves it was stored at that revision, not that it is currently valid. Keep sensitive content out of routine reports. If ownership checks reject a repository, inspect ownership/trust first; do not set `safe.directory '*'` to bypass the check globally. Report commit ID, historical path and history limitations with the finding.
-
+Define `repo` as an existing repository's absolute path. Start with `git -C "$repo" status --short` and `git -C "$repo" rev-parse --is-shallow-repository`; preserve local edits and history limitations. For historical content, follow the reference above before selecting a revision or extracting a blob. The remaining branches below use that same `repo` and explicitly defined task paths; none requires a checkout/reset or a live authentication attempt.
 
 ## Inspect an acquired remote configuration
 
@@ -95,7 +62,7 @@ See [hook events](https://git-scm.com/docs/githooks), [pull integration modes](h
 
 ## Prepare and check a scoped patch
 
-For an intended change to a tracked file, use the trusted `repo` and repository-relative `path` above. Define `patch` as a fresh absolute file outside the worktree:
+For an intended change to a tracked file, use the trusted `repo` and define `path` as the selected repository-root-relative file path. Define `patch` as a fresh absolute file outside the worktree:
 
 ~~~bash
 git -C "$repo" --no-pager diff --binary --full-index --no-ext-diff --no-textconv -- "$path" >"$patch"
@@ -118,7 +85,7 @@ See [diff selection](https://git-scm.com/docs/git-diff) and [apply/check semanti
 
 ## Inspect stored symlinks and submodules without checking them out
 
-When a path looks like a plain file on one machine but a link on another, compare the index and selected revision. Use the existing isolated `repo`, root-relative `path` and observed `revision`:
+When a path looks like a plain file on one machine but a link on another, compare the index and selected revision. Use the existing isolated `repo`; define `path` as the selected root-relative file path and `revision` as the observed commit:
 
 ~~~bash
 git -C "$repo" ls-files --stage -- "$path"

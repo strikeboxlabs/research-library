@@ -1,11 +1,13 @@
 ---
 name: ssh
-description: Use OpenSSH for selected-account/key logins, authorized public-key enrollment through a mapped filesystem and remote loopback forwarding. Diagnose key passphrases, server authentication, client hooks and configuration effects without confusing local and remote identities.
+description: Use OpenSSH for selected-account/key logins, SSH application/chat services, authorized public-key enrollment and remote loopback forwarding. Diagnose key passphrases, server authentication, client hooks and configuration effects without confusing local and remote identities.
 ---
 
 # SSH connections and local forwarding
 
 Read this entire SKILL.md before acting; reuse complete current context. Map the client, SSH server and destination before connecting. If options/configuration can execute local helpers or a privileged launcher is involved, read [client commands](references/client-commands.md) fully first. For an authorized public-key installation through an established filesystem write, read [selected authorized-key change](references/authorized-key-change.md) fully first. For a selected private key or confusing password prompt, read [key authentication](references/key-authentication.md) fully first. For a selected Kerberos/GSSAPI login or name-mapping discrepancy, read [GSSAPI identity and delegation](references/gssapi-identity.md) fully first. Finish with observed authentication/tunnel behavior or the supported configuration finding; authenticated transport alone is not destination success.
+
+For an SSH endpoint exposing an application/chat interface, a legacy host-key negotiation failure or a fork-specific file command, read [SSH application services](references/application-services.md) fully before that procedure.
 
 For an authorized interactive login, define `ssh_host`, `ssh_port` and `user` as the verified SSH endpoint and selected OS account. Confirm its host key through the established trust process, then use the intended credential mechanism:
 

@@ -1,12 +1,13 @@
 ---
 name: mysql
-description: Use mysql for explicit socket/TCP connections, database metadata and selected Mattermost account records. Diagnose account matching, password-format context, native functions, string comparison and client/server execution boundaries.
+description: Use mysql for explicit socket/TCP connections, database metadata and selected Joomla or Mattermost account records. Diagnose account matching, password-format context, native functions, string comparison and client/server execution boundaries.
 ---
 
 # MySQL connection and inspection
 
 Read this entire SKILL.md before acting; complete current context need not be re-read. Establish the client/server and connection identity for a database task; native loadable-function metadata is covered below. Read the selected reference fully before its procedure; leave unrelated branches unloaded. Finish with the actual query/result and its scope; a denied query, empty result or client-side effect is not interchangeable with a server finding.
 
+- Joomla configuration/prefix, selected account verifiers and reuse boundaries: [Joomla account records](references/joomla-records.md).
 - Mattermost config/DSN and selected user-password records: [account record context](references/mattermost-records.md).
 - Truncation, padding or collation surprises: [string comparison](references/string-comparison.md).
 - Server/client file access or wrapper/query-file execution: [execution boundaries](references/execution-boundaries.md).

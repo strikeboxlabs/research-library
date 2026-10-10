@@ -5,6 +5,8 @@ description: Inspect Linux listeners and connections with iproute2 ss. Use to di
 
 # Find the actual listener
 
+Read this entire SKILL.md before acting. Select the namespace, protocol and endpoint; finish with observed binding/state/visible ownership and its limits, not a reachability claim from a wildcard address.
+
 Use `ss -V` to identify iproute2. With no options, `ss` does not show the listener inventory wanted here. Start with numeric TCP/UDP listeners:
 
 ~~~bash
@@ -26,4 +28,4 @@ The first command checks local listeners. The second checks established connecti
 
 Results describe the network namespace where the command runs. A container, host and named namespace can have different inventories; inspect the intended namespace through the existing administration mechanism if necessary. Preserve the endpoint, family, state, time and any visible owner. Correlate with an application request or packet observation before declaring a service reachable or healthy.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: AdmirerToo pp. 15–16; Agile pp. 17–18 informed the forwarding handoff. Source: [iproute2 ss manual](https://github.com/iproute2/iproute2/blob/main/man/man8/ss.8).
+Sources: [iproute2 ss manual](https://github.com/iproute2/iproute2/blob/main/man/man8/ss.8).

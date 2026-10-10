@@ -16,4 +16,6 @@ With no account arguments, GNU groups reports primary/supplementary groups of th
 
 An **illustrative** `domain users linux_admins` response identifies group names, not their policy meaning. Inspect the relevant access provider and sudo policy: an SSSD `simple_allow_groups` entry applies when the simple provider is selected, while `sudo -l` describes a different permission decision. Neither the group name nor AD membership alone guarantees every Linux service accepts that account.
 
+On Debian-style systems, `adm` commonly permits reading many system logs; it is distinct from `sudo` and the root identity. Use actual file ownership/modes/ACLs and the current process group context to select readable logs. A denied file or inaccessible parent can still limit that access. Log records can contain user-supplied query or authentication fields, so group access may expose sensitive evidence without establishing those values' owners or present validity. See the [Debian group definitions](https://sources.debian.org/src/base-passwd/3.5.51/doc/users-and-groups.sgml).
+
 See [GNU group lookup semantics](https://github.com/coreutils/coreutils/blob/master/doc/coreutils.texi) and [implementation](https://github.com/coreutils/coreutils/blob/master/src/groups.c).

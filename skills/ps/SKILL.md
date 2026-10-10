@@ -5,7 +5,17 @@ description: Inspect Linux process identity, state and arguments with procps ps 
 
 # Tie process evidence to a PID and time
 
-Confirm the procps implementation with `ps --version`. For a known decimal `pid`, take an explicit snapshot:
+Read this entire SKILL.md before acting. Select the intended process set or PID in its namespace, then preserve identity/start time and complete relevant arguments. Finish with the scoped snapshot and visibility limits; a PID or displayed account name is not proof of another process's authority.
+
+Confirm the procps implementation with `ps --version`. For this user's processes, including ones without a controlling terminal, use BSD-style selectors:
+
+~~~bash
+ps ux
+~~~
+
+`u` selects a user-oriented display; `x` includes this effective user's processes without a terminal. This is not every process on the machine. `ps -e` deliberately selects all visible processes instead; option personalities can differ, so don't mix dashed and BSD forms casually. A `systemd --user` row is a user's manager, not necessarily PID 1. Choose its current PID and retain start time before using it with another process-specific tool.
+
+For a known decimal `pid`, take an explicit snapshot:
 
 ~~~bash
 ps -ww -p "$pid" -o pid=,ppid=,euid=,ruid=,stat=,lstart=,args=
@@ -32,4 +42,4 @@ For an API file-read, `self` refers to the server-side reader, not the curl proc
 
 `ps` is a snapshot, not complete process history or listener ownership proof. `STAT` value `T` denotes a stopped process: Ctrl-Z normally suspends a foreground job rather than resuming it in the background. Permission and namespace limits can hide relevant processes; do not report absence solely from a restricted listing.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Backdoor pp. 8–12; Backend pp. 12–13; BackendTwo pp. 12–13. Sources: [procps ps](https://man7.org/linux/man-pages/man1/ps.1.html), [cmdline](https://man7.org/linux/man-pages/man5/proc_pid_cmdline.5.html), [environment](https://man7.org/linux/man-pages/man5/proc_pid_environ.5.html), [self](https://man7.org/linux/man-pages/man5/proc_self.5.html), [boot command line](https://man7.org/linux/man-pages/man5/proc_cmdline.5.html).
+Sources: [procps ps](https://man7.org/linux/man-pages/man1/ps.1.html), [cmdline](https://man7.org/linux/man-pages/man5/proc_pid_cmdline.5.html), [environment](https://man7.org/linux/man-pages/man5/proc_pid_environ.5.html), [self](https://man7.org/linux/man-pages/man5/proc_self.5.html), [boot command line](https://man7.org/linux/man-pages/man5/proc_cmdline.5.html).

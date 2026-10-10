@@ -1,9 +1,11 @@
 ---
 name: ssh-keygen
-description: Inspect OpenSSH key identity and derive public keys without modifying private-key artifacts. Use when fingerprints, public/private encodings, certificates or parser failures are being confused.
+description: Generate a selected OpenSSH key pair, inspect key identity and validate transferred private-key artifacts without modifying acquired originals. Use when fingerprints, public/private encodings, certificates or parser failures are being confused.
 ---
 
 # Establish key identity before changing format
+
+Read this entire SKILL.md before acting; reuse complete current context. For a new selected key pair or a key recovered through a text transport, read [key creation and transfer](references/key-artifacts.md) fully before the applicable procedure. Finish with the intended artifact and observed parse/fingerprint result; key identity, key generation and server authorization are separate conclusions.
 
 Identify the artifact: an OpenSSH public-key line, OpenSSH private-key envelope, PEM/PKCS key or SSH certificate requires different handling. The filename, comment and base64 appearance do not establish the type. Keep an original private-key artifact unchanged and restrict working-copy access.
 

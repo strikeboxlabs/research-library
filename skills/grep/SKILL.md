@@ -1,11 +1,13 @@
 ---
 name: grep
-description: Filter text evidence with GNU grep while preserving match logic and failure status. Use when literal versus regex matching, multiple conditions or hidden binary/error handling changes the conclusion.
+description: Search text and readable log trees with GNU grep and interpret credential-looking records. Use when match logic, recursive scope or partial/error handling changes the conclusion.
 ---
 
 # State what a selected line proves
 
 Read this entire SKILL.md before acting; reuse complete current context. Select literal/regex and record boundaries deliberately, retain producer/filter errors, and finish with the actual matches or qualified no-match result. A match in partial output does not establish that the producer completed.
+
+For readable application/system logs, backups or suspected misplaced secrets, read [log evidence and credential candidates](references/log-evidence.md) fully before recursive selection or interpreting a candidate.
 
 Define `input` as an existing text file, `needle` as a literal value and `matches` as a fresh output file:
 

@@ -5,7 +5,7 @@ description: Inspect and modify controlled JWT fixtures with ticarpi jwt_tool. U
 
 # Inspect the token before selecting a mode
 
-Read this entire SKILL.md before acting; reuse complete current context. Keep the original token unchanged when testing a candidate key. For a JWKS/public-key algorithm-confusion candidate, read [algorithm/key testing](references/algorithm-confusion.md) fully first. For local signing/claim changes, read [fixture signing](references/fixture-signing.md); for a valid token that still cannot perform an action, read [application sessions](references/application-sessions.md). Finish with decode, signature and application-acceptance conclusions kept separate; selected references are required only for that task.
+Read this entire SKILL.md before acting; reuse complete current context. Keep the original token unchanged when testing a candidate key. For a JWKS/public-key algorithm-confusion candidate, read [algorithm/key testing](references/algorithm-confusion.md) fully first. For a scoped InfluxDB v1 HMAC/blank-secret assessment, read [InfluxDB HMAC tokens](references/influxdb-hmac.md) fully first. For local signing/claim changes, read [fixture signing](references/fixture-signing.md); for a valid token that still cannot perform an action, read [application sessions](references/application-sessions.md). Finish with decode, signature and application-acceptance conclusions kept separate; selected references are required only for that task.
 
 Use ticarpi's `jwt_tool.py`, not an unrelated package with a similar name. Check its help and version banner. Define `jwt_script` as the reviewed script's absolute path and `token` as the original compact JWT without its Bearer prefix:
 

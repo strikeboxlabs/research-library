@@ -1,11 +1,13 @@
 ---
 name: gobuster
-description: Discover selected web paths with Gobuster and interpret wildcard, redirect and access-control responses. Use when choosing enumeration mode, wordlist/extension expansion and filters for a scoped web application.
+description: Discover selected web paths or HTTP virtual hosts with Gobuster and interpret wildcard, redirect and access-control responses. Use when choosing enumeration mode, wordlist/extension expansion and filters for a scoped web application.
 ---
 
 # Gobuster web paths
 
 Read this entire SKILL.md before acting; reuse complete current context. Establish mode, route and response controls before choosing filters. Finish with confirmed response differences and completed request scope; interrupted or filtered output cannot establish absent paths.
+
+For HTTP virtual-host candidates, read [virtual-host selection](references/virtual-hosts.md) fully before that procedure.
 
 Choose the mode deliberately: `dir` probes URL paths, `vhost` varies HTTP hostnames, and `dns` queries DNS. Their wordlists and switches are not interchangeable. Check `gobuster version` and `gobuster dir --help` for the installed release.
 
@@ -17,7 +19,7 @@ gobuster dir -u "$url" -w "$wordlist" -x php,txt -t 4 --delay 250ms -o "$report"
 
 Extensions increase requests; omit `-x` when exact filenames are already supplied. Delay is per worker, not a global requests-per-second limit. Start with a short candidate list and observe actual service behaviour. Stop or slow down on throttling and repeated server errors.
 
-If wildcard checks prevent scanning, inspect the negative response first. Use supported status/length filters only after comparison; forcing past the precheck does not fix false positives. Positive status lists and the default blacklist can conflict, so inspect local help before combining them. Do not treat a length filter as proof that hidden responses contain nothing useful.
+If wildcard checks prevent scanning, inspect the negative response first. Use supported status/length filters only after comparison; forcing past the precheck does not fix false positives. Positive status lists and the default blacklist can conflict, so inspect local help before combining them. Do not treat a length filter as proof that hidden responses contain nothing useful. Blacklisting status 200 suppresses real 200 routes as well as a 200 catch-all; confirm interesting children directly before claiming that the filtered listing covers readable content.
 
 Repeated timeouts under one prefix can reflect a proxy route or an upgrade endpoint. Inspect one request and available routing/client evidence before widening the list; a timeout alone proves neither a directory nor WebSocket support.
 

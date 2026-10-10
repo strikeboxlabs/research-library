@@ -7,6 +7,8 @@ description: Compare acquired directory trees or selected text files with GNU di
 
 Read this entire SKILL.md before acting. For trees, establish corresponding roots and the baseline version/distribution before comparing recursively; for selected text files, use the hunk workflow below. Finish with the comparison scope, status, diagnostics and specific changes; a partial comparison or untrusted baseline cannot establish integrity.
 
+For application main/development backups or a newly added command/handler, read [application variants](references/application-variants.md) fully before interpreting that change.
+
 Confirm GNU `diff --version` and support for `--no-dereference`. Define `baseline` and `observed` as existing absolute directory paths whose contents correspond. Match the application version, distribution and expected local customizations; a banner alone does not establish the exact release. Work from acquired copies and keep the originals. Removing documentation or configuration files to make trees match discards potentially relevant evidence.
 
 Define `report` and `errors` as fresh files outside both trees:

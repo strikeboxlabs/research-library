@@ -1,6 +1,6 @@
 ---
 name: masscan
-description: Discover scoped TCP listeners with Masscan, preserve host and protocol in results, and hand selected ports to a service probe. Use for bounded discovery and diagnosing incomplete or misleading scan output.
+description: Discover scoped TCP and selected UDP responders with Masscan, preserve host and protocol in results, and hand selected ports to a service probe. Use for bounded discovery and diagnosing incomplete or misleading scan output.
 ---
 
 # Masscan discovery and follow-up
@@ -45,6 +45,12 @@ fi
 ~~~
 
 This Nmap command actively connects and probes services on the selected ports; `-Pn` skips host discovery. Repeat separately for other scoped hosts. Keep UDP observations separate and use a UDP-capable follow-up. Never drop an empty `-p` argument and accidentally fall back to Nmap's default port set.
+
+## Mixed TCP and UDP discovery
+
+On a build supporting Nmap-style protocol selectors, a selection such as `ports=1-65535,U:53,U:161` includes that TCP range and the two explicit UDP ports; use `--echo` to review it before the scan above. `U:1-65535` instead requests the whole UDP range, a separate scope/cost decision. The configured packet rate applies to probes, not a guarantee of coverage or useful UDP payloads. Do not infer the tested protocol from a familiar service port number.
+
+If a mixed scan displays only TCP responders, that is not a completed proof that UDP services are absent. Preserve UDP scope, probe support, loss and final receive status separately; follow selected UDP observations with a UDP-capable protocol probe. Passing their port numbers to the TCP Nmap command above changes the protocol and cannot confirm them. See the [upstream protocol/port selectors](https://github.com/robertdavidgraham/masscan/blob/master/doc/masscan.8).
 
 Masscan banner collection can fail when the host kernel sends resets for connections handled by Masscan's separate stack. A missing banner does not negate an open-port observation. Prefer a normal service probe before considering source-IP or firewall changes. Retain the tested ranges, vantage, completion status and discovery/service results separately.
 

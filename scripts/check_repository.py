@@ -59,7 +59,16 @@ def check_repository(root, bash=None):
         skill_root = None
         if len(relative.parts) >= 3 and relative.parts[0] == "skills":
             skill_root = root / "skills" / relative.parts[1]
-            if "{{" in text:
+            # Authoring slots and real template expressions share delimiters.
+            # Explicit Jinja blocks are working examples; arithmetic expressions
+            # are not authoring slots. Keep named/descriptive and unclosed slots
+            # checked in prose and other code, including inline shell examples.
+            slot_text = outside + "\n" + "\n".join(
+                code for language, code in blocks
+                if language not in {"jinja", "jinja2"}
+            )
+            if (re.search(r"\{\{\s*[A-Za-z][^{}]*\}\}", slot_text)
+                    or re.search(r"\{\{\s*[A-Za-z][^{}\n]*$", slot_text, re.M)):
                 errors.append(f"Unfinished runtime placeholder: {relative}")
         for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", outside):
             if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", target) or target.startswith("#"):
