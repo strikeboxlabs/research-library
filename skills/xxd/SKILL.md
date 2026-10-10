@@ -5,6 +5,8 @@ description: Inspect exact bytes and reconstruct hex artifacts with xxd. Use whe
 
 # Keep byte offsets and display formats distinct
 
+Read this entire SKILL.md before acting; reuse complete current context. Choose inspection, normal-dump reconstruction or plain-hex decoding below, with a fresh output for reconstruction. Preserve offsets, final status and resulting byte/format evidence; a parsed prefix or successful reverse exit alone is not complete recovery.
+
 Check `xxd -v` and local help; small reimplementations may support fewer options. Define `artifact` as an existing absolute working-copy path, `offset` as the observed byte offset and `length` as the number of bytes needed:
 
 ~~~bash
@@ -25,6 +27,8 @@ umask 077
 Normal reverse mode uses the dump's addresses. A dump beginning at a nonzero offset can create a gap before its bytes; a selected region is not a complete original file. For a deliberately address-free plain hex stream, use `-r -p` instead. Do not feed a decorated screenshot or mixed prose to either parser and assume success means validity: reverse mode can silently skip material it does not parse, and plain mode can consume unintended hex pairs.
 
 Passing an existing output filename directly to `xxd -r` can patch it without truncating its old tail. Use a new reconstruction artifact, check its length and compare its digest/bytes against an independent original or expected fixture. A correct prefix alone does not prove the rest of the file survived.
+
+A normal dump of compressed bytes reconstructs the compressed object, not its final plaintext. A leading `42 5a 68` is an **illustrative** bzip2 header lead; validate that stream with the format's actual integrity test. For nested bzip2/gzip/tar, save each complete decoded layer to a separate new file, classify it and select its own parser. Do not infer a fixed decompression sequence from a similar walkthrough or treat a header as whole-file validation. A readable inner member does not prove complete outer acquisition.
 
 ## Hex bytes are not yet decoded text
 

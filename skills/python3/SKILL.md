@@ -1,6 +1,6 @@
 ---
 name: python3
-description: Inspect Python source without importing it, trace evaluation and output/byte errors, decode SAML captures, use an existing PyMySQL driver or reproduce bounded HTTP-form/LDAP and token-based WebSocket/query exchanges.
+description: Inspect Python source without importing it, trace evaluation and output/byte errors, decode SAML captures, use an existing PyMySQL driver or use bounded HTTP-form/LDAP, WebSocket/query, owned file-serving and Unix PTY procedures.
 ---
 
 # Python operational inspection
@@ -15,6 +15,8 @@ Read this entire SKILL.md before acting; reuse complete current context. Use the
 - Authorized SQL testing carried by an observed WebSocket message: [application/query boundary](references/websocket-query.md), which also requires the exchange reference.
 - Authorized LDAP-backed HTTP form testing with layered encoding or a response oracle: [form/oracle boundaries](references/ldap-form-oracle.md).
 - MySQL CLI unavailable but a trusted Python environment already has PyMySQL: [bounded database inspection](references/pymysql-inspection.md).
+- Serve a selected owned file tree for a bounded transfer: [local file server](references/local-file-server.md).
+- An authorized Unix child needs a pseudo-terminal: [PTY session](references/pty-session.md).
 
 ## Locate evaluation calls without importing source
 
