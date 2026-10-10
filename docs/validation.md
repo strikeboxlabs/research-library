@@ -101,7 +101,7 @@ No target scan, remote authentication, password recovery, container execution, m
 
 ## Third CTF writeup batch
 
-Twenty-one standalone skills were added and 10 existing skills enriched, bringing the catalogue to 51. All new skills are single files, about 277–357 words each including metadata/sources. Secretsdump adds one conditional offline NTDS reference inside its own package. The [third ingestion record](ctf-writeups-batch3.md) maps all ten PDFs to accepted guidance, corrections, deliberate omissions and source fingerprints.
+Twenty-one standalone skills were added and 10 existing skills enriched, bringing the catalogue to 51. All new skills are single files, about 277â€“357 words each including metadata/sources. Secretsdump adds one conditional offline NTDS reference inside its own package. The [third ingestion record](ctf-writeups-batch3.md) maps all ten PDFs to accepted guidance, corrections, deliberate omissions and source fingerprints.
 
 Executed on Windows:
 
@@ -116,7 +116,7 @@ No target scan, remote authentication, password recovery, remote modification, t
 
 ## Second CTF writeup batch
 
-Thirteen standalone skills were added and five existing skills enriched, bringing the catalogue to 30. Each new package contains only `SKILL.md`, roughly 300–370 words including metadata and sources. The [second ingestion record](ctf-writeups-batch2.md) maps all five PDFs to accepted guidance, corrections and deferred candidates.
+Thirteen standalone skills were added and five existing skills enriched, bringing the catalogue to 30. Each new package contains only `SKILL.md`, roughly 300â€“370 words including metadata and sources. The [second ingestion record](ctf-writeups-batch2.md) maps all five PDFs to accepted guidance, corrections and deferred candidates.
 
 Executed on Windows:
 
@@ -131,7 +131,7 @@ No target scan, remote authentication, password recovery or remote modification 
 
 ## First CTF writeup batch
 
-Sixteen skills were added from five supplied PDFs, bringing the catalogue to 17. Each new skill is a single file of roughly 220–400 words, including metadata/source notes, with no dependency on a sibling skill or the intake documents. The [ingestion record](ctf-writeups-ingestion.md) lists source pages, substantive corrections and remaining candidates.
+Sixteen skills were added from five supplied PDFs, bringing the catalogue to 17. Each new skill is a single file of roughly 220â€“400 words, including metadata/source notes, with no dependency on a sibling skill or the intake documents. The [ingestion record](ctf-writeups-ingestion.md) lists source pages, substantive corrections and remaining candidates.
 
 Executed on Windows:
 
@@ -214,7 +214,7 @@ The offline-core sequence combines these documented commands with diagnostic jud
 
 Original live-debugging reference footer:
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Attended pp. 20–25, adapted from OpenBSD. Sources: [starting](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Starting.html), [machine code](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Machine-Code.html), [memory](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Memory.html), [registers](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Registers.html).
+Documentation reviewed 2026-10-09; Linux execution untested. Case: Attended pp. 20â€“25, adapted from OpenBSD. Sources: [starting](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Starting.html), [machine code](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Machine-Code.html), [memory](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Memory.html), [registers](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Registers.html).
 
 Pilot command review also checked [source listing](https://sourceware.org/gdb/current/onlinedocs/gdb.html/List.html) and [frame information](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Frame-Info.html) on 2026-10-10. The new assertion example is explicitly illustrative, not an executed debugger transcript.
 
@@ -346,7 +346,7 @@ Eleven inert Windows UnZip 6.00 / OpenSSH 10.5p1 / curl 8.21.0 checks passed: fi
 CozyHosting final review: discovery descriptions and catalogue scope were checked after editing; affected entrypoints are 28-69 lines, with full selected references reviewed. The final repository checker again passed (171 packages, 236 Markdown, 301 links, 409 Bash blocks); curl/unzip frontmatter passed after their final description changes. git diff --check passed, with only the existing validation-record CRLF normalization notice.
 
 
-### Craft.pdf — 2026-10-10 continuation
+### Craft.pdf â€” 2026-10-10 continuation
 
 All 17 pages were text-read/rendered/visually inspected; SHA-256 verified before opening and again after review. Added **vault**, enriched **python3/ssh**, and reviewed **mysql/git/curl/nmap** unchanged against schema v0.7. Catalogue: **172 skills**. Python's independent evaluation/output/byte branches moved to conditional references with earlier content preserved; added driver fallback and key-authentication references.
 
@@ -355,7 +355,7 @@ Seven focused validators and nine packaging tests passed. Repository checks: **2
 Vault was not on the inspected PATH; PyMySQL was absent from the system interpreter. Driver TLS fallback differences were checked against 1.1.1 and current upstream source and qualified as an installed-version prerequisite. No database/Vault execution, actual SSH connection/authentication, source secrets, attacks, Linux fixture or worker evaluation. Full source/page mapping, verification links and deferred material are in the [intake entry](ctf-writeups-overnight-2026-10-10.md#craftpdf).
 
 
-### Crafty.pdf — 2026-10-10 continuation
+### Crafty.pdf â€” 2026-10-10 continuation
 
 All eight physical pages were text-read, rendered and individually inspected; SHA-256 verified before opening and after review, with no extraction warnings. Added **procyon/minecraft-console-client**, enriched **base64/file**, and reviewed **unzip/nmap** unchanged against v0.7. Six package reviews; catalogue **174 skills**. Earlier base64 digest/base64url/form guidance moved intact to a conditional reference; no target-environment paths were invented.
 
@@ -364,7 +364,7 @@ Six focused validators, nine packaging tests and repository checks passed: **247
 Procyon/MCC were not on the inspected PATH and were not executed. Their command behavior was checked against official documentation/source, including positional JAR support, deprecated jar-file option, per-type failure handling and offline-client selection. No server/account interaction, exploit, installation, Linux or worker test. See the [intake entry](ctf-writeups-overnight-2026-10-10.md#craftypdf) for source discrepancies, full page coverage, primary links and deferred material.
 
 
-### CrossFit.pdf — 2026-10-10 continuation
+### CrossFit.pdf â€” 2026-10-10 continuation
 
 All 39 physical pages text-read/rendered/individually inspected; source SHA-256 matched before opening and after review, without extraction warnings. Added **lftp/ghidra**, enriched **wfuzz/openssl/pspy/find/mysql/objdump**, and reviewed **hashcat/curl** unchanged: ten v0.7 package reviews. Catalogue **176**. OpenSSL expiry/key branches moved intact to conditional references; historical P12/objdump footers relocated to the intake record. Required Ghidra helper and conditional task routes are visible near the top.
 
@@ -372,9 +372,9 @@ Ten focused validators, nine packaging tests and repository checks passed: **255
 
 lftp/analyzeHeadless/pspy/wfuzz were not on the inspected PATH. No target, attack, browser, database/PAM, actual decompiler, Linux or worker execution; this is documentation/source review plus the precisely scoped Windows fixtures above. See the [intake entry](ctf-writeups-overnight-2026-10-10.md#crossfitpdf) for all pages, source inconsistencies, primary links, helper/runtime limits and deferred material.
 
-### Coverage repairs — 2026-10-10
+### Coverage repairs â€” 2026-10-10
 
-Added 32 independent skills and enriched Certipy/dacledit, with all 34 affected packages reviewed against schema v0.8. Full source/task mapping and corrections are in the [coverage repair record](ctf-writeups-overnight-2026-10-10.md#coverage-repair-after-the-crossfit-review--2026-10-10). Existing useful workflows were preserved; conditional references carry substantial action/interpretation/recovery detail. Entrypoints are 16–46 lines, with no sibling-skill runtime dependency.
+Added 32 independent skills and enriched Certipy/dacledit, with all 34 affected packages reviewed against schema v0.8. Full source/task mapping and corrections are in the [coverage repair record](ctf-writeups-overnight-2026-10-10.md#coverage-repair-after-the-crossfit-review--2026-10-10). Existing useful workflows were preserved; conditional references carry substantial action/interpretation/recovery detail. Entrypoints are 16â€“46 lines, with no sibling-skill runtime dependency.
 
 34 focused validators, 15 existing tests (packaging/checker and help capture), exact catalogue membership and Git whitespace checks passed. Repository checks passed for 210 skill directories, 312 Markdown files, 383 local links and 507 Bash blocks, syntax only. Raw results, source fingerprints and pre-edit backups are in ignored work/coverage-repair-2026-10-10/. The first two quick-validator attempts lacked the YAML dependency on sys.path; the established work/validation-deps path resolved that without installation. No Linux tools, attack commands, source targets, new upstream executable code or agent evaluations were run. The inline PhantomJS driver was not executed. Source review is not runtime validation.
 
@@ -382,7 +382,7 @@ Two of the 210 directories remain prior CrossFit2 drafts: 208 accepted packages 
 
 Final documentation-only check: 312 Markdown files, 423 local links and 210 package directories passed after saving the repair records; Git whitespace checks passed. The 507 previously parsed Bash blocks were unchanged, so they were not executed or re-run. The retired source-download helper was removed. The continuation remains ACTIVE and reads the completed repair checkpoint before resuming CrossFit2.
 
-### CrossFit2.pdf — 2026-10-10 continuation
+### CrossFit2.pdf â€” 2026-10-10 continuation
 
 All 56 physical pages text-read and rendered at 100 dpi; 37 relevant screenshot pages individually inspected. Source SHA-256 matched before opening, on resume and after review, with no reported extraction warnings. Added **node/unbound-control/fakedns/yubisim/java/javac**, enriched **curl/python3/ssh/objdump/gobuster/ncat/php/find/git**, and reviewed **mysql/nmap/wfuzz/wget** unchanged for selected tasks under v0.8. Nineteen source-task package reviews; **214 accepted packages** after acceptance. The six are independent, including overlapping tools. Full selected procedures and early reference routes reviewed; substantial operational branches remain conditional and package-local. No whole-library conformity migration is claimed.
 
@@ -394,9 +394,9 @@ Unbound/FakeDNS/PHP/Ncat/Yubisim, target SQL/SSH and WebSocket/Socket.IO procedu
 
 CrossFit2 final maintenance-record check: 325 Markdown files, 469 local links and 214 package directories passed after saving the intake and validation records. Exact alphabetical catalogue membership and Git whitespace checks passed. The 523 previously syntax-checked Bash blocks were unchanged, so no additional example execution or test repetition was needed. The source SHA-256 matched again before queue acceptance. CrossFit2 is completed; next CTF.pdf remains pending for the following heartbeat.
 
-### CTF.pdf — 2026-10-10 continuation
+### CTF.pdf â€” 2026-10-10 continuation
 
-All 18 physical pages text-read/rendered; pages 3–18 visually inspected. SHA-256 matched, no extraction warnings. Added **stoken/ipset/md5sum/tail**, enriched **7z/python3/openssl/bash/curl** and reviewed **base64/ssh/nmap** unchanged under v0.8: 12 source-task conformity reviews, 218 packages after acceptance. Early activation/routes and complete affected procedures reviewed; unrelated prior workflows preserved. No whole-library migration claimed.
+All 18 physical pages text-read/rendered; pages 3â€“18 visually inspected. SHA-256 matched, no extraction warnings. Added **stoken/ipset/md5sum/tail**, enriched **7z/python3/openssl/bash/curl** and reviewed **base64/ssh/nmap** unchanged under v0.8: 12 source-task conformity reviews, 218 packages after acceptance. Early activation/routes and complete affected procedures reviewed; unrelated prior workflows preserved. No whole-library migration claimed.
 
 All **12 focused validators**, **15 existing unit tests (six help-capture and nine packaging/checker)** and **27 inert Windows checks** passed. The latter include four version probes; five current 7-Zip literal/listfile/dot-tree/truncation cases; one standard-library one/two-pass form model; six bounded prefix success/failure cases; four date/zone/invalid-date cases; five OpenSSL/MD5 record/newline/missing-input cases; and two finite/followed-log cases. 7-Zip **26.03 x64**, OpenSSL **3.5.7**, GNU md5sum/tail **8.32** and Python **3.12.10** were used on Windows. All data were public owned fixtures; the tracked tail follower was stopped. No symlink was created or privileged process run. Two embedded Python blocks parsed as AST; the prefix routine was exercised with owned callbacks, not an HTTP/LDAP target. Repository checking before these maintenance-record additions passed for **334 Markdown files, 478 local links, 218 package directories and 538 Bash blocks parsed only**. README membership is exact, unique and alphabetical; Git whitespace checking passed. Syntax checks executed no command examples. Raw evidence is in ignored `runs/ctf-20261010/` and `work/overnight-ingest-2026-10-10/CTF/`. Post-record link/whitespace/hash checking follows before queue completion.
 
@@ -404,9 +404,9 @@ Requests, stoken and ipset were not executed; neither available Python environme
 
 CTF final maintenance-record check: 334 Markdown files, 498 local links and 218 packages passed after intake/validation records were saved. Exact alphabetical catalogue membership, Git whitespace and source SHA-256 passed. The 538 previously parsed Bash blocks were unchanged; no syntax example was executed. CTF.pdf is completed; Curling.pdf remains pending for the next heartbeat.
 
-### Curling.pdf — 2026-10-10 continuation
+### Curling.pdf â€” 2026-10-10 continuation
 
-Ten pages fully text-read/rendered at 110 dpi; pages 3–10 visually inspected, hash matched and no extraction warnings. Added **bzip2/gzip/nc/rlwrap**, enriched **curl/python3/xxd/scp**, reviewed **nmap/base64/file/tar/pspy/wget/ssh/bash** unchanged under v0.8. Sixteen source-task reviews; 222 packages after acceptance. Full affected procedures and early routes reviewed, earlier tasks preserved. No whole-library migration claim.
+Ten pages fully text-read/rendered at 110 dpi; pages 3â€“10 visually inspected, hash matched and no extraction warnings. Added **bzip2/gzip/nc/rlwrap**, enriched **curl/python3/xxd/scp**, reviewed **nmap/base64/file/tar/pspy/wget/ssh/bash** unchanged under v0.8. Sixteen source-task reviews; 222 packages after acceptance. Full affected procedures and early routes reviewed, earlier tasks preserved. No whole-library migration claim.
 
 All **16 focused package validators**, **nine existing packaging/checker tests** and **19 inert Windows checks** passed. Cases include complete layered hex/compression/tar recovery and source retention; truncated, wrong-format/force and concatenated compression outcomes; config output association, encoded GET fields, HTTP 404/body distinction, FILE transfer/policy; owned-server shutdown and passive bzip2 help. Versions: GNU gzip **1.14**, bzip2 **1.0.8**, xxd **2026-06-16**, file **5.48**, GNU tar **1.35**, curl **8.21.0/Schannel** and Python **3.12.10**, all on Windows. One embedded PTY Python program parsed as AST, without Unix execution. Before maintenance-record additions, repository checks passed for **341 Markdown files, 505 local links, 222 packages and 549 Bash blocks parsed only**. The changed bzip2 block was subsequently rechecked; commands were not executed by syntax checking. Catalogue membership is exact, unique and alphabetical; Git whitespace passed. Raw evidence lives in ignored `runs/curling-20261010/` (verified rerun in `verified/`) and the selected PDF work folder. Final post-record checks precede queue completion.
 
@@ -414,7 +414,7 @@ Initial Windows tar drive-letter parsing failure was retained and corrected in t
 
 Curling final maintenance-record check: 341 Markdown files, 528 local links and 222 packages passed after saving intake/validation records. Exact unique alphabetical catalogue membership, Git whitespace and source SHA-256 passed. The 549 previously parsed Bash blocks and the corrected bzip2 block remained unchanged after their syntax checks; no syntax example was executed. Curling.pdf is completed; Cybermonday.pdf remains pending for the next heartbeat.
 
-### Cybermonday.pdf — 2026-10-10 continuation
+### Cybermonday.pdf â€” 2026-10-10 continuation
 
 All 49 physical pages text-read, rendered at 105 dpi and visually inspected; wrong-pointing-object warnings 7/19 did not prevent complete text/visual review. Source hash matched before extraction/editing and at acceptance. Under v0.8 added **hostname/stty/docker-compose/shocker**; enriched **curl/python3/php/phpggc/jwt-tool/docker/nmap/gcc/script/chisel/git-dumper/wfuzz**; reviewed **sudo/git/nc/ssh/base64/gzip/wget/bash** unchanged for their selected source tasks. See the [source-to-task record](ctf-writeups-overnight-2026-10-10.md#cybermondaypdf--continuation-2026-10-10) for page mapping, semantics verification, observed-versus-claimed effects, concrete retained procedures and unresolved variants. Twenty-four packages reviewed, not a wholesale migration.
 
@@ -423,7 +423,7 @@ Twenty-four focused frontmatter validators, 15 existing packaging/help/checker t
 Cybermonday final maintenance-record check: 356 Markdown files, 569 local links and 226 packages passed after saving intake/validation. The 566 previously parsed Bash blocks were unchanged; none was executed. Catalogue, whitespace and source SHA-256 passed. Cybermonday completed; Cypher.pdf remains pending.
 
 
-### Cypher.pdf — 2026-10-10 continuation
+### Cypher.pdf â€” 2026-10-10 continuation
 
 All eight physical pages text-read, rendered at 115 dpi and individually inspected; source hash matched before opening and at acceptance. Under v0.8 added **bbot/neo4j-admin**; enriched **curl/sudo/ssh** and reviewed **nmap/gobuster/bash/python3** unchanged for selected tasks. Nine-package conformity review, not a library-wide migration. The [intake record](ctf-writeups-overnight-2026-10-10.md#cypherpdf--continuation-2026-10-10) maps source tools/tasks, source errors and concrete remaining gaps.
 
@@ -432,12 +432,38 @@ Nine frontmatter checks, 15 existing tests, two Python AST blocks and 11 inert W
 Cypher final maintenance-record check: 360 Markdown files, 583 local links and 228 packages passed after saving intake/validation. The 574 syntax-checked Bash blocks were unchanged; none was executed. Catalogue, whitespace and source SHA-256 passed. Cypher completed; Dab.pdf remains pending for the next heartbeat.
 
 
-### Dab.pdf — 2026-10-10 continuation
+### Dab.pdf â€” 2026-10-10 continuation
 
-All 20 pages text-read (9,496 extracted characters), rendered at 110 dpi and individually inspected; SHA-256 matched before extraction and acceptance. Schema v0.8: added **id/ldconfig/ldd/peda/ssh-username-enum**, enriched **curl/wfuzz/jq/gcc/gdb/masscan/hashid/john/vim**, reviewed nine other packages unchanged: 23 selected packages, not a wholesale migration. The [intake record](ctf-writeups-overnight-2026-10-10.md#dabpdf--continuation-2026-10-10) accounts for source tools/GUI adaptations, relevant source errors and supported procedures. Vim's previous Attended pp8–9/15 provenance footer moved into this maintenance record; its startup/modeline/recovery links and useful workflows remain in the package.
+All 20 pages text-read (9,496 extracted characters), rendered at 110 dpi and individually inspected; SHA-256 matched before extraction and acceptance. Schema v0.8: added **id/ldconfig/ldd/peda/ssh-username-enum**, enriched **curl/wfuzz/jq/gcc/gdb/masscan/hashid/john/vim**, reviewed nine other packages unchanged: 23 selected packages, not a wholesale migration. The [intake record](ctf-writeups-overnight-2026-10-10.md#dabpdf--continuation-2026-10-10) accounts for source tools/GUI adaptations, relevant source errors and supported procedures. Vim's previous Attended pp8â€“9/15 provenance footer moved into this maintenance record; its startup/modeline/recovery links and useful workflows remain in the package.
 
 23 focused frontmatter checks, 15 existing tests, one inline Python AST parse and nine inert Windows checks passed. The converter preserves one HTML layer/literal entity and rejects invalid/truncated input or overwrite; Windows curl 8.21.0 captures encoded command/port, private public-fixture cookie, and HTTP 200 denial without a transport failure against an owned echo server, which was stopped. Corrected an initial illustrative byte-count assertion to 37 and rechecked; no source/target artifacts were overwritten. Repository: 370 Markdown, 593 links, 233 packages, 592 Bash blocks syntax-only; exact catalogue and Git whitespace passed. A final Vim/vi clarification frontmatter check passed with Bash examples unchanged.
 
 No actual Wfuzz/Jq/GDB/PEDA/GCC/ldd/ldconfig/enumeration/helper or Memcached/SSH execution, Linux fixture or agent evaluation. The historical helper/plugin versions and image paths remain verification scope, not tool acceptance gates. Upstream helper/PEDA/protocol pinned source was read only in memory; no attack-source files, imports or installations. No Defender/settings changes, original deletion/move, commit or push. Frontmatter shim checks/manual format review are not YAML/spec/runtime validation. Full source/page/primary-documentation trail and limits are in the linked intake record.
 
 Dab final maintenance-record check: 370 Markdown files, 617 local links and 233 packages passed after saving intake/validation. The 592 syntax-checked Bash blocks were unchanged and were not executed. Catalogue, whitespace and source SHA-256 passed. Dab completed; DarkCorp.pdf remains pending for the next heartbeat.
+
+
+### DarkCorp.pdf â€” 2026-10-10 continuation
+
+All 34 pages text-read (44,777 characters), rendered at 100 dpi and individually inspected; source SHA-256 matched before opening and acceptance. Two pypdf zero-offset object warnings (11/22) did not omit a page; all page images were inspected. Schema v0.8: **13 new, 18 enriched/conformed, five unchanged reviewed** packages (36 selected), with 246 accepted packages total. [The intake record](ctf-writeups-overnight-2026-10-10.md#darkcorppdf--continuation-2026-10-10) maps every source task, corrections, package-local depth and deliberately omitted raw/bulk delivery material; psql/curl/structured LDB procedures are explicitly identified adaptations rather than falsely claimed source invocations.
+
+36 focused frontmatter/first-150 checks, 15 existing tests and helper AST passed. Twelve inert Windows receiver/form checks passed, covering rejected wrong path/method/length/chunked/truncated/oversize bodies before file creation, raw Unicode/entity preservation, exclusive no-overwrite behavior, curl file/form `+` encoding and status/body correlation, and stopped owned loopback listeners. Windows curl 8.21.0/Schannel and only the authored bounded helper actually ran. The strings activation-contract omission found by the initial review guard was corrected before the full successful pass. Final SharpGPOAbuse prose clarification received its own focused check; commands/helper unchanged.
+
+Repository: 397 Markdown, 646 local links, 246 packages and 631 Bash blocks **syntax only**, no errors; exact unique sorted catalogue and Git whitespace passed. Twenty-three primary source-file metadata records capture in-memory CLI/definition review, with pinned krbrelayx/Impacket/Certipy/NetExec/Inveigh/CredentialManager/less revisions. No upstream attack source was saved/imported/executed. Initial literal source guards were corrected after direct inspection (formatting/name/split-header differences), not treated as runtime results. Focused frontmatter shim is not full YAML/spec validation.
+
+No Linux/worker trial, browser XSS, PostgreSQL mutation, authentication/capture/coercion/relay, ticket issuance/forgery, cracking, credential-store recovery or remote task/GPO operation. No tool installation, system/power/Defender change, original deletion/move, commit/push. Runtime acceptance is documentation reviewed with those explicit limits, not blocked by an unavailable fixture. Prior getTGT/ProxyChains/Python-server/offline-NTDS source-page footers were relocated into this maintenance record's linked intake section with their primary links/workflows retained.
+
+DarkCorp final maintenance-record check: 397 Markdown files, 679 local links and 246 packages passed after saving intake/validation. The 631 previously syntax-checked Bash blocks were unchanged and were not executed. Catalogue, runtime hashes, whitespace and source SHA-256 passed. DarkCorp completed; Data.pdf remains pending for the next heartbeat.
+
+
+## Data continuation — 2026-10-10
+
+Data.pdf: **all five pages**, 7,071 text characters and five 125-dpi page images individually reviewed; queued SHA-256 matched before opening and acceptance. Two pypdf zero-offset warnings (10/20) did not omit a page. Schema v0.8: **one new independent mount skill, six enriched/conformed and four unchanged reviewed** packages, 247 accepted packages total. [The intake record](ctf-writeups-overnight-2026-10-10.md#datapdf--continuation-2026-10-10) maps every useful active task, GUI adaptation, source corrections and deliberate raw-data exclusions.
+
+Eleven focused frontmatter/first-150 checks, complete affected task contexts and 15 existing tests passed. Three authored inline Python snippets AST-parsed. Seventeen inert Windows cases passed: SQLite Python-module schema/storage queries; CSV conversion preserving literal delimiter/Unicode/whitespace salt and full digest; exclusive output and invalid/ambiguous/cost/length rejection; full-verifier success, wrong candidate and corrupted tail with identical prefix; SQLite/HTML header distinction; owned curl path normalization/literal/encoded targets with response correlation; owned receiver stopped. The eighteenth case is exact unique alphabetical catalogue equality. Actual Windows curl 8.21.0/Schannel and Python standard-library procedures ran; no Linux sqlite3, upstream converter, Hashcat, Grafana exploit, Docker, mount or SSH execution. Public fixture data only; no PDF secrets were used. The final Docker prose adjustment makes context queries conditional on permitted daemon access and passed focused validation; commands were unchanged.
+
+Repository: **403 Markdown, 685 local links, 247 packages, 645 Bash blocks syntax only**, no errors; catalogue and Git whitespace passed. Eight primary source/manual URL/digest/byte records document in-memory review; no upstream attack code stored/imported/run. Failed/redirected browser pages were resolved with the successfully read vendor advisory/upstream manuals, not treated as unseen verification. Focused frontmatter shim is not a full YAML/spec validator. No Linux/worker outcomes, target attacks/authentication, offline source cracking, container or filesystem/key operation, tool install, system/Defender/power settings change, original move/delete, commit/push. Image paths/options and operational trials remain the later Linux pass.
+
+Data final maintenance-record check: 403 Markdown files, 696 local links and 247 packages passed after the records were saved. The unchanged 645 Bash blocks were previously syntax checked, not executed. Runtime hashes, catalogue, whitespace and source SHA-256 passed. Data completed; Delegate.pdf remains pending for the next heartbeat.
+
+Data checkpoint recovery: the first acceptance attempt saved both records but failed on a Windows default-codepage read; Data remained in_progress. Explicit UTF-8 and reuse of the identical saved records resolved it without duplicate entries before queue acceptance.

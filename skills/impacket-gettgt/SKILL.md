@@ -5,6 +5,8 @@ description: Obtain a Kerberos file credential cache using known credentials wit
 
 # Impacket getTGT
 
+Read this entire SKILL.md before acting. Establish the selected account, credential, realm/KDC and fresh cache, then verify the issued principal and validity. For UPN/enterprise-principal mapping, read [enterprise identity selection](references/enterprise-principal.md) fully before requesting the ticket; cache creation alone is not service authorization.
+
 Check `impacket-getTGT -h`; an upstream installation may provide `getTGT.py`. Define `domain` as the AD DNS domain, `user` as the bare account name, `dc_ip` as the DC address, and `ticket_dir` as a new absolute workspace directory.
 
 ~~~bash
@@ -27,4 +29,4 @@ When consuming the cache, use the service's FQDN for SPN selection, even if a se
 
 For preauthentication failure, verify the supplied identity and credential once before retrying. For skew/expiry, inspect actual times; a walkthrough's clock-reset command is not a universal fix. For service-principal errors, check FQDN, realm and DNS canonicalization. Preserve diagnostics: the script can catch an exception without a failing process status.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Absolute PDF pp. 7–9. Maintenance sources: [getTGT implementation](https://github.com/fortra/impacket/blob/master/examples/getTGT.py) and [MIT klist](https://web.mit.edu/kerberos/krb5-latest/doc/user/user_commands/klist.html).
+For option and cache differences, consult [getTGT implementation](https://github.com/fortra/impacket/blob/master/examples/getTGT.py) and [MIT klist](https://web.mit.edu/kerberos/krb5-latest/doc/user/user_commands/klist.html).

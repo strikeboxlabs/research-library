@@ -5,6 +5,8 @@ description: Triage binary files with GNU strings while retaining offsets and ch
 
 # GNU strings binary triage
 
+Read this entire SKILL.md before acting. Select the actual artifact and encoding/offset options, preserve its source identity, and finish with the needed text/context and supported conclusion. For database/cache ownership, the structured-record step below is required before assigning an extracted verifier to an account; text adjacency alone is insufficient.
+
 Check `strings --version`; GNU binutils flags are not identical to Windows Sysinternals `strings.exe`. Define `binary` as an absolute path to the artifact copy, and `ascii_output`/`wide_output` as fresh private files:
 
 ~~~bash

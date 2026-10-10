@@ -13,4 +13,4 @@ Inspect diagnostics and `${output_prefix}.ntds`; errors can leave partial result
 
 ESE/database errors call for checking matching acquisition, file completeness and format support. Preserve originals; do not modify/repair the evidence database in place. Record which records were actually recovered and any failures.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: APT pp. 7–9. Sources: [CLI and LOCAL restrictions](https://github.com/fortra/impacket/blob/master/examples/secretsdump.py), [NTDS parser](https://github.com/fortra/impacket/blob/master/impacket/examples/secretsdump.py).
+Documentation reviewed 2026-10-09; Linux execution untested. Case: APT pp. 7â€“9. Sources: [CLI and LOCAL restrictions](https://github.com/fortra/impacket/blob/master/examples/secretsdump.py), [NTDS parser](https://github.com/fortra/impacket/blob/master/impacket/examples/secretsdump.py).

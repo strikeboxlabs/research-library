@@ -1,9 +1,11 @@
 ---
 name: impacket-secretsdump
-description: Parse existing Windows SAM/SYSTEM, SECURITY or NTDS snapshots, or perform a selected-account AD replication audit with Impacket secretsdump. Use to distinguish offline evidence, current credentials and incomplete results.
+description: Parse existing Windows SAM/SYSTEM, SECURITY or NTDS snapshots, perform approved remote member-host acquisition or a selected-account AD replication audit with Impacket secretsdump. Use to distinguish offline evidence, current credentials and incomplete results.
 ---
 
 # Impacket secretsdump
+
+Read this entire SKILL.md before acting. Select offline inputs, a scoped replication query or the remote acquisition branch; retain store/account mapping, extraction status and actual artifacts. Read [offline NTDS](references/offline-ntds.md) for that snapshot task or [remote SAM acquisition](references/remote-sam.md) before live acquisition. Missing rights, partial output or unavailable inputs remain unresolved.
 
 ## Existing local hives
 

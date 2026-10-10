@@ -1,9 +1,11 @@
 ---
 name: python-http-server
-description: Serve selected local files temporarily with Python's http.server. Use when bind addresses, directory exposure, transfer verification or callback logs need interpretation.
+description: Serve selected local files or receive a bounded controlled POST callback with Python's http.server. Use when bind addresses, directory exposure, transfer verification or callback logs need interpretation.
 ---
 
 # Temporary Python file server
+
+Read this entire SKILL.md before acting. Select a dedicated directory/listener and establish the requested file transfer with size/hash evidence. For a controlled POST callback, read [bounded callback collection](references/post-callback.md) fully and use its required `scripts/receive_callback.py`; ordinary file-server mode cannot receive that body. Finish with request evidence and closed owned listeners, not a log line alone.
 
 Check `python3 --version` and `python3 -m http.server --help`; `--directory` requires a supporting Python version. Define `share_dir` as a dedicated absolute directory containing only the intended files, `bind_ip` as the local interface reachable by the consumer, and `port` as a free unprivileged port:
 
@@ -21,4 +23,4 @@ An access-log entry establishes a request, not necessarily a completed download 
 
 For query-string evidence, percent decoding and base64 decoding are separate layers; do not decode an entire request line or blindly remove characters from encoded data. Logs can contain secrets. Stop the server after use and verify that its listener has closed.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Alert pp. 6–11; Analytics p. 5; Appsanity p. 9. Source: [Python http.server](https://docs.python.org/3/library/http.server.html).
+For handler/version behavior, consult [Python http.server](https://docs.python.org/3/library/http.server.html).

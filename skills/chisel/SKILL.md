@@ -7,6 +7,8 @@ description: Build and diagnose explicit Chisel port forwards or reverse SOCKS c
 
 Read this entire SKILL.md before acting. Select transport/listener/destination roles and the needed authentication before starting the applicable forward. Finish with actual listener and application-response evidence, then stop the owned client/server and verify their listeners close; transport connection alone is incomplete.
 
+For a listener on the client that must reach a server-side receiver (including an application callback), read [normal forward and callback routing](references/normal-forward.md) fully first. Reverse SOCKS below solves a different direction.
+
 Check both binaries' versions and `server --help`/`client --help`. Identify where the transport listener runs and where the final destination is reachable. Normal remotes reach destinations from the server; `R:` remotes reach them from the client. A transport connection alone does not prove the destination works.
 
 Define `listen_ip` as the server interface reachable from the client, `transport_port` as a free unprivileged port, and `auth_file` as an existing private JSON map of the form `{"user:password":["^R:127\\.0\\.0\\.1:18631$"]}`, with real private credentials and the intended port. Reverse entries match `R:<bind-address>:<port>`, not the eventual target. Start in the foreground:

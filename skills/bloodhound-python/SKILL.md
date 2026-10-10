@@ -5,6 +5,8 @@ description: Collect scoped AD directory evidence with BloodHound.py from Linux.
 
 # BloodHound.py collection
 
+Read this entire SKILL.md before acting. Select the collector generation, approved methods, authentication and destination, then retain actual collection/import coverage. Read [TCP DNS and path interpretation](references/dns-and-paths.md) fully when collecting through a TCP proxy or investigating key-credential/UPN/GPO paths. A graph edge or owned annotation does not replace actual operation evidence.
+
 Match the collector to the receiving BloodHound generation. Upstream's `bloodhound-python` targets legacy 4.2/4.3; its CE branch provides `bloodhound-ce-python`. Check the installed executable's help/banner and the server's accepted format before collecting. Do not transplant a historical Neo4j setup into CE.
 
 For directory groups, ACLs and object properties, start with `DCOnly`. Default collection also contacts member computers; `All` expands that work and still excludes some methods. Choose additional methods only for a specific missing observation.

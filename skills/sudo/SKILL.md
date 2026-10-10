@@ -32,6 +32,14 @@ sudoedit -u "$run_as" -- "$file"
 
 `sudoedit` edits temporary copies as the invoking user, then uses privilege to copy changes back. It is different from launching an editor itself under sudo. A saved editor buffer does not prove the final copy-back succeeded; inspect errors and the resulting file. File/path safety checks can reject an otherwise listed edit.
 
+For an explicitly authorized matching command, define `run_as` as the permitted target identity and `permitted_command` as its actual allowed executable path, with any permitted arguments selected from the effective policy. Execute that operation rather than treating the policy listing as its result:
+
+~~~bash
+sudo -u "$run_as" -- "$permitted_command"
+~~~
+
+This invocation has no additional arguments; add only the reviewed ones the task requires. If the selected grant permits a shell, verify `id` within that elevated shell and perform only the requested work before exiting. A root RunAs grant and successful UID-zero observation differ from a grant to another named administrator account. Do not infer unlimited shell authority from a restricted program entry, or universal host authority from a UID-zero process in a constrained namespace.
+
 When evaluating a historical sudo vulnerability, inspect the installed distribution package and its advisory/patch status. The upstream-looking string from `sudo --version` alone does not establish that a distro build is vulnerable. Record observed policy and behaviour separately from an exploitation hypothesis.
 
 Consult the [sudoers policy manual](https://github.com/sudo-project/sudo/blob/main/docs/sudoers.man.in) for command matching and [Git's hook events](https://git-scm.com/docs/githooks) for the permitted program's behavior.

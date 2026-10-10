@@ -1,6 +1,6 @@
 ---
 name: certipy
-description: Enumerate AD CS configuration, request selected certificates and authenticate with a PFX from Linux. Use to connect template/CA findings to enrollment prerequisites, issuance results and current certificate-mapping behavior.
+description: Enumerate AD CS configuration, request selected certificates, authenticate with a PFX, recover through a permitted key-credential write and update selected UPNs from Linux. Use to connect template/CA findings to enrollment prerequisites, issuance results and current certificate-mapping behavior.
 ---
 
 # Follow the certificate operation through its stages
@@ -11,6 +11,7 @@ Read this entire file before acting, then the complete reference for the selecte
 |---|---|
 | Directory/CA collection, ESC1/ESC3/ESC9 interpretation and missing evidence | [Findings and collection](references/findings.md) |
 | Certificate enrollment, agent requests, pending issuance or PFX authentication | [Enrollment and authentication](references/enrollment-and-authentication.md) |
+| Selected KeyCredentialLink recovery or UPN changes for a mixed Kerberos stack test | [Shadow credentials and UPN changes](references/shadow-and-upn.md) |
 
 Select the relevant identity and endpoints before the operation: the DC supplies directory/Kerberos services, the CA handles enrollment, and the eventual application authorizes service access. These may be different hosts. Template display names, internal names and CA configuration names are different inputs.
 

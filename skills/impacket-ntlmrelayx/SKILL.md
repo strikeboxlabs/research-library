@@ -5,7 +5,7 @@ description: Configure a selected NTLM relay with Impacket and distinguish inbou
 
 # Select the destination and post-authentication action
 
-Read this entire file and [relay stages](references/relay-stages.md) before starting a listener. Require the authorized source client, listener network and destination. Finish with the actual principal, protocol, destination result and action evidence; captured challenge-response material alone is not a successful relay.
+Read this entire file and [relay stages](references/relay-stages.md) before starting a listener. For a selected LDAP DNS-record action or an AD CS HTTP authentication mismatch, also read [LDAP record and enrollment destinations](references/ldap-dns-and-adcs.md) fully. Require the authorized source client, listener network and destination. Finish with the actual principal, protocol, destination result and action evidence; captured challenge-response material alone is not a successful relay.
 
 Inspect `impacket-ntlmrelayx -h` for the installed build. This tool can perform actions after authentication; default behavior is not necessarily passive collection. Select a target and action explicitly. An omitted target can select reflection, and a target-file watcher can expand destinations after startup.
 

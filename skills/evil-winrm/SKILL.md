@@ -5,6 +5,8 @@ description: Open a Windows WinRM session from Linux with Evil-WinRM using known
 
 # Evil-WinRM sessions
 
+Read this entire SKILL.md before acting. Require the selected endpoint/account and credential mechanism, then confirm the actual remote identity and requested action/transfer. Missing WinRM permission or an incomplete transfer remains unresolved, regardless of another protocol's login result.
+
 A valid SMB login does not establish WinRM permission. Confirm the Windows endpoint, listener transport/port and intended account. Inspect `evil-winrm -h` and `evil-winrm -V`; packaged releases can differ from current upstream.
 
 Define `server` as the intended hostname/IP and `account` as the account identity accepted by that endpoint. For its normal HTTP listener, omit `-p` to enter the known password at the hidden prompt:
@@ -17,7 +19,7 @@ For an HTTPS listener, use `-S` (default port 5986); HTTP defaults to 5985. A cu
 
 `-H` expects the NT hash alone, not a whole SAM record or `LM:NT` pair. Do not combine it with `-p`. Kerberos uses `-r REALM`, a resolvable server FQDN and working realm configuration/cache; the default service prefix is `HTTP`. Verify cache options against this release rather than assuming Impacket's switches apply.
 
-Once connected, use `whoami` and `Get-Location` to establish identity and working directory. A prompt is not proof of administrator rights. `download` copies remote to local and `upload` copies local to remote; use the session's `menu` help, explicit paths and one selected file first. Confirm local size/hash where a trusted remote comparison exists.
+Once connected, use `whoami` and `Get-Location` to establish identity and working directory. A prompt is not proof of administrator rights. A WinRM network-logon token also need not expose that user's interactive Credential Manager set: WinCred error 1312 can mean this logon session has no associated credential set. A separate SCM command running as SYSTEM changes identity but does not select the original user's store. Diagnose the actual token/logon context before interpreting an empty/error credential query. `download` copies remote to local and `upload` copies local to remote; use the session's `menu` help, explicit paths and one selected file first. Confirm local size/hash where a trusted remote comparison exists.
 
 When the question concerns the session's authority, inspect its current Windows token inside the remote prompt:
 

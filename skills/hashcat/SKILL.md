@@ -1,12 +1,13 @@
 ---
 name: hashcat
-description: Select Hashcat modes and run bounded offline checks on application or NT/Kerberos records, Password Safe v3 files and LUKS1 images. Use when Gitea PBKDF2 or salted SHA-1 conversion, binary inputs, potfile exceptions or exhausted runs need interpretation.
+description: Select Hashcat modes and run bounded offline checks on application or NT/Kerberos records, Password Safe v3 files and LUKS1 images. Use when Grafana/Gitea PBKDF2 or salted SHA-1 conversion, binary inputs, potfile exceptions or exhausted runs need interpretation.
 ---
 
 # Hashcat offline checks
 
 Read this entire SKILL.md before acting; complete current context need not be re-read. Complete the applicable input checks before a bounded run; preserve status and report recovered, exhausted or incomplete honestly.
 
+- Historical Grafana SQLite rows, literal salts or hardcoded converter cost: read [Grafana PBKDF2](references/grafana-pbkdf2.md) fully before conversion or full-verifier confirmation.
 - Required for Gitea PBKDF2: read [record conversion](references/gitea-pbkdf2.md) before preparing input; use its parameter-preserving converter for the supported format.
 - Required for Password Safe/LUKS1: read [binary containers](references/binary-containers.md) before choosing input or reporting recovery; the ordinary potfile procedure does not apply.
 - For salted MD5/SHA-1 or a legacy OFBiz `$SHA$` record, read [salted digest formats](references/salted-digests.md) before conversion or salt encoding.
@@ -47,8 +48,6 @@ For mode `19900`, confirm that the ciphertext came from PA-ENC-TIMESTAMP in an A
 AES Kerberos records use different modes. Preserve each complete text record on one line; avoid shell expansion of `$` and PDF line wrapping. A full `username:RID:LM:NT:::` record is not a raw NT hash; extract the NT field into a separate working file and retain its account mapping. For htpasswd, separate the username from the complete `$apr1$` value and remove any HTML presentation wrapper; do not hash the rendered page or discard the salt.
 
 A JSON field can contain base64 of a bcrypt record. Decode the field as defined by the application's format, require a successful decode, and preserve the resulting full bcrypt prefix/cost/salt/digest. The base64 wrapper is not a hash algorithm. Password-hash checking is candidate verification, not decryption.
-
-For a compatible Grafana export, confirm parameters against the producing version: converters may hardcode 10,000 iterations. The usual historical conversion base64-encodes the literal salt's bytes and the hex-decoded digest, not the hexadecimal digest text. Keep usernames mapped separately and exclude converter banners from the hash file. Supply the wordlist positionally as below; `--wordlist` is not its documented input option.
 
 For Ansible Vault, extract each complete header/ciphertext block from inline YAML into its own file and convert using Jumbo's `ansible2john.py`. Remove only its filename prefix before the `$ansible$` record for this Hashcat input; retain the variable/file mapping separately. Check that a record was emitted. Recovery yields a vault password, not the decrypted variable value; verify it with `ansible-vault decrypt` into a fresh private output.
 

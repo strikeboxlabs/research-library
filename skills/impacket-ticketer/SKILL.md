@@ -1,11 +1,13 @@
 ---
 name: impacket-ticketer
-description: Prepare and inspect a narrowly scoped synthetic Kerberos service-ticket fixture with Impacket ticketer. Use to distinguish service keys, SPNs, identity fields, cache creation and actual service acceptance in an authorized lab.
+description: Generate and inspect selected Kerberos service tickets with known service keys with Impacket ticketer. Use to distinguish service keys, SPNs, identity fields, cache creation and actual service acceptance in an authorized lab.
 ---
 
-# Prepare a synthetic service-ticket fixture
+# Generate a scoped service ticket
 
-Use this only for an authorized lab ticket fixture with known service-key material. Check `impacket-ticketer -h`; upstream may use `ticketer.py`. Specify `-spn` explicitly: omitting it changes the operation to TGT generation. A service ticket is not a general TGT for requesting unrelated services.
+Read this entire SKILL.md before acting. Require the selected service key, exact SPN, approved identity/groups and ticket lifetime; verify the resulting cache. For an authorized service-access test, read [service acceptance](references/service-acceptance.md) fully before use. Cache generation alone is not service access.
+
+Use known service-key material for the explicitly scoped ticket-generation/access task. Check `impacket-ticketer -h`; upstream may use `ticketer.py`. Specify `-spn` explicitly: omitting it changes the operation to TGT generation. A service ticket is not a general TGT for requesting unrelated services.
 
 Establish the exact SPN, service account/key type, domain SID and intended test identity before generating anything. A domain SID is the domain portion, while `-user-id` is the account RID. The current defaults select RID 500, several privileged groups and a ten-year lifetime; choose these fields deliberately. An SPN assigned to an account is not proof of a currently running service or that a synthetic ticket will be accepted.
 
@@ -22,7 +24,7 @@ mkdir "$out" && (
 
 The keytab form avoids putting key bytes in the command line; inspect its entries first rather than assuming the chosen encryption type. Clearing the inherited cache here prevents current versions from importing unrelated cache contents. Without request/impersonation modes this generates local ticket bytes. `-request` is a separate KDC-authenticated template flow, not an offline validation flag.
 
-Where a fixture explicitly supplies an NT service key, `-nthash` replaces `-keytab`; AES uses `-aesKey`. These command-line forms expose the supplied key to local process inspection. An NT hash is the RC4-HMAC password-derived key; NetNTLMv2 responses and Kerberoast ciphertext are different artifacts, and an NT hash is not an AES key.
+Where the selected task supplies an NT service key, `-nthash` replaces `-keytab`; AES uses `-aesKey`. These command-line forms expose the supplied key to local process inspection. An NT hash is the RC4-HMAC password-derived key; NetNTLMv2 responses and Kerberoast ciphertext are different artifacts, and an NT hash is not an AES key.
 
 Use the output filename actually reported by the installed release. Define `cache` as that absolute path:
 

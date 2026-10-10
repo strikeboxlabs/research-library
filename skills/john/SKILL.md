@@ -1,6 +1,6 @@
 ---
 name: john
-description: Run bounded offline checks with John the Ripper Jumbo on NT, NetNTLMv2, Kerberos, ZIP, KeePass, OpenPGP secret keys, bcrypt, phpass, raw MD5/SHA-256 or HS256 JWT artifacts. Use to choose formats, preserve records and interpret session results.
+description: Run bounded offline checks with John the Ripper Jumbo on NT, NetNTLMv2, Kerberos, ZIP, KeePass, OpenPGP secret keys, bcrypt, phpass, raw MD5/SHA-256, sha512crypt or HS256 JWT artifacts. Use to choose formats, preserve records and interpret session results.
 ---
 
 # John the Ripper offline checks
@@ -21,11 +21,14 @@ Choose `format` from the artifact's origin and verified parser:
 | Unsalted SHA-256 established from the producing application | `raw-sha256`; 64 hex characters alone do not identify it. |
 | Original compact JWT using confirmed HS256 | `HMAC-SHA256` in a Jumbo build supporting JWT input. |
 | Complete application bcrypt record such as `$2b$12$...` | `bcrypt` when supported by the installed build; preserve the revision, cost, salt and checksum. Cost 12 represents 4096 iterations, not twelve candidate attempts. |
+| Complete `$6$` password verifier from a selected SSSD/Linux record | `sha512crypt` in a supporting Jumbo build; retain its salt, optional rounds and checksum plus the original account mapping. |
 | Complete portable phpass `$P$...` or `$H$...` record | `phpass`; preserve its cost, salt and checksum. An application's name alone does not establish this format. |
 
 For a Jenkins password field beginning with `#jbcrypt:`, that exact prefix is application metadata. Remove only the marker in a working record and retain the complete 60-character bcrypt value, including revision, cost, salt and checksum. XML/display wrapping and diagnostic suffixes are not hash bytes; verify the original field rather than guessing missing characters from a screenshot. Other Jenkins encoders exist, including PBKDF2 in FIPS mode, so the application name alone does not justify `--format=bcrypt`. See the [password encoder implementation](https://github.com/jenkinsci/jenkins/blob/master/core/src/main/java/hudson/security/HudsonPrivateSecurityRealm.java) when the stored field differs.
 
 For raw MD5 exported from a database, preserve the row-to-account association and select the actual digest field. A reviewed `username:digest` record can retain a simple label; replacing every pipe in an arbitrary table dump can corrupt fields or pass unrelated columns to the loader. Parse the export and validate the intended fields first. When provenance cannot resolve a 32-hex value, a narrowly budgeted `Raw-MD5` run may test an explicit format hypothesis; keep that uncertainty separate from a candidate matching this interpretation, and verify any requested application/OS use separately. Use the bounded run and matching `--show` below with `format=Raw-MD5`; compare loaded records and prior pot results before interpreting a count discrepancy. See the [Jumbo raw MD5 implementation](https://github.com/openwall/john/blob/bleeding-jumbo/src/rawMD5_fmt_plug.c) for accepted encodings.
+
+For an SSSD `cachedPassword` `$6$` value, recover the complete attribute through LDIF parsing, including folded/base64 forms and DN/name association. A nearby `strings` username is insufficient to assign ownership. Use `format=sha512crypt` with the bounded command below; a match establishes this offline cached verifier, which can be stale. GSSAPI authentication does not necessarily cache a password, and neither a cache filename nor recovery proves present AD login access. See [Jumbo sha512crypt parser](https://github.com/openwall/john/blob/bleeding-jumbo/src/sha512crypt_fmt_plug.c).
 
 For HS256, retain the original `header.payload.signature` token on one line, without a Bearer prefix. Re-serializing decoded JSON changes the signed bytes. This checks candidate HMAC secrets offline; it does not test arbitrary JWT algorithms or establish that a service still accepts the token. Check parser limits on rejection instead of changing its contents. Keep private password records/tokens out of public hash-identification services.
 

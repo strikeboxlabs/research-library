@@ -5,9 +5,11 @@ description: Convert compatible offline Grafana password and salt records with i
 
 # Grafana record conversion
 
+Read this entire SKILL.md before acting; reuse complete current context. Confirm the producer parameters, preserve selected-row association and inspect the installed converter before conversion. Finish with verified output bytes/count and source mapping; conversion, candidate recovery and online access are separate results.
+
 This skill concerns **iamaldi/grafana2hashcat**; similarly named converters can have different input formats and defaults. Define `converter` as the reviewed script path and inspect `python3 "$converter" -h`. Use selected records from a consistent database acquisition, retaining a separate account-to-record mapping.
 
-The reviewed converter hardcodes PBKDF2-HMAC-SHA256 with **10,000 iterations**. Establish that algorithm and cost from the source application's version/configuration before using it. A Grafana filename or a SQLite writer-version label does not establish password parameters. Do not silently relabel records from another cost or algorithm.
+The reviewed converter hardcodes PBKDF2-HMAC-SHA256 with **10,000 iterations**. Grafana 8.0.0's [producer](https://github.com/grafana/grafana/blob/v8.0.0/pkg/util/encoding.go) uses that cost and 50 derived bytes; its `rands` field is not a derivation input. A modern Gitea hexadecimal salt is a different representation. Establish that algorithm and cost from the source application's version/configuration before using it. A Grafana filename or a SQLite writer-version label does not establish password parameters. Do not silently relabel records from another cost or algorithm.
 
 Define `input_records` as a UTF-8 text file with one `hex_digest,literal_salt` record per line: exactly two fields, no header, no account name, no blank lines and no CSV quoting. The script splits on commas rather than parsing general CSV. Preserve the literal salt; do not trim meaningful spaces or hex-decode it. The digest is hex-decoded to bytes, then base64-encoded; base64 of the hexadecimal text is a different value.
 
@@ -41,6 +43,8 @@ Compatible output belongs to Hashcat mode `10900`. Its dictionary is a positiona
 ~~~bash
 hashcat -m 10900 -a 0 "$hashes" "$wordlist" --potfile-path "$pot" --session "$session" --runtime "$seconds"
 ~~~
+
+The reviewed [mode 10900 parser](https://github.com/hashcat/hashcat/blob/master/src/modules/module_10900.c) compares a 16-byte digest prefix. After recovery, independently recompute PBKDF2-HMAC-SHA256 from the candidate, original literal salt, verified cost and original derived-key length; require equality with the complete original digest, preserving all 50 bytes for the supported 8.0.0 producer. A prefix match alone is not a complete-record check.
 
 Successful conversion is a representation change, not password recovery or proof that the parameters were correct. Report source/account mapping, verified parameters and conversion count without publishing credential records.
 
