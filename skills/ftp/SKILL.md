@@ -1,9 +1,11 @@
 ---
 name: ftp
-description: Retrieve selected files with a traditional Linux ftp client without binary conversion or data-channel confusion. Use for archive/database downloads and diagnosing listings that hang after successful login.
+description: Transfer selected files with a traditional Linux ftp client and distinguish authentication, data-channel success and file integrity. Use for binary downloads, stalled listings or an authorised upload-to-web mapping check.
 ---
 
-# FTP file retrieval
+# FTP file transfers
+
+Read this entire skill before acting; complete current context need not be re-read. Establish the intended server, known credentials and selected transfer before connecting. For an authorised upload and HTTP publication check, read [upload-to-web mapping](references/upload-web-mapping.md) fully first. Completion requires transfer/content evidence for the requested task; login success alone is insufficient.
 
 Identify the installed implementation through its package/version and interactive `help`. GNU inetutils, tnftp and other clients differ in passive-mode defaults and switches. `sftp` is a different protocol, not a spelling of FTP.
 
@@ -24,4 +26,4 @@ A login/control connection can succeed while `ls` or `get` stalls: both need a s
 
 Plain FTP exposes credentials and data on the network. If the service requires FTPS, use a client that actually supports its TLS policy; this interactive recipe does not add TLS. Record transfer mode, source, destination and integrity result separately from authentication success.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Administrator p. 7; Admirer pp. 7–8; Attended p. 10. Sources: [NetBSD/tnftp manual](https://github.com/NetBSD/src/blob/trunk/usr.bin/ftp/ftp.1), [OpenBSD URL fetching](https://man.openbsd.org/ftp.1). Check local client help for implementation differences.
+Sources: [NetBSD/tnftp manual](https://github.com/NetBSD/src/blob/trunk/usr.bin/ftp/ftp.1), [OpenBSD URL fetching](https://man.openbsd.org/ftp.1). Check local client help for implementation differences.

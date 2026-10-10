@@ -1,9 +1,11 @@
 ---
 name: mysql
-description: Connect with the Linux mysql client and inspect selected database metadata. Use for Unix-socket versus TCP confusion, account/host mismatches, string truncation or trailing-space surprises and understanding client shell commands and which machine LOAD DATA LOCAL reads.
+description: Use mysql for explicit socket/TCP connections and database metadata. Diagnose account matching, native function registration, string comparison and client/server execution boundaries.
 ---
 
 # MySQL connection and inspection
+
+Read this entire SKILL.md before acting. Establish the client/server and connection identity for a database task; native loadable-function metadata is covered below. For truncation, padding or collation surprises, read [string comparison](references/string-comparison.md). For server/client file access or wrapper/query-file execution, read [execution boundaries](references/execution-boundaries.md). Read the selected reference fully before its procedure; leave unrelated branches unloaded. Finish with the actual query/result and its scope; a denied query, empty result or client-side effect is not interchangeable with a server finding.
 
 Check `mysql --version` and local help. The command can come from MySQL or a MariaDB compatibility package; TLS/authentication options are not identical across releases/vendors. The client version does not establish the server version.
 
@@ -36,36 +38,15 @@ mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --pas
 
 This still prompts for the password. Batch output is tab-separated with special characters escaped by default; it is not CSV. Check the exit status before interpreting an empty result. `--execute`/`--batch` change execution/output style, not SQL privileges or side effects. A supplied query file can still write data; avoid `SELECT *` when selected columns answer the question.
 
-## Investigate string truncation and comparison
+## Inspect native loadable-function metadata
 
-At the SQL prompt, replace `observed_table` with the selected real table:
+In the established SQL session, inspect registrations without calling the functions:
 
 ~~~sql
-SELECT VERSION(), @@SESSION.sql_mode;
-SHOW FULL COLUMNS FROM `observed_table`;
-SHOW CREATE TABLE `observed_table`;
+SELECT name, dl FROM mysql.func ORDER BY name LIMIT 100;
+SHOW VARIABLES LIKE 'plugin_dir';
 ~~~
 
-Read the type, character limit, collation and actual unique constraints. Frontend length checks and a shortened display do not establish the database schema. The CLI session's SQL mode may differ from the application's connection.
+`name` is the registered function; `dl` names its shared library under the server's plugin directory. These are native loadable functions, distinct from SQL stored functions. The table is not a complete inventory of component/plugin-provided functions; interpret it using the actual server vendor/version. A denied query is not an empty registry, and 100 rows may mean a capped result.
 
-- `VARCHAR` retains trailing spaces within its limit; `CHAR` normally strips them on retrieval. Retrieval and equality comparison are separate questions.
-- For nonbinary strings, `PAD SPACE` collations ignore trailing spaces in equality comparisons; `NO PAD` collations preserve their significance. On MySQL versions providing it, inspect the actual collation's `INFORMATION_SCHEMA.COLLATIONS.PAD_ATTRIBUTE`. Do not infer this solely from a case-insensitive suffix or the connection default.
-- Overlength nonspace input can be truncated with warnings in non-strict mode; strict mode normally rejects it, while `IGNORE` can downgrade errors. Excess trailing spaces have separate rules: `VARCHAR` truncates them with a warning, `CHAR` silently, regardless of strict mode.
-
-For a statement already executed in your session, run `SHOW WARNINGS` immediately, before another nondiagnostic statement replaces its diagnostics. It cannot retrieve warnings from an earlier web request's session. Establish the schema, application query and connection settings before attributing an identity collision to truncation; avoid inserting probe accounts or relaxing SQL mode just to explain an observation.
-
-Consult the server version's [string-type rules](https://dev.mysql.com/doc/refman/8.4/en/char.html), [SQL modes](https://dev.mysql.com/doc/refman/8.4/en/sql-mode.html) and [warning scope](https://dev.mysql.com/doc/refman/8.4/en/show-warnings.html) for exceptions. MariaDB and older MySQL releases require their own matching documentation.
-
-## Distinguish server and client file access
-
-`LOAD DATA INFILE` reads on the database server. `LOAD DATA LOCAL INFILE` reads through the client process; for Adminer, that client is the web application host. It also loads data into a table. Enabling local-infile changes file-access exposure and is not required for normal SELECT queries or an authentication repair.
-
-`LOAD_FILE()` instead returns a server-side file as a value. It needs FILE privilege, a readable absolute server path, applicable `secure_file_priv` permission and size below `max_allowed_packet`; NULL can mean any unmet condition. Successful reading does not establish write access to that directory. `SELECT ... INTO OUTFILE` creates a server-side file and refuses an existing path; it is a write operation despite beginning with SELECT. An application's HTTP 500 after a database write does not prove rollback: inspect state before retrying.
-
-## Recognize commands processed by the client
-
-When reviewing a wrapper or query file, separate the operating-system shell, mysql's input parser and the database server. The client's `system` / `\!` command invokes a shell on the **client host**, using that client's OS identity. It does not require the server's FILE privilege and does not by itself establish execution on a remote database host.
-
-`-s` (silent) and `-N` (omit column names) adjust output; they do not disable client commands. Shell quoting preserves an argument boundary but does not turn supplied text into safe SQL or disable mysql's parser. Data read from a file or shared-memory segment remains input even when the wrapper's username argument was filtered.
-
-For an existing integration, inspect its actual client version and input mode. MySQL's noninteractive `--binary-mode` disables client commands except `charset` and `delimiter`; it also changes byte handling. MySQL 8.4.3+ offers `--system-command=OFF`; 8.4.6+ adds the broader `--commands=OFF`, with documented exceptions and interactions. Do not assume these options exist in MariaDB or older clients. None makes arbitrary SQL harmless or limits server privileges. Use [client-command documentation](https://dev.mysql.com/doc/refman/8.4/en/mysql-commands.html) and the matching [option reference](https://dev.mysql.com/doc/refman/8.4/en/mysql-command-options.html) before changing a wrapper.
+A registration or unusual filename is a lead, not proof of a malicious library or that it is currently loaded. Compare an acquired library with a trusted matching package and inspect its exports/code. Do not invoke an unknown function to test it: a `SELECT` can execute native code with server-process OS effects. A database account named root does not imply the server runs as OS root. See [MySQL loading rules](https://dev.mysql.com/doc/refman/8.4/en/function-loading.html) and [MariaDB's table definition](https://mariadb.com/docs/server/reference/system-tables/the-mysql-database-tables/mysql-func-table).

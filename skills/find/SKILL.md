@@ -1,9 +1,11 @@
 ---
 name: find
-description: Locate files and interpret GNU find predicates without confusing incomplete searches or executing unintended actions. Use for scoped module searches, permission predicates, empty-directory checks and safe filename handling.
+description: Locate files and interpret GNU find predicates without confusing incomplete searches or executing unintended actions. Use for scoped module searches, permission predicates, empty-directory checks, timestamp inventories and safe filename handling.
 ---
 
 # Separate selection from actions
+
+Read this entire SKILL.md before acting. Choose the search, emptiness or timestamp check, establish its root and coverage, then retain matches, status and diagnostics; a failed or bounded traversal cannot establish global absence.
 
 Confirm GNU find with `find --version`. Define `search_root` as an existing absolute directory relevant to the task, `name_pattern` as the filename/glob to match, and `matches`/`errors` as fresh files:
 
@@ -26,5 +28,17 @@ Without `-maxdepth 0`, find also visits descendants. Without `-type d`, `-empty`
 Implicit AND binds more tightly than `-o`; group alternatives with escaped parentheses when combining name tests with shared conditions/actions. Quote globs so the shell does not expand them first.
 
 `-exec` runs a command for matches. Its terminating semicolon must reach find as an argument, normally `\;` or `';'`; an unquoted shell semicolon terminates the shell command instead. The command-line display in a process listing need not preserve original shell quoting. Preview matches with printing before choosing an action; `-delete` and session-launching commands are mutations, not search flags. For deliberate file processing, pass names as arguments rather than interpolating them into shell code.
+
+## Inventory timestamps without inferring their cause
+
+For an acquired tree, define `inventory` and `time_errors` as fresh output files outside `search_root`:
+
+~~~bash
+LC_ALL=C find -P "$search_root" -xdev -type f -printf '%T@\0%C@\0%p\0' > "$inventory" 2> "$time_errors"
+~~~
+
+Consume groups of three NUL-terminated fields: modification time, inode status-change time and pathname. Retain the raw epoch fractions when comparing; floating-point conversion may round them. `ctime` is not creation time. Check status/errors and the earlier symlink/mount limits before treating this as a complete inventory.
+
+Zero versus nonzero fractions do not distinguish installed packages from modified files. Printed decimal length is not a promise of clock or filesystem precision, and copying, archive restoration or timestamp setting can affect values. Use timestamps to choose files for content comparison against an appropriate baseline; establish changes from bytes and metadata in context, not a fractional-time filter alone.
 
 Consult the [GNU find manual](https://man7.org/linux/man-pages/man1/find.1.html) for permission predicates and access-check limits.

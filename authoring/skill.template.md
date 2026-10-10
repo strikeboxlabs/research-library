@@ -1,22 +1,16 @@
 ---
 name: "{{skill-name}}"
-description: "{{Actual tool capability and when it applies}}"
+description: "{{Tool capability and operational task or symptom that makes it useful}}"
 ---
 
-# {{Tool and useful task}}
+# {{Tool and supported task}}
 
-{{Keep only relevant content below. Rename, merge or remove sections to fit the task.}}
+Read this entire SKILL.md before acting. {{State the selected task's essential prerequisite and useful completion evidence in a sentence or two.}}
 
-Read this entire SKILL.md before acting.
+{{Give enough guidance to select the existing tool and start its common task. Preserve the non-obvious condition or system behavior that changes the next decision. Define inputs for commands; interpret meaningful output and uncertainty. Label invented output illustrative. This is an optional drafting aid, not a required set of headings.}}
 
-{{Before the first command, identify applicable prerequisites and what constitutes completion. For a branching workflow, add a compact checklist or task map here: required steps/resources for the chosen task, triggers and direct links for conditional references, exact helper/template paths and useful results. Read selected references completely before their procedure. Keep unrelated references unloaded. A short skill can use a few sentences instead. Report missing requirements as blocked and inapplicable checklist steps with a reason; do not present intended work as done. Remove this author note from the accepted skill.}}
+{{For substantial alternative tasks, add a small early task map with directly linked references/<task>.md, triggered by the situation requiring each. Selected references are read completely; unrelated ones stay unloaded. Name exact required helpers where applicable. Keep short coherent tasks inline.}}
 
-## Usage
+{{During the later pass on the controlled Linux image, enrich the relevant reference or references/environment.md with actual absolute invocations and consequential version/option facts, then link it here. Do not invent paths or add an empty required file now.}}
 
-{{Teach the supported task with defined inputs and commands. Where useful, connect a short result excerpt to its interpretation and next action. Label invented output as illustrative. Include version/environment conditions and effects where they change execution.}}
-
-## Interpretation and pitfalls
-
-{{A consequential failure or incomplete-evidence case and what to do next. Merge this into the worked procedure if clearer. Add examples for distinct decisions, not a fixed count.}}
-
-{{Keep a documentation link or skill-local conditional reference only when useful to the worker. Save review dates, source-document/page trails and test history in repository maintenance records.}}
+{{Remove these author notes. Keep useful primary-documentation links near their task; source/page trails and validation history belong in maintenance records.}}

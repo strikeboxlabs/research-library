@@ -1,9 +1,11 @@
 ---
 name: readelf
-description: Inspect ELF headers, load segments, symbols and section bytes with GNU readelf. Use when file offsets, virtual addresses, PIE relocation or zero-filled data are being confused.
+description: Inspect ELF headers, load segments, symbols and section bytes with GNU readelf. Use when file offsets, virtual addresses, PIE relocation, shared-library metadata or zero-filled data are being confused.
 ---
 
 # Establish the ELF layout
+
+Read this entire SKILL.md before acting. Use an acquired ELF copy, establish its header/layout, then select section/address analysis or dynamic-library metadata below. Finish with artifact identity, the exact field/bytes and the address space described; missing bytes or runtime context must remain unresolved.
 
 Define `binary` as the existing ELF artifact copy:
 
@@ -25,10 +27,21 @@ readelf -W -x "$section" "$binary"
 readelf -W -r "$binary"
 ~~~
 
-The hex dump is on-disk section content; `-x` does not apply relocations. It does not show bytes that the running program later writes there. In Attended, a static `.data` address was followed by a GDB memory check after input processing; those are two distinct pieces of evidence. Do not transfer that fixed address to a rebuilt or relocated program.
+The hex dump is on-disk section content; `-x` does not apply relocations. It does not show bytes that the running program later writes there. A static `.data` address and a debugger memory check after input processing are distinct pieces of evidence. Do not transfer that fixed address to a rebuilt or relocated program.
 
-Use `readelf -W -s "$binary"` for available symbols and `--dyn-syms` for dynamic symbols. Stripping can remove one symbol table while imports/dynamic symbols remain; absence of a local symbol does not mean absence of the behavior. `-W` avoids truncated/wrapped table fields that can break simple parsing.
+## Inspect shared-library metadata without loading it
+
+~~~bash
+readelf -W -d "$binary"
+readelf -W --dyn-syms "$binary"
+~~~
+
+`NEEDED` entries name direct dependencies, not the complete resolved runtime library set. Search paths, loader configuration and preloads can affect what is loaded; an entry in an acquired `/etc/ld.so.preload` does not appear automatically in this artifact's `NEEDED` list. Correlate that configuration with the relevant host and execution context. Use static inspection on suspect copies: `ldd` is unsafe for untrusted executables because some implementations/cases may execute code.
+
+In the symbol table, `UND` indicates an undefined symbol; a defined/exported `read` is different from an import. Neither proves invocation, an effective interposer, a kernel syscall hook or a successful privilege change. Continue into the relevant implementation or already captured runtime evidence before making those claims.
+
+Use `readelf -W -s "$binary"` for other available symbols. Stripping can remove one table while dynamic symbols remain; absence of a local symbol does not establish absence of behavior. `-W` avoids wrapped/truncated table fields. See [loader rules](https://man7.org/linux/man-pages/man8/ld.so.8.html) and [ldd's execution warning](https://man7.org/linux/man-pages/man1/ldd.1.html) when deciding what static metadata can establish.
 
 Finish with artifact identity, relevant segment/section and the address space being described. Keep claims about runtime contents or permissions separate from file metadata.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Attended p. 24, adapted from OpenBSD; BigBang p. 8. Sources: [GNU readelf](https://sourceware.org/binutils/docs/binutils/readelf.html), [ELF program headers](https://gabi.xinuos.com/elf/07-pheader.html).
+Consult the option and format references: [GNU readelf](https://sourceware.org/binutils/docs/binutils/readelf.html), [ELF program headers](https://gabi.xinuos.com/elf/07-pheader.html).

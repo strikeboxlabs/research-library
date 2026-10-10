@@ -1,15 +1,16 @@
-# Adapt a skill to this Linux host
+# Later pass on the controlled Linux distribution
 
-Run from the repository root. Supply the skill name and the scope of permitted tests.
+Use this saved prompt when the repository is on the Linux image the user deploys and operates. This pass is deferred until that environment is available; current PDF ingestion must not fabricate its inventory.
 
 ---
 
-Adapt `skills/<name>/SKILL.md` to the agent's actual Linux environment.
+Bring the selected existing skills into alignment with this controlled Linux distribution/image. Binary placement is under our control. Keep packages independent and update them directly in the repository; no per-host deployment copies or compatibility framework are needed.
 
-1. Inspect the selected executable, version/implementation and relevant OS, permissions and session capabilities from the agent's own shell. Save machine-specific facts in ignored `work/machine.md`; reuse facts already established.
-2. Check included commands against installed help and applicable manuals. Use `scripts/capture_help.py` for known informational invocations when useful; debugger/subcommand help may need separate inspection. Verify meanings and combinations, not just flag spelling. Record missing binaries or capabilities rather than guessing.
-3. Keep personal binary paths in local notes or the agent's launch environment. Put supported portable version/feature conditions in the skill. Keep its folder independent and its instructions concise.
-4. Run only the authorised fixtures, choosing cases that test the affected behaviour. Retain commands, output, exit status and relevant versions under `runs/`; summarise useful findings in the intake/validation records, mapped to the skill. Help capture, procedure execution and agent performance are different results. Preserve actual historical test coverage; do not add a routine test-history footer to the worker instructions.
-5. Check links and packaging, update the README scope if needed, and report what changed, what ran and what remains uncertain.
+1. From the worker's actual execution environment, locate each selected tool and identify its absolute executable/interpreter invocation, implementation/version and relevant permissions/configuration. Inspect aliases, wrappers and virtual environments deliberately; a login shell may differ from the worker. Reuse established facts while they still apply. Save raw inventory/help evidence in ignored work/.
+2. Check the commands already taught against installed help or matching documentation. Use scripts/capture_help.py for known informational invocations when helpful. Distinguish missing executable, unsupported option and missing privilege. Do not install tools or silently replace them with custom implementations.
+3. Enrich the existing task reference with its verified invocation and relevant image facts. If several tasks share that context, a concise references/environment.md inside the same skill can hold it once. Link an actually created file near the top of SKILL.md, explaining when to read it; do not create empty references or make every task load every reference. Use the selected absolute executable or an explicitly defined variable consistently, preserving interpreter/script argument boundaries.
+4. Commit-ready content may include stable, non-sensitive facts of this shared image, including its controlled binary paths and version/option constraints. Keep node-specific exceptions, secrets and raw captures in ignored work/ or runs/. Workers should not need authoring records. No extra YAML fields, mandatory inventory schema or source-history footer.
+5. Test only authorised fixtures that exercise the useful task and a consequential incomplete-evidence branch when feasible. Retain actual commands, output, status and versions under runs/ and concise outcomes in existing validation/intake records. Documentation, tool execution and worker usefulness are distinct results.
+6. Check links and independent packaging. Test discovery and invocation on the actual worker when in scope; a visible file is not proof of successful execution. Record each reviewed skill, useful corrections, missing tools/options and what remains untested. Leave changes for review unless commit/push was requested.
 
-Use supporting sources when needed; do not add companion files or sections without a purpose. Leave edits for Git review unless committing was requested. Describe proposed global configuration changes rather than applying them without authorisation.
+Install by linking or copying the complete skill folder as described in GETTING_STARTED.md. When the controlled image changes, review its affected environment facts and workflows; do not re-probe the whole machine on every skill invocation. Propose any needed binary placement, installation or global settings change separately instead of applying it implicitly.

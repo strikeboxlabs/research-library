@@ -40,6 +40,14 @@ site:<upstream-repository> <error> reproducer
 
 Follow search results to the original material. A search result, an article copying another article, or an LLM-generated explanation is a lead to verify.
 
+## Prefer transferable operational lessons
+
+Capture the operational uncertainty, relevant conditions, consequential observation, explanation and next discriminating action before assigning the lesson to a tool. Distinguish what the source shows from what its author concludes. Keep cross-tool lessons as candidates in the existing intake report when they do not fit one independent package.
+
+CTF writeups are useful but favor successful attack paths. Complement them with maintainer incident analyses, operational postmortems, reproducible support issues and actual worker failures when selecting future material. These can expose healthy behavior, alternative causes and failed approaches absent from a solved challenge. Source-code inspection remains useful when it explains operational behavior.
+
+An additional source may justify a correction or replacement, a conditional reference or no runtime change. Reuse relevant prior primary verification when its conditions still apply; revisit uncertain or changed semantics. A fully reviewed source need not produce a new skill or example. Bring revisited existing packages into the current schema while preserving useful earlier coverage.
+
 ## Keep collection small
 
 Start with the task, relevant practical material and evidence for uncertain command semantics. The [intake template](intake.template.md) is optional. A short correction may need one source; a diagnostic workflow needs enough evidence to support its decisions. Follow observed agent failures when choosing what to add.

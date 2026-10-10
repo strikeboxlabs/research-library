@@ -19,7 +19,7 @@ cd "$HOME/src/research-library"
 
 For an existing clone, preserve local work and use `git pull --ff-only`. Git and the chosen agent must already be installed. Authoring helpers require Python 3.10+; using a skill requires its actual executable. Installation does not install Linux tools.
 
-Link the selected skill from the repository root. Change `skill=gdb` when installing another tool. Existing destinations are left untouched:
+Link the selected skill from the repository root. The later Linux pass updates these same packages for the controlled distribution; no separate per-host copy is required. Change `skill=gdb` when installing another tool. Existing destinations are left untouched:
 
 ~~~bash
 (
@@ -56,6 +56,12 @@ Use this repository for authoring. Run ordinary workers in their actual task wor
 
 ## 2. Adapt to this machine
 
+This is a **later pass on the specific Linux distribution/image we deploy and control**. The task graph does not currently provide a reliable tool/path inventory. During source ingestion, improve the guidance and leave unknown target paths unclaimed; do not delay ingestion or create placeholder environment references.
+
+On the Linux box, an authoring agent will locate the actual binaries and inspect the relevant versions/options from the worker's own environment. Enrich the corresponding task references directly. When several workflows share executable context, use a concise `references/environment.md` inside that skill and link it from the opening. It should contain the verified absolute invocation, relevant implementation/version and real option or permission constraints, without an exhaustive machine inventory.
+
+Because we control the image, stable non-sensitive paths and image facts can be committed with the skill and distributed normally. Node-specific exceptions, secrets and raw observations stay in ignored `work/` or `runs/`. The skill remains independently installable as one complete folder. Reuse known context and revisit it when the image changes or behavior contradicts it, rather than repeating discovery on each invocation.
+
 From an authoring agent in the checkout, inspect the environment its commands actually use. A login shell may have a different PATH or permissions.
 
 ~~~bash
@@ -77,7 +83,7 @@ Pass an actual absolute binary path instead of `gdb` when deliberately selecting
 
 | Finding | Adaptation |
 |---|---|
-| Different binary path/name or multiple implementations | Record the actual selection locally; use that executable or adjust the agent's launch PATH. Keep personal paths out of portable defaults. |
+| Different binary path/name or multiple implementations | Record the verified shared-image invocation in the skill reference; use its absolute path. Keep node-specific exceptions in local notes. |
 | Different options or behaviour | Verify meanings in installed help/applicable manuals. Add only relevant version/feature conditions; do not guess version cutoffs. |
 | Missing symbols, permissions, architecture support or session control | State the missing prerequisite and narrow the conclusion. |
 | A procedure works here | Record the case, versions and outcome; this does not establish other environments or agent performance. |
@@ -88,12 +94,15 @@ Paste this job, or use the saved [host-adaptation prompt](authoring/adapt-to-hos
 Adapt skills/gdb/SKILL.md to this Linux machine using
 AGENTS.md and authoring/adapt-to-host.prompt.md.
 
-Inspect the real binary/version/options and save local facts in work/machine.md.
+Inspect the real binary/version/options and save detailed facts in work/machine.md.
+Enrich existing skill references, or references/environment.md when useful,
+with verified absolute invocations and relevant facts of our controlled image.
+Keep node-specific/private observations ignored; shared image facts may be committed.
 You may create, compile and run disposable programs you own under runs/ and
 inspect their cores with GDB. Do not attach to unrelated processes or change
 system-wide core-dump, security or service settings.
 
-Test useful normal and incomplete-evidence cases where feasible. Keep portable
+Test useful normal and incomplete-evidence cases where feasible. Keep useful
 corrections concise and report what actually ran. Leave changes for Git review;
 do not commit, push or alter global configuration.
 ~~~
@@ -110,7 +119,9 @@ mkdir -p work/sources/strace
 
 Put practical walkthroughs, documentation, notes, command transcripts or agent failures there. A `links.txt` with one URL per line works when the agent can fetch them. Supply readable extracts for formats the agent cannot open. The [source guide](authoring/sources.md) lists useful starting points.
 
-For a batch of documents covering several tools, `ingest/` is also available as a local, Git-ignored inbox. Ask the agent to read all documents, compare them with existing skill coverage, and add only a useful task, interpretation, recovery branch or correction. Verify consequential semantics against upstream sources. An additional writeup need not create another skill or example. Apply the [first-read authoring rule](authoring/schema.md#make-the-first-read-sufficient-to-choose-and-load-the-task) to every skill created or enriched: whole-entrypoint reading, early required steps/helpers, conditional references and evidence-based completion. Review the first 150 lines for discoverability, then the complete selected workflow for hidden requirements. Originals stay local; extracted notes belong in `work/`. Record source-to-skill mappings and coverage decisions in the existing batch reports under `docs/`. The [first PDF batch](docs/ctf-writeups-ingestion.md) shows an intake record.
+For a batch of documents covering several tools, `ingest/` is a local, Git-ignored inbox. Process the requested files sequentially and fully; extract the operational lesson before choosing which tool to improve. Separate source observations from explanations and compare against current coverage. When revisiting an existing skill, bring its whole affected task into the current schema: correct, merge, trim and move substantial alternative tasks to references when useful. Do not merely append an example, add mandatory fields or rewrite unrelated skills. Record the schema version and skills actually reviewed (including conforming/no-change outcomes) in the batch report; at batch end identify any library skills not yet reviewed. A fully reviewed document with no useful runtime delta is completed intake.
+
+Verify consequential semantics against applicable upstream sources. Apply the [first-read authoring rule](authoring/schema.md#make-the-first-read-sufficient-to-choose-and-load-the-task) to every skill created or enriched: whole-entrypoint reading, early required steps/helpers, conditional references and evidence-based completion. Review the first 150 lines for discoverability, then the complete selected workflow for hidden requirements. Originals stay local; extracted notes belong in `work/`. Record source-to-skill mappings and coverage decisions in the existing batch reports under `docs/`. The [first PDF batch](docs/ctf-writeups-ingestion.md) shows an intake record.
 
 Tell the agent the task, target environment if known, whether it may research further, and what it may execute. You can use the optional [intake template](authoring/intake.template.md) or put those facts directly in your request. No full man page or formal source packet is required.
 
@@ -125,7 +136,9 @@ You may retrieve upstream documentation and inspect the installed strace.
 If installed, test only disposable programs owned by this task under runs/;
 do not attach to unrelated processes or install packages.
 
-Write concise working instructions in skills/strace/SKILL.md. Connect commands
+Create or update skills/strace/SKILL.md with concise selection and starting guidance.
+Reconcile existing content with the current schema instead of only appending.
+Use conditional references for substantial deeper tasks and operational knowledge. Connect commands
 to meaningful output, interpretation and the next decision where an example
 helps. Label invented output as illustrative. Keep operational limits in the
 skill; save fuller source trails and test history in docs/ maintenance records.
@@ -182,4 +195,4 @@ git commit -m "Add strace guidance"
 git push
 ~~~
 
-Include deliberately changed evaluation/docs files as needed. Keep machine notes and raw captures out of commits. On other checkouts, preserve local work before pulling. Existing skill symlinks follow updates; newly added skills need their own links. Start a fresh session after changes; Pi also documents `/reload`. Refresh complete copies deliberately.
+Include deliberately changed evaluation/docs files as needed. Keep machine notes and raw captures out of commits. On other checkouts, preserve local work before pulling. Skill symlinks follow checkout updates; newly added skills need their own links. Start a fresh session after changes; Pi also documents `/reload`. Refresh complete copies deliberately.

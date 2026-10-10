@@ -1,6 +1,6 @@
 # Local Linux authoring environment
 
-Copy to ignored `work/machine.md`. Fill from the actual agent execution environment. This is local authoring context, not an automatically loaded runtime reference.
+Copy to ignored `work/machine.md`. Fill from the actual agent execution environment. This is local authoring context, not an automatically loaded runtime reference. During the later Linux pass, put stable shared-image facts the worker needs into its relevant skill reference or references/environment.md, following adapt-to-host.prompt.md. Keep node-specific/private details here; workers must not depend on this authoring note.
 
 - Recorded date:
 - Distribution and release:

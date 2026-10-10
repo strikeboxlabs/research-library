@@ -33,4 +33,8 @@ Keep fixture answers and evaluator notes outside the worker's readable inputs. T
 
 The [four-skill pilot cases](pilot-cases.md) provide requests, fixture conditions and evaluator criteria for GDB, pwntools, SCP and the Grafana converter. They are prepared cases, not successful run records. Use changed inputs to test transfer of the guidance rather than memorization of its examples.
 
+For restructuring, compare no skill, the prior skill and the revised package in equivalent fresh sessions. Test selection from a normal symptom, explicit invocation and a nearby task where the tool should not be chosen. Check whether the worker chooses the existing tool instead of unnecessarily implementing its capability, while allowing justified alternatives or glue code.
+
+Vary names, values and important conditions to test transfer rather than copying a writeup. Record metadata available, entrypoint/references actually loaded, repeated irrelevant reads, tool calls/retries, elapsed time and usage where exposed. Correct supported conclusions and useful incomplete findings matter more than the shortest file or a prescribed command sequence. These are targeted pilots for recurring weaknesses, not a mandatory evaluation ceremony for every PDF.
+
 Use failures to improve the affected guidance. If a skill adds no measurable value, shorten it, change its scope or defer it. Packaging tests cannot establish worker usefulness.

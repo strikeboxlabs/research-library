@@ -4,7 +4,7 @@ Documentation checked on 2026-10-09. These are documented discovery paths; the t
 
 ## Install selected independent skill folders
 
-Each `skills/<name>/` folder is an independent runtime package. Install the complete folder, including any local resources, for each tool a worker needs. The current example is `skills/gdb/`; it needs no other skill or repository files. For the Linux edit/commit workflow, follow [GETTING_STARTED.md](../GETTING_STARTED.md): link selected folders from the checkout so edits and pulls update one source. Ordinary complete copies also work when deployment should be independent of the checkout.
+Each `skills/<name>/` folder is an independent runtime package targeting the controlled Linux image. A later agent on that image will enrich its task references or references/environment.md with verified absolute invocations and relevant image facts. These shared facts can travel with the package; no per-host copy layer is required. See section 2 of GETTING_STARTED.md. Install the complete folder, including any local resources, for each tool a worker needs. The current example is `skills/gdb/`; it needs no other skill or repository files. For the Linux edit/commit workflow, follow [GETTING_STARTED.md](../GETTING_STARTED.md): link selected folders from the checkout so edits and pulls update one source. Ordinary complete copies also work when deployment should be independent of the checkout.
 
 | Harness | Project destination | User destination | Explicit invocation |
 |---|---|---|---|
@@ -22,7 +22,7 @@ For each installation, inspect an existing destination and avoid overwriting loc
 
 ## Skill loading and the first read
 
-Our authoring rule is to put the activation contract and any task map near the top. A worker must read the whole `SKILL.md` before acting, then read the references required by the selected workflow. Required steps/helpers and conditional branches should be distinguishable from the opening. Completion means the requested result is evidenced, with missing prerequisites or unperformed steps reported honestly. This improves navigation and makes omissions easier to detect; Markdown checklists do not enforce execution.
+Our authoring rule is to put the activation contract and any task map near the top. A worker must read the whole `SKILL.md` before acting, then read the references required by the selected workflow. Current complete content already loaded need not be read again mechanically. The entrypoint supports tool selection and a useful start; deeper procedures/domain knowledge and local executable context are loaded only as needed. Required steps/helpers and conditional branches should be distinguishable from the opening. Completion means the requested result is evidenced, with missing prerequisites or unperformed steps reported honestly. This improves navigation and makes omissions easier to detect; Markdown checklists do not enforce execution.
 
 This rule adopts the practical pattern in the Jason Haddix post and screenshot supplied by the user on 2026-10-10: an early mandatory contract, an explicit list of required work, and separate references loaded only when their conditions arise. The original X post was not independently retrieved. Its reported 150-line reading pattern is treated as an operational observation worth designing for, rather than a verified hard limit across products.
 

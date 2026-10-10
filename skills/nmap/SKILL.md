@@ -5,6 +5,8 @@ description: Discover services on scoped Linux or Windows lab hosts with Nmap an
 
 # Nmap service discovery
 
+Read this entire skill before acting; complete current context need not be re-read. Select the scoped host, protocol and useful port range before probing. Retain scan completion, vantage and confirmed versus uncertain services; a skipped or interrupted scan is incomplete evidence.
+
 Separate port discovery from service interrogation. Define `target` as one in-scope host/IP and `discovery` as a fresh output prefix in an existing directory. Record `nmap --version`.
 
 ~~~bash
@@ -30,6 +32,8 @@ For automation, parse the XML by host, protocol and `state="open"`; do not deriv
 | `filtered` or `open\|filtered` | Reachability/state remains uncertain. Check route and filtering; do not report the service absent. |
 | Product, domain or hostname detected | Use as a lead for protocol-specific checks. A banner/certificate does not prove an exact OS build or vulnerability. |
 
+After an IPsec connection changes reachability, compare the same target and selected ports from the intended source/namespace. `-sT` uses the operating system's `connect()` path, whereas raw-packet probes can behave differently. A TCP-only IPsec selector excludes ICMP and UDP, so failed ping is not a TCP service result. Where reachability is independently established, `-Pn -sT` avoids a mismatched discovery probe. Confirm negotiated selectors and application responses; neither a VPN status line nor new open ports means the firewall was disabled.
+
 NSE scripts are separate probes. Inspect relevant scripts with `--script-help` and choose them deliberately. `-sC` runs the default script set; it is not a passive version lookup, and default scripts are not all nonintrusive.
 
 For a service expected on UDP, select the observed port with `-sU` and the required raw-socket privileges; retain `-sU` on follow-up version probes. Dropping it silently changes the scan back to TCP. UDP silence commonly yields `open|filtered`; service-specific evidence is needed to resolve that uncertainty. Do not run a whole UDP range merely because TCP found little.
@@ -38,4 +42,4 @@ An observed IPv6 address is a separate target: use `-6` and record the exact add
 
 Finish with the host, vantage, tested protocols/ranges, completed scan status and confirmed versus inferred services.
 
-Documentation reviewed 2026-10-09; Linux execution untested. The first five writeups informed this sequence; Aero/Agile p. 2, Antique pp. 3–4 and APT pp. 5–6 clarified coverage. Sources: [scan techniques](https://nmap.org/book/man-port-scanning-techniques.html), [states](https://nmap.org/book/man-port-scanning-basics.html), [output](https://nmap.org/book/man-output.html), [discovery](https://nmap.org/book/man-host-discovery.html), [NSE](https://nmap.org/book/man-nse.html), [port selection](https://nmap.org/book/man-port-specification.html), [IPv6 and -A](https://nmap.org/book/man-misc-options.html).
+Sources: [connect path](https://nmap.org/book/scan-methods-connect-scan.html), [scan techniques](https://nmap.org/book/man-port-scanning-techniques.html), [states](https://nmap.org/book/man-port-scanning-basics.html), [output](https://nmap.org/book/man-output.html), [discovery](https://nmap.org/book/man-host-discovery.html), [NSE](https://nmap.org/book/man-nse.html), [port selection](https://nmap.org/book/man-port-specification.html), [IPv6 and -A](https://nmap.org/book/man-misc-options.html).

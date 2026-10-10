@@ -1,9 +1,11 @@
 ---
 name: pwntools
-description: Script controlled process or TCP exchanges with pwntools tubes. Use when prompt synchronization, Python bytes, timeouts, EOF or cyclic-pattern offsets affect a CLI investigation.
+description: Use pwntools for framed process/TCP exchanges, cyclic offsets and exact integer-to-byte reconstruction. Diagnose timeout, EOF, width and byte-order mistakes.
 ---
 
-# Pwntools protocol exchanges
+# Pwntools protocol exchanges and bytes
+
+Read this entire SKILL.md before acting. For an exchange, establish the endpoint, framing and complete-response condition; for cyclic lookup or packing, establish the generating parameters or actual field layout first. Finish with the verified response, offset or exact bytes and length; timeout, missing layout or partial output remains unresolved.
 
 Use Python 3 and the installed pwntools environment. A local `process` launches the supplied program; `remote` connects to the selected endpoint. Choose from the actual task, rather than turning a failed connection into a different execution mode. Set explicit timeouts and keep binary protocol data as `bytes`.
 
@@ -46,5 +48,19 @@ The function closes on every completed/failed exchange. If a protocol requires a
 `sendline` appends the tube's newline; use `send` for exact bytes and `recvn` for a known byte count. `sendlineafter` combines receive and send, so it can send after the receive times out; use an explicit checked receive when synchronization matters. Avoid arbitrary sleeps and unrestricted `interactive()` in unattended jobs.
 
 For controlled offset measurement, `cyclic(length, n=4)` and `cyclic_find(observed_bytes, n=4)` must share alphabet and subsequence width. Supply captured bytes in memory order; integer lookup depends on endianness. Default pwntools cyclic patterns differ from Metasploit patterns. A match locates input bytes, not proof of instruction-pointer control. Record the generating parameters, transport framing, exact observation and termination condition.
+
+## Reconstruct integer fields with known byte order
+
+Use the artifact's architecture and actual field offsets/widths, not the apparent order of hexadecimal digits in a decompiler. For **illustrative** adjacent unsigned little-endian fields of eight and seven bytes:
+
+~~~python
+from pwn import pack
+
+data = pack(0x4847464544434241, word_size=64, endianness="little", sign=False)
+data += pack(0x4f4e4d4c4b4a49, word_size=56, endianness="little", sign=False)
+print(len(data), data)
+~~~
+
+The illustrative result is `15 b'ABCDEFGHIJKLMNO'`. `p64` always packs eight bytes; a seven-byte field needs its actual width. Explicit arguments avoid inherited context defaults. Confirm adjacency and any padding before concatenating fields, then compare length and bytes with the artifact. Keep bytes until a text encoding is established. Blindly removing the last byte or stripping NULs may discard real data; a terminator is a property of the format, not of integer packing. Consult [packing semantics](https://docs.pwntools.com/en/stable/util/packing.html) for width, signedness and out-of-range errors.
 
 Consult [tube behavior](https://docs.pwntools.com/en/stable/tubes.html) for timeout/EOF configuration and [cyclic patterns](https://docs.pwntools.com/en/stable/util/cyclic.html) when matching a generator to a lookup.
