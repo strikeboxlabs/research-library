@@ -17,7 +17,7 @@ For a documented form login, define `login_url`, the known `username` and a priv
 curl --silent --show-error --connect-timeout 5 --max-time 30 --data-urlencode "username=$username" --data-urlencode "password@$password_file" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$login_url"
 ~~~
 
-This selects POST with form encoding; do not add a JSON Content-Type. Check curl's exit status, HTTP status and response body before parsing a token. Keep token-bearing files private; avoid verbose traces that retain credentials.
+This selects POST with form encoding; do not add a JSON Content-Type. Curl URL-encodes the value once. If a verified backend requires an extra decoding layer, put exactly one pre-encoded value in a private field file and use `--data-urlencode "username@$field_file"`; percent signs are then encoded by the outer form pass. Compare captured wire bytes and controls before adding that pass: `%252A` becomes literal `%2A` after one form decode, whereas `%2A` becomes `*`. Ordinary credentials or base64 fields should not be pre-encoded by default. Check curl's exit status, HTTP status and response body before parsing a token. Keep token-bearing files private; avoid verbose traces that retain credentials.
 
 A bearer token is not automatically a cookie. A protected documentation page and its OpenAPI document are separate requests that may each need authentication. An account-role change need not update an already issued token: distinguish current server-side state from claims captured at issuance, and reauthenticate when testing that distinction.
 

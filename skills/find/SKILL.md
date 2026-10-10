@@ -17,6 +17,14 @@ Check exit status and diagnostics before claiming absence. `-xdev` skips other f
 
 Match the predicate to the access question. `-type d -perm -o=r` selects directories with the other-read bit set; it neither lists regular files nor proves you can traverse every parent or read their contents. `-type d -perm -0001` instead selects directories with the other-search (execute) bit; it does not mean world-readable files. Directory search and directory listing are different access questions. `-perm 004` is an exact mode match, `-perm -004` requires that bit, and `-perm /044` accepts either group-read or other-read. For files readable by the current user, use `-type f -readable` within the same scoped search and retain its diagnostics. `-readable` considers access checks including ACLs, with NFS identity-mapping limitations; it does not establish another user's access or guarantee a later open will succeed.
 
+For a selected group-owned-file search, define `group_name` from the target's actual group mapping and keep the same scoped root/diagnostics:
+
+~~~bash
+find -P "$search_root" -xdev -type f -group "$group_name" -print0 > "$matches" 2> "$errors"
+~~~
+
+`-group` selects ownership, not membership or current access. Add `-perm -4000` only when set-user-ID files are the intended subset; inspect actual owner/mode, mount policy and execution context before claiming a privilege effect. A permission-denied path or a suppressed diagnostic leaves coverage incomplete. BSD `find -ls` is a human listing, not the NUL-delimited evidence above.
+
 To test whether **one directory itself** is empty, define `directory` and use:
 
 ~~~bash

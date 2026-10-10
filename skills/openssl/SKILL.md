@@ -1,6 +1,6 @@
 ---
 name: openssl
-description: Inspect certificates, keys, TLS mail/FTP sessions and known-format AES-CBC artifacts with OpenSSL. Use for trust, protocol selection, serialization, padding and incomplete-output decisions.
+description: Inspect certificates, keys, TLS mail/FTP sessions and known-format AES-CBC artifacts or a legacy crypt-record pipeline with OpenSSL. Use for trust, protocol selection, serialization, padding and incomplete-output decisions.
 ---
 
 # OpenSSL inspection
@@ -8,6 +8,8 @@ description: Inspect certificates, keys, TLS mail/FTP sessions and known-format 
 Read this entire SKILL.md before acting; reuse complete current context. Identify the object/protocol and required trust inputs, then read the selected conditional reference fully. Finish with parsing/verification status and the requested identity or recovered-artifact evidence; missing trust or incomplete output remains unresolved. Keep unrelated references unloaded.
 
 Record `openssl version` and inspect subcommand help. Identify whether the input is a CSR, certificate, private key or bundle; a `.cer` extension alone does not distinguish DER from PEM. Work on copies and choose fresh output paths.
+
+For a legacy `openssl passwd` stage or archive-key pipeline, read [crypt-record bytes](references/crypt-record.md).
 
 For an AES-CBC artifact with independently established raw-key settings or a CryptoJS password envelope, use [known-format CBC decryption](references/aes-cbc.md). Base64 text or a field named `aes_key` alone does not establish that format.
 

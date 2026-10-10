@@ -1,11 +1,13 @@
 ---
 name: 7z
-description: Inspect and extract archives or supported disk images with Linux 7-Zip. Use to distinguish unsupported formats, nested image layers, password failures and damaged downloads.
+description: Inspect/extract archives or supported disk images and diagnose 7-Zip backup filename/listfile parsing. Use for format, integrity, password, wildcard and symlink-related discrepancies.
 ---
 
 # 7-Zip archive triage
 
-Select the installed implementation: distributions may provide `7z` or upstream `7zz`, with different format support. Define `sevenzip` as its executable name/path and `archive` as the absolute input path. Read the version banner and supported formats:
+Read this entire SKILL.md before acting; reuse complete current context. Select the installed implementation and requested archive task, retain its status/listing and distinguish readable output from a complete valid backup. For backup creation, @listfile arguments or symlink-related diagnostics, read [backup argument parsing](references/backup-arguments.md) fully before that procedure. Keep it unloaded for ordinary archive extraction.
+
+Select the installed implementation: distributions may provide legacy p7zip `7za`/`7z` or upstream `7zz`, with different format support. Define `sevenzip` as its executable name/path and `archive` as the absolute input path. Read the version banner and supported formats:
 
 ~~~bash
 "$sevenzip" i
@@ -32,4 +34,4 @@ For VHD/VHDX, a supported outer container may expose a partition image rather th
 
 Retain the test/extraction status and error text. Password errors and corruption can present similarly; verify the source transfer, archive parts and supported method before retrying credentials. A successful extraction establishes readable files, not trustworthy contents.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Access p. 6; Bastion pp. 4–5, adapted from GUI inspection. Sources: Debian's packaged [7zz manual](https://manpages.debian.org/bookworm/7zip/7zz.1.en.html), [upstream supported formats](https://7-zip.org/). The installed implementation's help remains authoritative for compatibility.
+Resolve implementation differences with the installed help, Debian's packaged [7zz manual](https://manpages.debian.org/bookworm/7zip/7zz.1.en.html) and [upstream supported formats](https://7-zip.org/).

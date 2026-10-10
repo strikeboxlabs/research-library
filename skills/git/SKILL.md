@@ -1,12 +1,13 @@
 ---
 name: git
-description: Inspect historical files, stored symlinks/submodules, patches, remote configuration and local Git hooks. Use when working-tree types, missing history, stored URLs or hook execution complicate repository evidence.
+description: Acquire a selected upstream checkout or inspect historical files, stored links/submodules, patches, remote configuration and local Git hooks. Use when working-tree types, missing history, stored URLs or hook execution complicate repository evidence.
 ---
 
 # Git repository evidence
 
 Read this entire SKILL.md before acting. Choose the requested task and complete its relevant checks; report the observed evidence and remaining limits, not just command success. Use an existing trusted repository or isolated evidence copy.
 
+- Acquiring a selected upstream source: [source checkout](references/source-checkout.md). Read this reference fully before its procedure.
 - History and historical files: use the opening procedure below.
 - Stored URLs: [remote configuration](#inspect-an-acquired-remote-configuration).
 - Hook behavior: [local hook diagnosis](#diagnose-a-missing-or-unexpected-local-hook).

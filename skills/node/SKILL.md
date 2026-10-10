@@ -1,11 +1,13 @@
 ---
 name: node
-description: Diagnose Node.js CommonJS dependency lookup from the requiring file without loading the application. Use when a scheduled process resolves a different package or NODE_PATH obscures the selected module.
+description: Use Node.js for CommonJS resolution, a selected module-precedence reproduction or a bounded Socket.IO event exchange. Use for scheduled-process dependency differences, NODE_PATH precedence or an authorized module-substitution reproduction.
 ---
 
-# Inspect CommonJS dependency resolution
+# CommonJS lookup and application clients
 
-Read this entire SKILL.md before acting; reuse complete current context. Establish the trusted Node runtime and inspected launch environment, resolve from the actual requiring file, and retain the selected path or concrete error. This predicts lookup under those conditions; it does not prove the running application loaded or executed that file.
+Read this entire SKILL.md before acting; reuse complete current context. Establish the trusted Node runtime and inspected launch environment, resolve from the actual requiring file, and retain the selected path or concrete error. This predicts lookup under those conditions; it does not prove the running application loaded or executed that file. When the task requires an execution/identity demonstration, read [module precedence and a controlled canary](references/module-precedence.md) fully before changing or running the selected job.
+
+For an application using Socket.IO events, read [a selected event with an existing client](references/socketio-event.md) fully before that procedure; it requires an installed compatible socket.io-client and the observed subscription/session contract. Keep this branch unloaded for ordinary resolution.
 
 Inspect the launcher and its shell/service environment first. A login-shell wrapper may set `NODE_PATH` differently from an interactive terminal. `NODE_OPTIONS`, preload flags and custom loader hooks can execute code at startup: use a trusted diagnostic environment rather than replaying an unreviewed launcher. If clearing those settings, record the difference from the real service.
 
@@ -33,6 +35,6 @@ If two candidate copies exist, the returned filename identifies the selected cop
 
 `MODULE_NOT_FOUND` leaves a missing dependency/path to resolve. Other errors, including package export restrictions, are not equivalent. Preserve `package.json`, symlink layout, runtime version, startup flags and environment when comparing with the service. Node normally resolves symlinks to real paths; preserve-symlink flags and loader hooks can change behavior. A copied directory tree can therefore answer a different question.
 
-This procedure covers `require`, not ESM `import`; ESM does not use `NODE_PATH` for module lookup. Do not install a package or create a replacement module simply to test resolution. Inspect the existing deployment first.
+This procedure covers `require`, not ESM `import`; ESM does not use `NODE_PATH` for module lookup. Resolution inspection needs no installation or replacement module. Use the conditional canary procedure only for an intended execution test with its scope and recovery established.
 
 References: [CommonJS resolution](https://nodejs.org/api/modules.html), [createRequire](https://nodejs.org/api/module.html#modulecreaterequirefilename), [startup flags](https://nodejs.org/api/cli.html), [ESM differences](https://nodejs.org/api/esm.html#no-node_path).

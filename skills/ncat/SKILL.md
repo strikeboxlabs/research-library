@@ -1,9 +1,11 @@
 ---
 name: ncat
-description: Inspect simple TCP services with Nmap Ncat, including Memcached slab statistics and selected values. Use when line endings, EOF, timeouts or incomplete cache listings make protocol evidence ambiguous.
+description: Interact with TCP services and capture selected callbacks using Nmap Ncat. Diagnose framing, EOF, timeouts and Memcached slab/value results without mistaking socket receipt for application success.
 ---
 
 # Ncat protocol interaction
+
+Read this entire SKILL.md before acting. Select the known protocol and transport below; for incoming callback capture, read [listener capture](references/listener-capture.md) fully first. Finish with the received/framed result and its scope, not just a connection.
 
 Check `ncat --version` and `ncat --help`. Nmap Ncat, OpenBSD nc and traditional netcat have different options; a walkthrough's `nc -lvnp` is not a portable Ncat recipe. This skill covers direct service interaction, not attaching a command interpreter to a socket.
 

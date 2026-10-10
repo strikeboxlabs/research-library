@@ -1,11 +1,11 @@
 ---
 name: unbound-control
-description: Inspect an Unbound resolver's control status, counters and active forwarding policy. Use when control TLS, unsupported commands or DNS policy could explain a misleading result.
+description: Inspect an Unbound resolver's control status/counters and manage a selected live forwarding zone. Use when control TLS, unsupported commands or DNS policy could explain a misleading result.
 ---
 
 # Unbound control inspection
 
-Read this entire SKILL.md before acting; reuse complete current context. Select the existing control configuration and endpoint, then use the inspection commands needed for the question. Finish with the command, response/exit status and what remains unverified; control reachability does not establish correct client DNS answers.
+Read this entire SKILL.md before acting; reuse complete current context. Select the existing control configuration and endpoint, then use the inspection commands needed for the question. Finish with the command, response/exit status and what remains unverified; control reachability does not establish correct client DNS answers. For an intended live zone change, read [forward-zone change and restoration](references/forward-zone.md) fully before its procedure.
 
 Use an existing authorized client configuration, including its referenced files. For TLS it needs the expected server certificate and the client certificate/private key; the server's private key is not a client prerequisite. Local Unix control sockets use filesystem permissions instead. Do not disable TLS or regenerate credentials to diagnose a failure.
 
@@ -35,6 +35,6 @@ unbound-control -c "$config" -s "$control_endpoint" list_local_zones
 
 Compare the selected name against both policies. Included configuration can contain rules absent from the top-level file; an unreadable include leaves policy unknown. A successful empty list differs from `error unknown command`: check server/client versions or a custom build instead of reporting no policy. A help listing describes the client, not guaranteed server capabilities.
 
-`forward_add` changes live resolution; its `+i` also adds a DNSSEC-insecure zone. It is not an inspection fallback. Cache flushing, reload and zone changes alter state and belong to an intended configuration change, not this diagnostic sequence.
+`forward_add` changes live resolution; its `+i` also adds a DNSSEC-insecure zone. Select the forward-zone reference when that change is the intended task. Cache flushing and reload also alter state; they are not routine inspection fallbacks.
 
 References: [control commands](https://unbound.docs.nlnetlabs.nl/en/latest/manpages/unbound-control.html), [configuration and control credentials](https://unbound.docs.nlnetlabs.nl/en/latest/manpages/unbound.conf.html).
