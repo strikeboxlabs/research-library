@@ -47,6 +47,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [chisel](skills/chisel/SKILL.md) | Build and diagnose explicit Chisel port forwards or reverse SOCKS connections. Use when client/server direction, listener exposure, endpoint reachability or fingerprint authentication is unclear. |
 | [chmod](skills/chmod/SKILL.md) | Selected Linux file mode and setuid-bit changes with verified ownership/access and execution limits. |
 | [chntpw](skills/chntpw/SKILL.md) | List Windows local accounts and edit selected SAM account settings on an offline hive copy. |
+| [chown](skills/chown/SKILL.md) | Change one selected file's owner/group and verify numeric ownership separately from effective access. |
 | [cmake](skills/cmake/SKILL.md) | Configure and build reviewed projects with explicit source/build trees and separate cache, artifact and installation results. |
 | [composer](skills/composer/SKILL.md) | PHP dependency/lock inspection, selected installs and project-script execution context. |
 | [consul](skills/consul/SKILL.md) | Inspect selected KV data, distinguish ACL permissions and validate configuration before reload decisions. |
@@ -264,6 +265,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [phantomjs](skills/phantomjs/SKILL.md) | Legacy CLI rendering, document capture and load/result interpretation. |
 | [php](skills/php/SKILL.md) | Diagnose CLI/web context, exact legacy checksum inputs, validated process arguments and database/crypto tasks. |
 | [phpggc](skills/phpggc/SKILL.md) | Select serialization chains by dependency and trigger; preserve bytes and validate the actual parser/object lifecycle. |
+| [ping](skills/ping/SKILL.md) | Check one selected iputils ICMP echo path with a packet count, deadline and explicit reachability limits. |
 | [pip](skills/pip/SKILL.md) | Match a Python/pip environment, retrieve reviewed wheels and inspect dependency/version or source-build boundaries. |
 | [pret](skills/pret/SKILL.md) | Query selected PJL printer metadata and distinguish timeouts, revision gaps and startup effects. |
 | [printerbug](skills/printerbug/SKILL.md) | Trigger one authorized Windows spooler RPC authentication callback with krbrelayx printerbug from Linux. Use to distinguish RPC bind, notification errors and independently observed NTLM or Kerberos backconnects. |
@@ -364,6 +366,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [touch](skills/touch/SKILL.md) | Create a selected empty marker or update timestamps; distinguish no-op, symlink, content and provenance outcomes. |
 | [tr](skills/tr/SKILL.md) | Translate known single-byte separators or newline-framed lists while preserving exact input and framing limits. |
 | [tree](skills/tree/SKILL.md) | Inspect a selected directory layout with bounded depth; distinguish link scope, artifact names and incomplete listings. |
+| [truncate](skills/truncate/SKILL.md) | Resize one selected owned regular file and verify size separately from pathname existence or log recovery. |
 | [tshark](skills/tshark/SKILL.md) | Correlate saved FTP/TLS/Kerberos traffic with conversation identity, pre-authentication fields and incomplete evidence. |
 | [tty](skills/tty/SKILL.md) | Identify stdin terminal endpoints and compare selected Unix session terminal sharing. |
 | [ufw](skills/ufw/SKILL.md) | Add/remove one approved IPv6 TCP ingress rule on an active firewall; preserve baseline, effective-rule and service-connectivity evidence. |
