@@ -5,7 +5,14 @@ description: Enumerate and exploit OliveTin automation dashboards.
 
 # OliveTin testing
 
-Use when an OliveTin instance is found (typically on 127.0.0.1:1337 on a compromised host, config at /etc/OliveTin/config.yaml, binary /usr/local/bin/OliveTin, systemd unit OliveTin.service). OliveTin runs configured `shell:` actions, frequently as root, and exposes a Connect-RPC JSON API.
+Use when an OliveTin instance is found (typically on 127.0.0.1:1337 on a compromised host, config at /etc/OliveTin/config.yaml, binary /usr/local/bin/OliveTin, systemd unit OliveTin.service). OliveTin is a general-purpose self-hosted automation dashboard (github.com/OliveTin/OliveTin), not a CTF-specific component — it appears on any kind of host where admins expose pre-configured shell commands via web UI. It runs configured `shell:` actions, frequently as root, and exposes a Connect-RPC JSON API.
+
+## Known vulnerability classes (project-wide, not box-specific)
+
+- **CVE-2026-27626 / GHSA-49gm-hh7w-wfvf** (all versions ≤ 3000.10.0): OS command injection via `password`-typed arguments — `checkShellArgumentSafety()` omits the `password` type, so metacharacters in password values reach `sh -c` unvalidated. Second vector: webhook-extracted JSON values skip type checks entirely (unauthenticated RCE on webhook-triggered actions).
+- **GHSA-xc5w-4v5w-7x65**: same bypass for custom `regex:`-prefixed argument types; even restrictive-looking patterns are bypassable via `$()` command substitution.
+- **GHSA-vc6p-m6vx-6cwq**: second-order injection via `shellAfterCompleted` — the `output`/`ot_username`/`exitCode` template variables are never type-checked before reaching `sh -c`.
+- Net effect: any Shell-mode action with a password/regex-typed argument, or a webhook-triggered action, is an RCE primitive running as the OliveTin process user (often root).
 
 ## Default-exposed state (verified 2026-10-11, proj_009)
 
