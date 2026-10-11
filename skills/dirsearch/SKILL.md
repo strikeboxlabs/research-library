@@ -5,6 +5,8 @@ description: Discover web paths with dirsearch and distinguish real findings fro
 
 # Dirsearch path discovery
 
+Read this entire SKILL.md before acting. Require the scoped URL/virtual host, existing selected wordlist and measured response controls before discovery; all task instructions are inline. Finish with completed versus interrupted coverage and individually confirmed response differences. If the list, intended host or authorization is missing, retain that prerequisite rather than expanding another target.
+
 Confirm the intended virtual host and URL prefix first. An IP URL can reach the wrong site; for HTTPS, an HTTP Host header alone does not necessarily select the right TLS virtual host. Inspect one real page and a deliberately nonexistent path to establish status, redirect and body behaviour.
 
 Define `url` as the in-scope base URL, `wordlist` as an existing local list, and `report` as a fresh output path. Check the installed `dirsearch --help`; source checkouts may use `python3 dirsearch.py`. For a PHP site and a list of bare path stems:

@@ -1,6 +1,6 @@
 # Reproduce encoding at the actual output context
 
-Trace the submitted field through storage to the exact template expression. A filename used in `src` and a display name used in `alt` are different flows. Encoding on an admin listing does not establish encoding on a separate detail page; an input blacklist does not replace encoding at the output context.
+Trace the submitted field through storage to the exact consuming expression. A filename used in `src` and a display name used in `alt` are different flows. Encoding on an admin listing does not establish encoding on a separate detail page; an input blacklist does not replace encoding at the output context. If that same value is also used to construct a process command, HTML encoding does not establish a shell-argument boundary. Review that command separately using the complete caller; a displayed filtering function alone does not reveal how its return value reaches the child program.
 
 For a harmless local check, define `php_bin` as the selected PHP CLI and `text` as the sample string to encode. Pass it as data to the selected PHP CLI:
 

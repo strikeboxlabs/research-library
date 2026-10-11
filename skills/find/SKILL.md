@@ -25,7 +25,7 @@ For a selected group-owned-file search, define `group_name` from the target's ac
 find -P "$search_root" -xdev -type f -group "$group_name" -print0 > "$matches" 2> "$errors"
 ~~~
 
-`-group` selects ownership, not membership or current access. Add `-perm -4000` only when set-user-ID files are the intended subset; inspect actual owner/mode, mount policy and execution context before claiming a privilege effect. A permission-denied path or a suppressed diagnostic leaves coverage incomplete. BSD `find -ls` is a human listing, not the NUL-delimited evidence above.
+`-group` selects ownership, not membership or current access. Add `-perm -4000` only when set-user-ID files are the intended subset; inspect actual owner/mode, mount policy and execution context before claiming a privilege effect. A permission-denied path or a suppressed diagnostic leaves coverage incomplete. GNU find's `-ls` is a human listing, not the NUL-delimited evidence above.
 
 To test whether **one directory itself** is empty, define `directory` and use:
 

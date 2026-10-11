@@ -7,7 +7,7 @@ description: Open a Windows WinRM session from Linux with Evil-WinRM using known
 
 Read this entire SKILL.md before acting. Require the selected endpoint/account and credential mechanism, then confirm the actual remote identity and requested action/transfer. For selected Windows service evidence, also read [service inspection](references/service-inspection.md) fully. That reference is conditional; other session tasks use this entrypoint. Missing WinRM permission or an incomplete transfer remains unresolved, regardless of another protocol's login result.
 
-A valid SMB login does not establish WinRM permission. Confirm the Windows endpoint, listener transport/port and intended account. Inspect `evil-winrm -h` and `evil-winrm -V`; packaged releases can differ from current upstream.
+A valid SMB or web-portal login does not establish WinRM permission. Confirm the Windows endpoint, listener transport/port, WSMan route and intended account. An open TCP 5985 or an HTTPAPI/IIS banner alone does not establish a working WinRM listener. An HTTP 404 with missing authentication headers can concern the route or service; it does not by itself prove a bad password. Inspect `evil-winrm -h` and `evil-winrm -V`; packaged releases can differ from current upstream.
 
 Define `server` as the intended hostname/IP and `account` as the account identity accepted by that endpoint. For its normal HTTP listener, omit `-p` to enter the known password at the hidden prompt:
 
@@ -25,11 +25,14 @@ When the question concerns the session's authority, inspect its current Windows 
 
 ~~~powershell
 whoami /user
+whoami /groups
 whoami /priv
 ~~~
 
-Keep the account SID and privilege state. An illustrative `SeBackupPrivilege ... Enabled` is a property of this token; a listed but disabled privilege is not currently active. File access through backup privilege requires an enabled privilege and an API using [backup semantics](https://learn.microsoft.com/en-us/windows/win32/fileio/file-security-and-access-rights#backup-and-restore-access-rights). It does not make every `Get-Content` or download bypass ACLs, or grant arbitrary write access. Check the intended operation's API and actual error before concluding that a token privilege is ineffective. Registry export is a separate operation that creates a potentially sensitive file; a privilege listing alone neither performs nor validates a backup.
+Keep the account SID, token group SIDs/attributes and privilege state. An enabled group is part of this token's authorization context; its display name alone does not establish a particular service operation or unrestricted host access. A disabled or deny-only group needs its actual attributes interpreted rather than treating every listed membership as an enabled grant. An illustrative `SeBackupPrivilege ... Enabled` is a property of this token; a listed but disabled privilege is not currently active. File access through backup privilege requires an enabled privilege and an API using [backup semantics](https://learn.microsoft.com/en-us/windows/win32/fileio/file-security-and-access-rights#backup-and-restore-access-rights). It does not make every `Get-Content` or download bypass ACLs, or grant arbitrary write access. Check the intended operation's API and actual error before concluding that a token privilege is ineffective. Registry export is a separate operation that creates a potentially sensitive file; a privilege listing alone neither performs nor validates a backup.
 
 For failures, separate connection refusal/timeouts from authentication errors and command authorization. Repeated password retries do not repair listener, realm or access-policy problems. Remote path completion warnings can be local Ruby limitations. Session logs and downloaded files may contain secrets. End with `exit`; preserve only needed evidence and account for uploaded artifacts.
+
+If an expected identity command is unavailable on a specialized Windows image, retain that command-resolution error. USERPROFILE and a home-directory path are environment metadata, not account SID or token-privilege evidence. Similarly, ownership/readability of a credential XML file does not establish its decryption context: Windows PowerShell CLIXML credential encryption binds the exporting user and computer through DPAPI. Treat these as separate limitations; do not substitute directory names or file ownership for verified session authority. See [Import-Clixml platform and user binding](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml).
 
 For option or transfer differences, consult [upstream usage](https://github.com/Hackplayers/evil-winrm) and the [client implementation](https://github.com/Hackplayers/evil-winrm/blob/master/evil-winrm.rb).

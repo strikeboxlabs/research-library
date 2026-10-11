@@ -37,6 +37,8 @@ Match form versus JSON encoding before diagnosing misleading field-validation er
 
 ## Model an actual browser preflight
 
+Keep cookies, localStorage and the server's authorization result separate. localStorage belongs to the page's origin and is not automatically attached as a Cookie header; an application must read and transmit it explicitly. A client flag that exposes a menu does not establish that the server permits its operation. Cookie Domain controls eligible hosts, while SameSite compares site context rather than requiring identical origins. A subdomain change can therefore be cross-origin yet same-site, subject to scheme and browser context. HttpOnly prevents script access to that cookie, not browser delivery on an eligible request. Diagnose the actual request/response and storage mechanism rather than inferring it from a developer-tools value. See [Web Storage](https://html.spec.whatwg.org/multipage/webstorage.html) and [cookie processing](https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis).
+
 For a scoped policy check, define `origin` as the caller's origin (`scheme://host[:port]`, no path), `url` as the destination and `method` as the proposed method. This example proposes a JSON request with a CSRF header:
 
 ~~~bash

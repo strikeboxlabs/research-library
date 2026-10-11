@@ -17,7 +17,7 @@ vim -Nu NONE -i NONE -n -M --cmd 'set nomodeline' -- "$artifact"
 
 `-u NONE` skips startup configuration/plugins, `-i NONE` avoids viminfo, and `-n` disables swap creation. `--cmd` sets `nomodeline` **before** reading the file. An ordinary `-c` command runs later. `-M` disables modification/writing initially; `-R` alone is only read-only mode and can be overridden. These settings do not turn Vim into a security sandbox or stop explicitly requested shell commands.
 
-For a found `.swp`/`.swo`, first determine whether the original editor is still running. Its recorded user, host, PID and filename are recovery clues, not proof of current ownership or a current process on this machine. Do not delete a swap merely because Vim reports it. Preserve both the swap and any original file available from the same capture.
+For a found `.swp`/`.swo`, first determine whether the original editor is still running. Vim normally maintains a swap during editing; its existence alone does not establish a crash or unsafe exit. Its recorded user, host, PID and filename are recovery clues, not proof of current ownership or a current process on this machine. Do not delete a swap merely because Vim reports it. Preserve both the swap and any original file available from the same capture.
 
 Recover a **copy** in a scratch directory. Start an empty editor with controlled startup:
 

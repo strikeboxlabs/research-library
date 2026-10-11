@@ -54,4 +54,6 @@ objdump -d --start-address="$start" --stop-address="$stop" "$binary"
 
 Interpret the identified API using the target OS. For example, OpenBSD `unveil(path, "r")` restricts filesystem visibility; it does not grant permission to every file beneath that path. Other calls, more specific rules, existing descriptors, process credentials and application checks affect the conclusion. A found import is not proof the restriction was successfully installed at runtime. See [OpenBSD unveil](https://man.openbsd.org/unveil.2) for a BSD artifact; do not impose those semantics on a Linux syscall merely because the CPU matches.
 
+An imported OpenBSD `auth_userokay` is an authentication lead, not the helper's complete policy. Its API takes name, style, type and password; zero means failure and nonzero means success. That is distinct from the helper executable's exit status, which may invert the API result. Inspect caller arguments and return/exit handling before interpreting a PHP `system` status. The imported name alone does not establish a vulnerable revision, selected authentication style or successful login. See [OpenBSD authentication API](https://man.openbsd.org/authenticate.3).
+
 See [GNU objdump options and interpretation](https://sourceware.org/binutils/docs/binutils/objdump.html).

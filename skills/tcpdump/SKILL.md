@@ -28,7 +28,9 @@ tcpdump -nn -r "$pcap" "host $peer and icmp"
 
 For a selected local service, `lo` is the loopback interface in the capture process's network namespace. It is not synonymous with every packet addressed to this machine or every container's localhost. Verify that the requested conversation actually traverses it. An observed port number alone does not identify the application or establish whether transport encryption was negotiated.
 
-Record timestamps, directions, interface/filter and capture/drop counts. An echo request establishes packet arrival; it does not prove every preceding step claimed by a walkthrough. No matching packets can reflect the wrong interface, namespace, timing, filter, route or upstream loss. It does not independently prove that a remote command failed. Similarly, a TCP handshake establishes transport reachability, not application success.
+Record timestamps, directions, interface/filter and capture/drop counts. An echo request establishes packet arrival; it does not prove every preceding step claimed by a walkthrough. An ICMP host-unreachable message is an error report, not an echo request or successful ping reply. Separate its outer sender/recipient from the original datagram quoted inside it; correlate that quoted destination, protocol and timing before attributing it to the selected event. An unrelated gateway error does not establish application execution. See [ICMP error and echo formats](https://www.rfc-editor.org/rfc/rfc792).
+
+No matching packets can reflect the wrong interface, namespace, timing, filter, route or upstream loss. It does not independently prove that a remote command failed. Similarly, a TCP handshake establishes transport reachability, not application success.
 
 Permission errors are not empty captures. If privilege dropping prevents writing the file, check the configured capture user and directory rather than broadening directory permissions. Keep captures private, and check reported truncation/drops before relying on payload completeness.
 

@@ -5,7 +5,22 @@ description: Convert captured text between explicit character encodings with ico
 
 # Decode characters after recovering the bytes
 
+Read this entire SKILL.md before acting. Require the original bytes, evidence for the input encoding, the consumer's output-encoding contract and a fresh output path. Select decoding or conversion for that contract below; both require immediate status and byte/content checks. Finish with the input/output encodings, complete converted artifact and its limits, or the specific malformed/unsupported encoding gap.
+
 First separate the representation from the encoding: hex/base64 decoding recovers bytes; `iconv` interprets those bytes as characters. A Windows origin or alternating zeros is a clue, not proof of UTF-16LE. Establish the encoding from the producing format, byte-order mark or other evidence. Check supported names with `iconv -l`.
+
+Name both encodings explicitly: when `-f` or `-t` is omitted, that side defaults from the current locale. For a consumer requiring UTF-16LE bytes without a BOM, define `input` as confirmed UTF-8 text and `output` as a fresh file:
+
+~~~bash
+if iconv -f UTF-8 -t UTF-16LE "$input" > "$output"; then
+    xxd -g 1 "$output"
+else
+    printf '%s\n' 'Conversion failed; output may be partial.' >&2
+    false
+fi
+~~~
+
+The illustrative UTF-8 bytes `41 c4 81 e2 82 ac` become `41 00 01 01 ac 20`. Base64, if a transport requires it, is a separate encoding of these resulting bytes. UTF-16LE is this consumer's contract, not a universal Windows text encoding. Preserve binary in a file and apply the failure rules below to either direction.
 
 For confirmed **UTF-16LE without a BOM**, define `raw` as the recovered binary file and `text` as a fresh output path:
 

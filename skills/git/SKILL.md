@@ -9,6 +9,7 @@ Read this entire SKILL.md before acting. Choose the requested task and complete 
 
 - Acquiring a selected upstream source: [source checkout](references/source-checkout.md). Read this reference fully before its procedure.
 - A known trusted shared repository refused for dubious ownership: [repository trust recovery](references/repository-trust.md). Read it fully before adding an exception.
+- A scheduled backup misreads changes or invokes repository helpers: [scheduled Git evidence](references/scheduled-jobs.md). Read it fully before interpreting the job or running status against an acquired repository.
 - Inspecting a supplied offline bundle: [bundle recovery](references/bundle-recovery.md). Read it fully before importing its objects or assuming it is self-contained.
 - Inspecting acquired objects with missing refs or worktree files: [object inspection](references/object-inspection.md). Read it fully before interpreting object types or reconstruction completeness.
 - Removed/replaced files, local reflogs, patch search or ambiguous diff endpoints: [historical content](references/history-recovery.md). Read it fully before selecting/extracting a revision.
@@ -18,7 +19,7 @@ Read this entire SKILL.md before acting. Choose the requested task and complete 
 - Patch validation: [scoped patch checks](#prepare-and-check-a-scoped-patch).
 - Link/submodule types: [stored modes and metadata](#inspect-stored-symlinks-and-submodules-without-checking-them-out).
 
-Define `repo` as an existing repository's absolute path. Start with `git -C "$repo" status --short` and `git -C "$repo" rev-parse --is-shallow-repository`; preserve local edits and history limitations. For historical content, follow the reference above before selecting a revision or extracting a blob. The remaining branches below use that same `repo` and explicitly defined task paths; none requires a checkout/reset or a live authentication attempt.
+Define `repo` as an existing repository's absolute path. Establish its trust and inspection context before repository commands: an acquired `.git` directory can supply executable helpers even to a status query. Read the scheduled-evidence reference above when its configuration or job context is uncertain; isolation alone is not a configuration review. In a trusted or reviewed inspection context, start with `git -C "$repo" status --short` and `git -C "$repo" rev-parse --is-shallow-repository`; preserve local edits and history limitations. For historical content, follow the reference above before selecting a revision or extracting a blob. The remaining branches below use that same `repo` and explicitly defined task paths; none requires a checkout/reset or a live authentication attempt.
 
 ## Inspect an acquired remote configuration
 

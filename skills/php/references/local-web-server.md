@@ -12,7 +12,9 @@ Review every executable PHP file under the root: requests can run it with the se
 
 Request a known marker URL from the actual caller's vantage and compare the response bytes/status with its expected file. A startup line establishes a listener attempt; a logged request establishes receipt, not that the browser ran the page's JavaScript or that a second request succeeded. Record Host/path and selected root when a 404 or unexpected index appears.
 
-The normal server has one worker; a blocking request can stall another request to it. Selected PHP versions support multiple workers via configuration, but that is a separate test condition, not a default fix. The process uses the chosen CLI configuration/SAPI and does not reproduce the target's FPM/Apache/OpenBSD stack.
+The normal server has one worker; a blocking request can stall another request to it. Selected PHP versions support multiple workers via configuration, but that is a separate test condition, not a default fix. Requests use the built-in server's cli-server SAPI, rather than an ordinary cli invocation. Match the chosen binary/startup configuration and extensions; a separate php -v/--ini result does not prove the running server's loaded state. This test does not reproduce an FPM/Apache/OpenBSD stack.
+
+Without -t, the server uses its startup working directory as its document root. A service's WorkingDirectory therefore matters, but an acquired unit file alone does not establish its loaded manager state, drop-ins or the running process identity. Correlate those when reviewing an existing deployment. Keep the explicit -t root in the disposable procedure above rather than relying on the caller's directory.
 
 For browser callbacks, preserve origin (scheme/host/port), content type and the expected callback endpoint. Request receipt, response completion, script execution and application state are separate evidence. Stop the owned foreground server and inspect/remove only its owned test artifacts when finished.
 

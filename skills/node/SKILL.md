@@ -1,6 +1,6 @@
 ---
 name: node
-description: Use Node.js for CommonJS resolution, selected module precedence, a bounded Socket.IO exchange, signed client-session analysis or numeric input validation. Use for dependency differences, session trust boundaries and bounded application work.
+description: Use Node.js for CommonJS resolution, selected module precedence, a bounded Socket.IO exchange, request/cookie source review, signed client-session analysis or numeric input validation. Use for dependency differences, parser and session trust boundaries and bounded application work.
 ---
 
 # CommonJS lookup and application contracts
@@ -10,6 +10,8 @@ Read this entire SKILL.md before acting; reuse complete current context. Establi
 For an application using Socket.IO events, read [a selected event with an existing client](references/socketio-event.md) fully before that procedure; it requires an installed compatible socket.io-client and the observed subscription/session contract. Keep this branch unloaded for ordinary resolution.
 
 For an acquired cookie-session/Keygrip application or owned signed-cookie reproduction, read [signed session bytes and trust](references/signed-session.md) fully before calibrating or generating a pair. It requires the identified serialization/signing contract and exact private key bytes; finish with a matching control or the concrete mismatch.
+
+For acquired request/cookie processing code, read [parser and verification order](references/request-data-review.md) fully before source interpretation or syntax checks. It requires the actual route, middleware and dependency context; finish with the supported dataflow and unresolved implementation gaps.
 
 For a loop or queued job controlled by request data, read [numeric input and bounded work](references/numeric-input.md) fully before evaluating or changing the handler. It requires the input format and intended bounds; finish with local validation results and any remaining concurrency or runtime uncertainty.
 

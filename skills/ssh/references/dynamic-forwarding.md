@@ -10,6 +10,8 @@ ssh -N -T -o ExitOnForwardFailure=yes -D "127.0.0.1:$socks_port" "$user@$ssh_hos
 
 `-D` accepts SOCKS4/5 requests at the explicitly bound local loopback address. SSH then opens each requested TCP connection from the SSH server. `-N` requests no remote command; `-T` requests no terminal. A quiet connection is normal. Authentication and successful listener creation do not prove the selected destination will accept a later connection; `ExitOnForwardFailure` cannot test that future request.
 
+The OpenSSH dynamic SOCKS5 listener negotiates no-authentication for its local proxy protocol. The SSH account authenticates the transport separately; copying that account's password into a browser or ProxyChains SOCKS entry is unnecessary and does not authenticate the destination application. Keep this listener loopback-bound and configure the consumer for the actual local endpoint. See the upstream [SOCKS negotiation](https://github.com/openssh/openssh-portable/blob/master/channels.c).
+
 For a known HTTP(S) endpoint, use curl in a second terminal. Define `url` as that service's complete approved URL, and `headers` and `body` as fresh files in a private working directory. They can contain application data or session identifiers.
 
 ~~~bash

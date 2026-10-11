@@ -1,11 +1,11 @@
 ---
 name: dig
-description: Query an explicit DNS server or inspect an approved zone transfer. Use to distinguish authoritative records, resolver views, negative responses, transfer completeness and application name resolution.
+description: Query an explicit DNS server, inspect TXT records or an approved zone transfer. Use to distinguish authoritative records, resolver views, negative responses, published SPF text and transfer completeness.
 ---
 
 # Verify the answer from the intended server
 
-Read this entire SKILL.md before acting; reuse complete current context. Select a record/resolver comparison or the approved zone-transfer task below. Required inputs are the intended server and exact name/zone, installed dig, network access and the server's permitted authentication context. Finish with the responding server, actual records/status and view or transfer limits; missing access or incomplete output remains a gap. There are no required conditional resources.
+Read this entire SKILL.md before acting; reuse complete current context. Select a record/resolver comparison, TXT inspection or the approved zone-transfer task below. Required inputs are the intended server and exact name/zone, installed dig, network access and the server's permitted authentication context. Finish with the responding server, actual records/status and view or transfer limits; missing access or incomplete output remains a gap. There are no required conditional resources.
 
 Check `dig -v`. Define `dns_server` as the authorized server's numeric address and `fqdn` as the exact fully qualified name with a trailing dot. For a server expected to be authoritative:
 
@@ -33,6 +33,16 @@ Differences can reflect cached positive/negative answers or different DNS views.
 TTL controls caching, not authoritative record deletion. AD DNS aging and scavenging use separate server policy: no-refresh plus refresh intervals identify possible staleness, not an exact removal deadline. A scavenging start/end event does not identify which particular record was removed; retain record-specific evidence before assigning that cause to NXDOMAIN.
 
 Dig queries DNS directly. Applications using NSS can instead obtain a name from `/etc/hosts` or another configured source; `getent ahosts "$fqdn"` examines that local lookup path, although applications can use their own resolver. Repeat observations from the consuming namespace. A forward A record neither proves reverse lookup results nor establishes a service's hostname-trust authentication decision.
+
+## Inspect published TXT records
+
+For the defined application `resolver` and exact `fqdn`, request TXT explicitly:
+
+~~~bash
+dig -r @"$resolver" "$fqdn" TXT +recurse +time=2 +tries=1 +noall +comments +answer +authority +stats
+~~~
+
+Apply the same status/server/negative-answer decisions above. Quoted chunks on one TXT record concatenate without inserted spaces; separate answer records remain separate. Retain owner/type and the entire selected record rather than searching raw stdout for a substring. A published `v=spf1` record is SPF policy data, not proof that a particular sender is authorized: SPF evaluates an SMTP identity and client IP against that policy, including DNS-dependent mechanisms and errors. A contact form's substring test is not that evaluation or an email-delivery result. See [SPF records and evaluation](https://www.rfc-editor.org/rfc/rfc7208).
 
 ## Inspect an approved zone transfer
 

@@ -5,7 +5,7 @@ description: Change selected Linux file mode bits and verify the resulting owner
 
 # Change the intended file's mode
 
-Read this entire SKILL.md before acting; reuse complete current context. Confirm the selected path, file type, owner and intended access before changing its mode. Finish with the observed mode and relevant access result; chmod does not establish credential validity or server acceptance.
+Read this entire SKILL.md before acting; reuse complete current context. Confirm the selected path, file type, owner and intended access before changing its mode. Choose the regular-file restriction, owner execute/search change or explicit setuid experiment below; retain prior permissions when restoration is required. Finish with the observed mode and relevant access result; chmod does not establish credential validity or server acceptance.
 
 For GNU chmod, inspect `chmod --version` and local help. Define `file` as the actual selected **regular file**, verify it is not an unexpected symbolic link, and retain the prior mode/ownership if restoration is part of the task. For a private key or secret file that its owner must read and write:
 
@@ -20,6 +20,14 @@ On a symbolic link explicitly supplied as an operand, GNU chmod changes the targ
 For a verified credential working copy, run its format inspection separately and then use it only with the selected authorized client/endpoint. OpenSSH's private-key permissions check, successful key parsing and remote key authorization are separate outcomes. Restricting a file after exposing its contents does not undo that exposure.
 
 For a selected reviewed program that needs owner execute permission, `chmod u+x -- "$file"` adds that bit without replacing the other mode bits. Bare +x omits the who field and is affected by the current umask. Verify the mode; making a file executable does not verify its provenance, architecture or loader.
+
+For an explicitly intended access repair to a directory owned by the selected user, define `directory` as that verified directory and preserve its original mode. Owner search permission allows traversing it and addressing entries by name; it does not supply directory listing/read permission or access through inaccessible parents:
+
+~~~bash
+chmod u+x -- "$directory" && stat --format='%a %U:%G %F %n' -- "$directory"
+~~~
+
+Check the intended access separately. A remaining denial can come from a parent, entry permissions, ACL or security policy. Changing a home directory's search bit can also affect application startup/history files; a denied history-file write is different from a failed database connection. Restore the original mode if this was a temporary diagnostic.
 
 For an explicitly requested setuid experiment on the selected verified regular executable, `chmod u+s -- "$file"` adds the set-user-ID bit. Bare `chmod +s` sets both setuid and setgid; choose u+s when only the user-ID bit is intended. It neither changes the owner nor grants root if the owner is an ordinary user. The executable must retain an execute bit; a displayed S without x is different from s. Verify owner/mode and actual real/effective IDs after execution. Linux nosuid/no_new_privs/tracing and interpreter behavior can suppress the change; Bash -p preserves an already obtained effective identity rather than creating one. To restore just that experiment bit, `chmod u-s -- "$file"` clears it; verify the result and original intended mode. Keep this separate from making a private file mode600.
 

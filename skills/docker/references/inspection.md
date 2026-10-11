@@ -1,5 +1,30 @@
 # Establish the source of a container mount
 
+## Inspect the selected daemon's networks
+
+Use only the actual permitted Docker invocation. A restricted grant to network ls/inspect does not permit container inspection, run or daemon reconfiguration. With the daemon context established as far as that grant permits, list networks and select an observed network name/ID as `network`:
+
+~~~bash
+docker network ls
+docker network inspect "$network"
+~~~
+
+Preserve both statuses and the complete JSON inspection. Distinguish network name/ID, driver/scope, IPAM subnet/gateway and attached container endpoint addresses. An endpoint address with a prefix is not a host-published port. A container name suggesting a product/version is a label, not a measured binary version. Listing one bridge does not inventory all networks or demonstrate service reachability from the client. Empty endpoint metadata can reflect network type/state, while failed inspection remains unknown. Confirm a requested service separately without assuming metadata grants access.
+
+These commands read metadata. Do not attach/disconnect endpoints to investigate a listing. See [network list](https://docs.docker.com/reference/cli/docker/network/ls/) and [network inspection](https://docs.docker.com/reference/cli/docker/network/inspect/).
+
+## Inventory images on the selected daemon
+
+With the intended context/daemon established by the entrypoint, list its local image records without starting a container:
+
+~~~bash
+docker image ls --all --digests --no-trunc
+~~~
+
+`--all` includes intermediate/untagged images that the ordinary list can omit; it does not enumerate a remote registry or every Docker context. Retain repository/tag, image ID, available digest and command status. A tag is mutable, a missing digest can reflect a locally built image, and reported image size is not a unique disk-usage total because layers can be shared. Images are not running containers. A displayed image name alone establishes neither host privileges nor suitable architecture/entrypoint for execution. A failed daemon query remains unknown, not an empty image inventory. See [image-list semantics](https://docs.docker.com/reference/cli/docker/image/ls/).
+
+## Inspect a selected container's mounts
+
 With `jq` available and access to the intended daemon already established, define `container` as the observed container ID or name in that context:
 
 ~~~bash

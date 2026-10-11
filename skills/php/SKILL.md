@@ -1,9 +1,11 @@
 ---
 name: php
-description: Use PHP CLI for selected local web tests, configuration and exact legacy checksum diagnostics, or PostgreSQL diagnosis through pgsql. Use for CLI/web SAPI differences, PHAR/upload validation, HTML output encoding, Joomla/Backdrop process context or offline Laravel CBC cookie/session analysis.
+description: Use PHP CLI for selected local web tests, configuration and exact legacy checksum diagnostics, or PostgreSQL diagnosis through pgsql. Use for CLI/web SAPI differences, request/session identity review, PHAR/upload validation, HTML output encoding, Joomla/Backdrop process context or offline Laravel CBC cookie/session analysis.
 ---
 
 # PHP CLI reproduction context
+
+For existing Xdebug configuration or an IDE connection failure, read [debugger context](references/debugger-context.md) fully before diagnosis; match the PHP/Xdebug generation and CLI/web SAPI without triggering remote evaluation.
 
 For a selected offline legacy checksum or deterministic upload-directory expression, read [exact checksum inputs](references/exact-checksums.md) fully before its diagnostic procedure. It requires known input representations and finishes with the observed digest and the transformation's limits.
 
@@ -20,6 +22,8 @@ Define `php_bin` as the intended executable, which may be a versioned binary rat
 
 Record the binary, SAPI, loaded configuration and relevant extensions. CLI results do not establish the version/configuration used by Apache or FPM. An HTTP version header is a separate observation; testing local PHP 8.2 does not reproduce a service merely reporting 8.3.2. `-n` ignores ini files and may omit extensions, so use it only when that configuration difference is intentional.
 
+For a function supplied by a native extension, follow the selected startup options, actual ini/scan files and module identity. A keyword in an acquired php.ini describes disk configuration; a saved maps copy describes one past process, not the current listener. Correlate that capture's producer/time with the exact binary/SAPI and observed loaded module before asserting deployment. Merely loading an unreviewed extension, including during diagnostics, executes native startup code. Keep static acquired-file review separate from permitted runtime checks, and do not call an authentication function just to discover what library supplied it.
+
 For an existing reviewed source file, define `script` and lint it before any intended execution:
 
 ~~~bash
@@ -27,6 +31,10 @@ For an existing reviewed source file, define `script` and lint it before any int
 ~~~
 
 Lint checks syntax, not application behavior, runtime dependencies, reachable classes or security. Normal PHP startup/configuration still matters. To execute a small reviewed snippet, `-r` accepts PHP code without `<?php` tags; keep shell quoting intact and pass variable input as arguments rather than interpolating it into PHP source. Running a supplied script or calling `unserialize` is code execution, not merely inspection of an artifact.
+
+For a login/redirect source review, follow the unauthenticated branch through every later read/output operation. `header('Location: ...')` schedules a response header; it does not terminate PHP execution or establish authorization. Require the actual termination/return and surrounding control flow before treating a redirect as protection. A response can contain both a Location header and generated body. Keep web process identity separate from file owner and login name: a per-vhost account directive inside IfModule is configuration intent until the effective loaded module and observed runtime identity support it. Review these boundaries as data without retrieving private-key/credential contents to demonstrate a finding. See [header and termination behavior](https://www.php.net/manual/en/function.header.php).
+
+For a login/session source review, track the exact input used for authentication and the identity stored afterward. `$_REQUEST` composition and collision order depend on `request_order`/`variables_order`; cookies do not invariably participate or override POST fields. A form's `method=POST` does not prove that its handler uses `$_POST`. Require the complete handler and deployed web-SAPI configuration before asserting the precedence. Bind the session identity to the account actually authenticated, rather than another client-controlled source. Stored remote-address/user-agent fields are not enforcement unless later code checks them. Read [PHP request variables](https://www.php.net/manual/en/reserved.variables.request.php) for configuration differences.
 
 When interpreting source, backticks invoke `shell_exec`, not `exec`; disabling `shell_exec` also disables the backtick operator. A blocked function explains that mechanism only, not whether the whole application is safe. `<?=` is the short echo form and is independent of `short_open_tag`; the shorter opening `<?` is configuration-dependent. Check the actual web SAPI's settings before attributing a failed reproduction to CLI settings. See [execution operators](https://www.php.net/manual/en/language.operators.execution.php) and [PHP tags](https://www.php.net/manual/en/language.basic-syntax.phptags.php).
 
@@ -36,7 +44,7 @@ A scheduled CLI launcher may include additional PHP files. Checking or hashing o
 
 For PHAR behavior, match the version and API actually called. PHP 8.0 stopped automatically unserializing PHAR metadata on ordinary archive loading; explicit metadata access is a different operation. A failed older demonstration therefore does not alone establish a patched application, harmless metadata or a missing gadget.
 
-`getimagesize` can accept a non-image and return nonsensical dimensions. A `GIF89a` prefix plus reported dimensions is not proof of a valid decodable image or a pure image file. Use the intended image decoder and retain the original bytes. When wrappers or application transformations change a response, verify exact lengths and contents; do not invent missing bytes to make a parser accept it.
+`getimagesize` can accept a non-image and return nonsensical dimensions. A `GIF89a` prefix plus reported dimensions is not proof of a valid decodable image or a pure image file. Likewise, `mime_content_type` classifies using magic-file information and returns false on failure; an `image/` result is classification, not complete image decoding or proof that no other content exists. Trace suppressed warnings and fallback branches rather than substituting the client MIME field for a failed detector. Use the intended image decoder and retain the original bytes. When wrappers or application transformations change a response, verify exact lengths and contents; do not invent missing bytes to make a parser accept it. See [MIME detection](https://www.php.net/manual/en/function.mime-content-type.php).
 
 
 For upload-handler review, trace the original filename, client-supplied `$_FILES['file']['type']`, error status, content check and final destination as separate values. The MIME field is not PHP verification of the bytes. `move_uploaded_file` checks that its source came through PHP's HTTP POST upload mechanism; success does not establish a valid image. Ordinary CLI files do not become HTTP uploads merely by assigning `$_FILES`, so a failed CLI move is not a reproduction of the web handler.

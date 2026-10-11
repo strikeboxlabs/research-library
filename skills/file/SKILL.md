@@ -29,6 +29,8 @@ Read `Class`, `Data`, `Machine` and the requested interpreter together. A file r
 
 A `Java archive data (JAR)` label identifies a container signature; it does not establish an intact transfer or parseable Java classes. After checking archive sizes, `unzip -t "$artifact"` checks the ZIP members' stored CRCs. A truncated JAR may still receive a convincing label. Only proceed to a Java decompiler once the container result is understood; CRC success still does not authenticate the archive or prove every method can be reconstructed.
 
+For a `Vim swap file` result, recorded version, user, host, PID and original filename describe the artifact's embedded metadata. They do not authenticate the last editor, prove a crash, identify a current process or establish complete recoverability. Preserve the ordinary file and any matching original for a controlled editor recovery; a filename ending `.swp` alone is weaker evidence than the recognized header.
+
 For MIME-based routing, use `--mime-type` with the same explicit link handling. `application/octet-stream` or `data` means classification is limited, not that the artifact is empty or unusable. The default classifier stops at a successful test; `-k` can expose additional matches but is not a validator for every embedded object.
 
 A recognizable image prefix can label a mixed-format or malformed file as GIF. Report that as classification, then use the intended image decoder; the label does not prove valid pixels or exclude executable/archive content elsewhere in the bytes.

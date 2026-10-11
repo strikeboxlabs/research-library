@@ -1,11 +1,11 @@
 ---
 name: nano
-description: Edit a selected plaintext artifact with GNU nano while controlling wrapping, save destination and transfer formatting. Use for interactive correction of a working copy such as a recovered key envelope or configuration fragment.
+description: Edit a selected plaintext artifact with GNU nano or review an editor permission boundary. Use when wrapping, save destination, startup settings or external-command capabilities affect the intended task.
 ---
 
 # Edit and verify a selected text artifact
 
-Read this entire SKILL.md before acting; reuse complete current context. Establish the exact working-copy path and intended byte changes. Finish with the saved artifact checked by its consuming format/tool; exiting the editor successfully does not validate its contents.
+Read this entire SKILL.md before acting; reuse complete current context. Select working-copy editing below, requiring its exact path and intended byte changes, or static permitted-editor review, requiring the actual grant/executable/options. Finish with the saved artifact checked by its consumer or the supported policy finding; exiting the editor successfully does not validate its contents or confinement.
 
 Use `nano --version` and the installed help. Nano is an interactive terminal editor; without a usable terminal, report that prerequisite rather than sending blind keystrokes. Preserve acquired originals and use a private working directory for credentials. Define `file` as the selected working copy:
 
@@ -18,5 +18,7 @@ nano -I -w -- "$file"
 With the default bindings, Ctrl-O opens Write Out: check the destination, press Enter to save, then Ctrl-X to exit. Read the status message and follow any overwrite/save prompt deliberately. A marked selection can be written instead of the whole buffer, and append/prepend or DOS line-ending settings change the resulting file. Use Ctrl-G for this version's bindings if the interface differs.
 
 Reopen or inspect the resulting file and run the intended parser. A visible save message proves that write operation, not that the private key, JSON or configuration is valid or that its permissions suit the consumer. Keep secret contents out of public terminal recordings; limit subsequent evidence to the needed fingerprint, parse result or specific edit.
+
+For a permitted-editor policy review, distinguish the requested filename from the editor's capabilities. An ordinary unrestricted Nano can insert other files and execute external commands with its process authority; a sudo grant naming one initial file does not by itself confine those features. Review the exact executable, options, startup configuration and effective policy as data, without invoking an elevated child to demonstrate the finding. Restricted/view modes have different limits and are not interchangeable with a normal editable session.
 
 See [GNU nano's manual](https://www.nano-editor.org/dist/latest/nano.html) for write-out behavior, options and bindings.

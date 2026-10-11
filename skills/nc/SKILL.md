@@ -1,11 +1,11 @@
 ---
 name: nc
-description: Use the installed nc/netcat implementation for a selected TCP exchange or incoming callback. Choose traditional versus OpenBSD options and diagnose EOF/listener differences; load process-stream attachment only when that task is authorized.
+description: Use the installed nc/netcat implementation for a selected TCP exchange, owned file transfer or incoming callback. Choose traditional versus OpenBSD options and diagnose EOF/listener differences; load process-stream attachment only when that task is authorized.
 ---
 
 # Netcat TCP exchanges
 
-Read this entire SKILL.md before acting; reuse complete current context. Identify the installed implementation with `nc -h` and its manual before selecting a command below. For an authorized executable attached to a TCP stream, read [executable or FIFO process streams](references/process-streams.md) fully first. Finish with the received bytes and protocol/identity evidence; connecting alone is not application success.
+Read this entire SKILL.md before acting; reuse complete current context. Identify the installed implementation with `nc -h` and its manual before selecting a command below. For a selected owned binary-file transfer, read [finite file transfer](references/file-transfer.md) fully first. For an authorized executable attached to a TCP stream, read [executable or FIFO process streams](references/process-streams.md) fully first. Finish with the received bytes and protocol/identity evidence; connecting alone is not application success.
 
 Define `host`/`port` as the selected TCP endpoint and `request`/`response`/`log` as exact input and fresh private output files. For ordinary traditional or OpenBSD-style TCP interaction:
 

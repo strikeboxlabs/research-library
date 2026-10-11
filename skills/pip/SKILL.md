@@ -1,11 +1,11 @@
 ---
 name: pip
-description: Install and inspect Python tool dependencies in a selected Linux interpreter environment. Use when manifest versus installed versions, wheel compatibility, source builds or the wrong pip cause reproduction failures.
+description: Inspect, retrieve or install Python distributions in a selected Linux interpreter environment. Use when manifest versus installed versions, wheel compatibility, source builds or the wrong pip cause reproduction failures.
 ---
 
 # Match the interpreter before installing
 
-Read this entire SKILL.md before acting. Identify the intended interpreter and inspect its existing dependency versions first. Installation below requires an authorized change in the selected reproduction environment, with reviewed package inputs. Finish with the installed metadata/dependency result and the relevant application check separately; installation success is not application compatibility.
+Read this entire SKILL.md before acting. Identify the intended interpreter and select environment inspection, distribution retrieval or installation. For retrieval without installation, read [reviewed wheel retrieval](references/wheel-retrieval.md) completely before its procedure. Installation below requires an authorized change in the selected reproduction environment, with reviewed package inputs. Finish with the selected metadata/artifact/dependency result and the relevant application check separately; retrieval or installation success is not application compatibility.
 
 Call pip through the intended Python interpreter. A bare `pip` may belong to another environment; installing successfully there does not resolve imports in the program's actual interpreter.
 

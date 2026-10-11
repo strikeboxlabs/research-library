@@ -5,6 +5,8 @@ description: Inspect MIME construction and diagnose a specific SMTP transaction 
 
 # Choose the SMTP stage deliberately
 
+Read this entire SKILL.md before acting. Select message preview, recipient-stage diagnosis or requested submission below; require the intended endpoint, addresses and transport policy. Finish with the constructed message or final SMTP phase/response and its limits. Missing TLS/authentication support remains a prerequisite gap; these tasks have no conditional resources.
+
 Check `swaks --version` and `swaks --support` for installed TLS/authentication capabilities. Define `server` as the intended SMTP hostname, `port` as its actual service port, `sender` and `recipient` as verified single addresses, `subject` as a single-line value, `body_text` as the message text, `attachment` as an existing absolute file and `preview` as a fresh private output path.
 
 Inspect the proposed MIME message without sending it:
@@ -26,6 +28,6 @@ Use `--tls-on-connect` instead of `--tls` for implicit TLS when that is the endp
 
 An explicit `--server` avoids silently choosing a destination through recipient-domain MX lookup. To actually submit the reviewed message, use its construction arguments with the verified transport/authentication options, omitting `--dump-mail` and any early-stop option, only when delivery is requested.
 
-Record the last successful SMTP phase and response. RCPT acceptance is not mailbox proof; DATA acceptance is not inbox delivery or attachment execution. Diagnose connection, TLS, AUTH, recipient policy and post-submission behavior separately.
+Record the last successful SMTP phase and response. RCPT acceptance is not mailbox proof; a final positive response after the message terminator establishes SMTP acceptance, not inbox delivery, link opening or attachment execution. A missing expected application effect after that response is not grounds for repeatedly submitting the same message. If the connection fails before that final response, submission may be ambiguous; retain the transcript and check the selected server/message evidence before retrying, since another submission can duplicate delivery. Diagnose connection, TLS, AUTH, recipient policy and post-submission behavior separately.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Axlle p. 4. Source: [Swaks manual](https://github.com/jetmore/swaks/blob/develop/doc/base.pod).
+Resolve option and stopping-stage differences with the [Swaks manual](https://github.com/jetmore/swaks/blob/develop/doc/base.pod).

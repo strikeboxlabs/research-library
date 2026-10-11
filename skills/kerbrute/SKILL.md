@@ -5,6 +5,8 @@ description: Check a bounded list of candidate AD usernames against a selected K
 
 # Kerbrute username checks
 
+Read this entire SKILL.md before acting. Require the selected KDC/domain, small reviewed candidate list and request budget. No conditional resources are required. Finish with actual tested counts, result categories and untested/error cases; missing scope or endpoint information prevents this task, rather than justifying discovery against other servers.
+
 Inspect `kerbrute version` and `kerbrute userenum --help`. This skill covers `userenum`; `passwordspray`, `bruteuser` and `bruteforce` perform different authentication attempts and are not automatic follow-ups.
 
 Define `domain` as the full domain/realm, `dc` as the intended reachable KDC, `users_file` as a small deduplicated list of candidate usernames, and `log` as a fresh private output file:
@@ -22,4 +24,4 @@ When deriving names from an old directory dump, preserve domain/account mapping 
 
 Inspect verbose failures and the final tested count. Timeout, realm mismatch, clock/network errors or early cancellation can leave candidates untested; absence from the success list is not always proof the account does not exist. Specify the KDC explicitly when DNS discovery could select a different server. Report the checked list, endpoint, result categories and incomplete cases without adding password guesses.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: APT p. 8. Sources: [upstream modes and options](https://github.com/ropnop/kerbrute), [userenum implementation](https://github.com/ropnop/kerbrute/blob/master/cmd/userenum.go).
+Sources: [upstream modes and options](https://github.com/ropnop/kerbrute), [userenum implementation](https://github.com/ropnop/kerbrute/blob/master/cmd/userenum.go).

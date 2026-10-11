@@ -1,6 +1,6 @@
 ---
 name: python3
-description: Inspect Python source and distribution metadata, diagnose owned scripts, reproduce exact bytes, decode captures, or perform bounded protocol, database, HTTP-oracle and Unix terminal tasks. Use when byte contracts, response classes or execution context determine the result.
+description: Inspect Python source and metadata, diagnose owned scripts, reproduce bytes, decode captures, or perform bounded protocol, database, D-Bus, HTTP-oracle and Unix terminal tasks. Use when byte contracts, response classes or execution context determine the result.
 ---
 
 # Python operational inspection
@@ -8,18 +8,21 @@ description: Inspect Python source and distribution metadata, diagnose owned scr
 Read this entire SKILL.md before acting; reuse complete current context. Use the source locator below for static inspection. Read the applicable reference fully before its procedure; load only the branch needed for the task. Finish with the observed source/data/query result and its limits; parsing, decoding or connection success alone is not proof of safe execution or complete coverage.
 
 - Untrusted input, validation order or a misleading rejection: [evaluation flow](references/evaluation-flow.md).
+- A file handler's join or filename helper is mistaken for containment: [path handling review](references/path-handling.md).
 - Missing child output or ambiguous return values: [subprocess output](references/subprocess-output.md).
+- A saved JSON document or line-record format fails to parse: [JSON documents](references/json-documents.md).
 - An owned local script's exception needs stack/source inspection: [post-mortem debugging](references/post-mortem.md).
 - A dependency version is needed without importing its module: use the metadata query below.
 - RESP argument/byte lengths or JSON-carried protocol data: [protocol framing](references/resp-framing.md), requiring `scripts/resp_frame.py`.
 - Acquired AES key/counter/ciphertext and a known comparison contract: [AES-CTR reproduction](references/aes-ctr.md).
-- Changed signatures or multipart bytes: [binary evidence](references/binary-evidence.md).
+- Binary signatures, text/byte transformations or protocol body lengths: [binary evidence](references/binary-evidence.md).
 - Captured SAML HTTP Redirect URL: [offline decoding](references/saml-redirect.md).
 - Native WebSocket with greeting tokens or interleaved heartbeat messages: [WebSocket exchange](references/websocket-exchange.md).
 - Authorized SQL testing carried by an observed WebSocket message: [application/query boundary](references/websocket-query.md), which also requires the exchange reference.
 - A signed client-session object reaching an ORM relation filter and a stable authorized response oracle: [signed-session oracle](references/signed-session-oracle.md).
 - Authorized LDAP-backed HTTP form testing with layered encoding or a response oracle: [form/oracle boundaries](references/ldap-form-oracle.md).
 - MySQL CLI unavailable but a trusted Python environment already has PyMySQL: [bounded database inspection](references/pymysql-inspection.md).
+- Inspect names on the owned Linux system bus with installed dbus-python: [D-Bus name inventory](references/dbus-names.md).
 - Serve selected owned files or a cross-origin browser test module with an explicit response policy: [local file server](references/local-file-server.md).
 - An authorized Unix child needs a pseudo-terminal: [PTY session](references/pty-session.md).
 - A selected legacy account switch may share a terminal and permitted TIOCSTI behavior must be reproduced: [shared-terminal input](references/terminal-input.md).
