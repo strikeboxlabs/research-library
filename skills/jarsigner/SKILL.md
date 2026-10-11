@@ -1,9 +1,11 @@
 ---
 name: jarsigner
-description: Inspect JAR signature coverage and certificate warnings with jarsigner. Use when an unsigned archive exits successfully, strict checks differ or a JAR check is being mistaken for Android APK validation.
+description: Sign an owned JAR copy or inspect signature coverage and certificate warnings with jarsigner. Use when strict checks differ or a JAR result is being mistaken for Android APK acceptance.
 ---
 
 # Read verification evidence, not just the exit code
+
+Read this entire SKILL.md before acting. Require the selected archive and trusted installed JDK; choose verification or owned-copy signing. For signing with the intended keystore identity, read [owned archive signing](references/owned-signing.md) fully. Finish with actual signed-entry coverage, signer evidence and diagnostics, or the new signed copy plus independent verification. APK acceptance additionally requires the Android-aware check below.
 
 Define `archive` as the selected absolute JAR/ZIP path and `log` as a fresh verification transcript. Select the intended JDK's `jarsigner`; retain its Java version because disabled-algorithm policy changes between releases.
 

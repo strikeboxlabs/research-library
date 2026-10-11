@@ -20,4 +20,6 @@ Check each diagnostic. Installed means unpacked/configured; unpacked, half-confi
 
 Compare the complete recorded version/architecture with the intended package. A filename is only a label. `dpkg -i` can execute maintainer scripts and leave an incomplete installation; do not repeat it, force dependencies or configure every pending package as a query repair. Application startup remains separate evidence.
 
+If reviewing `dpkg -l` output, its first columns are desired action, current state and error. **Illustrative** `hi` means held and installed, rather than half-installed; uppercase `H` is the distinct half-installed state. A whole-row grep can match descriptions/other names, and the human display can truncate fields. Use the exact-package status query above before mapping a version to a patch decision. A host package version does not identify a nested VM/container's actual runtime build. See [listing states](https://manpages.debian.org/bookworm/dpkg/dpkg-query.1.en.html).
+
 Reference: [dpkg states and audit](https://manpages.debian.org/bookworm/dpkg/dpkg.1.en.html).

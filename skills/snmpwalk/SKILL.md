@@ -1,11 +1,11 @@
 ---
 name: snmpwalk
-description: Query bounded SNMP subtrees and individual OIDs with Net-SNMP. Use when process, hardware or IPv6 address inventory, default coverage, timeouts, numeric OIDs or BITS/hex output need careful interpretation.
+description: Query bounded SNMP subtrees and individual OIDs with Net-SNMP. Use when disk, process, hardware or IPv6 inventory, extension execution, default coverage, timeouts or typed output need careful interpretation.
 ---
 
 # Net-SNMP query interpretation
 
-Read this entire skill before acting; current complete context need not be re-read. Use the known connection parameters and a bounded OID scope, preserving types, indices and failures. For hardware inventory or serial-to-component mapping, read [hardware inventory](references/hardware-inventory.md) fully first. Finish with the observed values and access/coverage limits, not inferred credentials or missing-device claims.
+Read this entire SKILL.md before acting; current complete context need not be re-read. Use the known connection parameters and a bounded OID scope, preserving types, indices and failures. For hardware inventory or serial-to-component mapping, read [hardware inventory](references/hardware-inventory.md) fully first. For selected disk rows or an existing monitoring extension, read [disk and extension evidence](references/disk-and-extensions.md) fully first; reading extension output can execute its configured program. Finish with the observed values and access/coverage limits, not inferred credentials or missing-device claims.
 
 For IPv6 address-table observations, read [IPv6 address indices](references/ipv6-address-indices.md) fully before querying/decoding. Its selected-row procedure requires the package-local [decoder](scripts/decode_ipv6_index.py), Python 3 and exactly 16 acquired address octets.
 

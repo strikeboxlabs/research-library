@@ -5,6 +5,8 @@ description: Decode Android APK resources and rebuild an authorized edited copy 
 
 # Decode the part needed for the task
 
+Read this entire SKILL.md before acting. Require an acquired APK copy and the installed Apktool/Java pair. Select decode-only or an authorized edited-copy rebuild; framework registration is conditional on a matching missing resource package. Finish with status/diagnostics, the selected resource or new artifact and separate signature/installability evidence. No package-local conditional resources are required.
+
 Define `apk` as the selected absolute APK path, `decoded` as a fresh output directory, `frames` as a task-local framework directory and `log` as a separate private log. Preserve the original APK. Check the installed help/version: 2.x uses `apktool --version`; 3.x documents `apktool version`. A verified standalone distribution can be invoked as `java -jar "$apktool_jar"` in place of `apktool`.
 
 For manifest/resource inspection without disassembling DEX:

@@ -5,7 +5,7 @@ description: Inspect and test a selected Nginx configuration, trace HTTP file ma
 
 # Establish the instance and configuration
 
-Read this entire SKILL.md before acting. Require the selected instance and its acquired/reviewed configuration. For proxy URI replacement or mismatched authentication boundaries, read [proxy route review](references/proxy-routing.md) fully before interpreting the route. Use the configuration-test procedure only when its file/module effects are authorized. Finish with the selected configuration, test/live evidence and unresolved mapping or visibility limits.
+Read this entire SKILL.md before acting. Require the selected instance and its acquired/reviewed configuration. For proxy URI replacement, try_files fallbacks or mismatched authentication boundaries, read [proxy route review](references/proxy-routing.md) fully before interpreting the route. Use the configuration-test procedure only when its file/module effects are authorized. Finish with the selected configuration, test/live evidence and unresolved mapping or visibility limits.
 
 Define `nginx_bin` as the verified absolute executable for the relevant installation:
 
@@ -40,6 +40,8 @@ Retain any known service `-g` overrides when reproducing its test. `-T` (1.9.2+)
 ## Explain a file-serving or WebDAV result
 
 Follow the selected listener, virtual server and location, including inherited directives. With a simple `root /srv/site;`, an **illustrative** URI `/reports/check.txt` maps to `/srv/site/reports/check.txt`. `alias` replaces the matching location portion instead; rewrites and other handlers can change the route. Document root is unrelated to the worker's Unix identity.
+
+Apache .htaccess files are not Nginx per-directory policy. Review the actual Nginx locations/includes and any upstream server's separate policy before accepting a data-directory restriction. An application's upgraded version or a copied Apache rule does not prove that this deployment enforces it. A403 at a directory root is not evidence that every child resource is denied. See [Nginx configuration contexts](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) and [translating Apache rules](https://nginx.org/en/docs/http/converting_rewrite_rules.html).
 
 The main-context `user` directive controls worker credentials when the master has sufficient privilege; an unprivileged master does not become root through this setting. Confirm actual process identities before attributing access. A root master alone does not prove root workers.
 

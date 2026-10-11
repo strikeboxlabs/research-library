@@ -1,11 +1,13 @@
 ---
 name: adb
-description: Inspect a selected Android device from Linux with adb and diagnose emulator-to-host traffic. Use for device identity, reverse port mappings, transfer privileges and proxy or CA-trust confusion.
+description: Inspect a selected Android device, install an owned APK and diagnose emulator-to-host traffic with adb. Use for package-ID mistakes, device identity, transport privileges and proxy or CA-trust confusion.
 ---
 
 # ADB device and network context
 
 Read this entire SKILL.md before acting. Identify the intended device/serial, authorization and requested observation or mapping. Finish with actual device/build identity and the requested result or missing transport prerequisite; report mapping cleanup separately.
+
+For an owned APK install/update or explicitly requested uninstall, read [package operations](references/package-operations.md) fully before changing the selected device.
 
 Inspect `adb version`, `adb help` and `adb devices -l`. Choose `serial` from the intended authorized device/emulator and keep `-s "$serial"` on subsequent commands. `offline` or `unauthorized` needs transport/device authorization resolution; it is not an application result. The `device` state alone does not prove boot completion.
 
