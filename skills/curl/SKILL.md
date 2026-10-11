@@ -20,8 +20,10 @@ Read this entire skill before acting; complete current context need not be re-re
 - Stored post/title values evaluated only by a later feed or alternate renderer: [stored template boundaries](references/stored-template-tests.md).
 - XML uploads with reflected external-entity file content or a newly recovered handler: [XML processing boundaries](references/xml-upload.md).
 - InfluxDB v1 HTTP queries, measurement records, JWT authentication and partial results: [InfluxDB v1 queries](references/influxdb-v1.md).
+- Read-only metadata for a known Elasticsearch index: [Elasticsearch index evidence](references/elasticsearch-index.md).
 - A recovered JSON handler explicitly passing a field to a shell: [shell-backed JSON requests](references/shell-backed-json.md).
 - JSON/form APIs, multipart uploads, file PUTs and token handling: [API request construction](references/api-requests.md).
+- An HTTP Negotiate service using the selected existing Kerberos cache: [Negotiate authentication](references/negotiate.md).
 - Rails report downloads, hidden path fields, same-origin session riding or leading-pipe file/process inputs: [Rails report boundaries](references/rails-reports.md).
 - Cookie-bound CSRF requests or a browser-only failure: [session and preflight diagnosis](references/session-and-preflight.md).
 - GraphQL schema, variables and operation errors: [GraphQL requests](references/graphql.md).
@@ -29,6 +31,7 @@ Read this entire skill before acting; complete current context need not be re-re
 - Proxy routing, CONNECT and forwarded-header interpretation: [proxy requests](references/proxy-requests.md).
 - Scheduled `-K` transfers, writable URL/output configs or inherited curlrc: [config transfer boundaries](references/config-transfers.md).
 - A selected read-only HTTP request over a local Unix socket: [Unix-socket HTTP](references/unix-socket-http.md).
+- HTTP/2 claims based on banners, upgrade requests or TLS negotiation: [HTTP protocol evidence](references/http-protocol.md).
 
 Check `curl --version` for protocols/TLS backend and inspect local help for version-dependent switches. Define `url` as the exact scoped URL and `headers`/`body` as fresh private files:
 
@@ -40,6 +43,10 @@ curl --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$hea
 Check curl's exit status immediately. Without `--fail`/`--fail-with-body`, a completed `404` or `500` response can still return zero. Keeping the body is useful for diagnosis; `--fail-with-body` gives an HTTP-error exit while retaining it on supporting versions. Transport failure with a partial body is not a complete response.
 
 A name mentioned inside `Access-Control-Expose-Headers` or `Access-Control-Allow-Headers` is CORS policy data, not evidence that a response contains that named header. Likewise, allowed methods do not prove those operations are accepted or authorized. Check actual header fields, status and body before fingerprinting a service or inferring object versioning. A generic JSON health response establishes only what that request returned.
+
+`--head` (`-I`) sends HEAD for HTTP; it does not capture a GET body, and a server can treat those methods differently. Record which method produced a header. `Server` and `X-Powered-By` are advertised strings that can be configured or rewritten; a development-version label is a lead about a build, not proof that it contains a particular historical commit or backdoor. Use independently obtained package/build provenance when determining applicability.
+
+For an authorized known Consul agent, set `url` to its `/v1/agent/services` endpoint and use the GET capture above with its established authentication/TLS inputs. The returned mapping describes services registered on that agent, not the complete cluster catalog or their current health. Retain any `X-Consul-Results-Filtered-By-ACLs` header; an empty or filtered mapping does not establish global absence. Read access does not establish registration permission. See the [agent service API](https://developer.hashicorp.com/consul/api-docs/agent/service).
 
 When DNS differs from the desired server, define `host`, `port` and `target_ip` and use a URL containing that hostname:
 

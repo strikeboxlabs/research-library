@@ -1,11 +1,13 @@
 ---
 name: mount
-description: Attach an identified block filesystem in the current Linux mount namespace for selected reads or authorized file changes. Diagnose exposed container devices, read-only journal effects, mount attribution and busy cleanup.
+description: Mount an identified block filesystem or known SMB share for selected reads or authorized file changes. Diagnose namespace attribution, read-only effects, CIFS prerequisites and busy cleanup.
 ---
 
 # Mount a selected filesystem
 
 Read this entire SKILL.md before acting; reuse complete current context. Identify the source filesystem, execution/mount namespace, requested access and free mountpoint before mounting. Finish with the selected file/read/change plus actual mount/result and cleanup status; UID 0, a device name or an existing directory is insufficient evidence of host-root access.
+
+Select the source branch: for an identified local block filesystem, follow the procedure below. For an authorized known SMB share, read [CIFS selected reads](references/cifs-read.md) fully; its network source and helper prerequisites replace the block-device prerequisite. Both tasks require mount attribution and the cleanup checks below.
 
 `mount` changes the executing process's mount namespace and needs the applicable authority (normally CAP_SYS_ADMIN), device access and filesystem support. Container root can lack these; user namespaces, device cgroups, AppArmor/SELinux and seccomp can still deny the operation. A client executing through a remote container daemon operates on that daemon's context, not automatically its local workstation.
 

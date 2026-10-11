@@ -30,6 +30,8 @@ dig -r @"$resolver" "$fqdn" A +recurse +time=2 +tries=1 +noall +comments +answer
 
 Differences can reflect cached positive/negative answers or different DNS views. One displayed TTL is not proof that every cache has expired. Query AAAA separately when relevant; an A change does not replace an IPv6 answer.
 
+TTL controls caching, not authoritative record deletion. AD DNS aging and scavenging use separate server policy: no-refresh plus refresh intervals identify possible staleness, not an exact removal deadline. A scavenging start/end event does not identify which particular record was removed; retain record-specific evidence before assigning that cause to NXDOMAIN.
+
 Dig queries DNS directly. Applications using NSS can instead obtain a name from `/etc/hosts` or another configured source; `getent ahosts "$fqdn"` examines that local lookup path, although applications can use their own resolver. Repeat observations from the consuming namespace. A forward A record neither proves reverse lookup results nor establishes a service's hostname-trust authentication decision.
 
 ## Inspect an approved zone transfer

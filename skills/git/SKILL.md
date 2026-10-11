@@ -8,9 +8,10 @@ description: Inspect offline bundles, acquired Git objects, historical files, st
 Read this entire SKILL.md before acting. Choose the requested task and complete its relevant checks; report the observed evidence and remaining limits, not just command success. Use an existing trusted repository or isolated evidence copy.
 
 - Acquiring a selected upstream source: [source checkout](references/source-checkout.md). Read this reference fully before its procedure.
+- A known trusted shared repository refused for dubious ownership: [repository trust recovery](references/repository-trust.md). Read it fully before adding an exception.
 - Inspecting a supplied offline bundle: [bundle recovery](references/bundle-recovery.md). Read it fully before importing its objects or assuming it is self-contained.
 - Inspecting acquired objects with missing refs or worktree files: [object inspection](references/object-inspection.md). Read it fully before interpreting object types or reconstruction completeness.
-- Removed/replaced files, patch search or ambiguous diff endpoints: [historical content](references/history-recovery.md). Read it fully before selecting/extracting a revision.
+- Removed/replaced files, local reflogs, patch search or ambiguous diff endpoints: [historical content](references/history-recovery.md). Read it fully before selecting/extracting a revision.
 - Exposed application settings or a redundant restore after acquisition: [configuration evidence](references/exposed-settings.md). Read it fully before recovery.
 - Stored URLs: [remote configuration](#inspect-an-acquired-remote-configuration).
 - Hook behavior: [local hook diagnosis](#diagnose-a-missing-or-unexpected-local-hook).

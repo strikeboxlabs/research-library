@@ -5,6 +5,8 @@ description: Inspect managed .NET assemblies from Linux with ILSpyCmd. Use to lo
 
 # Decompile the selected evidence
 
+Read this entire SKILL.md before acting. Require the preserved assembly, matching available dependency assemblies when needed, the installed CLI's runtime and fresh private outputs. Select the relevant archive, crypto-helper or time-seed section below; unrelated branches need no separate execution. Finish with assembly/type/member evidence, command status and any unresolved decompilation/runtime assumption. Reconstructed source is not an executed application result.
+
 Use ILSpy's `ilspycmd` CLI, whose flags differ from the desktop frontend. Check `ilspycmd --version` and `--help`; the tool's own required .NET runtime can differ from the target assembly's framework. A missing tool runtime is not evidence that the captured assembly is invalid. This is a Linux CLI alternative to desktop dnSpy inspection.
 
 Define `assembly` as an absolute path to a preserved working copy. List class names first; then set `type_name` to an observed fully qualified name and `source` to a fresh private output file:

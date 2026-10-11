@@ -5,6 +5,8 @@ description: Diagnose Linux address and route selection with iproute2 without ch
 
 # Explain the kernel's route choice
 
+Read this entire SKILL.md before acting. Require the affected process's network context and selected destination; use the address/rule/route observations below to explain that lookup. Finish with the observed assignment and route decision plus reachability limits; unavailable namespace access leaves that context unresolved.
+
 Confirm `ip -Version` and `ip route help`; BusyBox and older iproute2 builds may lack `fibmatch`, JSON or other selectors. Run queries in the network namespace of the affected process. The host, a container and a router namespace can have different addresses and rules. For an already identified named namespace, `ip -n "$namespace" ...` selects it when permitted; a named-namespace listing is not a list of every container namespace.
 
 Define `destination` as the affected IPv4 address:
@@ -18,6 +20,8 @@ ip -4 route get fibmatch "$destination"
 ~~~
 
 Address output establishes local assignments. The matching route listing shows covering prefixes across tables, including `local`; it does not by itself select a route. Rules are evaluated in ascending priority number and can select different tables or terminal actions. The ordinary lookup resolves an output path and chosen source; `fibmatch` reports the underlying matched forwarding-table route. If unsupported, use the resolved output plus the relevant rule/table listing instead of treating a syntax error as no route.
+
+In an `inet address/prefix brd broadcast` line, the suffix after `/` is the prefix length; `brd` is the broadcast address, not a subnet mask. **Illustrative:** `172.22.0.3/16 brd 172.22.255.255` describes a /16 assignment, not a /24. A deliberately selected /24 inventory is a bounded subset of that connected prefix; neither assignment nor reachability authorizes expanding its scope. Check actual routes when a more specific destination path matters.
 
 `get` sends no packet to the destination. A result naming a gateway/interface establishes a lookup decision, not neighbor reachability, firewall permission, a listening service or the return path. `local ... dev lo` means local delivery in this namespace, even when the address was assigned to another interface. Compare the address inventory and local table before assuming traffic will leave through a gateway.
 

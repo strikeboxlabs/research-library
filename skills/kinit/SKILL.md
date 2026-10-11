@@ -1,9 +1,11 @@
 ---
 name: kinit
-description: Obtain and inspect MIT Kerberos tickets in a dedicated credential cache, including PKINIT with an existing certificate. Use when realm configuration, cache selection or certificate trust prevents authentication.
+description: Obtain MIT Kerberos tickets in a dedicated credential cache with a known password or existing authorized PKINIT certificate. Use when realm, service naming, cache selection, clock or certificate trust prevents the intended authentication.
 ---
 
 # MIT kinit and cache selection
+
+Read this entire SKILL.md before acting. Require the exact authorized principal, installed MIT client and established realm/KDC configuration. The password workflow, conditional PKINIT workflow and conditional TCP-proxy settings are inline; select only the applicable branches. Finish with command status and the cache's principal, service and validity evidence, then its intended consumer/cleanup state. Missing credentials, client mechanism or trust remain explicit gaps.
 
 Check the installed Kerberos implementation and `kinit`/`klist` help; MIT and Heimdal options differ. Establish the principal, realm, reachable KDC, DNS and clock state before treating authentication failure as a wrong password.
 
@@ -12,16 +14,24 @@ Define `principal` as the exact `user@REALM`, `krb_config` as an existing task-s
 ~~~bash
 umask 077
 KRB5_CONFIG="$krb_config" kinit -c "FILE:$cache_path" "$principal"
-klist -c "FILE:$cache_path"
+kinit_status=$?
+if [ "$kinit_status" -eq 0 ]; then
+  klist -c "FILE:$cache_path"
+fi
 ~~~
 
-Enter the known password at the prompt. Explicit `-c` prevents unexpectedly replacing the user's default cache. Verify the resulting default principal, ticket service and validity period; a cache file's existence alone is not success. Set `KRB5CCNAME="FILE:$cache_path"` for the intended consuming process. Some non-MIT clients expect different cache argument syntax; inspect their actual help.
+Enter the known password at the prompt and check kinit's status before accepting the cache. Explicit `-c` selects this cache instead of replacing the user's default, but can replace an existing selected file; keep the selected path fresh. Verify the resulting default principal, ticket service and validity period; a cache file's existence alone is not success. Set `KRB5_CONFIG="$krb_config"` and `KRB5CCNAME="FILE:$cache_path"` in the actual intended consuming process's environment. A setting on the kinit invocation is not automatically exported to a later client. Some non-MIT clients expect different cache argument syntax; inspect their actual help.
+
+Use absolute configuration/cache paths so changing directories does not change selection. Realm mapping and a reachable KDC enable ticket acquisition; service clients also need their actual FQDN/SPN. Putting the DC hostname before a domain alias in a hosts entry can affect canonical names on some name-service implementations, but is not a universal Kerberos requirement. MIT DNS canonicalization and reverse lookup settings are distinct, and an application such as OpenLDAP can additionally canonicalize names. Diagnose the principal actually requested before changing task-local settings. A successful TGT request does not prove a web/LDAP service accepts it or authorizes its requested operation.
 
 For **PKINIT with an existing authorized certificate**, confirm the MIT PKINIT plugin is installed, the certificate/key match and the KDC supports it. Define `cert`, `key` and `ca_bundle` as absolute PEM paths, with the CA trust established independently:
 
 ~~~bash
 KRB5_CONFIG="$krb_config" kinit -c "FILE:$cache_path" -X "X509_user_identity=FILE:$cert,$key" -X "X509_anchors=FILE:$ca_bundle" "$principal"
-klist -c "FILE:$cache_path"
+kinit_status=$?
+if [ "$kinit_status" -eq 0 ]; then
+  klist -c "FILE:$cache_path"
+fi
 ~~~
 
 The configuration spelling is `pkinit_identities`, not `pkinit_identites`. CSR validation is insufficient: the issued certificate, mapped principal, usages, trust chain and KDC certificate policy must agree. Inspect specific errors before changing EKU/SAN validation settings; weakening verification is not a routine repair.
@@ -30,4 +40,4 @@ If a TCP-only proxy is involved, `[libdefaults] udp_preference_limit = 1` makes 
 
 After use, `kdestroy -c "FILE:$cache_path"` destroys this cache only. Do not destroy unrelated default/collection caches. Record the selected principal, cache and expiry without copying tickets into reports.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Anubis p. 17. Sources: [kinit](https://web.mit.edu/kerberos/krb5-latest/doc/user/user_commands/kinit.html), [klist](https://web.mit.edu/kerberos/krb5-latest/doc/user/user_commands/klist.html), [configuration and PKINIT](https://web.mit.edu/kerberos/krb5-latest/doc/admin/conf_files/krb5_conf.html).
+References: [kinit](https://web.mit.edu/kerberos/krb5-latest/doc/user/user_commands/kinit.html), [klist](https://web.mit.edu/kerberos/krb5-latest/doc/user/user_commands/klist.html), [configuration and PKINIT](https://web.mit.edu/kerberos/krb5-latest/doc/admin/conf_files/krb5_conf.html), [service principal naming and application canonicalization](https://web.mit.edu/kerberos/krb5-latest/doc/admin/princ_dns.html).

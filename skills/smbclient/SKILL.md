@@ -25,6 +25,8 @@ For an anonymous connection, replace `-U "$domain/$user"` with `-U '%' -N`. For 
 
 For a deliberately selected subtree, `recurse ON`, `prompt OFF` and `mget *` enable bulk retrieval. Set a fresh local directory and narrow the remote directory first. These session settings persist; `mget *` at the share root can copy much more than intended. A denied directory/file is a partial result, even when other downloads succeed.
 
+For metadata on one selected file, use `allinfo "name with spaces.txt"` at the SMB prompt, replacing the illustrative name. Retain the returned stream names/sizes and diagnostics. A zero-byte default `::$DATA` stream does not establish that every named stream is empty. The returned `altname` is an alternate 8.3 filename, not an alternate data stream. Ordinary file retrieval does not establish preservation of all stream metadata; report exactly which object was inspected or copied.
+
 For an existing Kerberos file cache, define `cache` as its absolute path and `server` as the service's correct DNS name. On versions supporting these switches:
 
 ~~~bash

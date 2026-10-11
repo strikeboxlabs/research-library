@@ -47,6 +47,23 @@ The header and CBC ciphertext are unauthenticated; plausible length, padding and
 See [CBC byte requirements](https://www.pycryptodome.org/src/cipher/classic), [digest versus hexadecimal output](https://docs.python.org/3/library/hashlib.html) and the enc/NIST references above. This is a compatibility procedure for an established historical format, not a new encryption design.
 
 
+## Match a legacy OpenSSL password container
+
+For a producer confirmed to use **OpenSSL enc AES-256-CBC with its legacy password derivation**, establish the producer version, digest, padding and outer encoding. The decoded legacy container starts with `Salted__`, an 8-byte salt and ciphertext. That marker does not encode the cipher or KDF; length divisible by 16 does not identify AES-256-CBC. PBKDF2 containers need the producer's actual parameters and a separate matching command.
+
+OpenSSL changed the default digest from MD5 to SHA-256 in 1.1.0. Use the independently established digest explicitly rather than the installed version's default or CryptoJS's MD5 convention. Define `ciphertext` as the complete decoded binary container, `digest_name` as that known digest, `passfile` as a private file whose first line is the known exact passphrase, and `plaintext`/`diagnostics` as fresh private destinations:
+
+~~~bash
+umask 077
+openssl enc -d -aes-256-cbc -md "$digest_name" -pass "file:$passfile" \
+  -in "$ciphertext" -out "$plaintext" 2>"$diagnostics"
+status=$?
+~~~
+
+The command reads the stored salt and derives both key and IV. Do not strip the header, supply a raw `-K`, override the salt with `-S`, or add `-pbkdf2`/`-iter` to this established legacy format. Those changes alter the derivation. The password-file interface does not represent arbitrary multiline or NUL-containing passphrases. A deprecated-KDF warning describes compatibility with the old producer; it does not by itself mean decryption failed. Apply the exit-status, partial-output and independent-content checks above. Missing producer parameters remain a prerequisite gap, not a reason to try password or cipher lists.
+
+The [enc manual](https://docs.openssl.org/3.5/man1/openssl-enc/) documents digest history, password sources and PBKDF2 options. This is recovery of an owned historical format with a known passphrase, not a new encryption design.
+
 ## Match a CryptoJS password envelope
 
 Only for a producer confirmed to use CryptoJS's default **string-passphrase AES** interface: its OpenSSL formatter writes base64 of `Salted__`, an 8-byte salt and AES-256-CBC ciphertext. The legacy EvpKDF uses MD5 with one iteration; this differs from PBKDF2 and OpenSSL's current default digest. A base64 prefix alone does not establish those settings. Check the producer version and overrides.

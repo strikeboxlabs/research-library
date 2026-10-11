@@ -24,7 +24,9 @@ Read it separately without live capture privileges:
 tcpdump -nn -r "$pcap" "host $peer and icmp"
 ~~~
 
-`-w` saves packet data, whereas ordinary stdout is a decoded text summary. `-nn` keeps addresses and ports numeric. Change the filter to the protocol in question; this example excludes IPv6 ICMP and TCP. Quote compound filters so the shell does not interpret parentheses/operators.
+`-w` saves packet data, whereas ordinary stdout is a decoded text summary. Adding `-v` to a live `-w` capture provides capture-count reporting, not the usual per-packet decode; inspect the completed savefile with `-r`. `-nn` keeps addresses and ports numeric. Change the filter to the protocol in question; this example excludes IPv6 ICMP and TCP. Quote compound filters so the shell does not interpret parentheses/operators.
+
+For a selected local service, `lo` is the loopback interface in the capture process's network namespace. It is not synonymous with every packet addressed to this machine or every container's localhost. Verify that the requested conversation actually traverses it. An observed port number alone does not identify the application or establish whether transport encryption was negotiated.
 
 Record timestamps, directions, interface/filter and capture/drop counts. An echo request establishes packet arrival; it does not prove every preceding step claimed by a walkthrough. No matching packets can reflect the wrong interface, namespace, timing, filter, route or upstream loss. It does not independently prove that a remote command failed. Similarly, a TCP handshake establishes transport reachability, not application success.
 

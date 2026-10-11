@@ -5,6 +5,8 @@ description: Generate TOTP from an authorised known secret and diagnose encoding
 
 # TOTP generation and mismatch diagnosis
 
+Read this entire SKILL.md before acting. Use only the task's authorized known enrollment, confirm its parameters and keep its secret/code private. No conditional resources are required. Finish with the local calculation or specific parameter/tool gap; server acceptance is a separate result.
+
 Check `oathtool --version` and `--help`. Confirm the provisioning parameters: TOTP or HOTP, secret encoding, MAC algorithm, digits and period. Oathtool defaults to HOTP and hexadecimal keys; those defaults do not match a typical Base32 TOTP enrollment.
 
 For an authorised enrollment using SHA1, six digits and a 30-second period, define `secret_file` as a private file containing only its Base32 secret:

@@ -5,6 +5,8 @@ description: Inspect a scoped WordPress site with WPScan and interpret plugin/ve
 
 # WordPress inventory evidence
 
+Read this entire SKILL.md before acting; reuse complete current context. Select the actual site, enumeration set and detection modes, confirm the output and access prerequisites, then preserve finding evidence and scan/API completion. No conditional resources are required. Finish with the returned inventory and confidence/coverage limits; absent annotations or a version label are not a clean security verdict.
+
 Check `wpscan --version` and `wpscan --hh`. Use the actual WordPress base URL, including any installation subdirectory and required hostname. Inspect loaded configuration for credentials, cookies and enumeration overrides before reusing a previous command.
 
 Define `site_url` as the authorized site and `report` as a fresh JSON output. This example selects popular-plugin enumeration with passive detection and paced requests:
@@ -25,7 +27,7 @@ Enumeration **set** and detection **mode** are separate:
 
 Do not omit the value after `--enumerate`: bare `-e` enables a broader default set, including user/media and backup-related checks. Supported `--plugins-list` overrides the plugin set; check local help for its accepted list syntax. Global detection mode and plugin/version-specific overrides can differ.
 
-Keep the finding's evidence URL, detection method and confidence. A readme's stable tag may differ from deployed code; a plugin directory response can be a soft 404. Compare an absent path's response before trusting a flood of detections, and verify an advisory's actual affected/fixed version and prerequisites. Detection is not exploitation or proof of a reachable vulnerable path.
+Keep the finding's evidence URL, detection method and confidence. A readme's stable tag may differ from deployed code; a plugin directory response can be a soft 404. If a detected version, local readme/changelog and tool inventory's latest version conflict, retain each source separately and verify the installed plugin's own code/metadata through available administrative evidence. A copied or stale readme can describe a different component; do not select the most convenient number as a resolved version. “Up to date” against the inventory also does not mean free of vulnerabilities. Compare an absent path's response before trusting a flood of detections, and verify an advisory's actual affected/fixed version and prerequisites. Detection is not exploitation or proof of a reachable vulnerable path.
 
 Inventory can work without vulnerability API access. Missing token, quota exhaustion or lookup failure means incomplete vulnerability annotations, not a clean site. `--update` refreshes local metadata; it does not by itself establish complete vulnerability data. Record tool/data context, selected sets/modes, lookup status and scan completion.
 

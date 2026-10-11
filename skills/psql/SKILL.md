@@ -23,6 +23,8 @@ Explicit `host=localhost` uses TCP in the client's network namespace; omitting h
 
 ## Inspect before selecting rows
 
+For SQL role inventory in the established interactive connection, `\du` (equivalent to `\dg`) lists role attributes; `\duS` includes system roles. Match the selected role to session_user/current_user rather than inferring identity from the prompt. These are database roles, not OS users. Superuser is a SQL attribute, while server-file/program operations still use the database process's OS authority. The predefined pg_read_server_files, pg_write_server_files and pg_execute_server_program roles have distinct server-side capabilities; a similarly named client user grants none of them. Interpret actual memberships/attributes using the server version's [predefined role definitions](https://www.postgresql.org/docs/current/predefined-roles.html); inventory is separate from exercising those capabilities.
+
 For an interactive session, reuse the connection options without `-c`. `\list` lists databases, not their tables or permission to use them. If the selected database differs, use `\connect` with its exact observed name, then recheck `\conninfo` and `SELECT current_database(), current_user;`. A failed interactive reconnect can leave the old connection active; a noninteractive reconnect failure closes the old connection. Then inspect the relevant schema with metadata commands. The following `public.users` name is **illustrative**; replace it with the observed relation:
 
 ~~~text

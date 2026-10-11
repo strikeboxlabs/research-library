@@ -15,6 +15,8 @@ gcc -Wall -Wextra -Og -g "$source" -o "$output"
 
 `-g` supplies debug information; optimization still affects variable visibility and stepping. Do not remove warnings or disable protections reflexively to get a historical program to build. Compiler errors may expose obsolete APIs or actual defects that need source review.
 
+Hardening flags express build intent, not a verified property of a separately acquired executable. With glibc, `_FORTIFY_SOURCE` needs an appropriate optimization/header/compiler context and depends on object-size information; defining it in an unoptimized command is not proof of effective fortified calls. Preserve related warnings and inspect the resulting build before claiming coverage. Debug symbols alone do not fix matching-source or binary-identity gaps. See [glibc fortification](https://sourceware.org/glibc/manual/latest/html_node/Source-Fortification.html).
+
 An implicit function declaration can conceal a wrong return type, including an integer used as a pointer. For reviewed Linux/glibc code calling `open_by_handle_at`, the declaration requires `<fcntl.h>` with `_GNU_SOURCE` defined before headers; `fdopendir` requires `<dirent.h>` and the applicable feature-test context. Fix the source/declarations rather than suppressing the warning or inventing a prototype. Current GCC diagnoses many such C99 errors by default even when an older build printed only warnings. See [diagnostics](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html), [file-handle declarations](https://manpages.debian.org/bookworm/manpages-dev/open_by_handle_at.2.en.html) and [fdopendir](https://manpages.debian.org/bookworm/manpages-dev/fdopendir.3.en.html).
 
 Separate stages when the error is unclear:

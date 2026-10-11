@@ -5,6 +5,8 @@ description: Discover scoped web paths with Feroxbuster while controlling recurs
 
 # Bounded web-path discovery
 
+Read this entire SKILL.md before acting. Require the approved base URL, selected wordlist and installed Feroxbuster; no conditional resources are required. Select the bounded request/filter settings below before starting, then finish with the complete report, status and scoped coverage limits. Missing inputs or interrupted retrieval remain gaps rather than evidence that paths are absent.
+
 Define `url` as one approved base URL with the intended hostname and path, `wordlist` as a selected local list, and `report` as a fresh private output path. Check `feroxbuster --version` and `--help`: options and automatic link extraction differ across releases. Review loaded configuration and startup settings for inherited headers, proxies, methods, extensions and collection features.
 
 ~~~bash

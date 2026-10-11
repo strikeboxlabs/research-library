@@ -5,7 +5,11 @@ description: Inspect selected Consul KV data and validate existing agent configu
 
 # Consul KV and configuration inspection
 
+Read this entire SKILL.md before acting. Select the KV read or existing configuration-validation task, establish the agent/TLS/datacenter and applicable read permissions, and keep fresh private output. No conditional resources are required. Finish with the selected data or validation status and unresolved prerequisites; neither proves a successful reload or healthy service.
+
 Check `consul version` and the installed subcommand help. Establish the actual agent HTTP address, TLS policy and datacenter; a local forwarded port may reach a remote agent. Set `CONSUL_HTTP_ADDR` for the intended endpoint and use a private `CONSUL_HTTP_TOKEN_FILE` on versions supporting it, or supply the token through the process environment. Avoid literal token arguments and persistent shell-history entries.
+
+Distinguish cluster `-bind`/`-advertise` addresses from the client API listener's `-client`/`client_addr` configuration. Match the intended HTTP listener to an actual socket/response instead of inferring it from a cluster address or a conventional port. A service unit's User/Group describes configured identity; confirm the running process separately when its identity matters.
 
 Define `key` as one known KV key and `value_file` as a fresh private output. A read checks the permission actually needed:
 
@@ -29,4 +33,4 @@ Pass other actual config paths too when the service uses several. Validation che
 
 `consul reload` changes a running agent and can activate checks. Script checks run commands with the agent's OS identity when enabled; writable configuration therefore matters independently of KV permissions. Inspect `enable_script_checks`, service identity and file permissions before planning any reload. Do not treat a health-check command as passive configuration.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Ambassador pp. 13–16. Sources: [KV get](https://developer.hashicorp.com/consul/commands/kv/get), [validate](https://developer.hashicorp.com/consul/commands/validate), [reload](https://developer.hashicorp.com/consul/commands/reload), [agent configuration](https://developer.hashicorp.com/consul/docs/agent/config/config-files).
+See [KV get](https://developer.hashicorp.com/consul/commands/kv/get), [validate](https://developer.hashicorp.com/consul/commands/validate), [reload](https://developer.hashicorp.com/consul/commands/reload), [agent configuration](https://developer.hashicorp.com/consul/docs/agent/config/config-files) and [agent address flags](https://developer.hashicorp.com/consul/docs/agent/config/cli-flags) for version-specific behavior.

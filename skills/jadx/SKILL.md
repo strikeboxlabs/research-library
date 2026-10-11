@@ -5,6 +5,8 @@ description: Use the jadx CLI to inspect APK resources and DEX call paths withou
 
 # Follow packaged data into code
 
+Read this entire SKILL.md before acting. Use the export and resource-to-call procedure below for static APK inspection; use the incomplete-decompilation section when a relevant class or method is uncertain. Require the selected local APK, an installed jadx with its supported Java runtime and fresh private output locations. Finish with the specific code relationship, export diagnostics and any unresolved path; if the input or runtime is missing, report that prerequisite before claiming an inspection.
+
 Use `jadx`, the CLI entrypoint, on the selected APK; `jadx-gui` is optional. Inspect `jadx --version` and `jadx --help` for installed flags. Define `apk` as its absolute path, `out` as a fresh private output directory and `log` as a separate private log:
 
 ~~~bash
@@ -13,7 +15,7 @@ jadx -j 2 -d "$out" "$apk" >"$log" 2>&1
 status=$?
 ~~~
 
-The normal export includes `sources/` and `resources/`. `-s` omits Java decompilation; use it for resource-only triage. `-r` omits resources and can hide the manifest/string evidence being sought. Review errors before searching generated files. See [CLI options](https://github.com/skylot/jadx).
+The normal export includes `sources/` and `resources/`. `-s` omits Java decompilation; use it for resource-only triage. `-r` omits resources and can hide the manifest/string evidence being sought. Check `status` and diagnostics before searching generated files: files may exist after an incomplete export. A duplicate-class warning means the named definitions were not all loaded; retain their input locations and qualify conclusions about that class. Loaded class/method totals do not establish complete or correct reconstruction. See [CLI options](https://github.com/skylot/jadx).
 
 Start at the manifest's actual entry activity and follow its calls. A small WebView wrapper can point to a remote site while service settings reside in resource XML. Search candidate names without dumping all their values:
 

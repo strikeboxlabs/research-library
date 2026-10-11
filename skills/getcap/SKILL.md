@@ -17,9 +17,13 @@ findmnt --target "$binary" --output TARGET,OPTIONS
 
 `-v` includes entries without file capabilities; `-n` reports a nonzero namespace root ID stored with namespaced capabilities. Capture errors separately from a successful no-capability result. An explicit empty capability value `=` differs from an absent capability attribute, notably for ambient capability handling. If discovery is necessary, use `getcap -r "$scan_root"` with an explicitly chosen directory; recursive output covers only accessible paths and must retain traversal diagnostics.
 
+Preserve the entire libcap text, including any trailing exceptions. A bare `=ep` represents all capabilities in the permitted/effective text sets; it is not an empty set merely because individual names are omitted. The empty value is `=`. Resolve unfamiliar compact forms with the [libcap text conversion examples](https://man7.org/linux/man-pages/man3/cap_from_text.3.html). Neither form independently changes the process UID. The separate SUID-root rules require the file's mode/owner and execution context; do not apply that explanation to a capability listing without those observations.
+
 **Illustrative:** `/opt/lab/python3 cap_setuid,cap_net_bind_service=ep` reports capabilities attached to that file, independently of its SUID mode bit. `p` denotes file-permitted capabilities; the file's `e` flag requests that newly permitted capabilities become effective during exec. An `i` flag participates in inheritance rules rather than granting every child unconditional privilege. None of these letters reports the state of an already running process.
 
 Interpret the capability's operation before inferring why it was assigned. `CAP_SETUID` can authorize process UID changes within the governing user namespace. `CAP_NET_BIND_SERVICE` concerns privileged Internet ports; `CAP_NET_RAW` concerns RAW/PACKET sockets. A packet-capture feature does not by itself explain granting arbitrary UID changes to a general-purpose interpreter.
+
+`CAP_DAC_READ_SEARCH` bypasses discretionary file-read and directory read/search permission checks. It does not grant general file writes, change the UID to root or override every mandatory access policy. `CAP_DAC_OVERRIDE` has different read/write/execute permission semantics. An application's ability to read a file unavailable to its caller is a reason to inspect its execution context, not proof of general write access or that capabilities are the only possible explanation. Stored capability metadata still requires the execution conditions below; do not launch the program against protected files to test the inference.
 
 ## Check the execution conditions
 

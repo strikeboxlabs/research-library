@@ -10,11 +10,27 @@ ncat --listen --verbose --recv-only --idle-timeout 20s "$bind_ip" "$port" \
 
 An explicit address avoids accidentally exposing every interface; loopback is reachable only from the same host. A low port needs existing bind privileges. A startup error leaves no listener. The idle timeout is not a total duration or guaranteed bound on waiting for the first connection; use the worker's overall runtime budget and stop its owned process explicitly.
 
-This receives bytes without a response. An HTTP client can send a request yet wait indefinitely for an HTTP reply. Capture the request line, headers and exactly the framed body (Content-Length or chunked encoding); a body can contain newlines/binary bytes. An arrival proves receipt at this listener, not successful application processing or browser access to the response.
+This plain TCP receiver sends no application response. An HTTP client can send a request yet wait indefinitely for an HTTP reply. Capture the request line, headers and exactly the framed body (Content-Length or chunked encoding); a body can contain newlines/binary bytes. An arrival proves receipt at this listener, not successful application processing or browser access to the response.
 
 Use `--keep-open` only when multiple callbacks are intended. It accepts simultaneous connections until stopped; shared stdout does not preserve separate per-client record boundaries. Prefer a protocol-aware collector when exact callback attribution/body parsing or HTTP responses matter. Do not infer that a missing browser callback means no earlier API write occurred.
 
 Retain peer/time evidence from the listener log alongside private captured bytes, but avoid treating a proxy's peer IP as the original browser's identity. Ncat does not enforce browser CORS or provide an HTTP application's status/body semantics. A raw TCP callback and a fully completed HTTP exchange are different results. See [listener and stream options](https://nmap.org/book/ncat-man.html).
+
+## Receive a selected TLS callback
+
+For a client that expects TLS, define `certificate` and `private_key` as existing PEM files provisioned for this listener's intended identity. Use an authorized bind address and available port as above; the client must have the required trust configuration. Keep key material private:
+
+~~~bash
+umask 077
+ncat --listen --verbose --recv-only --ssl \
+  --ssl-cert "$certificate" --ssl-key "$private_key" \
+  --idle-timeout 20s "$bind_ip" "$port" \
+  > "$capture_file" 2> "$listener_log"
+~~~
+
+TLS mode performs a server handshake; that exchange is separate from an HTTP or other application response. Omitting explicit certificate/key options causes Ncat to generate a temporary self-signed certificate, which does not establish a trusted service identity. A peer connection followed by an SSL error can be a negotiation/trust failure with no application bytes. Retain the diagnostic rather than calling it a dropped TCP port or a successful request.
+
+Use `--keep-open` only for the intended multiple-client task, with the same attribution limits above. It does not make every client's TLS parameters compatible. A TLS fingerprint describes negotiated behavior/configuration and can be shared by different services; an absent handshake response or database label does not establish a unique product, maliciousness or vulnerability. See the [Ncat TLS guide](https://nmap.org/ncat/guide/ncat-ssl.html) for certificate, verification and version-dependent options.
 
 ## Receive an authorized two-way process stream
 

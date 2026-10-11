@@ -1,11 +1,13 @@
 ---
 name: netexec
-description: Validate known SMB credentials, interpret share checks, read selected user metadata and inspect LDAP protection, AD CS endpoints and machine-account quota with NetExec on selected lab hosts. Use to avoid unintended credential combinations and distinguish authentication, password status, privilege indicators and path permissions.
+description: Validate known SMB credentials, interpret share checks, read selected user metadata and inspect LDAP protection, AD CS endpoints, machine-account quota and selected object DACLs with NetExec. Use to distinguish authentication, account restrictions, protocol permissions and directory access evidence.
 ---
 
 # NetExec credential checks
 
 Read this entire SKILL.md before acting. Keep known credential pairs, endpoints and attempt budget explicit; require protocol/status evidence for the selected query. For LDAP signing/channel binding or AD CS endpoint discovery, read [LDAP policy and certificate endpoints](references/ldap-policy-and-adcs.md) fully before probing; SMB authentication/signing does not settle those questions.
+
+For read-only review of one known directory object's ACL, read [selected DACL evidence](references/dacl-read.md) fully before that query. Account restrictions such as `KDC_ERR_CLIENT_REVOKED` require account-state evidence; the status alone neither identifies the restriction nor proves a wrong password.
 
 Check the installed entrypoint (`nxc` or `netexec`), version and `smb --help`. Historical `crackmapexec` examples are not a version guarantee. This procedure checks a known credential on one selected host; it does not select execution or credential-dumping modules.
 

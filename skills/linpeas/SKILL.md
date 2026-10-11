@@ -5,6 +5,8 @@ description: Use a reviewed LinPEAS build for scoped Linux enumeration and verif
 
 # Select checks before running the collector
 
+Read this entire SKILL.md before acting. Establish the authorized host/account, reviewed script revision, selected check groups and permitted collection/network effects before running the collector. The inline collection and SUID-review branches have no additional required resources. Finish with completion/error evidence and manually supported findings; keep unobserved checks and missing prerequisites explicit.
+
 Use a saved, reviewed PEASS-ng release/script and retain its revision or checksum. Inspect `sh "$linpeas_script" -h` after defining the absolute script path. Option names and check groups change; old abbreviations may not select the intended group. Do not pipe an unreviewed download directly into a shell.
 
 For a bounded first pass, define `seconds` as the observation budget and `report` as a new private output file. On a build supporting these exact options and group name:

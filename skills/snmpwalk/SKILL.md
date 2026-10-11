@@ -1,13 +1,17 @@
 ---
 name: snmpwalk
-description: Query bounded SNMP subtrees and individual OIDs with Net-SNMP. Use when default walk coverage, timeouts, hardware inventory, numeric OIDs or BITS/hex output lead to incorrect conclusions.
+description: Query bounded SNMP subtrees and individual OIDs with Net-SNMP. Use when process, hardware or IPv6 address inventory, default coverage, timeouts, numeric OIDs or BITS/hex output need careful interpretation.
 ---
 
 # Net-SNMP query interpretation
 
 Read this entire skill before acting; current complete context need not be re-read. Use the known connection parameters and a bounded OID scope, preserving types, indices and failures. For hardware inventory or serial-to-component mapping, read [hardware inventory](references/hardware-inventory.md) fully first. Finish with the observed values and access/coverage limits, not inferred credentials or missing-device claims.
 
+For IPv6 address-table observations, read [IPv6 address indices](references/ipv6-address-indices.md) fully before querying/decoding. Its selected-row procedure requires the package-local [decoder](scripts/decode_ipv6_index.py), Python 3 and exactly 16 acquired address octets.
+
 Check `snmpwalk --version` and local help. Establish the agent, SNMP version, known credentials and intended subtree; do not assume a default community. The example uses v2c, which exposes community/data on the network and the `-c` value to process inspection. Use the deployment's existing v3 authentication/privacy configuration when required.
+
+For HOST-RESOURCES-MIB running-software inventory or differences between known access views, read [process inventory](references/process-inventory.md) fully before its queries. It distinguishes software indices, startup metadata and current process evidence.
 
 Define `agent` as the scoped endpoint, `community` as the known v2c value, `subtree` as a numeric OID, and `output` as a private file:
 

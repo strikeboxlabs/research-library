@@ -20,6 +20,8 @@ mkdir -- "$out" && (cd -- "$out" && ftp "$server")
 
 At the **FTP prompt**, inspect `status`, select `binary`, then use `pwd`/`ls` to locate the artifact. Run `get remote-name local-name` with actual selected filenames; these are FTP arguments, not shell variables. Use a fresh local name to avoid overwriting evidence. Finish with `bye`.
 
+`pwd` and `cd` refer to the server's directory; `lcd` changes the client's local download directory. If the local destination is unwritable, use `lcd` with an existing private output directory and confirm the client's acknowledgement before downloading. That does not change remote permissions. A directory listing resembling `/root` does not establish the server's host filesystem root, your local account identity or a root shell; the service can map its own namespace.
+
 Select binary mode explicitly for password databases, ZIP/TAR archives, executables and hives. ASCII mode can change bytes; a successful transfer message alone does not establish integrity. Verify expected size and any independently available checksum, then use the artifact's own integrity/parser check. If a download is incomplete, retain it as partial and re-fetch to a fresh name; use `reget` only after confirming matching source and client resume behaviour.
 
 A login/control connection can succeed while `ls` or `get` stalls: both need a separate data connection. Inspect `status` and `help passive`; in common clients bare `passive` **toggles** the setting. Check the selected passive endpoint and firewall/NAT path. Active mode reverses the data-connection direction. Change only the relevant mode/path after observing the failure, not the host's entire firewall policy.

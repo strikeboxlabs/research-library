@@ -1,11 +1,11 @@
 ---
 name: jq
-description: Validate JSON fields, extract account maps, construct request bodies and inspect configuration transformations with jq. Use when missing fields, false values, escaping or added newlines can turn a plausible response into corrupted evidence.
+description: Validate JSON fields, filter saved object records, extract account maps, construct request bodies and inspect configuration transformations with jq. Use when missing fields, false values, escaping or added newlines can turn a plausible response into corrupted evidence.
 ---
 
 # Preserve JSON types and extracted text
 
-Read this entire SKILL.md before acting. For decoded username-to-value objects, read [account-map extraction](references/account-maps.md) fully first. Keep the original, validate the selected structure and finish with correctly framed extracted data or an explicit parse/schema gap. Other API/configuration tasks are below.
+Read this entire SKILL.md before acting. For decoded username-to-value objects, read [account-map extraction](references/account-maps.md) fully first. For top-level or nested record arrays in an acquired response, read [record-array extraction](references/record-arrays.md) fully first. For text already split into an array of strings, read [text-array reconstruction](references/text-arrays.md) fully first. Saved object-record selection/counting and other API/configuration tasks are below. Keep the original, validate the selected structure and finish with correctly framed extracted data or an explicit parse/schema gap.
 
 Check `jq --version`. Save the HTTP status, headers and body separately before parsing; `curl ... | jq` can hide curl's failure behind jq's exit status. Valid JSON is not proof of a successful API operation.
 
@@ -55,3 +55,16 @@ The **illustrative** result is `{"once":"ab","twice":""}`. Removing substrings i
 Write a transformed candidate to a separate fresh file and check jq's status before reviewing or consuming it. Redirecting output onto the input path truncates it before jq reads; separately saving a failed command's empty output can destroy it too. Do not treat `for path in $values` over `jq -r` output as one iteration per JSON string: shell splitting and globbing can change boundaries. Keep the list as JSON or use an explicit lossless framing contract.
 
 Use the [jq manual](https://jqlang.org/manual/) for update assignment, raw output and regex semantics.
+
+## Select and count saved object records
+
+For an acquired stream of JSON objects, define `records` as the original and `selected`/`parser_log` as fresh private paths. Adapt the documented boolean field `selected` to the actual schema; this example deliberately rejects non-object inputs rather than silently treating them as unmatched records:
+
+~~~bash
+umask 077
+jq -c 'if type != "object" then error("expected object record") else select(.selected == true) end' \
+  "$records" > "$selected" 2> "$parser_log" &&
+wc -l < "$selected"
+~~~
+
+Compact output emits one JSON value per line, with embedded string newlines escaped. Boolean `true` differs from the string `"true"`; false, missing and null do not match this predicate. A zero count can be a valid result with normal jq status. A later parse/schema failure can leave earlier selected records in the output, so do not count that partial artifact as accepted input. This count describes matching records in the saved stream, not unique identifiers, complete acquisition or the truth of a service's classification. An array needs its own selected array task; it is not this record stream.

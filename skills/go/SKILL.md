@@ -1,9 +1,13 @@
 ---
 name: go
-description: Build reviewed Go CLI projects and trace command construction versus execution. Use when module imports, generated bindings, subprocess calls or unchecked errors undermine a reproducible result.
+description: Build reviewed Go CLI projects and inspect Go binary evidence. Use when module imports, generated bindings, subprocess calls, randomness assumptions or unchecked errors undermine a reproducible result.
 ---
 
-# Establish the module before building
+# Go build and binary evidence
+
+Read this entire skill before acting; complete current context need not be re-read. Select a reviewed source build or static inspection of an owned binary. Before building, establish the module, required toolchain and dependency inputs below. For embedded metadata, decompiler output, random-number APIs or decoder evidence, read [static binary evidence](references/static-binary-evidence.md) fully; it is conditional on that task. Complete with the build exit status, output identity and toolchain, or the static findings and remaining evidence gaps. A build result does not establish execution.
+
+## Establish the module before building
 
 Work in the intended source checkout. Read `go.mod`, `go.sum` and any selected `go.work`, including `replace` directives and local dependencies. On toolchains supporting automatic selection, inspect without permitting an automatic toolchain download:
 
@@ -19,7 +23,7 @@ The command is `go mod tidy`, not `go.mod tidy`. Tidy reconciles dependencies ac
 For a reviewed single-command module with the required toolchain available, define `binary` as a fresh absolute output path:
 
 ~~~bash
-go build -mod=readonly -o "$binary" .
+GOTOOLCHAIN=local go build -mod=readonly -o "$binary" .
 ~~~
 
 `.` builds the package, including applicable files. Building only `main.go` can omit companion files. `-mod=readonly` prevents required `go.mod` edits; it is not an offline switch or a no-write guarantee for caches/checksums. If the project deliberately uses vendored dependencies, preserve that mode with `-mod=vendor` instead of overriding it. Inspect `GOOS`/`GOARCH`, build tags and cgo/compiler requirements on executable-format or linking errors.

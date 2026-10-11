@@ -1,6 +1,6 @@
 ---
 name: aws
-description: Inspect selected S3 objects, DynamoDB tables and Lambda metadata with the AWS CLI against explicit AWS-compatible endpoints. Use to diagnose endpoint or credential mismatches, preserve bounded pagination evidence and interpret service responses.
+description: Inspect authorized S3 bucket inventory and selected objects, DynamoDB tables and Lambda metadata with the AWS CLI against explicit AWS-compatible endpoints. Use to diagnose endpoint or credential mismatches, preserve bounded pagination evidence and interpret service responses.
 ---
 
 # Select the service endpoint and credential context
@@ -19,9 +19,17 @@ Use a known credential source: profiles can refer to external credential process
 
 For a specifically permitted public S3 read, replace the profile option with `--no-sign-request` to avoid loading credentials. Rejection means that unsigned operation failed; it is not a reason to invent credentials or switch environments.
 
-# Inspect a known S3 bucket and retrieve one object
+# Select an S3 bucket, then retrieve one object
 
-Define `bucket` from configuration or an observed object URL, `prefix` as the selected key prefix (empty only when the bucket root is intended), and `listing` as a fresh private file. Listing all account buckets is unnecessary when the bucket is already known and may require separate permission.
+When the bucket is unknown and account bucket inventory is permitted, define `bucket_listing` as a fresh private file and request bounded CLI output:
+
+~~~bash
+aws "${aws_opts[@]}" s3api list-buckets --page-size 25 --max-items 25 > "$bucket_listing"
+~~~
+
+The [ListBuckets operation](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-buckets.html) requires `s3:ListAllMyBuckets` on AWS and lists buckets owned by the requester; it does not prove object read/write rights or inventory other accounts' accessible buckets. Preserve status, names and coverage. A CLI `NextToken` means output is incomplete; resume only when needed using `--starting-token` with the same limits. This is a CLI output bound, distinct from the API's `ContinuationToken`; do not mix tokens. Older emulators/clients may lack this pagination support: record the incompatibility rather than silently removing the limits.
+
+When the bucket is known, skip account inventory. Define `bucket` from configuration or an observed response, `prefix` as the selected key prefix (empty only when the bucket root is intended), and `listing` as a fresh private file.
 
 ~~~bash
 aws "${aws_opts[@]}" s3api list-objects-v2 --bucket "$bucket" --prefix "$prefix" --no-paginate --cli-input-json '{"MaxKeys":100}' > "$listing"

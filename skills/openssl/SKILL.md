@@ -13,7 +13,7 @@ For a requested transfer-integrity comparison, define `artifact` as the saved fi
 
 For a legacy `openssl passwd` stage or archive-key pipeline, read [crypt-record bytes](references/crypt-record.md).
 
-For an AES-CBC artifact with independently established raw-key settings or a CryptoJS password envelope, use [known-format CBC decryption](references/aes-cbc.md). Base64 text or a field named `aes_key` alone does not establish that format.
+For an AES-CBC artifact with independently established raw-key settings, a legacy OpenSSL password container or a CryptoJS password envelope, use [known-format CBC decryption](references/aes-cbc.md). Base64 text or a field named `aes_key` alone does not establish that format.
 
 For a TLS mail endpoint, use [IMAP transport and mailbox diagnosis](references/imap-tls.md) to distinguish implicit TLS, STARTTLS, protocol and authenticated mailbox state.
 
@@ -21,7 +21,7 @@ For PFX/P12 inspection, selected extraction or packaging an already issued owned
 
 For an acquired ASN.1 section/object, read [ASN.1 structural inspection](references/asn1-structure.md) fully before interpreting tags as trust evidence.
 
-For FTP control-channel TLS, read [FTPS handshake diagnosis](references/ftp-tls.md). For a renewal horizon, read [certificate expiry](references/certificate-expiry.md); for key serialization or rejected uploads, read [private-key inspection](references/private-key.md).
+For FTP control-channel TLS, read [FTPS handshake diagnosis](references/ftp-tls.md). For a renewal horizon, read [certificate expiry](references/certificate-expiry.md); for key serialization, owned RSA PVK conversion or rejected uploads, read [private-key inspection](references/private-key.md).
 
 Define `csr` as an existing PEM request and `cert` as an issued PEM certificate:
 

@@ -1,11 +1,11 @@
 ---
 name: impacket-mssqlclient
-description: Connect to SQL Server using known Windows credentials or an existing Kerberos cache and inspect SQL identity and configuration. Use for SPN/cache failures, SQL versus OS identity and misleading command-shell results.
+description: Connect to SQL Server using known Windows credentials or an existing Kerberos cache and inspect SQL identity, configuration, linked-server definitions and one approved local service directory. Diagnose SPN/cache failures, visibility and SQL versus OS identity.
 ---
 
 # Impacket SQL Server client
 
-Read this entire SKILL.md before acting; reuse complete current context. Select the intended SQL instance and known authentication method. This task requires the installed client, network access and credentials/cache authorized for the selected inspection; complete it with actual SQL identity/configuration results and their visibility limits. Connection errors or inaccessible metadata remain evidence gaps. There are no conditional resources for this task.
+Read this entire SKILL.md before acting; reuse complete current context. Select the intended SQL instance, known authentication method and required identity, configuration or linked-server inspection. For a requested inventory of one known local service directory, read [selected directory listing](references/selected-directory.md) fully before that operation. These tasks require the installed client, network access and credentials/cache authorized for the selected inspection; complete them with actual results and their visibility limits. Connection errors or inaccessible metadata remain evidence gaps.
 
 Check `impacket-mssqlclient -h`; upstream installations may expose `mssqlclient.py`. Define `domain`, `user`, `server` (the service FQDN), `server_ip` and `port` for the intended SQL instance. Windows authentication with a known password entered at the prompt:
 
@@ -33,6 +33,16 @@ SELECT name, value, value_in_use FROM sys.configurations WHERE name IN ('show ad
 ~~~
 
 `ORIGINAL_LOGIN()` records the connecting identity; effective login and database user can differ after context changes. `dbo` is a database identity, not proof of Windows Administrator or SYSTEM. Role membership `1`/`0` and `NULL` are different results; `NULL` can mean invalid input or insufficient visibility. Configured `value` and active `value_in_use` can differ. Empty/denied metadata is an evidence gap, not an off setting.
+
+## Inspect configured linked servers
+
+For the selected instance, submit this metadata query at the SQL prompt:
+
+~~~sql
+EXEC sp_linkedservers;
+~~~
+
+[`sp_linkedservers`](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-linkedservers-transact-sql) lists definitions stored on the local SQL Server instance and requires SELECT permission on the schema. Connect each returned name with its provider, data source and catalog; protect any provider connection string in shared evidence. An empty or denied result needs its visibility limit recorded. A listed server does not establish reachability, usable remote credentials or a successful remote query. Stop at this inventory result unless another operation is separately authorized.
 
 Use `help` to distinguish shell helpers from SQL. `! command` runs on the local client. `xp_cmdshell` runs on the SQL Server host; UNC-path helpers can cause that server to contact another host. File, job, impersonation and linked-server helpers have additional effects.
 

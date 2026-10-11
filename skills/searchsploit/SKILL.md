@@ -5,6 +5,8 @@ description: Search the local Exploit-DB catalogue and inspect candidate source 
 
 # SearchSploit candidate review
 
+Read this entire SKILL.md before acting. Select the observed product/version evidence and existing local catalogue; missing tool/data paths leave the search unresolved. Search and inspect candidate source without executing it. Finish with the candidate ID/path, matched evidence, catalogue context and unmet applicability conditions; a title or version match is not a reproduced vulnerability.
+
 Check `searchsploit -h` and the installed catalogue/package location. This searches a local index; results depend on its age and configured data paths. No match does not establish that a product has no vulnerabilities.
 
 Define `product` and `version` from observed service evidence, keeping banner uncertainty visible:
@@ -28,4 +30,4 @@ If a working copy is needed, move into a new case directory before `searchsploit
 
 `--nmap scan.xml` correlates service/version output with the catalogue, not live exploitability. `-u` updates the catalogue/package and can invoke package-manager or Git actions; do not mix it into a supposedly read-only search. Record the EDB ID, catalogue date/version when known, matched evidence and unmet conditions.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Ambassador p. 4. Source: [official SearchSploit manual](https://www.exploit-db.com/searchsploit).
+Source: [official SearchSploit manual](https://www.exploit-db.com/searchsploit).

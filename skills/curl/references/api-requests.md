@@ -11,6 +11,8 @@ curl --silent --show-error --connect-timeout 5 --max-time 30 --request "$method"
 
 Omit the authentication-header option for an unauthenticated endpoint. Construct JSON with a serializer; replacing quotes and newlines manually can corrupt backslashes, control characters and embedded text. `--data-binary @file` preserves the file's bytes; `--data @file` strips carriage returns, newlines and NULs. On supporting versions, `--json` supplies JSON headers but does not validate JSON.
 
+JSON `\uXXXX` sequences escape characters inside a string; they do not change the request body's transport encoding to UTF-16. Use UTF-8 for interoperable JSON exchange and inspect saved bytes when encoding matters. A Content-Type label alone neither converts nor validates those bytes. See [JSON strings and character encoding](https://www.rfc-editor.org/rfc/rfc8259#section-8.1).
+
 For a documented form login, define `login_url`, the known `username` and a private `password_file` containing the exact password bytes without an accidental trailing newline. Choose fresh response files:
 
 ~~~bash

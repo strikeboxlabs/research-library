@@ -17,6 +17,8 @@ Check exit status and diagnostics before claiming absence. `-xdev` skips other f
 
 Match the predicate to the access question. `-type d -perm -o=r` selects directories with the other-read bit set; it neither lists regular files nor proves you can traverse every parent or read their contents. `-type d -perm -0001` instead selects directories with the other-search (execute) bit; it does not mean world-readable files. Directory search and directory listing are different access questions. `-perm 004` is an exact mode match, `-perm -004` requires that bit, and `-perm /044` accepts either group-read or other-read. For files readable by the current user, use `-type f -readable` within the same scoped search and retain its diagnostics. `-readable` considers access checks including ACLs, with NFS identity-mapping limitations; it does not establish another user's access or guarantee a later open will succeed.
 
+For a selected owner search, use `-user "$owner"` with an established account name or numeric UID, keeping the same scoped root, regular-file selection and NUL output. This selects ownership, not effective write access, filesystem attributes or whether a service executes the file. Resolve the account mapping in the observed namespace; a name from another host can refer to a different numeric owner.
+
 For a selected group-owned-file search, define `group_name` from the target's actual group mapping and keep the same scoped root/diagnostics:
 
 ~~~bash

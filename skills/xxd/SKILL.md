@@ -5,7 +5,7 @@ description: Inspect exact bytes and reconstruct hex artifacts with xxd. Use whe
 
 # Keep byte offsets and display formats distinct
 
-Read this entire SKILL.md before acting; reuse complete current context. Choose inspection, normal-dump reconstruction or plain-hex decoding below, with a fresh output for reconstruction. Preserve offsets, final status and resulting byte/format evidence; a parsed prefix or successful reverse exit alone is not complete recovery.
+Read this entire SKILL.md before acting; reuse complete current context. Choose inspection, plain-hex rendering, normal-dump reconstruction or plain-hex decoding below, with fresh outputs for conversion. Preserve offsets, final status and resulting byte/format evidence; a parsed prefix or successful reverse exit alone is not complete recovery.
 
 Check `xxd -v` and local help; small reimplementations may support fewer options. Define `artifact` as an existing absolute working-copy path, `offset` as the observed byte offset and `length` as the number of bytes needed:
 
@@ -16,6 +16,20 @@ xxd -g 1 -c 16 -s "$offset" -l "$length" "$artifact"
 `-g 1` exposes individual bytes and `-s` seeks in the **file**. It does not understand a debugger's virtual address or a decoded object's internal offset. Map those address spaces explicitly before comparing output. `-l` is a maximum; a shorter file can yield fewer bytes without supplying the requested region. Inspect the last offset and actual byte count.
 
 The ASCII column is a convenience, not a faithful binary representation. Changing grouping or using `-e` changes displayed word order; it does not change the file or establish the structure's endianness. A key format's length prefixes and signed integers must be interpreted using that format, not inferred from one walkthrough's offsets. An OpenSSH private-key envelope and its public-key blob have different layouts.
+
+## Render acquired bytes as plain hex
+
+For a format requiring the hexadecimal representation of an already acquired byte file, define `hex_output` as a fresh distinct path:
+
+~~~bash
+umask 077
+xxd -p -c 256 "$artifact" > "$hex_output"
+status=$?
+~~~
+
+`-p` omits addresses and the ASCII column; `-c 256` displays up to **256 input bytes per line**, not 256 hex characters or a total-size limit. Longer input wraps onto more lines; nonempty output includes a line ending. Each byte becomes two hex digits, including leading zero bytes. **Illustrative:** the three bytes `00 41 ff` become `0041ff` followed by a newline. Preserve the full result rather than assuming it is one line or deleting arbitrary whitespace from an unknown container.
+
+When the input was Base64, first isolate and decode the complete field into a separate byte file, check that decoder's status, then render it. Base64 decoding followed by xxd is a representation change, not another hash, encryption or proof of authentication. A pipeline whose final xxd succeeds can conceal a failed/partial decoder. Retain input byte count and expected format alongside status; plain hex has no offsets and does not identify the byte format by itself.
 
 For intentional reconstruction, define `dump` as a complete normal xxd-format dump and `reconstructed` as a fresh output path in a private directory:
 

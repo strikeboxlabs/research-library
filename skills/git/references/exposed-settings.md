@@ -2,6 +2,15 @@
 
 Require an authorized acquired repository/evidence copy in an isolated environment. A downloader may already have checked out the index: inspect status and files before issuing another restore. Its sanitization can alter Git config, and a successful checkout count does not establish every remote object, untracked live file or present deployed setting.
 
+For acquired staged changes, select the exact repository-root-relative `path` after inspecting status. Compare the index with HEAD without unstaging evidence:
+
+~~~bash
+git -C "$repo" --no-pager diff --cached --no-ext-diff --no-textconv -- "$path"
+git -C "$repo" --no-pager diff --no-ext-diff --no-textconv -- "$path"
+~~~
+
+The first shows staged changes; the second shows working-tree changes relative to the index. An empty ordinary diff can coexist with a staged modification. `git restore --staged` changes the index and is unnecessary just to inspect the first comparison; it normally leaves worktree contents intact. A newly added file becomes untracked after unstaging and disappears from ordinary diff, so a broad restore/diff sequence can omit evidence. A test fixture's literal value and mock identity are historical test data, not proof of deployed credentials. Record the comparison endpoints and preserve the index. See [diff selection](https://git-scm.com/docs/git-diff).
+
 Define `repo` as that isolated copy, `revision` as an observed available commit, `config_path` as its actual root-relative configuration path and `output_file` as a fresh private file:
 
 ~~~bash

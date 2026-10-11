@@ -56,6 +56,8 @@ The results are `Pattern matched` and `Values differ`. Quote the entire right-ha
 
 For numeric fields from logs, validate the complete field's allowed grammar before numeric comparison. As an illustrative HTTP-status gate, `[[ $code =~ ^[1-5][0-9]{2}$ ]]` accepts only a three-digit value in the intended 100–599 range. Reject or separately report other fields; do not treat quoting as numeric validation. The grammar must fit the actual application field, and parsing a field successfully does not establish that the log record is authentic.
 
+Inside `[[ ]]`, `-eq` evaluates arithmetic expressions, including quoted operands; it is not literal string equality. For a textual producer label use `[[ $producer == "dompdf" ]]`, after checking the parser's status and exact field. The ordinary `[[ -f "$path" ]]` file test is a separate operation. Diagnose the actual comparison and data path instead of attributing arithmetic behavior to the quoted file test.
+
 Trace where the compared input goes next. A successful input gate does not mean a child uses that input: a script can compare a supplied value, then pass a different value read from a file to the next command. Test comparison semantics with public strings before drawing conclusions about real credentials. For literal line input, `IFS= read -r` preserves surrounding whitespace and backslashes; `read -s` suppresses terminal echo but does not change comparison rules.
 
 ## Keep values out of a new command string

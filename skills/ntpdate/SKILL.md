@@ -13,7 +13,7 @@ Define `server` as that NTP hostname/IP. Query without setting the clock:
 ntpdate -q -v "$server"
 ~~~
 
-`-q` queries only; `-v` adds version identification. Preserve server selection, offset units, status and diagnostics. A displayed time-zone difference is not necessarily epoch skew. A network timeout or unsuitable server is not a measured zero offset.
+`-q` queries only; `-v` adds version identification. In legacy ntpdate, `-s` sends logging to syslog; it does not select query mode or prove a silent correction succeeded. Preserve server selection, offset units, status and diagnostics. A displayed time-zone difference is not necessarily epoch skew. A network timeout or unsuitable server is not a measured zero offset.
 
 For a requested one-time correction, establish the host's existing time-service arrangement and required clock-changing privilege first:
 

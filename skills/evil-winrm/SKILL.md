@@ -5,7 +5,7 @@ description: Open a Windows WinRM session from Linux with Evil-WinRM using known
 
 # Evil-WinRM sessions
 
-Read this entire SKILL.md before acting. Require the selected endpoint/account and credential mechanism, then confirm the actual remote identity and requested action/transfer. Missing WinRM permission or an incomplete transfer remains unresolved, regardless of another protocol's login result.
+Read this entire SKILL.md before acting. Require the selected endpoint/account and credential mechanism, then confirm the actual remote identity and requested action/transfer. For selected Windows service evidence, also read [service inspection](references/service-inspection.md) fully. That reference is conditional; other session tasks use this entrypoint. Missing WinRM permission or an incomplete transfer remains unresolved, regardless of another protocol's login result.
 
 A valid SMB login does not establish WinRM permission. Confirm the Windows endpoint, listener transport/port and intended account. Inspect `evil-winrm -h` and `evil-winrm -V`; packaged releases can differ from current upstream.
 

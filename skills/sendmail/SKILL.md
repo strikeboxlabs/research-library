@@ -5,6 +5,8 @@ description: Submit an explicitly requested message through the Sendmail 8 comma
 
 # Select the local submission implementation
 
+Read this entire SKILL.md before acting. Require an explicitly requested message and intended envelope recipient, then identify the installed implementation below and construct/review the message before submitting. No conditional resources are required. Finish with submission/queue evidence and any delivery uncertainty; a successful command is not inbox delivery.
+
 Resolve the installed `sendmail` executable and its package/manual. This name can belong to Sendmail, Postfix, Exim or a lightweight compatibility client; administrative and queue flags are not universally interchangeable. The procedure below targets the Sendmail 8 interface. It uses the configured local mail route and can submit mail without an explicit SMTP host argument.
 
 For an explicitly requested message, define `sendmail_bin` as that verified executable, `recipient` as one intended ordinary mailbox address, `subject` as a single-line ASCII subject, `body` as the reviewed plain ASCII body file and `message` as a fresh private output path. Reject CR/LF in header values and reject pipe/file/option-like recipient input. Local aliases can expand to multiple destinations; establish the intended mailbox or alias before submission.
@@ -24,7 +26,7 @@ status=$?
 
 `-i` preserves leading dots and a body line consisting only of `.`. The command argument is the envelope recipient; the `To:` header alone does not select it in this mode. `-t` instead derives recipients from To/Cc/Bcc headers and removes Bcc before transmission, so do not add it to an unreviewed message. A From header is not the envelope sender; `-f` changes that sender under the implementation's policy.
 
-# Establish submission, then delivery
+## Establish submission, then delivery
 
 Retain status, stderr, submission time and any queue identifier. A zero status does not prove inbox delivery or that a recipient opened a link. On Sendmail, inspect the queue without triggering delivery:
 

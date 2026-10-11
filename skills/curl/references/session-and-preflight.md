@@ -11,7 +11,11 @@ curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --output "$token_body" --write-out 'status=%{http_code}\n' "$token_url"
 ~~~
 
-Check transport, HTTP status and the response contract before extracting. A missing or unwritable jar is not a usable saved session; verify it exists and inspect relevant cookie names/domain/path without printing secret values. After a suitable token response:
+Check transport, HTTP status and the response contract before extracting. A missing or unwritable jar is not a usable saved session; verify it exists and inspect relevant cookie names/domain/path without printing secret values.
+
+Cookie Path matching is not an unrestricted text-prefix test. An **illustrative** `Path=/docs` matches `/docs` and `/docs/page`, but not `/docstore`: beyond an exact match, the prefix must end in `/` or the next request-path character must be `/`. Check the actual stored Path and request path when a session disappears between routes. Path selects cookie delivery; it is not an application authorization boundary. See [cookie path matching](https://www.rfc-editor.org/rfc/rfc6265.html#section-5.1.4).
+
+After a suitable token response:
 
 ~~~bash
 jq -e -r '.token | select(type == "string" and length > 0) | select(test("[\r\n]") | not) | "X-CSRF-TOKEN: " + .' "$token_body" > "$csrf_header"

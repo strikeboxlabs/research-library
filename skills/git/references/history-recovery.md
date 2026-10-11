@@ -21,7 +21,7 @@ git -C "$repo" show "$revision:$historical_path" >"$output_file"
 
 This reads a blob without checking out the old revision, changing branches or disturbing uncommitted files. Verify exit status and output before using it. A missing path can mean the file was renamed/deleted at that commit; inspect the parent or the commit's path changes rather than assuming the repository is corrupt.
 
-For changes to the chosen path, use `git -C "$repo" --no-pager log -p --no-ext-diff --no-textconv -- "$path"`. External diff/text-conversion helpers can execute configured programs; the explicit flags keep that comparison textual. Large/binary files need a format-specific reader after extraction.
+For changes to the chosen path, use `git -C "$repo" --no-pager log -p --no-ext-diff --no-textconv -- "$path"`. `-p` adds patches, not pagination; `--no-pager` controls the pager here. External diff/text-conversion helpers can execute configured programs; the explicit flags keep that comparison textual. Large/binary files need a format-specific reader after extraction.
 
 When a known code line remains but its value changed, search changed lines rather than reading every patch. With `repo` and `path` defined above, set `marker_regex` to a relevant regular expression and `patch_file` to a fresh private file. The illustrative marker locates calls to an encoding API without putting a secret in the search argument:
 
@@ -35,6 +35,18 @@ git -C "$repo" --no-pager log --all --follow -n 20 -p \
 `-G` selects changes whose added/removed lines match. `-S` instead detects a changed number of occurrences of a string: replacing one literal argument with another can leave the marker count unchanged and be missed by `-S`. The output limit bounds displayed commits, not history traversal cost. Check status and both sides of the selected patch, then extract the relevant revision/path using `show` above. Empty output can reflect the path, regex, refs or history limits. See [Git's patch-search semantics](https://git-scm.com/docs/git-log).
 
 A historical secret proves it was stored at that revision, not that it is currently valid. Keep sensitive content out of routine reports. If ownership checks reject a repository, inspect ownership/trust first; do not set `safe.directory '*'` to bypass the check globally. Report commit ID, historical path and history limitations with the finding.
+
+## Inspect local reference movements when ancestry is incomplete
+
+If a branch was reset or replaced, inspect available local reflogs before assuming the old tip disappeared:
+
+~~~bash
+git -C "$repo" --no-pager reflog show --all --date=iso-strict
+~~~
+
+Reflogs record local reference updates, including HEAD switches. They are not a remote audit trail and need not survive acquisition, cloning or expiry. A revert normally creates another commit reversing a change; it does not inherently hide the original commit from ancestry. Distinguish the actual ref movement from a commit message's description.
+
+Select a full observed commit ID as `revision`, confirm it with `git -C "$repo" cat-file -t "$revision"`, and use the blob-reading procedure above. An entry whose object is missing cannot recover its content. Read-only inspection requires neither reset nor checkout; do not expire/prune logs while examining the evidence. Retain the entry, resolved object and recovered path with the local-history limitation. See [reflog scope](https://git-scm.com/docs/git-reflog) and [revert behavior](https://git-scm.com/docs/git-revert).
 
 ## Distinguish a replacement commit from later working changes
 

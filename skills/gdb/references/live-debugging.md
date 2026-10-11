@@ -28,6 +28,21 @@ For a compiled-in comparison, inspect `info functions` and the actual call site 
 
 An unprivileged ptraced launch can suppress setuid effects. A copied binary, debug environment and normal privileged launch are different observations: this procedure establishes code/memory behavior, while the actual launch must establish identity when required.
 
+## Select a forked worker
+
+For an owned Linux fixture whose requested operation runs in a child, choose the follow mode before continuing through its fork:
+
+~~~text
+show follow-fork-mode
+show detach-on-fork
+set follow-fork-mode child
+catch fork
+~~~
+
+At the catchpoint, verify the process context before continuing to the selected worker's stop. Parent mode is the default. With default detach-on-fork on, the other process runs independently; following the child does not stop or clean up its parent. If the task needs both retained, set detach-on-fork off deliberately, use `info inferiors` to identify them and select the actual inferior before inspecting state. Keeping the parent suspended can change worker behavior.
+
+A fork initially inherits mappings and descriptors; it does not make subsequent process memory or descriptor lifetimes identical. An exec replaces the image. Record the actual PID, build, stop and loaded mappings rather than carrying addresses or a source line number from another launch. Finish by accounting for every owned fixture process, including detached ones. See [GDB fork handling](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Forks.html).
+
 At a stop, use `disassemble /r` for the current function's instruction bytes and `info registers` for state. Inspect a selected readable address with `x/32bx address` before and after the relevant operation. `x/s address` assumes a string and is unsuitable for proving exact binary length or NUL-containing content. `stepi` advances one instruction; `nexti` can run an entire call before stopping. Inspect register widths and all instructions, not just the desired mnemonic.
 
 To print a register's numeric value, use `p/x $register` with the actual register name, or `info registers`. `x/x $register` instead treats that value as a memory address and dereferences it. A resulting unreadable-address message does not mean the register value was unavailable. Use memory examination only when the value is an intended pointer into a readable mapping.
