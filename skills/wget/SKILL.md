@@ -1,13 +1,15 @@
 ---
 name: wget
-description: Retrieve a selected HTTP/HTTPS artifact with GNU Wget and diagnose partial, redirected or resumed downloads. Use when the installed Wget client fits file transfer and output naming, page requisites, relocated form/asset origins or retry behavior matters.
+description: Retrieve a selected HTTP/HTTPS artifact or approved FTP subtree with GNU Wget. Use when output naming, partial transfers, mirror completeness, page requisites or relocated form/asset origins matter.
 ---
 
 # Preserve the intended artifact and inspect the response
 
-Read this entire file before acting. Define the requested URL and a new output path before downloading. Finish with the transfer result, file identity and any remaining integrity uncertainty; a filename extension alone is not evidence of content type.
+Read this entire SKILL.md before acting. Define the requested URL and a new output path before downloading. Finish with the transfer result, file identity and any remaining integrity uncertainty; a filename extension alone is not evidence of content type.
 
 For a page captured as an owned template or relocated assets/forms, read [page capture boundaries](references/page-capture.md) fully first.
+
+For an approved FTP directory mirror, read [FTP subtree retrieval](references/ftp-mirror.md) fully first; the single-file command below is not a mirror command.
 
 Confirm GNU Wget with `wget --version`; BusyBox and other implementations have different option sets. A Windows PowerShell `wget` can instead be an alias for Invoke-WebRequest; its `-OutFile` download argument does not establish GNU option semantics. GNU Wget's lowercase `-o` names a log file, whereas uppercase `-O`/`--output-document` names the downloaded content. Use the selected client's contract before interpreting a saved filename. Define `url`, `download_file` and a private `response_log`:
 
