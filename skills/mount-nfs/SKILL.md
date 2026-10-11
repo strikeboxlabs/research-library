@@ -5,6 +5,8 @@ description: Mount a selected NFS export read-only on Linux with mount.nfs, insp
 
 # Inspect a selected NFS export
 
+Read this entire SKILL.md before acting. Establish the selected export, existing empty mountpoint, Linux NFS helper/kernel support, mount authority and `findmnt` before this procedure. Mount with the intended version/access, verify the actual mount before reading, then unmount what you created. Finish with artifact/copy evidence and cleanup status; a missing helper, verification tool or permission leaves that step unresolved.
+
 This uses the nfs-utils `mount.nfs` helper through `mount -t nfs`, kernel NFS support and mount privileges. It creates local mount state. Define `export` as the verified `server:/export/path`, `mountpoint` as a dedicated existing empty directory with no mount on it, and `nfs_version` as the intended supported version, such as `3` or `4.1`. NFSv4 paths are relative to the server's exported namespace and may differ from its physical paths.
 
 ~~~bash

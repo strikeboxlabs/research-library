@@ -1,9 +1,11 @@
 ---
 name: aws
-description: Inspect selected S3 objects and DynamoDB tables with the AWS CLI against explicit AWS-compatible endpoints. Use to diagnose endpoint or credential mismatches, bound reads, preserve pagination evidence and interpret object keys and database key schemas.
+description: Inspect selected S3 objects, DynamoDB tables and Lambda metadata with the AWS CLI against explicit AWS-compatible endpoints. Use to diagnose endpoint or credential mismatches, preserve bounded pagination evidence and interpret service responses.
 ---
 
 # Select the service endpoint and credential context
+
+Read this entire SKILL.md before acting. Establish the intended endpoint, region and trusted existing credential context, then follow the selected S3 or DynamoDB task below. For Lambda inventory or selected function metadata, read [Lambda inspection](references/lambda-inspection.md) fully first. Finish with request status, selected resource/version and coverage limits; missing credentials or endpoint support are prerequisites, not successful empty results.
 
 These commands use AWS CLI v2 and Bash arrays. Check `aws --version` and the installed operation help. Define `endpoint` as the verified service URL, `region` as its configured region, and `profile` as the existing profile intended for that environment. A hostname or `x-amz-*` header is a lead, not proof that an endpoint is Amazon AWS or accepts particular credentials.
 

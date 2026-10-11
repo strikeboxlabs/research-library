@@ -1,9 +1,11 @@
 ---
 name: tshark
-description: Analyze saved FTP, TLS or Kerberos traffic with frame and conversation context. Use when incomplete conversations, decryption prerequisites or filtered output could support a misleading application conclusion.
+description: Make a bounded selected network capture or analyze saved FTP, TLS or Kerberos traffic with frame and conversation context. Use when capture scope, incomplete conversations, decryption prerequisites or filtered output could support a misleading conclusion.
 ---
 
 # Correlate evidence in a saved capture
+
+Read this entire SKILL.md before acting. Choose saved-file analysis or [bounded live capture](references/live-capture.md); read that reference fully before capturing. For TLS decryption, read [TLS evidence](references/tls.md) before that task. Retain frame/conversation context and command status; finish with observed protocol evidence and coverage limits, rather than treating missing output as a successful negative finding.
 
 Use `tshark --version` and `tshark -h` to establish the installed analyzer. Define `pcap` as the existing capture to inspect and `events` as a fresh private text output path. Reading with `-r` needs file access, not live-capture privileges; omitting it can start a capture.
 

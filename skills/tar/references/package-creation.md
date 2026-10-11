@@ -14,6 +14,6 @@ Check creation and final listing status separately. `--create` can overwrite an 
 
 If a Backdrop manual installer offers tar/tgz/gz/bz2 while ZIP support is unavailable, a real tar.gz package can preserve the same module tree without changing the server's PHP extensions. The installer browser's ZIP/dependency/remote catalog failure is distinct from the manual archive path. Read the format list shown by this site; not every installation accepts the same formats. Archive upload, extraction, module enablement and direct PHP endpoint execution are separate results.
 
-Do not use --dereference just to make packaging succeed: following a symlink changes included content. A file-changing warning or read error leaves an uncertain/incomplete package; reacquire a stable source before calling it ready. Keep the original archive and inspect an existing output rather than overwriting it incidentally on a retry.
+Do not use --dereference just to make packaging succeed: following a symlink changes included content. Its short spelling `-h` does not enable compression. A file-changing warning or read error leaves an uncertain/incomplete package; reacquire a stable source before calling it ready. Keep the original archive and inspect an existing output rather than overwriting it incidentally on a retry.
 
 See [GNU tar creation](https://www.gnu.org/s/tar/manual/html_node/create.html), [compression](https://www.gnu.org/software/tar/manual/html_node/gzip.html) and [Backdrop manual formats](https://docs.backdropcms.org/documentation/project-installer-and-updates).

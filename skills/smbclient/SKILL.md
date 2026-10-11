@@ -5,6 +5,8 @@ description: List SMB shares and retrieve selected files with Samba smbclient. U
 
 # Samba smbclient
 
+Read this entire SKILL.md before acting. Select the intended server/share and explicit authentication context, distinguish discovery from the requested file operation, and preserve its result. Kerberos, bulk retrieval and replacement below are conditional tasks; finish with identity/share/path, transfer status and content evidence or a concrete access/coverage gap.
+
 This is Samba's `smbclient`, not Impacket's differently shaped SMB shell. Check `smbclient --version`. Define `server` as the target hostname/IP. An explicit empty-user, empty-password share-list attempt is:
 
 ~~~bash

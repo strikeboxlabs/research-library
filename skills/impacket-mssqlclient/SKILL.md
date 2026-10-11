@@ -5,6 +5,8 @@ description: Connect to SQL Server using known Windows credentials or an existin
 
 # Impacket SQL Server client
 
+Read this entire SKILL.md before acting; reuse complete current context. Select the intended SQL instance and known authentication method. This task requires the installed client, network access and credentials/cache authorized for the selected inspection; complete it with actual SQL identity/configuration results and their visibility limits. Connection errors or inaccessible metadata remain evidence gaps. There are no conditional resources for this task.
+
 Check `impacket-mssqlclient -h`; upstream installations may expose `mssqlclient.py`. Define `domain`, `user`, `server` (the service FQDN), `server_ip` and `port` for the intended SQL instance. Windows authentication with a known password entered at the prompt:
 
 ~~~bash
@@ -33,6 +35,8 @@ SELECT name, value, value_in_use FROM sys.configurations WHERE name IN ('show ad
 `ORIGINAL_LOGIN()` records the connecting identity; effective login and database user can differ after context changes. `dbo` is a database identity, not proof of Windows Administrator or SYSTEM. Role membership `1`/`0` and `NULL` are different results; `NULL` can mean invalid input or insufficient visibility. Configured `value` and active `value_in_use` can differ. Empty/denied metadata is an evidence gap, not an off setting.
 
 Use `help` to distinguish shell helpers from SQL. `! command` runs on the local client. `xp_cmdshell` runs on the SQL Server host; UNC-path helpers can cause that server to contact another host. File, job, impersonation and linked-server helpers have additional effects.
+
+When interpreting [`sys.server_permissions`](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-server-permissions-transact-sql), the grantor identifies who granted a permission, not the object or login it applies to. Interpret permission name, state, class and `major_id` together with the grantee and metadata visibility. A row granted by `sa` alone does not establish permission to act as `sa` or effective sysadmin membership.
 
 For diagnosing an already authorized command-execution test, SQL login and child-process identities remain separate: a sysadmin's xp_cmdshell process normally uses the SQL Server service account; a permitted non-sysadmin uses its configured proxy. A successful SQL login does not establish command execution. Enabling xp_cmdshell changes server configuration, and `RECONFIGURE` applies changes. The convenience enable/disable helpers also change `show advanced options`; do not use them during metadata inspection or assume disabling restores the original state. Record exact initial values for any separately approved configuration change.
 

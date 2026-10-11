@@ -5,6 +5,8 @@ description: Capture and interpret a narrowly scoped network observation with tc
 
 # Capture a specific network observation
 
+Read this entire SKILL.md before acting. Select the capture point, protocol/filter and observation window, confirm capture and output-file prerequisites, then inspect the saved capture and termination statistics. For container-side TCP, use the conditional section below before selecting the endpoint/filter. Finish with the observed packets and capture limits; a permission failure or missing traffic is not application-failure proof.
+
 Define the question first: for example, did IPv4 ICMP from a selected lab host reach this machine during a known action? Identify the relevant interface using route information and `tcpdump -D`; do not assume a VPN is always `tun0`. Check `tcpdump --version` and capture permissions.
 
 Define `iface` as that interface, `peer` as the numeric IPv4 host, and `pcap` as a fresh path writable by the capture process. Run with the host's established capture privileges:
@@ -27,6 +29,8 @@ tcpdump -nn -r "$pcap" "host $peer and icmp"
 Record timestamps, directions, interface/filter and capture/drop counts. An echo request establishes packet arrival; it does not prove every preceding step claimed by a walkthrough. No matching packets can reflect the wrong interface, namespace, timing, filter, route or upstream loss. It does not independently prove that a remote command failed. Similarly, a TCP handshake establishes transport reachability, not application success.
 
 Permission errors are not empty captures. If privilege dropping prevents writing the file, check the configured capture user and directory rather than broadening directory permissions. Keep captures private, and check reported truncation/drops before relying on payload completeness.
+
+When mandatory access control is active, correlate the error with the matching timestamp/PID and policy record. An AppArmor `DENIED` record for `operation="exec"` identifies a blocked helper execution; it is distinct from denial of capture-file creation or packet access. Capture counts can therefore coexist with a failed later helper. Preserve the profile name, requested/denied operation and process/file identity; a profile file on disk alone does not prove the effective loaded policy. Resolve the failed operation rather than reporting an empty capture or successful post-processing. See the [AppArmor documentation](https://ubuntu.com/server/docs/how-to/security/apparmor/) for policy/log interpretation.
 
 ## Preserve a selected container-side TCP conversation
 

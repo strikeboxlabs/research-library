@@ -5,6 +5,8 @@ description: Inspect a selected Android device from Linux with adb and diagnose 
 
 # ADB device and network context
 
+Read this entire SKILL.md before acting. Identify the intended device/serial, authorization and requested observation or mapping. Finish with actual device/build identity and the requested result or missing transport prerequisite; report mapping cleanup separately.
+
 Inspect `adb version`, `adb help` and `adb devices -l`. Choose `serial` from the intended authorized device/emulator and keep `-s "$serial"` on subsequent commands. `offline` or `unauthorized` needs transport/device authorization resolution; it is not an application result. The `device` state alone does not prove boot completion.
 
 ~~~bash
@@ -39,4 +41,4 @@ adb -s "$serial" reverse --remove tcp:18080
 
 Route, hostname resolution, cleartext policy and TLS trust are separate checks. Apps targeting API 24+ generally do not trust user-added CAs by default; their network-security configuration matters. Installing a CA does not alone defeat certificate pinning. Prefer an owned debug build's intended test-CA configuration when available. System trust-store locations/write mechanisms vary by Android build; a historical emulator's remount-and-copy recipe is not portable. Record device/build, app context, actual route and remaining failure layer.
 
-Documentation reviewed 2026-10-09; Linux/Android execution untested. Case: BigBang pp. 15–23. Sources: [ADB guide](https://developer.android.com/tools/adb), [command semantics](https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/docs/user/adb.1.md), [Android network security](https://developer.android.com/privacy-and-security/security-config).
+Sources: [ADB guide](https://developer.android.com/tools/adb), [command semantics](https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/docs/user/adb.1.md), [Android network security](https://developer.android.com/privacy-and-security/security-config).

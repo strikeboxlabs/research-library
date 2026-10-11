@@ -5,6 +5,8 @@ description: Expose a temporary, explicitly bound SMB share from Linux for selec
 
 # Temporary Impacket SMB share
 
+Read this entire SKILL.md before acting; reuse complete current context. This task requires the installed Impacket server, an approved interface/port, a dedicated transfer directory and the needed listener/filesystem permissions. Select share direction and client authentication/dialect policy before starting. Finish with received-file integrity and a stopped listener; missing bind privileges, client policy or write access remains a prerequisite gap. There are no conditional resources for this task.
+
 Inspect `impacket-smbserver -h`; upstream may install `smbserver.py`. Use a dedicated directory containing only intended transfer files, with no symlinks into unrelated data. The server's OS identity and directory permissions determine its file access. Upload destinations require a writable share; downloads need only reads.
 
 Define `bind_ip` as the lab interface reachable by the client, `share_dir` as the absolute dedicated directory, and `share_user` as a temporary transfer username:
@@ -21,4 +23,4 @@ On the client, the path is `\\server-address\TRANSFER\filename`. Separate reacha
 
 Keep the foreground transcript private: authentication details and file paths may appear. After a transfer, verify the received file's size/hash at both ends where possible; a connection log is not proof of a complete copy. Stop the listener when finished and verify the port is closed. Retain received artifacts intentionally rather than deleting the whole directory as automatic cleanup.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Appsanity pp. 14–17. Source: [server CLI, authentication and share creation](https://github.com/fortra/impacket/blob/master/examples/smbserver.py).
+Resolve implementation differences with the upstream [server CLI, authentication and share creation](https://github.com/fortra/impacket/blob/master/examples/smbserver.py).

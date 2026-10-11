@@ -34,4 +34,6 @@ For VHD/VHDX, a supported outer container may expose a partition image rather th
 
 Retain the test/extraction status and error text. Password errors and corruption can present similarly; verify the source transfer, archive parts and supported method before retrying credentials. A successful extraction establishes readable files, not trustworthy contents.
 
+When a spreadsheet receives a ZIP label but extraction reports a header error, retain the original and distinguish a readable directory from valid member data. A recovered or edited candidate must pass `"$sevenzip" t "$archive"` and the intended document parser before calling the recovery complete. A changed `file` label alone is insufficient. Header repair depends on the actual container format and intact remaining structures; the [upstream 7z recovery procedure](https://7-zip.org/recover.html) concerns 7z headers and must not be copied onto a ZIP file.
+
 Resolve implementation differences with the installed help, Debian's packaged [7zz manual](https://manpages.debian.org/bookworm/7zip/7zz.1.en.html) and [upstream supported formats](https://7-zip.org/).

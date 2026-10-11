@@ -5,7 +5,9 @@ description: Select the correct mail or mailx implementation and submit a reques
 
 # Identify the mail implementation first
 
-`mail` and `mailx` are executable names shared by incompatible programs. Inspect the resolved binary, package and local manual before copying flags from a writeup. Attended uses S-nail; Awkward uses GNU Mailutils.
+Read this entire SKILL.md before acting. Identify the executable/implementation and selected submission task, validate the recipient/content, and retain submission evidence with delivery limits. Missing implementation or route details remain prerequisites.
+
+`mail` and `mailx` are executable names shared by incompatible programs. Inspect the resolved binary, package and local manual before copying flags from a writeup.
 
 | Operation | GNU Mailutils mail | S-nail |
 |---|---|---|
@@ -28,4 +30,4 @@ Do not transplant GNU's `--` usage into S-nail blindly: S-nail can use it to int
 
 A zero exit status or SMTP acceptance establishes submission at that stage, not inbox delivery, attachment opening or execution. Retain the destination, time and relevant queue/message identifier; diagnose rejection, deferred delivery and recipient-side filtering separately.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Attended pp. 5–8; Awkward p. 24. Sources: [GNU Mailutils invocation](https://mailutils.org/manual/html_node/Invoking-Mail.html), [S-nail manual](https://www.sdaoden.eu/code-nail.html).
+Sources: [GNU Mailutils invocation](https://mailutils.org/manual/html_node/Invoking-Mail.html), [S-nail manual](https://www.sdaoden.eu/code-nail.html).

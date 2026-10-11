@@ -1,9 +1,11 @@
 ---
 name: dig
-description: Query an explicit DNS server and distinguish authoritative answers, cached views, negative responses and application name resolution. Use when checking a selected record or explaining why a DNS change has not affected a client.
+description: Query an explicit DNS server or inspect an approved zone transfer. Use to distinguish authoritative records, resolver views, negative responses, transfer completeness and application name resolution.
 ---
 
 # Verify the answer from the intended server
+
+Read this entire SKILL.md before acting; reuse complete current context. Select a record/resolver comparison or the approved zone-transfer task below. Required inputs are the intended server and exact name/zone, installed dig, network access and the server's permitted authentication context. Finish with the responding server, actual records/status and view or transfer limits; missing access or incomplete output remains a gap. There are no required conditional resources.
 
 Check `dig -v`. Define `dns_server` as the authorized server's numeric address and `fqdn` as the exact fully qualified name with a trailing dot. For a server expected to be authoritative:
 
@@ -29,5 +31,15 @@ dig -r @"$resolver" "$fqdn" A +recurse +time=2 +tries=1 +noall +comments +answer
 Differences can reflect cached positive/negative answers or different DNS views. One displayed TTL is not proof that every cache has expired. Query AAAA separately when relevant; an A change does not replace an IPv6 answer.
 
 Dig queries DNS directly. Applications using NSS can instead obtain a name from `/etc/hosts` or another configured source; `getent ahosts "$fqdn"` examines that local lookup path, although applications can use their own resolver. Repeat observations from the consuming namespace. A forward A record neither proves reverse lookup results nor establishes a service's hostname-trust authentication decision.
+
+## Inspect an approved zone transfer
+
+For a zone you administer and a client permitted by its transfer policy, define `zone` as the exact zone name and `dns_server` as the selected authoritative server:
+
+~~~bash
+dig -r @"$dns_server" "$zone" AXFR +time=5 +noonesoa
+~~~
+
+If policy requires an already provisioned TSIG key, add `-k "$tsig_key"` with its protected local file path. AXFR uses TCP. Preserve transfer errors and the opening/closing matching SOA records plus server/transfer summary; a partial list is not a complete zone. `REFUSED` is a policy result, not proof the zone is absent. Returned DNS names and addresses do not establish configured HTTP virtual hosts or reachable services. Keep any exported zone inventory private. See [AXFR completeness](https://www.rfc-editor.org/rfc/rfc5936).
 
 See [BIND's dig reference](https://bind9.readthedocs.io/en/latest/manpages.html#dig-dns-lookup-utility), [negative-answer semantics](https://www.rfc-editor.org/rfc/rfc2308) and [getent/NSS behavior](https://man7.org/linux/man-pages/man1/getent.1.html).

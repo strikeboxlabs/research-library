@@ -30,6 +30,8 @@ An unprivileged ptraced launch can suppress setuid effects. A copied binary, deb
 
 At a stop, use `disassemble /r` for the current function's instruction bytes and `info registers` for state. Inspect a selected readable address with `x/32bx address` before and after the relevant operation. `x/s address` assumes a string and is unsuitable for proving exact binary length or NUL-containing content. `stepi` advances one instruction; `nexti` can run an entire call before stopping. Inspect register widths and all instructions, not just the desired mnemonic.
 
+To print a register's numeric value, use `p/x $register` with the actual register name, or `info registers`. `x/x $register` instead treats that value as a memory address and dereferences it. A resulting unreadable-address message does not mean the register value was unavailable. Use memory examination only when the value is an intended pointer into a readable mapping.
+
 Keep both observations tied to the same input, stop location and address mapping. Unreadable memory may mean the wrong address, lifetime or mapping; missing symbols require address-level reasoning, not invented variable names. Avoid debugger expressions that call target functions merely to inspect state. Finish by recording the observed change and terminating the owned fixture; this does not establish behavior for another build or launch environment.
 
 For version-specific behavior, consult [starting a program](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Starting.html) and [examining memory](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Memory.html).

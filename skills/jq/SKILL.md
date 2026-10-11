@@ -21,6 +21,15 @@ Plain `.file` prints a JSON string with quotes and escapes. `-r` emits the decod
 
 Extraction cannot undo server-side transformations. If an application reads lines and rejoins them, original line endings and a final newline may already be lost. Validate the destination format before deliberately restoring any required terminator.
 
+For a saved API object carrying Base64, define `encoded` as a fresh file. Validate the encoding and string type, then extract the decoded JSON string without deleting quote characters by hand:
+
+~~~bash
+jq -s -e 'length == 1 and (.[0] | type == "object" and .encoding == "base64" and (.content | type == "string"))' "$response" > /dev/null &&
+jq -j '.content' "$response" > "$encoded"
+~~~
+
+This produces encoded text, not the original binary. Check the subsequent Base64 decoder's status and expected byte count/container. A listing response can have null content; an abbreviated field cannot be reconstructed by removing its omission marker.
+
 An absent field normally becomes `null`. Use `has("field")` when distinguishing absence from a present null matters. `//` also substitutes for boolean false, so it can conceal a legitimate false value. `-e` reports the final output's truthiness: false/null return 1, no result returns 4. A successful parser exit alone does not establish the expected type, record count or application result. The `-s` check above deliberately validates the complete small response.
 
 To construct a JSON body containing an existing UTF-8 text file, define `source_text` and a fresh `request` path:

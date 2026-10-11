@@ -7,6 +7,8 @@ description: Connect to a known PostgreSQL database, inspect schema, export sele
 
 Read this entire SKILL.md before acting; reuse complete current context. Establish the actual server/database/role, inspect the selected schema and retain query status with bounded results. A failed reconnect or export remains incomplete; do not infer permissions or database identity from a prompt alone.
 
+For a selected server-file write through COPY, including a scoped shell-startup reproduction, read [COPY server-file boundaries](references/copy-server-files.md) fully first. It requires an inspected absolute server destination and recoverable intended file change; a write result is separate from execution.
+
 For a legacy Django/Sentry database or a wrapped authentication record, read [selected auth records](references/django-auth-records.md) fully first. For an explicitly approved server-file/configuration operation or WAL archive hook, read [large objects and archive configuration](references/server-files-and-archiving.md) fully first. These are server-side effects, separate from ordinary query export.
 
 Check `psql --version` separately from the server version. Define `service` as an existing reviewed libpq service name with the intended host, port, database, role and TLS policy. Use known credentials through its protected password file; on Linux, a password file with group/world access is ignored.

@@ -5,6 +5,8 @@ description: Inspect and resume GNU Screen sessions with understood ownership an
 
 # Identify the session before attaching
 
+Read this entire SKILL.md before acting. Identify the actual Screen executable, account and selected session; use the conditional attached/multiuser cases only when needed. Finish with session state and process identity or the concrete binary, terminal or access prerequisite gap.
+
 Check `screen --version` and list sessions as the intended account:
 
 ~~~bash
@@ -12,6 +14,8 @@ screen -ls
 ~~~
 
 Record the full session identifier, owner, host and attached/detached state. A session named `root` is only a label; it does not establish the shell's effective UID. Socket directories vary by package and `SCREENDIR`, so do not hardcode `/var/run/screen` or assume an inaccessible directory is empty. An unreachable/stale socket is not proof of a running session.
+
+If more than one Screen executable is installed, check shell resolution with `command -v screen` and the selected executable's version/help. A version observed at one pathname does not describe another binary found through `PATH`. Define `screen_binary` as the actual inspected absolute executable path and use `"$screen_binary" -ls` for that installation; do not repair a version mismatch by changing socket permissions or enabling setuid.
 
 Define `session` as an exact observed session identifier belonging to the task. For a detached session:
 
@@ -29,4 +33,4 @@ Cross-user `owner/session` attachment is conditional on the build's multiuser su
 
 Finish by detaching and checking the intended session remains in the expected state. Report session visibility, successful attachment and the observed process identity separately.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Backdoor pp. 12–15. Source: [GNU Screen manual](https://www.gnu.org/software/screen/manual/screen.html).
+Resolve installation and session options with the [GNU Screen manual](https://www.gnu.org/software/screen/manual/screen.html).

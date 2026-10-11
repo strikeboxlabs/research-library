@@ -7,6 +7,7 @@ description: Capture HTTP evidence and test API, stored-template and other appli
 
 Read this entire skill before acting; complete current context need not be re-read. Preserve the intended URL/route, capture status and body from the same request, and distinguish transport completion from application success. Read the applicable reference fully before its procedure; leave unrelated branches unloaded.
 
+- Express download routes with encoded relative paths and selected source-file disclosure: [download/file-read boundaries](references/express-file-read.md).
 - URL-checking forms whose value reaches a curl command line, multiple URLs or protocol filters: [URL-checker boundaries](references/url-checker.md).
 - Backdrop packaging-version files and query-routed CMS paths: [Backdrop evidence](references/backdrop-evidence.md).
 - Joomla manifest/version evidence and CVE-2023-23752 configuration access: [Joomla webservices](references/joomla-webservices.md).
@@ -27,6 +28,7 @@ Read this entire skill before acting; complete current context need not be re-re
 - Spring Boot management discovery and mapping interpretation: [Actuator responses](references/spring-actuator.md).
 - Proxy routing, CONNECT and forwarded-header interpretation: [proxy requests](references/proxy-requests.md).
 - Scheduled `-K` transfers, writable URL/output configs or inherited curlrc: [config transfer boundaries](references/config-transfers.md).
+- A selected read-only HTTP request over a local Unix socket: [Unix-socket HTTP](references/unix-socket-http.md).
 
 Check `curl --version` for protocols/TLS backend and inspect local help for version-dependent switches. Define `url` as the exact scoped URL and `headers`/`body` as fresh private files:
 

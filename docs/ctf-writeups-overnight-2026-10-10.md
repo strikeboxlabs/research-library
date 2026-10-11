@@ -2960,3 +2960,688 @@ PDF hyperlinks identify [pswm](https://github.com/Julynx/pswm) and [SecLists spe
 **Fourteen owned inert Windows checks passed** with Python3.12.14, curl8.21.0 Schannel and installed cryptography50.0.2: nine actual curl transfer/form checks (two-URL body concatenation, initial malformed/last successful status0, fail-early status3, protocol denial status1, one malformed space-containing argument, encoded space, literal plus, inert option-text field and worker-local FILE capture); four public AES-GCM/envelope checks (same-format roundtrip, wrong trimmed candidate InvalidTag, altered tag InvalidTag and truncated-envelope structural detection); one original marker-integrity check. The mock only receives literal fields, never executes PHP/nc/commands/authentication. Cryptography tests format facts on public owned markers; **pswm/cryptocode are not installed/executed**, and this fixture is not a substitute library distributed to workers. No fixture failure; server and temporary-directory cleanup verified.
 
 No verified Linux fixture/Pi-worker evaluation, pswm/cryptocode/PHP/nc runtime, target scan/login, callback/PTY/sudo/root execution. No attack, installation, system/power/Defender change, original move/delete, commit/push or guessed binary placement. Backend normal-route construction not fully recovered, target's exact netcat/PHP/cryptocode builds unknown, GUI-specific replay state and future image paths remain environment facts to verify; generic Gopher support is not a demonstrated protocol workflow. Only Down advances this queue; Delegate stays deferred by user instruction, coverage repairs and CrossFit2 remain complete.
+
+## Remaining inbox intake — 2026-10-10
+
+The current request authorizes the 41 originals remaining in `ingest/`, Drive through Fuse, processed sequentially under schema **v0.8**. The existing fixed queue and earlier accepted entries are retained. Source text, extraction diagnostics, selected rendered pages and original fingerprints for this continuation are in ignored `work/intake-2026-10-10/`. This continuation extracts diagnostic, defensive and administration knowledge; exploit reproduction, intrusion chains and automated offensive procedures are recorded as source context rather than packaged as new worker procedures. Such exclusions are documentation-scope decisions, separate from unavailable runtime checks. Every reviewed source receives a tool/task coverage decision below.
+
+### Download.pdf — previous checkpoint deferred
+
+The queue was already `in_progress` at the start of this request. Its original is absent from the current inbox; the earlier cached 18-page extraction and renders survive. Existing uncommitted README/skill edits, including tee and tty, have been preserved. This continuation has not established their full source coverage or accepted those edits as a completed Download intake. The entry is explicitly deferred with the missing-original prerequisite so the remaining inbox can proceed; no cached extraction or previous hash is presented as a newly verified original. Delegate remains deferred under its earlier recorded user instruction. No original was moved or deleted by this continuation.
+
+
+### Drive.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `c6b2d17a1fb8944717d63af2ad751eb7dd171552191f95cf903f8026990538c8`; 1,348,878 bytes; 27 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Drive, prepared by C4rm3l0, cover 15 February 2024, D24.100.270. Rendered and inspected pages **11, 15, 16** for repository history, binary classification and mitigation output. All 27 pages' text was read, including the extracted exploit listings; this is not a claim that every screenshot was visually inspected.
+
+Schema v0.8 reviews: **sqlite3, 7z, ss, gdb, pwntools, checksec**. New checksec package retains the independently discoverable static ELF inspection task, explicitly identifying the pwntools implementation. SQLite adds an early conditional historical-snapshot reference, with a metadata-only account comparison and acquisition/schema limits. GDB's existing live reference now distinguishes a register value from dereferencing that value. The other reviewed entrypoints already support their selected tasks and need no cosmetic rewrite; their first 150 lines and the affected workflow were checked. Existing unrelated branches remain intact.
+
+| Demonstrated tool/task and pages | Decision |
+|---|---|
+| Nmap, hosts edit via tee, seq and Burp object-ID iteration, 2–7 | Existing nmap and tee describe scan evidence and file-writing effects; shell list production is incidental. Burp is GUI evidence. IDOR enumeration and credential acquisition are source context, not a new automated intrusion procedure. |
+| SSH/SCP, 7z, ss and Gitea history, 7–12 | Existing SSH/SCP cover authenticated forwarding and selected transfer. Reviewed 7z covers known-password extraction, member selection and error status; ss covers listener binding versus external filtering. Browser history motivates backup/source association; Git history coverage exists, without claiming CLI use in this source. |
+| SQLite backup records and Hashcat, 12–14 | Enriched sqlite3 preserves snapshot/account metadata and format changes. Hashcat candidate recovery and credential replay remain source context. The text calls October the oldest despite a September archive; filenames alone do not establish ordering. A snapshot verifier is not current login evidence. |
+| file, strings/grep, checksec and Ghidra, 14–18 | Existing file/strings support static classification and string-candidate limits. New checksec covers the actively demonstrated pwntools wrapper, separate from the existing pwntools exchange skill. GUI decompilation is evidence; no fresh headless workflow is invented. File mode and mitigation indicators do not alone establish effective process identity. |
+| ropper, GDB/peda, Python/pwntools, chmod/Bash, gcc and SQLite extension chain, 19–27 | The register-versus-memory correction is accepted into GDB. Canary disclosure, ROP construction, privilege persistence and extension execution are excluded from new operational packaging because they reproduce intrusion/privilege-escalation chains. No exploit execution, payload-building fixture or privileged file modification ran. The code-point prose also mislabels decimal 47: it represents slash, not backslash. |
+
+Primary review: SQLite [scalar functions](https://www.sqlite.org/lang_corefunc.html) and [CLI](https://www.sqlite.org/cli.html); pwntools [checksec CLI](https://docs.pwntools.com/en/stable/commandline.html#pwn-checksec) and [ELF indicators](https://docs.pwntools.com/en/stable/elf/elf.html#pwnlib.elf.elf.ELF.checksec); GDB [register expressions](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Registers.html). Documentation acceptance does not imply Linux/checksec/GDB execution. Local metadata-query fixtures and final packaging results are recorded in the continuation validation section.
+
+
+### Driver.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `b4d8dac65c57cbf1c19dc1e204acf628cfed132266b4667b6af29ae01686f4d0`; 3,093,401 bytes; 8 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Driver, amra, cover 21 February 2022, D22.100.159. Text from all **8** pages read; pages **2, 4, 6, 7, 8** rendered and inspected, including the otherwise text-empty final identity screenshot. Extraction recovered an object-offset inconsistency; this is not reported as warning-free input.
+
+Schema v0.8: **nmap** reviewed unchanged, including its complete entrypoint. No new runtime package is accepted for this source.
+
+| Actual task / pages | Coverage decision |
+|---|---|
+| Nmap discovery/service/default-script scan and grep/cut/tr/sed plumbing, 2 | Existing nmap covers selected ports, protocol, uncertain banners and completion; incidental text plumbing needs no separate expansion. |
+| Browser HTTP Basic login and firmware upload, 3–4 | GUI source evidence. Default-credential guessing and weaponized file upload are intrusion context, excluded from new procedures. |
+| Responder capture and John recovery, 4; Evil-WinRM file/session use, 5–7 | Capture, credential recovery/replay and shell upload are accounted for as excluded intrusion-chain tasks; their pre-existing packages are preserved without a claimed conformity review. The screenshot identifies tony; the prose's tom attribution is inconsistent. A challenge-response is not a raw stored NT password hash, and capture is distinct from relay. |
+| msfvenom, msfconsole handler, Meterpreter process migration, local suggester and Ricoh exploit, 5–8 | Payload deployment and privilege escalation are excluded from new operational packaging. Process session ID is separate from security identity; a suggester's candidate is distinct from the final screenshot's observed SYSTEM identity. History shows a past Add-Printer command, not current installed-driver proof on another machine. |
+
+No runtime change is needed for the accepted scan-interpretation lesson. There was no network request, credential check, upload, exploit or Linux/worker evaluation. Packaging verification is recorded at continuation completion.
+
+
+### Dropzone.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `c1de2ab8dd601b5f95cb6da57e77e91ae87daca2c956ae3235bdba0560062b96`; 451,242 bytes; 13 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Dropzone, egre55, cover 4 November 2018, D18.100.26. All **13** pages' text read, including Appendix A; pages **3, 4, 6, 7** rendered and inspected for screenshot-only command/results.
+
+Schema v0.8 reviews: **nmap** unchanged and **tftp** newly accepted. The independent package preserves the ordinary transfer capability and binary-mode/recovery decisions. Its tftp-hpa invocation is a primary-documentation adaptation; the PDF's interactive client implementation is not identified. Whole entrypoints and first150 routing checked; no sibling dependency.
+
+| Actual task / pages | Decision |
+|---|---|
+| masscan, Nmap and awk/sort/tr/sed pipeline, 3 | Existing masscan/nmap support protocol-preserving results and bounded probes; nmap was reviewed. The source merges protocol numbers and repeats a port switch; that is not adopted. Text plumbing is incidental. |
+| UDP netcat check and interactive TFTP get/put, 3–6 | New tftp covers ordinary transfer, byte-preserving mode and diagnostic/integrity limits. Reading one license document does not establish whole-system access or a unique installed OS version. |
+| Ruby/WbemExec generator, msfvenom and msfconsole, 5–6, 8–13 | MOF execution and payload/privilege-escalation chain excluded from new procedures. Full appendix was read. File-write execution is distinct from proving this transfer exploited the named printer vulnerability. |
+| Native Windows streams.exe, shell/cat/head, 4, 7 | ADS enumeration is evidence; no Linux invocation or compatible offline-NTFS mapping is established, so Linux adaptation is deferred for that implementation gap. Content display is incidental. |
+
+Primary semantics checked against the [tftp-hpa manual](https://manpages.debian.org/bookworm/tftp-hpa/tftp.1.en.html). No TFTP/network/source execution or Linux/worker test ran; that limit does not reject documentation-reviewed transfer guidance. Exploit uploads are excluded independently of runtime availability.
+
+
+### Dump.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `3d838eb0c798f7ddcbac96e4e3cdd6204962d740a58bfaf294397ff661c4d359`; 1,443,786 bytes; 16 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Dump, ctrlzero, cover 29 October 2025. All **16** pages' text read; text-empty page **3** rendered and inspected. Two recovered object-offset diagnostics retained locally. The cover predates the 2026-10-11 client date; it is retained as a supplied-document observation rather than independent publication verification.
+
+Schema v0.8 reviews: **tcpdump** enriched, **zip, sqlite3, nmap** unchanged. Tcpdump's complete task now has the early activation/completion contract and an inline policy-denial diagnostic; existing packet and container-vantage guidance is preserved. No unrelated package migration is claimed.
+
+| Actual task / pages | Coverage decision |
+|---|---|
+| Nmap top3000 scan, feroxbuster and SQLmap checks, 2–4 | Existing nmap covers limited range, -A/NSE effects and banner uncertainty; existing feroxbuster coverage locates response-filter limits. SQLmap negative results do not establish absence of all injection. No new target-probing procedure is packaged. Prose Apache2.4.54 conflicts with printed2.4.65. |
+| zip/UnZip archive workflow, crafted filenames, wget/Python requests/Bash/nc chain, 4–10 | Ordinary selected packaging/integrity is already in zip/UnZip. Filename-option injection and its automated remote execution chain are excluded from new procedures. HTTP200 upload status alone does not prove accepted content or execution; delay alone is weak causal evidence. |
+| SQLite rows, SSH, groups and sudo listing, 11–12 | Existing sqlite3 covers actual schema, bounded records and storage interpretation; existing SSH/groups/sudo distinguish application records, process membership and policy. Credential reuse and sudo-rule abuse are intrusion context. A group name alone does not establish a particular file is readable. |
+| tcpdump failure, tail/cat audit/profile evidence, 12–15 | Enriched tcpdump connects the denied exec operation to helper failure separately from capture evidence. Supplied policy text, loaded policy, profile includes and actual observed operation remain distinct; the writeup's regex/whole-path paraphrases are not adopted as valid policy grammar. Content display is incidental. |
+| update-motd file writes, chmod, SSH trigger and Bash elevation, 15–16 | Privileged execution/persistence chain excluded from new operational packaging; no policy bypass or privileged file change ran. |
+
+Primary [AppArmor documentation](https://ubuntu.com/server/docs/how-to/security/apparmor/) confirms the policy/denial distinction. The tcpdump.org manual endpoint failed retrieval; prior linked upstream tcpdump manual remains available for the unchanged capture syntax. No capture/helper/target/Linux procedure or worker outcome was executed.
+
+
+### Dynstr.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `8aa3438c0da1ffa730234ea4adc3fe439799fed9d58d15eb9430069c0d1ac086`; 5,078,794 bytes; 14 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Dynstr, MrR3boot, cover 5 October 2021, D21.100.134. All **14** pages' text read; pages **8, 9, 10** rendered and inspected for cached trace, DNS policy and login identity.
+
+Schema v0.8: **named-checkconf** newly accepted; **bash, nmap** reviewed unchanged. The short checker package retains the actively invoked config-validation task, independent of the intrusion chain. It distinguishes syntax/includes, optional zone loads and service deployment; first150 and whole entrypoint reviewed.
+
+| Actual task / pages | Decision |
+|---|---|
+| Nmap and shell port-list plumbing, 3 | Existing nmap task covers range/protocol/default-script effects and completed output. |
+| Browser No-IP-shaped API, curl, Python URL encoding, base64/Bash execution, listener and terminal setup, 4–7 | Existing curl/base64/bash/terminal guidance covers representation/context. Command injection and shell acquisition are excluded from new procedures; no public No-IP behavior is inferred from this imitation service. |
+| Saved strace text, SSH key/source restrictions, nsupdate/TSIG changes and id, 8–10 | Trace content and login screenshots are evidence. Key recovery/replay and DNS manipulation to satisfy an SSH access restriction are excluded from new attack packaging. A printed home-directory list is not a complete user inventory. nsupdate is explicitly accounted for, not omitted because another DNS tool overlaps. |
+| LinEnum, sudo script, cp/wildcards, named-checkconf, 11–14 | New named-checkconf preserves verification. Bash already routes filename/option interpretation; cp-based escalation/file disclosure and privileged MOTD writes remain excluded context. Prose says the service restarts, but the displayed restart command is commented out; the later message is not restart proof. |
+
+[BIND's checker manual](https://bind9.readthedocs.io/en/stable/manpages.html#named-checkconf-named-configuration-file-syntax-checking-tool) verified the accepted validation scope. No DNS mutation, key use, script execution, restart, target/Linux runtime or worker test ran.
+
+
+### Dyplesher.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `1b9bdaadfc6d3026ebde257e0f90245f6bd0dec3d1233ecdc9480cf69c772904`; 6,363,893 bytes; 25 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Dyplesher, MrR3boot, cover 17 October 2020, D20.100.94. All **25** pages' text read; pages **12, 13, 21, 22** rendered/inspected for bundle layout, SQLite records, process/capture and stream evidence.
+
+Schema v0.8: **git, tshark** enriched; **sqlite3, nmap** reviewed unchanged. Git adds a conditional offline-bundle task preserving existing acquisition/history/mode procedures. TShark gains the missing activation contract and a conditional bounded live-capture task, preserving saved FTP/TLS/Kerberos analysis. Full entrypoints and selected references, including first150 discovery, reviewed.
+
+| Actual task / pages | Coverage decision |
+|---|---|
+| Nmap, browser/Gogs identity, ffuf, git-dumper, PHP source, 3–9 | Existing scan/discovery/acquired-repository packages locate the general tasks. Exposure-driven acquisition and credential discovery are source context. Reverse image search is GUI evidence, not product-identification proof. Failed memccat alone does not prove SASL. |
+| memccat wordlist guesses and John, 7, 10–11 | Accounted for as credential acquisition/recovery chain, excluded from new operational packaging. No independent guessing package added. Its shell test treats every status except1 as success and unquoted keys can become multiple arguments; neither behavior is adopted. Source's equal/not-equal HTTP explanation also conflicts with its recovered PHP condition. |
+| UnZip/file, Git bundle clone, grep and SQLite inspection, 11–14 | New Git bundle reference preserves actual offline recovery with prerequisite checks and no working-tree materialization. SQLite schema/row identity and existing file/grep guidance suffice. No runtime credential exported. |
+| IntelliJ Java plugin build/upload, ProcessBuilder/FileWriter, SSH key write, 15–20 | Source's GUI build is not an executed Maven workflow; Maven is name-only. Remote plugin execution and key persistence excluded. A failed callback does not prove a firewall cause. |
+| pspy/SCP, dumpcap permissions, TShark capture, Wireshark follow-stream, su/id, 21–22 | TShark's demonstrated capture task retained as bounded diagnostic guidance, with existing stream evidence. dumpcap is mentioned/inspected but not independently invoked. Existing pspy/SCP cover visibility and transfer; observed process recurrence does not prove every inferred service lifecycle. Credential replay remains excluded. |
+| RabbitMQ/pika/Lua publication, SSH remote forward and root key write, 23–25 | Privileged plugin-consumer exploitation/persistence excluded. A `/dev/pts` pathname is not generically a named pipe. AMQP publish acceptance, routing and consumer execution are distinct; no new attack-chain procedure is created. |
+
+Primary review: [Git bundles](https://git-scm.com/docs/git-bundle) and [TShark capture/autostop](https://www.wireshark.org/docs/man-pages/tshark.html). No capture, repository from the target, broker request, code build/plugin, login or Linux/worker procedure executed. Owned Git bundle validation is recorded separately at continuation completion.
+
+
+### EarlyAccess.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `01f440ff9f7d853dc357ca22d176426e5b0c2b8ae83d0254bf94e3bb7bcf0763`; 12,103,004 bytes; 62 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box EarlyAccess, amra / machine author Chr0x6eOs, cover printed “7st February 2022”, D22.100.157. All **62** physical pages' text read, including the repeated appendix; pages **48, 51, 55, 56** rendered and inspected.
+
+| Source pages | Actual tools/tasks | Coverage decision |
+|---|---|---|
+| 2–5 | Nmap and shell host mapping | Existing Nmap service inventory; routine shell plumbing. |
+| 6–21, 35–44 | Burp/browser, Gobuster, Ffuf, curl, base64, John, nc, script/stty/su | XSS session theft, SQL injection, file disclosure, command execution, credential reuse and intranet scanning excluded from this intake's permitted documentation scope. Encoding and terminal observations retained as source context; no exploit procedure accepted. |
+| 22–34, 57–62 | Python/requests/BeautifulSoup key generation, submission and throttle retry | Key generation and license/access bypass automation excluded; no source script copied or executed. |
+| 45–50 | curl API response, SSH, cat, entrypoint shell, npm/Node startup, ss, SSH forwarding | Stolen credentials and privilege transition excluded. Duplicate container paths suggest a mount but do not establish its source, mode or authority. npm is invoked in an application launcher, not demonstrated independently by the author. |
+| 51–54 | Node handler and request-driven loop | Enriched `node` with a conditional defensive numeric-input reference: type, integral range, local counter, termination and work-budget interpretation. No live DoS request or privileged script was run. |
+| 55–56 | LinPEAS capability highlight, arp privileged file read, chmod/SSH | Reviewed `getcap`'s complete existing metadata/process interpretation; added its missing early activation contract. Privileged arp file extraction excluded. |
+
+Corrections: `isNaN` plus an upper bound is not integer/range validation. The source's global/shared `rounds` and decrement-to-zero handler have further termination/concurrency concerns. Page 55's claim that empty capabilities make a non-root, non-SUID program act SUID is unsupported; its screenshot actually shows a root-owned file with a SUID mode bit. Capability attributes, ownership and mode must be interpreted separately. The retry function on page 31 omits returning the recursive result; a login helper annotated as Session returns a boolean; disabled TLS verification and echoed credentials/cookies are not retained. No secret/key bytes enter the skill.
+
+Schema **v0.8** reviewed: **node, getcap, nmap**; changed **node, getcap**. Node's earlier signed-session branch remains intact. New semantics verified against [ECMAScript Number methods](https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-number.issafeinteger); existing getcap references were preserved, but their endpoints failed retrieval this turn. Local numeric semantics checks and repository checks are recorded in the final validation entry; no target, Linux capability transition or HTTP handler execution claimed.
+
+
+### Editorial.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `11d5597bb79d84739d19bea27f7e7f270672054cf5982992ea48a0da91f48533`; 1,323,532 bytes; 14 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Editorial, k1ph4ru / Lanz, 10 October 2024, D24.100.305. All **14** pages read; pages **7, 13** rendered and inspected for artifact classification and the exact privileged script.
+
+| Pages | Tools and demonstrated task | Decision |
+|---|---|---|
+| 2 | Nmap, tee and host-file plumbing | Existing Nmap inventory; host change was not replayed. |
+| 3–9 | Netcat/Burp/Python requests SSRF loop and curl retrieval of internal responses | Internal-network probing and credential acquisition excluded. Callback establishes server-side fetching under that request, not every SSRF effect. The Python range excludes port 65535 despite the prose claiming all ports. |
+| 7–9 | file and jq on a saved JSON artifact | Already covered by `file`'s format-versus-integrity model and `jq`'s parsing, schema and HTTP-status distinction. JPEG UI/extension does not establish image bytes. |
+| 10–12 | git status/log/show, including unstaged deletions | Already covered by `git` and `references/history-recovery.md`: deleted worktree files can remain in the index/committed blobs; historical content requires the correct revision/path, not a checkout or reset. Stored secrets do not establish current login rights. |
+| 9, 12–14 | SSH/su, sudo listing, GitPython clone and nc reverse shell | Account takeover and privileged command execution excluded. Sudo entrypoint already covers RunAs and exact script/input semantics. GitPython is a library, not a separate demonstrated Linux CLI. The script explicitly enables an unsafe external protocol; its import alone is insufficient to attribute the result to a particular installed CVE or version. |
+
+Schema **v0.8** reviewed **git, jq, file, sudo, nmap**. No runtime changes: the applicable safe tasks are already supported with early task routes and completion limits. No source credentials, SSRF loop or CVE payload copied. Documentation/coverage review only; no network, package install or privileged execution.
+
+
+### Ellingson.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `25f2f342dd2646d51151f9b01d1c59bc6fdd81e069cf36cdf3b1d5c0393d1a4e`; 1,242,246 bytes; 19 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Ellingson, MinatoTW / Ic3M4n, 20 June 2019, D19.100.39. All **19** pages read; pages **11, 16, 17** rendered and inspected. Layout extraction separates some words and inserts zero-width formatting; screenshots resolved important command discrepancies.
+
+| Pages | Actual tools/task | Decision |
+|---|---|---|
+| 3–6 | Nmap, browser Flask debugger, Python subprocess, SSH/key write | Inventory already covered; debugger execution and persistence excluded. Debugger disclosure identifies an exposed Python execution surface, not by itself the precise proxy topology. |
+| 7–10 | find, scp, grep/awk, John, ltrace and account reuse | `find` already distinguishes group ownership from access and retains traversal errors. Credential cracking/reuse excluded. New independent **ltrace** package accepts the demonstrated library-call diagnosis as a trusted local diagnostic task; secret extraction and privileged execution are excluded. |
+| 11–13 | file/checksec, GDB, Metasploit patterns, ldd | Static classification/mitigation already supported by `file`, `checksec`, `readelf`; destructive crash and offset development excluded. `checksec` screenshot resembles pwntools output but does not identify the installed implementation beyond doubt. ldd is not retained for untrusted-artifact inspection. |
+| 13–19 | objdump, ROPgadget, pwntools, readelf, strings, SSH-driven ROP | Exploit assembly/leaks and privilege bypass excluded. `readelf` already distinguishes on-disk metadata from relocated addresses. Pages 16–17's printed readelf target is the executable, while screenshots inspect libc; the strings prose command omits the file that its screenshot supplies. Those are material corrections, not reusable offsets. |
+
+Schema **v0.8** reviewed **ltrace, readelf, find, file, checksec, nmap**; added **ltrace**. The existing GDB branch was previously reviewed in Drive and is not re-certified here; exploit-only tools are explicitly accounted above. ltrace syntax/filter and string limits checked against the [packaged upstream manual](https://manpages.debian.org/bookworm/ltrace/ltrace.1.en.html). Linux execution remains unavailable; no crash, tracing, credential attempt or ROP test was performed.
+
+
+### Encoding.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `5799681b8493c18726f96b700d91336311ecdeb88d1e6c637a8c77e7a440dc1a`; 13,557,778 bytes; 27 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Encoding, Pwnmeow / kavigihan, 24 January 2023, D23.100.223. All **27** pages read; **12, 24, 26** rendered and inspected. Extraction recovered malformed object pointers 8 and 31; it did not report an unreadable page.
+
+| Pages | Tools/tasks | Decision |
+|---|---|---|
+| 2–9 | Nmap, tee, Python requests/http.server, jq, xxd and browser | Inventory/JSON/hex handling already supported. SSRF/local-file acquisition excluded. `xdd` is a prose typo for `xxd`; JSON quotes and malformed hex must not be treated as validated binary. The example HTTP URL is missing a slash. |
+| 10–13 | mkdir, Git init/cat-file and manual object reconstruction | Enriched `git` with conditional **offline acquired object inspection**, including commit/tree/blob types, refs, object format and binary completeness. HTTP disclosure workflow excluded. HEAD does not normally contain both a branch name and its commit ID. A commit object and its referenced tree are different objects. |
+| 14–21 | Python/requests, PHP filter-chain generator, Git clone, nc | Proxy bypass, LFI-to-RCE and reverse shell excluded; source confuses PHP stream filters with filter_var/filter_var_array. No payload generator copied. |
+| 21–25 | sudo, Git shell wrapper/add/commit, getfacl, chmod, vim/SSH | Added safe hook interpretation to `git`: author metadata versus process identity, stage-versus-commit branches, and limited scope of --no-verify. Hook-based key extraction/account access excluded. `getfacl`'s existing mask/parent/default model covers ACL diagnosis; added its missing activation contract. Page 24's --word-tree is a typo; screenshot says --work-tree. |
+| 25–27 | systemctl, getfacl and malicious service creation | Systemd unit/restart interpretation already covered by `systemctl`; privileged service payload excluded. ACLs are not generically interchangeable with extended attributes. Page 26's unit snippet has a missing opening bracket and malformed target whitespace; no new service template accepted from it. |
+
+Schema **v0.8** reviewed **git, getfacl, jq, xxd, systemctl, nmap**; changed **git, getfacl**. Checked [commit verification options](https://git-scm.com/docs/git-commit), [hook events](https://git-scm.com/docs/githooks) and [object types](https://git-scm.com/docs/git-cat-file). Local Git-object checks are reported at batch validation; no source acquisition, application code, privileged Git or service execution performed.
+
+
+### Environment.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `a991fa4f886242bfe702b93d2d534610acbf16c73203518a7ee0cca36f00dbb9`; 4,627,299 bytes; 15 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Hack The Box Environment, 131LL / coopertim13, cover 2 September 2025. All **15** physical pages read; **4, 12, 14** rendered/inspected. pypdf recovered object-pointer diagnostics 9 and 19; visual inspection distinguished the exact banner, copied key-home layout and sudo environment listing.
+
+| Pages | Actual tools/tasks | Decision |
+|---|---|---|
+| 2–10 | Nmap/tee, feroxbuster, Burp/browser, base64/nc and webshell | Inventory already covered; environment/authentication bypass and malicious file upload/RCE excluded. Disclosed framework version is an applicability lead, not the complete deployed CVE conditions or proof of every affected dependency. |
+| 11–13 | script, ls/cp, zip, Python HTTP server, wget, gpg and SSH | Packaging already covered by `zip`. Enriched `gpg` with conditional owned-backup key-home selection and diagnostic/integrity requirements. Source exfiltration and credential reuse excluded; no source key or password retained. Page 11 lists directories, not every private key's permissions; blanket “all files 755” is not established by that listing. The source omits the failed on-target GPG error, so local success cannot establish its cause. |
+| 14–15 | sudo and Bash environment startup, chmod and privilege transition | Existing `sudo` policy/environment and `bash` BASH_ENV/identity interpretation cover the safe review. SUID persistence and elevated payload excluded. The systeminfo source invokes dmesg, ss, mount/column, ulimit, lsmod and df; its output is snipped, so no standalone successful diagnostic workflow is claimed for those calls. This is an explicit coverage limitation, not an overlap exclusion. |
+
+Schema **v0.8** reviewed **gpg, zip, bash, sudo, nmap**; changed **gpg**. Reviewed [GnuPG command/options](https://www.gnupg.org/documentation/manuals/gnupg26/gpg.1.html) and [agent configuration](https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html). No actual decryption, transfer, target request or elevated script run. Accepted recovery guidance is documentation-reviewed pending the controlled Linux-image pass.
+
+
+### Epsilon.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `5c16709ac34a360265a4045c2dc2766e19a06558f3dc6218258415381b617cc3`; 4,492,460 bytes; 14 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Epsilon, MrR3boot, 19 January 2022, D22.100.149. All **14** pages read; **6, 8, 13** rendered/inspected. Recovery diagnostics for object pointers 8 and 37 retained locally.
+
+| Pages | Actual tools/tasks | Decision |
+|---|---|---|
+| 2–6 | Nmap, ffuf, pip/git-dumper, Git log and stored application source | Inventory/history already covered. Exposed-repository downloading and source installation excluded; no Git-dumper request or pip install performed. Current masked source does not erase historical storage. |
+| 7–9 | curl/unzip/AWS installer, aws configure/list-functions/get-function, jq and wget/unzip | Enriched `aws` with conditional bounded Lambda inventory and selected function metadata, explicit endpoint/credential context, pagination, version/package descriptors and sensitive temporary URLs. Downloading code with leaked credentials excluded. Version 2.23.6 “required” assertion lacks a failed-version/error comparison; no pin installed or target-image claim retained. |
+| 9–12 | Python/PyJWT, Burp/browser, nc, Python http.server/pty and terminal plumbing | Cookie forgery, SSTI and reverse shell excluded. A JWT containing a chosen claim is not authority without verification and application-side authorization. |
+| 12–14 | pspy, tar, sha1sum, date/cut, sleep, ln/rm, chmod/SSH | Archive tasks already covered by `tar`; clarified `-h` dereferencing versus compression in its creation reference. Symlink replacement/race/key theft excluded. The displayed backup script contains no chmod despite prose claiming it grants all checksum permissions. `date +%N` is a nanosecond field, not a unique absolute timestamp. |
+
+Schema **v0.8** reviewed **aws, tar, git, jq, nmap**; changed **aws, tar**. `aws` now has an early activation contract and conditional Lambda route; existing S3/DynamoDB procedures remain intact. Primary references: [list-functions](https://docs.aws.amazon.com/cli/latest/reference/lambda/list-functions.html), [get-function](https://docs.aws.amazon.com/cli/latest/reference/lambda/get-function.html), [endpoint selection](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-endpoints.html). Documentation review only; no AWS call, credential configuration, function download/invocation, Linux fixture or archive race executed.
+
+
+### Era.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `246231b17695a1ea4e804d52f05e743a720819bbaafc0b8264bc3c9da5e7a822`; 1,382,083 bytes; 22 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Hack The Box Era, Pho3o / yurivich, cover 20 November 2025. All **22** pages read; **18, 19, 22** rendered/inspected. Extraction object-pointer diagnostics 8 and 19 retained.
+
+| Pages | Tools/task | Decision |
+|---|---|---|
+| 2–9 | Nmap, tee, ffuf, seq/browser uploads and numeric-ID enumeration | Inventory already covered; unauthorized file enumeration/account changes excluded. One numeric ID is not proof of a sequential allocation scheme. |
+| 10–15 | unzip, sqlite3, John, FTP and PHP source review | Offline SQLite history/schema and FTP data-channel interpretation already supported by `sqlite3` and `ftp`. Cracking/account takeover and SSH wrapper command execution excluded. A listed extension .so is not proof the web SAPI loaded it. |
+| 16–18 | Burp, nc, Python HTTP server, wget/chmod/pspy | Reverse shell and privilege escalation preparation excluded. Process telemetry is observed command/identity metadata, not proof that every invoked stage succeeded. |
+| 18–22 | objcopy dump-section, OpenSSL asn1parse, grep, gcc, Git/make/apt, custom elf-sign and binary replacement | Added independent **objcopy** raw section extraction with explicit fresh object output. Added `openssl` conditional ASN.1 structural interpretation; string matching is not cryptographic verification. Signature transplant/bypass, malicious compiler/signer workflow and privileged scheduled-binary replacement excluded. Custom signer discovery is accounted but its only demonstrated task is the excluded bypass; no installation performed. |
+
+Corrections: the source's group-readable monitor mode contradicts a literal “cannot read” permission interpretation; a binary is not ordinary terminal text. Missing-section rejection alone does not establish the checker's complete acceptance conditions. Source checksum/signature nomenclature must not promote an ASN.1 name match into verified code integrity. The original is preserved by the accepted objcopy procedure; unsigned/signed replacement examples are not copied.
+
+Schema **v0.8** reviewed **objcopy, openssl, readelf, file, sqlite3, ftp, nmap**; changed **objcopy, openssl**. Verified [objcopy input/output and dump semantics](https://sourceware.org/binutils/docs/binutils/objcopy.html) and [ASN.1 parsing](https://docs.openssl.org/3.5/man1/openssl-asn1parse/). Documentation review only; no binary parsing/execution fixture, signing key use, compiler install or target action.
+
+
+### Escape.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `84f7dd57b4d9d4f6054b0626fd6c79012e61893e5343be8fb4b6dc4353c89ab1`; 6,291,202 bytes; 13 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Official Hack The Box Escape, amra / Geiseric, cover 20 March 2023 with document ID printed D22.100.230. All **13** pages read; **3, 8, 9, 10** rendered/inspected. Recovery diagnostics 9 and 58 retained locally.
+
+| Pages | Tools/tasks | Decision |
+|---|---|---|
+| 2–4 | Nmap, tee, smbclient listing/share/get | Existing `smbclient` covers explicit guest/anonymous/current-user differences and selected-file retrieval; added missing early activation contract. Blank password under the screenshot's WORKGROUP/root request does not independently prove anonymous identity. |
+| 4–7 | impacket-mssqlclient, Responder, John, Evil-WinRM and log/credential reuse | SQL-service authentication coercion, captured-response cracking and account takeover excluded. NTLM challenge-response is not simply the account's reusable NT hash. No service credential or query-coercion payload copied. |
+| 7–13 | Windows Certify/build/upload, Certipy, ntpdate, Evil-WinRM, Get-LocalUser, online hash tool and Impacket ticketer | Certificate abuse, ticket forgery/pass-the-hash and privileged file acquisition excluded. Added independent **ntpdate** query/correction guidance for ordinary Linux clock administration; no clock changed here. Windows Certify is not a demonstrated Linux executable. No secret was sent to an online converter. |
+
+Corrections: screenshot says ENROLLEE_SUPPLIES_SUBJECT, while prose says ENROLLEE_SUPPLIES_OBJECT. CA enrollment and template enrollment permissions are distinct, and the pictured template grants named domain groups rather than the prose's blanket Authenticated Users. A certificate banner/template flag alone does not settle current authentication/mapping policy. `Get-LocalUser` interrogates local accounts and is not proof of a directory user's SID; removing a RID presupposes the SID's verified account/domain origin. The source's hard five-minute Kerberos rule is not retained as universal policy.
+
+Schema **v0.8** reviewed **smbclient, ntpdate, nmap**; changed **smbclient, ntpdate**. Verified Samba identity syntax and [upstream ntpdate](https://www.ntp.org/documentation/4.2.8-series/ntpdate/) / [NTPsec option semantics](https://manpages.debian.org/bookworm/ntpsec-ntpdate/ntpdate.8.en.html). The direct NTPsec documentation endpoint was unavailable; package manual supplied the option review. No network, clock correction, credential use or certificate/ticket operation executed.
+
+
+### EscapeTwo.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `635320207404b2457f2aa6e2381ea929a2a6ca4abe6a40a0d9781003d68473ae`; 1,500,788 bytes; 16 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Visual review: physical pages 6 and 12, including the altered ZIP prefix and the collector's authentication fallback. Source: HTB EscapeTwo, k1ph4ru, creators ruycr4ft and Llo0zy, dated 6 May 2025. Schema 0.8; full reviewed entrypoints and first-150-line discovery check: `7z`, `file`, `impacket-smbclient` (plus previously reviewed `nmap`).
+
+Accepted: `7z` now distinguishes a changed format label from completed document recovery and requires the candidate's member test and intended parser. `file` already requires a real format reader; Impacket's client already covers shares/use/ls/get and selected-file verification, including local vs remote paths. This source uses Impacket, not Samba's console grammar. Primary recovery documentation: https://7-zip.org/recover.html ; its 7z-specific header procedure is deliberately not generalized to ZIP.
+
+Coverage: nmap discovery is already covered; tee/hosts plumbing introduces no new supported task. The unnamed GUI hex editor is not identified as a Linux CLI implementation, so no patching tool package was invented. Excel GUI credential viewing likewise adds no Linux CLI workflow. NetExec credential sprays, Impacket SQL command execution, certutil/nc shell delivery, Evil-WinRM entry, BloodHound intrusion mapping, PowerView owner/DACL/password changes and Certipy certificate-template abuse are excluded from reusable intrusion guidance. Windows net-user/config inspection inside that chain supplies no independently verified Linux invocation.
+
+Corrections: the damaged prefix is `50 48 04 03`, while the candidate prefix is `50 4b 03 04`; the later file label does not show a full CRC test. The successful SQL identity shown is sa, despite prose referring to oscar. BloodHound reports Legacy 4.2/4.3 and failed Kerberos followed by NTLM; it is not evidence of working Kerberos. WriteOwner is followed by separate DACL and password operations, not an immediate password-reset right. Certificate-template restoration is not demonstrated. No source credentials, domains or attack commands were copied. Documentation and source review only; no Linux runtime/worker outcome claimed.
+
+
+### Ethereal.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `1d69618681e2facf98e2eae8874d96c5c87f49f07c466be765949d2deb75138f`; 2,132,947 bytes; 30 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Visual review: pages 5, 17 and 26. HTB Ethereal, egre55; creators MinatoTW and egre55; cover says the impossible date 30 February 2019, retained as a source error, not normalized to an invented date. Schema 0.8: reviewed mount, wget, masscan, openssl, plus previously reviewed file, 7z, tshark and nmap. New losetup and tmux entrypoints reviewed in full and at the first-150-line boundary.
+
+Accepted: independent losetup package for read-only image attachment, partition interpretation and owned cleanup; independent tmux package for separate panes and detach/attach state; OpenSSL adds SHA-256 comparison of transferred artifacts. The source's explicit losetup mapping is not itself a mount command, and its FAT floppy image need not contain partitions. Mount's existing namespace/source/read-only guidance covers actual filesystem attachment. Masscan already preserves TCP/UDP/host attribution, correcting the source pipeline that drops protocol. Wget already warns about recursive scope and verifies downloads; a new FTP mirror task is deferred until its full FTP option grammar is checked (the GNU FTP-options URL failed retrieval). Tshark's live-capture reference covers bounded filters; file/7z cover classification and extraction.
+
+Coverage exclusions: DNS command-output exfiltration, OpenSSL port probing/reverse shells, shortcut substitution and signed malicious MSI delivery are not packaged. PasswordBox is actively run but its private-store recovery and obsolete ncurses32 prerequisite are not sufficiently verified for an independent supported recovery task; do not overwrite an ordinary key store or install it from the PDF. Windows net/fsutil/REG/certutil/MMC/AppLocker/WiX candle/light/makecert/pvk2pfx/signtool steps have no demonstrated Linux invocation; the intrusion payload template is excluded. Shell copy/base64 plumbing adds no separate verified task here. Source SHA-1 comparison gives no actual pair of matching digest outputs; registry policy excerpt is one MSI rule context, not a full host-policy audit, and the final shell is a split-token administrator, not proved elevated.
+
+Primary trails: util-linux losetup manual, tmux upstream Getting Started and OpenSSL 3.5 dgst manual (links in packages). Documentation review only; no loop attachment, Linux runtime, installer or worker trial occurred.
+
+
+### Eureka.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `a1dd5af18294b640ed5f6516784cf110ee1bdab717aeda6e20a5fb4daa5abc4a`; 3,171,981 bytes; 20 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Visual review: physical pages 11 and 19. HTB Eureka, Rogue, creator Spectra199, dated 30 August 2025. Schema 0.8; reviewed bash, pspy, chmod and tee in full/first150, with nmap/wget already reviewed. Accepted a defensive whole-field numeric validation lesson in Bash, using a public HTTP-status grammar; behavioral validation is recorded at batch completion. GNU and man7 manual fetches failed this pass, so no new arithmetic-substitution behavior is claimed from those failed requests.
+
+Already covered: pspy timestamp/UID/process limits and separate file/directory replacement rights; tee replacement vs append/status; chmod file vs directory/ownership; nmap discovery and wget selected downloads. Shell awk/grep/sort/cut/uniq/wc/tail and cp/mv/rm are incidental log/display/file plumbing, with no new independently verified operation. VisualVM/OQL is a GUI heap-analysis workflow, not an established Linux CLI invocation; no collector tool was invented. Dirsearch endpoint probing, exposed heap credential extraction/reuse, Maven-run fake Eureka registration and login interception, log replacement/injection, msfvenom payloads and nc reverse shells are excluded intrusion tasks. Nano and Spring Initializr edit/generation interfaces add no CLI task beyond that excluded service.
+
+Source corrections: nginx's exact /actuator/heapdump location aliases a saved file, so the earlier claim that this request necessarily generates a fresh JVM dump is unsupported here. Eureka is a registry; gateway load balancing is a separate configured client behavior. The application YAML is shown at a root prompt during an earlier user context, so this is not proof of that user's access. Group write on the containing directory differs from in-place write on the file; replacing a log can also leave an existing writer holding the old inode. The prose conditional has a missing quote, while the script listing differs; no exploit expression was preserved. Raw root-owned marker output alone is not independent causation evidence. No source secrets or attack procedures copied; documentation/static review only, no target or worker trial.
+
+
+### EvilCUPS.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `024df8bacbb1e728981374452529ea616c178db3aba848bb434412adc0a6dc63`; 477,086 bytes; 6 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Visual review: pages 5 and 6; page 6 is image-only and shows the PDF viewer, rather than being blank. HTB EvilCUPS, ippsec, creator ippsec, 1 October 2024, D24.100.304. Schema 0.8; full/first150 review: ps2pdf and su; nmap and getfacl already reviewed. Reconciled ps2pdf's early activation/prerequisite/completion contract during the Explore follow-up, preserving selected PostScript conversion with fresh output, parser trust and artifact verification. su already separates a known local credential from verified identity; getfacl explains traversal/read/list distinction. Nmap already distinguishes UDP open|filtered from a confirmed listener.
+
+Coverage: Linux cat/id/listing plumbing is already represented by file/access/identity interpretation. The Python ippserver/exploit, injected printer attributes, foomatic-rip command execution and stolen-print credential reuse are excluded intrusion workflows. The GUI print-queue/test-page interface is not a Linux CLI demonstration. Ghostscript's referenced manual URL was unavailable this pass; existing primary links and earlier verified task are retained without claiming a new documentation result.
+
+Corrections: UDP 631 is actually reported open|filtered, not proved listening. The synopsis names one CVE while the body describes four component vulnerabilities; do not treat a displayed CUPS version as patch status for the whole chain. Directory execute permission permits traversal of a known path and differs from directory enumeration or file read. The source describes the final three digits as a page number; that spool suffix alone should not be used to identify a printed physical page. Conversion in the prose has no captured successful output here; no PDF generation or target/runtime/worker trial was executed.
+
+
+### Explore.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `5a8c4c5bba605606d1eb2bcb228533662342042148cd59c3806b246d03f33b2f`; 4,889,261 bytes; 14 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Visual review: pages 3, 12 and 14. HTB Explore, bertolis (author/creator), 25 October 2021, D21.100.138. Schema 0.8; reviewed adb, ssh and new feh fully/first150; ss/nmap already reviewed. New feh package retains the demonstrated selected-image viewing task with X11/decoder prerequisites and original preservation. ADB gains its missing activation/completion contract; earlier BigBang pp15–23 review date 2026-10-09 and untested runtime history are relocated here from the worker footer, preserving attribution and links.
+
+Already covered: ssh selected-account port and local-forward endpoint semantics; ss listeners; adb device selection, adbd/shell identity and build-dependent root; nmap filtering vs identity. Excluded: Metasploit ES File Explorer enumeration/file theft, stolen-image credential reuse and tunneled root entry. apt installations were not performed and are not skill dependencies. Shell cat/whoami/hosts plumbing adds no task.
+
+Corrections: a known port assignment is not proof of the filtered service's identity; Nmap's guessed HTTP product differs from the later evidence. The page12 screenshot's ss listener establishes local TCP listening, not external reachability or ADB authentication. USB debugging alone does not guarantee network ADB availability or a root-capable build. The shown shell already has a # prompt before adb root; identity and daemon state need separate evidence. Source screenshot shows a genuine whoami result for that example only. Primary feh manual reviewed; no image viewer, Android device, tunnel or Linux worker test executed.
+
+Correction to preceding EvilCUPS entry: physical page6 is image-only, not blank; it shows a PDF viewer with one rendered page. This supports the source author's visual result, not a captured converter status. ps2pdf also received its missing schema0.8 activation/completion contract during this review; record it as changed in EvilCUPS's queue entry.
+
+
+### Extension.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `f33283b037649c67287c33c3e3b1f1f31166594c22deae77ef75fe9d0d4a92c8`; 8,370,761 bytes; 31 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Visual review: pages 11, 18 and 23. HTB Extension, woodenk and C4rm3l0, creator irogir, 13 July 2022, D22.100.186. Schema0.8; jq/tar/md5sum/base64 fully reviewed/first150, with ssh/su/chmod/tee/nmap already reviewed. Accepted jq's encoding/type-aware extraction of a saved API Base64 field; avoids the source's JSON-quote deletion pipeline. Base64 already covers incomplete snippets, container separation and binary output; tar already covers selected-member fresh-directory extraction; md5sum already preserves exact newline-free bytes without authenticity claims.
+
+Coverage: Gobuster/Wfuzz/Ffuf/Burp API and vhost probing, Hashcat compromised hashes, reset-token guessing/repeated requests, XSS/API exfiltration, hash_extender signature forgery/command execution, Python HTTP callback hosting, nc shells, stolen SSH keys and Docker-socket host-root entry are excluded intrusion tasks. wget transfer and chmod/tee/su selected operations are already represented; grep/echo/sed shell plumbing supplies no distinct supported task. PHP shell_exec and browser extension code are static findings, not new tool packages. No source targets/secrets/payloads retained.
+
+Corrections: page11 screenshot has hashes of multiple lengths, so identifying every value as raw SHA-256 is unsupported. Equal hashes suggest equal verifier inputs, not automatically enabled account login. Cookie HttpOnly prevents direct cookie reads, not XSS generally; the demonstrated payload exports API response data rather than the HttpOnly cookie. The diagnostic filter on page19 changes return-empty to remove-substring and is not the original function. Source reset loop uses500 despite prose1000 and later admits cooldown; no statistical success guarantee. Signature value length/secret length are separate, and the tool's actual search starts1 despite prose10. A container directory/socket name alone does not identify host authority. Documentation/static intake only; no Linux/target/worker execution.
+
+
+### Faculty.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `792affbf763136a2e9006831fd38a916b2eba29aacaae6cad2cf2622bd5a5a48`; 7,687,393 bytes; 23 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Visual review: pages14,15,16,18. HTB Faculty, dotguy, creator gbyolo, 28 August2022, D22.100.190. Schema0.8 full/first150 review mail, netstat, getcap, sudo and new npm; ssh/tee/base64/GDB already reviewed. Independent npm package accepts the actively demonstrated global version-inventory task, verified against npm ls primary documentation; global/project scope and dependency diagnostics are preserved. Mail entry gains activation/completion contract; earlier Attended pp5–8 (S-nail), Awkward p24 (GNU Mailutils), review2026-10-09 and untested Linux history are preserved here rather than runtime footer.
+
+Mail's local message-reading task is accounted separately from submission and deferred pending identification of the reading executable/version and checked read/quit side effects. Page15's X-Mailer identifies the sender's program, not necessarily the reader; GNU reading manual returned429. No reader implementation is fabricated. Already covered: sudo exact RunAs, netstat local listener vs reachability, getcap file/process and namespace distinctions, Base64 transport boundaries, SSH account/key prerequisites. Linux ls/id/grep/ps/cat and tee hosts edits are supporting plumbing. Browser decoder and PDF properties/attachment UI are GUI-only, without a demonstrated Linux CLI.
+
+Excluded: SQL login bypass, mPDF local-file inclusion, stolen DB credential reuse, meta-git command injection/key enrollment and GDB privileged-process shellcode/netcat entry. No payloads reproduced. Source scan uses different target IPs in its two stages; hacked.txt prose differs from hack.txt command; authorized_keys is misspelled only in prose. File capability is assigned to GDB, not to a user/group; debug execution mode alone does not prove unrestricted ptrace. A listener alone does not prove injection causation. Documentation/static review only; npm and Linux commands not executed at this checkpoint, no worker/target trial.
+
+
+### Fatty.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `1c0f32e9b72b03342d9de3f6b9247393511d610908a4c07bb7744465bb03486d`; 3,371,433 bytes; 28 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Visual review: pages9,25,27,28, including image-only cron/source commands. HTB Fatty, MrR3boot, creator qtc, cover31th July2020, D20.100.83. Schema0.8; full/first150 review java,javac,zip,ftp,new jar; tar,pspy,chmod,base64,nmap already reviewed. Jar is independently discoverable for listing and selected resource update in a preserved copy; Oracle JDK21 jar semantics checked. Source config-update task retained for benign owned-resource maintenance, with signing requirements and byte verification, without the source's signature-removal bypass.
+
+Already covered: Java launcher/runtime/dependencies, javac output/classpath, ZIP existing-member retention, FTP binary selected transfer, tar member/links, pspy bounded timestamp/UID findings and chmod ownership/mode. Wireshark GUI traffic diagnosis and JD-GUI decompilation have no new Linux CLI here. LinPEAS reconnaissance, ysoserial gadget generation, modified-client traversal/SQL login bypass, deserialization callbacks/shells and tar/scp authorized-key overwrite are excluded intrusion workflows; LinEnum is name-only. scp/SSH telemetry does not independently establish destination privileged extraction. Shell unzip/grep/mv/ln/echo support archive/edit or the excluded chain and add no distinct verified task.
+
+Corrections: FileOutputStream.write(String) sample is not a valid overload; the actual binary response is a byte array. The edited binary-output function opens its destination before checking response error, risking truncation/leaked handle. First SELECT returning no row is not the same as query failure. Deserialization can have effects before a later exception; a user-facing error alone is not proof that nothing happened. Source jar rebuild sequence has conflicting raw-directory transitions and can include the old JAR if packaging everything. Pspy shows one scp source-side command sequence; every-minute schedule, remote identity and extraction require separate evidence. Source screenshots are not our runtime tests. No Java build, archive execution, Linux fixture or worker trial run.
+
+
+### Feline.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `a1130555926aa877c3349e0574e0f44f18ce4bdabccb43415b535ad2896abfd5`; 2,837,207 bytes; 14 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Visual review: pages3,5,10,14. HTB Feline, felamos, creators MinatoTW and MrR3boot, 21th Dec2020, D20.100.103. Schema0.8 full/first150 review curl and chisel; netstat/java/base64/wget/chmod/nmap already reviewed. Accepted curl's independently usable local Unix-socket read-only HTTP procedure, preserving response/status and endpoint attribution. Primary curl manual --unix-socket checked. Chisel already covers exact reverse direction, explicit loopback, authentication and destination verification; no new tunnel recipe needed.
+
+Coverage: Tomcat session traversal/deserialization and ysoserial, Python Salt authentication bypass/directory traversal/RCE, ncat/nc shell delivery and Docker create/start host-root escape are excluded intrusion chains. Burp/FoxyProxy upload manipulation is a GUI security-test flow, not a new Linux CLI. pip/apt tool installation is not part of intake. Shell echo/cat and HTTP hosting/download operations are ancillary/already covered.
+
+Corrections: actual Nmap version9.0.27 differs from synopsis9.0.35; version alone does not verify the vulnerability's configuration prerequisites. Commons FileUpload appearing in a stack trace does not prove a usable CommonsCollections gadget version. The removed-filename exception is directory-file collision, not reliable ENOTDIR attribution. Chisel source omits decompression of the .gz before chmod/run. The Python connection check treats every non-timeout response as ONLINE without checking response semantics. Final screenshot uses a container-shaped hostname, so the prose's host-root attribution remains unverified. No source exploit commands or secrets copied. Documentation/static review only; no socket, tunnel, Linux or worker execution.
+
+
+### Fighter.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `2ec1c50ed747bcc5ce61f13a7993a8730831616cdd3d398d91591fcb5f3ecde1`; 972,615 bytes; 14 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 14 physical pages were read; rendered pages 3, 9, 11 and 12 were inspected for service output, baseline comparison, exploit-check context and the graphical reversing result.
+
+Tool/task coverage:
+- **Added `xclip`:** page 4 actually transfers a wordlist through the X clipboard. The independently installable package retains only selected benign text transfer and readback, explicit selection/display prerequisites, ownership lifetime and the distinction between readback and a successful application paste. The upstream xclip manual verified `-in`, `-out`, `-selection`, default primary selection, `DISPLAY`, background ownership and request-count semantics. No X11 runtime was available.
+- **Already covered, no cosmetic changes:** `vim` selected editing/recovery, `diff` comparison against a matching baseline and hunk/status interpretation, `masscan` scoped port-output handoff, and `nmap` selected follow-up. The source's Vim macro is dependent on cursor position and its particular 254-line input; it is not a reusable fixed repeat count. Existing conforming entrypoints were reviewed in full; no extra hosts-file enumeration workflow was added.
+- **Deferred discovery:** CeWL-generated words are actually used, but the source gives no CeWL invocation or generation settings. IDA and CyberChef are GUI workflows; Windows `sc`, `driverquery` and OSVersion are not Linux CLI tasks. The screenshot demonstrates Linux `diff` despite the surrounding prose describing Windows inventory.
+- **Excluded:** Wfuzz/Gobuster target discovery, Burp SQL injection, xp_cmdshell/blacklist and AppLocker bypasses, Nishang/Invoke-Obfuscation, msfvenom/Meterpreter payloads, Capcom driver exploitation and removal of exploit checks, and extraction of the executable's password. These were read but not converted into intrusion procedures.
+
+Interpretation corrections: the printed `Nmap` capitalization differs from the lowercase screenshot invocation; a banner is not proof of an exact Windows edition. The text alternates Server 2012 and 2012 R2 for the proposed baseline, so an inventory difference requires a matching build and roles. The screenshot's commented `check_result` branch tests exploit suitability; the displayed architecture checks remain elsewhere. The claim that this was merely an architecture-check failure is not established by the displayed fragment.
+
+Acceptance: documentation review only; no source commands, target contacts or agent trials. `xclip`, `vim`, `diff`, `masscan` and `nmap` were reviewed; only `xclip` changed.
+
+
+### Fingerprint.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `07267689cfff7177c4200a45d004f6022ce04f1ffc7167745c788293bb593438`; 14,360,725 bytes; 40 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 40 physical pages were read, including the Java classes, full POM and cryptographic scripts; rendered pages 3, 9, 14, 17, 30 and 34 were inspected. Text omitted by one truncated tool result was separately reread on pages 20–21.
+
+Tool/task coverage:
+- **Already covered:** `curl` separates redirect headers/body, literal path semantics and transport/application results; `base64` isolates a captured field and checks recovered bytes; `file` distinguishes a format signature from parser integrity; `strings` is static triage rather than a language or execution proof; `unzip` inspects and recovers selected archive members. Existing conforming entrypoints were read fully; the source contributes no useful benign delta, so they were not changed. `nmap`, `find` and `ssh` discovery/selected-connection tasks also remain covered by existing packages.
+- **Excluded:** Gobuster/Wfuzz discovery and path traversal, Burp access-control/HQL injection and XSS session theft, JWT forgery, Maven/Java construction of a custom deserialization gadget and command payload, Netcat reverse-shell collection, privileged cmatch/Python private-key extraction, credential reuse and ECB oracle/session forgery. Maven's actual `package` invocation belongs to the exploit project; no runnable exploit build was packaged. `cmatch` is a challenge-specific binary without a reusable public tool contract. JD-GUI and jwt.io are graphical/web workflows, not demonstrated Linux CLI decompilation/token commands.
+
+Interpretation corrections: the displayed browser-attribute hash is browser fingerprinting, not a biometric measurement. An error after token tampering alone does not prove deserialization; the later recovered implementation supplies stronger evidence. Java path normalization does not enforce containment. `Profile.getForUser` checks `isFile`, attempts creation, then unconditionally reads through storage; a caught write exception is not a successful profile creation. An internal listener missed remotely need not be firewall-filtered; binding and routing also matter. Python 2-style `.encode('hex')` and Java byte/string snippets are version-dependent source material, not commands verified on the current image. The cover date (2021) and D22 document identifier are retained as source metadata without inventing a correction.
+
+Acceptance: no package changes; documentation review only. No runtime tests, target contacts or agent trials were performed. Reviewed packages: `curl`, `base64`, `file`, `strings`, `unzip`, `nmap`, `find`, `ssh`.
+
+
+### Flight.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `cbdb8d438887871178f66432db8cf90d76915dec37da21052d52b741a3d0e555`; 10,777,760 bytes; 21 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 21 physical pages were read; rendered pages 2, 7, 11, 19 and 20 were inspected. The extractor recovered around one incorrectly pointing object; it did not report a missing text page.
+
+Tool/task coverage:
+- **Reconciled `smbmap`:** the whole entrypoint was reviewed, its required full-read/selected-task/completion contract added, and source/test history moved here. Existing no-write-check inventory and selected recovery already handle the useful share-access task; no spraying or shell upload was added. Preserved history: Atom pp. 6–7, documentation review 2026-10-09, Linux execution untested. Primary usage/implementation links remain in the skill.
+- **Already covered:** `impacket-smbclient` selected share/file operations and transfer checks; `tee` deliberate append with post-write verification; `ntpdate` query before requested clock correction; `base64` byte recovery; `nmap` service evidence. Those complete entrypoints were reviewed and need no cosmetic changes.
+- **Excluded:** Ffuf/LFI/UNC credential coercion, Responder/John captured-authentication recovery, lookupsid plus CrackMapExec spraying, ntlm_theft coercion files, PHP/ASPX shells, Sliver C2 implants/SOCKS/armory, RunasCs, Rubeus ticket delegation, kirbi2ccache as part of DCSync, secretsdump/psexec and SweetPotato escalation. Python's server is used to stage an implant, not an independent benign serving task. FoxyProxy and Visual Studio are GUI workflows.
+
+Interpretation corrections: page 2 reports `clock-skew: 7h00m02s`; its excerpt does not show the estimate's derivation. The existing ntpdate query measures offset before any requested host-clock correction. Many open ports alone do not prove the DC role. A share's name does not prove it is browsed by other users. Virtual-account network identity does not grant arbitrary replication rights. Page 20 actually shows SeImpersonatePrivilege enabled for that token; it does not establish a universal rule for every virtual account. The source's security-product evasion claims were not tested or retained as promises.
+
+Acceptance: documentation review only, no target contacts, uploads, source execution or agent trials. Reviewed `smbmap`, `impacket-smbclient`, `tee`, `ntpdate`, `base64`, `nmap`; changed only `smbmap`.
+
+
+### Fluffy.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `10726e7e84d8cb0a95fd5fab3b88c0fddcca4483da944628b84222a2570ade77`; 669,806 bytes; 13 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 13 physical pages were read; rendered pages 4, 7, 8 and 11 were inspected, including the image-only graph on page 7. Extraction recovered around two incorrectly pointing objects.
+
+Tool/task coverage:
+- **Already covered, no useful benign delta:** `smbclient` selected share/file recovery with an explicit identity and transfer checks; `tee` inspected hosts-record append; `ntpdate` query/requested correction; `nmap` service and clock evidence. These complete current-schema entrypoints were reviewed. No cosmetic changes were made.
+- **Excluded:** CrackMapExec account/share/ADCS discovery as part of the intrusion, the CVE-2025-24071 PoC clone and ZIP generation/upload, Responder credential interception, Hashcat recovery, BloodHound-Python attack-path collection and Neo4j/BloodHound graphical analysis, bloodyAD group mutation, Certipy shadow credentials/account UPN/certificate impersonation, and Evil-WinRM access. The rendered notice is source material, not a Linux PDF-reading invocation; no new viewer command was invented.
+
+Interpretation corrections: the synopsis has `winrc_svc`, whereas the later commands identify `winrm_svc`. Certipy's page 11 output explicitly warns that other prerequisites may be required and says it could not find templates; that is not a complete template inventory or proof of universal exploitability. Page 10 labels its recovered material `NT hash`, although the surrounding prose calls it an RC4 password hash. Restore messages concern the particular key-credential operation; they do not prove every later account change was restored. A displayed NTLM authentication response with SNIP markers is incomplete raw input. CVE severity labels in the in-story notice were not accepted as verified vendor ratings. Remote Management Users membership alone does not establish that every WinRM endpoint or policy accepts the account.
+
+Acceptance: source/documentation review only, no package changes, target contacts, source execution or agent trials. Reviewed `smbclient`, `tee`, `ntpdate`, `nmap`.
+
+
+### FluJab.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `8d9ea469112a673433c55daf9bbe3e7a03ec8e20a15c29c1e7c5a4a780ad1681`; 1,473,611 bytes; 30 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 30 physical pages were read; rendered pages 18, 23, 27 and 30 were inspected for query fields, key-size output, PATH context and the different Screen invocation.
+
+Tool/task coverage:
+- **Reconciled `screen`:** reviewed the whole session task, added its full-read/selected-task/completion contract and actual-executable resolution when multiple installations differ. The benign retained delta is executable/version attribution, not the SUID logging exploit. Moved prior history here: Backdoor pp. 12–15, documentation reviewed 2026-10-09, Linux execution untested. The primary GNU manual link remains; a fresh fetch timed out, so no new option semantics are claimed verified from that fetch.
+- **Already covered:** `ssh-keygen` selected public-key fingerprint/identity inspection, `find` scoped permission search with retained diagnostics, `tar` archive inspection and selected recovery, `nmap` service evidence, and `ssh` actual authentication/session context. Complete entrypoints reviewed; no other package delta was needed. The source's `ssh-keygen -l -f` output already fits the identity task; its 4096-bit value is an observed artifact, not a required key size.
+- **Excluded:** Burp cookie/configuration and client-validation bypass, SMTP redirection and Python SQL-injection collection, John/ssh2john credential recovery, Ajenti unauthorized file reads/writes, predictable-key corpus lookup and reuse, access-control edits and restricted-shell escape, GNU Screen SUID/ld.so.preload exploit and GCC root-shell compilation. Python HTTP/Wget stages those exploit binaries. Ajenti is a web UI, not an independent Linux CLI tool here; OpenSSL PRNG is named background rather than an actual openssl command.
+
+Interpretation corrections: certificate SAN names are candidates, not verified working virtual hosts. The extracted SQL record says `sysadm`; prose briefly says `sysadmin`. `concat_ws` omits NULL arguments, so positional field attribution can shift; a rendered row cannot silently be assigned the original schema's fixed indices. The ssh2john output is `key.hash` but the following John command uses `hash`, so that sequence is not a verified continuous pipeline. The first find command discards stdout rather than stderr. The Screen error reports socket-directory mode, not direct proof of a version; the later different executable is the source's recovery, with no current-image path inferred.
+
+Acceptance: documentation review only, no target contacts, source commands or agent trials. Reviewed `screen`, `ssh-keygen`, `find`, `tar`, `nmap`, `ssh`; changed only `screen`.
+
+
+### Flustered.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `6be92bf2bfe5f900e036fe66dd110bf58a035b2309ed9256d2e991314eb78ee7`; 11,026,555 bytes; 16 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 16 physical pages were read; rendered pages 4, 5, 6, 10 and 14 were inspected for filesystem logs, structured database result versus strings, certificate context and endpoint options.
+
+Tool/task coverage:
+- **Added `gluster`:** the source actively uses remote volume listing. The narrow storage-administration task now covers an established selected node, volume list/info and control-plane visibility versus mount/file access. Upstream gluster.8 verified remote-host and volume command grammar. Client DNS/TLS failure interpretation is retained without stolen certificates or home-directory writes.
+- **Added `az`:** the demonstrated blob recovery exposed a useful endpoint-selection delta. The independent package has a small required route to selected Azurite object metadata/download, protected environment connection configuration, explicit emulator URL/namespace and file/status validation. Microsoft CLI/Azurite primary docs verified connection-string environment support, file output and path-style endpoints. Container/blob listing are actively used in the source; broad credential-led inventory and private-key recovery are excluded, while a narrow selected ordinary blob task is accepted.
+- **Already covered:** `mount` namespace/source attribution, `mysql` structured queries and client/server distinction, `strings` static triage without row attribution, `curl` proxy/request evidence, `ssh` forwarding context, `tee` deliberate append, `base64`, `nmap`. Complete entrypoints were reviewed; no cosmetic changes. The mount package remains its supported block-filesystem task; a new Gluster network mount/credential provisioning procedure is deferred pending complete client configuration and filesystem-specific semantics.
+- **Deferred:** reconstruction of a MariaDB data directory in Docker requires a coherent acquired backup, original storage engine/version/configuration and isolated recovery setup. The source's simple recursive copy and socket plugin do not establish those prerequisites, so no database-startup recipe was accepted. IP interface inspection is used but does not itself prove container ownership.
+- **Excluded:** stolen Squid credentials and internal web discovery, Gobuster/Jinja command payloads and Netcat reverse shell, copied private Gluster credentials, authorized_keys planting, ProxyChains intrusion scanning and cloud/private SSH-key extraction/use. Storage Explorer is a GUI alternative, not a demonstrated CLI task.
+
+Interpretation corrections: strings output does not preserve database records, although the separate SQL screenshot does show one particular row. A default Nginx page does not prove loopback-only binding. The synopsis calls the final key public, but the later envelope is an OpenSSH private key. A 2022 cover coexists with 2025 HTTP/session timestamps, so source version examples are historical rather than one contemporaneous capture. Azurite release date alone does not prove a mandatory old CLI; endpoint misrouting is independently demonstrated by the displayed public-host debug line. No current Linux executable paths or cloud settings were inferred.
+
+Acceptance: documentation review only; no Gluster/Azure/MariaDB/Docker runtime, source execution, target contacts or agent trials. Reviewed `gluster`, `az`, `mount`, `mysql`, `strings`, `curl`, `ssh`, `tee`, `base64`, `nmap`; changed `gluster`, `az`.
+
+
+### Forest.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `ff94d8206341ed90948af5f30a634305bdc3d4ec0aa23528f191ded346b6c1de`; 433,479 bytes; 9 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 9 physical pages were read; rendered pages 3, 4, 7 and 8 were inspected for bind/object output and graphical versus command evidence.
+
+Tool/task coverage:
+- **Reconciled `windapsearch`:** reviewed the entire existing Python-implementation task and added required full-read/task/completion activation near the top. Existing bounded object/attribute guidance already covers the source's directory inspection and preserves script-versus-Go distinctions; no broad attack-path collection was added.
+- **Already covered:** `ldapsearch` simple-bind selection, naming context, scope/attributes and incomplete results; `tee` deliberate append; `nmap` service evidence. Complete entrypoints reviewed without cosmetic changes. In particular the source's claim that `-x` itself means anonymous is already corrected by the ldapsearch skill's simple-bind explanation.
+- **Excluded:** Impacket GetNPUsers account roast collection, John recovery, Evil-WinRM foothold/SharpHound upload, BloodHound attack graphs, Windows account/group creation, PowerView replication-ACL changes, secretsdump DCSync and psexec access. SharpHound/BloodHound examples are Windows/GUI stages rather than new independently installable Linux benign commands here.
+
+Interpretation corrections: source scan commands point to 10.10.10.10 while the reported host and later operations point to 10.10.10.161. The custom query output says 312 results; prose says 313 unique objects, with no deduplication evidence. Exchange-related directory objects indicate configuration/history, not necessarily a currently installed/running Exchange service. The source's one service-account setup assertion cannot be generalized to all installations. A failed RemoteOperations stage coexists with later DRSUAPI output; preserve stage-specific outcomes rather than treating the whole process as either a complete failure or a clean success. No cleanup of account/group/ACL changes is demonstrated by the secretsdump cleanup label.
+
+Acceptance: documentation review only, no source execution, target contacts or agent trials. Reviewed `windapsearch`, `ldapsearch`, `tee`, `nmap`; changed only `windapsearch`.
+
+
+### Forge.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `6ad46aa91c9b45aa29df30a21a417b80ae1c0a8098f7b59dcf075d01e53a4bfe`; 4,044,412 bytes; 14 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 14 physical pages were read; rendered pages 2, 7, 12 and 13 were inspected for scan state, actual callback implementation and the script/terminal exception path.
+
+Tool/task coverage:
+- **Enriched `python3`:** the full entrypoint was reviewed and a conditional reference added for stack/source inspection after an owned local reproduction fails under pdb. It covers actual execution, debugger startup commands, post-mortem frame navigation, lifecycle and environment limitations without triggering a privileged service or spawning a shell. Python's primary pdb manual verified CLI post-mortem behavior, arbitrary-expression and startup-command effects. Local fixture validation is recorded separately at batch completion.
+- **Already covered:** `curl` response evidence, `tee` deliberate append, `ssh` identity/session context, `nmap` filtered-versus-open evidence. The full `ps` entrypoint and existing `ss` guidance cover process/listener inspection, but the source merely defines those menu actions rather than demonstrating their successful selection. No extra inventory was invented.
+- **Deferred discovery:** `df` is present as a command string in the menu, but no successful df task/result is shown; it measures filesystem capacity, despite the menu's free-memory label. No df package was added from this unexecuted branch.
+- **Excluded:** Gobuster target/vhost enumeration, SSRF redirect/filter bypass and FTP/private-key exfiltration, Netcat callback response staging, sudo service-error triggering and privileged pdb shell escape. The screenshot identifies Ncat behind the `nc` name, so its command spelling is not a portable netcat contract.
+
+Interpretation corrections: page 2 shows two open ports and one filtered port, not three open ports; filtered does not identify an FTP implementation or the exact filtering cause. A hostname redirect alone does not prove multiple virtual hosts. Renaming an uploaded file without an extension does not prove that it cannot execute under every server mapping. Repeated `>> response` appends accumulate multiple responses rather than replacing one; newline-only HTTP framing depends on receiver tolerance. pdb's prompt belongs to the original process terminal/context, not automatically the network client. The accepted branch retains local debugging only.
+
+Acceptance: documentation review, no source execution, target contacts or agent trials. Reviewed `python3`, `curl`, `tee`, `ssh`, `nmap`, `ps`, `ss`; changed only `python3`.
+
+
+### Forgot.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `bf6851d52177d8fa4f0ce848134622071dc446b451a08468c3640166a5723cb9`; 4,099,557 bytes; 14 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 14 physical pages were read; rendered pages 5, 10, 12 and 13 were inspected for request methods, cookie naming, dependency inspection and the displayed diagnostic/result sequence.
+
+Tool/task coverage:
+- **Enriched `python3`:** reviewed the entire entrypoint and evaluation-flow reference. Added an inline distribution-metadata query for the source's dependency-version task, distinguishing distribution/import names, the selected interpreter/search path and module initialization. Python's primary importlib.metadata documentation verifies the version API and missing-distribution exception. Existing evaluation-flow guidance already covers indirect library evaluation and effects preceding a final result. Framework exploitation is excluded.
+- **Already covered:** the full `curl` entrypoint covers matching status/headers/body, redirects and cache interpretation; existing `ssh`, `sudo` and `nmap` guidance covers session identity, exact policy and service-evidence limits. Incidental head/ls/id plumbing adds no separate workflow.
+- **Excluded:** Host-header password-reset interception, session/cached credential acquisition and web-cache deception, privileged TensorFlow input injection, persistence and SUID shell creation. Python's HTTP listener is used only for token interception here, not an accepted server task. No vulnerable framework or source payload was installed or executed.
+
+Interpretation corrections: the requests use a session Cookie, despite prose calling it an Authorization header. Two HEAD status lines alone do not establish equal cached GET bodies or Varnish's actual policy. Varnish's presence does not prove every static-looking path is cached. Importing TensorFlow to read its version executes initialization, and a version alone does not prove a reachable vulnerability. Page 13 displays CUDA-loader diagnostics and a subsequent file listing; an error/warning does not establish that all earlier effects rolled back. The source's CVE attribution remains a writeup claim, not a reproduced finding.
+
+Acceptance: documentation review only; no source execution, target contacts or agent trials. Reviewed `python3`, `curl`, `ssh`, `sudo`, `nmap`; changed only `python3`.
+
+
+### Forgotten.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `a6bfd112f4f0ad3c82b6ee8ed399f26b7f74fe9687df5163535af0dbe31eab0b`; 1,656,322 bytes; 11 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 11 physical pages were read; rendered pages 4, 6, 10 and 11 were inspected for actual image/port arguments, application version, mount evidence and file metadata.
+
+Tool/task coverage:
+- **Added `mktemp`:** independent GNU-coreutils task for unique file creation in an explicitly selected existing directory, retaining the returned path, creation failure, mode/umask and exact cleanup. The upstream-authored coreutils manual distributed by Debian verifies creation and option semantics. The source's cross-context privilege procedure is excluded; the accepted task is ordinary local file creation.
+- **Already covered:** full `docker` entrypoint and inspection reference support daemon/image selection, published addresses and limits of mount/environment attribution; full `mount`, `netstat`, `script`, `find` and `zip` entrypoints cover existing mount display, listener/process limits, util-linux PTY child lifecycle, incomplete searches and archive updates. Existing `sudo`, `ssh`, `git`, `curl`, `chmod`, `su`, `bash`, `nmap` guidance was reused in current context. These skills need no cosmetic changes.
+- **Excluded:** installer takeover through an attacker database, malicious plugin retrieval/packaging/upload/execution, Netcat callback, environment credential reuse and container/host set-ID escalation. Feroxbuster/ffuf discovery appears only in that intrusion workflow. No MySQL server was installed or exposed.
+
+Interpretation corrections: the source says MariaDB but invokes the MySQL image with a mutable latest tag. A published wildcard listener does not prove remote database authorization. Page 6 displays LimeSurvey 6.3.7+231127; compatibility edits and that banner alone do not independently verify the claimed CVE applicability. The synopsis mentions a writable Docker socket/privileged-container escape, but the demonstrated final path instead uses a shared directory and set-ID file. One shared-device mount row alone does not identify its host source. The later same-name zero-byte file listing is supporting evidence, not a universal identity/mount-policy guarantee. Source credentials and target paths were not copied into the new skill.
+
+Acceptance: documentation review only; no source execution, target contacts or agent trials. Reviewed `mktemp`, `docker`, `mount`, `netstat`, `script`, `find`, `zip`, `sudo`, `ssh`, `git`, `curl`, `chmod`, `su`, `bash`, `nmap`; changed only the new `mktemp` package.
+
+
+### Format.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `d96efdcbf4c2a8e6deba5499e0a6d43dd26a1604622b31240b93dcd9601eb4f0`; 5,718,971 bytes; 21 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 21 physical pages were read; rendered pages 7, 9, 11, 12 and 19 were inspected for file-read versus execution, actual download headers, PHP guards and format-template construction.
+
+Tool/task coverage:
+- **Enriched `redis-cli`:** reviewed its full entrypoint, added the activation/completion contract and the configured Unix-socket transport with separate filesystem/authentication requirements. Existing SCAN/type/selected-field guidance already covers the benign administrative read task; the source's credential extraction and account mutation are excluded. Redis's primary CLI documentation verifies -s overriding host/port and authentication options. Relocated prior provenance here: Atom pp. 3, 13–15, reviewed 2026-10-09, Linux execution untested.
+- **Enriched `python3`:** reviewed entrypoint and evaluation-flow reference; added a compact static-review/remediation distinction between a template assembled from external data and a fixed template taking string values. Python's primary format syntax documentation verifies this mechanism. No secret-reading payload or license-generation workflow was retained.
+- **Already covered:** full `php` entrypoint covers source and server-mapping limits; current `curl`, `ssh`, `sudo`, `su`, `tee`, `nmap` guidance covers response evidence, identity, exact grants and append behavior. No cosmetic revisions.
+- **Excluded:** Burp-assisted file read/write, custom Python disclosure automation, Nginx-to-Redis protocol injection, entitlement/account mutation, PHP backdoor and Netcat/FIFO shell, secret disclosure through a privileged license manager and root credential reuse. No exploit or license material was retained in packages.
+
+Interpretation corrections: page 2's command and output use different target IPs. file_get_contents reads bytes; it does not include/execute PHP source by itself. Content-Disposition attachment influences the client and does not determine server-side PHP execution; page 11 also shows source bytes in the body. Directory execute bits permit traversal, not PHP interpretation. A string value "false" is distinct from PHP Boolean false and the complete guard matters. A 502 does not establish that no upstream mutation happened. Python format-field lookup is not by itself arbitrary code injection; the presented final result is secret disclosure/password reuse. Useful defensive distinctions were retained without the reproduction chain.
+
+Acceptance: documentation review only; no source execution, target contacts or agent trials. Reviewed `redis-cli`, `python3`, `php`, `curl`, `ssh`, `sudo`, `su`, `tee`, `nmap`; changed `redis-cli`, `python3`.
+
+
+### FormulaX.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `d2a8be38f838a088b5e068d56ee20b180573171f5522c912a2664ad73bea7185`; 30,998,135 bytes; 27 physical pages. Text from every page was read. Extraction emitted PDF-recovery diagnostics; see the local extraction record. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 27 physical pages were read; rendered pages 9, 13, 23, 24, 26 and 27 were inspected for callback method/status, legacy database context, asynchronous handler branches and the destructive redirection example.
+
+Tool/task coverage:
+- **Added `mongo`:** independent legacy-shell package for the useful database/collection metadata task actually demonstrated, separating selected database, authentication and client/server versions. The official v4.4 documentation source verifies URI/startup/authentication options and shell helpers; the older website redirects or exposes no manual body, so the original documentation repository was used. No document/hash retrieval procedure was accepted.
+- **Added `tr`:** independent separator-to-newline transformation of an owned acquired text file, with fresh output, byte-locale semantics and incomplete/format checks. The upstream-authored coreutils manual distributed by Debian verifies translation arrays and C-locale behavior. The source's private-key exfiltration/use is excluded.
+- **Already covered:** full `node` entrypoint and existing Socket.IO reference distinguish protocol/session contracts; current `base64`, `netstat`, `ssh`, `script`, `stty`, `tee`, `chmod`, `sudo`, `python3`, `git`, `nmap` guidance covers captured bytes, listener families/process gaps, selected forwarding and terminal/context limits. GUI LibreOffice and name-only unoctl/pyLibreOffice mentions add no independently demonstrated benign CLI task.
+- **Excluded:** stored XSS/admin message theft, ext-transport Git command execution, MongoDB credential dumping/John cracking/reuse, forged Scapy SNMP traps and LibreNMS XSS/RCE, Netcat shells, privileged UNO formula file disclosure, pip installation of that exfiltration tooling and stolen SSH-key use. A generic spreadsheet interaction package was not inferred from this exclusively disclosure-oriented UNO sequence.
+
+Interpretation corrections: Socket.IO is not a raw WebSocket contract. Page 9's encoded request is an OPTIONS request returning 501, not a successfully served GET body. A "failed to clone" message alone does not prove the precise library method. The % escaping claim is specific to Git's ext transport, not every remote URL. Mongo collections are not SQL tables; shell 4.4.29 and server 4.4.8 are separate versions. The shown Mongoose call is not awaited, so surrounding synchronous try/catch and immediate success text do not establish connection success. A UDP bound socket does not prove trap authentication policy. The Node exit branch returns success without checking its code, and stderr data also sends success; neither verifies service readiness. The listener listing omits process attribution and therefore does not prove root ownership. UNO edits are executed by the connected office process, not by a generic XLSX writer. Page 27 redirects to the same input pathname and can truncate it before reading; the new tr task fixes this without retaining key material.
+
+Acceptance: documentation review only; no source execution, target contacts, database/UNO sessions or agent trials. Reviewed `mongo`, `tr`, `node`, `base64`, `netstat`, `ssh`, `script`, `stty`, `tee`, `chmod`, `sudo`, `python3`, `git`, `nmap`; changed the new `mongo`, `tr` packages.
+
+
+### Fortune.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `baba9156c37fa4b43dd0fb1608a29d89075cc1df644bf7d883f279615d81e36b`; 928,346 bytes; 18 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 18 physical pages were read; rendered pages 3, 8, 10, 15, 16 and 18 were inspected for TLS failure, gateway session behavior, denied NFS traversal and the precise crypto/call site.
+
+Tool/task coverage:
+- **Enriched `openssl`:** reviewed entrypoint and PKCS#12 reference; merged the useful bundle-export task for an already issued owned identity into that reference, with separate input/export passwords, extra-chain inclusion versus trust and inspection. Primary OpenSSL documentation verifies export semantics. CA-key theft/unauthorized issuance remains excluded.
+- **Conformed `mount-nfs`:** reviewed its whole task and added the missing full-read, required-tool and completion/cleanup contract. Existing read-only export, effective mount, identity and locking procedures retain the relevant operational knowledge; no host UID impersonation was added.
+- **Already covered:** full `showmount` and `scp` entrypoints distinguish advertised exports, actual file permissions and live-database copy consistency. Current `ssh`, `mount`, `su`, `python3`, `nmap`, `tr` guidance covers endpoint/namespace/interpreter limits. Incidental grep/cat/ls plumbing adds no separate task.
+- **Deferred:** sqlitebrowser is a GUI consumer rather than a Linux CLI skill; no CLI workflow was fabricated as its observed execution. BSD authpf and PF changes are outside the supported Linux tool runtime, despite Linux SSH being the client.
+- **Excluded:** Burp command injection/custom Python command oracle, CA-key theft and certificate forgery, unauthorized gateway access, NFS UID impersonation/useradd/key planting, credential acquisition/decryption/reuse and root switching. The synopsis's SUID-drop step is not the procedure actually shown.
+
+Interpretation corrections: a generic TLS handshake-failure alert alone does not identify missing client credentials. An intermediate CA can issue allowed end-entity certificates beyond just server certificates. authpf applies the configured gateway policy during a session; it is not a universal firewall bypass, and this source uses an OpenBSD host while citing FreeBSD text. An export advertised to everyone does not establish per-file read/write or squashing behavior. The source decrypts with AES CFB, not the existing CBC task; no cross-mode substitution was retained. Its pad function handles key material, not ciphertext block padding, and its Python-2/3 branch requires actual byte/string inspection. The source's database password equals root's only by the described reuse, not the field name.
+
+Acceptance: documentation review only; no source execution, mounts, target contacts or agent trials. Reviewed `openssl`, `mount-nfs`, `showmount`, `scp`, `ssh`, `mount`, `su`, `python3`, `nmap`, `tr`; changed `openssl`, `mount-nfs`.
+
+
+### ForwardSlash.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `4489a89253bca5241a3ddf12add5d914962fd2d8c24525c508498727fd70939a`; 2,662,195 bytes; 21 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Reviewed under schema v0.8 on 2026-10-11. All 21 physical pages were read; rendered pages 5, 13, 16, 20 and 21 were inspected, including image-only page 5, checksum bytes, exact sudo arguments and LUKS/mount state.
+
+Tool/task coverage:
+- **Conformed `cryptsetup`:** reviewed the full existing LUKS-copy task, added activation/completion and explicit tool/authority prerequisites, and reconciled restricted sudo subcommand/name/path grants with the wider inspection/cleanup examples. Existing known-passphrase read-only mapping, filesystem selection and unmount-before-close guidance already covers the useful recovery procedure. Prior provenance relocated here: Arkham p. 5, documentation reviewed 2026-10-09, Linux execution untested. No target paths or recovered key were retained.
+- **Already covered:** full `md5sum` entrypoint distinguishes newline/text/digest bytes; current `file`, `mount`, `sudo`, `wget`, `chmod`, `ssh`, `su`, `curl`, `python3`, `git`, `nmap`, `nano`, `tr` guidance covers format/identity/transfer/selected-edit limits. No cosmetic rewrites or fabricated Linux execution.
+- **Excluded:** Gobuster vhost discovery in the intrusion chain, disabled-form LFI/SSRF and XXE FTP credential capture, Responder acquisition/execution and credential reuse, LinEnum privileged-target discovery, time-derived SUID symlink disclosure and custom cipher key recovery/private-key login. Shell date/echo/cut/xargs/touch/ln plumbing participates in that excluded disclosure sequence, rather than a separate accepted task.
+
+Interpretation corrections: 302 is a temporary redirect and does not independently prove a virtual host. The displayed vhost command has malformed http:/ spelling. HTML disabled inputs are a client property; the parameter name alone does not establish file inclusion. The first XML example defines an internal entity, not an external one. Git clone's default folder does not match the later Responder-master spelling, and the displayed bare Responder command lacks interface configuration. The checksum input uses colons, not semicolons; loss of an error message alone is weaker evidence than verified file content, and separate time reads can cross a second. The crypto algorithm updates state across rounds modulo 256; the prose's multiply-by-key-length expression is not an exact model. range(1,100) omits 100, and the claimed key-length-versus-message restriction is unsupported by the shown encrypt loop. Nonprintable output cannot simply be discarded when reconstructing exact key bytes. Page 20's listing shows root ownership despite the prose's pain claim. A LUKS signature/opened mapper does not identify the inner filesystem, and a private-key filename does not identify its authorized account. The final screenshot prompt alone is not an independent identity result.
+
+Acceptance: documentation review only; no source execution, target contacts, cryptographic cracking, mounts or agent trials. Reviewed `cryptsetup`, `md5sum`, `file`, `mount`, `sudo`, `wget`, `chmod`, `ssh`, `su`, `curl`, `python3`, `git`, `nmap`, `nano`, `tr`; changed only `cryptsetup`.
+
+
+### Freelancer.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `5c16239767f3c265bf45feba253e90a8fa5a6cc8deed62219d62311519fabb66`; 651,372 bytes; 23 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Schema review: v0.8. Reviewed complete `memprocfs`, `impacket-smbserver`, `impacket-mssqlclient`, `7z`, `base64` and the already reviewed `nmap`, `ntpdate`, `sudo`, `tee`, `python3` tasks. All 23 text pages were read; a truncated first result in pp. 14–15 was reread explicitly. Rendered and inspected pp. 8, 11, 16–18 and 20, covering QR bytes, SQL metadata, archive expansion, MemProcFS startup/plugin effects, cracking status and restored account fields.
+
+Accepted: new independent `memprocfs` for a protected offline dump's parser/system identity and Linux FUSE lifecycle. The source actually initializes MemProcFS 5.9.14 on Linux and reports x64 Windows kernel 10.0.17763 before its excluded credential extraction branch. Verified primary CLI, Linux prerequisites and read-only `sys/sysinfo/sysinfo.txt`; Python plugins and symbol-server downloads are explicitly disabled for the retained metadata task. The source's `-forensic 0` is not copied as an enabled forensic mode: current docs list modes 1–4. The older CLI wiki's Linux symbol-support note conflicts with the README's v5.4 release notes; the skill requires installed-build matching and makes no blanket unsupported-symbol claim. Reconciled the SMB server's whole activation/completion contract, preserving authentication, binding, share permissions, dialect and transfer-integrity guidance. Reconciled MSSQL client's activation contract and corrected grantor-versus-permission-target interpretation. Archive and base64 handling are already covered without another example.
+
+Coverage: MemProcFS metadata added; Impacket SMB transfer and MSSQL context inspection enriched; `7z`, `base64`, `nmap`, `ntpdate`, `sudo`, `tee`, `python3` unchanged after review. Excluded actual QR/IDOR account takeover, ffuf account enumeration, admin SQL Terminal abuse, impersonation/xp_cmdshell, Netcat/PowerShell shells, RunasCs identity switching, NetExec spraying, regsecrets/pypykatz installation and secret extraction, Hashcat recovery for reuse, Evil-WinRM, AD object/account restoration and password mutation for intrusion, Impacket smbpasswd/changepasswd/secretsdump use, and VSS/registry/NTDS extraction for hash-based login. `net use`, Get-ADObject/Restore-ADObject/Get-ADUser, diskshadow, reg save and robocopy are Windows-side tasks; their appearances do not create Linux CLI packages. curl/wget installation/transfer plumbing and shell file/list commands in these excluded branches add no separate supported task. Tool overlap was considered, not used to suppress MemProcFS discovery.
+
+Source corrections: a shell `sudo echo` does not elevate its outer redirection; Nmap `--privileged` declares rather than grants privileges. Base64 `Mgo=` contains a newline after the digit, and encoding is not authorization. Django PBKDF2 output is a password hash, not encrypted plaintext. The SQL permissions query omits target class/major_id/state; its grantor field is not the impersonated principal. Product-wide AV detection claims about Netcat/RunasCs are unsupported by one lab. The 292,692,678-byte (280 MiB) archive expands to 1,782,252,040 bytes; it is not a 280 MB raw dump. Kernel 10.0.17763 alone is not a Windows marketing edition. Editing the plugin instruction files triggers installation; extracted registry secrets are not literally every secret in memory. Hashcat's Exhausted state coexists with two recovered hashes in the shown run. A custom group named AD Recycle Bin is not proof of a built-in permission; Restore-ADObject's NewName changes the object name while the shown sAMAccountName and UPN remain unchanged. Password-expired status is not authorization to change an account. Backup group membership alone is not every required active token privilege; a nowriters VSS capture is not demonstrated application-consistent backup. The target address changes from 10.129.20.59 to 10.129.20.42, so final banners are not independent identity proof.
+
+Primary review: [CLI](https://github.com/ufrisk/MemProcFS/wiki/_CommandLine), [Linux](https://github.com/ufrisk/MemProcFS/wiki/_Linux), [overview](https://github.com/ufrisk/MemProcFS/wiki/FS_Sys_Sysinfo), [release notes](https://github.com/ufrisk/MemProcFS). A guessed raw Linux-wiki URL and guessed C filename returned 404; the actual Linux page and documented options were subsequently read. Runtime: documentation and PDF screenshot review only; no dump, secret extraction, server, target or installation was run. Prior SMB-server provenance moved from the entrypoint: Appsanity pp. 14–17, documentation reviewed 2026-10-09, Linux untested. Current review also remains Linux untested.
+
+
+### FriendZone.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `b8337d568c40772b6cb156a72f3837eb5baa7ab5a875c8191330231ee8d87dd9`; 680,999 bytes; 13 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Schema review: v0.8. Reviewed full `dig`, `smbclient`, `pspy`, new `enum4linux` and current `python3`, `chmod`, `nmap`, `tr` tasks. All 13 text pages read. Rendered/inspected pp. 4–5 and 11–13: zone response, SMB operations, process UID/interpreter, writable-file display and final chronology.
+
+Accepted: `dig` reconciled with an early full-read task map/prerequisites/completion and a compact approved zone-transfer procedure, including TCP, matching SOA endpoints, TSIG policy, incomplete/policy failures and DNS-versus-HTTP scope. New independent classic `enum4linux` supports the actually demonstrated SMB share inventory, retaining its helper/session/listing model and a narrow selected-task invocation; overlap with `smbclient` did not suppress discovery. Complete source and primary implementation review established that the wrapper's unqualified invocation enables broader default enumeration and that write tests are a separate option. `smbclient` retrieval and differing read/write access, `pspy` UID/process observation and chmod are already covered; no repeated example. No Python 2 import-mutation procedure was moved into Python 3.
+
+Coverage: dig enriched and enum4linux added; smbclient, pspy, python3, chmod, nmap and tr unchanged after review. Excluded Gobuster web discovery for intrusion, credential reuse, PHP include-to-shell upload/trigger, Netcat shell, PTY continuation of that shell, LinEnum privilege-path discovery, replacing a system Python module and adding privileged cron persistence. Incidental grep/cut/sed/tr/echo/cp/cat shell plumbing adds no distinct workflow. `mailsend` is commented out, not actually executed, so no invented tool task.
+
+Source corrections: the zone transcript returns three subdomain owners but does not prove three HTTP vhosts; its loopback A/AAAA values are not instructions to use those addresses from another host. The prose omits the `1` in administrator1 in one URL. The share listing has five entries including print$ and IPC$, while three application shares are discussed. A description containing /etc/Files is not itself a server-side path verification; Development's path is explicitly guessed. `smbclient -N` alone does not force an empty username, already corrected in the skill. The observed upload is a four-byte test file; it establishes that specific create, not all modifications/deletions. Not everything in reporter.py is commented: imports, assignments and print remain active; the old print syntax is Python 2-specific. The final step appends rather than copies or replaces the entire crontab. A writable displayed os.py requires interpreter/import resolution and invocation context before a universal module-execution conclusion; root process observation alone is insufficient.
+
+Primary review: BIND dig manual and RFC 5936 for AXFR; classic enum4linux implementation for -S, defaults, dependency checks and per-share listing/write behavior. Linux runtime remains untested. No DNS server, share or source attack was contacted/executed. A lookup for an existing enum4linux entry confirmed it was absent before creation. Additional Freelancer semantic verification: Microsoft `sys.server_permissions` documentation confirms class, major_id, grantor/grantee and permission-state distinctions; its link is retained in that skill.
+
+
+### Frolic.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `e0af8a43fd8c1061bdab69f08914ddce9fd40c6616c3b8c0ebb5a579c091d23b`; 712,755 bytes; 10 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Schema review: v0.8. Read all 10 text pages and inspected rendered pp. 3, 6–7 and 9–10, including commands present only in screenshots. Reviewed full `base64` and its encoded-fields reference, `file`, `unzip`, `xxd`, `strings`, `readelf`, `ldd`, `masscan`, and current `python3`/`nmap` guidance. No skill change: useful representation/container and address-space conclusions are already covered; the distinct exploitation branches remain explicitly excluded.
+
+Coverage: actual base64-to-file, file classification and UnZip retrieval are already covered by their current entrypoints; the unshown hex conversion is supported by xxd's plain-hex task without pretending xxd appears in the source. Actual ldd/readelf/strings invocations have their dependency/symbol/file-offset interpretation covered. Masscan's mixed TCP/UDP and Nmap follow-up limitations are already covered in `masscan`'s mixed discovery section. Excluded Dirbuster web fuzzing for intrusion, fcrackzip dictionary recovery for credential reuse, PlaySMS CSV/PHP command execution and persistent web shell, Netcat shell/transfer continuation, and Python 2 SUID/ret2libc payload generation/execution. The Ook/Brainfuck browser tool is a GUI/web interpreter, not a demonstrated Linux CLI; no substitute tool/package was invented. Incidental echo/cat/ls/grep adds no task.
+
+Source corrections: the Masscan observation at UDP 137 is followed by a TCP-only Nmap probe of 137, so TCP closed does not contradict the UDP observation. Its displayed discovery count differs from visible output lines. The cover is March 2019 while displayed scans are April 2019; those dates do not support a contemporaneous run claim. Base64 decoding yields bytes, not automatic ZIP integrity; an index.php extension does not prove executable PHP contents. The source offers one observed weak ZIP password and one wordlist, not evidence that virtually any wordlist succeeds. The attack CSV/PHP strings and smart quotation marks are not reusable guidance. ldd's displayed address is tied to that trace, and an on-disk strings offset is not universally a runtime virtual address. The Python screenshot uses Python 2 print/byte behavior, not a Python 3 recipe. Its final UID is root while GID remains www-data; these are separate fields. No guessed addresses, credentials or target payloads retained in skill text.
+
+Runtime: source and existing-guidance review only. No interpreter, password attack, binary, PlaySMS service or target was executed/contacted. Existing source-linked manuals remain the recovery route; no unsupported command delta required acceptance testing for this source.
+
+
+### Fuse.pdf — remaining inbox continuation
+
+Source fingerprint: SHA-256 `0527e4063493a8f0e15aba0b96a88b7792ea603cdc1350148fafa283fb903879`; 2,971,950 bytes; 16 physical pages. Text from every page was read. Extraction reported no warning or recovery diagnostic. Visual coverage and task acceptance are stated separately below.
+
+Schema review: v0.8. All 16 text pages read; page 11 is image-only, not blank. Rendered and inspected pp. 5, 9–12 and 15 to recover account/result mismatch, direct group links, WinRM, actual enabled privilege and driver status. Reviewed full `windapsearch`, `python3` plus local-file-server reference, and the already reviewed `git`, `nmap`, `tr`, `pip` tasks. New worker content is limited to the retained group-metadata interpretation; the attack chain is not packaged.
+
+Accepted: reconciled `windapsearch` selection/prerequisites and its user/custom-attribute task with the actually demonstrated group inventory. `-G` returns group objects and `memberOf` shows direct links; the retained procedure does not promise recursive effective access or send known passwords on plain LDAP. Existing identity/encoding/exit-status caveats remain intact. No additional package is needed for the displayed Windows-native tasks. Python static file serving, Git clone, pip dependency action and Nmap protocol observations are already covered; the particular installation and payload hosting were not performed.
+
+Coverage: windapsearch enriched; python3, git, nmap, tr and pip unchanged after review. Excluded CrackMapExec password spraying, unauthorized expired-password mutation/reuse, printer-secret collection/reuse, Evil-WinRM intrusion, msfvenom/Meterpreter/Metasploit payloads, disabling exploit safety checks, Capcom driver loading/exploitation and eoploaddriver. PowerShell NET API/Get-Printer/Get-Item/Start-Process, UNC GUI printer installation, cl.exe and DriverView are Windows-side actions, not Linux CLI packages. `pico` is used only to edit an excluded exploit; no editor workflow invented. Windows PowerShell's `wget` commands are not demonstrated GNU Wget invocations. Shell cat/grep/cut/tr/sed listing/plumbing adds no distinct task.
+
+Source corrections: cover ordinal `26st` is a typo. The stated four collected users differ from the five attempts shown, including bhult. A print job filename suggests neither a password nor who set it. STATUS_PASSWORD_MUST_CHANGE differs from a working SMB session and should not be conflated with all expiry states. NetUserChangePassword returns NET_API_STATUS/NERR_Success rather than a Boolean; declaring it bool collapses the error code and makes False a misleading API success contract. The two-minute reversion is a lab behavior, not general AD password policy. LDAP group inventory and direct links are not themselves recursive token or WinRM endpoint authorization. The source does show SeLoadDriverPrivilege Enabled for this token; it is not a universal group/policy conclusion. Base OS build alone does not establish driver-load/exploit viability or cumulative patch/security-policy state. The source's Defender claim is not substantiated by the displayed Get-Item command alone. Safe boot and Secure Boot are different concepts; a statement about VM firmware is not independently verified here. /DUNICODE and /D_UNICODE select macro-dependent APIs, not a universal Unicode-output switch. Driver-load status and a listed file are distinct from arbitrary kernel execution; removed module checks are not a supported compatibility fix.
+
+Primary review: [Python windapsearch implementation](https://github.com/ropnop/windapsearch/blob/master/windapsearch.py), [memberOf schema](https://learn.microsoft.com/en-us/windows/win32/adschema/a-memberof), [direct versus primary-group membership](https://learn.microsoft.com/en-us/windows/win32/ad/security-properties), and [NetUserChangePassword return type](https://learn.microsoft.com/en-us/windows/win32/api/lmaccess/nf-lmaccess-netuserchangepassword). The last membership source explicitly establishes the primary-group omission; two guessed ADSI documentation URLs were inaccessible and were not treated as evidence. Runtime: no LDAP query, password, printer, driver, compiler, payload or target used; Linux/image/worker outcome remains untested. These limitations are separate from accepting the verified metadata task.
+
+
+## Present inbox completion — 2026-10-11
+
+This continuation processed every original PDF currently present in `ingest/`: **41 sources, Drive through Fuse; 802 physical pages of extracted text read and 160 selected page renders inspected individually**. The per-source records above distinguish text reading, image-only/screenshot inspection, extraction recovery diagnostics and accepted operational coverage. This does not claim that all 802 page images were visually inspected. All 41 original sizes/SHA-256 values matched their fixed queue records before extraction/acceptance and again at final audit. Originals remain unchanged. No pending or active item remains; the overall fixed queue has **112 completed and 2 deferred**.
+
+The two deferrals are separate from the completed present inbox. **Delegate** retains the prior explicit user-requested skip. **Download** needs its absent original; cached material and pre-existing uncommitted contributions are preserved without a new full-source acceptance claim. Detailed reasons are recorded in their entries above.
+
+### Accepted package changes and conformity scope
+
+Applied **schema v0.8** to the affected tasks, preserving prior useful procedures, correcting consequential interpretations and relocating historical provenance into these maintenance records. The accepted changes comprise **19 new packages and 30 updated existing packages**. The README catalogue now exactly matches **290** unique independent skill folders in alphabetical order. Required task resources stay within their package; no umbrella runtime, image-path guess, tool installation or optional profile setting was added.
+
+New: `az`, `checksec`, `enum4linux`, `feh`, `gluster`, `jar`, `losetup`, `ltrace`, `memprocfs`, `mktemp`, `mongo`, `named-checkconf`, `npm`, `ntpdate`, `objcopy`, `tftp`, `tmux`, `tr`, `xclip`.
+
+Updated existing: `7z`, `adb`, `aws`, `bash`, `cryptsetup`, `curl`, `dig`, `gdb`, `getcap`, `getfacl`, `git`, `gpg`, `impacket-mssqlclient`, `impacket-smbserver`, `jq`, `mail`, `mount-nfs`, `node`, `openssl`, `ps2pdf`, `python3`, `redis-cli`, `screen`, `smbclient`, `smbmap`, `sqlite3`, `tar`, `tcpdump`, `tshark`, `windapsearch`.
+
+Actually reviewed for their relevant task and schema during this continuation, including unchanged outcomes (**92**): `7z`, `adb`, `aws`, `az`, `base64`, `bash`, `checksec`, `chisel`, `chmod`, `cryptsetup`, `curl`, `diff`, `dig`, `docker`, `enum4linux`, `feh`, `file`, `find`, `ftp`, `gdb`, `getcap`, `getfacl`, `git`, `gluster`, `gpg`, `impacket-mssqlclient`, `impacket-smbclient`, `impacket-smbserver`, `jar`, `java`, `javac`, `jq`, `ldapsearch`, `ldd`, `losetup`, `ltrace`, `mail`, `masscan`, `md5sum`, `memprocfs`, `mktemp`, `mongo`, `mount`, `mount-nfs`, `mysql`, `named-checkconf`, `nano`, `netstat`, `nmap`, `node`, `npm`, `ntpdate`, `objcopy`, `openssl`, `php`, `pip`, `ps`, `ps2pdf`, `pspy`, `pwntools`, `python3`, `readelf`, `redis-cli`, `scp`, `screen`, `script`, `showmount`, `smbclient`, `smbmap`, `sqlite3`, `ss`, `ssh`, `ssh-keygen`, `strings`, `stty`, `su`, `sudo`, `systemctl`, `tar`, `tcpdump`, `tee`, `tftp`, `tmux`, `tr`, `tshark`, `unzip`, `vim`, `wget`, `windapsearch`, `xclip`, `xxd`, `zip`.
+
+The other **198 packages were not reviewed during this continuation**; earlier intake records retain their own review scope. This is not a whole-library conformity claim. Unreviewed in this continuation: `ansible-vault`, `apktool`, `apport-cli`, `aureport`, `awk`, `backy`, `bbot`, `bee`, `binwalk`, `bloodhound-python`, `bloodyad`, `bmap`, `bzip2`, `cargo`, `cast`, `certipy`, `cewl`, `chntpw`, `composer`, `consul`, `cp`, `credentialmanager`, `dd`, `derby-ij`, `dirbuster`, `dirsearch`, `dive`, `dnstool`, `docker-compose`, `dotnet`, `dpkg-deb`, `dpkg-query`, `ebook-convert`, `evil-winrm`, `exiftool`, `fail2ban-client`, `fakedns`, `feroxbuster`, `ffuf`, `fickling`, `findmnt`, `firefox-decrypt`, `flask`, `forge`, `gcc`, `gdbserver`, `getent`, `ghidra`, `git-dumper`, `go`, `gobuster`, `gpp-decrypt`, `grafana2hashcat`, `grep`, `groups`, `gzip`, `h2csmuggler`, `hashcat`, `hashid`, `hostname`, `httpie`, `hydra`, `iconv`, `id`, `ifconfig`, `iis-shortname-scanner`, `ike-scan`, `ilspycmd`, `impacket-addcomputer`, `impacket-dacledit`, `impacket-getadusers`, `impacket-getnpusers`, `impacket-getst`, `impacket-gettgt`, `impacket-getuserspns`, `impacket-lookupsid`, `impacket-ntlmrelayx`, `impacket-owneredit`, `impacket-psexec`, `impacket-reg`, `impacket-rpcmap`, `impacket-secretsdump`, `impacket-smbexec`, `impacket-ticketer`, `impacket-wmiexec`, `inveigh`, `ip`, `ipcs`, `ipfs`, `ipset`, `iptables`, `iptables-save`, `jadx`, `jarsigner`, `jdb`, `jenkins-cli`, `jenkins-offline-decrypt`, `john`, `jwt-tool`, `keepassxc-cli`, `kerbrute`, `kinit`, `klist`, `krbrelayx`, `ldbsearch`, `ldconfig`, `less`, `lftp`, `linpeas`, `logrotate`, `logrotten`, `make`, `marshalsec`, `mdbtools`, `memcached-tool`, `minecraft-console-client`, `mount-cifs`, `msf-pattern`, `msfconsole`, `msfvenom`, `mysqldump`, `nc`, `ncat`, `neo4j-admin`, `netexec`, `nginx`, `nikto`, `nimble`, `npbackup-cli`, `oathtool`, `objdump`, `omv-rpc`, `openvpn`, `pacman`, `passthecert`, `pd4cmd`, `peda`, `phantomjs`, `phpggc`, `printerbug`, `procyon`, `proxychains`, `psql`, `pswm`, `pygpoabuse`, `pypykatz`, `python-http-server`, `python2`, `rdate`, `readpst`, `responder`, `restic`, `rlwrap`, `ropgadget`, `rpcclient`, `rsh`, `rsync`, `rustbuster`, `rustscan`, `samdump2`, `searchor`, `searchsploit`, `sendmail`, `sharp-gpoabuse`, `shocker`, `smbpasswd`, `smtp-user-enum`, `snap`, `snmpwalk`, `splunkwhisperer2`, `sqlmap`, `ssh-username-enum`, `sshpass`, `sslscan`, `stoken`, `strace`, `strongswan-ipsec`, `sucrack`, `swaks`, `tail`, `targetedkerberoast`, `text2wave`, `thrift`, `tty`, `unbound-control`, `username-anarchy`, `vault`, `virtualenv`, `vtysh`, `wfuzz`, `whatweb`, `whoami`, `whois`, `wpscan`, `wrapwrap`, `xml-pp`, `ysoserial`, `yubisim`.
+
+The source-to-task dispositions above separately account for demonstrated tools, already covered tasks, new/enriched procedures and concrete missing-fact deferrals. Exploitation, credential replay and intrusion chains were read and explicitly excluded from new operational packaging. Similar coverage in another tool did not suppress useful independent discovery. Name-only, GUI-only or unidentified implementation cases were not turned into invented CLI workflows.
+
+### Validation and remaining environment work
+
+- **19 existing unit tests passed**, including independent copies of all 290 packages, capture overwrite/failure/timeout cases and link/scaffold checks. The first attempt encountered Windows sandbox permissions in the default temporary parent; rerunning with process-local TEMP/TMP/TMPDIR under owned `runs/` succeeded. That temporary parent is empty after cleanup.
+- **92 skill-creator quick validations passed** with the existing local PyYAML 6.0.3 dependency; no dependency was installed. First-150-line discovery and full affected entrypoint/task review covered all 49 changed packages and selected resources. The mechanical route audit confirms early activation and local resource routes; it is neither a universal harness limit nor proof of worker adherence.
+- Repository check passed with **510 Markdown files, 993 local links, 290 packages and all 817 Bash blocks parsed**, before this completion footer. Bash parsing executes no example commands. Initial restricted MSYS startup failed with NtCreateDirectoryObject/access-denied; the inspected syntax-only checker succeeded through an approved execution exception. Final record/link/whitespace checks are recorded in [validation](validation.md#present-pdf-inbox-continuation--2026-10-11).
+- **56 inert local fixture cases passed**: Node numeric types/bounds (15); SQLite metadata/absence (7); Git complete/incremental bundle recovery and object/tree/blob distinctions (8); Python distribution metadata and owned post-mortem failure (3); OpenSSL identity export/integrity and ASN.1 truncation (5); Bash status grammar (13), tr byte preservation (2) and exact mktemp creation/failure/cleanup (3). Fixtures use only newly created local public-marker data, never source programs, target accounts or payloads. Git fixture commits occur only in an ignored disposable repository under `runs/`; library history is unchanged. Test certificates were never installed as trust or used against a service.
+
+Fixture environment: Windows, Python **3.12.14**, SQLite engine **3.53.1** through Python (not the sqlite3 CLI), Node **24.19.0**, Git **2.55.0.windows.5**, OpenSSL **3.5.7**, Git Bash **5.3.15(2)** and GNU coreutils tr/mktemp **8.32**. The first OpenSSL fixture startup hit the same sandbox MSYS restriction; the approved rerun then exposed an overly narrow fixture assertion for Git's actual “prerequisite commits” diagnostic. Only that fixture expectation was corrected, and the full suite passed in a fresh directory. Neither failure required changing accepted command guidance.
+
+No controlled Linux image or worker trial was available. Linux capabilities/ACLs, device/FUSE/NFS mappings, capture privileges, X11 selection, service-specific authentication/transport and tools absent here remain documentation-reviewed with explicit prerequisites, rather than runtime-proven. The later on-box pass must establish actual binaries, relevant installed options and image facts in the package's own references. Passing these fixtures does not establish those conditions, original CTF outcomes or agent usefulness.
+
+Local evidence: source extraction/render/review records and the queue/baseline audit are under ignored `work/intake-2026-10-10/` and `work/overnight-ingest-2026-10-10/`; test logs, route/quick-validation results and runtime SHA-256 records are under ignored `runs/intake-2026-10-11/`. Baseline checks found no unexpected file change or deletion; prior uncommitted unrelated contributions, source originals, authoring directives and the assessment methodology remain intact. Changes are left for Git review; no library commit, push or publication was performed.
+
+Final maintenance-record check: **510 Markdown / 995 local links / 290 packages**, no errors; exact catalogue and whitespace checks passed. All **817 unchanged shell blocks** remain covered by the completed syntax-only pass. The completion prose adds no command blocks and does not alter the accepted runtime packages. The 41 present sources are complete; the two deferrals are preserved.

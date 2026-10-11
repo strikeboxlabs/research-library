@@ -1,15 +1,19 @@
 ---
 name: node
-description: Use Node.js for CommonJS resolution, a selected module-precedence reproduction or a bounded Socket.IO event exchange. Use for scheduled-process dependency differences, NODE_PATH precedence or an authorized module-substitution reproduction.
+description: Use Node.js for CommonJS resolution, selected module precedence, a bounded Socket.IO exchange, signed client-session analysis or numeric input validation. Use for dependency differences, session trust boundaries and bounded application work.
 ---
 
-# CommonJS lookup and application clients
+# CommonJS lookup and application contracts
 
 Read this entire SKILL.md before acting; reuse complete current context. Establish the trusted Node runtime and inspected launch environment, resolve from the actual requiring file, and retain the selected path or concrete error. This predicts lookup under those conditions; it does not prove the running application loaded or executed that file. When the task requires an execution/identity demonstration, read [module precedence and a controlled canary](references/module-precedence.md) fully before changing or running the selected job.
 
 For an application using Socket.IO events, read [a selected event with an existing client](references/socketio-event.md) fully before that procedure; it requires an installed compatible socket.io-client and the observed subscription/session contract. Keep this branch unloaded for ordinary resolution.
 
-Inspect the launcher and its shell/service environment first. A login-shell wrapper may set `NODE_PATH` differently from an interactive terminal. `NODE_OPTIONS`, preload flags and custom loader hooks can execute code at startup: use a trusted diagnostic environment rather than replaying an unreviewed launcher. If clearing those settings, record the difference from the real service.
+For an acquired cookie-session/Keygrip application or owned signed-cookie reproduction, read [signed session bytes and trust](references/signed-session.md) fully before calibrating or generating a pair. It requires the identified serialization/signing contract and exact private key bytes; finish with a matching control or the concrete mismatch.
+
+For a loop or queued job controlled by request data, read [numeric input and bounded work](references/numeric-input.md) fully before evaluating or changing the handler. It requires the input format and intended bounds; finish with local validation results and any remaining concurrency or runtime uncertainty.
+
+For CommonJS lookup, inspect the launcher and its shell/service environment first. A login-shell wrapper may set `NODE_PATH` differently from an interactive terminal. `NODE_OPTIONS`, preload flags and custom loader hooks can execute code at startup: use a trusted diagnostic environment rather than replaying an unreviewed launcher. If clearing those settings, record the difference from the real service.
 
 Define `node_bin` as the trusted executable, `entry` as the absolute path of the file containing the relevant `require`, and `specifier` as its literal package/path argument. Do not substitute the application's top-level entry for a dependency's own requiring file. This helper uses standard CommonJS resolution without importing the selected application/package:
 

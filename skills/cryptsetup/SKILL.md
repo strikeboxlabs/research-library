@@ -5,6 +5,10 @@ description: Inspect and unlock existing LUKS image copies on Linux. Use when id
 
 # Inspect an existing encrypted image
 
+Read this entire SKILL.md before acting. Require an intact selected image copy, known passphrase for unlocking, Linux device-mapper support, the inspection/mount tools below and authority for the exact operations. Inspect the layout, open a fresh mapping, verify its backing/access and inner filesystem, then perform the selected read and cleanup. Finish with read/result evidence plus actual mount/mapping cleanup; a missing prerequisite or failed opening remains unresolved.
+
+These sudo examples assume those precise commands/options are permitted. A grant for one executable/subcommand, mapper name or relative mountpoint does not authorize arbitrary status, probe, close or mount arguments. Establish an allowed recovery path before creating state; do not weaken read-only handling simply to fit a different grant.
+
 Define `image` as an intact local working copy, not the original evidence or a guessed device. Inspect without changing keyslots:
 
 ~~~bash
@@ -39,4 +43,4 @@ sudo umount "$mountpoint" && sudo cryptsetup close "$mapping"
 
 Check busy-mount errors instead of forcing cleanup. `luksFormat`, key changes and header restoration are separate modifying operations.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Arkham p. 5. Sources: upstream [open](https://gitlab.com/cryptsetup/cryptsetup/-/blob/main/man/cryptsetup-open.8.adoc), [luksDump](https://gitlab.com/cryptsetup/cryptsetup/-/blob/main/man/cryptsetup-luksDump.8.adoc), [mount read-only semantics](https://github.com/util-linux/util-linux/blob/master/sys-utils/mount.8.adoc).
+See upstream [open](https://gitlab.com/cryptsetup/cryptsetup/-/blob/main/man/cryptsetup-open.8.adoc), [luksDump](https://gitlab.com/cryptsetup/cryptsetup/-/blob/main/man/cryptsetup-luksDump.8.adoc) and [mount read-only semantics](https://github.com/util-linux/util-linux/blob/master/sys-utils/mount.8.adoc).

@@ -8,6 +8,10 @@ description: Decrypt a selected OpenPGP backup with GnuPG using its known passph
 
 Read this entire SKILL.md before acting. Establish the ciphertext, encryption type and required key/passphrase before decrypting. Finish with command/status evidence and a validated plaintext artifact; an existing output file or a matching passphrase candidate alone is incomplete.
 
+For recovery from an owned backup containing a GnuPG home, read [backup key-home recovery](references/key-home.md) fully first. Keep that branch unloaded when using the current trusted keyring or a symmetric passphrase.
+
+Define `ciphertext` as the existing acquired encrypted-file copy before using the commands below.
+
 Use GnuPG's installed `gpg --version`. A `.gpg` extension or `.gnupg` directory does not identify the object's encryption type or prove a usable private key exists. For a selected working copy, inspect packet metadata when this distinction is unknown:
 
 ~~~bash

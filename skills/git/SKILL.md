@@ -1,6 +1,6 @@
 ---
 name: git
-description: Acquire a selected upstream checkout or inspect historical files, stored links/submodules, patches, remote configuration and local Git hooks. Use when working-tree types, missing history, stored URLs or hook execution complicate repository evidence.
+description: Inspect offline bundles, acquired Git objects, historical files, stored links/submodules, patches, remotes and hooks, or acquire a selected upstream checkout. Use when incomplete history, object types or hook behavior complicate repository evidence.
 ---
 
 # Git repository evidence
@@ -8,6 +8,8 @@ description: Acquire a selected upstream checkout or inspect historical files, s
 Read this entire SKILL.md before acting. Choose the requested task and complete its relevant checks; report the observed evidence and remaining limits, not just command success. Use an existing trusted repository or isolated evidence copy.
 
 - Acquiring a selected upstream source: [source checkout](references/source-checkout.md). Read this reference fully before its procedure.
+- Inspecting a supplied offline bundle: [bundle recovery](references/bundle-recovery.md). Read it fully before importing its objects or assuming it is self-contained.
+- Inspecting acquired objects with missing refs or worktree files: [object inspection](references/object-inspection.md). Read it fully before interpreting object types or reconstruction completeness.
 - Removed/replaced files, patch search or ambiguous diff endpoints: [historical content](references/history-recovery.md). Read it fully before selecting/extracting a revision.
 - Exposed application settings or a redundant restore after acquisition: [configuration evidence](references/exposed-settings.md). Read it fully before recovery.
 - Stored URLs: [remote configuration](#inspect-an-acquired-remote-configuration).
@@ -57,6 +59,8 @@ Use the actual pull transcript and invocation options to choose the next check:
 | Pull uses rebase | Do not assume merge-hook behavior. Inspect the selected integration mode and its relevant hooks. |
 
 The hook is post-operation: its failure cannot undo the completed merge. Verify the deployed artifact separately from Git's result. A privileged Git invocation can run hooks with that identity, but ownership checks, effective configuration and repository selection must be established first. Do not use `sudo git pull` as a diagnostic probe or globally disable ownership checks.
+
+For a commit-triggered job, inspect `post-commit` at the effective hooks path instead. `git commit --no-verify` bypasses `pre-commit` and `commit-msg`, rather than all hook events; a `post-commit` observation requires a successful commit. `--author` sets commit metadata, not the OS identity running Git or its hooks. A script that only stages changes on one branch has not committed on that branch. Resolve the selected control flow before attributing a hook result; do not manufacture a change in an acquired repository to trigger it.
 
 See [hook events](https://git-scm.com/docs/githooks), [pull integration modes](https://git-scm.com/docs/git-pull) and [hook-path configuration](https://git-scm.com/docs/git-config#Documentation/git-config.txt-corehooksPath) when observed behavior differs.
 

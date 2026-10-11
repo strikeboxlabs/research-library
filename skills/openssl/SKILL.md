@@ -1,6 +1,6 @@
 ---
 name: openssl
-description: Inspect certificates, keys, TLS mail/FTP sessions and known-format AES-CBC artifacts or a legacy crypt-record pipeline with OpenSSL. Use for trust, protocol selection, serialization, padding and incomplete-output decisions.
+description: Inspect and package owned keys, certificates, PKCS#12 and ASN.1 artifacts, diagnose TLS mail/FTP sessions, or recover known-format AES-CBC and legacy crypt-record artifacts. Use for trust, serialization and incomplete-output decisions.
 ---
 
 # OpenSSL inspection
@@ -9,13 +9,17 @@ Read this entire SKILL.md before acting; reuse complete current context. Identif
 
 Record `openssl version` and inspect subcommand help. Identify whether the input is a CSR, certificate, private key or bundle; a `.cer` extension alone does not distinguish DER from PEM. Work on copies and choose fresh output paths.
 
+For a requested transfer-integrity comparison, define `artifact` as the saved file and run `openssl dgst -sha256 "$artifact"` at both available endpoints. Compare the same algorithm and complete digest, retaining each file's size and transfer status. A matching digest corroborates identical bytes relative to those inputs; it does not establish publisher identity or safe contents. The source's legacy SHA-1 comparison is not a preferred authenticity check. See the [digest manual](https://docs.openssl.org/3.5/man1/openssl-dgst/).
+
 For a legacy `openssl passwd` stage or archive-key pipeline, read [crypt-record bytes](references/crypt-record.md).
 
 For an AES-CBC artifact with independently established raw-key settings or a CryptoJS password envelope, use [known-format CBC decryption](references/aes-cbc.md). Base64 text or a field named `aes_key` alone does not establish that format.
 
 For a TLS mail endpoint, use [IMAP transport and mailbox diagnosis](references/imap-tls.md) to distinguish implicit TLS, STARTTLS, protocol and authenticated mailbox state.
 
-For a PFX/P12 containing certificates and private keys, use [PKCS#12 inspection and extraction](references/pkcs12.md). It separates bundle passwords, encrypted key output and legacy-provider failures.
+For PFX/P12 inspection, selected extraction or packaging an already issued owned certificate/key, use [PKCS#12 operations](references/pkcs12.md). It separates bundle passwords, encrypted key output and legacy-provider failures.
+
+For an acquired ASN.1 section/object, read [ASN.1 structural inspection](references/asn1-structure.md) fully before interpreting tags as trust evidence.
 
 For FTP control-channel TLS, read [FTPS handshake diagnosis](references/ftp-tls.md). For a renewal horizon, read [certificate expiry](references/certificate-expiry.md); for key serialization or rejected uploads, read [private-key inspection](references/private-key.md).
 

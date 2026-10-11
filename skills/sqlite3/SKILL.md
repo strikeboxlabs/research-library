@@ -1,11 +1,13 @@
 ---
 name: sqlite3
-description: Inspect existing SQLite files with the sqlite3 CLI, bounded queries and structured output. Use when a missing path creates an empty database, WAL sidecars affect results, or display separators obscure data; export selected Grafana verifier rows with their actual parameters.
+description: Inspect existing SQLite files with bounded queries and structured output, compare retained snapshot metadata, or export selected authentication records. Use when WAL sidecars, schema/identity changes or display separators make results misleading.
 ---
 
 # Inspect an existing database copy
 
 Read this entire SKILL.md before acting; reuse complete current context. Work from a coherent database copy, inspect the actual schema and retain query status with selected records. For selected historical Grafana verifier rows, read [Grafana records](references/grafana-records.md) before export/parameter interpretation. For a Rails-like user table with password_digest and role fields, read [selected authentication rows](references/auth-records.md) before exporting or mapping identities. For Firefox history or extension storage, read [browser databases](references/firefox-storage.md) before interpreting those tables. Finish with the requested rows and their supported meaning; missing tables, sidecars or decoding remain explicit limitations.
+
+For an audit comparing retained backups with a current database, read [historical snapshots](references/historical-snapshots.md) before matching accounts or interpreting changes in authentication-record formats.
 
 Define `database` as an existing absolute working-copy path. Opening a misspelled filename normally creates a new empty database; use read-only mode for inspection:
 

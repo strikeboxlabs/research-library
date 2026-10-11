@@ -1,9 +1,11 @@
 ---
 name: windapsearch
-description: Inspect AD users and custom attributes with the legacy Python windapsearch. Use to narrow full-attribute searches and interpret anonymous access, encoded values and misleading exit status.
+description: Inspect AD users, groups and selected attributes with the legacy Python windapsearch. Use to distinguish direct membership from effective access and interpret anonymous views, encoded values and misleading exit status.
 ---
 
 # Select the implementation and directory view
+
+Read this entire SKILL.md before acting. Select the implementation, permitted bind view and user/group or selected-object task below; use full attributes only for the selected-object task. Required prerequisites are the installed script/Python LDAP dependencies, reachable directory and permitted search view. Finish with returned DNs, attributes, status and diagnostics or the concrete transport/access prerequisite gap.
 
 These commands target ropnop's Python `windapsearch.py`; the Go rewrite has a different interface. Define `windap_script` as the installed script path and `dc_ip` as the selected DC. Read `python3 "$windap_script" --help` before applying these flags. The [Python project](https://github.com/ropnop/windapsearch) points to the separate Go implementation.
 
@@ -25,6 +27,16 @@ python3 "$windap_script" --dc-ip "$dc_ip" --custom "$user_filter" --full
 
 Custom-query output includes DNs, which help disambiguate names. `--full` requests `*` attributes and overrides `--attrs`; it neither selects extra objects nor bypasses attribute ACLs or retrieves every operational attribute. After discovering a relevant custom field, repeat the same filter with `--attrs 'distinguishedName,sAMAccountName,observedAttribute'`, substituting its actual schema name, and omit `--full`.
 
-The pretty printer can base64-encode nonprintable/binary values without LDIF's double-colon marker. Conversely, printable base64 may already be the stored application value. Confirm schema and raw representation before decoding; keep binary output in a file. A decoded unreadable value alone does not establish encryption. Group names describe membership, not effective permissions.
+The pretty printer can base64-encode nonprintable/binary values without LDIF's double-colon marker. Conversely, printable base64 may already be the stored application value. Confirm schema and raw representation before decoding; keep binary output in a file. A decoded unreadable value alone does not establish encryption.
+
+# Read group metadata without claiming effective access
+
+For a permitted group inventory, use the same selected DC and anonymous-view prerequisites:
+
+~~~bash
+python3 "$windap_script" --dc-ip "$dc_ip" -G --attrs 'distinguishedName,cn,memberOf'
+~~~
+
+`-G` selects group objects, rather than recursively resolving one user's effective memberships. For one known group, reuse the selected-object custom filter with `objectCategory=group` and only the needed attributes. Preserve each object's DN and its direct `memberOf` links. Those links alone omit recursive closure and primary-group membership; missing values or inaccessible objects leave the chain incomplete. A returned group name or membership path does not prove a service's effective token, endpoint ACL or successful WinRM access. See [membership security properties](https://learn.microsoft.com/en-us/windows/win32/ad/security-properties).
 
 The upstream Python cleanup function exits **1 even after successful queries**. Preserve status, stdout and stderr together; do not treat that code alone as either success or failure. A result count describes that filter and bind view; paging cannot overcome missing rights. Check the [implementation](https://github.com/ropnop/windapsearch/blob/master/windapsearch.py) when packaged behavior differs.

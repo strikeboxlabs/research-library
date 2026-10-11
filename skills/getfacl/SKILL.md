@@ -5,6 +5,8 @@ description: Explain Linux POSIX ACL permissions and directory access failures w
 
 # Read the ACL for the failing identity and path
 
+Read this entire SKILL.md before acting. Establish the exact path and process identity, inspect access entries and applicable masks, and inspect parents or default entries only when traversal or inheritance is the question. Finish with the supported access explanation or the specific missing identity/path evidence.
+
 Define `path` as the exact absolute file or directory involved. Record the relevant process's effective UID and groups; `id` without an argument describes the current shell, which may differ from a service or an existing session after group changes.
 
 ~~~bash

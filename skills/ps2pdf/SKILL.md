@@ -5,6 +5,8 @@ description: Convert reviewed PostScript to PDF with Ghostscript and diagnose co
 
 # PostScript conversion and failure diagnosis
 
+Read this entire SKILL.md before acting. Identify the reviewed input, converter context and fresh output paths, then retain conversion status and inspect the rendered result. A partial output or an unreadable input remains an incomplete conversion.
+
 Inspect `command -v ps2pdf` and the installed wrapper when a service uses a bundled copy. Check the version of the Ghostscript executable that wrapper actually invokes (`gs --version` for the normal PATH installation). PostScript is executable interpreter input: conversion can process file operations as well as drawing instructions. Use reviewed input and an ordinary account in the intended conversion environment.
 
 Define `input_ps` as an existing absolute source path, and `output_pdf` and `conversion_log` as fresh absolute paths in a private working directory:
