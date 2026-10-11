@@ -1,11 +1,11 @@
 ---
 name: gzip
-description: Test and decompress GNU gzip data into a selected new file without deleting its source. Use for misleading suffixes, nested compression, concatenated streams and truncated output.
+description: Create, test or decompress GNU gzip streams while preserving the selected source. Use for log compression, misleading suffixes, nested members and partial output.
 ---
 
 # Recover the selected gzip stream
 
-Read this entire SKILL.md before acting; reuse complete current context. Identify the actual gzip input and output destination, retain final integrity/decompression status and inspect the decoded object. Filename or header recognition alone cannot complete recovery.
+Read this entire SKILL.md before acting; reuse complete current context. Select recovery below or source-preserving compression in the final section, establish input/output paths, and retain final status and artifact checks. Filename or header recognition alone cannot complete either task.
 
 Define `compressed` as the existing absolute input and `decoded` as a fresh absolute output in an existing private directory:
 
@@ -25,4 +25,18 @@ A failed CRC/trailer or truncated member can leave substantial decoded bytes. Ke
 
 GNU gzip decodes concatenated members in order. This is not a tar member list, and successful concatenation does not prove that the resulting bytes were one original object. `gzip -l` is a summary, not full validation or reliable aggregate size for every multi-member/very large stream. Inspect actual decoded bytes and final status rather than treating an embedded filename as an extraction instruction.
 
-Reference: [GNU gzip manual](https://www.gnu.org/software/gzip/manual/gzip.html); installed help resolves the actual implementation's supported options.
+## Compress one selected file without replacing it
+
+Define `input` as the selected readable regular file and `compressed` as a fresh absolute output beneath an owned private directory, distinct from the input. Use a stable snapshot when complete log coverage matters:
+
+~~~bash
+umask 077
+(set -C; gzip -c -- "$input" > "$compressed")
+status=$?
+~~~
+
+Check status/stderr, then `gzip -t -- "$compressed"`; keep a failed result marked incomplete. Stdout compression preserves the original. Shell redirection creates the new object's permissions and opens it before gzip reads; it does not preserve the input's filesystem owner/mode. Noclobber prevents replacing an existing ordinary file. Never redirect onto the input or an alias.
+
+A growing or rotated log can change during reading. Compression does not select yesterday's records, rotate/delete the log or make a consistent application snapshot; a date in the output filename is only a label. Successful integrity checking establishes a valid stream, not expected contents or input completeness. Confirm decoded bytes against the selected stable snapshot when required. GNU gzip reports 1 for error and 2 for warning; inspect nonzero results rather than accepting the existence of a .gz file.
+
+Reference: [GNU gzip manual](https://www.gnu.org/software/gzip/manual/gzip.html) and [packaged options/status](https://manpages.debian.org/bookworm/gzip/gzip.1.en.html); installed help resolves the actual implementation's supported options.

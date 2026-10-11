@@ -34,11 +34,11 @@ Content-Type: application/json. Responses are plain JSON (e.g. `{"executionTrack
 
 ## Command injection via argument substitution into shell: strings
 
-When an action's `shell:` string embeds arguments in `{{ arg }}` placeholders, argument values are substituted UNSANITIZED into the shell command. Even `type: password` arguments are only quoting-validated by `ValidateArgumentType` (verified: metacharacters accepted as valid). If the shell string quotes the argument (e.g. `-p'{{ db_pass }}'`), break out with a leading single quote:
+When an action's `shell:` string embeds named template arguments, argument values are substituted UNSANITIZED into the shell command. Even `type: password` arguments are only quoting-validated by `ValidateArgumentType` (verified: metacharacters accepted as valid). If the shell string quotes the argument, break out with a leading single quote:
 
 `"x' ; cat /root/root.txt > /tmp/r.txt; #"`
 
-Verified root command execution this way (proj_009: `backup_database` action running `mysqldump ... -p'{{ db_pass }}'` as root). Actions using `exec:` argv style are NOT injectable this way; only `shell:` string actions are.
+Verified root command execution this way (proj_009: `backup_database` action running its configured database backup command as root). Actions using `exec:` argv style are NOT injectable this way; only `shell:` string actions are.
 
 ## Recon from a compromised shell
 

@@ -15,7 +15,7 @@ Use when an OpenSTAManager (OSM) instance is identified: login page advertises "
 
 ## SQL injection (bulk operations)
 
-The scadenzario bulk handler (module 18, `op=send_reminder`) implodes `id_records[]` POST values unquoted into an `IN (...)` clause: error-based extraction works with the exact payload shape and chunked-read loop in [error-based extraction](references/error-based-extraction.md). `zz_users` holds bcrypt password hashes (`username`, `password` columns) — hand the full 60-char hash to john with rockyou. MySQL settings worth reading: `@@secure_file_priv` (often restricts `LOAD_FILE`/`INTO OUTFILE` to a server-side dir you cannot fetch), and `information_schema.user_privileges` for the connecting user's grants.
+The scadenzario bulk handler (module 18, `op=send_reminder`) implodes `id_records[]` POST values unquoted into an `IN (...)` clause. The previously linked extraction procedure is absent from this package; inspect the acquired handler and query construction statically before making a finding. `zz_users` holds bcrypt password hashes (`username`, `password` columns) — hand the full 60-char hash to john with rockyou. MySQL settings worth reading: `@@secure_file_priv` (often restricts `LOAD_FILE`/`INTO OUTFILE` to a server-side dir you cannot fetch), and `information_schema.user_privileges` for the connecting user's grants.
 
 ## Backup module as source-of-truth artifact
 

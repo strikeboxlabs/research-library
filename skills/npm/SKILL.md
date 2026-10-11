@@ -1,11 +1,11 @@
 ---
 name: npm
-description: Inspect an installed npm package and its dependency context without installing or running it. Use when a reported package version needs attribution to a global prefix or selected project.
+description: Inspect npm package versions or install selected exact dependencies and run a reviewed build in an owned project. Use when package attribution, lockfiles or generator/build differences affect reproducibility.
 ---
 
 # Attribute the installed package
 
-Read this entire SKILL.md before acting. Select global versus project scope and the exact package name. Finish with the observed version/tree and diagnostics; a version entry is not an executed behavior or complete vulnerability finding.
+Read this entire SKILL.md before acting. Select inventory below or, for an approved dependency change/build, read [project installation and build](references/project-build.md) fully first. Establish the selected project/package and required artifact. Finish with observed versions and diagnostics, plus actual build status/artifacts when requested; inventory alone is not an executed behavior.
 
 Check `npm --version`. Define `package_name` as the selected package name. For global packages:
 
