@@ -832,3 +832,27 @@ Read-only observations: `/usr/bin/ffuf -V` reported `2.1.0-dev`; `/usr/bin/nmap 
 The submitted scan-duration comparisons, tunnel-specific outcome and profile compatibility claims were not reproduced. Accepted text retains the general route/baseline/completion lessons without treating those reports as verified benchmarks or universal behavior. No network scan, VPN connection, authentication, credential extraction, exploit, tool installation or worker evaluation was performed for this review.
 
 Validation passed: **19 repository unit tests**, including independent package checks; repository checker **626 Markdown files, 1,116 local links, 378 skill packages, 990 Bash blocks parsed**, no errors. The README matches the 378 package directories in unique alphabetical order. Shell examples were parsed, not executed. Whitespace checks passed. These checks apply to the publishable tree, which excludes the two new local drafts.
+
+
+## 269-source continuation checkpoint: 105 sources, 2026-10-11
+
+Ghost through Pandora: **105 completed / 164 pending** at the fixed audit snapshot, **1,914 physical text pages read**, **1,135 selected page renders individually inspected**. All 269 source PDFs retain their snapshot SHA-256. Schema v0.8 reviews cover **233 distinct packages**, all passing skill-creator quick validation with PyYAML 6.0.3; **160 changed entrypoints** pass activation/first150 resource-route checks. The alphabetical README catalogue matches **378 independent packages**. Protected methodologies, authoring and repository instructions remain unchanged; Git whitespace checking passed with line-ending normalization warnings only.
+
+Repository checker passed: **626 Markdown files, 1,114 local links, 378 skills, 990 Bash blocks**, no errors; Bash was parsed only. All **19 existing tests passed in 9.963s**; the owned temporary directory was empty afterward. Raw evidence: ignored runs/intake-269-2026-10-11/checkpoint-105/. Checker and test source were unchanged.
+
+Outdated, Overflow, Overgraph, Oz and Pandora have complete text coverage and explicit selected-render/task accounting. Independent patchelf and sshuttle tasks were packaged. Existing SMTP acceptance, Windows token, Ghidra input/caller analysis, find output portability, browser storage/cookies, awk representation, Docker network inspection, Netcat file transfer and SSH SOCKS guidance were reconciled. Each report preserves source contradictions and explicitly accounts for excluded intrusion, credential and privilege workflows.
+
+Primary documentation/source review establishes accepted command semantics. No controlled Linux/OpenBSD/SMTP/Windows-token/PatchELF/sshuttle/SNMP/Pandora fixture or worker outcome is available. Existing owned compatibility fixtures remain linked separately in the audit. MSYS-based parsing/tests ran in the approved Windows compatibility context used at prior checkpoints; these results do not establish controlled Linux execution or source attack success.
+
+
+## 269-source continuation checkpoint: 110 sources, 2026-10-11
+
+Ghost through Perfection: **110 completed / 159 pending** at the fixed audit snapshot, **2,001 physical text pages read**, **1,181 selected page renders individually inspected**. All 269 source PDFs retain their snapshot SHA-256. Schema v0.8 reviews cover **240 distinct packages**, all passing skill-creator quick validation with PyYAML 6.0.3; **169 changed entrypoints** pass activation/first150 resource-route checks. The alphabetical README catalogue matches **385 independent packages**. Protected methodologies, authoring and repository instructions remain unchanged; Git whitespace checking passed with line-ending normalization warnings only.
+
+Repository checker passed: **635 Markdown files, 1,123 local links, 385 skills, 1001 Bash blocks**, no errors; Bash was parsed only. All **19 existing tests passed in 9.515s**; the owned temporary directory was empty afterward. Raw evidence: ignored runs/intake-269-2026-10-11/checkpoint-110-retry1/. Checker and test source were unchanged.
+
+Paper, Passage, Patents, PC and Perfection have complete text coverage and explicit selected-render/task accounting. Independent rpm, which, ar, lsblk, grpcurl, pyload and irb tasks were packaged. Existing base64 record boundaries, SSH authorized-key comments, ZIP DOCX member layout and Python finite-receive/producer-status guidance were reconciled. Source errors about polkit/backports, metadata fields, partition names, register state, policy/group rights and hybrid terminology are recorded without storing source secrets in accepted packages. Each report explicitly accounts for excluded intrusion, credential and privilege workflows.
+
+Primary documentation/source review establishes accepted command semantics. No controlled Linux/RPM/which/ar/lsblk/DOCX/gRPC/pyLoad/IRB fixture or worker outcome is available. Existing owned compatibility fixtures remain linked separately in the audit. MSYS-based parsing/tests ran in the approved Windows compatibility context used at prior checkpoints; these results do not establish controlled Linux execution or source attack success.
+
+The initial checkpoint-110 audit failed its alphabetical catalogue assertion before checker/tests. Misplaced grpcurl, pyload, irb and lsblk rows were corrected; the complete retry passed. The initial failure record was preserved.

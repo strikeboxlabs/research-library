@@ -1,9 +1,11 @@
 ---
 name: rsync
-description: Inspect a scoped rsync daemon module and retrieve one selected file. Use to distinguish module visibility from read permission, daemon URLs from SSH paths and a skipped or partial transfer from a completed copy.
+description: Inspect a scoped rsync daemon module, retrieve one selected file or push a selected backup over SSH. Use to distinguish transport, filename scope and skipped or partial copies from completed transfers.
 ---
 
 # Inspect a module before retrieving a file
+
+Read this entire SKILL.md before acting. Establish the intended endpoint, existing access and selected file. For a local backup pushed over SSH, read [selected backup transfer](references/backup-transfer.md) fully first; otherwise use the daemon inspection/retrieval below. Finish with actual transferred or skipped files, status and destination verification. Missing access or an incomplete source leaves that step unresolved.
 
 Check `rsync --version`. Define `daemon_url` as the authorized `rsync://host:port` endpoint, without a trailing slash:
 
@@ -34,7 +36,7 @@ Review that the plan contains only the intended file. When retrieval is intended
 rsync --itemize-changes --ignore-existing "$source_url" "$dest/"
 ~~~
 
-Check status, diagnostics and the actual expected file. `--ignore-existing` skips an existing file, including an incomplete one; success alone does not prove a new copy. Use another fresh destination after resolving a partial transfer. Compare size and an independently available digest; keep archive extraction separate.
+Check status, diagnostics and the actual expected file. `--ignore-existing` skips an existing file, including an incomplete one; it does not skip existing directories. Success alone does not prove a new copy. Use another fresh destination after resolving a partial transfer. Compare size and an independently available digest; keep archive extraction separate.
 
 `rsync://host/module/path` and `host::module/path` use the daemon protocol; `host:path` uses a remote shell, normally SSH. Direct daemon traffic is not automatically encrypted. A source-directory trailing slash changes directory-copy layout, and `-a` adds recursion and metadata/link preservation: neither is needed for this single-file task. Do not add deletion or source-removal flags to retrieval.
 

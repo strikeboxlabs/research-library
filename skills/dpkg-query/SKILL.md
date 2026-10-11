@@ -5,6 +5,8 @@ description: Map an observed file to Debian/Ubuntu package records and evaluate 
 
 # Match an artifact to its package record
 
+Read this entire SKILL.md before acting. Establish the intended database/filesystem view, map the exact observed path, then check full package state/version before an applicable advisory comparison. No conditional resources are required. Finish with path/database/package evidence and any unresolved mapping or advisory prerequisite; an absent database or owner match does not justify inventing a package.
+
 Use on a Debian-family system with the relevant dpkg database. Define `admindir` as its verified absolute administrative directory, normally `/var/lib/dpkg`. A container, mounted image and host can have different databases. The following operations read package records; they do not run the named helper or install anything.
 
 Define `binary` as the observed absolute path, without glob metacharacters, in that database's filesystem view:

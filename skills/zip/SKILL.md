@@ -7,6 +7,8 @@ description: Create a selected Linux source or data archive with Info-ZIP zip. U
 
 Read this entire SKILL.md before acting; reuse complete current context. Select the intended source tree and exclusions, create a fresh archive outside that tree, and inspect its members and integrity before handing it to a consumer. ZIP packaging does not establish source trust or executable compatibility.
 
+For a reviewed WordprocessingML tree that must become a DOCX package without an extra enclosing directory, read [document packaging](references/document-packaging.md) fully before that procedure.
+
 Check `zip -v` for the installed implementation/options. Define `parent` as the absolute parent directory, `tree` as its selected ordinary directory name, and `archive` as a fresh absolute `.zip` path outside the tree. This Info-ZIP example omits that tree's Git metadata without deleting it:
 
 ~~~bash
