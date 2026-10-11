@@ -23,6 +23,8 @@ ps -ww -p "$pid" -o pid=,ppid=,euid=,ruid=,stat=,lstart=,args=
 
 `-ww` avoids ordinary display-width truncation. Effective and real UID are distinct; a command containing `su user` or a session named `root` does not establish the child's current credentials. A parent shell loop can recreate a child under a new PID. Keep PID, start time and process relationship together when comparing observations; PIDs can be reused.
 
+For a selected effective UID, use the process selector rather than searching the whole display for an account-name substring. For example, `ps -ww -u 0 -o pid=,ppid=,euid=,ruid=,stat=,lstart=,args=` selects visible effective-UID-zero processes; `-U 0` instead selects real UID. `ps auxww | grep root` can match argument text and the grep process itself, so it does not identify exactly that credential set. Neither selector escapes the current visibility/namespace limits.
+
 For normal argument boundaries, inspect the targeted procfs file without storing its NUL-containing bytes in a shell variable:
 
 ~~~bash

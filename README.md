@@ -131,10 +131,12 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [hydra](skills/hydra/SKILL.md) | Perform scoped protocol/form authentication tests with bounded attempts and verified response classification. |
 | [iconv](skills/iconv/SKILL.md) | Convert captured text with explicit encodings; distinguish UTF-16 byte order, terminators and lossy recovery. |
 | [id](skills/id/SKILL.md) | Verify real/effective user/group IDs in the current context and distinguish named-account lookup from execution privilege. |
+| [identify](skills/identify/SKILL.md) | Inspect one selected image's format, geometry and metadata while separating signatures and header reads from complete validation. |
 | [ifconfig](skills/ifconfig/SKILL.md) | Inspect local interface addresses, flags and counters while retaining active-only and namespace limits. |
 | [iis-shortname-scanner](skills/iis-shortname-scanner/SKILL.md) | Check IIS short-name disclosure and distinguish partial aliases, response ambiguity and confirmed full paths. |
 | [ike-scan](skills/ike-scan/SKILL.md) | Interpret an IKE endpoint's initial proposal response, notify errors and vendor fingerprints without claiming authentication. |
 | [ilspycmd](skills/ilspycmd/SKILL.md) | Inspect .NET types, time-seeded crypto, serialization and archive-write paths without launching the assembly. |
+| [imap-enumeration](skills/imap-enumeration/SKILL.md) | Inspect IMAP capabilities and selected mailbox/session evidence. |
 | [impacket-addcomputer](skills/impacket-addcomputer/SKILL.md) | Selected AD computer-account creation, method differences and owned cleanup. |
 | [impacket-dacledit](skills/impacket-dacledit/SKILL.md) | Inspect/back up DACLs, apply precise delegation and verify ACE removal or restoration without losing concurrent state. |
 | [impacket-getadusers](skills/impacket-getadusers/SKILL.md) | Query selected AD user metadata and interpret filtering, email requirements and DC-local logon dates. |
@@ -156,6 +158,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [impacket-ticketconverter](skills/impacket-ticketconverter/SKILL.md) | Convert owned single-ticket kirbi/FILE cache artifacts offline; verify metadata and multi-ticket loss limits. |
 | [impacket-ticketer](skills/impacket-ticketer/SKILL.md) | Generate and inspect selected Kerberos service tickets with known service keys with Impacket ticketer. Use to distinguish service keys, SPNs, identity fields, cache creation and actual service acceptance in an authorized lab. |
 | [impacket-wmiexec](skills/impacket-wmiexec/SKILL.md) | WMI/DCOM command execution, SMB output stages and cleanup interpretation. |
+| [inotifywait](skills/inotifywait/SKILL.md) | Observe bounded local filesystem events and distinguish creation, write closure, moves and exact pathname handling. |
 | [inveigh](skills/inveigh/SKILL.md) | Capture a bounded selected HTTP NTLM authentication exchange with cross-platform Inveigh. Use when an application sends outbound integrated authentication and identity, listener exposure or challenge-response interpretation needs evidence. |
 | [ip](skills/ip/SKILL.md) | Explain Linux route selection using local addresses, policy rules, prefix specificity and namespace-aware lookups. |
 | [ipcs](skills/ipcs/SKILL.md) | Inspect System V shared-memory metadata, keys, segment IDs, permissions and namespace limits. |
@@ -200,6 +203,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [lsattr](skills/lsattr/SKILL.md) | Inspect selected filesystem attributes and distinguish append-only/immutable flags from file modes. |
 | [lsblk](skills/lsblk/SKILL.md) | Inspect block-device relationships and mount views without confusing whole disks, partitions or host provenance. |
 | [ltrace](skills/ltrace/SKILL.md) | Observe dynamic library calls in owned unprivileged programs; interpret incomplete traces and argument values. |
+| [magick](skills/magick/SKILL.md) | Identify the trusted ImageMagick 7 build, declared formats, delegates and policy with service-context limits. |
 | [mail](skills/mail/SKILL.md) | Distinguish GNU Mailutils and S-nail flags, subject handling, attachments and submission evidence. |
 | [make](skills/make/SKILL.md) | Build reviewed existing tool targets; diagnose configured features, compiler failures and stale artifacts without implying installation. |
 | [marshalsec](skills/marshalsec/SKILL.md) | Select unmarshalling fixtures and distinguish local test execution, JNDI stages and runtime dependencies. |
@@ -298,6 +302,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [rlwrap](skills/rlwrap/SKILL.md) | Local Readline editing for a selected client, with history and remote-terminal limits. |
 | [rm](skills/rm/SKILL.md) | Remove one tracked owned file/link entry and distinguish directory failure, dangling links and object lifetime. |
 | [ropgadget](skills/ropgadget/SKILL.md) | Inspect gadget candidates with understood search depth, address filters and complete instruction effects. |
+| [roundcube](skills/roundcube/SKILL.md) | Inspect Roundcube webmail session, mailbox and deployed-application context. |
 | [rpcclient](skills/rpcclient/SKILL.md) | Resolve RPC identities and perform selected SAMR account changes with distinct rights and outcome evidence. |
 | [rpm](skills/rpm/SKILL.md) | Query the selected installed package build and reconcile distribution release/backport evidence. |
 | [rsh](skills/rsh/SKILL.md) | GNU rsh command execution, rlogin fallback and legacy trust interpretation. |

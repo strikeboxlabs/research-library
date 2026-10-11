@@ -11,6 +11,8 @@ Read this entire SKILL.md before acting. Define `input` as the acquired file; pr
 
 `/usr/bin/binwalk` is Binwalk 2.4.3, the Python implementation of the 2.x CLI. Rust Binwalk 3.x documentation uses different options. Extraction can invoke companion utilities; a missing extractor can prevent unpacking even when the signature is correct.
 
+For a different acquired or historical installation, establish its exact executable and distribution patch state before extraction. Upstream [2.3.4 release notes](https://github.com/ReFirmLabs/binwalk/releases/tag/v2.3.4) identify the PFS extraction traversal/code-execution fix; distribution backports require their own package advisory. Do not execute an old bundled extractor as root to inspect it. A version banner alone is not an assessment of every extraction rule.
+
 ## Signature scan
 
 ~~~bash
@@ -44,3 +46,5 @@ This implementation refuses extraction when launched as root without an explicit
 `-C` chooses the output base directory; without it the base is the current working directory. Binwalk normally creates an input-specific `_filename.extracted` directory underneath that base. For targeted carving without invoking an unpacker, use `/usr/bin/binwalk --dd 'squashfs:raw' -z "$input" -C "$outdir"`. The first `--dd` field is a regular expression matching descriptions, and `raw` is the carved file extension. The root `--run-as` requirement still applies to carving.
 
 Inspect the actual output and diagnostics per selected signature. A carved blob is not an unpacked filesystem, and an absent artifact may mean no matching extraction rule, an extractor failure or a false positive. Missing companion utilities are prerequisites to report, not evidence that the image was fully extracted.
+
+Capturing `binwalk -e` stdout in a shell variable captures textual descriptions/diagnostics, not the extracted binary contents. Extraction has already run before a later string blacklist examines those descriptions. Retain extractor status and produced artifacts separately; matching a label cannot establish complete malware detection or contain an earlier parser effect.

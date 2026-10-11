@@ -32,3 +32,29 @@ For a custom character transformation, `ord`/`chr` operate on Unicode code point
 For an operation pairing byte sequences, ordinary `zip` stops at the shortest input without reporting omitted bytes. Establish the intended length contract first; require equal lengths when every byte must have a partner, or record the selected covered prefix explicitly. Python3.10+ `zip(..., strict=True)` reports a mismatch during iteration. A shorter plausible output does not prove complete recovery. See [zip length behavior](https://docs.python.org/3/library/functions.html#zip).
 
 See Python's [binary versus text I/O](https://docs.python.org/3.12/library/functions.html#open), [bytes and encoding](https://docs.python.org/3.12/library/stdtypes.html#bytes-objects) and the [PNG signature specification](https://www.w3.org/TR/png-3/#5PNG-file-signature).
+
+## Decode a complete hex capture to fresh binary output
+
+Require a complete selected hex-only capture, a trusted Python 3.7+ interpreter and a fresh output path in an owned directory. Define `hex_file` and `output` as absolute paths. Remove display labels, length lines and truncation markers by selecting the actual captured field; do not guess omitted bytes. For a bounded capture:
+
+~~~bash
+"$python_bin" -I -S - "$hex_file" "$output" <<'PY'
+import hashlib
+import sys
+
+with open(sys.argv[1], 'rb') as source_file:
+    encoded = source_file.read(1048577)
+if len(encoded) > 1048576:
+    sys.exit('capture exceeds this 1 MiB input bound')
+data = bytes.fromhex(encoded.decode('ascii'))
+with open(sys.argv[2], 'xb') as output_file:
+    output_file.write(data)
+print('decoded_bytes:', len(data))
+print('sha256:', hashlib.sha256(data).hexdigest())
+PY
+status=$?
+~~~
+
+`bytes.fromhex` accepts paired hex digits and ignores ASCII whitespace in Python 3.7+. Nonhex content, odd digits or non-ASCII text fail before output is created. `xb` refuses an existing output, including a dangling symlink; a write failure can leave a partial fresh file, so retain the status and use another fresh path after resolving it. Empty input decodes to empty bytes and needs the task's expected-length check.
+
+`print(bytes.fromhex(...))` produces a representation such as **illustrative** `b'\x00A'`, not those original binary bytes on stdout. Binary output above avoids that conversion. Compare the decoded length/digest with independent acquisition expectations, then use the format's actual reader on a coherent working copy. A magic signature does not establish a complete SQLite snapshot or preserved WAL state, and a syntactically valid hex string does not prove the capture was complete.
