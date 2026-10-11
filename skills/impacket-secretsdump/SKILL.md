@@ -7,15 +7,17 @@ description: Parse existing Windows SAM/SYSTEM, SECURITY or NTDS snapshots, perf
 
 Read this entire SKILL.md before acting. Select offline inputs, a scoped replication query or the remote acquisition branch; retain store/account mapping, extraction status and actual artifacts. Read [offline NTDS](references/offline-ntds.md) for that snapshot task or [remote SAM acquisition](references/remote-sam.md) before live acquisition. Missing rights, partial output or unavailable inputs remain unresolved.
 
+Installed executable: `/usr/bin/impacket-secretsdump`. This image uses the `impacket-` command prefix rather than a `secretsdump.py` executable name. Presence of this entrypoint does not establish that every Impacket tool or dependency is available.
+
 ## Existing local hives
 
 Use SAM and SYSTEM hive copies from the same Windows system and acquisition. A `.reg` text export is not a raw hive. Preserve the originals and acquisition identity; a downloaded filename alone does not establish that the pair matches.
 
-Check `impacket-secretsdump -h`; upstream installations may provide `secretsdump.py`. Define `sam` and `system_hive` as absolute input paths, and `output_prefix` as a new absolute prefix in a private directory:
+Check `/usr/bin/impacket-secretsdump -h`; upstream installations may provide `secretsdump.py`. Define `sam` and `system_hive` as absolute input paths, and `output_prefix` as a new absolute prefix in a private directory:
 
 ~~~bash
 umask 077
-impacket-secretsdump -sam "$sam" -system "$system_hive" -outputfile "$output_prefix" LOCAL
+/usr/bin/impacket-secretsdump -sam "$sam" -system "$system_hive" -outputfile "$output_prefix" LOCAL
 ~~~
 
 The literal `LOCAL` selects file parsing. Replacing it with a hostname changes the operation to a remote workflow. SYSTEM supplies the boot key used for SAM decryption. The reviewed implementation writes extracted SAM records to `${output_prefix}.sam`; console output also contains diagnostics, so do not use an unfiltered console transcript as the hash file.
@@ -32,7 +34,7 @@ For a separate task examining cached domain logons and LSA secrets, define `secu
 
 ~~~bash
 umask 077
-impacket-secretsdump -security "$security_hive" -system "$system_hive" -outputfile "$security_prefix" LOCAL
+/usr/bin/impacket-secretsdump -security "$security_hive" -system "$system_hive" -outputfile "$security_prefix" LOCAL
 ~~~
 
 This leaves SAM and NTDS out of the requested inputs. Inspect both diagnostics and emitted files: the implementation writes `.cached` and `.secrets` only when corresponding items were recovered. A missing file may therefore mean no extracted items or a failed stage; check the error context before deciding.
@@ -49,7 +51,7 @@ For an explicitly scoped AD credential/replication audit, define `domain` and `u
 
 ~~~bash
 umask 077
-impacket-secretsdump "$domain/$user@$dc_host" -just-dc-user "$subject" -just-dc-ntlm -outputfile "$remote_prefix"
+/usr/bin/impacket-secretsdump "$domain/$user@$dc_host" -just-dc-user "$subject" -just-dc-ntlm -outputfile "$remote_prefix"
 ~~~
 
 This makes remote DRSUAPI replication requests and requires the applicable directory replication rights. It is not local hive parsing and does not require pretending the requesting user is a DC computer account. `-just-dc-user` selects one account and implies `-just-dc`; bare `-just-dc` has no such account limit. `-just-dc-ntlm` limits material to NTLM records. The selector does not support VSS mode.

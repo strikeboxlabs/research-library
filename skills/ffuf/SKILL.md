@@ -7,11 +7,15 @@ description: Compare HTTP paths or virtual hosts with ffuf using measured baseli
 
 Read this entire SKILL.md before acting; reuse complete current context. For new requests, select a bounded candidate set and controls before filtering. For an acquired result, use the saved-format guidance below without making another request. For username candidates derived from CMS profile aliases, read [account alias comparisons](references/account-aliases.md) fully before that procedure. Finish with confirmed response differences or the supported saved-result interpretation, retaining completed versus interrupted coverage; a result list alone does not establish route validity.
 
-Check `ffuf -V` and `ffuf -h`; inspect any automatically loaded ffufrc for inherited headers, proxies or filters. Define `base_url` as the scoped scheme/authority without a trailing slash, `wordlist` as a small file of path candidates, and `results` as a fresh JSON output path. Start without filters:
+Installed invocation: `/usr/bin/ffuf`, version `2.1.0-dev`. Available wordlists include `/usr/share/wordlists/dirb/common.txt`, `/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt` and `/usr/share/wordlists/rockyou.txt.gz`; choose a list appropriate to the requested task rather than treating its presence as scope.
+
+Check `/usr/bin/ffuf -V` and `/usr/bin/ffuf -h`; inspect any automatically loaded ffufrc for inherited headers, proxies or filters. Define `base_url` as the scoped scheme/authority without a trailing slash, `wordlist` as a small file of path candidates, and `results` as a fresh JSON output path. Start without filters:
 
 ~~~bash
-ffuf -w "$wordlist:FUZZ" -u "$base_url/FUZZ" -mc all -t 2 -rate 5 -timeout 10 -maxtime 120 -of json -o "$results"
+/usr/bin/ffuf -w "$wordlist:FUZZ" -u "$base_url/FUZZ" -mc all -t 2 -rate 5 -timeout 10 -maxtime 120 -of json -o "$results"
 ~~~
+
+A catch-all response can make many nonexistent paths look alike. Compare representative bodies and redirects with the negative control before choosing a filter; a size filter also hides a legitimate response of the same size. A distinct redirect or other response difference is a lead to inspect, not proof that a route exists.
 
 Include a known absent path and, when available, a known positive. Compare status, body, redirect, bytes, words and lines. A `200` can be a fallback page; a `401` or `403` can identify a distinct protected application. Inspect representative responses individually before excluding them.
 

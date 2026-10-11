@@ -7,22 +7,26 @@ description: Discover services on scoped Linux or Windows lab hosts with Nmap an
 
 Read this entire skill before acting; complete current context need not be re-read. Select the scoped host, protocol and useful port range before probing. Retain scan completion, vantage and confirmed versus uncertain services; a skipped or interrupted scan is incomplete evidence.
 
+Installed invocation: `/usr/bin/nmap`, version `7.99`. `/usr/bin/masscan` version `1.3.2` is also present; `rustscan` is not available on the worker PATH. Tool availability does not establish equivalent probe behavior or completeness across a VPN.
+
 For scoped subnet discovery from a container/internal namespace or a transferred static binary, read [network vantage and host discovery](references/network-vantage.md) fully first.
 
-Separate port discovery from service interrogation. Define `target` as one in-scope host/IP and `discovery` as a fresh output prefix in an existing directory. Record `nmap --version`.
+Separate port discovery from service interrogation. Define `target` as one in-scope host/IP and `discovery` as a fresh output prefix in an existing directory. Record `/usr/bin/nmap --version`.
 
 ~~~bash
-nmap -sT -p- --reason -oA "$discovery" "$target"
+/usr/bin/nmap -sT -p- --reason -oA "$discovery" "$target"
 ~~~
 
 This checks TCP ports 1–65535 using connect scans, including without raw-socket privileges. It does not scan UDP. Use a narrower port range when sufficient. If host discovery skips a host independently known to be reachable, retry that host with `-Pn`; this bypasses discovery, not filtering. Avoid copying a fixed `--min-rate` from a walkthrough: forcing probes too quickly can reduce accuracy on a lossy path.
 
 Without a port-selection option, a normal TCP scan checks the 1,000 most common ports. `-A` adds OS/version detection, default scripts and traceroute; it does not select all ports. Report "one open port among those tested", not "the host has only one open port", when reading such a scan.
 
+When a quick common-port result is useful, retain it separately from any broader scan requested for coverage. If both scans run concurrently, keep their combined traffic within the approved budget and report completion independently. A port omitted from the quick selection has not been tested by that scan; neither a running full-range scan nor a timing estimate establishes completed coverage.
+
 Read the saved results before continuing. Define `ports` as the nonempty, comma-separated TCP ports actually found open, and `services` as a new output prefix:
 
 ~~~bash
-nmap -sT -sV -p "$ports" --reason -oA "$services" "$target"
+/usr/bin/nmap -sT -sV -p "$ports" --reason -oA "$services" "$target"
 ~~~
 
 For automation, parse the XML by host, protocol and `state="open"`; do not derive a mixed TCP/UDP list from human output or scan all hosts using one merged list. An interrupted XML file may be incomplete. Keep the discovery evidence as well as follow-up results.

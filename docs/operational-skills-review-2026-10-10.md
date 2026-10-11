@@ -159,3 +159,12 @@ Reviewed four new Hermes-authored packages against schema v0.8: **binwalk, chntp
 | sslscan | Active TLS protocol/cipher and certificate survey. Removed the undocumented `--no-failed` argument, qualified cipher/Heartbleed conclusions and connection failures, and identified SNI/STARTTLS prerequisites. |
 
 All four now use observed absolute executable paths and early completion evidence. Removed routine review-date footers and unsupported claims that sample transcripts were verified captures; retained useful examples as explicitly illustrative. Version/option sources, actual execution and limits are in the [validation record](validation.md#hermes-skill-contributions--2026-10-10). This batch does not establish Linux runtime behavior for the other packages or worker performance.
+
+
+## Controlled-image environment updates — 2026-10-11
+
+Reviewed the local additions to six existing entrypoints: **ffuf, impacket-secretsdump, masscan, nmap, openvpn and rustscan**, using schema v0.8 for the changed guidance. Confirmed installed invocations, removed duplicate Nmap environment notes, and moved this review date/test history into maintenance records. Existing GitHub changes, including ffuf's saved-result interpretation, were retained. No new packages were accepted and the catalogue is unchanged.
+
+The accepted additions cover ffuf catch-all interpretation, scanner route/completion evidence, retained OpenVPN session lifecycle and missing RustScan prerequisites. Whole affected entrypoints and relevant scanner/VPN references were read to check placement and contradictions; this is not a full operational audit of every pre-existing procedure. Other packages were not reviewed for schema conformity. Blanket speed/compatibility claims and a blanket claim that all Impacket tools are installed were narrowed to observed facts. The submitted VPN scan benchmarks were not independently reproduced and remain in the local draft backup.
+
+Two new draft packages (**imap-enumeration**, **roundcube**) and the multipart exploit-construction guidance were excluded from publication because they include exploitation, phishing or cross-account access procedures. Their original local content was preserved. The accepted change adds no such procedures. Validation and its execution limits are recorded in [the validation record](validation.md#controlled-image-environment-updates--2026-10-11).
