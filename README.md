@@ -19,6 +19,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [ansible-vault](skills/ansible-vault/SKILL.md) | Extract and decrypt vault objects without loading playbooks or confusing vault passwords with plaintext values. |
 | [apktool](skills/apktool/SKILL.md) | Decode APK resources, resolve framework gaps and distinguish a rebuild from valid Android signing. |
 | [apport-cli](skills/apport-cli/SKILL.md) | Collect/view selected Apport reports and assess privileged pager behavior with full package, terminal and child-identity evidence. |
+| [apt](skills/apt/SKILL.md) | Review and perform one selected interactive APT installation; distinguish planned and actual dependency changes. |
 | [apt-get](skills/apt-get/SKILL.md) | Plan and perform a selected package installation; distinguish simulation, dependency changes and actual installer completion. |
 | [ar](skills/ar/SKILL.md) | List acquired archives and extract a selected Debian-package member without installing or executing it. |
 | [aureport](skills/aureport/SKILL.md) | Interpret existing TTY audit records and correlate events without misattributing copied logs. |
@@ -62,6 +63,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [cut](skills/cut/SKILL.md) | Project known delimiter-separated fields and retain delimiterless, empty-field and producer coverage limits. |
 | [date](skills/date/SKILL.md) | Format established epoch seconds or a job's current date with explicit timezone and retain time-evidence limits. |
 | [dd](skills/dd/SKILL.md) | Acquire identified offline block images and extract measured byte ranges; verify size, overwrite protection and consistency limits. |
+| [de4dot](skills/de4dot/SKILL.md) | Prepare a separate owned .NET assembly for decompilation with build, execution and symbol-recovery limits. |
 | [derby-ij](skills/derby-ij/SKILL.md) | Inspect consistent Derby copies with embedded JDBC, schema discovery, bounded SQL and understood display/lock limits. |
 | [df](skills/df/SKILL.md) | Inspect the selected path's filesystem capacity with explicit units and mount/access limits. |
 | [diff](skills/diff/SKILL.md) | Compare acquired trees or application variants and trace added commands, guards, paths and deployment assumptions. |
@@ -102,6 +104,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [flask-unsign](skills/flask-unsign/SKILL.md) | Decode an acquired Flask session locally and distinguish readable claims, encoding and signature verification. |
 | [forge](skills/forge/SKILL.md) | Diagnose Foundry builds with explicit project/compiler context and correctly interpreted helper trace logs. |
 | [ftp](skills/ftp/SKILL.md) | Transfer selected files, diagnose data channels and verify an authorised upload-to-web mapping without inferring code execution. |
+| [gawk](skills/gawk/SKILL.md) | Deduplicate one owned text file with GNU inplace, first-seen order and a preserved backup. |
 | [gcc](skills/gcc/SKILL.md) | Compile selected C tools/shared libraries; distinguish build stages, ABI, declarations and runtime compatibility. |
 | [gdb](skills/gdb/SKILL.md) | Inspect matching core/live state and distinguish controlled instruction changes from ordinary program behavior. |
 | [gdbserver](skills/gdbserver/SKILL.md) | Debug controlled remote programs over SSH with understood transport, connection modes and process lifetime. |
@@ -223,6 +226,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [mktemp](skills/mktemp/SKILL.md) | Create an actual private temporary file in a chosen working parent and clean up its exact owned path. |
 | [mogrify](skills/mogrify/SKILL.md) | Convert selected raster batches with explicit output paths, overwrite control and per-file verification. |
 | [mongo](skills/mongo/SKILL.md) | Inspect known database/collection metadata with the legacy MongoDB shell and explicit authentication context. |
+| [mosquitto-sub](skills/mosquitto-sub/SKILL.md) | Observe a selected ordinary MQTT topic with message/connection limits and retained/TLS distinctions. |
 | [mount](skills/mount/SKILL.md) | Mount a selected block filesystem or known CIFS share; preserve access, namespace and cleanup evidence. |
 | [mount-cifs](skills/mount-cifs/SKILL.md) | Mount SMB shares read-only; distinguish metadata timestamps, dialects, signing and local/server permissions. |
 | [mount-nfs](skills/mount-nfs/SKILL.md) | Mount selected NFS exports read-only; diagnose version, identity, locking and mount-state evidence. |
@@ -264,6 +268,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [pacman](skills/pacman/SKILL.md) | Inspect Arch package metadata, payloads, scriptlets and ownership before choosing an installation transaction. |
 | [passpie](skills/passpie/SKILL.md) | Export an owned initialized vault with known decryption prerequisites, private plaintext output and verified coverage. |
 | [passthecert](skills/passthecert/SKILL.md) | Python certificate LDAP authentication and selected RBCD change/read-back/removal. |
+| [passwd](skills/passwd/SKILL.md) | Change a selected password interactively and separate password status from account access. |
 | [patchelf](skills/patchelf/SKILL.md) | Inspect/change an owned ELF's loader and runtime library path with explicit working-directory and compatibility checks. |
 | [pd4cmd](skills/pd4cmd/SKILL.md) | Convert reviewed HTML with PD4ML; diagnose entrypoints, resource access, layout and stale PDF output. |
 | [pdftotext](skills/pdftotext/SKILL.md) | Extract acquired PDF text and diagnose page, layout, permission and missing-text coverage. |
@@ -278,6 +283,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [pret](skills/pret/SKILL.md) | Query selected PJL printer metadata and distinguish timeouts, revision gaps and startup effects. |
 | [printerbug](skills/printerbug/SKILL.md) | Trigger one authorized Windows spooler RPC authentication callback with krbrelayx printerbug from Linux. Use to distinguish RPC bind, notification errors and independently observed NTLM or Kerberos backconnects. |
 | [procyon](skills/procyon/SKILL.md) | Recover Java methods from local JAR/class files and trace plugin settings while qualifying reconstruction and runtime evidence. |
+| [protoc](skills/protoc/SKILL.md) | Decode an acquired unframed Protocol Buffer body with its known schema and explicit format boundaries. |
 | [proxychains](skills/proxychains/SKILL.md) | Route compatible Linux TCP clients through an explicit ProxyChains-NG configuration. Use when SOCKS or HTTP CONNECT policy, DNS behavior or unsupported raw/UDP traffic causes misleading failures. |
 | [ps](skills/ps/SKILL.md) | Inspect process identity/state and targeted procfs evidence without confusing NUL-separated or mutable metadata. |
 | [ps2pdf](skills/ps2pdf/SKILL.md) | Convert reviewed PostScript and diagnose status, template errors and Ghostscript file-access controls. |
@@ -299,7 +305,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [readlink](skills/readlink/SKILL.md) | Inspect stored symlink target text and distinguish canonical paths, missing components and changing referents. |
 | [readpst](skills/readpst/SKILL.md) | Convert PST/supported OST mail while accounting for MIME, image attachments and conversion limits. |
 | [recaf](skills/recaf/SKILL.md) | Inspect acquired Java archive classes and call paths with Recaf while preserving decompilation and deployment limits. |
-| [redis-cli](skills/redis-cli/SKILL.md) | Inspect selected Redis values with known authentication, explicit databases and bounded cursor scans. |
+| [redis-cli](skills/redis-cli/SKILL.md) | Inspect selected Redis values and effective persistence settings with known authentication, explicit databases and bounded cursor scans. |
 | [remmina](skills/remmina/SKILL.md) | Launch an approved desktop URI or reviewed profile; verify graphical/plugin prerequisites and actual session outcome. |
 | [responder](skills/responder/SKILL.md) | Separate name observation from active authentication listeners and preserve complete capture evidence. |
 | [restic](skills/restic/SKILL.md) | Select backup snapshots/paths and restore into a new directory with understood helpers, filters and locks. |
@@ -311,6 +317,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [rpm](skills/rpm/SKILL.md) | Query the selected installed package build and reconcile distribution release/backport evidence. |
 | [rsh](skills/rsh/SKILL.md) | GNU rsh command execution, rlogin fallback and legacy trust interpretation. |
 | [rsync](skills/rsync/SKILL.md) | Inspect daemon modules, retrieve selected files or push a completed backup over SSH with explicit scope and transfer verification. |
+| [ruby](skills/ruby/SKILL.md) | Identify the selected Ruby/Psych runtime and review version-dependent YAML loading and relative input paths. |
 | [rustbuster](skills/rustbuster/SKILL.md) | Choose path, DNS, virtual-host or request-marker discovery with meaningful controls and filters. |
 | [rustscan](skills/rustscan/SKILL.md) | Discover scoped TCP ports, tune resource/timeout behavior and hand findings to Nmap with separate evidence. |
 | [samdump2](skills/samdump2/SKILL.md) | Extract matching legacy SAM/SYSTEM records and detect unsupported formats or misleading empty-password values. |
@@ -319,7 +326,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [script](skills/script/SKILL.md) | Allocate a util-linux PTY or capture a terminal session with correct exit/logging semantics. |
 | [searchor](skills/searchor/SKILL.md) | Generate engine-specific search URLs and account for local history, browser and clipboard effects. |
 | [searchsploit](skills/searchsploit/SKILL.md) | Search and inspect local exploit candidates without confusing title matches with applicability. |
-| [sed](skills/sed/SKILL.md) | Review a small anchored text substitution without changing the source; distinguish successful no-op and line-ending effects. |
+| [sed](skills/sed/SKILL.md) | Review a suffix correction or remove a confirmed final record with GNU sed and an explicit backup. |
 | [sendemail](skills/sendemail/SKILL.md) | Submit a reviewed message and attachment through an explicit SMTP relay and distinguish acceptance, transport policy and eventual delivery. |
 | [sendmail](skills/sendmail/SKILL.md) | Submit requested messages with explicit envelope recipients and distinguish queue acceptance from delivery. |
 | [seq](skills/seq/SKILL.md) | Generate bounded local integer lists and distinguish inclusive endpoints, step direction and generated counts from downstream completion. |
@@ -340,6 +347,8 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [snmpwalk](skills/snmpwalk/SKILL.md) | Query bounded disk/process/hardware and IPv6 inventory, typed values and monitoring extensions with execution/visibility limits. |
 | [sort](skills/sort/SKILL.md) | Sort and deduplicate selected records with explicit equality and sample-count semantics. |
 | [splunkwhisperer2](skills/splunkwhisperer2/SKILL.md) | Authenticated remote Splunk app/script execution with callback routing, service identity, failed-response and cleanup interpretation. |
+| [sponge](skills/sponge/SKILL.md) | Replace one owned file from a successful staged transformation; distinguish buffering and rollback. |
+| [sqlcmd](skills/sqlcmd/SKILL.md) | Run a bounded SQL Server role query with known credentials and distinct SQL/integrated authentication evidence. |
 | [sqlite3](skills/sqlite3/SKILL.md) | Inspect coherent SQLite copies and export selected Grafana verifier rows without confusing storage metadata, salt bytes or account mapping. |
 | [sqlmap](skills/sqlmap/SKILL.md) | Test a selected HTTP parameter and inspect scoped database metadata or samples with request/session fidelity. |
 | [ss](skills/ss/SKILL.md) | Inspect actual listeners/connections, address families, process visibility and namespaces. |
@@ -362,7 +371,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [swaks](skills/swaks/SKILL.md) | Preview MIME and diagnose explicit SMTP stages, TLS verification and delivery evidence. |
 | [systemctl](skills/systemctl/SKILL.md) | Diagnose selected systemd units and apply validated reload/restart changes with useful outcome checks. |
 | [tail](skills/tail/SKILL.md) | Read bounded log suffixes and follow selected writers across rotation/truncation with evidence limits. |
-| [tar](skills/tar/SKILL.md) | Create gzip packages with verified member layout, inspect/extract backups and diagnose filesystem boundaries. |
+| [tar](skills/tar/SKILL.md) | Create plain or gzip packages with verified member layout, inspect/extract backups and diagnose filesystem boundaries. |
 | [targetedkerberoast](skills/targetedkerberoast/SKILL.md) | Select existing-SPN or temporary-SPN ticket collection and verify directory state after write-enabled tests. |
 | [tcpdump](skills/tcpdump/SKILL.md) | Capture scoped traffic at the correct interface/port, retain handshake evidence and distinguish application conclusions. |
 | [tee](skills/tee/SKILL.md) | Copy stdin to stdout and selected files, including an authorized privileged append with truncation/error boundaries. |
@@ -373,7 +382,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [timedatectl](skills/timedatectl/SKILL.md) | Inspect clock/timezone and time-service state while distinguishing indicators from measured server offset. |
 | [tmux](skills/tmux/SKILL.md) | Create and manage selected sessions/panes; preserve job context and distinguish detach from process termination. |
 | [touch](skills/touch/SKILL.md) | Create a selected empty marker or update timestamps; distinguish no-op, symlink, content and provenance outcomes. |
-| [tr](skills/tr/SKILL.md) | Translate known single-byte separators or newline-framed lists while preserving exact input and framing limits. |
+| [tr](skills/tr/SKILL.md) | Translate selected separator bytes or remove confirmed single-field line wrapping without losing the original. |
 | [tree](skills/tree/SKILL.md) | Inspect a selected directory layout with bounded depth; distinguish link scope, artifact names and incomplete listings. |
 | [truncate](skills/truncate/SKILL.md) | Resize one selected owned regular file and verify size separately from pathname existence or log recovery. |
 | [tshark](skills/tshark/SKILL.md) | Correlate saved FTP/TLS/Kerberos traffic with conversation identity, pre-authentication fields and incomplete evidence. |
@@ -384,6 +393,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [uniq](skills/uniq/SKILL.md) | Filter or count adjacent repeated records; distinguish global deduplication, ordering and projected identity limits. |
 | [unzip](skills/unzip/SKILL.md) | Inspect ZIP names/CRCs and selected Spring Boot configuration; distinguish extraction from runtime settings. |
 | [uptime](skills/uptime/SKILL.md) | Read uptime and 1/5/15-minute Linux load averages without inferring CPU percent or service health. |
+| [useradd](skills/useradd/SKILL.md) | Provision one approved local account with explicit home, group and shell; verify partial state. |
 | [username-anarchy](skills/username-anarchy/SKILL.md) | Name-preserving username candidate generation and format selection. |
 | [users](skills/users/SKILL.md) | Read selected login records while distinguishing sessions, account existence, home-directory names and process identity. |
 | [vault](skills/vault/SKILL.md) | Inspect Vault status and SSH OTP roles; distinguish policy, credential issuance and remote login. |
@@ -396,12 +406,14 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [watch](skills/watch/SKILL.md) | Observe selected read-only command output and distinguish sampled changes from a complete event log. |
 | [wc](skills/wc/SKILL.md) | Count selected artifact bytes or newlines and distinguish representation size from integrity or record count. |
 | [wfuzz](skills/wfuzz/SKILL.md) | HTTP path/host/Origin, form/cookie and server-side socket comparisons with meaningful controls and coverage. |
-| [wget](skills/wget/SKILL.md) | Retrieve selected artifacts/pages and distinguish redirects, requisites, relocated origins and partial transfers. |
+| [wget](skills/wget/SKILL.md) | Retrieve selected HTTP artifacts or approved FTP subtrees with transfer identity, mirror and page-capture evidence. |
 | [whatweb](skills/whatweb/SKILL.md) | Fingerprint a selected HTTP response, bound redirects/aggression and distinguish plugin evidence from vulnerability claims. |
 | [which](skills/which/SKILL.md) | Resolve a selected executable name on PATH and preserve implementation/version uncertainty. |
 | [whoami](skills/whoami/SKILL.md) | Read the effective Linux user name with GNU whoami. Use to identify the current execution context without confusing a prompt or account name with real UID or Windows token privileges. |
 | [whois](skills/whois/SKILL.md) | Query explicit registration sources and interpret referrals, redactions and differences from live DNS. |
 | [windapsearch](skills/windapsearch/SKILL.md) | Inspect permitted AD user/group metadata with legacy Python windapsearch; distinguish direct membership from effective access. |
+| [wine](skills/wine/SKILL.md) | Run a selected trusted Windows application in an explicit compatible Wine prefix and interpret runtime gaps. |
+| [winetricks](skills/winetricks/SKILL.md) | Supply selected .NET Framework4.8 dependencies in a Wine prefix, separating install records and application results. |
 | [wireshark](skills/wireshark/SKILL.md) | Review saved DNS/authentication captures with query/reply, protocol-tree and frame context. |
 | [wpscan](skills/wpscan/SKILL.md) | Scope WordPress plugin/user inventory and distinguish detection, account access and incomplete vulnerability evidence. |
 | [wrapwrap](skills/wrapwrap/SKILL.md) | Generate PHP resource-wrapper chains and validate envelope, byte transformations and consumer limits. |

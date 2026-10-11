@@ -1,5 +1,15 @@
 # Create the archive layout the consumer expects
 
+Select plain tar or gzip-compressed tar from the actual consumer contract; the extension alone does not choose compression. If the consumer expects a small set of files directly at archive root, define `package_root` as their actual shared directory, `member1`, `member2`, `member3` as the selected literal basenames and `archive` as a fresh absolute destination. Review their actual types and keep output outside that source directory:
+
+~~~bash
+test ! -e "$archive" && test ! -L "$archive" &&
+  tar --create --verbose --file="$archive" --directory="$package_root" -- "$member1" "$member2" "$member3"
+tar --list --verbose --file="$archive"
+~~~
+
+This produces uncompressed tar with those names at root, without an extra package directory. Verify each selected name/type and both final statuses against the requested manifest. If a gzip wrapper is required, add --gzip for creation/listing; neither layout nor a successful list verifies signatures, firmware authenticity or permission to deploy the bundle.
+
 Require the selected trusted source tree, actual consumer format/layout and a fresh archive destination outside that tree. For GNU tar, define `package_parent` as the absolute parent directory, `package_name` as the selected child directory's literal basename and `archive` as a new absolute output path. Reject leading-option/ambiguous names and unexpected links/special files before packaging.
 
 ~~~bash

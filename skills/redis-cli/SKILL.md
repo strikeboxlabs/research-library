@@ -1,11 +1,11 @@
 ---
 name: redis-cli
-description: Inspect selected Redis keys with redis-cli using known authentication and bounded cursor scans. Use when logical databases, ACLs, value types or SCAN completion make results ambiguous.
+description: Inspect selected Redis keys and persistence settings with redis-cli using known authentication and bounded cursor scans. Use when logical databases, ACLs, value types, effective configuration or SCAN completion make results ambiguous.
 ---
 
 # Inspect the intended Redis data
 
-Read this entire SKILL.md before acting. Select the known endpoint/transport, logical database and permitted namespace; authenticate as configured, scan within the requested bounds and match reads to the value type. Finish with the selected data/result and cursor/coverage limits, then leave the session. A connection or key name alone is insufficient.
+Read this entire SKILL.md before acting. Select key inspection or the persistence-setting check below and establish the known endpoint/transport and configured authentication. For keys, select the logical database and permitted namespace, scan within the requested bounds and match reads to the value type. Finish with the selected result and its coverage limits, then leave the session. A connection or key name alone is insufficient.
 
 Define `host`, `port`, `database` and `username` for the known endpoint, logical database and ACL account. For a password-authenticated session:
 
@@ -37,4 +37,18 @@ Check TYPE before reading a value. For a string, inspect STRLEN before a potenti
 
 Interactive output quotes/escapes bytes; `--raw` changes rendering and is the default when stdout is redirected. Preserve binary values accordingly. A field called password may contain ciphertext, an encoding or a verifier; inspect the producer's format before selecting a decoder or hash mode. Reading data does not require CONFIG SET, replication changes or destructive commands.
 
-See [redis-cli transport/authentication options](https://redis.io/docs/latest/develop/tools/cli/) and [SCAN guarantees](https://redis.io/docs/latest/commands/scan/).
+## Read selected persistence settings
+
+For an approved configuration question, use the established session to read only the relevant nonsecret parameters. At the Redis prompt:
+
+~~~text
+CONFIG GET dir
+CONFIG GET dbfilename
+CONFIG GET appendonly
+~~~
+
+These read effective server settings, independently of the selected logical database. One parameter per call also works before Redis 7; multiple parameters in one call require Redis 7 or later. Interpret returned names and values rather than assuming the CLI's RESP2 array rendering is universal. A denied command is a configuration-access gap, and an empty result can mean an unsupported/unmatched parameter; neither means an empty database.
+
+Combine `dir` and `dbfilename` only to describe the configured RDB location in the server's filesystem namespace. This does not prove a snapshot exists, its freshness, directory contents or access permissions. `appendonly` selects whether AOF is enabled; it does not establish the AOF's health. Do not test path existence by changing `dir`: that changes server state. Retain the selected values, endpoint/time and unresolved filesystem or persistence evidence. A broad `CONFIG GET *` can disclose unrelated secrets and is unnecessary for this task.
+
+See [redis-cli transport/authentication options](https://redis.io/docs/latest/develop/tools/cli/), [SCAN guarantees](https://redis.io/docs/latest/commands/scan/) and [CONFIG GET semantics and version history](https://redis.io/docs/latest/commands/config-get/).

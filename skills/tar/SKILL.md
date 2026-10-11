@@ -1,6 +1,6 @@
 ---
 name: tar
-description: Create GNU tar gzip packages with verified member layout, inspect backups and extract selected members into a new directory. Use when member names, compression, ownership or SQLite sidecar files make a quick extraction misleading.
+description: Create GNU tar plain or gzip packages with verified member layout, inspect backups and extract selected members into a new directory. Use when member names, compression, ownership or SQLite sidecar files make a quick extraction misleading.
 ---
 
 # Inspect before restoring files

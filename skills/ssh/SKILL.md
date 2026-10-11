@@ -11,6 +11,8 @@ For an SSH endpoint exposing an application/chat interface, a legacy host-key ne
 
 For a selected administrative connection through a dynamic SOCKS listener, read [dynamic forwarding and DNS](references/dynamic-forwarding.md) fully before that procedure.
 
+For an approved client-side service exposed through an SSH server's loopback listener, read [reverse forwarding](references/reverse-forwarding.md) fully before starting it.
+
 For an acquired forwarding command whose client/server direction or destination port disagrees with the prose, read [forwarding evidence](references/forwarding-evidence.md) fully before interpreting it. This is a static evidence task.
 
 For an authorized interactive login, define `ssh_host`, `ssh_port` and `user` as the verified SSH endpoint and selected OS account. Confirm its host key through the established trust process, then use the intended credential mechanism:

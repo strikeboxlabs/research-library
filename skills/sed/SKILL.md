@@ -1,11 +1,11 @@
 ---
 name: sed
-description: Apply a selected small text substitution to a preserved local file with GNU sed. Use for an anchored suffix correction where regex syntax, line endings or successful no-op output affect the result.
+description: Apply a small suffix correction or remove one independently confirmed final record with GNU sed. Use when regex syntax, line endings, in-place backups or successful no-op output affect the result.
 ---
 
 # Make the selected transformation reviewable
 
-Read this entire SKILL.md before acting. Establish the exact intended text change and record boundaries, preserve the input and write a separate candidate. No conditional resources are required. Finish with the changed bytes, status and verified transformation; a zero status does not prove any match occurred.
+Read this entire SKILL.md before acting. Select suffix correction or confirmed final-record removal below, establish the exact text change and record boundaries, preserve the input and review a separate candidate. No conditional resources are required. Finish with the changed bytes, status and verified transformation; a zero status does not prove any match occurred.
 
 Check `sed --version` and installed help for GNU sed. Define `input` as the existing text file and `output` as a fresh distinct path. For a format that permits removal of one comma immediately before each line ending:
 
@@ -24,5 +24,25 @@ Default expressions use basic regular expressions; `-E` changes that grammar. Re
 Check status and stderr; a read or write failure can leave a partial candidate. A normal no-match transformation succeeds with unchanged data. Avoid same-file redirection, which truncates the input before it is read. Do not use `-i` for this review task: it changes the source and has backup/symlink semantics that differ from saving a separate result.
 
 For an acquired sed script, review it before loading it with `-f`: sed can run commands or read/write other files through its program. GNU `--sandbox` disables those e/r/w features when supported; it does not make an arbitrary transformation correct. A short selected substitution does not need an external program.
+
+## Remove one confirmed final record
+
+For a stable owned regular text file, first establish that its final line is exactly the record selected for removal. `$d` targets the last line by position; it does not identify a hosts mapping, comment or record by content. A blank final line is a different subject, and concurrent appends invalidate the selection.
+
+Preview into a fresh distinct output:
+
+~~~bash
+LC_ALL=C sed '$d' -- "$input" > "$output"
+status=$?
+~~~
+
+Review that candidate against the original and require successful reading/writing. If the approved task requires replacing this file, keep it stable, verify that `$input.bak` does not already exist and that the file is neither a symlink nor a hard-linked object, then use GNU sed's backup form:
+
+~~~bash
+LC_ALL=C sed -i.bak '$d' -- "$input"
+status=$?
+~~~
+
+This changes the original pathname and keeps its previous bytes at the backup pathname; it does not commit the earlier candidate atomically with the review. In-place editing uses a replacement file and can break link identity; metadata/access-policy requirements need their own suitable update method. Check status, the backup and actual resulting content before acceptance. A failure can leave partial/replacement state; inspect before retrying. Preserve the backup for the task's recovery decision. Do not delete the final line of a shared system configuration merely because a walkthrough appended its own record there earlier.
 
 Reference: [GNU sed packaged manual](https://manpages.debian.org/bookworm/sed/sed.1.en.html); consult its fuller manual when selecting a different transformation.

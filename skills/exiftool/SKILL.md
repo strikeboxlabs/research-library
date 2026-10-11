@@ -1,6 +1,6 @@
 ---
 name: exiftool
-description: Inspect image and document metadata with ExifTool while retaining tag groups and source-file identity. Use for author, creator, software and timestamp leads in downloaded artifacts.
+description: Inspect image, document and media metadata with ExifTool while retaining tag groups and source-file identity. Use for creator, software, codec and timestamp leads in downloaded artifacts.
 ---
 
 # ExifTool metadata inspection
@@ -21,5 +21,7 @@ Check each command's status and diagnostics; a report may contain partial result
 Check `Author`, `Artist`, `Creator`, `Description` and software fields as available. Names may be in different tags; grepping only the printed label `Author` loses evidence. JSON values may be arrays, and names may contain spaces or punctuation, so avoid fixed-column `cut` pipelines.
 
 Treat a creator name or hostname as a lead, not proof of an account or device. A timestamp may describe editing, export or the local filesystem; retain its tag/group and timezone context. A missing field means it was not reported, not that the original never contained it. Investigate parser warnings, unsupported formats and truncated downloads before claiming a clean result.
+
+For media, retain container, codec/tag and software fields separately. AVI's `FMP4` tag maps to MPEG-4 in [FFmpeg's RIFF table](https://github.com/FFmpeg/FFmpeg/blob/master/libavformat/riff.c); that tag alone does not establish the producing server's software version, invocation or vulnerability status. An output filename ending `.avi` or a conversion-success page is weaker than parsing the actual returned bytes.
 
 Use the [upstream application manual](https://github.com/exiftool/exiftool/blob/master/html/exiftool_pod.html) to resolve reading, JSON and group options.
