@@ -5,6 +5,8 @@ description: Inspect and test a selected Nginx configuration, trace HTTP file ma
 
 # Establish the instance and configuration
 
+Read this entire SKILL.md before acting. Require the selected instance and its acquired/reviewed configuration. For proxy URI replacement or mismatched authentication boundaries, read [proxy route review](references/proxy-routing.md) fully before interpreting the route. Use the configuration-test procedure only when its file/module effects are authorized. Finish with the selected configuration, test/live evidence and unresolved mapping or visibility limits.
+
 Define `nginx_bin` as the verified absolute executable for the relevant installation:
 
 ~~~bash

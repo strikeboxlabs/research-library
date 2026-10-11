@@ -1,11 +1,11 @@
 ---
 name: perl
-description: Review a Perl backup or file-producing script and check compilation of fully reviewed owned source. Use when imported compile-time code, unchecked child statuses or success messages obscure what actually happened.
+description: Review Perl backup/file producers and literal filename ingestion, or check compilation of fully reviewed owned source. Use when compile-time imports, diamond input, child statuses or success messages obscure the actual effects.
 ---
 
 # Review the script and its producer results
 
-Read this entire SKILL.md before acting. Review acquired source as text first. Compilation below requires fully reviewed owned source, imports and a trusted ordinary interpreter environment; it can execute compile-time code. Finish with compile diagnostics or the supported source-flow finding, and identify missing runtime/artifact evidence separately.
+Read this entire SKILL.md before acting. Review acquired source as text first. For command-line file lists or a CSV importer, read [literal file ingestion](references/file-ingestion.md) fully before interpreting its open/iteration/validation order. Compilation below requires fully reviewed owned source, imports and a trusted ordinary interpreter environment; it can execute compile-time code. Finish with compile diagnostics or the supported source-flow finding, and identify missing runtime/artifact evidence separately.
 
 Trace input, interpreter/shebang, imports, effective-ID checks, output paths and every producer call. `use` loads modules during compilation. A call that changes UID is not a setuid file-mode observation; distinguish the call's checked result, file capabilities and already observed process IDs. Do not launch a privileged or capability-bearing interpreter merely to inspect its version or test a script.
 

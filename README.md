@@ -27,6 +27,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [az](skills/az/SKILL.md) | Inspect and download selected Azure/Azurite blobs with explicit endpoint, identity and transfer verification. |
 | [backy](skills/backy/SKILL.md) | Run an archive-only JSON task and distinguish skipped cycles, destructive sync options and verified backup output. |
 | [base64](skills/base64/SKILL.md) | Preserve transferred bytes and distinguish digest bytes, base64url and HTTP form-encoding layers. |
+| [basename](skills/basename/SKILL.md) | Derive a selected path component or exact suffix while preserving quoting and output-delimiter limits. |
 | [bash](skills/bash/SKILL.md) | Diagnose startup, restricted sessions, pattern comparisons, data reparsing, environment inheritance, filename expansion and redirection order. |
 | [bbot](skills/bbot/SKILL.md) | Select reconnaissance presets/modules, retain scan evidence and diagnose custom-module or privileged loader behavior. |
 | [bee](skills/bee/SKILL.md) | Select Backdrop sites, inspect CLI context and evaluate PHP with understood process/sudo and artifact effects. |
