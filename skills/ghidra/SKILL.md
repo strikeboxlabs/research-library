@@ -24,6 +24,8 @@ Confirm the imported format, language/endianness and analysis diagnostics; do no
 
 An acquired ELF kernel object can be imported for static function review through this same task. Its filename or a neighboring source listing does not establish that it matches the loaded module. Keep acquisition identity and source-to-object association unresolved unless separately evidenced. Do not load a specimen to make static analysis succeed.
 
+For acquired Windows PE files, match any PDB to the binary's recorded PDB filename, GUID/signature and age before trusting its names or types. An OS version label or matching PDB basename alone is insufficient. Retain the selected binary identity, symbol match and import diagnostics; do not force a mismatched PDB to obtain plausible names. Structure definitions from a different driver/build remain hypotheses. A Ghidra image address, file offset and live address are different coordinates; importing symbols does not establish a loaded module's runtime location. See [PDB matching and loading](https://github.com/NationalSecurityAgency/ghidra/blob/master/Ghidra/Features/PDB/src/main/help/help/topics/Pdb/LoadPDB.html).
+
 Select one or a few actual functions from that inventory. Define `program_name` as the exact project program name reported by import, `selector` as a unique function name or `@` followed by its entry address, and `decompiled` as a fresh absolute file. For example, `main` is only useful if that symbol exists; stripped files may have generated names. Reuse the imported analysis:
 
 ~~~bash

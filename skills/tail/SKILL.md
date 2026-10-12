@@ -1,11 +1,23 @@
 ---
 name: tail
-description: Read a bounded log suffix or follow a selected GNU/Linux log with tail. Use for scheduled-job errors, truncation and rotation without mistaking silence for success.
+description: Read a bounded log suffix, follow a selected GNU/Linux log, or extract a binary suffix from a verified byte boundary with tail.
 ---
 
-# Observe a selected log writer
+# Read a file suffix or observe a log writer
 
-Read this entire SKILL.md before acting; reuse complete current context. Identify the actual log path, writer and observation window. Capture relevant lines/diagnostics and stop the owned follower when the question is answered or the window ends; no output is not a successful job result.
+Read this entire SKILL.md before acting; reuse complete current context. For logs, identify the path, writer and observation window; stop the owned follower at completion. For binary extraction, establish the format's byte boundary and preserve the original. No conditional resources are required. Finish with relevant output/diagnostics and coverage limits; no output is not a successful job result.
+
+## Extract from a verified byte boundary
+
+Define `source` as an acquired local file, `first_byte` as a positive one-based position justified by its format, and `suffix_file` as a fresh output path:
+
+~~~bash
+tail -c "+$first_byte" -- "$source" > "$suffix_file"
+~~~
+
+`-c +2` starts at byte two, skipping exactly one byte. Without the plus, `-c 2` selects the final two bytes; `-n` counts lines. Check exit status and expected output length before parsing the suffix. An offset beyond EOF can yield empty output without validating your format assumption. Avoid text decoding or shell variables for binary bytes; do not strip a header simply to force a comparison to match.
+
+## Observe a selected log writer
 
 Define `log_file` as the selected absolute file. First take a finite suffix:
 

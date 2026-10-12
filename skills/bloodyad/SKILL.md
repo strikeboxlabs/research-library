@@ -18,4 +18,6 @@ Use a cache matching the identity and domain. `-H` identifies the server; `-i` s
 
 Use a DN or resolved SID when a display name could select the wrong object. Restrict attributes to the question. Group `member` values describe that object's direct membership, not every nested group or an already issued token. An empty query, unreadable attribute and absent attribute need different conclusions; retain the diagnostic and selected base/object.
 
+For an inherited-permission discrepancy, compare the selected object's actual security descriptor, applicable ACE class/inheritance restrictions and current protected-group membership. `adminCount=1` can persist after protected-group removal; it alone does not prove current protection or the DACL inheritance state. A parent OU grant does not establish effective rights on every descendant. Clearing that attribute alone is not an inheritance repair. Preserve these separate observations for the directory administrator; see [Microsoft's protected-account guidance](https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory).
+
 The [upstream guide](https://github.com/CravateRouge/bloodyAD/wiki/User-Guide) documents additional actions. Choose the smallest matching action rather than a broad grant merely because a walkthrough used one.

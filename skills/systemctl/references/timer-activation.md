@@ -21,4 +21,6 @@ journalctl -b -u "$service" -n 100 --no-pager
 
 Disk unit files can differ from manager-loaded settings. Trace the selected script/dependencies as data before attributing their effects. An already active service is left running when its timer elapses; no new instance is necessarily launched. Missing journal access or retained timestamps leave completion unresolved. Verify the requested output separately; do not start or alter a timer merely to inspect it.
 
+For a tmpfiles cleanup service, timer frequency and file-age eligibility are separate settings. Inspect the service's actual arguments and effective tmpfiles rules, including overrides and exclusions. A rule in one vendor file does not prove every old file will be removed: selected timestamps, locks, rule type and runtime errors can change that result. Correlate the selected path's metadata with retained service evidence; do not trigger cleanup to test a reading. See [tmpfiles rule and age semantics](https://github.com/systemd/systemd/blob/main/man/tmpfiles.d.xml).
+
 Sources: [systemctl](https://raw.githubusercontent.com/systemd/systemd/main/man/systemctl.xml), [timer contract](https://raw.githubusercontent.com/systemd/systemd/main/man/systemd.timer.xml).

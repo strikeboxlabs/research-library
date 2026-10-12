@@ -25,6 +25,8 @@ Choose `options` for the task:
 
 Do not independently remount a live filesystem or repair its journal merely to make evidence readable. A second mount of an already active filesystem can share its superblock; choose an existing suitable view or coordinated snapshot when possible. A readonly second view does not make other writers stop.
 
+`nosuid` changes how execution through that mount treats set-user-ID/set-group-ID bits and file capabilities; it does not erase stored mode bits. Therefore `ls -l` can still display `s` on a nosuid mount. Use the actual mount options and namespace when interpreting metadata; do not execute an acquired binary to test the privilege effect.
+
 In the established privileged context, with the chosen source/type/options:
 
 ~~~bash

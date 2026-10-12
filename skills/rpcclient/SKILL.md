@@ -1,11 +1,11 @@
 ---
 name: rpcclient
-description: Query Windows/Samba RPC identities and perform a selected authorized SAMR password reset from Linux. Use to resolve names/RIDs, inspect user/group evidence and distinguish authentication, RPC rights and account-change results.
+description: Query Windows/Samba RPC identities or server metadata and perform a selected authorized SAMR password reset from Linux. Use to resolve names/RIDs and distinguish authentication, reported metadata, RPC rights and account-change results.
 ---
 
 # Resolve the object through the intended RPC service
 
-Read this entire file before acting. For account changes read [SAMR password changes](references/samr-password-changes.md) fully. Finish with the server/domain, resolved object and RPC result; successful login does not establish rights for every RPC method.
+Read this entire SKILL.md before acting. For account changes read [SAMR password changes](references/samr-password-changes.md) fully. Finish with the server/domain, resolved object or metadata and RPC result; successful login does not establish rights for every RPC method.
 
 Check `rpcclient --help`. Set `server` to the selected hostname and `identity` to `DOMAIN/user`; omit the password from argv to use the prompt:
 
@@ -26,6 +26,14 @@ queryusergroups 0x451
 The username and RID are illustrative: use the actual lookup result. A RID belongs to a particular SAM domain SID; the same number on another machine/domain identifies a different principal. `queryusergroups` reports memberships returned by that interface, not the complete current access token or a universal effective-permissions calculation. `querygroupmem` can resolve a selected group's members. `enumdomusers` is useful when domain enumeration itself is in scope.
 
 For a repeatable read, `-c 'lsaquery'` supplies a command without an interactive session. Multiple semicolon-separated commands are parsed by rpcclient, so do not concatenate untrusted account names into that string. `-N` suppresses a password prompt; it does not grant anonymous access or convert supplied credentials into a valid session.
+
+For server metadata in the same selected authentication context:
+
+~~~bash
+rpcclient -U "$identity" "$server" -c 'srvinfo'
+~~~
+
+Retain the returned platform/version/type fields as server-reported metadata. They are not an authenticated package inventory or a reliable Samba patch level. Establish installed package/build evidence separately before assessing an advisory; another service's banner cannot date Samba's installation or prove its configuration.
 
 | Failure | Interpretation/next check |
 |---|---|

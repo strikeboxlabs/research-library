@@ -27,6 +27,8 @@ find -P "$search_root" -xdev -type f -group "$group_name" -print0 > "$matches" 2
 
 `-group` selects ownership, not membership or current access. Add `-perm -020` to select group-owned regular files whose group-write bit is set; the leading minus requires that bit while allowing other mode bits. A match does not establish effective write access: inspect the current identity, parent traversal, ACLs and filesystem policy before drawing that conclusion. Add `-perm -4000` only when set-user-ID files are the intended subset; inspect actual owner/mode, mount policy and execution context before claiming a privilege effect. A permission-denied path or a suppressed diagnostic leaves coverage incomplete. GNU find's `-ls` is a human listing, not the NUL-delimited evidence above.
 
+For a group-owned Unix socket inventory, replace `-type f` with `-type s` in the scoped search. The regular-file selection above deliberately omits sockets. Socket ownership identifies filesystem metadata, not the listening process, peer credentials or the service's request authorization; correlate those separately before making an access claim.
+
 To test whether **one directory itself** is empty, define `directory` and use:
 
 ~~~bash

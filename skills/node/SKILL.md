@@ -1,6 +1,6 @@
 ---
 name: node
-description: Use Node.js for CommonJS resolution, an owned HTTP server, selected module precedence, bounded Socket.IO exchanges or parser/session source review. Use when runtime, bind address, dependency lookup or input contracts change the result.
+description: Use Node.js for CommonJS resolution, an owned HTTP server, selected module precedence, bounded Socket.IO exchanges or parser/session and inspector exposure review. Use when runtime, bind address, dependency lookup or input contracts change the result.
 ---
 
 # CommonJS lookup and application contracts
@@ -14,6 +14,8 @@ For an acquired cookie-session/Keygrip application or owned signed-cookie reprod
 For acquired request/cookie processing code, read [parser and verification order](references/request-data-review.md) fully before source interpretation or syntax checks. It requires the actual route, middleware and dependency context; finish with the supported dataflow and unresolved implementation gaps.
 
 For a loop or queued job controlled by request data, read [numeric input and bounded work](references/numeric-input.md) fully before evaluating or changing the handler. It requires the input format and intended bounds; finish with local validation results and any remaining concurrency or runtime uncertainty.
+
+For an acquired launch definition or listener suggesting an enabled debugger, read [inspector exposure evidence](references/inspector-evidence.md) fully before attributing the service or its privileges. This is a static review of configuration, process/listener evidence and existing metadata.
 
 For CommonJS lookup, inspect the launcher and its shell/service environment first. A login-shell wrapper may set `NODE_PATH` differently from an interactive terminal. `NODE_OPTIONS`, preload flags and custom loader hooks can execute code at startup: use a trusted diagnostic environment rather than replaying an unreviewed launcher. If clearing those settings, record the difference from the real service.
 

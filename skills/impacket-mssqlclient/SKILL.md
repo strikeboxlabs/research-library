@@ -34,6 +34,8 @@ SELECT name, value, value_in_use FROM sys.configurations WHERE name IN ('show ad
 
 `ORIGINAL_LOGIN()` records the connecting identity; effective login and database user can differ after context changes. `dbo` is a database identity, not proof of Windows Administrator or SYSTEM. Role membership `1`/`0` and `NULL` are different results; `NULL` can mean invalid input or insufficient visibility. Configured `value` and active `value_in_use` can differ. Empty/denied metadata is an evidence gap, not an off setting.
 
+`guest` from `USER_NAME()` describes the current database mapping, not an anonymous network login or a failed authentication. Its permissions depend on that database's grants. A Windows account named Administrator does not automatically hold SQL `sysadmin`; inspect the instance's actual login/group-role mapping. Likewise, `dbo` alone does not replace the explicit server-role check. Keep server login, database user, schema ownership and Windows service identity separate when explaining access. See [SQL Server principals and guest mapping](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/principals-database-engine).
+
 For database/table metadata, query the selected SQL context with bounded results:
 
 ~~~sql

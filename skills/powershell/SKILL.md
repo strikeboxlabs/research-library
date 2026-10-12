@@ -1,11 +1,11 @@
 ---
 name: powershell
-description: Inspect Windows PowerShell filesystem drives and selected directory metadata through an established session. Use when provider paths, aliases or access-denied results are mistaken for Linux behavior.
+description: Inspect Windows filesystem metadata or a selected authentication policy through an established PowerShell session. Use when provider paths, aliases, access errors or NTLM policy values need precise interpretation.
 ---
 
-# Inspect Windows filesystem metadata
+# Inspect Windows metadata and policy
 
-Read this entire SKILL.md before acting. Require an already authorized Windows PowerShell session on the owned machine. Select filesystem drive inventory below, or supply the permitted directory for its listing. A Linux worker needs that existing Windows execution context; installing Linux pwsh does not supply it. All instructions are inline. Finish with metadata/status and the supported access result, keeping denied or incomplete listings explicit.
+Read this entire SKILL.md before acting. Require an already authorized Windows PowerShell session on the owned machine. Select filesystem drive inventory below, supply the permitted directory for its listing, or read [NTLM policy evidence](references/ntlm-policy.md) fully for that conditional registry task. A Linux worker needs that existing Windows execution context; installing Linux pwsh does not supply it. Finish with metadata/status and the supported result, keeping denied or incomplete queries explicit.
 
 Inspect `$PSVersionTable` and actual command resolution before applying copied aliases:
 

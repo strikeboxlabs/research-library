@@ -1,6 +1,6 @@
 # Validation record
 
-Record opened 2026-10-10; latest completed intake 2026-10-12. Current authoring schema: v0.8. See [the 269-source completion](#remaining-269-writeups--completed-2026-10-12) for current validation and review coverage. Earlier checks below retain their historical schema versions; packaging checks are not measured agent-performance results.
+Record opened 2026-10-10; latest completed intake 2026-10-12. Current authoring schema: v0.8. See [the 36-source completion](#remaining-updated-writeups--completed-2026-10-12) for current validation and review coverage. Earlier checks below retain their historical schema versions; packaging checks are not measured agent-performance results.
 
 ## Worked-guidance pilot, 2026-10-10
 
@@ -1215,3 +1215,83 @@ Final full validation passed: **855 Markdown files**, **1347 local links**, **13
 No controlled Linux image or worker trial was available. Documentation acceptance, syntax parsing and the individually identified benign Windows fixtures remain distinct from Linux runtime validation. The later on-box pass must verify executable paths, installed options and behavior; no target paths or execution results were invented. Source-specific missing facts and exclusions remain in their reports. The library has not been claimed fully migrated: **102 current packages were not reviewed by this 269-source batch**.
 
 The exact unreviewed package list is in the [intake completion](ctf-writeups-overnight-2026-10-10.md#packages-outside-this-batchs-schema-review).
+
+## Ten recent writeups — completed 2026-10-12
+
+**10/10 supplied PDFs reviewed; 168 pages read and 103 selected page renders individually inspected.** Source SHA-256 values are unchanged. Eight are new source files; Bruno and Cap are exact duplicates of earlier intake items. The catalogue now matches **536 packages: five new and eight existing packages changed**. Schema-v0.8 selected-task review covered **48 distinct packages**; all passed metadata validation. The 13 changed packages passed activation-contract and first-150-line resource-route checks.
+
+| Source | Changed packages | Focused Bash blocks parsed |
+|---|---|---:|
+| Abducted.pdf | `pkaction`, `pkcheck`, `rpcclient` | 5 |
+| AirTouch.pdf | `airmon-ng`, `airodump-ng`, `wpa-supplicant` | 5 |
+| Atlas.pdf | `tail`, `base64` | 8 |
+| Barrier.pdf | `env` | 1 |
+| Browsed.pdf | `python3` | 20 |
+| Bruno.pdf | None; duplicate review | Not repeated; no package delta |
+| Cap.pdf | None; duplicate review | Not repeated; no package delta |
+| CCTV.pdf | `ip` | 5 |
+| Conversor.pdf | `python3`, `needrestart` | 21 |
+| DevArea.pdf | `jd-gui` | 1 |
+
+The focused runs validate metadata, early routing and Bash syntax only. The later python3 run includes both accepted Python additions; repeated blocks in focused runs are not additional runtime tests. Evidence is under ignored `runs/intake-10-2026-10-12/focused-*/` and `final/`.
+
+Full repository validation passed for **536 skill packages**, **861 Markdown files**, **1459 local links** and **1319 Bash blocks parsed for syntax**, with **zero checker errors**. All **19 repository/helper tests passed**, including copying each skill into an isolated repository; test temporary storage was empty afterward. Package contents stayed unchanged during checking. Final `git diff --check` passed. These checks ran on Windows and did not execute the documented source procedures. Raw results are retained in ignored `runs/intake-10-2026-10-12/final/`.
+
+Documentation reviewed: polkit metadata/authorization semantics; monitor-interface lifecycle and passive capture; enterprise EAP trust/name validation; binary byte boundaries and base64 wrapping; CI environment provenance; Python cache integrity and distinct XML/XSLT control scopes; bridge membership; needrestart list-only reporting; and Java dependency/data-binding provenance. Source-page mappings, primary-documentation links, unchanged-task decisions and excluded intrusion chains are in [the intake record](ctf-writeups-overnight-2026-10-10.md#ten-recent-writeups--completed-2026-10-12).
+
+No source commands, recovered application, payload or target interaction ran. No controlled Linux fixture or worker trial was available, so no radio/polkit/service/GUI/Linux command behavior or agent-performance outcome is claimed. Syntax validation does not resolve installed paths, package backports, privileges, driver behavior or deployment configuration. These remain facts for the later controlled-image pass.
+
+The source-to-task audit preserves protected methodologies, authoring material, AGENTS.md, GETTING_STARTED.md, checker and tests. It identifies all **488 packages not reviewed in this batch**, and the **102 packages outside the combined recorded schema-v0.8 review sets of this and the previous 269-source batch**, in the [review coverage list](ctf-writeups-overnight-2026-10-10.md#review-coverage-after-the-ten-source-batch). The whole library is not claimed migrated.
+
+## Remaining updated writeups — completed 2026-10-12
+
+**36 PDFs, 696 pages read and 222 selected page renders inspected.** The five exact duplicates were re-reviewed; all originals retain their intake SHA-256. The catalogue grew from **536 to 546 packages**, adding ten and updating twenty existing packages. Schema-v0.8 selected-task review covered **73 packages**, all with valid metadata. All **30 changed packages** passed early activation/resource routing checks.
+
+| Source | Changed packages | Focused Bash blocks parsed |
+|---|---|---:|
+| DevHub.pdf | `curl` | 47 |
+| Dump.pdf | None; existing coverage adequate | Not repeated; no package delta |
+| Eighteen.pdf | `netexec` | 12 |
+| Facts.pdf | `facter` | 1 |
+| Fireflow.pdf | `curl` | 48 |
+| Fries.pdf | `docker`, `mount` | 20 |
+| Gavel.pdf | `php`, `find` | 24 |
+| Ghostlink.pdf | `mqttui`, `regripper` | 4 |
+| Giveback.pdf | `runc` | 1 |
+| Helix.pdf | `python3` | 21 |
+| Hercules.pdf | `bloodyad` | 4 |
+| Interpreter.pdf | `python3` | 21 |
+| JobTwo.pdf | None; existing coverage adequate | Not repeated; no package delta |
+| Kobold.pdf | None; existing coverage adequate | Not repeated; no package delta |
+| Logging.pdf | `netexec`, `certipy` | 18 |
+| MonitorsFour.pdf | `docker` | 16 |
+| NanoCorp.pdf | None; existing coverage adequate | Not repeated; no package delta |
+| Nexus.pdf | None; existing coverage adequate | Not repeated; no package delta |
+| Odyssey.pdf | `ilspycmd`, `pandoc`, `pdflatex`, `latex`, `dvips`, `gs` | 8 |
+| Orion.pdf | `telnet` | 1 |
+| Overwatch.pdf | `netstat` | 4 |
+| Pirate.pdf | `powershell` | 0 |
+| Principal.pdf | `ssh` | 13 |
+| Pterodactyl.pdf | `mount`, `gdbus` | 5 |
+| Reactor.pdf | `node` | 7 |
+| ReaperTwo.pdf | `ghidra` | 5 |
+| Signed.pdf | `impacket-mssqlclient` | 2 |
+| Silentium.pdf | None; existing coverage adequate | Not repeated; no package delta |
+| Slonik.pdf | `psql`, `ssh` | 17 |
+| SmartHire.pdf | `python3` | 21 |
+| Snapped.pdf | `systemctl` | 4 |
+| Store.pdf | None; existing coverage adequate | Not repeated; no package delta |
+| Support.pdf | None; existing coverage adequate | Not repeated; no package delta |
+| TwoMillion.pdf | None; existing coverage adequate | Not repeated; no package delta |
+| VariaType.pdf | `fontforge` | 2 |
+| WingData.pdf | `python3` | 21 |
+
+Focused checks cover metadata, routing and Bash syntax only. Repeated counts reflect successive edits to a package, not additional runtime results. The new embedded OPC UA and FontForge Python snippets also passed AST parsing without importing their dependencies or executing them. Evidence is retained in `runs/intake-36-2026-10-12/focused-*/` and `final/`.
+
+Full repository validation passed for **546 skill packages**, **876 Markdown files**, **1476 local links** and **1336 Bash blocks parsed for syntax**, with **zero checker errors**. All **19 repository/helper tests passed**, including copying each skill into an isolated repository; test temporary storage was empty afterward. Package contents stayed unchanged during checking. Final `git diff --check` passed. These checks ran on Windows and did not execute the documented source procedures. Raw results are retained in ignored `runs/intake-36-2026-10-12/final/`.
+
+Primary-documentation review covered HTTP/MCP and Kubernetes permissions; SQL/LDAP/account-policy distinctions; Docker TLS and namespaces; NFS mounts; PHP and Python execution/configuration boundaries; Facter, MQTTUI, RegRipper and gdbus discovery; document conversion and FontForge metadata; assembly/PDB evidence; NTLM policy; SSH certificates and sockets; and systemd cleanup timing. Each accepted change is mapped to its source and primary links in [the intake record](ctf-writeups-overnight-2026-10-10.md#remaining-updated-writeups--completed-2026-10-12). GLib and systemd HTML retrieval failures were resolved with upstream source documentation; PHP platform scope was confirmed in its upstream advisory. These were documentation reads, not product runtime tests.
+
+No controlled Linux fixture or worker trial was available. No source command, target interaction, recovered application, payload, archive extraction, font parser or privileged operation ran. No installation, commit or publication occurred. Package checks do not establish deployed paths, versions/backports, privileges or successful worker behavior.
+
+The content audit preserved unrelated methodologies, authoring material, AGENTS.md, GETTING_STARTED.md, checker and tests. Exact lists of the **473 packages not reviewed in this batch** and **101 outside the combined 269/10/36-source schema-v0.8 review sets** appear in [review coverage](ctf-writeups-overnight-2026-10-10.md#review-coverage-after-the-36-source-batch). The library is not claimed wholly migrated.

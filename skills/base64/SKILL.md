@@ -9,6 +9,14 @@ Read this entire SKILL.md before acting; reuse complete current context. Identif
 
 Base64 describes a representation, not encryption or a password-hash algorithm. Preserve the captured input and identify its container before decoding. Do not run decoding over an entire JSON object, mail message or terminal transcript; extract the actual field/body first.
 
+To compare an acquired binary artifact with an encoded field, first establish whether that field represents the whole file or a format-defined byte range. Define `binary_file` as that exact input and `encoded_file` as a fresh private output path:
+
+~~~bash
+base64 --wrap=0 -- "$binary_file" > "$encoded_file"
+~~~
+
+GNU `--wrap=0` disables inserted line breaks. Check status and compare complete representations, or decode both and compare bytes. A one-byte header changes the encoding from the start; removing the first encoded character does not remove the first decoded byte. Preserve any justified binary extraction separately from the original.
+
 For separately encoded records inside acquired local files, retain the filename/record association and decode each complete body independently. A recursive grep that removes every line containing `php` is not a format parser: it can remove legitimate encoded data and merge unrelated records. Decoder handling of concatenated padded bodies varies. Adding line breaks after decoded `}}` does not recover original record boundaries or validate PHP serialization, whose string lengths count bytes. Save each decoded record and use a nonexecuting format reader; do not evaluate or unserialize untrusted data merely to display it.
 
 For a MIME email attachment, select the exact part by its headers and boundary context; confirm that part's `Content-Transfer-Encoding` is `base64`. Decode only its body, excluding MIME headers and boundary delimiters. A MIME parser may already have decoded the payload, so check its API before applying another base64 pass. An `.enc` filename or an `X-Attached` header alone establishes neither transfer encoding nor encryption. After decoding, inspect the resulting file/container; a PEM private key can still be encrypted independently of its mail transport. See [MIME encoding](https://www.rfc-editor.org/rfc/rfc2045) and [multipart boundaries](https://www.rfc-editor.org/rfc/rfc2046).

@@ -20,6 +20,8 @@ Compare against the same trusted program/input in its normal context. A changed 
 
 `TERM` names the terminal type expected by a consumer; setting it does not emulate that terminal, allocate a PTY or prove the required terminfo entry exists. Match the real terminal and installed capability database before attributing an unknown-terminal error to authentication.
 
+An acquired CI/container environment describes that process at that moment. It does not establish the host environment, another container's values or their origin. Trace a relevant variable through the job, runner and container configuration when diagnosing inheritance; a matching name alone does not establish provenance or credential type. Keep diagnostic output limited to the needed nonsecret fields instead of publishing the whole environment into a shared job log. See [GitLab runner variable configuration](https://docs.gitlab.com/runner/configuration/advanced-configuration/).
+
 Without a command, env prints the resulting environment, potentially including secrets; that is a separate inspection task. GNU env normally returns the child's status; its own failures use 125, a command that cannot be invoked 126, and one not found 127. These numbers can also be returned by the child, so retain diagnostics rather than identifying the failed stage from a number alone. Finish with the actual comparison and unresolved prerequisite.
 
 Reference: [GNU env manual](https://www.gnu.org/software/coreutils/manual/html_node/env-invocation.html).

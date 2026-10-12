@@ -7,6 +7,8 @@ description: Inspect one known legacy text service with a telnet client. Use whe
 
 Read this entire SKILL.md before acting. Require the installed client, one authorized known host/port and a selected read-only application command. Inspect local help to identify the implementation; GNU options below are conditional on that client. Complete with the endpoint, banner, actual command/response and remaining coverage, then close this session.
 
+For a version or patch question, `telnet --version` identifies this client, not the daemon at the selected endpoint. Correlate the administered listener with its actual server executable, package revision and vendor patch evidence. A port number or client/server product family alone cannot establish the daemon's implementation or vulnerability status. Retain that attribution gap instead of testing an authentication bypass.
+
 For GNU Inetutils, define `host` and numeric `port` and omit inherited startup commands/automatic login:
 
 ~~~bash

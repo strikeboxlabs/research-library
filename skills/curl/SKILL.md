@@ -22,8 +22,9 @@ Read this entire SKILL.md before acting; complete current context need not be re
 - XML uploads with reflected external-entity file content or a newly recovered handler: [XML processing boundaries](references/xml-upload.md).
 - InfluxDB v1 HTTP queries, measurement records, JWT authentication and partial results: [InfluxDB v1 queries](references/influxdb-v1.md).
 - Read-only metadata for a known Elasticsearch index: [Elasticsearch index evidence](references/elasticsearch-index.md).
+- Kubernetes self-permission review through an explicitly selected API: [Kubernetes permission evidence](references/kubernetes-permissions.md).
 - A recovered JSON handler explicitly passing a field to a shell: [shell-backed JSON requests](references/shell-backed-json.md).
-- JSON/form APIs, JSON-RPC response matching, multipart uploads, file PUTs, token handling or acquired OAuth code/token traces: [API request construction](references/api-requests.md).
+- JSON/form APIs, JSON-RPC or MCP trace interpretation, API catalogues, multipart uploads, file PUTs, token handling or acquired OAuth code/token traces: [API request construction](references/api-requests.md).
 - An HTTP Negotiate service using the selected existing Kerberos cache: [Negotiate authentication](references/negotiate.md).
 - Rails report downloads, hidden path fields, same-origin session riding or leading-pipe file/process inputs: [Rails report boundaries](references/rails-reports.md).
 - Cookie-bound CSRF requests or a browser-only failure: [session and preflight diagnosis](references/session-and-preflight.md).

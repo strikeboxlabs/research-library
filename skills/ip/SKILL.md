@@ -1,11 +1,11 @@
 ---
 name: ip
-description: Diagnose Linux address and route selection with iproute2 without changing network state. Use when local delivery, a more-specific prefix, policy routing or a namespace makes the observed path differ from a routing-daemon table.
+description: Inspect Linux bridge membership or diagnose address and route selection with iproute2 without changing network state. Use when interface relationships, local delivery, policy routing or namespaces make network evidence ambiguous.
 ---
 
 # Explain the kernel's route choice
 
-Read this entire SKILL.md before acting. Require the affected process's network context and selected destination; use the address/rule/route observations below to explain that lookup. Finish with the observed assignment and route decision plus reachability limits; unavailable namespace access leaves that context unresolved.
+Read this entire SKILL.md before acting. Require the affected process's network context. For bridge membership, use the interface section below; for a route decision, require the selected destination and use the address/rule/route observations. No conditional resources are required. Finish with observed membership or the route decision and its limits; unavailable namespace access leaves that context unresolved.
 
 Confirm `ip -Version` and `ip route help`; BusyBox and older iproute2 builds may lack `fibmatch`, JSON or other selectors. Run queries in the network namespace of the affected process. The host, a container and a router namespace can have different addresses and rules. For an already identified named namespace, `ip -n "$namespace" ...` selects it when permitted; a named-namespace listing is not a list of every container namespace.
 
@@ -44,5 +44,24 @@ The second command models ingress forwarding rather than local output. If the ru
 **Illustrative:** installed `192.0.2.0/24` and `192.0.2.0/25` routes cover `192.0.2.10`. Within the selected table, the /25 is more specific; its larger metric does not make the /24 win. First resolve policy/table selection, then prefix length and applicable preferences. An unreachable/prohibit/blackhole route or rule needs interpretation as a deliberate action, not a missing default route.
 
 Assigning an address normally also creates local and connected-prefix routing state, subject to flags such as `noprefixroute`. That alone does not prove BGP advertisement. Compare kernel state with the routing daemon's origination, redistribution and export evidence before attributing a route leak. Keep address changes, route replacement and flushing out of evidence collection.
+
+## Inspect bridge membership without changing links
+
+For an owned network's interface inventory, inspect device types before treating a name such as `docker0` as proof of its manager:
+
+~~~bash
+ip -details link show type bridge
+~~~
+
+Select an observed bridge name as `bridge`, then inspect its members and local addresses:
+
+~~~bash
+ip -details link show master "$bridge"
+ip address show dev "$bridge"
+~~~
+
+An **illustrative** `vethA@if2 ... master br0` row associates that local interface with br0; `@if2` is peer-link information, not container ID 2. Veth devices are pairs and can connect namespaces without belonging to Docker. Multiple members do not establish an exact container count or active communication. A bridge address belongs to this namespace; it is not a list of peer addresses.
+
+Retain interface names, indices, master, flags and observation time. Administrative `UP` alone does not establish carrier or application connectivity. A failed query differs from a successful empty member list; another namespace can have different links. Correlate available manager metadata only when container identity is required, leaving it unresolved if that access is unavailable. These queries neither capture payloads nor change links. See [link selectors](https://man7.org/linux/man-pages/man8/ip-link.8.html) and [veth pairs](https://man7.org/linux/man-pages/man4/veth.4.html).
 
 References: [ip options and namespaces](https://man7.org/linux/man-pages/man8/ip.8.html), [route lookup](https://man7.org/linux/man-pages/man8/ip-route.8.html), [policy rules](https://man7.org/linux/man-pages/man8/ip-rule.8.html), [address flags](https://man7.org/linux/man-pages/man8/ip-address.8.html).

@@ -1,5 +1,20 @@
 # Establish the source of a container mount
 
+## Check a provisioned TLS daemon endpoint
+
+Require the intended daemon address, trusted CA certificate and an already provisioned client certificate with its matching private key. A CA private key is not a client prerequisite. Define `daemon` as its verified `tcp://hostname:port`, and `ca_file`, `client_cert`, `client_key` as the private task's actual credential paths:
+
+~~~bash
+docker --host "$daemon" --tlsverify --tlscacert "$ca_file" \
+  --tlscert "$client_cert" --tlskey "$client_key" version
+~~~
+
+Retain status and the separate Client/Server results. Resolve hostname, trust-chain, validity and client-purpose errors against the provisioned endpoint; do not disable verification as a repair. Loopback refers to the CLI's execution environment. If using an existing environment-based configuration instead, inspect `DOCKER_HOST`, `DOCKER_CONTEXT`, `DOCKER_TLS_VERIFY` and `DOCKER_CERT_PATH` together before attributing the connection; a conflicting context can redirect selection.
+
+Successful TLS authentication and a successful metadata request establish different stages. An authorization plugin may allow one API operation and reject another. A certificate's common name is not an OS UID, and an observed container listing does not prove permission to create containers or mount host files. Review the deployed plugin policy and exact requested operation before assigning authority. A readable service unit is configuration evidence until correlated with the running daemon and its effective overrides.
+
+See [Docker TLS client options](https://docs.docker.com/engine/security/protect-access/), [CLI context selection](https://docs.docker.com/reference/cli/docker/) and [authorization plugins](https://docs.docker.com/engine/extend/plugins_authorization/).
+
 ## Inspect the selected daemon's networks
 
 Use only the actual permitted Docker invocation. A restricted grant to network ls/inspect does not permit container inspection, run or daemon reconfiguration. With the daemon context established as far as that grant permits, list networks and select an observed network name/ID as `network`:
@@ -32,6 +47,8 @@ With `jq` available and access to the intended daemon already established, defin
 ~~~
 
 The filter displays only mount metadata; `pipefail` preserves an inspection failure. Inspect `Type`, `Source`, `Destination` and `RW`. For a bind mount, `Source` is a path on the daemon host; for a named volume, preserve the volume identity instead of assuming an equivalent user-selected host directory. A container destination `/root` does not establish a host source `/root`. A mount listing showing the same block device for several destinations is insufficient to recover their individual sources. Read-write metadata alone does not establish effective file permissions.
+
+If the selected daemon serves Linux containers through Docker Desktop, distinguish its Linux VM filesystem from the native desktop OS and any shared host directories. A Linux root prompt or a bind source `/` does not identify a Windows account or imply access to every native-host path. Use the actual inspected mappings and deployment configuration; historical internal addresses and shared-drive paths are not portable defaults. Desktop product version, Engine version and CLI version are separate observations.
 
 An empty result, missing container or wrong daemon context leaves the mapping unresolved. Do not install a client, expose a daemon socket or recreate a container merely to obtain this evidence. See [container inspection](https://docs.docker.com/reference/cli/docker/container/inspect/) and [bind mounts](https://docs.docker.com/engine/storage/bind-mounts/).
 

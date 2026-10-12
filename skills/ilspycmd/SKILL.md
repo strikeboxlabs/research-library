@@ -7,7 +7,7 @@ description: Inspect managed .NET assemblies from Linux with ILSpyCmd. Use to lo
 
 Read this entire SKILL.md before acting. Require the preserved assembly, matching available dependency assemblies when needed, the installed CLI's runtime and fresh private outputs. Select the relevant archive, crypto-helper or time-seed section below; unrelated branches need no separate execution. Finish with assembly/type/member evidence, command status and any unresolved decompilation/runtime assumption. Reconstructed source is not an executed application result.
 
-For acquired .NET Remoting or WCF service settings, read [service contracts and execution context](references/service-contracts.md) fully before that static analysis. Use the selected-type/project commands below; no application client invocation is part of this task.
+For acquired .NET Remoting, WCF or named-pipe service settings, read [service contracts and execution context](references/service-contracts.md) fully before that static analysis. Use the selected-type/project commands below; no application client invocation is part of this task.
 
 Use ILSpy's `ilspycmd` CLI, whose flags differ from the desktop frontend. Check `ilspycmd --version` and `--help`; the tool's own required .NET runtime can differ from the target assembly's framework. A missing tool runtime is not evidence that the captured assembly is invalid. This is a Linux CLI alternative to desktop dnSpy inspection.
 

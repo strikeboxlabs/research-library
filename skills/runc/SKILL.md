@@ -19,6 +19,8 @@ Check the version command's status before interpreting its output. Preserve the 
 
 A binary found inside one container need not be the runtime used by the host's Docker/containerd service. Confirm that service's configured runtime and actual executable through its approved inventory/configuration evidence before attaching this output to it. Docker Engine's version and a base-image tag do not identify runc. A missing binary or permission failure is an inventory gap, not a runtime security result.
 
+For a custom wrapper, record its path and selected runtime separately. A wrapper may add authentication, restrict subcommands or rewrite arguments before delegating; upstream runc help does not describe those controls. Read the available wrapper/configuration evidence before choosing even a version query. A displayed version establishes what that path reported, not that the wrapper implements every upstream option or that another service uses the same binary. Wrapper authentication and sudo authentication are distinct requirements.
+
 For a patch assessment, match the complete package revision and distribution release to the vendor advisory or tracked build provenance. A comparison using only the upstream numeric prefix can misclassify a backported fix. Version evidence alone does not establish the active configuration, a reachable exploitation condition or a successful containment test. Record the matched vendor status and remaining uncertainty; upgrading or changing a service is a separate authorized action.
 
 References: [upstream runc manual](https://github.com/opencontainers/runc/blob/main/man/runc.8.md), [runtime project](https://github.com/opencontainers/runc).
