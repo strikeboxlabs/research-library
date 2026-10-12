@@ -1,11 +1,11 @@
 ---
 name: magick
-description: Identify the trusted ImageMagick 7 build and its available configuration, formats and delegate capabilities. Use when an application's bundled binary differs from a workstation decoder or a version banner is insufficient evidence.
+description: Inspect a selected image with ImageMagick 7 and identify its trusted build, policy, formats and delegate capabilities. Use when image metadata, decoding or a bundled binary differs from a workstation result.
 ---
 
-# Identify the selected ImageMagick 7 runtime
+# Inspect the selected ImageMagick 7 runtime and image
 
-Read this entire SKILL.md before acting. Require a trusted installed ImageMagick 7 executable; define `magick_bin` as that selected invocation. No conditional resources are required. Finish with observed build/options and the remaining service-context or decoding gaps.
+Read this entire SKILL.md before acting. Require a trusted installed ImageMagick 7 executable; define `magick_bin` as that selected invocation. Select runtime inventory or one reviewed ordinary-image inspection below. Use an owned trusted working directory and known configuration/loader environment for either task. No conditional resources are required. Finish with observed build/options or image properties, status and the remaining service-context or decoding gaps.
 
 ~~~bash
 "$magick_bin" -version
@@ -24,4 +24,17 @@ These commands execute the selected binary. For an executable recovered with sou
 
 ImageMagick 7 uses `magick` for image processing and `magick identify` for inspection. ImageMagick 6's separate `convert`/`identify` programs can be different builds. Do not silently apply one build's options or results to another. Installation and policy changes are separate actions from this inventory.
 
-Reference: [ImageMagick magick options and subcommands](https://imagemagick.org/magick/).
+## Inspect one reviewed ordinary image
+
+Require the exact existing image, permitted resource budget and this binary's identify help/policy. Define `image` as its selected absolute path and `report`/`errors` as fresh outputs in an owned directory:
+
+~~~bash
+"$magick_bin" identify +ping "$image" >"$report" 2>"$errors"
+status=$?
+~~~
+
+`+ping` asks for pixel as well as metadata characteristics; ordinary ping behavior can obtain properties without reading all pixels. Inspect status and diagnostics along with format, dimensions, frame identity and colorspace. A reported geometry is a decoder observation, not proof of the filename's extension, origin or pixel content's authenticity. Multi-frame files can produce several records. A partially reported image plus an error remains incomplete; inspect the selected input or supported format rather than silently loosening policy.
+
+Run directly on the selected file instead of replaying a scheduled script that first empties its shared log. That reset discards prior results; newline-delimited find/xargs input can also split filenames. A changed log timestamp alone does not identify its writer, schedule or execution identity. Keep image inspection in the ordinary process context; no privileged launch or loader-library substitution is needed to obtain these properties.
+
+References: [ImageMagick magick options and subcommands](https://imagemagick.org/magick/) and [identify properties and ping distinction](https://imagemagick.org/identify/).

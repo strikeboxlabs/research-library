@@ -53,4 +53,6 @@ Define `event_file` as a fresh private capture before running. Review option cre
 
 Do not force WebSocket-only transport just to remove polling noise; proxies and client versions can need the normal polling/upgrade sequence. Header behavior differs between browser and Node transports and releases; use the matching client API for the actual options. Direct CLI success does not prove a browser can initiate/read the same exchange across origins.
 
+Use polling-only transport when the observed route supports that mode and the compatible client exposes the option. In Engine.IO4 polling, the transport sid, Socket.IO namespace connection id and application-issued session identifier are separate values. HTTP POST success acknowledges transport delivery, not application authentication. Payload packets are separated by byte0x1e; ping2/pong3 are Engine.IO packets rather than native WebSocket control frames. Let the compatible client manage these details. See [Engine.IO protocol](https://socket.io/docs/v4/engine-io-protocol/).
+
 See [2.x client API](https://socket.io/docs/v2/client-api/), [current client options](https://socket.io/docs/v4/client-options/) and [protocol migration/compatibility](https://socket.io/docs/v3/migrating-from-2-x-to-3-0/).

@@ -1,6 +1,6 @@
 ---
 name: chisel
-description: Build and diagnose explicit Chisel port forwards or reverse SOCKS connections. Use when client/server direction, listener exposure, endpoint reachability or fingerprint authentication is unclear.
+description: Build and diagnose Chisel port forwards, reverse SOCKS connections or a server HTTP fallback proxy. Use when direction, exposure, endpoint reachability or authentication boundaries are unclear.
 ---
 
 # Chisel tunnel direction
@@ -8,6 +8,8 @@ description: Build and diagnose explicit Chisel port forwards or reverse SOCKS c
 Read this entire SKILL.md before acting. Select transport/listener/destination roles and the needed authentication before starting the applicable forward. Finish with actual listener and application-response evidence, then stop the owned client/server and verify their listeners close; transport connection alone is incomplete.
 
 For a listener on the client that must reach a server-side receiver (including an application callback), read [normal forward and callback routing](references/normal-forward.md) fully first. Reverse SOCKS below solves a different direction.
+
+For an ordinary HTTP endpoint forwarded to an owned origin from the server namespace, read [HTTP fallback proxy](references/http-fallback-proxy.md) fully first. It requires no Chisel client and has a separate HTTP access boundary.
 
 Check both binaries' versions and `server --help`/`client --help`. Identify where the transport listener runs and where the final destination is reachable. Normal remotes reach destinations from the server; `R:` remotes reach them from the client. A transport connection alone does not prove the destination works.
 

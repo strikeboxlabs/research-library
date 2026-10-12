@@ -25,3 +25,17 @@ When reviewing a wrapper or query file, separate the operating-system shell, mys
 `-s` (silent) and `-N` (omit column names) adjust output; they do not disable client commands. Shell quoting preserves an argument boundary but does not turn supplied text into safe SQL or disable mysql's parser. Data read from a file or shared-memory segment remains input even when the wrapper's username argument was filtered.
 
 For an existing integration, inspect its actual client version and input mode. MySQL's noninteractive `--binary-mode` disables client commands except `charset` and `delimiter`; it also changes byte handling. MySQL 8.4.3+ offers `--system-command=OFF`; 8.4.6+ adds the broader `--commands=OFF`, with documented exceptions and interactions. Do not assume these options exist in MariaDB or older clients. None makes arbitrary SQL harmless or limits server privileges. Use [client-command documentation](https://dev.mysql.com/doc/refman/8.4/en/mysql-commands.html) and the matching [option reference](https://dev.mysql.com/doc/refman/8.4/en/mysql-command-options.html) before changing a wrapper.
+
+## Inspect acquired native provider settings
+
+In an already authorized MariaDB metadata session, keep the actual server vendor/version and matched-account grants alongside selected global settings:
+
+~~~sql
+SELECT VERSION(), CURRENT_USER();
+SHOW GRANTS FOR CURRENT_USER();
+SHOW GLOBAL VARIABLES WHERE Variable_name IN ('wsrep_provider', 'wsrep_notify_cmd');
+~~~
+
+These queries inspect metadata without changing a provider or loading a library. Missing/denied rows leave that observation unresolved. A mysql-named client or compatibility banner does not make a MariaDB server Oracle MySQL; match package/build patches as well as the numeric version.
+
+An acquired wsrep provider assignment is a server-native loading operation, distinct from mysql's local shell command and mysql.func registrations. Historical [MDEV-25179](https://jira.mariadb.org/browse/MDEV-25179) requires privileged database control and was fixed by making the variables read-only. A displayed path, account named root or version string alone does not prove that control, loaded bytes or server OS identity. Preserve the static finding and observed grants/settings; do not assign a replacement provider to test it. Finish with version/patch uncertainty and the supported execution-context distinction. See [SHOW VARIABLES scope](https://mariadb.com/docs/server/reference/sql-statements/administrative-sql-statements/show/show-variables).

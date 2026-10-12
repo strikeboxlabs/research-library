@@ -1,6 +1,6 @@
 ---
 name: zip
-description: Create a selected Linux source or data archive with Info-ZIP zip. Use when recursive scope, Git-metadata exclusions, stale archive members or symlink handling affects a transfer package.
+description: Create a selected Linux archive or update one reviewed Office package part with Info-ZIP zip. Use when scope, stale members, timestamps or symlink handling affects the resulting package.
 ---
 
 # Package a selected tree
@@ -8,6 +8,8 @@ description: Create a selected Linux source or data archive with Info-ZIP zip. U
 Read this entire SKILL.md before acting; reuse complete current context. Select the intended source tree and exclusions, create a fresh archive outside that tree, and inspect its members and integrity before handing it to a consumer. ZIP packaging does not establish source trust or executable compatibility.
 
 For a reviewed WordprocessingML tree that must become a DOCX package without an extra enclosing directory, read [document packaging](references/document-packaging.md) fully before that procedure.
+
+For replacing one selected part in an owned, already readable Office ZIP package, read [part updates](references/office-part-update.md) fully before modifying a working copy.
 
 Check `zip -v` for the installed implementation/options. Define `parent` as the absolute parent directory, `tree` as its selected ordinary directory name, and `archive` as a fresh absolute `.zip` path outside the tree. This Info-ZIP example omits that tree's Git metadata without deleting it:
 

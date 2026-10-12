@@ -1,13 +1,15 @@
 ---
 name: systemctl
-description: Inspect and manage selected systemd units. Use to diagnose startup failures, resolve effective unit configuration and choose correctly between service reload, restart and manager daemon-reload.
+description: Inspect selected systemd services and timer activations or manage an owned unit. Use for startup failures, effective configuration and start, stop, reload, restart or daemon-reload decisions.
 ---
 
 # Explain the unit state before changing it
 
-Read this entire file before acting. Read [service changes](references/service-changes.md) before a reload, restart or unit-file change. Finish with the selected manager/unit, relevant state and application result; command completion alone is not service health.
+Read this entire SKILL.md before acting. Read [timer activation](references/timer-activation.md) fully for a scheduled task and [service changes](references/service-changes.md) fully before a start, stop, reload, restart or unit-file change. Establish the exact manager/unit and required observation first. Finish with relevant state and application result; command completion alone is not service health.
 
 Use the system manager by default. For a user service, add `--user` consistently to every systemctl command and use that user's session context; a missing user bus is not evidence that the system service is absent. A container/chroot without a running systemd manager needs a different control path.
+
+For a historical version or vulnerability claim, retain `systemctl --version` including the distribution package suffix and compiled features. An upstream-looking release number alone does not establish the vendor's patch status or the effective pager configuration. Compiled support is separate from a selected unit's enabled restrictions.
 
 Set `unit` to the exact unit name, including `.service` or the intended instance:
 
@@ -20,6 +22,8 @@ journalctl -b -u "$unit" -n 100 --no-pager
 ~~~
 
 `status` can return nonzero for an inactive/failed unit; still read its evidence. `show` exposes structured current properties; `cat` shows backing files and drop-ins on disk, which can differ from the manager's loaded configuration. Use the journal's failure immediately preceding repeated restarts, not merely the last rate-limit message. Journal access errors or rotation can leave the original cause unavailable.
+
+The commands above suppress the interactive pager. When elevation is needed, check the exact sudo command and argument restrictions before adding flags: a grant for a particular `status` invocation may reject an added `--no-pager`. Record that policy limitation and obtain an approved way to capture the required status; do not weaken pager security or assume a privileged caller grants arbitrary child commands.
 
 | State/evidence | Interpretation |
 |---|---|

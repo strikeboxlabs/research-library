@@ -1,11 +1,13 @@
 ---
 name: ssh
-description: Use OpenSSH for selected-account/key logins, SSH application/chat services, authorized public-key enrollment, loopback forwarding and dynamic SOCKS connections. Diagnose key passphrases, authentication, DNS location, client hooks and configuration effects.
+description: Use OpenSSH for selected-account/key/certificate logins, SSH application/chat services, authorized public-key enrollment, loopback forwarding and dynamic SOCKS connections. Diagnose authentication, DNS location, client hooks, configuration effects and acquired login-message evidence.
 ---
 
 # SSH connections and local forwarding
 
-Read this entire SKILL.md before acting; reuse complete current context. Map the client, SSH server and destination before connecting. If options/configuration can execute local helpers or a privileged launcher is involved, read [client commands](references/client-commands.md) fully first. For an authorized public-key installation through an established filesystem write, read [selected authorized-key change](references/authorized-key-change.md) fully first. For a selected private key or confusing password prompt, read [key authentication](references/key-authentication.md) fully first. For a selected Kerberos/GSSAPI login or name-mapping discrepancy, read [GSSAPI identity and delegation](references/gssapi-identity.md) fully first. Finish with observed authentication/tunnel behavior or the supported configuration finding; authenticated transport alone is not destination success.
+`ssh -V` reports the invoked local client version, not the remote server or an acquired `sshd` binary. A matching advertised version does not establish daemon provenance or intact authentication code; compare the selected artifact with trusted package/build evidence before relying on it.
+
+Read this entire SKILL.md before acting; reuse complete current context. Map the client, SSH server and destination before connecting. If options/configuration can execute local helpers or a privileged launcher is involved, read [client commands](references/client-commands.md) fully first. For an authorized public-key installation through an established filesystem write, read [selected authorized-key change](references/authorized-key-change.md) fully first. For a selected private key, issued certificate or confusing password prompt, read [key authentication](references/key-authentication.md) fully first. For a selected Kerberos/GSSAPI login or name-mapping discrepancy, read [GSSAPI identity and delegation](references/gssapi-identity.md) fully first. Finish with observed authentication/tunnel behavior or the supported configuration finding; authenticated transport alone is not destination success.
 
 For an SSH endpoint exposing an application/chat interface, a legacy host-key negotiation failure or a fork-specific file command, read [SSH application services](references/application-services.md) fully before that procedure.
 
@@ -14,6 +16,8 @@ For a selected administrative connection through a dynamic SOCKS listener, read 
 For an approved client-side service exposed through an SSH server's loopback listener, read [reverse forwarding](references/reverse-forwarding.md) fully before starting it.
 
 For an acquired forwarding command whose client/server direction or destination port disagrees with the prose, read [forwarding evidence](references/forwarding-evidence.md) fully before interpreting it. This is a static evidence task.
+
+For an acquired SSH login message, PAM/MOTD configuration or unexplained login delay, read [login-message evidence](references/login-message-evidence.md) fully before attributing its producer or execution identity. This is a static evidence task.
 
 For an authorized interactive login, define `ssh_host`, `ssh_port` and `user` as the verified SSH endpoint and selected OS account. Confirm its host key through the established trust process, then use the intended credential mechanism:
 

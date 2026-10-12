@@ -1,11 +1,11 @@
 ---
 name: kpcli
-description: Open an authorized KeePass database with its known unlock material and browse its group and entry inventory without saving changes. Use when validating a database backup or distinguishing unlock errors from format incompatibility.
+description: Open a KeePass copy with known unlock material, inspect its group inventory or export a selected nonsecret attachment. Use when validating a backup, recovering an owned document or distinguishing unlock errors from format incompatibility.
 ---
 
-# Inspect the selected KeePass inventory
+# Inspect a KeePass copy or recover a selected attachment
 
-Read this entire SKILL.md before acting. Establish the authorized database copy, known master password and any required key file, plus the installed kpcli/backend format support. Finish with the actual open result and requested inventory or the specific prerequisite gap. This task has no additional required resources.
+Read this entire SKILL.md before acting. Establish the authorized database copy, known master password and any required key file, plus the installed kpcli/backend format support. The inventory task below needs no other resource. For a selected nonsecret attachment, read [attachment export](references/attachment-export.md) completely before its procedure. Finish with the actual open result and requested inventory or verified exported artifact; report a specific missing prerequisite instead of claiming recovery.
 
 Keep the original unchanged and define `database` as an existing absolute working-copy path. Review the installed options, then start a session that prevents database edits and does not persist command history:
 
@@ -20,6 +20,6 @@ Inside kpcli, use `help`, `help cd` and `help ls` to confirm the interactive syn
 
 An invalid-key-or-corrupt error does not discriminate between wrong unlock material, damaged input and unsupported database features. Recheck the exact copy, required key file, text encoding and installed backend's KDB/KDBX support before changing anything. Newer KDBX support depends on implementation and dependencies, not merely the .kdbx suffix. Report incompatibility instead of weakening or saving the original database to make it load.
 
-Record only the requested inventory and observed result. Opening the database does not validate its stored credentials against any service. Avoid secret-display, export, edit and save commands during this inventory task.
+Record only the requested inventory and observed result. Opening the database does not validate its stored credentials against any service. Avoid entry password display, export, edit and save commands during this inventory task. Default `show` can still emit a password with concealment implemented through terminal colors; it is not a safe substitute for inventory. Attachment recovery uses its selected reference and has a separate local-file write even with `--readonly`.
 
 See [kpcli's packaged manual](https://manpages.ubuntu.com/manpages/jammy/en/man1/kpcli.1.html) and [the packaged command/option implementation](https://sources.debian.org/src/kpcli/4.1.3-1/kpcli-4.1.3.pl/) for interactive commands and version-dependent support.

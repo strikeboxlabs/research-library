@@ -16,6 +16,8 @@ status=$?
 
 `-x` requires a whole-name regex match; it does not turn the pattern into literal text. For example, a literal dot requires `\.` in the pattern. Without `-f`, matching uses the process name, limited to 15 characters on Linux; a script filename may instead appear only in its interpreter's command line. Use `-f` only when that different full-command-line question is intended.
 
+Displayed names and arguments are process-controlled labels, not authenticated executable identities. Linux exposes command-line text that the process can change. Keep that text as evidence; do not reconstruct and execute it as a command. When identity matters, correlate the PID with trusted service ownership and executable evidence in the same observation window. See the [procfs command-line semantics](https://manpages.debian.org/bookworm/manpages/proc.5.en.html).
+
 Status **0** means at least one match, **1** no match, **2** a syntax error and **3** a fatal error. Do not collapse every nonzero status into “service stopped.” Matches can include defunct processes. Namespace/procfs permissions limit the inventory, and a process can exit or its PID be reused before the next observation. Correlate a relevant match with the established service status or expected application response; do not start a program solely because a name lookup returned nothing.
 
 See the packaged [procps pgrep manual](https://manpages.debian.org/bookworm/procps/pgrep.1.en.html).

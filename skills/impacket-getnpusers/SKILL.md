@@ -5,6 +5,8 @@ description: Use Impacket GetNPUsers to check specified lab accounts for Kerbero
 
 # Impacket GetNPUsers
 
+Read this entire SKILL.md before acting. Require the selected domain/DC, explicit account list and permitted request scope. No conditional resource is required. Finish with per-account responses and actual saved-record coverage; an unavailable entrypoint, request failure or partial file remains a gap rather than a negative password result.
+
 Check the installed executable and `-h`: distributions may name it `impacket-GetNPUsers` or `GetNPUsers.py`. Preserve the reported Impacket version. This procedure checks a supplied account list against one in-scope domain; it does not guess passwords.
 
 Define `domain` as the AD DNS domain, `dc_ip` as its DC address, `users` as a file of selected bare usernames (one per line), and `output` as a fresh artifact file:
@@ -27,4 +29,4 @@ The output is not plaintext and is not a ready-to-use `.ccache`; the TGT itself 
 
 Check per-account diagnostics and the saved file, not just the process exit code: caught errors may leave a partial or empty result.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Absolute PDF pp. 5–6. Maintenance source: [upstream GetNPUsers implementation and CLI](https://github.com/fortra/impacket/blob/master/examples/GetNPUsers.py).
+Use the [upstream GetNPUsers implementation and CLI](https://github.com/fortra/impacket/blob/master/examples/GetNPUsers.py) to resolve version-specific request and output behavior.

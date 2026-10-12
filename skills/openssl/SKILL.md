@@ -1,6 +1,6 @@
 ---
 name: openssl
-description: Inspect and package owned keys, certificates, PKCS#12 and ASN.1 artifacts, diagnose TLS mail/FTP sessions, or recover known-format AES-CBC and legacy crypt-record artifacts. Use for trust, serialization and incomplete-output decisions.
+description: Inspect and package owned keys, certificates, PKCS#12 and ASN.1 artifacts, generate test certificates or random public identifiers, diagnose TLS mail/FTP or recover known-format CBC/crypt records. Use for trust, serialization and incomplete-output decisions.
 ---
 
 # OpenSSL inspection
@@ -9,7 +9,21 @@ Read this entire SKILL.md before acting; reuse complete current context. Identif
 
 Record `openssl version` and inspect subcommand help. Identify whether the input is a CSR, certificate, private key or bundle; a `.cer` extension alone does not distinguish DER from PEM. Work on copies and choose fresh output paths.
 
+For a new owned localhost HTTPS test key/certificate, read [local test certificate](references/local-test-certificate.md) fully before generation.
+
+For a new CA request for an owned identity, read [key and request preparation](references/ca-request.md) fully. It keeps key protection, requested identity, CA issuance and the eventual service mapping separate.
+
+For `s_client`, a printed `CONNECTED` reports the underlying connection; establish TLS negotiation from the actual handshake result and certificate verification separately. Keep stderr and exit status: suppressing diagnostics can hide a plaintext peer, failed handshake or trust error. Diagnostic defaults can continue after certificate verification errors; use the selected protocol reference's explicit verification settings before supplying credentials. A port number or TCP connection alone does not establish implicit TLS, STARTTLS or the application protocol. See the [s_client manual](https://docs.openssl.org/3.5/man1/openssl-s_client/).
+
 For a requested transfer-integrity comparison, define `artifact` as the saved file and run `openssl dgst -sha256 "$artifact"` at both available endpoints. Compare the same algorithm and complete digest, retaining each file's size and transfer status. A matching digest corroborates identical bytes relative to those inputs; it does not establish publisher identity or safe contents. The source's legacy SHA-1 comparison is not a preferred authenticity check. See the [digest manual](https://docs.openssl.org/3.5/man1/openssl-dgst/).
+
+For a fresh random public identifier, define `identifier_file` as a nonexistent private-work-directory path:
+
+~~~bash
+(umask 077; set -C; openssl rand -hex 16 > "$identifier_file")
+~~~
+
+The number requests 16 random bytes, represented as 32 hex digits followed by a newline. It is not a digest of another file. Check status, diagnostics and the actual format before use; entropy/provider failure is a generation failure even if a partial output exists. A cryptographically generated value alone does not establish application acceptance, database uniqueness or a certificate serial-number policy. Do not overwrite an existing PKI serial state file as a diagnostic. See [random-byte generation](https://docs.openssl.org/3.5/man1/openssl-rand/).
 
 For a legacy `openssl passwd` stage or archive-key pipeline, read [crypt-record bytes](references/crypt-record.md).
 
@@ -31,6 +45,8 @@ openssl x509 -in "$cert" -noout -text -fingerprint -sha256
 ~~~
 
 CSR verification checks the request's signature against its included public key. It does not establish CA issuance, trust, identity authorization or that the requested extensions were granted. Inspect the **issued certificate's** subject, SAN, EKU, key usage, validity and issuer separately. Preserve extension context instead of grepping one matching name and assuming its meaning.
+
+Retain the verification diagnostic as well as status: `req -verify` only gained a failing exit status for an invalid signature in OpenSSL 3.3. An older zero status alone is insufficient.
 
 For an observed DER certificate, define `der_cert` and a new `pem_cert`:
 

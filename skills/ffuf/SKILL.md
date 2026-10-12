@@ -19,6 +19,8 @@ A catch-all response can make many nonexistent paths look alike. Compare represe
 
 Include a known absent path and, when available, a known positive. Compare status, body, redirect, bytes, words and lines. A `200` can be a fallback page; a `401` or `403` can identify a distinct protected application. Inspect representative responses individually before excluding them.
 
+`-fc 403` excludes responses with status 403; it does not select only status 200. To restrict the matcher to 200, use `-mc 200` and retain the measured controls and other configured filters. A result must pass the matcher and survive the filters, so record both when explaining which responses were retained.
+
 Use an observed framework clue to narrow the next wordlist: a Spring-style error page can justify selected framework paths, but does not establish an exact version or that every management endpoint exists. Reuse the same controls and request budget. If an endpoint returns a discovery map, inspect its advertised paths/methods before expanding another scan. `-ic` ignores wordlist comments; it does not validate, deduplicate or authorize the remaining candidates.
 
 For a specifically scoped API method test, `-X POST` changes the method; even an empty POST can mutate state. A FastAPI `422` may reveal a route needing fields or a different encoding. A `405` is a method clue, so copying a `-fc 404,405` filter can hide valid paths. Retain method/body/authentication context and prefer a known OpenAPI schema to blind method expansion.

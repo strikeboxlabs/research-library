@@ -26,7 +26,23 @@ A server policy such as `AuthenticationMethods publickey,password` requires both
 
 A private key stored in an account's home directory does not establish that its corresponding public key is authorized for incoming login. That key may instead be an outbound identity. Check the account's actual key authorization source, key restrictions, ownership/modes and applicable server policy. `PubkeyAuthentication yes` allows the method, not every key. `PermitRootLogin prohibit-password` disables root password and keyboard-interactive authentication; it does not itself authorize a particular root key or promise an unrestricted shell.
 
+For a server using `AuthorizedKeysCommand`, follow the selected helper, arguments and `AuthorizedKeysCommandUser` as well as file-based keys. A helper can retrieve keys from a directory backend; a visible LDAP key attribute does not prove the installed helper's mapping, return value or server acceptance. The helper's execution account is separate from the authenticated user's eventual shell identity. Review acquired configuration and existing authentication traces without executing an unreviewed helper or editing directory attributes to test acceptance. Current OpenSSH tries the helper after ordinary key files when no matching key has succeeded; verify the deployed release rather than applying a historical source excerpt's lookup order universally.
+
 An authorized_keys comment such as `name@machine` is an editable label; OpenSSH does not use it to authenticate that named person or host. Its appearance in one account's file does not establish the same private key is shared or accepted for a second account. Keep actual key material, the destination account's authorization and the observed accepted identity separate. See the [authorized-key format](https://man.openbsd.org/sshd.8#AUTHORIZED_KEYS_FILE_FORMAT).
+
+## An already issued user certificate
+
+Require the intended certificate, its corresponding authorized private key and verified endpoint/account. Inspect the certificate's type, underlying key, CA, principals, validity and restrictions before the connection. Define `certificate` as the selected absolute path:
+
+~~~bash
+ssh -p "$ssh_port" -i "$key" -o "CertificateFile=$certificate" -o IdentitiesOnly=yes "$user@$ssh_host"
+~~~
+
+`CertificateFile` selects the certificate separately from the private identity. Without an explicit certificate setting, OpenSSH normally tries the identity path with `-cert.pub` appended. That convention does not require all artifacts to share a directory. A downloaded response named `.pub` may instead be an API error; parsing and key association remain prerequisites.
+
+For a CA trusted through `TrustedUserCAKeys`, inspect the applicable `AuthorizedPrincipalsFile` and account policy. `%u` expands to the requested account; an accepted certificate principal can differ from that username. A principal-list file is neither a list of all OS accounts nor a complete effective daemon configuration. `PasswordAuthentication no` disables that method; it alone does not establish certificate-only authentication. Preserve whether the certificate was offered, accepted and followed by an authorized session; keep host-key verification and close the selected session afterward.
+
+References: [certificate selection](https://man.openbsd.org/ssh_config.5#CertificateFile), [certificate principals and server policy](https://man.openbsd.org/sshd_config.5#AuthorizedPrincipalsFile).
 
 A grep of two keywords in one configuration file can select commented lines and miss `Include`, applicable `Match` blocks, other authentication/account restrictions or a daemon started with a different configuration. Preserve the selected file as evidence, but establish the running service's configuration and relevant connection context before reporting effective policy. Use readable deployed configuration and administrator-provided effective settings when available; do not restart or alter the daemon merely to diagnose a client failure.
 

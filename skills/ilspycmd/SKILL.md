@@ -1,11 +1,13 @@
 ---
 name: ilspycmd
-description: Inspect managed .NET assemblies from Linux with ILSpyCmd. Use to locate types, trace properties, serialization, crypto helpers and archive extraction paths, or recover readable code without launching the inspected application.
+description: Inspect managed .NET assemblies from Linux with ILSpyCmd. Use to locate types, trace properties, service contracts, serialization, crypto helpers and archive paths without launching the inspected application.
 ---
 
 # Decompile the selected evidence
 
 Read this entire SKILL.md before acting. Require the preserved assembly, matching available dependency assemblies when needed, the installed CLI's runtime and fresh private outputs. Select the relevant archive, crypto-helper or time-seed section below; unrelated branches need no separate execution. Finish with assembly/type/member evidence, command status and any unresolved decompilation/runtime assumption. Reconstructed source is not an executed application result.
+
+For acquired .NET Remoting or WCF service settings, read [service contracts and execution context](references/service-contracts.md) fully before that static analysis. Use the selected-type/project commands below; no application client invocation is part of this task.
 
 Use ILSpy's `ilspycmd` CLI, whose flags differ from the desktop frontend. Check `ilspycmd --version` and `--help`; the tool's own required .NET runtime can differ from the target assembly's framework. A missing tool runtime is not evidence that the captured assembly is invalid. This is a Linux CLI alternative to desktop dnSpy inspection.
 
@@ -48,6 +50,8 @@ ilspycmd --disable-updatecheck -r "$reference_dir" -t "$helper_type" "$helper_as
 ~~~
 
 Define `reference_dir` and a fresh `helper_source` before use. Trace both caller and helper: which row/field supplies ciphertext, which argument supplies the key, then decoding, byte encoding, IV, mode and padding. Base64 is a transport layer. A literal passed through `Encoding.UTF8.GetBytes` supplies raw bytes, not a password derivation function; count bytes rather than characters. Resolve numeric enums against the actual API: `CipherMode` 1 means CBC, while `CryptoStreamMode` 0 means Read. An omitted padding assignment requires checking the algorithm default; standard .NET symmetric algorithms default to PKCS7.
+
+Trace aliases as well as transformations: assigning one byte-array variable to another references the same object; it does not copy the bytes. Resolve the final text encoding against the target runtime. `Encoding.Default` uses the active code page on .NET Framework and UTF-8 on .NET Core; joining Python `chr` values is not automatically equivalent. Preserve byte lengths and the exact decoding contract in static findings without extracting or replaying embedded credentials. See [default encoding behavior](https://learn.microsoft.com/en-us/dotnet/api/system.text.encoding.default).
 
 Follow the returned byte count as carefully as the cipher settings. A buffer allocated to ciphertext length can exceed the unpadded plaintext length. Decoding the entire zero-initialized buffer after one `CryptoStream.Read` can append NUL characters. The read can also be partial; [.NET 6 changed these stream semantics](https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/6.0/partial-byte-reads-in-streams). For an independent format check, read through EOF and decode only bytes actually returned. Distinguish that corrected procedure from reproducing the application's exact behavior on its target framework. Readable text alone is not evidence of a valid application credential.
 

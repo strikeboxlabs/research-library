@@ -23,4 +23,6 @@ printf '%s\n' "$line" | sudo tee -a -- "$file"
 
 Here tee opens the file under sudo. In `sudo printf ... >>file`, the calling shell opens the redirection before sudo, so that spelling does not grant the file open additional rights. Conversely, a sudo permission to run tee can have consequential file-write scope; it is not limited to the producing command. Preserve the existing file and its content/ownership when restoration is required. For a hosts-file record, confirm the intended name/address and existing mapping before appending; a successful write is separate from actual resolver behavior.
 
+A hosts record starts with the numeric address, then the canonical hostname and optional aliases, separated by whitespace. Reversing name and address can successfully append invalid data. Verify the selected client's resolution afterward: changing the proxy machine's hosts file does not configure DNS inside an emulator or another client. See [hosts file format](https://manpages.debian.org/trixie/manpages/hosts.5.en.html).
+
 Use `>/dev/null` after tee only when discarding stdout is intended; it does not suppress stderr or validate the file. GNU --output-error controls broken-output handling and varies by implementation. See [the packaged GNU manual](https://manpages.debian.org/bookworm/coreutils/tee.1.en.html) for append and output-error behavior.

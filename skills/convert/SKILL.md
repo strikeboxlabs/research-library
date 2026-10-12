@@ -1,13 +1,25 @@
 ---
 name: convert
-description: Crop an owned raster image or generate a small marked PDF with ImageMagick 6 convert. Use when offsets, canvas metadata, resolution, fonts or a PDF coder policy error make the result unreliable.
+description: Convert an owned XWD capture to PNG, crop raster pixels or generate a small marked PDF with ImageMagick 6 convert. Use when format support, offsets, canvas metadata, resolution, fonts or coder policy makes the result unreliable.
 ---
 
 # ImageMagick 6 image operations
 
-Read this entire SKILL.md before acting. Require ImageMagick 6 convert and fresh output paths. For an owned raster crop, read [crop geometry](references/crop.md) fully before acting. For the marked PDF below, also require an available font and enabled PDF writing. Finish with command status and decoded output/geometry; missing coder/font support remains a prerequisite gap.
+Read this entire SKILL.md before acting. Require ImageMagick 6 convert and fresh output paths. For XWD conversion below, require enabled XWD reading and PNG writing. For an owned raster crop, read [crop geometry](references/crop.md) fully before acting. For the marked PDF below, also require an available font and enabled PDF writing. Finish with command status and decoded output/geometry; missing coder/font support remains a prerequisite gap.
 
 Confirm `convert -version` identifies ImageMagick; a same-named filesystem utility is a different program. ImageMagick 7 uses `magick`, so establish its invocation separately. Use `convert -list policy` to inspect relevant coder restrictions.
+
+## Convert an owned XWD capture to PNG
+
+Inspect `convert -list format` for the installed XWD reader and PNG writer. Define `dump_file` as the owned ordinary absolute .xwd file and `png_out` as a fresh absolute .png path:
+
+~~~bash
+test ! -e "$png_out" && test ! -L "$png_out" &&
+  convert "$dump_file" "$png_out"
+status=$?
+~~~
+
+Preserve the original dump and inspect status/stderr. Decode the PNG with the task's trusted image reader and check dimensions and the expected selected window/content. Changing an extension does not convert bytes, and a produced file alone does not establish correct colors or a complete image. An XWD decoder/policy error needs the installed format/policy diagnosis; enabling all coders or delegates is not part of conversion. The [ImageMagick format table](https://legacy.imagemagick.org/script/formats.php/) documents XWD support, but the local build decides available readers/writers.
 
 ## Generate an owned marked PDF
 

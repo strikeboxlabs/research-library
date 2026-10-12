@@ -5,6 +5,8 @@ description: Inspect an authorised KeePass database using a known key file or pa
 
 # Inspect a database with known unlock factors
 
+Read this entire SKILL.md before acting. Require the trusted installed CLI, an authorized database working copy and its known required unlock factors. Select key-only, password-plus-key or password-only options before listing; retain the same factor selection for the requested exact entry/fields. No conditional resources are required. Finish with unlock/lookup status and selected stored-field evidence; missing factors or format support remain unresolved, and stored content does not establish current remote authentication.
+
 Check `keepassxc-cli --version` and `keepassxc-cli help show`. Define `database` and `keyfile` as absolute paths to private working copies. A nearby `.key` file is a candidate unlock factor; its name does not establish that it belongs to this database or replaces a password.
 
 For a database known to use **only a key file**:

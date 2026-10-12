@@ -37,6 +37,8 @@ Bare `\dt` is limited to tables visible through the current schema search path; 
 
 ## Export one bounded, reviewed selection
 
+When a selected relation resembles an OS account database, inspect its actual columns and the consuming service before assigning that meaning. A table named `passwd_table` does not establish a configured NSS provider or PAM authentication stack. A passwd-style GID column describes a primary-group field, rather than an insertion into a supplementary-membership list. Keep the SQL row, configured identity lookup and current process IDs separate; local numeric group assignments are not portable constants. Resolve the deployed `passwd`/`group`/`initgroups` lookup configuration using the [glibc NSS configuration contract](https://github.com/bminor/glibc/blob/master/manual/nss.texi), then compare the selected account lookup with the later session's actual identity. Reading rows does not authorize identity or privilege changes.
+
 After verifying the illustrative schema and columns below, define `account_label` as the selected non-secret lookup value and `output` as a fresh private CSV path. Adapt the fixed identifiers and required columns first:
 
 ~~~bash

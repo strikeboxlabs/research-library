@@ -34,6 +34,10 @@ nc -n -v -z -w 5 "$host" "$port"
 
 Use a numeric host and one selected positive TCP port. A successful TCP connection tests that endpoint at this vantage/time, not the service's authentication or future reachability. Retain status/stderr; a timeout differs from an explicit refusal. -z selects zero-I/O scanning, not a security boundary for additional options. Do not combine it with an executable-attachment option merely to reproduce a reachability check.
 
+## Interpret a UDP observation
+
+Choose a protocol-aware client when the task requires a reply or negotiation. Linux UDP connect associates a default peer rather than performing a TCP-style handshake. A message such as connection succeeded from nc -u does not prove the peer answered or runs QUIC/HTTP/3. OpenBSD's -uz probe reports success irrespective of the peer's state. Preserve actual received bytes or correlated traffic evidence; silence can reflect filtering, missing protocol framing or an application that does not reply. The TCP zero-I/O procedure above is not a UDP protocol test. See [Linux socket connection semantics](https://manpages.debian.org/bookworm/manpages-dev/connect.2.en.html).
+
 ## Listen on an explicit interface
 
 Define `bind_ip` as the authorized reachable address and `port` as an available permitted port. Select **one** command matching the installed implementation, in a tracked foreground session:

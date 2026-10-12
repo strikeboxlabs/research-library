@@ -1,12 +1,12 @@
 ---
 name: gpg
-description: Decrypt a selected OpenPGP backup with GnuPG using its known passphrase or matching secret key. Use to distinguish symmetric encryption, key material, pinentry behavior and partial plaintext from a valid recovery.
+description: Decrypt a selected OpenPGP backup or create and verify a detached signature for an owned ordinary file with GnuPG. Use to resolve key requirements, pinentry failures, partial plaintext and signer identity.
 ---
 
 
-# Recover the selected OpenPGP object
+# Select the OpenPGP operation
 
-Read this entire SKILL.md before acting. Establish the ciphertext, encryption type and required key/passphrase before decrypting. Finish with command/status evidence and a validated plaintext artifact; an existing output file or a matching passphrase candidate alone is incomplete.
+Read this entire SKILL.md before acting. For decryption, establish the ciphertext, encryption type and required key/passphrase, then finish with status evidence and validated plaintext. For an owned ordinary file's detached signature and selected public-key export, read [detached signatures](references/detached-signatures.md) fully first; finish with verification of the exact bytes and expected signer. Missing usable key material or failed validation remains unresolved.
 
 For recovery from an owned backup containing a GnuPG home, read [backup key-home recovery](references/key-home.md) fully first. Keep that branch unloaded when using the current trusted keyring or a symmetric passphrase.
 
@@ -19,6 +19,8 @@ gpg --list-packets "$ciphertext"
 ~~~
 
 A symmetric-key encrypted session-key packet indicates a passphrase route; a public-key encrypted session-key packet identifies recipient-key requirements. Metadata inspection can still prompt or emit errors. Public-key decryption needs the matching secret key or configured token, plus its unlocking mechanism. A symmetric message does not require a private key. No exposed private key therefore does not rule out testing a known passphrase on a symmetric backup.
+
+For a public-key message, a recipient can identify an encryption subkey rather than the primary key. `gpg --list-keys` lists public material and does not establish a usable secret key. Inspect the intended current keyring with `gpg --list-secret-keys --with-subkey-fingerprint`; compare the encryption subkey and its primary-key fingerprint with trusted recipient evidence. A short key ID or display name alone is insufficient to establish identity. A `secret key not available` diagnostic applies to this invocation's keyring/token context; supplying an unlocking passphrase cannot replace a missing secret key. Inspect on the intended recovery account instead of assuming every host's GnuPG installation shares keys.
 
 For an interactive known-passphrase decryption, define `plaintext` as a fresh private output path:
 

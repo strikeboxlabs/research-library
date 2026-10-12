@@ -7,13 +7,13 @@ description: Reproduce a legacy MD5 checksum over exact file or pipeline bytes a
 
 Read this entire SKILL.md before acting; reuse complete current context. Select the exact file or completed producer output, preserve byte boundaries and inspect status. Finish with that checksum/comparison and its limits; MD5 consistency does not establish authenticity against deliberate collision attacks.
 
-Define `artifact` as the existing absolute input path:
+Define `artifact` as the existing absolute path to the selected regular file. Verify its type and any link resolution first; a FIFO/device is a stream with a different blocking/data contract, not an ordinary saved artifact:
 
 ~~~bash
 md5sum --binary -- "$artifact"
 ~~~
 
-The output includes 32 hex digits, a mode marker and filename; the whole output line is not the digest. Hashing a crypt record, its printed hexadecimal text or a raw password gives different inputs. Preserve producer status before treating an empty/partial stream as intended data.
+The output includes 32 hex digits, a mode marker and filename; the whole output line is not the digest. Hashing a crypt record, its printed hexadecimal text or a raw password gives different inputs. Preserve producer status before treating an empty/partial stream as intended data. A pipeline that extracts a digest with awk can hide the checksum producer's failure; retain each stage's status before comparison. A checksum observes bytes read at that time. Reopening a mutable pathname later can address changed bytes or another object; a stronger digest algorithm does not by itself bind the later use. For static job review, inspect both file-content and parent-directory replacement rights without reproducing a privileged race.
 
 For an **illustrative public string**, these intentionally differ:
 

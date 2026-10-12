@@ -10,7 +10,7 @@ Read this entire SKILL.md before acting; complete current context need not be re
 - Joomla configuration/prefix, selected account verifiers and reuse boundaries: [Joomla account records](references/joomla-records.md).
 - Mattermost config/DSN and selected user-password records: [account record context](references/mattermost-records.md).
 - Truncation, padding or collation surprises: [string comparison](references/string-comparison.md).
-- Server/client file access or wrapper/query-file execution: [execution boundaries](references/execution-boundaries.md).
+- Server/client file access, wrapper/query-file execution or acquired wsrep provider settings: [execution boundaries](references/execution-boundaries.md).
 
 Check `mysql --version` and local help. The command can come from MySQL or a MariaDB compatibility package; TLS/authentication options are not identical across releases/vendors. The client version does not establish the server version.
 

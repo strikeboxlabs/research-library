@@ -21,6 +21,8 @@ Check the JDK Maven reports, which can differ from the standalone java on PATH. 
 
 Find the artifact from the reviewed POM and actual build log. A project's assembly plugin can write an executable JAR with dependencies to a parent directory, while ordinary JAR packaging need not bundle dependencies or supply a Main-Class. Neither a guessed release filename nor any existing target file proves the latest build succeeded. Verify the exact output's path, size, modification/content identity and build relationship; do not select the first wildcard match or invoke a stale JAR after a failed build.
 
+A dependency-version property in a partial POM is a declared value, not proof of the resolved dependency or deployed application. Follow the property into the actual dependency, parent/profile overrides and packaged artifact before attributing a library version. Compiler source/target17 also does not identify the running JVM. A downloadable build/container template remains separate from the selected deployed instance.
+
 | Failure | Next decision |
 |---|---|
 | Missing POM | Confirm the selected checkout and reactor root. |

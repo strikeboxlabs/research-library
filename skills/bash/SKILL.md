@@ -1,6 +1,6 @@
 ---
 name: bash
-description: Diagnose Bash startup, restricted sessions, pattern comparisons, data reparsing, environment inheritance, filename expansion and redirection-order mistakes in scripts or scheduled jobs. Use when shell context or quoting changes a command's meaning.
+description: Diagnose Bash startup, elapsed command timing, restricted sessions, pattern comparisons, data reparsing, environment inheritance, filename expansion and redirection-order mistakes in scripts or scheduled jobs. Use when shell context or quoting changes a command's meaning.
 ---
 
 # Bash execution context
@@ -8,6 +8,8 @@ description: Diagnose Bash startup, restricted sessions, pattern comparisons, da
 Read this entire SKILL.md before acting; reuse complete current context. Identify the actual interpreter and selected parsing/startup boundary, then retain observed arguments/status and the supported result. For scheduled-job filename expansion or arguments reinterpreted by an archiver, read [filename arguments](references/filename-arguments.md) fully before that procedure. The inline sections below cover startup, pattern equality, reparsed command strings and restricted sessions; unrelated branches need not run.
 
 For a builtin/PATH discrepancy in a script or sourced configuration, read [command lookup](references/command-lookup.md) fully before diagnosing it; use inspection without sourcing the acquired configuration.
+
+For elapsed measurement of one selected finite command, read [elapsed command timing](references/elapsed-command.md) fully before measuring; preserve command output, diagnostics and status separately from the timing record.
 
 Determine which shell actually runs the command; `$SHELL` identifies a preferred login shell, not necessarily the current interpreter. Within Bash, these inspect the current context:
 

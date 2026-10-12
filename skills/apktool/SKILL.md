@@ -21,6 +21,8 @@ Check status and diagnostics before consuming the directory. `-s` preserves DEX 
 
 Inspect the manifest's selected application label, corresponding `res/values*/` strings, assets and `apktool.yml`. A display name containing a company word does not establish the publisher. A stored token is evidence of packaged data; its validity, service and permissions need separate evidence. Resource variants and references mean the first matching string may not be the value selected on a device.
 
+Decode output is not the original complete application source. DEX disassembly produces smali; assets can separately contain JavaScript bundles or other runtime data. Inspect an acquired bundle as data without running it. A dense, minified bundle or unfamiliar module wrapper alone does not establish encryption, irrecoverable obfuscation or the absence of readable configuration. Preserve the selected asset's identity and distinguish its contents from code actually observed running on a device.
+
 Keep `compileSdkVersion`, `targetSdkVersion` and `minSdkVersion` separate: build API, targeted behavior and minimum runtime requirement answer different questions. A custom script's compile-SDK threshold is not an Android compatibility test. Read structured metadata rather than treating a single formatting-dependent grep miss as absence. See Android's [SDK attributes](https://developer.android.com/guide/topics/manifest/uses-sdk-element).
 
 If a vendor resource package is missing, obtain the matching framework from the authorized device/firmware and register it only in the task-local cache:

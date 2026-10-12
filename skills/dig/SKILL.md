@@ -1,11 +1,11 @@
 ---
 name: dig
-description: Query an explicit DNS server, inspect TXT records or an approved zone transfer. Use to distinguish authoritative records, resolver views, negative responses, published SPF text and transfer completeness.
+description: Query an explicit DNS server, inspect PTR/TXT records or an approved zone transfer. Use to distinguish authoritative records, forward/reverse resolver views, negative responses, published SPF text and transfer completeness.
 ---
 
 # Verify the answer from the intended server
 
-Read this entire SKILL.md before acting; reuse complete current context. Select a record/resolver comparison, TXT inspection or the approved zone-transfer task below. Required inputs are the intended server and exact name/zone, installed dig, network access and the server's permitted authentication context. Finish with the responding server, actual records/status and view or transfer limits; missing access or incomplete output remains a gap. There are no required conditional resources.
+Read this entire SKILL.md before acting; reuse complete current context. Select a record/resolver comparison, TXT inspection or the approved zone-transfer task below. For one reverse lookup or a small approved address list, read [PTR queries](references/reverse-queries.md) fully first. Required inputs are the intended server and exact name/zone/address, installed dig, network access and the server's permitted authentication context. Finish with the responding server, actual records/status and view or transfer limits; missing access or incomplete output remains a gap.
 
 Check `dig -v`. Define `dns_server` as the authorized server's numeric address and `fqdn` as the exact fully qualified name with a trailing dot. For a server expected to be authoritative:
 

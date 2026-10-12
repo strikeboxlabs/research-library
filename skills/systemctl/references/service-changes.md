@@ -4,11 +4,15 @@ Use the exact manager/unit already identified and the task's authorized change s
 
 | Change | Appropriate operation |
 |---|---|
+| Start selected inactive service | Validate intended configuration, then `systemctl start "$unit"`; starting an active unit does not reload it. |
+| Stop selected service | `systemctl stop "$unit"`, after reviewing access, dependencies and socket/timer reactivation. |
 | Application configuration, service supports reload | Validate with that application's checker, then `systemctl reload "$unit"`. |
 | Unit file or drop-in changed directly | Validate the unit, then `systemctl daemon-reload`; restart/reload the service separately as needed. |
 | Process must be replaced | `systemctl restart "$unit"`; this starts an inactive unit too. |
 | Restart only if already running | `systemctl try-restart "$unit"`. |
 | Boot activation only | `enable`/`disable` change installation links; starting/stopping is a separate choice unless `--now` is supplied. |
+
+For authorized start/stop, select only the needed action above, check its status and reread manager state plus application/listener evidence. A successful stop does not prevent a socket/dependency from reactivating the unit. A test listener on a different port does not by itself justify stopping SSH carrying the current session.
 
 For a reviewed unit-file edit, define `unit_file` as its actual path:
 

@@ -26,6 +26,8 @@ Select an actual symbol with `break function_name`, or an observed **runtime** a
 
 For a compiled-in comparison, inspect `info functions` and the actual call site rather than assuming every stack string is the expected password. On the verified x86-64 System V ABI, the first two pointer arguments to a normal `strcmp` call are in `$rdi`/`$rsi`; inspect their bytes/strings before that call, then observe its return and branch. Other architectures/optimized comparisons need their actual convention/instructions. A breakpoint at a PLT stub is not necessarily the loaded implementation; use `info sharedlibrary` and the stop module to correlate the call. Libraries and initializers may already load before main.
 
+A frame-relative address such as an illustrative `lea rax,[rbp-0x70]` locates an address; it neither reads that memory nor establishes a C buffer's declared capacity. Reconcile matching source/debug types, stack allocation, padding and the actual callee's signature before attributing a size limit to it. A value in another argument register is not a length argument unless that callee's ABI/signature uses it. Debugger extension annotations can guess argument roles; keep the actual instructions and function contract as evidence, and report an unknown bound when the artifacts cannot establish one.
+
 An unprivileged ptraced launch can suppress setuid effects. A copied binary, debug environment and normal privileged launch are different observations: this procedure establishes code/memory behavior, while the actual launch must establish identity when required.
 
 ## Select a forked worker

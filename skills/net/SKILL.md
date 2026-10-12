@@ -1,11 +1,11 @@
 ---
 name: net
-description: Query a selected SMB server's time with Samba net and perform an explicitly authorized one-shot local clock correction. Use when server time, timezone display and Kerberos clock disagreement need to be separated.
+description: Query SMB server time with Samba net, perform a selected clock correction, or read Windows net.exe account metadata in an established Windows session. Use when implementation, account domain or timezone determines the result.
 ---
 
 # Compare time with the selected server
 
-Read this entire SKILL.md before acting. Require the installed Samba net implementation, independently established server and reachable SMB service. The query is below; the clock-setting branch additionally requires local authority and an approved time source. Finish with query/status evidence or measured local time after the change, including failures and active time-service effects. No conditional resources are required.
+Read this entire SKILL.md before acting. For time queries require installed Samba net, the selected server and reachable SMB service; clock setting additionally needs local authority and an approved time source. For account metadata through an established Windows session, read [Windows account queries](references/windows-accounts.md) fully first; Windows net.exe is a separate implementation. Finish with query/status evidence and its context, or measured time after the approved change. Missing access and failed queries remain unresolved.
 
 Define `net_bin` as the actual installed Samba executable and `server` as the selected server hostname. Windows net.exe is a different implementation. Inspect the installed command before applying Samba options:
 

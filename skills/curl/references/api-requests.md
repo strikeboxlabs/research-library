@@ -13,6 +13,8 @@ Omit the authentication-header option for an unauthenticated endpoint. Construct
 
 JSON `\uXXXX` sequences escape characters inside a string; they do not change the request body's transport encoding to UTF-16. Use UTF-8 for interoperable JSON exchange and inspect saved bytes when encoding matters. A Content-Type label alone neither converts nor validates those bytes. See [JSON strings and character encoding](https://www.rfc-editor.org/rfc/rfc8259#section-8.1).
 
+For a documented JSON-RPC 2.0 read request, preserve the explicit endpoint, method, parameters and request ID in the reviewed JSON file. After the HTTP capture, require a valid response envelope with `jsonrpc` equal to `2.0`, a matching ID and either `result` or `error`, not both. Preserve error code/message before interpreting result fields. An HTTP 200 alone does not establish RPC success. A request without an ID is a notification and has no RPC receipt; use a request with an ID when the task requires confirmation. Match batch responses by ID rather than array position. Authentication and method permissions follow the selected application's versioned contract; GUI access and API access can differ. See the [JSON-RPC response contract](https://www.jsonrpc.org/specification#response_object).
+
 For a documented form login, define `login_url`, the known `username` and a private `password_file` containing the exact password bytes without an accidental trailing newline. Choose fresh response files:
 
 ~~~bash
@@ -44,6 +46,8 @@ curl --silent --show-error --connect-timeout 5 --max-time 30 \
 ~~~
 
 `--form` constructs multipart POST data and its boundary; setting Content-Type alone does not build that body. `@` attaches file bytes, while `<` supplies a form value from a file without file-upload metadata. `--form-string` preserves text such as `@name` literally. Use curl's form-value quoting rules for more complex filenames; shell quotes alone do not disable curl's own form syntax.
+
+Rich-text editors can transform a field before constructing its multipart part. Distinguish HTML entities such as `&lt;`/`&quot;`, percent-encoded bytes such as `%3C`, and JSON escapes; they are different layers. Compare harmless field text, serialized part bytes and the server's decoded value when diagnosing a length discrepancy. A displayed character counter does not establish which representation the backend limits. A rendered color/style change is not proof of server-side command execution. Keep this diagnosis separate from altering validation or replaying an acquired exploit input.
 
 A per-part `;type=...` only labels the content; it neither converts nor verifies the bytes. Do not combine this form body with a JSON header or `--upload-file` PUT. A UI error can coexist with a successful stored upload, and a 200 can contain an application error. Inspect the response and the selected object's state before retrying a write or claiming execution. Omit the text field when it is not part of the contract.
 

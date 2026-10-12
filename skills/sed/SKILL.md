@@ -1,11 +1,11 @@
 ---
 name: sed
-description: Apply a small suffix correction or remove one independently confirmed final record with GNU sed. Use when regex syntax, line endings, in-place backups or successful no-op output affect the result.
+description: Apply a reviewed text substitution, suffix correction or removal of one confirmed final record with GNU sed. Use when regex syntax, line endings, in-place backups or successful no-op output affect the result.
 ---
 
 # Make the selected transformation reviewable
 
-Read this entire SKILL.md before acting. Select suffix correction or confirmed final-record removal below, establish the exact text change and record boundaries, preserve the input and review a separate candidate. No conditional resources are required. Finish with the changed bytes, status and verified transformation; a zero status does not prove any match occurred.
+Read this entire SKILL.md before acting. Select reviewed substitution, suffix correction or confirmed final-record removal below, establish the exact text change and record boundaries, preserve the input and review a separate candidate. No conditional resources are required. Finish with the changed bytes, status and verified transformation; a zero status does not prove any match occurred.
 
 Check `sed --version` and installed help for GNU sed. Define `input` as the existing text file and `output` as a fresh distinct path. For a format that permits removal of one comma immediately before each line ending:
 
@@ -24,6 +24,17 @@ Default expressions use basic regular expressions; `-E` changes that grammar. Re
 Check status and stderr; a read or write failure can leave a partial candidate. A normal no-match transformation succeeds with unchanged data. Avoid same-file redirection, which truncates the input before it is read. Do not use `-i` for this review task: it changes the source and has backup/symlink semantics that differ from saving a separate result.
 
 For an acquired sed script, review it before loading it with `-f`: sed can run commands or read/write other files through its program. GNU `--sandbox` disables those e/r/w features when supported; it does not make an arbitrary transformation correct. A short selected substitution does not need an external program.
+
+## Apply a selected substitution
+
+For an owned text artifact with a confirmed exact token change, define `program` as the reviewed sed expression, not arbitrary external input:
+
+~~~bash
+LC_ALL=C sed -e "$program" -- "$input" > "$output"
+status=$?
+~~~
+
+The **illustrative** expression `s/OLD_TOKEN/NEW_TOKEN/g` changes every matching occurrence on each line; without `g`, only the first occurrence per line changes. Require the expected locations/count and resulting bytes before using the candidate. Global replacement can change unrelated text, comments or quoted strings. Sed is not an HTML parser: stripping tags or all whitespace does not reliably extract table columns or preserve mailbox values. Use the relevant structured parser when the selected task needs those semantics. Review an in-place change's backup/link/concurrency requirements below before replacing an original.
 
 ## Remove one confirmed final record
 

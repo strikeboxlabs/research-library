@@ -1,11 +1,11 @@
 ---
 name: npm
-description: Inspect npm package versions or install selected exact dependencies and run a reviewed build in an owned project. Use when package attribution, lockfiles or generator/build differences affect reproducibility.
+description: Inspect npm package versions or registry metadata, diagnose private-registry login, install an approved global CLI, or install/build/start a reviewed owned project. Use when package attribution, prefixes, lockfiles or registry configuration affect the result.
 ---
 
 # Attribute the installed package
 
-Read this entire SKILL.md before acting. Select inventory below or, for an approved dependency change/build, read [project installation and build](references/project-build.md) fully first. Establish the selected project/package and required artifact. Finish with observed versions and diagnostics, plus actual build status/artifacts when requested; inventory alone is not an executed behavior.
+Read this entire SKILL.md before acting; reuse complete current context. Require the trusted installed Node/npm runtime and selected project/package or approved registry task. Use inventory below; for registry metadata or an owned existing-account login, read [registry queries and authentication](references/registry-queries.md) fully first. For an approved global CLI, read [global CLI installation](references/global-cli.md) fully first. For approved project installation, build or server startup, read [project installation, build and start](references/project-build.md) fully first. These resources are conditional. Finish with observed versions and diagnostics, plus the requested registry result, installed CLI, build artifact or service readiness; missing identity/configuration/results remain unresolved.
 
 Check `npm --version`. Define `package_name` as the selected package name. For global packages:
 

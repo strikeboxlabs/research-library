@@ -9,6 +9,8 @@ Checking an integer extracted from one part of a ticket does not validate anothe
 
 Trace through called libraries too: an uploaded data file can reach evaluation inside a parser even when the web handler contains no direct `eval`. Restricting globals or setting `__builtins__` to `None` does not establish a sandbox. The [pymatgen parser advisory](https://github.com/materialsproject/pymatgen/security/advisories/GHSA-vgv8-5cpj-qj2f) documents precisely this failure. Identify the deployed dependency version, transformation function and reachable input before attributing it to the application; a filename extension or server banner is insufficient. Review source without importing the library or parsing the suspect file as a shortcut.
 
+For validation inside a loop, inspect indentation and every path to the effect. Performing work after each individual check can reach it before the remaining checks run and repeat it on later iterations. A later rejection cannot undo those effects. `sys.exit(0)` can report rejection with a successful process status; preserve the diagnostic and operation result separately.
+
 Check order as well as conditions. In an expression using `and`, the right operand is evaluated only when the left operand is truthy. A later acceptance check cannot undo an earlier effect. This **illustrative, harmless** example explains why a rejection message does not establish that nothing ran:
 
 ~~~python

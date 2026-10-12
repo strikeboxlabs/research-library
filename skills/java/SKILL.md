@@ -1,6 +1,6 @@
 ---
 name: java
-description: Run an existing Java command-line program with an explicit runtime, classpath and arguments. Diagnose launcher, missing-class and runtime-version failures before interpreting the application's output.
+description: Launch an existing Java program with an explicit runtime, classpath and arguments. Diagnose launcher, missing-class, runtime-version and desktop-display failures before interpreting the application's output.
 ---
 
 # Select the runtime and entry class
@@ -15,6 +15,8 @@ Define `java_bin` as the selected runtime, `classpath` as its existing classes/d
 ~~~
 
 Pass the class name without `.class`. On Linux the classpath uses colons; a directory entry is the package-tree root. Explicit `-cp` prevents an unrelated working directory/CLASSPATH from selecting the program. Arguments after the entry class belong to the application; options before it belong to Java. Review inherited launcher/agent options such as `JDK_JAVA_OPTIONS` and `JAVA_TOOL_OPTIONS` when selecting a trusted execution context.
+
+Pass only arguments supported by that entry class; omit `input_file` when it accepts none. A Swing application's fully qualified main class can use this same launcher mode, but it also needs the desktop module and a usable authorized display. `HeadlessException` or display-connection failure is a desktop prerequisite failure, separate from missing classes. Setting `java.awt.headless=true` does not make a graphical database manager usable as a CLI. Its window opening also does not prove that a database was loaded or a query succeeded. See [Java desktop/headless context](https://docs.oracle.com/en/java/javase/21/docs/api/java.desktop/java/awt/GraphicsEnvironment.html).
 
 For an executable JAR, use `"$java_bin" -jar "$jar" "$input_file"` instead. Its manifest entry and dependency handling differ; `-jar` does not combine an ordinary `-cp` override as if it were class mode. Source-file launch on newer JDKs is another mode, not a substitute for the historical compiled-class invocation.
 

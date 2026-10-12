@@ -7,7 +7,7 @@ description: Inspect, retrieve or install Python distributions in a selected Lin
 
 Read this entire SKILL.md before acting. Identify the intended interpreter and select environment inspection, distribution retrieval or installation. For retrieval without installation, read [reviewed wheel retrieval](references/wheel-retrieval.md) completely before its procedure. Installation below requires an authorized change in the selected reproduction environment, with reviewed package inputs. Finish with the selected metadata/artifact/dependency result and the relevant application check separately; retrieval or installation success is not application compatibility.
 
-Call pip through the intended Python interpreter. A bare `pip` may belong to another environment; installing successfully there does not resolve imports in the program's actual interpreter.
+Call pip through the intended Python interpreter. A bare `pip` or `pip3` may belong to another environment; installing successfully there does not resolve imports in the program's actual interpreter. A sudo permission naming one pip3 path does not establish that package inputs are trusted or that installation completed.
 
 ## Inspect the existing environment before recreating it
 
@@ -50,6 +50,16 @@ For a reviewed local wheel set, define `wheelhouse` as its absolute directory, `
 
 This confines normal dependency lookup to the provided wheel location and rejects source-distribution fallback. The full compatible dependency set still has to be present; inspect direct-URL requirements separately. `--no-deps` merely skips dependency installation and does not establish that dependencies are satisfied. Package installation changes the chosen environment.
 
-For online resolution, select the approved index and versions explicitly. Do not use certificate-validation bypasses as a routine fix. Building an sdist can execute its build backend; a successful wheel install still does not make its code safe to import. `pip show` reports metadata/location, and `pip check` checks declared dependency consistency, not native-library loading or application behavior. Run the smallest relevant fixture separately; loading a supplied model or constructing a callback-bearing model can execute code locally.
+For authorized installation from a private index, define `index_url` as the approved authenticated HTTPS index endpoint and `requirement` as the selected name with approved version constraint. Require the approved dependency sources/set and provisioned authentication mechanism; keep secrets out of the URL/arguments:
+
+~~~bash
+"$environment/bin/python" -m pip install --index-url "$index_url" "$requirement"
+"$environment/bin/python" -m pip show "$distribution"
+"$environment/bin/python" -m pip check
+~~~
+
+Preserve the endpoint's actual port/path and verify existing pip configuration, environment and direct-URL dependencies before resolution. .pypirc is upload configuration, not this pip index selection. Do not add an untrusted extra index to resolve a missing private package: pip does not give one index an inherent priority. Keep certificate validation, using the approved CA configuration when needed.
+
+Building an sdist and obtaining build metadata can execute its backend before installation succeeds or fails; an error does not roll back arbitrary build side effects. A successful wheel install still does not make its code safe to import. `pip show` reports metadata/location, and `pip check` checks declared dependency consistency, not native-library loading or application behavior. Run the smallest relevant fixture separately; loading a supplied model or constructing a callback-bearing model can execute code locally.
 
 See [pip interpreter selection](https://pip.pypa.io/en/stable/user_guide/#running-pip) and [Python 2 support removal](https://pip.pypa.io/en/stable/news/#v21-0) for legacy environment differences. Use the [requirements format](https://pip.pypa.io/en/stable/reference/requirements-file-format/), [pip show](https://pip.pypa.io/en/stable/cli/pip_show/) and [distribution/import distinction](https://packaging.python.org/en/latest/discussions/distribution-package-vs-import-package/) when reconciling source and environment evidence.

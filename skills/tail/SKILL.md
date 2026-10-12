@@ -23,6 +23,8 @@ GNU `-F` follows the filename and retries when it disappears. Plain `-f` follows
 
 An in-place truncation can reset the reader, but erased bytes cannot be recovered by tail. A writer that immediately clears its error log can race the follower. Correlate scheduled-job timing, exit status and separate captured streams; two one-minute-spaced files suggest a cadence but do not prove the scheduler configuration.
 
+For date-named application logs, select the actual generated filename and retain the writer's date/timezone and configured directory. A glob such as `web-*.log` expands to matching paths when the shell starts tail; it does not discover tomorrow's newly named file. Following by name handles replacement of a selected path, not arbitrary new names. If the application changes its daily filename, stop the owned follower and select the observed new file. A PHP error-log setting and an application request log can name different files; neither path alone proves all requests or variables were recorded.
+
 Preserve observation timestamps and the exact file/error. Missing permissions/path, delayed buffering, no invocation and a successful quiet command are distinct possibilities. Stop this follower with Ctrl-C or the tracked worker session; `--pid` is useful only when the relevant writer PID and that implementation's support are established.
 
 Reference: [GNU tail](https://www.gnu.org/software/coreutils/manual/html_node/tail-invocation.html); installed help resolves implementation differences.

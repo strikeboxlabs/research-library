@@ -5,6 +5,8 @@ description: Resolve a bounded Windows RID range to account and group names with
 
 # Bounded SID lookup
 
+Read this entire SKILL.md before acting. Require the selected server, permitted session, SID scope and bounded RID interval. No conditional resource is required. Finish with resolved principal types, the complete lookup/error log and any incomplete interval; a successful exit alone does not establish coverage.
+
 Check the installed entrypoint (`impacket-lookupsid` or `lookupsid.py`) and its `-h`. This is LSA name lookup over SMB, requiring a permitted session and policy lookup access. It does not validate passwords for the names returned.
 
 Define `lookup` as that executable, `server` as one approved host, `domain`/`account` as the known login identity, `rid_limit` as the agreed positive upper bound, and `log` as a new private output path. Enter the known password at the prompt:

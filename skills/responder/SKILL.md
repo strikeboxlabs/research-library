@@ -5,6 +5,8 @@ description: Distinguish Responder name-resolution observation from active authe
 
 # Responder modes and capture evidence
 
+Read this entire SKILL.md before acting; complete current context need not be re-read. Select the observation or direct-listener task below, then require the installed entrypoint, scoped interface, reviewed module configuration and private evidence location before starting. No package-local references are required. Finish with the enabled modules, bind results, observation window, actual events and remaining gaps; unavailable listeners or incomplete records are partial evidence, not a successful capture.
+
 Responder combines name-resolution responders with independent authentication servers. Check the installed entrypoint/help and the actual `Responder.conf` it loads. Upstream reads the configuration beside its installation; changing the current directory alone does not select a different file. Use a reviewed lab configuration with a private log/database location, not unexplained global defaults.
 
 Choose the intended behavior before starting:

@@ -9,6 +9,8 @@ Read this entire SKILL.md before acting. Select the capture point, protocol/filt
 
 Define the question first: for example, did IPv4 ICMP from a selected lab host reach this machine during a known action? Identify the relevant interface using route information and `tcpdump -D`; do not assume a VPN is always `tun0`. Check `tcpdump --version` and capture permissions.
 
+Interface selection is lowercase `-i`. Uppercase `-I` requests wireless monitor mode where supported; it does not take an interface argument or make a VPN capture work. Diagnose a rejected option/filter before interpreting the absence of traffic.
+
 Define `iface` as that interface, `peer` as the numeric IPv4 host, and `pcap` as a fresh path writable by the capture process. Run with the host's established capture privileges:
 
 ~~~bash
@@ -17,6 +19,10 @@ tcpdump -i "$iface" -nn -c 20 -w "$pcap" "host $peer and icmp"
 ~~~
 
 `-c 20` stops after 20 matching packets; it is **not a time limit**. Start the capture before the event and stop it with Ctrl-C after the agreed observation window if the count is not reached. Wait for termination so the file and capture statistics are complete.
+
+For an acquired rotation configuration, distinguish `-G`'s savefile interval from a guaranteed wall-clock deadline. With `-G`, `-W` limits rotated files and exits at that limit; with `-C` alone it makes a rotating file buffer, while combining both `-C` and `-G` changes the documented `-W` behavior. Verify the installed version's semantics and retain the actual termination reason. The `-w` timestamp pattern must produce distinct names at the selected interval or rotations can overwrite prior data. Writing to `/dev/null` leaves no retained pcap for later interpretation.
+
+Post-rotation helper execution is separate from capture and can fail after packets were observed. Inspect helper identity, configured privilege dropping and policy diagnostics when reviewing that configuration; do not infer successful processing from capture counts. Perform ordinary offline analysis on the completed savefile under its intended reader account.
 
 Read it separately without live capture privileges:
 

@@ -16,7 +16,7 @@ Read this entire SKILL.md before acting. Choose the requested task and complete 
 - Exposed application settings or a redundant restore after acquisition: [configuration evidence](references/exposed-settings.md). Read it fully before recovery.
 - Stored URLs: [remote configuration](#inspect-an-acquired-remote-configuration).
 - Hook behavior: [local hook diagnosis](#diagnose-a-missing-or-unexpected-local-hook).
-- Patch validation: [scoped patch checks](#prepare-and-check-a-scoped-patch).
+- Patch preparation, validation or authorized application: [scoped patch workflow](#prepare-check-and-apply-a-scoped-patch).
 - Link/submodule types: [stored modes and metadata](#inspect-stored-symlinks-and-submodules-without-checking-them-out).
 
 Define `repo` as an existing repository's absolute path. Establish its trust and inspection context before repository commands: an acquired `.git` directory can supply executable helpers even to a status query. Read the scheduled-evidence reference above when its configuration or job context is uncertain; isolation alone is not a configuration review. In a trusted or reviewed inspection context, start with `git -C "$repo" status --short` and `git -C "$repo" rev-parse --is-shallow-repository`; preserve local edits and history limitations. For historical content, follow the reference above before selecting a revision or extracting a blob. The remaining branches below use that same `repo` and explicitly defined task paths; none requires a checkout/reset or a live authentication attempt.
@@ -67,7 +67,7 @@ For a commit-triggered job, inspect `post-commit` at the effective hooks path in
 See [hook events](https://git-scm.com/docs/githooks), [pull integration modes](https://git-scm.com/docs/git-pull) and [hook-path configuration](https://git-scm.com/docs/git-config#Documentation/git-config.txt-corehooksPath) when observed behavior differs.
 
 
-## Prepare and check a scoped patch
+## Prepare, check and apply a scoped patch
 
 For an intended change to a tracked file, use the trusted `repo` and define `path` as the selected repository-root-relative file path. Define `patch` as a fresh absolute file outside the worktree:
 
@@ -87,6 +87,16 @@ git -C "$base_repo" apply --check "$patch"
 `--check` validates applicability without applying. Run from the intended repository root: from a subdirectory, Git can ignore patch paths outside that directory and still return zero. An empty or unexpected `--stat` report is a scope problem to resolve before accepting the check. Checking against the already-edited copy can fail because it contains the new content. Zero status does not prove behavior or authorize a CI build; a job can execute patched build scripts. A failed check needs base/path/context investigation, not an automatic `--reject` or `--unsafe-paths` retry.
 
 A captured diff is not generally a full file. Removing every leading `+` loses unchanged context and mixes file headers/hunks. A snipped patch cannot reconstruct omitted bytes; retain that limitation when reviewing historical configuration or credentials.
+
+When application is also authorized, confirm the base working copy remains unchanged and review all touched paths, modes, links and binary changes. Establish trusted repository configuration and installed vendor patch context; an upstream release alone does not establish vulnerability status. Apply in the owned base copy with ordinary write authority:
+
+~~~bash
+git -C "$base_repo" apply "$patch"
+git -C "$base_repo" status --short
+git -C "$base_repo" --no-pager diff --no-ext-diff --no-textconv -- "$path"
+~~~
+
+Stop on failure rather than blindly adding privilege, unsafe paths or rejection hunks. Compare every actual affected file/type with the complete reviewed patch; the final single-path display above covers only its selected file. Plain apply changes the working tree without creating a commit or updating the index. Preserve unrelated edits and verify intended behavior separately before build, commit or publication.
 
 See [diff selection](https://git-scm.com/docs/git-diff) and [apply/check semantics](https://git-scm.com/docs/git-apply).
 

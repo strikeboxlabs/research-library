@@ -7,6 +7,8 @@ description: Generate a selected OpenSSH key pair, inspect key identity and vali
 
 Read this entire SKILL.md before acting; reuse complete current context. For a new selected key pair or a key recovered through a text transport, read [key creation and transfer](references/key-artifacts.md) fully before the applicable procedure. Finish with the intended artifact and observed parse/fingerprint result; key identity, key generation and server authorization are separate conclusions.
 
+For an already issued SSH certificate whose identity, principals or validity are disputed, read [certificate evidence](references/certificate-evidence.md) fully before inspection. It requires the selected certificate and independently obtained public identity/policy evidence; no CA private key is needed.
+
 Identify the artifact: an OpenSSH public-key line, OpenSSH private-key envelope, PEM/PKCS key or SSH certificate requires different handling. The filename, comment and base64 appearance do not establish the type. Keep an original private-key artifact unchanged and restrict working-copy access.
 
 Define `private_key` as an existing absolute private-key path and `public_copy` as a fresh output path in a private directory:

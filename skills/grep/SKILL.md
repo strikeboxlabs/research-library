@@ -26,6 +26,8 @@ BackendTwo's word-list filters require several letters and exclude others. That 
 
 Binary input can produce a generic match message; `-I` can hide it entirely. Do not reflexively use `-a` on arbitrary bytes and print control characters to a terminal. Decode the actual container first, or retain binary evidence for an appropriate reader. Locale affects classes and case handling; the example's `LC_ALL=C` deliberately uses byte-oriented matching, not language-aware case folding.
 
+Piping results through `grep -v Binary` removes lines containing that case-sensitive text; it does not instruct the first grep to skip binary files. It can discard real text matches and leave other binary diagnostics. Select binary handling on the searching command and retain its errors instead.
+
 ## Search captured text, not a filename containing that text
 
 In `grep -F -- "$needle" "$text"`, the last argument names a file. Quoting it prevents shell splitting but does not turn it into input content. A health check that passes captured HTML there can return an error and trigger recovery even when the desired text is present.

@@ -1,9 +1,11 @@
 ---
 name: mount-cifs
-description: Mount an SMB share for read-only Linux file inspection with mount.cifs. Use when choosing a kernel mount, handling credentials, remote timestamps and dialect failures, or distinguishing local ownership from server permissions.
+description: Mount a selected SMB share for Linux file inspection or an intended owned write task with mount.cifs. Use for credential, timestamp and dialect failures or to distinguish local ownership/mount options from server permissions.
 ---
 
 # Mount a selected SMB share
+
+Read this entire SKILL.md before acting. Require the exact selected share, a dedicated empty mountpoint, intended authentication and Linux CIFS support/mount privileges. Follow the mount verification and unmount steps below; for a remote timestamp question, also read that section. Finish with the observed share/options and requested file evidence, then confirmed unmount, or identify the failed stage.
 
 A mount is useful when several local programs need normal filesystem access. A large file alone does not require one: an SMB client can transfer it directly. `mount.cifs` needs the cifs-utils helper, kernel CIFS support and mount privileges; it creates host mount state.
 
@@ -16,6 +18,8 @@ findmnt --mountpoint "$mountpoint" -o TARGET,SOURCE,FSTYPE,OPTIONS
 ~~~
 
 Require successful mounting and verify the exact mountpoint, share and `ro` option before reading. Otherwise an ordinary directory underneath a failed mount can be mistaken for an empty share. Do not mount over a populated working directory.
+
+For an intended write task on the selected owned share, replace `ro` with `rw` and verify that option instead; retain the other isolation and authentication choices. `rw` permits the client to attempt writes but does not grant server-side directory rights. A successful timestamp update on an existing file does not establish fresh-file creation or deletion permission. Use a fresh task-specific name in the selected directory, retain errors and remove only the file this task created before unmounting; do not enumerate every directory into an unquoted shell loop.
 
 For interactive authentication, use `username=` and optional `domain=` instead of the credentials-file option; the helper prompts when no password is supplied otherwise. Commas in passwords make inline mount options ambiguous. `guest` suppresses the password prompt; the server still decides whether guest access is permitted.
 

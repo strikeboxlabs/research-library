@@ -19,6 +19,8 @@ status=$?
 
 The **illustrative** record `alpha/beta` yields `alpha`. This is delimiter splitting, not path normalization. Repeated delimiters create empty fields; `-d ' '` does not collapse a run of spaces like a whitespace parser. The delimiter must be a single supported character, not a regular expression or a multi-character separator.
 
+For a log with two timestamp fields followed by one address, `-f 3-` retains the third field and every later field; it does not select exactly one address. `-f 3` narrows the projection only if that record contract is established. Neither validates an address or makes the result safe as shell command text. Inspect extra fields and malformed records before passing projected data to a consumer; keep it as a validated argument rather than interpolating it into `sh -c`.
+
 Quoted CSV fields, escaped delimiters and structured JSON/XML need their format parser. A slash inside a quoted value remains a delimiter to cut. `-b` selects bytes and is not Unicode character slicing; do not substitute it for a text contract without checking encoding and implementation behavior.
 
 Check status and diagnostics before consuming the output; a failed read can leave partial data. Never redirect onto the input or an alias, because the shell truncates the destination first. In a pipeline, retain the producer's status separately or use the task's deliberate pipefail handling. A successful projection of an incomplete producer is still incomplete.

@@ -5,7 +5,7 @@ description: Create and verify a selected Active Directory computer account usin
 
 # Create the intended directory object
 
-Read this entire file before acting. Resolve the domain/container, establish that the chosen name is unused, and preserve the new object's identity after creation. Finish with its DN/SID, method and observed attributes; creating a computer account does not join a Linux machine to the domain.
+Read this entire SKILL.md before acting. Require the supported installed client, intended DC/container and known authorized identity with creation rights. Resolve the domain/container, establish that the chosen name is unused, and preserve the new object's identity after creation. Finish with its DN/SID, method and observed attributes; creating a computer account does not join a Linux machine to the domain.
 
 Check `impacket-addcomputer -h`. Define `identity` as `domain.example/user`, `dc_fqdn`, `dc_ip`, `computer_account` as the selected name including `$`, and `creation_log` as a new private file. With a matching Kerberos cache:
 
@@ -16,6 +16,8 @@ impacket-addcomputer -k -no-pass -dc-host "$dc_fqdn" -dc-ip "$dc_ip" \
 ~~~
 
 Omitting `-computer-pass` lets supported builds generate a password. The log can contain that password: handle it as credential material, not an ordinary transcript. Inspect the result and read the created object through the directory client already available in the task. Record its exact DN/SID and check `sAMAccountName`, `dNSHostName`, SPNs and account flags relevant to the next operation.
+
+For an explicitly delegated destination OU, use this release's `-computer-group` with that exact container DN on the LDAPS creation path. Despite its name, the option selects a container, not group membership. Check the installed method's support and read back the resulting DN. A zero machine-account quota does not negate separately delegated creation rights in that container, and creation does not establish certificate enrollment or service access.
 
 | Choice or result | Operational meaning |
 |---|---|

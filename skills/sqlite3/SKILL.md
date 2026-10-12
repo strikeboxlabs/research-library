@@ -20,6 +20,8 @@ sqlite3 -init /dev/null -readonly -batch -bail -header -column "$database" "SELE
 
 Inspect the selected table's schema before requesting data. In the interactive CLI, `.schema table_name` is a dot-command on its own line; SQL instead terminates with a semicolon. Use actual SQL-quoted identifiers, choose relevant columns and add a meaningful `WHERE`/`LIMIT`. An empty result, an absent table and a denied/failed query are different findings.
 
+The schema's `rootpage` is a b-tree page number for tables/indexes, not a contiguous catalogue ordinal. Views, triggers and virtual tables can have zero/NULL root pages; probing successive page numbers cannot establish a complete object inventory. Inspect `type`, `name` and `tbl_name` together, and account for internal objects and the query's LIMIT when reporting counts. `sqlite_master` is a historical alias for `sqlite_schema`. See the [schema-table contract](https://sqlite.org/schematab.html).
+
 For export, define `query` as one reviewed, bounded SELECT with the actual schema:
 
 ~~~bash

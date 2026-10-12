@@ -5,7 +5,7 @@ description: Browse SMB shares and transfer selected files with Impacket's Linux
 
 # Select the share, then verify the transfer
 
-Read this entire file before acting. Identify the server, authentication context, share and local destination. Finish with the selected paths, transfer result and useful file evidence; successful SMB login does not establish access to every share.
+Read this entire SKILL.md before acting. Require the selected server, established authentication context, permitted share/path and fresh owned local destination; all instructions are inline. Finish with the selected paths, transfer status and actual artifact evidence, preserving failed or partial downloads. Successful SMB login does not establish access to every share.
 
 Check `impacket-smbclient -h`. Set `server` to the real server name and `identity` to `domain.example/user`. With a matching `KRB5CCNAME` cache:
 

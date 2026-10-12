@@ -20,6 +20,8 @@ Keep the selected architecture/dependencies and application version with its res
 
 An omitted WINEPREFIX uses the default user prefix, potentially changing unrelated applications' registry/runtime state. Prefix selection separates Wine state, not host filesystem or network permissions; it is not a sandbox for unknown executables. Changing WINEARCH does not convert an existing prefix's architecture. A missing DLL/.NET dependency or architecture mismatch requires resolving that application/prefix contract, not blanket installation or suppression of diagnostics.
 
+An application printing a filter then a directory error does not identify Wine as the cause. Retain the application/framework, prefix and Wine versions, and separate provider startup, bind and subsequent search results. A captured successful LDAP bind followed by `noSuchObject` supports checking the actual search base and request, not declaring LDAP unsupported. Requested API flags can differ from the observed provider exchange; use existing redacted capture evidence before changing dependencies or credentials.
+
 Wine provides limited console support through this invocation. If a program needs an interactive Windows console, consult the installed wineconsole interface instead of assuming a plain redirected invocation supplies one. Finish with the requested application output; launching an executable does not prove its external action succeeded.
 
 See the [packaged Wine manual](https://manpages.debian.org/bookworm/wine/wine.1.en.html) for prefix, architecture and argument behavior.

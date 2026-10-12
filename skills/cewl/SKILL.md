@@ -5,6 +5,8 @@ description: Collect words from selected website content for an authorised offli
 
 # CeWL website wordlists
 
+Read this entire SKILL.md before acting. Establish the selected site's crawl boundary and output format before collecting words. No conditional resources are required. Finish with crawl status, reviewed source content and the candidate-file format; a failed crawl or unverified response leaves collection incomplete.
+
 Use CeWL when the relevant vocabulary comes from a known website. It collects words; it does not establish a username, recover a password or verify that a candidate works.
 
 Check `cewl --help` for the installed options. Define `url` as one approved page with an explicit scheme, and `words` and `log` as fresh absolute output paths:

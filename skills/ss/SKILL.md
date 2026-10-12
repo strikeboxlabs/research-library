@@ -15,6 +15,8 @@ ss -lntup
 
 Read **Local Address:Port**, not the peer wildcard. A local `127.0.0.1:8080` listener is bound to IPv4 loopback. `0.0.0.0:8080` means all local IPv4 addresses, but does not establish firewall or remote reachability. `[::]:8080` is an IPv6 wildcard; IPv4 acceptance also depends on socket/kernel configuration. Test the required family rather than inferring it from this row.
 
+A local `[::ffff:127.0.0.1]:8080` row represents an IPv4-mapped loopback address through the IPv6 API. It does not mean an IPv6 wildcard or a remotely bound service. Preserve the complete local address when explaining why a workstation scan differs from this namespace's listener inventory; an external port scan cannot inventory loopback-only bindings. See [Linux IPv4-mapped address semantics](https://manpages.debian.org/bookworm/manpages/ipv6.7.en.html).
+
 For a specific observed TCP port, define `port` as its decimal number:
 
 ~~~bash

@@ -5,6 +5,8 @@ description: Enumerate user-associated AD service principal names and request se
 
 # Impacket GetUserSPNs
 
+Read this entire SKILL.md before acting. Select directory enumeration or the separately permitted ticket request, with the known identity, DC and selected account explicit. No conditional resource is required. Finish with observed mappings, request diagnostics and actual record coverage; missing LDAP/KDC prerequisites or partial output stays unresolved.
+
 Check `impacket-GetUserSPNs -h`; upstream installations may use `GetUserSPNs.py`. Define `domain`, `user` and `dc_ip` for the in-scope AD domain, known requesting account and DC address. Start with enumeration, entering the known password at the prompt:
 
 ~~~bash
@@ -24,8 +26,8 @@ This makes KDC requests and saves offline password-testing material. In the revi
 
 Keep complete `$krb5tgs$...` records, their account mapping and encryption type. Mode 13100 in Hashcat applies to etype 23, not every Kerberos ticket. The relevant ciphertext is the service ticket's encrypted part; avoid describing the entire TGS reply as encrypted with an NT hash for every encryption type.
 
-GetUserSPNs does not create SPNs. Tools such as targetedKerberoast can temporarily add one using directory write rights before requesting a ticket, then attempt removal. That is a separate modifying workflow requiring an exact target, prior-state evidence and verified restoration, including after failures. An account with no SPN is not a reason to substitute that workflow silently.
+GetUserSPNs does not create SPNs. An absent SPN is a finding to resolve from directory evidence, rather than permission to change an account's attributes.
 
 If using a known file cache, add `-k -no-pass`, export its absolute path in `KRB5CCNAME`, and supply the correct DC FQDN via supported `-dc-host`. Check cache identity/expiry, DNS and time before retrying authentication. Retain per-account errors and validate the output file rather than relying only on exit status.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Active pp. 7–9; Administrator pp. 9–10. Sources: [GetUserSPNs implementation and CLI](https://github.com/fortra/impacket/blob/master/examples/GetUserSPNs.py), [targetedKerberoast's additional write behaviour](https://github.com/ShutdownRepo/targetedKerberoast).
+Use the [GetUserSPNs implementation and CLI](https://github.com/fortra/impacket/blob/master/examples/GetUserSPNs.py) to resolve installed request selectors and output behavior.

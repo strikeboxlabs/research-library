@@ -5,11 +5,11 @@ description: Enumerate AD CS configuration, request selected certificates, authe
 
 # Follow the certificate operation through its stages
 
-Read this entire file before acting, then the complete reference for the selected task. Use ly4k's Certipy AD CS tool, often packaged as `certipy-ad`; an executable named `certipy` can be unrelated. Define `certipy_bin` as the verified invocation and inspect its banner/subcommand help.
+Read this entire SKILL.md before acting, then the complete reference for the selected task. Require the intended directory/CA endpoints, known identity and installed supported subcommand. Use ly4k's Certipy AD CS tool, often packaged as `certipy-ad`; an executable named `certipy` can be unrelated. Define `certipy_bin` as the verified invocation and inspect its banner/subcommand help.
 
 | Task | Required working reference |
 |---|---|
-| Directory/CA collection, ESC1/ESC3/ESC9 interpretation and missing evidence | [Findings and collection](references/findings.md) |
+| Directory/CA collection, ESC1/ESC3/ESC9, acquired template-edit effects or explicit certificate-mapping interpretation | [Findings and collection](references/findings.md) |
 | Certificate enrollment, agent requests, pending issuance or PFX authentication | [Enrollment and authentication](references/enrollment-and-authentication.md) |
 | Selected KeyCredentialLink recovery or UPN changes for a mixed Kerberos stack test | [Shadow credentials and UPN changes](references/shadow-and-upn.md) |
 

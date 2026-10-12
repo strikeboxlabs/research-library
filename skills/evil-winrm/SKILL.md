@@ -1,11 +1,11 @@
 ---
 name: evil-winrm
-description: Open a Windows WinRM session from Linux with Evil-WinRM using known credentials. Use for transport/authentication diagnosis, current token inspection, selected file transfers and distinguishing WinRM access from SMB login success.
+description: Open an owned Windows WinRM session from Linux with a provisioned password or client certificate; inspect current token, selected service, AD computer metadata, registry and policy evidence, and diagnose authentication or transfer failures.
 ---
 
 # Evil-WinRM sessions
 
-Read this entire SKILL.md before acting. Require the selected endpoint/account and credential mechanism, then confirm the actual remote identity and requested action/transfer. For selected Windows service evidence, also read [service inspection](references/service-inspection.md) fully. That reference is conditional; other session tasks use this entrypoint. Missing WinRM permission or an incomplete transfer remains unresolved, regardless of another protocol's login result.
+Read this entire SKILL.md before acting. Require the selected endpoint/account and credential mechanism, then confirm the actual remote identity and requested action/transfer. Read [service inspection](references/service-inspection.md) fully for selected Windows service evidence, [AD computer metadata](references/ad-computer-metadata.md) fully for one selected directory computer and its name-resolution evidence, or [policy and registry evidence](references/policy-and-registry-evidence.md) fully for stored GPO settings, registry SDDL or selected current registry metadata. These references are conditional; other session tasks use this entrypoint. Missing WinRM permission or incomplete evidence remains unresolved, regardless of another protocol's login result.
 
 A valid SMB or web-portal login does not establish WinRM permission. Confirm the Windows endpoint, listener transport/port, WSMan route and intended account. An open TCP 5985 or an HTTPAPI/IIS banner alone does not establish a working WinRM listener. An HTTP 404 with missing authentication headers can concern the route or service; it does not by itself prove a bad password. Inspect `evil-winrm -h` and `evil-winrm -V`; packaged releases can differ from current upstream.
 
@@ -16,6 +16,16 @@ evil-winrm -i "$server" -u "$account"
 ~~~
 
 For an HTTPS listener, use `-S` (default port 5986); HTTP defaults to 5985. A custom `-P` is a port, whereas lowercase `-p` supplies a password. In the reviewed client, SSL sets the default port during option parsing, so place an explicit `-P` after `-S`. This implementation disables TLS peer-certificate verification; `-S` alone does not authenticate the server's certificate.
+
+For a provisioned client-certificate identity on the owned HTTPS listener, require the issued certificate, its matching private key and the administrator-established WinRM account mapping. Define `client_cert` and `client_key` as their existing protected absolute PEM paths:
+
+~~~bash
+evil-winrm -i "$server" -S -c "$client_cert" -k "$client_key"
+~~~
+
+`-c` supplies a certificate, not a bare public-key file or PFX bundle; `-k` supplies its private key. The reviewed certificate branch does not require `-u` or a password prompt: the server's mapping determines the account. Both files and HTTPS are required; providing one path or omitting `-S` is not a usable certificate connection. Confirm the installed release's flags and consumer support for the key's encryption before connection. A key-passphrase/loading failure is separate from server mapping or WinRM authorization; do not remove key protection as an automatic retry.
+
+Successful PFX extraction establishes neither issuance trust nor mapping. Verify the intended certificate identity, validity/usage and key match under the provisioning process first. This client branch also disables peer verification; require an independently established owned server/channel appropriate to that limitation. Once connected, retain `whoami /user` and the intended harmless administrative result before attributing the mapped identity. Certificate acceptance does not imply administrator rights, and a remote prompt alone is insufficient. Finish and close the selected session as below. See [certificate options and connection behavior](https://github.com/Hackplayers/evil-winrm/blob/master/evil-winrm.rb).
 
 `-H` expects the NT hash alone, not a whole SAM record or `LM:NT` pair. Do not combine it with `-p`. Kerberos uses `-r REALM`, a resolvable server FQDN and working realm configuration/cache; the default service prefix is `HTTP`. Verify cache options against this release rather than assuming Impacket's switches apply.
 

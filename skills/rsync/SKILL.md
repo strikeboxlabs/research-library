@@ -1,11 +1,11 @@
 ---
 name: rsync
-description: Inspect a scoped rsync daemon module, retrieve one selected file or push a selected backup over SSH. Use to distinguish transport, filename scope and skipped or partial copies from completed transfers.
+description: Inspect a scoped rsync daemon module, retrieve a selected file or directory, copy an owned local directory or push a selected backup over SSH. Use to distinguish transport, filename scope and skipped or partial copies from completed transfers.
 ---
 
 # Inspect a module before retrieving a file
 
-Read this entire SKILL.md before acting. Establish the intended endpoint, existing access and selected file. For a local backup pushed over SSH, read [selected backup transfer](references/backup-transfer.md) fully first; otherwise use the daemon inspection/retrieval below. Finish with actual transferred or skipped files, status and destination verification. Missing access or an incomplete source leaves that step unresolved.
+Read this entire SKILL.md before acting. Establish the intended endpoint, existing access and selected file/tree. For a selected directory retrieved from a daemon, read [daemon directory copy](references/daemon-directory-copy.md) fully first. For an owned directory copied locally, read [local directory copy](references/local-directory-copy.md) fully first. For a local backup pushed over SSH, read [selected backup transfer](references/backup-transfer.md) fully first; otherwise use the daemon inspection/retrieval below. Finish with actual transferred or skipped files, status and destination verification. Missing access or an incomplete source leaves that step unresolved.
 
 Check `rsync --version`. Define `daemon_url` as the authorized `rsync://host:port` endpoint, without a trailing slash:
 
@@ -22,6 +22,8 @@ rsync --list-only "$module_url/"
 ~~~
 
 An **illustrative** `-rw-r--r-- 12544 ... config-backup.tar.gz` identifies a regular-file candidate and size; it does not prove download permission or completeness. Descend into a relevant observed subdirectory explicitly.
+
+A single source operand without a destination also produces a listing; even `-a` in that form does not retrieve the file's contents. Access without a password describes that module's authentication behavior, not unrestricted filesystem access, write permission or execution as root. Resolve the module's configured path, read/write policy and effective identity from the current daemon configuration when those facts are required.
 
 For a selected regular file, define `source_url` as its complete module URL with no wildcard, and `dest` as a new absolute directory under the private case workspace:
 

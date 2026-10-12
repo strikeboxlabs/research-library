@@ -17,6 +17,8 @@ This selects the project explicitly instead of finding an unintended parent mani
 
 `--locked` rejects missing or changed dependency resolution; it is not offline mode. `--frozen` combines locked resolution with no network, and can fail when required dependencies are absent locally. Resolve that as a provisioning decision rather than silently changing dependencies. A selected target triple also needs its compiler/linker and runtime support; a successful host build is not cross-platform validation.
 
+`--offline` alone prevents Cargo's network access while allowing resolution from available local sources; it does not freeze the lockfile or prevent local path dependencies from changing. A manifest's `path` dependency is resolved relative to that manifest. Inspect its actual source and the selected workspace/configuration. `cargo run` can reuse fresh build artifacts or rebuild changed inputs, rather than compiling every crate on every invocation. Preserve the real build diagnostics and runtime result before attributing a change to a particular dependency.
+
 Cargo builds can execute project/dependency build scripts and compiler-time procedural code. Review the actual project and use the intended build environment; `cargo check` is not a promise of zero code execution. Do not run an unknown project as root to solve a cache-permission error.
 
 When the task separately authorizes executing the tool, `cargo run` can rebuild and then launch it. Arguments after `--` go to the program:

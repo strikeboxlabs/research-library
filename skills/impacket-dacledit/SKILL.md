@@ -5,7 +5,7 @@ description: Inspect, back up and change selected AD DACL rights with Impacket d
 
 # Inspect a selected directory DACL
 
-Read this entire file before acting. For an authorized grant, removal or restore, read [selected rights changes](references/selected-rights-change.md) fully. Finish with the selected object, actual ACE/state evidence and any unresolved change; an exit code alone is insufficient.
+Read this entire SKILL.md before acting. Require the supported installed client, known authorized directory identity, selected object's exact DN and required transport/cache configuration. For an authorized grant, removal or restore, read [selected rights changes](references/selected-rights-change.md) fully. Finish with the selected object, actual ACE/state evidence and any unresolved change; an exit code alone is insufficient.
 
 Check local help for `impacket-dacledit` or `dacledit.py`; packaged releases differ from upstream development versions. This procedure requires support for `-dc-host`, `-dc-ip`, `-use-ldaps` and the target selector below. Use a known, authorized directory identity and preserve required authentication/transport policy.
 

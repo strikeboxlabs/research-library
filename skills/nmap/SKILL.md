@@ -5,7 +5,7 @@ description: Discover services on scoped Linux or Windows lab hosts with Nmap an
 
 # Nmap service discovery
 
-Read this entire skill before acting; complete current context need not be re-read. Select the scoped host, protocol and useful port range before probing. Retain scan completion, vantage and confirmed versus uncertain services; a skipped or interrupted scan is incomplete evidence.
+Read this entire SKILL.md before acting; complete current context need not be re-read. Select the scoped host, protocol and useful port range before probing. For an unexpected option-denial message, follow the wrapper attribution below before interpreting upstream behavior. Retain scan completion, vantage and confirmed versus uncertain services; a skipped or interrupted scan is incomplete evidence.
 
 Installed invocation: `/usr/bin/nmap`, version `7.99`. `/usr/bin/masscan` version `1.3.2` is also present; `rustscan` is not available on the worker PATH. Tool availability does not establish equivalent probe behavior or completeness across a VPN.
 
@@ -41,6 +41,8 @@ For automation, parse the XML by host, protocol and `state="open"`; do not deriv
 After an IPsec connection changes reachability, compare the same target and selected ports from the intended source/namespace. `-sT` uses the operating system's `connect()` path, whereas raw-packet probes can behave differently. A TCP-only IPsec selector excludes ICMP and UDP, so failed ping is not a TCP service result. Where reachability is independently established, `-Pn -sT` avoids a mismatched discovery probe. Confirm negotiated selectors and application responses; neither a VPN status line nor new open ports means the firewall was disabled.
 
 NSE scripts are separate probes. Inspect relevant scripts with `--script-help` and choose them deliberately. `-sC` runs the default script set; it is not a passive version lookup, and default scripts are not all nonintrusive.
+
+For an unexpected option-denial message, establish the executable/wrapper actually selected and read its complete accessible source as text. A custom wrapper's message is not evidence that upstream Nmap lacks that option. Track its argument handling, downstream executable and checked status separately; a scan banner can come from the child. A substring check over joined arguments is not a complete argument grammar. Preserve the exact denied operation and wrapper identity without retrying through a different executable to evade the restriction. An aborted child is an incomplete scan and does not prove that no earlier script/helper effect occurred.
 
 For a service expected on UDP, select the observed port with `-sU` and the required raw-socket privileges; retain `-sU` on follow-up version probes. Dropping it silently changes the scan back to TCP. UDP silence commonly yields `open|filtered`; service-specific evidence is needed to resolve that uncertainty. Do not run a whole UDP range merely because TCP found little.
 

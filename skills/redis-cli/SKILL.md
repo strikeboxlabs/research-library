@@ -1,11 +1,11 @@
 ---
 name: redis-cli
-description: Inspect selected Redis keys and persistence settings with redis-cli using known authentication and bounded cursor scans. Use when logical databases, ACLs, value types, effective configuration or SCAN completion make results ambiguous.
+description: Inspect selected Redis keys, server metadata and persistence settings with redis-cli using known authentication and bounded cursor scans. Use when logical databases, ACLs, value types, build identity, closed connections or SCAN completion make results ambiguous.
 ---
 
 # Inspect the intended Redis data
 
-Read this entire SKILL.md before acting. Select key inspection or the persistence-setting check below and establish the known endpoint/transport and configured authentication. For keys, select the logical database and permitted namespace, scan within the requested bounds and match reads to the value type. Finish with the selected result and its coverage limits, then leave the session. A connection or key name alone is insufficient.
+Read this entire SKILL.md before acting. Select key inspection, server metadata or the persistence-setting check below and establish the known endpoint/transport and configured authentication. For keys, select the logical database and permitted namespace, scan within the requested bounds and match reads to the value type. Finish with the selected result and its coverage limits, then leave the session. A connection or key name alone is insufficient.
 
 Define `host`, `port`, `database` and `username` for the known endpoint, logical database and ACL account. For a password-authenticated session:
 
@@ -35,7 +35,21 @@ Each SCAN reply contains the next cursor and a key list. Continue with that retu
 
 Check TYPE before reading a value. For a string, inspect STRLEN before a potentially large GET; for hashes prefer selected HGET/HMGET fields, and for lists use a bounded LRANGE. WRONGTYPE means the command does not fit the value's type, not that the database is corrupt. Nil/missing keys can also reflect expiry or a different selected database; ACL denial is a separate result.
 
+Distinguish a server error reply from connection loss. An **illustrative** argument-free GET returning `wrong number of arguments` identifies a recognized command with incomplete input; no value was read. `unknown command` is a different lookup failure. A CLI message that the server closed the connection establishes neither command completion nor an empty result: retain the preceding response and check the selected server's logs, transport and policy before reconnecting with the established settings. Redis's HTTP-protection handling can close a connection instead of issuing an ordinary command error; an HTTP method name is not a Redis data-read operation. Use the installed version's [response format](https://redis.io/docs/latest/develop/reference/protocol-spec/) and [server command checks](https://github.com/redis/redis/blob/7.0/src/server.c) to resolve ambiguous transcripts.
+
 Interactive output quotes/escapes bytes; `--raw` changes rendering and is the default when stdout is redirected. Preserve binary values accordingly. A field called password may contain ciphertext, an encoding or a verifier; inspect the producer's format before selecting a decoder or hash mode. Reading data does not require CONFIG SET, replication changes or destructive commands.
+
+## Inspect selected server metadata
+
+In the established known-authentication session, request the relevant server section at the Redis prompt:
+
+~~~text
+INFO server
+~~~
+
+This reads server metadata independently of the selected logical database; it does not enumerate key values or change settings. Preserve relevant returned fields such as redis_version, redis_build_id, redis_mode, process_id, run_id and uptime alongside the endpoint/time. Fields vary with version; missing or unfamiliar fields are not automatically errors. NOAUTH means this operation lacks authentication; NOPERM is an ACL denial after authentication. Neither is an empty server response to interpret as a version.
+
+An acquired program's printed INFO output is a historical application observation, not proof of your direct session's authentication or of the same running process. A pathname or PID needs namespace/time correlation before attributing OS ownership. A build ID is not an independently verified executable digest, and a numeric version alone does not establish distribution patch state or advisory applicability. For packaging-specific issues, match installed vendor package/build records with its advisory; do not execute an exploit or change server settings to validate a version lead. Finish with the selected fields and remaining package/process association. See [INFO sections and field meanings](https://redis.io/docs/latest/commands/info/).
 
 ## Read selected persistence settings
 

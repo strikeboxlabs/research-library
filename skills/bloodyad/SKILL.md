@@ -5,7 +5,7 @@ description: Read Active Directory objects and make selected LDAP membership or 
 
 # Resolve the object and select the LDAP action
 
-Read this entire file before acting. For writes, read [membership and ownership](references/directory-changes.md) fully. Finish with the exact object/DC and observed result; authentication, permission to read and permission to change are separate findings.
+Read this entire SKILL.md before acting; reuse complete current context. Require the selected object/DC and known authenticated context, then choose the read or authorized write. For writes, read [membership and ownership](references/directory-changes.md) fully before the procedure. Finish with exact object identity, operation/read-back evidence and unresolved access or lifecycle gaps; authentication, permission to read and permission to change are separate findings.
 
 Check `bloodyAD --help` and the selected subcommand's help. For a current build accepting explicit cache selection, define `cache`, `domain`, `user`, `dc_fqdn`, `dc_ip` and `target_dn`:
 

@@ -5,6 +5,10 @@ description: Select and generate Java serialization fixtures with ysoserial for 
 
 # Match the generator to the observed consumer
 
+Read this entire SKILL.md before acting. Require the installed Java generator/runtime and selected fixture's consumer-format/dependency contract. The workflow is inline with no conditional package resources. Finish with producer status and intact artifact evidence; transport and consumer effects require their separate observations.
+
+This package covers Java ysoserial. ysoserial.net/ysoserial.exe and .NET BinaryFormatter use a different generator, formats and dependencies; their names do not make the Java command applicable.
+
 Establish that the application actually consumes Java object serialization and identify the reachable dependency/JDK versions. A library on disk alone does not establish a usable gadget chain or an unsafe deserialization entry point. XML unmarshalling and native Java serialization require different generators even when both involve Java.
 
 Define `jar` as the pinned local ysoserial all-dependencies JAR. Record its checksum and the **producer** JDK separately from the consumer runtime:
@@ -29,4 +33,4 @@ Gadgets do not all accept shell command lines. Chains calling `Runtime.exec(Stri
 
 Artifact generation, application transport/wrapping, deserialization and an observed effect are separate stages. A valid serialized stream may still require an application-specific envelope/signature. DNS/RMI contact proves a lookup/connection, not arbitrary execution; correlate the intended harmless probe with the actual observation. Do not deserialize the generated artifact locally merely to check its syntax.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Cases: Arkham pp. 7–12; Atlas pp. 11–14. Sources: [upstream usage](https://github.com/frohoff/ysoserial), [generator](https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/GeneratePayload.java), [CommonsCollections5 conditions](https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/payloads/CommonsCollections5.java).
+Sources: [upstream usage](https://github.com/frohoff/ysoserial), [generator](https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/GeneratePayload.java), [CommonsCollections5 conditions](https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/payloads/CommonsCollections5.java).

@@ -5,6 +5,8 @@ description: Request a Kerberos service ticket with Impacket getST and inspect t
 
 # Request the ticket for the intended service
 
+Read this entire SKILL.md before acting. Require the known requesting identity, KDC, exact service principal and any existing delegation selected by the task. No conditional resource is required. Finish with the actual cache's identity, service, flags and lifetime plus request errors; ticket issuance and application authorization remain separate outcomes.
+
 Check `impacket-getST -h`; upstream also ships `getST.py`. Define `getst_bin` as the installed executable, `identity` as the known `domain/account`, `dc_ip` as the intended KDC address, `spn` as the exact registered service/hostname, and `out` as a new private directory:
 
 ~~~bash
@@ -23,4 +25,4 @@ Use the actual cache filename reported by the installed build; names differ acro
 
 `KDC_ERR_S_PRINCIPAL_UNKNOWN` calls for checking SPNs, account/realm and the operation stage. `KDC_ERR_BADOPTION` can reflect delegation or ticket-flag restrictions; it does not prove a bad password. Verify clock agreement without automatically resetting the host clock. A ticket issued successfully can still be rejected by the application or authorize fewer actions than expected.
 
-Documentation reviewed 2026-10-09; Linux execution untested. Case: Authority pp. 13–14. Sources: [upstream CLI, S4U flow and cache saving](https://github.com/fortra/impacket/blob/master/examples/getST.py), [MIT klist](https://web.mit.edu/kerberos/krb5-latest/doc/user/user_commands/klist.html).
+Use the [upstream CLI and cache saving](https://github.com/fortra/impacket/blob/master/examples/getST.py) and [MIT klist](https://web.mit.edu/kerberos/krb5-latest/doc/user/user_commands/klist.html) to resolve installed ticket/cache behavior.

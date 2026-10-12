@@ -5,9 +5,11 @@ description: Use Metasploit Framework modules, jobs and sessions from the Linux 
 
 # Select and configure a Framework module
 
-Read this entire file before acting. For handlers and session lifecycle, read [handlers and sessions](references/handlers-and-sessions.md). Finish with the module/options used, its observed result and remaining jobs/sessions; loading a module is not executing it successfully.
+Read this entire SKILL.md before acting; reuse complete current context. Require the trusted installed Framework, selected permitted module task and explicit endpoint/observation scope. For handlers and session lifecycle, read [handlers and sessions](references/handlers-and-sessions.md) fully before that task; other console tasks use this entrypoint. Finish with the module/options used, its observed result and remaining jobs/sessions; loading a module is not executing it successfully. Missing module behavior, prerequisites or result evidence remains unresolved.
 
 Start `msfconsole -q`. Review startup resources and global datastore values in an existing workspace; old global target/credential settings can affect a new module. A database is useful for organizing results but is not required for every console module.
+
+`-r` selects a resource script whose commands are executed, rather than a report or inert RCE file. Review the selected file, included Ruby and its referenced modules/options before loading it; a generated filename does not prove listener settings, architecture or permitted effects. Retain acquisition/configuration evidence separately from execution and session identity. Do not load an acquired resource merely to inspect its contents. See [resource scripts](https://help.rapid7.com/metasploit/Content/general/resource-scripts.html).
 
 For an **illustrative** authorized HTTP-version check on a lab endpoint:
 

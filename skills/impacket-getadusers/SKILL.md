@@ -5,6 +5,8 @@ description: Query AD user email and logon metadata with Impacket GetADUsers fro
 
 # Inspect selected AD user metadata
 
+Read this entire SKILL.md before acting. Require the installed compatible client, selected DC and an existing usable authentication context. No conditional resource is required. Finish with the selected subject/DC, returned metadata and status/diagnostics; an empty or failed query remains a visibility or prerequisite gap rather than proof of account absence.
+
 Check `impacket-GetADUsers -h`; upstream installs may expose `GetADUsers.py`. This is an authenticated directory query. The commands below require the installed generation to support `-dc-host`, `-dc-ip`, `-k`, `-no-pass`, `-all` and `-user`. Use a verified DC hostname and a known usable Kerberos file cache; check its identity and expiry with `klist` first.
 
 Define `cache` as that absolute cache path, `domain` as the AD DNS domain, `user` as the requesting account, `dc_fqdn` and `dc_ip` as the same selected DC, `subject` as one observed sAMAccountName, and `report`/`errors` as fresh private files:

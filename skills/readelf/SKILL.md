@@ -42,6 +42,8 @@ In the symbol table, `UND` indicates an undefined symbol; a defined/exported `re
 
 Use `readelf -W -s "$binary"` for other available symbols. Stripping can remove one table while dynamic symbols remain; absence of a local symbol does not establish absence of behavior. `-W` avoids wrapped/truncated table fields. See [loader rules](https://man7.org/linux/man-pages/man8/ld.so.8.html) and [ldd's execution warning](https://man7.org/linux/man-pages/man1/ldd.1.html) when deciding what static metadata can establish.
 
+When locating `main`, select its complete defined FUNC row rather than the first substring match: `main_arena` is an OBJECT and other names can contain main. Preserve Name, Type, Bind, Ndx, Value and Size together. For an executable/shared object, Value is a linked virtual address; for a defined symbol in a relocatable object it is a section offset. Neither is automatically a raw file offset or an observed relocated runtime address. Navigate the imported program's matching address space in the disassembler and confirm the function/callees. `main` is not necessarily the ELF header's entrypoint. See [ELF symbol values](https://gabi.xinuos.com/elf/05-symtab.html#symbol-value).
+
 Finish with artifact identity, relevant segment/section and the address space being described. Keep claims about runtime contents or permissions separate from file metadata.
 
 Consult the option and format references: [GNU readelf](https://sourceware.org/binutils/docs/binutils/readelf.html), [ELF program headers](https://gabi.xinuos.com/elf/07-pheader.html).

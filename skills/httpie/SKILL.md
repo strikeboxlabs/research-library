@@ -34,6 +34,8 @@ This saves the response body without formatting; `--ignore-netrc` prevents ambie
 
 `--check-status` makes HTTP errors visible to a script. Retain the body and diagnostics on failure: a redirect requires reviewing its destination, an authentication failure calls for checking the credential context, and a timeout leaves delivery/outcome uncertain. Do not blindly retry a mutating operation. A transport success or HTTP 200 still requires checking the API's result code, returned ID and object type. For ClearML-style responses, inspect both `meta.result_code` and the expected `data` object; an update count is not proof that a downstream worker ran.
 
+For a private HTTPS API, keep certificate verification enabled. When its CA is independently trusted, add `--verify="$ca_bundle"` for that selected bundle; fetching a certificate from the peer does not establish trust in it. `--verify=no` disables verification and an ensuing 200 does not authenticate the service. A 401 Bearer challenge can identify a realm, service and requested scope: compare those to the established API contract before requesting a token or sending credentials to the realm. A returned token is not proof it covers the selected resource, and a registry catalogue scope differs from an image repository scope. Inspect retained response headers without exposing the credential-bearing request.
+
 Without `--ignore-stdin`, an unattended invocation may wait for a body or consume redirected input. When deliberately using `http ... < body.json`, omit that flag and do not also supply body fields on the command line.
 
 ## Retain a binary API response
