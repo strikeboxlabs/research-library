@@ -1,0 +1,5015 @@
+{
+  "schema_version": 1,
+  "library_id": "research-library",
+  "skills": [
+    {
+      "id": "7z",
+      "path": "skills/7z",
+      "tags": [
+        "artifact:archive",
+        "artifact:disk-image",
+        "execution:linux",
+        "task:archive-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "a2enmod",
+      "path": "skills/a2enmod",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ad-ldap-enum",
+      "path": "skills/ad-ldap-enum",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "adb",
+      "path": "skills/adb",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "adduser",
+      "path": "skills/adduser",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "aircrack-ng",
+      "path": "skills/aircrack-ng",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "airmon-ng",
+      "path": "skills/airmon-ng",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "airodump-ng",
+      "path": "skills/airodump-ng",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ansible-galaxy",
+      "path": "skills/ansible-galaxy",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ansible-parallel",
+      "path": "skills/ansible-parallel",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ansible-playbook",
+      "path": "skills/ansible-playbook",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ansible-vault",
+      "path": "skills/ansible-vault",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "apache-directory-studio",
+      "path": "skills/apache-directory-studio",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "apache2ctl",
+      "path": "skills/apache2ctl",
+      "tags": [
+        "artifact:config",
+        "execution:linux",
+        "task:config-diagnostics"
+      ],
+      "requires": []
+    },
+    {
+      "id": "apktool",
+      "path": "skills/apktool",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "apport-cli",
+      "path": "skills/apport-cli",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "apport-unpack",
+      "path": "skills/apport-unpack",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "apt",
+      "path": "skills/apt",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "apt-get",
+      "path": "skills/apt-get",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ar",
+      "path": "skills/ar",
+      "tags": [
+        "artifact:archive",
+        "execution:linux",
+        "task:archive-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "arp",
+      "path": "skills/arp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "asar",
+      "path": "skills/asar",
+      "tags": [
+        "artifact:archive",
+        "artifact:source",
+        "execution:linux",
+        "language:javascript",
+        "task:archive-inspection",
+        "task:source-review"
+      ],
+      "requires": []
+    },
+    {
+      "id": "aureport",
+      "path": "skills/aureport",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "avalonia-ilspy",
+      "path": "skills/avalonia-ilspy",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "awk",
+      "path": "skills/awk",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "aws",
+      "path": "skills/aws",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "awslocal",
+      "path": "skills/awslocal",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "axel",
+      "path": "skills/axel",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "az",
+      "path": "skills/az",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "backy",
+      "path": "skills/backy",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "base64",
+      "path": "skills/base64",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "basename",
+      "path": "skills/basename",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bash",
+      "path": "skills/bash",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bbot",
+      "path": "skills/bbot",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bc",
+      "path": "skills/bc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bee",
+      "path": "skills/bee",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "binwalk",
+      "path": "skills/binwalk",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bloodhound",
+      "path": "skills/bloodhound",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bloodhound-python",
+      "path": "skills/bloodhound-python",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bloodyad",
+      "path": "skills/bloodyad",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bmap",
+      "path": "skills/bmap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bozohttpd",
+      "path": "skills/bozohttpd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "brotli",
+      "path": "skills/brotli",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "bzip2",
+      "path": "skills/bzip2",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "capsh",
+      "path": "skills/capsh",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "cargo",
+      "path": "skills/cargo",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "cast",
+      "path": "skills/cast",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "cat",
+      "path": "skills/cat",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "certipy",
+      "path": "skills/certipy",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "cewl",
+      "path": "skills/cewl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "checksec",
+      "path": "skills/checksec",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "chisel",
+      "path": "skills/chisel",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "chmod",
+      "path": "skills/chmod",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "chntpw",
+      "path": "skills/chntpw",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "chown",
+      "path": "skills/chown",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "chromedriver",
+      "path": "skills/chromedriver",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "clamscan",
+      "path": "skills/clamscan",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "cmake",
+      "path": "skills/cmake",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "composer",
+      "path": "skills/composer",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "consul",
+      "path": "skills/consul",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "convert",
+      "path": "skills/convert",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "cp",
+      "path": "skills/cp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "cpio",
+      "path": "skills/cpio",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "create-next-app",
+      "path": "skills/create-next-app",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "credentialmanager",
+      "path": "skills/credentialmanager",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "crontab",
+      "path": "skills/crontab",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "crunch",
+      "path": "skills/crunch",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "cryptsetup",
+      "path": "skills/cryptsetup",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "curl",
+      "path": "skills/curl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "cut",
+      "path": "skills/cut",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "d8",
+      "path": "skills/d8",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "date",
+      "path": "skills/date",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dd",
+      "path": "skills/dd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "de4dot",
+      "path": "skills/de4dot",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "derby-ij",
+      "path": "skills/derby-ij",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "df",
+      "path": "skills/df",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dhclient",
+      "path": "skills/dhclient",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "diff",
+      "path": "skills/diff",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dig",
+      "path": "skills/dig",
+      "tags": [
+        "execution:linux",
+        "target:dns",
+        "task:config-diagnostics"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dirbuster",
+      "path": "skills/dirbuster",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dirsearch",
+      "path": "skills/dirsearch",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dive",
+      "path": "skills/dive",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dnsenum",
+      "path": "skills/dnsenum",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dnstool",
+      "path": "skills/dnstool",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "doas",
+      "path": "skills/doas",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "docker",
+      "path": "skills/docker",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "docker-compose",
+      "path": "skills/docker-compose",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "docker-registry-grabber",
+      "path": "skills/docker-registry-grabber",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dotnet",
+      "path": "skills/dotnet",
+      "tags": [
+        "artifact:binary",
+        "artifact:source",
+        "execution:linux",
+        "language:csharp",
+        "task:build-diagnostics",
+        "task:runtime-inspection"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dpkg",
+      "path": "skills/dpkg",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dpkg-deb",
+      "path": "skills/dpkg-deb",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dpkg-query",
+      "path": "skills/dpkg-query",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dstat",
+      "path": "skills/dstat",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "dvips",
+      "path": "skills/dvips",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ebook-convert",
+      "path": "skills/ebook-convert",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "emulator",
+      "path": "skills/emulator",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "encfs",
+      "path": "skills/encfs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "enum4linux",
+      "path": "skills/enum4linux",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "env",
+      "path": "skills/env",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "enyx",
+      "path": "skills/enyx",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "error-based-sqli",
+      "path": "skills/error-based-sqli",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "etcdctl",
+      "path": "skills/etcdctl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "evil-winrm",
+      "path": "skills/evil-winrm",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "evil-winrm-py",
+      "path": "skills/evil-winrm-py",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "evtx2json",
+      "path": "skills/evtx2json",
+      "tags": [
+        "artifact:event-log",
+        "execution:linux",
+        "target:windows",
+        "task:data-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "exiftool",
+      "path": "skills/exiftool",
+      "tags": [
+        "artifact:document",
+        "artifact:media",
+        "execution:linux",
+        "task:data-inspection",
+        "task:document-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "facter",
+      "path": "skills/facter",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "fail2ban-client",
+      "path": "skills/fail2ban-client",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "fakedns",
+      "path": "skills/fakedns",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "fallocate",
+      "path": "skills/fallocate",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "featherduster",
+      "path": "skills/featherduster",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "feh",
+      "path": "skills/feh",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "feroxbuster",
+      "path": "skills/feroxbuster",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "fetch",
+      "path": "skills/fetch",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ffuf",
+      "path": "skills/ffuf",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "fickling",
+      "path": "skills/fickling",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "file",
+      "path": "skills/file",
+      "tags": [
+        "artifact:archive",
+        "artifact:binary",
+        "artifact:document",
+        "execution:linux",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "find",
+      "path": "skills/find",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "findmnt",
+      "path": "skills/findmnt",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "finger-user-enum",
+      "path": "skills/finger-user-enum",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "firefox-decrypt",
+      "path": "skills/firefox-decrypt",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "firejail",
+      "path": "skills/firejail",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "flask",
+      "path": "skills/flask",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "flask-session-cookie-manager",
+      "path": "skills/flask-session-cookie-manager",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "flask-unsign",
+      "path": "skills/flask-unsign",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "fontforge",
+      "path": "skills/fontforge",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "forge",
+      "path": "skills/forge",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "freepbx",
+      "path": "skills/freepbx",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ftp",
+      "path": "skills/ftp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gawk",
+      "path": "skills/gawk",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gcc",
+      "path": "skills/gcc",
+      "tags": [
+        "artifact:binary",
+        "artifact:source",
+        "execution:linux",
+        "language:c",
+        "language:cpp",
+        "task:build-diagnostics"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gclient",
+      "path": "skills/gclient",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gdb",
+      "path": "skills/gdb",
+      "tags": [
+        "artifact:binary",
+        "artifact:core",
+        "execution:linux",
+        "task:offline-analysis",
+        "task:runtime-inspection"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gdbserver",
+      "path": "skills/gdbserver",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gdbus",
+      "path": "skills/gdbus",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gem",
+      "path": "skills/gem",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "genisoimage",
+      "path": "skills/genisoimage",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "getcap",
+      "path": "skills/getcap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "getent",
+      "path": "skills/getent",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "getfacl",
+      "path": "skills/getfacl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ghidra",
+      "path": "skills/ghidra",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "git",
+      "path": "skills/git",
+      "tags": [
+        "artifact:config",
+        "artifact:source",
+        "execution:linux",
+        "task:config-diagnostics",
+        "task:offline-analysis",
+        "task:source-review"
+      ],
+      "requires": []
+    },
+    {
+      "id": "git-dumper",
+      "path": "skills/git-dumper",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gluster",
+      "path": "skills/gluster",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "go",
+      "path": "skills/go",
+      "tags": [
+        "artifact:binary",
+        "artifact:source",
+        "execution:linux",
+        "language:go",
+        "task:build-diagnostics",
+        "task:offline-analysis",
+        "task:source-review"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gobuster",
+      "path": "skills/gobuster",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gpg",
+      "path": "skills/gpg",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gpp-decrypt",
+      "path": "skills/gpp-decrypt",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "grafana2hashcat",
+      "path": "skills/grafana2hashcat",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "grep",
+      "path": "skills/grep",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "groups",
+      "path": "skills/groups",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "grpc-tools-protoc",
+      "path": "skills/grpc-tools-protoc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "grpcurl",
+      "path": "skills/grpcurl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gs",
+      "path": "skills/gs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gzip",
+      "path": "skills/gzip",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "gzrecover",
+      "path": "skills/gzrecover",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "h2csmuggler",
+      "path": "skills/h2csmuggler",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "hash-identifier",
+      "path": "skills/hash-identifier",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "hashcat",
+      "path": "skills/hashcat",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "hashid",
+      "path": "skills/hashid",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "head",
+      "path": "skills/head",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "hexdump",
+      "path": "skills/hexdump",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "hg",
+      "path": "skills/hg",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "hostname",
+      "path": "skills/hostname",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "httpie",
+      "path": "skills/httpie",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "hydra",
+      "path": "skills/hydra",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "iconv",
+      "path": "skills/iconv",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "id",
+      "path": "skills/id",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "identify",
+      "path": "skills/identify",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ifconfig",
+      "path": "skills/ifconfig",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "iis-shortname-scanner",
+      "path": "skills/iis-shortname-scanner",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ike-scan",
+      "path": "skills/ike-scan",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ilspycmd",
+      "path": "skills/ilspycmd",
+      "tags": [
+        "artifact:binary",
+        "execution:linux",
+        "language:csharp",
+        "task:offline-analysis",
+        "task:source-review"
+      ],
+      "requires": []
+    },
+    {
+      "id": "imap-enumeration",
+      "path": "skills/imap-enumeration",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-addcomputer",
+      "path": "skills/impacket-addcomputer",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-changepasswd",
+      "path": "skills/impacket-changepasswd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-dacledit",
+      "path": "skills/impacket-dacledit",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-getadusers",
+      "path": "skills/impacket-getadusers",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-getnpusers",
+      "path": "skills/impacket-getnpusers",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-getst",
+      "path": "skills/impacket-getst",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-gettgt",
+      "path": "skills/impacket-gettgt",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-getuserspns",
+      "path": "skills/impacket-getuserspns",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-lookupsid",
+      "path": "skills/impacket-lookupsid",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-mssqlclient",
+      "path": "skills/impacket-mssqlclient",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-ntlmrelayx",
+      "path": "skills/impacket-ntlmrelayx",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-owneredit",
+      "path": "skills/impacket-owneredit",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-psexec",
+      "path": "skills/impacket-psexec",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-reg",
+      "path": "skills/impacket-reg",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-rpcmap",
+      "path": "skills/impacket-rpcmap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-secretsdump",
+      "path": "skills/impacket-secretsdump",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-smbclient",
+      "path": "skills/impacket-smbclient",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-smbexec",
+      "path": "skills/impacket-smbexec",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-smbserver",
+      "path": "skills/impacket-smbserver",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-ticketconverter",
+      "path": "skills/impacket-ticketconverter",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-ticketer",
+      "path": "skills/impacket-ticketer",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "impacket-wmiexec",
+      "path": "skills/impacket-wmiexec",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "initctl",
+      "path": "skills/initctl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "inotifywait",
+      "path": "skills/inotifywait",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "insmod",
+      "path": "skills/insmod",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "inveigh",
+      "path": "skills/inveigh",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ip",
+      "path": "skills/ip",
+      "tags": [
+        "execution:linux",
+        "target:linux",
+        "task:config-diagnostics"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ipcs",
+      "path": "skills/ipcs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ipfs",
+      "path": "skills/ipfs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ipset",
+      "path": "skills/ipset",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "iptables",
+      "path": "skills/iptables",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "iptables-save",
+      "path": "skills/iptables-save",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ipython",
+      "path": "skills/ipython",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "irb",
+      "path": "skills/irb",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "irssi",
+      "path": "skills/irssi",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "iw",
+      "path": "skills/iw",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "iwconfig",
+      "path": "skills/iwconfig",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "iwlist",
+      "path": "skills/iwlist",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jadx",
+      "path": "skills/jadx",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jar",
+      "path": "skills/jar",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jarsigner",
+      "path": "skills/jarsigner",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "java",
+      "path": "skills/java",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "javac",
+      "path": "skills/javac",
+      "tags": [
+        "artifact:binary",
+        "artifact:source",
+        "execution:linux",
+        "language:java",
+        "task:build-diagnostics"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jd-gui",
+      "path": "skills/jd-gui",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jdb",
+      "path": "skills/jdb",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jenkins-cli",
+      "path": "skills/jenkins-cli",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jenkins-offline-decrypt",
+      "path": "skills/jenkins-offline-decrypt",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jjs",
+      "path": "skills/jjs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "john",
+      "path": "skills/john",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "journalctl",
+      "path": "skills/journalctl",
+      "tags": [
+        "artifact:log",
+        "execution:linux",
+        "target:linux",
+        "task:config-diagnostics",
+        "task:data-inspection"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jq",
+      "path": "skills/jq",
+      "tags": [
+        "artifact:config",
+        "artifact:json",
+        "execution:linux",
+        "task:config-diagnostics",
+        "task:data-inspection"
+      ],
+      "requires": []
+    },
+    {
+      "id": "jwt-tool",
+      "path": "skills/jwt-tool",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "kdestroy",
+      "path": "skills/kdestroy",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "keepassxc-cli",
+      "path": "skills/keepassxc-cli",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "kerbrute",
+      "path": "skills/kerbrute",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "keytool",
+      "path": "skills/keytool",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "kill",
+      "path": "skills/kill",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "kinit",
+      "path": "skills/kinit",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "klist",
+      "path": "skills/klist",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "kpcli",
+      "path": "skills/kpcli",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "krbrelayx",
+      "path": "skills/krbrelayx",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ksu",
+      "path": "skills/ksu",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "kubectl",
+      "path": "skills/kubectl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "kubeletctl",
+      "path": "skills/kubeletctl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "latex",
+      "path": "skills/latex",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ldapadd",
+      "path": "skills/ldapadd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ldapdomaindump",
+      "path": "skills/ldapdomaindump",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ldapmodify",
+      "path": "skills/ldapmodify",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ldappasswd",
+      "path": "skills/ldappasswd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ldapsearch",
+      "path": "skills/ldapsearch",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ldapwhoami",
+      "path": "skills/ldapwhoami",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ldbsearch",
+      "path": "skills/ldbsearch",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ldconfig",
+      "path": "skills/ldconfig",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ldd",
+      "path": "skills/ldd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "less",
+      "path": "skills/less",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "lftp",
+      "path": "skills/lftp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "linpeas",
+      "path": "skills/linpeas",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ln",
+      "path": "skills/ln",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "locate",
+      "path": "skills/locate",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "logger",
+      "path": "skills/logger",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "logrotate",
+      "path": "skills/logrotate",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "logrotten",
+      "path": "skills/logrotten",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "losetup",
+      "path": "skills/losetup",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ls",
+      "path": "skills/ls",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "lsattr",
+      "path": "skills/lsattr",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "lsb-release",
+      "path": "skills/lsb-release",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "lsblk",
+      "path": "skills/lsblk",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "lsmod",
+      "path": "skills/lsmod",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ltrace",
+      "path": "skills/ltrace",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "luvit",
+      "path": "skills/luvit",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "lxc",
+      "path": "skills/lxc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "lxd",
+      "path": "skills/lxd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "magescan",
+      "path": "skills/magescan",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "magick",
+      "path": "skills/magick",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mail",
+      "path": "skills/mail",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "make",
+      "path": "skills/make",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "man",
+      "path": "skills/man",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "marshalsec",
+      "path": "skills/marshalsec",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "masscan",
+      "path": "skills/masscan",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mcs",
+      "path": "skills/mcs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "md5sum",
+      "path": "skills/md5sum",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mdbtools",
+      "path": "skills/mdbtools",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "memcached-tool",
+      "path": "skills/memcached-tool",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "memprocfs",
+      "path": "skills/memprocfs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "minecraft-console-client",
+      "path": "skills/minecraft-console-client",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mingw-w64-gcc",
+      "path": "skills/mingw-w64-gcc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "minio-mc",
+      "path": "skills/minio-mc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mkdir",
+      "path": "skills/mkdir",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mknod",
+      "path": "skills/mknod",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mktemp",
+      "path": "skills/mktemp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mogrify",
+      "path": "skills/mogrify",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mongo",
+      "path": "skills/mongo",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "more",
+      "path": "skills/more",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mosquitto-sub",
+      "path": "skills/mosquitto-sub",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mount",
+      "path": "skills/mount",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mount-cifs",
+      "path": "skills/mount-cifs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mount-nfs",
+      "path": "skills/mount-nfs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mqttui",
+      "path": "skills/mqttui",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "msf-pattern",
+      "path": "skills/msf-pattern",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "msfconsole",
+      "path": "skills/msfconsole",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "msfvenom",
+      "path": "skills/msfvenom",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "musl-gcc",
+      "path": "skills/musl-gcc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mv",
+      "path": "skills/mv",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mvn",
+      "path": "skills/mvn",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mysql",
+      "path": "skills/mysql",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "mysqldump",
+      "path": "skills/mysqldump",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "named-checkconf",
+      "path": "skills/named-checkconf",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nano",
+      "path": "skills/nano",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nats",
+      "path": "skills/nats",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nats-server",
+      "path": "skills/nats-server",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nc",
+      "path": "skills/nc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ncat",
+      "path": "skills/ncat",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "needrestart",
+      "path": "skills/needrestart",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "neo4j",
+      "path": "skills/neo4j",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "neo4j-admin",
+      "path": "skills/neo4j-admin",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "neofetch",
+      "path": "skills/neofetch",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "net",
+      "path": "skills/net",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "netexec",
+      "path": "skills/netexec",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "netpgp",
+      "path": "skills/netpgp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "netstat",
+      "path": "skills/netstat",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nginx",
+      "path": "skills/nginx",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nikto",
+      "path": "skills/nikto",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nimble",
+      "path": "skills/nimble",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ninja",
+      "path": "skills/ninja",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nmap",
+      "path": "skills/nmap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "node",
+      "path": "skills/node",
+      "tags": [
+        "artifact:config",
+        "artifact:source",
+        "execution:linux",
+        "language:javascript",
+        "task:config-diagnostics",
+        "task:runtime-inspection",
+        "task:source-review"
+      ],
+      "requires": []
+    },
+    {
+      "id": "npbackup-cli",
+      "path": "skills/npbackup-cli",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "npm",
+      "path": "skills/npm",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "npx",
+      "path": "skills/npx",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nslookup",
+      "path": "skills/nslookup",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "nsupdate",
+      "path": "skills/nsupdate",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ntpdate",
+      "path": "skills/ntpdate",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "oathtool",
+      "path": "skills/oathtool",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "objcopy",
+      "path": "skills/objcopy",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "objdump",
+      "path": "skills/objdump",
+      "tags": [
+        "artifact:binary",
+        "execution:linux",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "olivetin",
+      "path": "skills/olivetin",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "omv-rpc",
+      "path": "skills/omv-rpc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "openssl",
+      "path": "skills/openssl",
+      "tags": [
+        "artifact:certificate",
+        "execution:linux",
+        "task:config-diagnostics",
+        "task:data-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "openstamanager",
+      "path": "skills/openstamanager",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "openstamanager-sqli",
+      "path": "skills/openstamanager-sqli",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "openvpn",
+      "path": "skills/openvpn",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pacman",
+      "path": "skills/pacman",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pandoc",
+      "path": "skills/pandoc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "passpie",
+      "path": "skills/passpie",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "passthecert",
+      "path": "skills/passthecert",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "passwd",
+      "path": "skills/passwd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "paste",
+      "path": "skills/paste",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "patchelf",
+      "path": "skills/patchelf",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pd4cmd",
+      "path": "skills/pd4cmd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pdflatex",
+      "path": "skills/pdflatex",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pdftotext",
+      "path": "skills/pdftotext",
+      "tags": [
+        "artifact:document",
+        "execution:linux",
+        "task:document-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "peda",
+      "path": "skills/peda",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "perl",
+      "path": "skills/perl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pgrep",
+      "path": "skills/pgrep",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "phantomjs",
+      "path": "skills/phantomjs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "php",
+      "path": "skills/php",
+      "tags": [
+        "artifact:config",
+        "artifact:source",
+        "execution:linux",
+        "language:php",
+        "task:config-diagnostics",
+        "task:runtime-inspection",
+        "task:source-review"
+      ],
+      "requires": []
+    },
+    {
+      "id": "php-malware-scanner",
+      "path": "skills/php-malware-scanner",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "phpggc",
+      "path": "skills/phpggc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ping",
+      "path": "skills/ping",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pip",
+      "path": "skills/pip",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pkaction",
+      "path": "skills/pkaction",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pkcheck",
+      "path": "skills/pkcheck",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "postconf",
+      "path": "skills/postconf",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "powershell",
+      "path": "skills/powershell",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pret",
+      "path": "skills/pret",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "printerbug",
+      "path": "skills/printerbug",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "procyon",
+      "path": "skills/procyon",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "protoc",
+      "path": "skills/protoc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "proxychains",
+      "path": "skills/proxychains",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "prusaslicer",
+      "path": "skills/prusaslicer",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ps",
+      "path": "skills/ps",
+      "tags": [
+        "execution:linux",
+        "target:linux",
+        "task:config-diagnostics",
+        "task:runtime-inspection"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ps2pdf",
+      "path": "skills/ps2pdf",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pspy",
+      "path": "skills/pspy",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "psql",
+      "path": "skills/psql",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pswm",
+      "path": "skills/pswm",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "puttygen",
+      "path": "skills/puttygen",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pwgen",
+      "path": "skills/pwgen",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pwncat-cs",
+      "path": "skills/pwncat-cs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pwntools",
+      "path": "skills/pwntools",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pwsh",
+      "path": "skills/pwsh",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pygpoabuse",
+      "path": "skills/pygpoabuse",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pyinstaller",
+      "path": "skills/pyinstaller",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pyinstxtractor",
+      "path": "skills/pyinstxtractor",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pyload",
+      "path": "skills/pyload",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "pypykatz",
+      "path": "skills/pypykatz",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "python-http-server",
+      "path": "skills/python-http-server",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "python2",
+      "path": "skills/python2",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "python3",
+      "path": "skills/python3",
+      "tags": [
+        "artifact:json",
+        "artifact:source",
+        "execution:linux",
+        "language:python",
+        "task:data-inspection",
+        "task:runtime-inspection",
+        "task:source-review"
+      ],
+      "requires": []
+    },
+    {
+      "id": "qemu-system-x86-64",
+      "path": "skills/qemu-system-x86-64",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "qpdf",
+      "path": "skills/qpdf",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "qrencode",
+      "path": "skills/qrencode",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "quiche-client",
+      "path": "skills/quiche-client",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "r2",
+      "path": "skills/r2",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rabin2",
+      "path": "skills/rabin2",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rdate",
+      "path": "skills/rdate",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "readelf",
+      "path": "skills/readelf",
+      "tags": [
+        "artifact:binary",
+        "execution:linux",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "readlink",
+      "path": "skills/readlink",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "readpst",
+      "path": "skills/readpst",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "recaf",
+      "path": "skills/recaf",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "redis-cli",
+      "path": "skills/redis-cli",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "regripper",
+      "path": "skills/regripper",
+      "tags": [
+        "artifact:registry-hive",
+        "execution:linux",
+        "target:windows",
+        "task:data-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "remco",
+      "path": "skills/remco",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "remmina",
+      "path": "skills/remmina",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "reset",
+      "path": "skills/reset",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "responder",
+      "path": "skills/responder",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "restic",
+      "path": "skills/restic",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rev",
+      "path": "skills/rev",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rlwrap",
+      "path": "skills/rlwrap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rm",
+      "path": "skills/rm",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ropgadget",
+      "path": "skills/ropgadget",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "roundcube",
+      "path": "skills/roundcube",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "route",
+      "path": "skills/route",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rpcclient",
+      "path": "skills/rpcclient",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rpm",
+      "path": "skills/rpm",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rsh",
+      "path": "skills/rsh",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rsync",
+      "path": "skills/rsync",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ruby",
+      "path": "skills/ruby",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "runc",
+      "path": "skills/runc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rustbuster",
+      "path": "skills/rustbuster",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "rustscan",
+      "path": "skills/rustscan",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "samdump2",
+      "path": "skills/samdump2",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "scapy",
+      "path": "skills/scapy",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "scp",
+      "path": "skills/scp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "screen",
+      "path": "skills/screen",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "script",
+      "path": "skills/script",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "searchor",
+      "path": "skills/searchor",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "searchsploit",
+      "path": "skills/searchsploit",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sed",
+      "path": "skills/sed",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sendemail",
+      "path": "skills/sendemail",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sendmail",
+      "path": "skills/sendmail",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "seq",
+      "path": "skills/seq",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "service",
+      "path": "skills/service",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "setfacl",
+      "path": "skills/setfacl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "setuptools",
+      "path": "skills/setuptools",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sftp",
+      "path": "skills/sftp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sha1sum",
+      "path": "skills/sha1sum",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sha256sum",
+      "path": "skills/sha256sum",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sharp-gpoabuse",
+      "path": "skills/sharp-gpoabuse",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "shocker",
+      "path": "skills/shocker",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "showmount",
+      "path": "skills/showmount",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sleep",
+      "path": "skills/sleep",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "smbclient",
+      "path": "skills/smbclient",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "smbget",
+      "path": "skills/smbget",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "smbmap",
+      "path": "skills/smbmap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "smbpasswd",
+      "path": "skills/smbpasswd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "smtp-user-enum",
+      "path": "skills/smtp-user-enum",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "snap",
+      "path": "skills/snap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "snmp-check",
+      "path": "skills/snmp-check",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "snmpwalk",
+      "path": "skills/snmpwalk",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "socat",
+      "path": "skills/socat",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sort",
+      "path": "skills/sort",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "splunkwhisperer2",
+      "path": "skills/splunkwhisperer2",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sponge",
+      "path": "skills/sponge",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sqlcmd",
+      "path": "skills/sqlcmd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sqlite3",
+      "path": "skills/sqlite3",
+      "tags": [
+        "artifact:database",
+        "execution:linux",
+        "task:data-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sqlmap",
+      "path": "skills/sqlmap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ss",
+      "path": "skills/ss",
+      "tags": [
+        "execution:linux",
+        "target:linux",
+        "task:config-diagnostics",
+        "task:runtime-inspection"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ssh",
+      "path": "skills/ssh",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ssh-keygen",
+      "path": "skills/ssh-keygen",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ssh-username-enum",
+      "path": "skills/ssh-username-enum",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sshd",
+      "path": "skills/sshd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sshfs",
+      "path": "skills/sshfs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sshpass",
+      "path": "skills/sshpass",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sshuttle",
+      "path": "skills/sshuttle",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sslscan",
+      "path": "skills/sslscan",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "stat",
+      "path": "skills/stat",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "steghide",
+      "path": "skills/steghide",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "stoken",
+      "path": "skills/stoken",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "strace",
+      "path": "skills/strace",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "strings",
+      "path": "skills/strings",
+      "tags": [
+        "artifact:binary",
+        "execution:linux",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "strongswan-ipsec",
+      "path": "skills/strongswan-ipsec",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "stty",
+      "path": "skills/stty",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "su",
+      "path": "skills/su",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sucrack",
+      "path": "skills/sucrack",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "sudo",
+      "path": "skills/sudo",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "svn",
+      "path": "skills/svn",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "swaks",
+      "path": "skills/swaks",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "systemctl",
+      "path": "skills/systemctl",
+      "tags": [
+        "artifact:config",
+        "execution:linux",
+        "target:linux",
+        "task:config-diagnostics"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tac",
+      "path": "skills/tac",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tail",
+      "path": "skills/tail",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tar",
+      "path": "skills/tar",
+      "tags": [
+        "artifact:archive",
+        "execution:linux",
+        "task:archive-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "targetedkerberoast",
+      "path": "skills/targetedkerberoast",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tcpdump",
+      "path": "skills/tcpdump",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tee",
+      "path": "skills/tee",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "telnet",
+      "path": "skills/telnet",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "terraform",
+      "path": "skills/terraform",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "text2wave",
+      "path": "skills/text2wave",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tftp",
+      "path": "skills/tftp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "thrift",
+      "path": "skills/thrift",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "timedatectl",
+      "path": "skills/timedatectl",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "timeout",
+      "path": "skills/timeout",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tmux",
+      "path": "skills/tmux",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "touch",
+      "path": "skills/touch",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tr",
+      "path": "skills/tr",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tree",
+      "path": "skills/tree",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "truncate",
+      "path": "skills/truncate",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tshark",
+      "path": "skills/tshark",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "tty",
+      "path": "skills/tty",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ufw",
+      "path": "skills/ufw",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "umask",
+      "path": "skills/umask",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "uname",
+      "path": "skills/uname",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "unbound-control",
+      "path": "skills/unbound-control",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "uncompyle6",
+      "path": "skills/uncompyle6",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "uniq",
+      "path": "skills/uniq",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "unpyc3",
+      "path": "skills/unpyc3",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "unshadow",
+      "path": "skills/unshadow",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "unzip",
+      "path": "skills/unzip",
+      "tags": [
+        "artifact:archive",
+        "execution:linux",
+        "task:archive-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "uptime",
+      "path": "skills/uptime",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "useradd",
+      "path": "skills/useradd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "username-anarchy",
+      "path": "skills/username-anarchy",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "users",
+      "path": "skills/users",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "v8gen",
+      "path": "skills/v8gen",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "vault",
+      "path": "skills/vault",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "veracrypt",
+      "path": "skills/veracrypt",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "vim",
+      "path": "skills/vim",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "vimdiff",
+      "path": "skills/vimdiff",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "virtualenv",
+      "path": "skills/virtualenv",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "vtysh",
+      "path": "skills/vtysh",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "w",
+      "path": "skills/w",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wasm-decompile",
+      "path": "skills/wasm-decompile",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wat2wasm",
+      "path": "skills/wat2wasm",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "watch",
+      "path": "skills/watch",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wc",
+      "path": "skills/wc",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wfuzz",
+      "path": "skills/wfuzz",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wget",
+      "path": "skills/wget",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "whatweb",
+      "path": "skills/whatweb",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "which",
+      "path": "skills/which",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "whoami",
+      "path": "skills/whoami",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "whois",
+      "path": "skills/whois",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wimmount",
+      "path": "skills/wimmount",
+      "tags": [
+        "artifact:disk-image",
+        "execution:linux",
+        "target:windows",
+        "task:archive-inspection",
+        "task:offline-analysis"
+      ],
+      "requires": []
+    },
+    {
+      "id": "winchecksec",
+      "path": "skills/winchecksec",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "windapsearch",
+      "path": "skills/windapsearch",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wine",
+      "path": "skills/wine",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "winetricks",
+      "path": "skills/winetricks",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wireshark",
+      "path": "skills/wireshark",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wkhtmltopdf",
+      "path": "skills/wkhtmltopdf",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wpa-supplicant",
+      "path": "skills/wpa-supplicant",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wpscan",
+      "path": "skills/wpscan",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "wrapwrap",
+      "path": "skills/wrapwrap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "xargs",
+      "path": "skills/xargs",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "xclip",
+      "path": "skills/xclip",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "xfreerdp",
+      "path": "skills/xfreerdp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "xml-pp",
+      "path": "skills/xml-pp",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "xwd",
+      "path": "skills/xwd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "xxd",
+      "path": "skills/xxd",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "ysoserial",
+      "path": "skills/ysoserial",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "yubisim",
+      "path": "skills/yubisim",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "zbarimg",
+      "path": "skills/zbarimg",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "zcat",
+      "path": "skills/zcat",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "zenmap",
+      "path": "skills/zenmap",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "zip",
+      "path": "skills/zip",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    },
+    {
+      "id": "zipalign",
+      "path": "skills/zipalign",
+      "tags": [
+        "classification:unreviewed",
+        "execution:linux"
+      ],
+      "requires": []
+    }
+  ]
+}

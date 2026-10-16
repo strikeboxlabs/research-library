@@ -1,5 +1,7 @@
 # Research library
 
+For selective Board/Pi loading, use the optional [skill catalogue](docs/catalog.md). Packages remain independently installable; category views do not require moving folders.
+
 **Start with [GETTING_STARTED.md](GETTING_STARTED.md)** for the Linux checkout, installation, host adaptation and creating skills from documentation.
 
 This repository contains independent Linux tool skills and the existing [Arcanum-inspired LLM assessment methodology](methodologies/arcanum-llm-assessment.md).

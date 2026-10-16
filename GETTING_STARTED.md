@@ -1,5 +1,7 @@
 # Start on a Linux machine
 
+For selective Board/Pi loading, use the optional [skill catalogue](docs/catalog.md). Packages remain independently installable; category views do not require moving folders.
+
 Use a normal Git checkout for editing and install individual skill folders for workers. Choose tools and supported tasks from the [catalogue](README.md#tool-skills); each skill has a deliberately bounded scope.
 
 1. [Check out and install](#1-check-out-and-install)
