@@ -17,6 +17,8 @@ Check `/usr/bin/ffuf -V` and `/usr/bin/ffuf -h`; inspect any automatically loade
 
 A catch-all response can make many nonexistent paths look alike. Compare representative bodies and redirects with the negative control before choosing a filter; a size filter also hides a legitimate response of the same size. A distinct redirect or other response difference is a lead to inspect, not proof that a route exists.
 
+An auth-gated application that redirects every unknown path to its login page makes that 302 the negative control: confirm the redirect target is constant across representative misses, then keep only the exceptions (`-fc 302`). On one such service this reduced 4,750 candidates to three anomalies (`403 /api`, `200 /login`, `200 /favicon.ico`), and the 403 marked the unauthenticated API prefix. Re-scan a discovered prefix separately while authenticated (`-b cookie=...`) when its unknown subpaths return a distinct `404` instead of the redirect — a different baseline that enumerates the authenticated API surface; unauthenticated status differences do not establish what those routes return once logged in.
+
 Include a known absent path and, when available, a known positive. Compare status, body, redirect, bytes, words and lines. A `200` can be a fallback page; a `401` or `403` can identify a distinct protected application. Inspect representative responses individually before excluding them.
 
 `-fc 403` excludes responses with status 403; it does not select only status 200. To restrict the matcher to 200, use `-mc 200` and retain the measured controls and other configured filters. A result must pass the matcher and survive the filters, so record both when explaining which responses were retained.

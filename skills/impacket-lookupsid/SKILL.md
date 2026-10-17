@@ -9,6 +9,8 @@ Read this entire SKILL.md before acting. Require the selected server, permitted 
 
 Check the installed entrypoint (`impacket-lookupsid` or `lookupsid.py`) and its `-h`. This is LSA name lookup over SMB, requiring a permitted session and policy lookup access. It does not validate passwords for the names returned.
 
+The transport is genuinely SMB-only: the client always remaps the target to an `ncacn_np` pipe binding (`\\pipe\lsarpc`) and dials TCP 445. With 445 filtered, the run dies with a connection timeout to `:445` even when 135 is open — and passing a raw dynamic-port stringbinding such as `ncacn_ip_tcp:host[49664]` does not redirect it; the script prefixes the pipe name onto that string and still dials 445. To recover interface/port inventory without SMB, use `impacket-rpcdump` against 135 (endpoint-mapper query): it reports SAMR/LSA bindings including their dynamic TCP ports. Directly dialing those dynamic ports with a custom `DCERPCTransportFactory` script is the only bypass, and perimeter filtering usually drops them — treat a filtered dynamic RPC port as a closed path, not a lookup failure to retry.
+
 Define `lookup` as that executable, `server` as one approved host, `domain`/`account` as the known login identity, `rid_limit` as the agreed positive upper bound, and `log` as a new private output path. Enter the known password at the prompt:
 
 ~~~bash

@@ -9,6 +9,8 @@ Read this entire SKILL.md before acting. Identify the intended interpreter and s
 
 Call pip through the intended Python interpreter. A bare `pip` or `pip3` may belong to another environment; installing successfully there does not resolve imports in the program's actual interpreter. A sudo permission naming one pip3 path does not establish that package inputs are trusted or that installation completed.
 
+On a PEP 668 (Debian/Kali `/usr/lib/python3`-managed) interpreter, a system-wide `pip install <name>` is refused with `error: externally-managed-environment` before any resolution happens; the output is a policy refusal, not a missing package or broken pip. Either use the venv path below or, for an explicitly authorized throwaway host install, pass `--break-system-packages` — the flag overrides the policy, not the interpreter selection, so the interpreter-matching rule above still applies.
+
 ## Inspect the existing environment before recreating it
 
 A downloaded `requirements.txt` describes installation inputs, not necessarily the running service's packages. Use the service's actual trusted interpreter path as `python` and the distribution's metadata name as `distribution`:
