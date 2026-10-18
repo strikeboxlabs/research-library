@@ -22,6 +22,8 @@ The delay is milliseconds and makes the reviewed implementation use one thread. 
 
 When deriving names from an old directory dump, preserve domain/account mapping and distinguish users, machine accounts and disabled or deleted historical entries. A successful name check does not prove a usable password, enabled interactive logon, SMB access or WinRM permission. Do not turn a large stale dump into an unbounded password/hash attempt list.
 
+Distinguish the three response classes before counting hits: unknown principal (`KDC_ERR_C_PRINCIPAL_UNKNOWN`), valid user (`KDC_ERR_PREAUTH_REQUIRED`), and known-but-disabled/revoked (`KDC_ERR_CLIENT_REVOKED` — krbtgt and Guest commonly return this on a DC). `CLIENT_REVOKED` proves the name exists; do not merge it into the invalid bucket. Sanity-check the run by including `krbtgt` in the list: if it does not come back revoked/valid, the response mapping or list handling is broken. `userenum` sends no pre-auth timestamp, so its results stay valid even when the KDC clock is skewed hours off; only password-based AS exchanges break on skew.
+
 Inspect verbose failures and the final tested count. Timeout, realm mismatch, clock/network errors or early cancellation can leave candidates untested; absence from the success list is not always proof the account does not exist. Specify the KDC explicitly when DNS discovery could select a different server. Report the checked list, endpoint, result categories and incomplete cases without adding password guesses.
 
 Sources: [upstream modes and options](https://github.com/ropnop/kerbrute), [userenum implementation](https://github.com/ropnop/kerbrute/blob/master/cmd/userenum.go).
