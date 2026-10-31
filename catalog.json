@@ -103,6 +103,15 @@
       ]
     },
     {
+      "id": "angr",
+      "path": "skills/angr",
+      "tags": [
+        "execution:linux",
+        "task:symbolic-execution"
+      ],
+      "requires": []
+    },
+    {
       "id": "ansible-galaxy",
       "path": "skills/ansible-galaxy",
       "tags": [
@@ -230,6 +239,17 @@
       ]
     },
     {
+      "id": "arjun",
+      "path": "skills/arjun",
+      "tags": [
+        "execution:linux",
+        "task:web-app-testing"
+      ],
+      "requires": [
+        "arjun"
+      ]
+    },
+    {
       "id": "arp",
       "path": "skills/arp",
       "tags": [
@@ -290,8 +310,8 @@
       "id": "aws",
       "path": "skills/aws",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:cloud-security"
       ],
       "requires": [
         "aws"
@@ -301,8 +321,8 @@
       "id": "awslocal",
       "path": "skills/awslocal",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:cloud-security"
       ],
       "requires": [
         "awslocal"
@@ -323,8 +343,8 @@
       "id": "az",
       "path": "skills/az",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:cloud-security"
       ],
       "requires": [
         "az"
@@ -530,6 +550,17 @@
       ]
     },
     {
+      "id": "cdk",
+      "path": "skills/cdk",
+      "tags": [
+        "execution:linux",
+        "task:container-security"
+      ],
+      "requires": [
+        "cdk"
+      ]
+    },
+    {
       "id": "certipy",
       "path": "skills/certipy",
       "tags": [
@@ -655,8 +686,8 @@
       "id": "consul",
       "path": "skills/consul",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:cloud-security"
       ],
       "requires": []
     },
@@ -776,6 +807,17 @@
       "requires": []
     },
     {
+      "id": "dalfox",
+      "path": "skills/dalfox",
+      "tags": [
+        "execution:linux",
+        "task:web-app-testing"
+      ],
+      "requires": [
+        "dalfox"
+      ]
+    },
+    {
       "id": "date",
       "path": "skills/date",
       "tags": [
@@ -805,6 +847,17 @@
         "execution:linux"
       ],
       "requires": []
+    },
+    {
+      "id": "deepce",
+      "path": "skills/deepce",
+      "tags": [
+        "execution:linux",
+        "task:container-security"
+      ],
+      "requires": [
+        "deepce"
+      ]
     },
     {
       "id": "derby-ij",
@@ -888,8 +941,8 @@
       "id": "dive",
       "path": "skills/dive",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:container-security"
       ],
       "requires": []
     },
@@ -930,8 +983,8 @@
       "id": "docker",
       "path": "skills/docker",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:container-security"
       ],
       "requires": [
         "docker"
@@ -941,8 +994,8 @@
       "id": "docker-compose",
       "path": "skills/docker-compose",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:container-security"
       ],
       "requires": [
         "docker-compose"
@@ -952,8 +1005,8 @@
       "id": "docker-registry-grabber",
       "path": "skills/docker-registry-grabber",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:container-security"
       ],
       "requires": [
         "drg"
@@ -1102,8 +1155,8 @@
       "id": "etcdctl",
       "path": "skills/etcdctl",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:container-security"
       ],
       "requires": [
         "etcdctl"
@@ -2585,6 +2638,17 @@
       ]
     },
     {
+      "id": "kiterunner",
+      "path": "skills/kiterunner",
+      "tags": [
+        "execution:linux",
+        "task:web-enumeration"
+      ],
+      "requires": [
+        "kiterunner"
+      ]
+    },
+    {
       "id": "klist",
       "path": "skills/klist",
       "tags": [
@@ -2629,11 +2693,22 @@
       ]
     },
     {
+      "id": "kube-hunter",
+      "path": "skills/kube-hunter",
+      "tags": [
+        "execution:linux",
+        "task:container-security"
+      ],
+      "requires": [
+        "kube-hunter"
+      ]
+    },
+    {
       "id": "kubectl",
       "path": "skills/kubectl",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:container-security"
       ],
       "requires": [
         "kubectl"
@@ -2643,10 +2718,12 @@
       "id": "kubeletctl",
       "path": "skills/kubeletctl",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:container-security"
       ],
-      "requires": []
+      "requires": [
+        "kubeletctl"
+      ]
     },
     {
       "id": "latex",
@@ -3707,6 +3784,17 @@
       "requires": []
     },
     {
+      "id": "pacu",
+      "path": "skills/pacu",
+      "tags": [
+        "execution:linux",
+        "task:cloud-security"
+      ],
+      "requires": [
+        "pacu"
+      ]
+    },
+    {
       "id": "pandoc",
       "path": "skills/pandoc",
       "tags": [
@@ -3814,6 +3902,17 @@
       ],
       "requires": [
         "gdb"
+      ]
+    },
+    {
+      "id": "peirates",
+      "path": "skills/peirates",
+      "tags": [
+        "execution:linux",
+        "task:container-security"
+      ],
+      "requires": [
+        "peirates"
       ]
     },
     {
@@ -4554,6 +4653,17 @@
       ]
     },
     {
+      "id": "s3scanner",
+      "path": "skills/s3scanner",
+      "tags": [
+        "execution:linux",
+        "task:cloud-security"
+      ],
+      "requires": [
+        "s3scanner"
+      ]
+    },
+    {
       "id": "samdump2",
       "path": "skills/samdump2",
       "tags": [
@@ -4573,6 +4683,17 @@
       ],
       "requires": [
         "scapy"
+      ]
+    },
+    {
+      "id": "scoutsuite",
+      "path": "skills/scoutsuite",
+      "tags": [
+        "execution:linux",
+        "task:cloud-security"
+      ],
+      "requires": [
+        "scout"
       ]
     },
     {
@@ -5055,8 +5176,8 @@
       "id": "steghide",
       "path": "skills/steghide",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:steganography"
       ],
       "requires": [
         "steghide"
@@ -5280,8 +5401,8 @@
       "id": "terraform",
       "path": "skills/terraform",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:cloud-security"
       ],
       "requires": [
         "terraform"
@@ -5362,6 +5483,17 @@
       ],
       "requires": [
         "touch"
+      ]
+    },
+    {
+      "id": "tplmap",
+      "path": "skills/tplmap",
+      "tags": [
+        "execution:linux",
+        "task:web-app-testing"
+      ],
+      "requires": [
+        "tplmap"
       ]
     },
     {
@@ -5473,6 +5605,17 @@
       ]
     },
     {
+      "id": "unicorn",
+      "path": "skills/unicorn",
+      "tags": [
+        "execution:linux",
+        "task:symbolic-execution"
+      ],
+      "requires": [
+        "python3"
+      ]
+    },
+    {
       "id": "uniq",
       "path": "skills/uniq",
       "tags": [
@@ -5573,8 +5716,8 @@
       "id": "vault",
       "path": "skills/vault",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:cloud-security"
       ],
       "requires": []
     },
@@ -6007,6 +6150,17 @@
       ],
       "requires": [
         "zipalign"
+      ]
+    },
+    {
+      "id": "zsteg",
+      "path": "skills/zsteg",
+      "tags": [
+        "execution:linux",
+        "task:steganography"
+      ],
+      "requires": [
+        "zsteg"
       ]
     }
   ]
