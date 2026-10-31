@@ -50,7 +50,7 @@ def execute_new(config, allow_holdout=False):
     return result
 
 
-def development_evidence(run, skill):
+def development_evidence(run, skill, case_ids=None):
     from .cases import CASES
     manifest = read_json(Path(run) / "manifest.json")
     if any(CASES[k].split != "development" for k in manifest["config"]["cases"]):
@@ -58,6 +58,8 @@ def development_evidence(run, skill):
     records = []
     for row in load_results(run):
         if row.get("skill") != skill or row.get("split") != "development":
+            continue
+        if case_ids is not None and row.get("case_id") not in case_ids:
             continue
         # Deliberately do not include oracle files, full logs, environment or credentials.
         item = {k: row.get(k) for k in ("case_id", "split", "condition", "status", "passed",
@@ -92,7 +94,9 @@ def optimize(config, skill, campaign, iterations):
     cases = [k for k in config["cases"] if CASES[k].skill == skill and CASES[k].split == "development"]
     if not cases or any(CASES[k].split == "holdout" for k in config["cases"]):
         raise ValueError("Optimizer config must select development cases including the chosen skill")
-    evidence = development_evidence(campaign, skill)
+    evidence = development_evidence(campaign, skill, cases)
+    source_manifest = read_json(Path(campaign) / "manifest.json")
+    next_seed = max(config["seed"], max(t["seed"] for t in source_manifest["plan"]) + 1)
     output = Path(config["runs_root"]) / ("optimization-" + uuid.uuid4().hex[:12])
     output.mkdir(parents=True, mode=0o700)
     journal = {"created_at": utc_now(), "skill": skill, "iterations_limit": iterations,
@@ -131,6 +135,8 @@ def optimize(config, skill, campaign, iterations):
             if token_limit is not None and (tokens is None or journal["known_total_tokens"] >= token_limit):
                 raise ValueError("Proposal exhausted token budget or its usage is unavailable; candidate retained without evaluation")
             cfg = copy.deepcopy(config)
+            cfg["seed"] = next_seed + index * config["repetitions"]
+            item["evaluation_seed"] = cfg["seed"]
             cfg["cases"] = cases
             cfg["conditions"] = ["current", "candidate"]
             cfg["candidate_root"] = str(candidate_root)
@@ -151,7 +157,7 @@ def optimize(config, skill, campaign, iterations):
                 journal["token_accounting_complete"] &= tokens is not None
             item["comparison"] = make_report(run["run_dir"])["comparisons"]
             item["status"] = "evaluated_candidate_requires_confirmation"
-            evidence = development_evidence(run["run_dir"], skill) + evidence
+            evidence = development_evidence(run["run_dir"], skill, cases) + evidence
         except Exception as exc:
             item.update(status="proposal_or_evaluation_error", error=f"{type(exc).__name__}: {exc}")
             if hasattr(exc, "generation"):
@@ -164,7 +170,9 @@ def optimize(config, skill, campaign, iterations):
         write_json(output / "optimization.json", journal)
         print(f"Candidate {index+1}: {item['status']}", flush=True)
     if journal["status"] == "running":
-        journal["status"] = "complete"
+        journal["status"] = ("complete" if all(c["status"] == "evaluated_candidate_requires_confirmation"
+                             and c["evaluation"]["status"] == "complete" for c in journal["candidates"])
+                             else "complete_with_errors")
     journal["elapsed_seconds"] = time.monotonic()-started
     write_json(output / "optimization.json", journal)
     return {"output": str(output), **journal}
@@ -196,7 +204,7 @@ def main(argv=None):
         from .cases import CASES
         if args.command == "list":
             emit([{"id": c.id, "skill": c.skill, "family": c.family, "split": c.split,
-                   "tools": c.tools, "description": c.description} for c in CASES.values()])
+                   "tools": c.tools, "tier": c.tier, "description": c.description} for c in CASES.values()])
         elif args.command == "calibrate":
             ids = args.cases or list(CASES)
             if any(k not in CASES for k in ids):
@@ -235,7 +243,9 @@ def main(argv=None):
                 emit(rows)
                 return 0 if len(rows) == len(cfg["cases"]) and all(r["passed"] for r in rows) else 1
             elif args.command == "optimize":
-                emit(optimize(cfg, args.skill, args.campaign, args.iterations))
+                result = optimize(cfg, args.skill, args.campaign, args.iterations)
+                emit(result)
+                return 0 if result["status"] == "complete" else 1
         return 0
     except (ValueError, OSError, KeyError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)

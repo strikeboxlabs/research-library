@@ -147,6 +147,86 @@ _SCRIPTS = {
 }
 
 
+_SCRIPTS.update({
+    'jq-reconcile-events': r'''
+        python3 - <<'PY'
+        import json, subprocess
+        from pathlib import Path
+        contract = json.loads(Path('input/export-contract.json').read_text())
+        accepted, rejected, winners = [], [], {}
+        # jq validates each physical JSONL record, including schema/type checks.
+        predicate = """length == 1 and (.[0] | type == "object" and
+          (.tenant | type == "string") and
+          ((.id | type == "string") or (.id | type == "number" and floor == .)) and
+          (.revision | type == "number" and . > 0 and floor == .) and
+          has("active") and (.value | type == "string"))"""
+        for name in contract['shards']:
+            rows, valid = [], True
+            for line in Path('input', name).read_bytes().splitlines():
+                p = subprocess.run(['jq', '-s', '-e', predicate], input=line,
+                                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=20)
+                if p.returncode:
+                    valid = False
+                    break
+                rows.append(json.loads(line))
+            if not valid:
+                rejected.append(name)
+                continue
+            accepted.append(name)
+            for row in rows:
+                key = row['tenant'], type(row['id']).__name__, row['id']
+                if key not in winners or row['revision'] > winners[key]['revision']:
+                    winners[key] = row
+        selected = [r for r in winners.values() if r['active'] is True]
+        selected.sort(key=lambda r: (r['tenant'], isinstance(r['id'], str), r['id']))
+        Path('result/records.json').write_text(json.dumps(selected))
+        Path('result/report.json').write_text(json.dumps({'accepted_shards': sorted(accepted),
+            'rejected_shards': sorted(rejected), 'selected_count': len(selected)}))
+        PY
+    ''',
+    'tar-manifest-recovery': r'''
+        python3 - <<'PY'
+        import hashlib, json, subprocess, tarfile
+        from pathlib import Path
+        wanted = json.loads(Path('input/deployment.json').read_text())['files']
+        # Enumerate exact member names without parsing tar's display quoting.
+        with tarfile.open('input/history.tar') as archive:
+            counts = {}
+            for member in archive:
+                counts[member.name] = counts.get(member.name, 0) + 1
+        for item in wanted:
+            found = None
+            for occurrence in range(1, counts.get(item['path'], 0) + 1):
+                data = subprocess.run(['tar', '-xOf', 'input/history.tar',
+                    '--occurrence=' + str(occurrence), '--', item['path']],
+                    check=True, capture_output=True, timeout=20).stdout
+                if hashlib.sha256(data).hexdigest() == item['sha256']:
+                    found = data
+                    break
+            if found is None:
+                raise ValueError('No matching member revision')
+            path = Path('result/restored') / item['path']
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(found)
+        Path('result/report.json').write_text(json.dumps({'status': 'complete',
+            'files': sorted(wanted, key=lambda r: r['path'])}))
+        PY
+    ''',
+    'sqlite-wal-export': r'''
+        cp input/orders.db input/orders.db-wal scratch/
+        sqlite3 -init /dev/null -readonly -batch -bail -json scratch/orders.db \
+          "SELECT o.id, c.name AS customer, o.amount_cents, o.note FROM orders o JOIN customers c ON c.id=o.customer_id WHERE o.status='paid' ORDER BY o.id" > result/paid-orders.json
+        sqlite3 -init /dev/null -readonly -batch -bail -json scratch/orders.db \
+          "SELECT 'complete' AS status, count(*) AS paid_count, sum(amount_cents) AS total_cents FROM orders WHERE status='paid'" > scratch/report-array.json
+        python3 - <<'PY'
+        import json
+        from pathlib import Path
+        Path('result/report.json').write_text(json.dumps(json.loads(Path('scratch/report-array.json').read_text())[0]))
+        PY
+    ''',
+})
+
+
 def reference_commands(case_id: str) -> str:
     """Return a Bash smoke procedure for one registered fixture; never its answer."""
     try:

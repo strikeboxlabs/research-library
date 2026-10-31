@@ -1,13 +1,13 @@
 ---
 name: sqlmap
-description: Test one authorized HTTP parameter from a captured request and inspect selected database metadata or rows. Use when request fidelity, stale sessions, heuristic findings or excessive extraction make SQL injection evidence ambiguous.
+description: Test one authorized HTTP parameter from a captured request with request pacing and inspect selected database metadata or rows. Use when request fidelity, stale sessions, heuristic findings or excessive extraction make SQL injection evidence ambiguous.
 ---
 
 # Preserve the request and scope the test
 
 Read this entire SKILL.md before acting. Require the selected endpoint's authorization for the actual test and any metadata/row retrieval, a complete current request and the bounded settings below. No conditional resources are required. Finish with confirmed versus heuristic findings and retrieval coverage; missing authentication, unstable responses or an interrupted run remain unresolved.
 
-Check `sqlmap --version` and `sqlmap -hh`, including support for `--time-limit` and `--disable-hashing`. This procedure actively changes HTTP parameters and sends repeated requests; choose an endpoint approved for that testing. Risk level 1 is not a guarantee against application side effects.
+On the controlled Linux image, use `/usr/bin/sqlmap` (1.10.10#stable). Its extended help, `/usr/bin/sqlmap -hh`, includes `--delay`, `--time-limit` and `--disable-hashing`; recheck the version/options when the image changes or observed behavior differs. This procedure actively changes HTTP parameters and sends repeated requests; choose an endpoint approved for that testing. Risk level 1 is not a guarantee against application side effects.
 
 Define `request` as a private raw HTTP request file containing the method/path, Host, required headers, blank line and body. Confirm its ordinary response and current authentication before testing. Define `parameter` as the observed parameter to test, `seconds` as the approved positive per-invocation time budget and `case_dir` as a new private output directory for this target/session. In Bash:
 
@@ -16,8 +16,10 @@ umask 077
 sqlmap_args=( -r "$request" -p "$parameter" --level=1 --risk=1
   --threads=1 --timeout=10 --retries=1 --time-limit="$seconds"
   --output-dir="$case_dir" )
-sqlmap "${sqlmap_args[@]}"
+/usr/bin/sqlmap "${sqlmap_args[@]}"
 ~~~
+
+For request pacing, add `--delay=1` to `sqlmap_args` for a one-second delay between requests, retaining `--threads=1`; choose the interval for the target's allowance. Pacing is separate from a total request cap: `--time-limit` bounds time, and neither it nor a row limit enforces an exact HTTP-request quota. If a strict total cap is required, use a separately enforced request counter or choose a small manual proof whose requests you can count. A tight budget can make manual testing preferable without implying that sqlmap lacks rate controls.
 
 For HTTPS, establish the intended scheme explicitly; add `--force-ssl` when the raw request does not supply enough information. Resolve cookies, anti-CSRF tokens, redirects and login-page responses before attributing differences to injection. Read interactive choices; `--batch` selects default answers and does not itself constrain testing or extraction. Broader test levels, techniques or parameters need a deliberate scope change.
 
@@ -28,13 +30,13 @@ Distinguish a heuristic suggestion from a reported injectable parameter and iden
 Once the finding supports the task, define `database` as the selected database name and list its accessible tables:
 
 ~~~bash
-sqlmap "${sqlmap_args[@]}" -D "$database" --tables
+/usr/bin/sqlmap "${sqlmap_args[@]}" -D "$database" --tables
 ~~~
 
 Choose `table` from that result, then inspect its columns:
 
 ~~~bash
-sqlmap "${sqlmap_args[@]}" -D "$database" -T "$table" --columns
+/usr/bin/sqlmap "${sqlmap_args[@]}" -D "$database" -T "$table" --columns
 ~~~
 
 Do not copy an application-specific table name from a walkthrough. Empty or denied results can reflect the database account's visibility or retrieval failure. Enumerating every database with `--dbs` is a broader step, useful only when the database identity is actually missing and that scope is intended.
@@ -44,7 +46,7 @@ For PostgreSQL, sqlmap's database abstraction uses **schemas**: a reported curre
 If an authorized data sample is needed, define `columns` as the comma-separated observed field names needed for the finding, preferably non-sensitive proof fields:
 
 ~~~bash
-sqlmap "${sqlmap_args[@]}" -D "$database" -T "$table" -C "$columns" \
+/usr/bin/sqlmap "${sqlmap_args[@]}" -D "$database" -T "$table" -C "$columns" \
   --dump --start=1 --stop=1 --disable-hashing
 ~~~
 

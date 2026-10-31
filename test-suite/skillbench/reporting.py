@@ -69,6 +69,24 @@ def paired_comparison(results, challenger="candidate", incumbent="current"):
             "note": "Repeated seeds are not independent task families. Pilot results do not establish library-wide gains."}
 
 
+def case_diagnostics(rows, plan):
+    """A ceiling signal needs every planned baseline observation, with no errors."""
+    from .cases import CASES
+    result = {}
+    for case_id in sorted({t["case_id"] for t in plan}):
+        selected = [r for r in rows if r["case_id"] == case_id]
+        summaries = summarize(selected)
+        baseline = summaries.get("baseline", {})
+        planned = sum(t["case_id"] == case_id and t["condition"] == "baseline" for t in plan)
+        ceiling = bool(planned and baseline.get("assigned_recorded") == planned
+                       and baseline.get("evaluated") == planned and baseline.get("passed") == planned)
+        result[case_id] = {"tier": CASES[case_id].tier if case_id in CASES else "unknown",
+                           "conditions": summaries, "baseline_at_ceiling": ceiling,
+                           "comparisons": [paired_comparison(selected, arm, "baseline")
+                                           for arm in ("current", "candidate") if arm in summaries and baseline]}
+    return result
+
+
 def make_report(run):
     run = Path(run)
     manifest = read_json(run / "manifest.json")
@@ -79,12 +97,19 @@ def make_report(run):
                                for c in ("baseline", "candidate") if c in manifest["config"]["conditions"]],
                "case_coverage": {k: dict(Counter(r["status"] for r in rows if r["case_id"] == k))
                                  for k in manifest["config"]["cases"]}}
+    summary["per_case"] = case_diagnostics(rows, manifest["plan"])
+    summary["baseline_ceiling_cases"] = [k for k,v in summary["per_case"].items() if v["baseline_at_ceiling"]]
     write_json(run / "report.json", summary)
     lines = ["# Skill experiment results", "", "Observed results only. See manifest.json for exact inputs and image identity.", "",
              "| Condition | Evaluated | Passed | Pass rate | Total tokens | Tokens / success |", "|---|---:|---:|---:|---:|---:|"]
     for name, value in summary["conditions"].items():
         fmt = lambda v: "unknown" if v is None else f"{v:.3f}" if isinstance(v, float) else str(v)
         lines.append("| " + " | ".join([name]+[fmt(value[k]) for k in ("evaluated", "passed", "pass_rate", "total_tokens", "total_tokens_per_success")]) + " |")
+    lines += ["", "| Case | Tier | Baseline at ceiling |", "|---|---|---|"]
+    for case_id, detail in summary["per_case"].items():
+        lines.append(f"| {case_id} | {detail['tier']} | {'yes' if detail['baseline_at_ceiling'] else 'no'} |")
+    if summary["baseline_ceiling_cases"]:
+        lines += ["", "Baseline passed every planned trial in the marked cases. These observations leave no measured correctness headroom; use them to assess overhead/regression, and add independent challenge families. This is an observed sample ceiling, not a population reliability estimate."]
     lines += ["", "Failures/timeouts remain in the measured trial denominator. Infrastructure/grader errors are reported separately.",
               "Cost and usage include all recorded attempts; missing measurements remain unknown.",
               "", "Paired comparisons and case/status coverage are in report.json. No automatic promotion is performed.",

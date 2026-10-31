@@ -9,7 +9,7 @@ The objective is independently verified useful task completion for a recorded Li
 | Similar descriptions capture or suppress selection | Matched target task with catalogue sizes and close/random distractors | Catalogue selection implemented; lexical similarity only |
 | Too much guidance loaded | Compare outcome/cost and observable read calls across selections | Partial telemetry; shell reads and comprehension not inferred |
 | Conflicting skills | Alone/pair/workflow comparisons, preserving task-specific constraints | Candidates can share a catalogue; no dedicated interaction cases yet |
-| Incorrect commands and parser boundaries | Exact bytes/types, unusual filenames and meaningful failure variants | jq/tar/sqlite pilot |
+| Incorrect commands and parser boundaries | Exact bytes/types, unusual filenames and meaningful failure variants | jq/tar/sqlite regression cases plus reconciliation/revision/WAL challenges |
 | Partial output mistaken for completion | Late malformed input, truncated archive, missing schema | Held-out pilot cases |
 | Missing references or resource identity | Standalone copy and contained resource checks | Structural checks implemented |
 | Wrong environment assumptions | Pinned image, tool/Pi preflight, deliberate missing prerequisite fixtures | Executable discovery implemented; full compatibility cases pending |
@@ -17,7 +17,7 @@ The objective is independently verified useful task completion for a recorded Li
 | Duplicate side effects after uncertain completion | Server-side request logs and idempotence fixtures | Pending |
 | Stale evidence and workflow handoff errors | Artifact identity, provenance and scoped multi-step tasks | Input preservation covered; workflows pending |
 | Context saturation and compaction | Long preceding histories and controlled compaction variants | Pending; pilot disables compaction |
-| Excessive rituals, retries and re-reading | Content ablations with unchanged outcome graders | Candidate mechanism implemented; no measured findings yet |
+| Excessive rituals, retries and re-reading | Content ablations with unchanged outcome graders | Initial easy pilot exposed token overhead and a baseline ceiling; per-case reporting implemented |
 | Examples overfit or compression drops knowledge | New task families and independent regression cases | Three held-out families; broader coverage pending |
 | Prompt injection through tool-returned data | Paired benign/adversarial data with unauthorized-action observation | Pending; do not use public bridge network for hostile testing |
 
@@ -88,3 +88,12 @@ These sources motivate hypotheses, not universal formatting requirements:
 - [AgentDojo](https://arxiv.org/abs/2406.13352): untrusted tool output needs explicit behavioral tests.
 
 No cited result establishes performance of this library with GLM-5.3 Flash/Pi on the deployment image.
+
+
+## Challenge extension validation
+
+The original four development cases remain controls. New challenge cases add independent mechanisms while preserving tool-neutral outcome grading. `Case.tier` is an experimental label; `split` remains the optimizer evidence boundary. A challenge is not assumed hard until contemporaneous baseline trials establish failures or material resource demands.
+
+The SQLite fixture captures a quiescent, coherent committed DB/WAL pair before closing its construction connection. WAL salts and rolling checksums are normalized from the seed according to the [SQLite file-format specification](https://www.sqlite.org/fileformat2.html#checksum_algorithm), making within-environment byte snapshots repeatable. Both host SQLite and the pinned container's SQLite must read the normalized WAL correctly. Unit tests prove that copying only the main database gives stale results. No live service or writer is left running in the fixture.
+
+Calibration constructs outputs from private generation state. Separate CLI references derive answers from visible inputs; they do not import the builder or read its oracle. Negative controls reject first/last/concatenated archive occurrences, accepted prefixes of rejected shards, typed-identity collapse and stale database exports. Changing fixture or controller code requires a new campaign as before.

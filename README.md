@@ -461,7 +461,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [sponge](skills/sponge/SKILL.md) | Replace one owned file from a successful staged transformation; distinguish buffering and rollback. |
 | [sqlcmd](skills/sqlcmd/SKILL.md) | Inspect selected SQL Server roles and bounded database/table metadata, with known authentication and actual batch/query evidence. |
 | [sqlite3](skills/sqlite3/SKILL.md) | Inspect coherent SQLite copies and export selected Grafana verifier rows without confusing storage metadata, salt bytes or account mapping. |
-| [sqlmap](skills/sqlmap/SKILL.md) | Test a selected HTTP parameter and inspect scoped database metadata or samples with request/session fidelity. |
+| [sqlmap](skills/sqlmap/SKILL.md) | Test a selected HTTP parameter with request/session fidelity and pacing; inspect scoped database metadata or samples. |
 | [ss](skills/ss/SKILL.md) | Inspect actual listeners/connections, address families, process visibility and namespaces. |
 | [ssh](skills/ssh/SKILL.md) | Selected account/key/certificate login, application/chat commands, public-key enrollment, GSSAPI identity, loopback and dynamic SOCKS forwarding. |
 | [ssh-keygen](skills/ssh-keygen/SKILL.md) | Generate selected key pairs, inspect issued certificates, derive public fingerprints and validate complete transferred private-key artifacts. |
@@ -559,7 +559,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [zip](skills/zip/SKILL.md) | Package a selected tree or update one reviewed Office part with member, timestamp and consumer validation. |
 | [zipalign](skills/zipalign/SKILL.md) | Check or align an owned APK with native-library page requirements and the correct signing order. |
 
-The accepted skills are documentation-reviewed but have not been executed or evaluated with an agent on Linux. See the [validation record](docs/validation.md). Source coverage, corrections and deferred candidates are recorded for [batch 1](docs/ctf-writeups-ingestion.md), [batch 2](docs/ctf-writeups-batch2.md), [batch 3](docs/ctf-writeups-batch3.md), [batch 4](docs/ctf-writeups-batch4.md), [batch 5](docs/ctf-writeups-batch5.md), [batch 6](docs/ctf-writeups-batch6.md), [batch 7](docs/ctf-writeups-batch7.md), [batch 8](docs/ctf-writeups-batch8.md) and the [overnight intake](docs/ctf-writeups-overnight-2026-10-10.md).
+The accepted skills are documentation-reviewed. Selected Linux tool checks and Pi/GLM worker trials are recorded in the [validation record](docs/validation.md); they do not establish library-wide runtime coverage or effectiveness. Source coverage, corrections and deferred candidates are recorded for [batch 1](docs/ctf-writeups-ingestion.md), [batch 2](docs/ctf-writeups-batch2.md), [batch 3](docs/ctf-writeups-batch3.md), [batch 4](docs/ctf-writeups-batch4.md), [batch 5](docs/ctf-writeups-batch5.md), [batch 6](docs/ctf-writeups-batch6.md), [batch 7](docs/ctf-writeups-batch7.md), [batch 8](docs/ctf-writeups-batch8.md) and the [overnight intake](docs/ctf-writeups-overnight-2026-10-10.md).
 
 ## Simple structure
 

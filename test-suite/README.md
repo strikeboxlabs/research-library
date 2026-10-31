@@ -2,7 +2,7 @@
 
 An executable pilot for comparing the research-library's skills with **GLM through Pi**. It runs disposable Linux workers, grades their artifacts independently, records usage, and can ask a separate GLM request to propose and evaluate bounded Markdown revisions.
 
-**Status:** prepared for Linux installation; no real GLM/Pi benchmark result is claimed. The controller has no third-party Python dependencies. The first fixtures cover three tools, not the entire library. See [validation](VALIDATION.md) and [remaining work](#finish-on-your-linux-system).
+**Status:** Linux validation now covers 99 tests and ten fixture/CLI cases. The original four-family GLM-5.3/Pi pilot passed 24/24 trials in both conditions and exposed a baseline ceiling. Three new challenge families test reconciliation, archive revision recovery and committed SQLite snapshots. Challenge labels describe mechanisms, not a proven difficulty level; measure each against the baseline. See [validation](VALIDATION.md) for actual runs and limitations.
 
 ## What is implemented
 
@@ -36,7 +36,7 @@ python3 -B test-suite/bench.py smoke --config test-suite/config.local.json --out
 
 Output directories for calibration/smoke must be new. Calibration constructs reference artifacts in Python and tests graders; **smoke executes reference commands using the real Linux utilities**. Neither command uses a model API key or establishes that a skill helps an agent. Doctor runs offline and checks image/Pi availability, not authentication.
 
-Edit `config.local.json` for your actual endpoint/model, Pi build, toolbox image and budgets. The example uses the general Z.ai API endpoint; a Coding Plan or other provider may require another endpoint. `runtime.base_url` has no `/chat/completions` suffix; `optimizer.endpoint` is the complete chat-completions URL. The example's context/output budgets are experimental caps, not a claim about the model's maximum capabilities. Credentials belong only in the environment:
+Edit `config.local.json` for your actual endpoint/model, Pi build, toolbox image and budgets. The examples use Z.ai’s Coding Plan-compatible endpoint (`https://api.z.ai/api/coding/paas/v4`) with `glm-5.3-flash`, matching [Pi’s model configuration](https://pi.dev/models/zai/glm-5-3-flash). Confirm the route for your own provider/account. `runtime.base_url` has no `/chat/completions` suffix; `optimizer.endpoint` is the complete chat-completions URL. The example's context/output budgets are experimental caps, not a claim about the model's maximum capabilities. Credentials belong only in the environment:
 
 ```bash
 read -rsp 'Z.ai test API key: ' ZAI_API_KEY
@@ -45,7 +45,7 @@ printf '\n'
 python3 -B test-suite/bench.py run --config test-suite/config.local.json
 ```
 
-The default plan is **24 trials: four development cases × three seeds × two conditions**. `run` prints the campaign directory. On a first deployment, reduce cases to `jq-exact-text` and repetitions to 1 to verify the actual provider/Pi interaction before the full pilot.
+The default plan is **42 trials: seven development cases × three seeds × two conditions**. The original four cases remain regression/overhead controls; the three additional cases are challenges. `run` prints the campaign directory. On a first deployment, reduce cases to `jq-exact-text` and repetitions to 1 to verify the actual provider/Pi interaction before the full pilot.
 
 ```bash
 run_dir='runs/skillbench/REPLACE_WITH_PRINTED_CAMPAIGN'
@@ -71,6 +71,26 @@ All fixtures are synthetic. Inputs are hashed and checked for mutation. Graders 
 
 The bundled holdouts are public code, withheld from worker mounts and optimizer requests. They provide a useful workflow boundary, not an unlimited secret benchmark. Keep fresh independently designed task families for final confirmation.
 
+## Screen for useful difficulty
+
+Start with `config.screening.json`, adapting endpoint/image/identity to your deployment. It selects one easy control and all three challenges, one seed each, for eight trials with a 240-second worker deadline. This is a screening experiment, not a reliability estimate. The regular example retains a 180-second deadline; compare conditions only within matched settings.
+
+```bash
+python3 -B test-suite/bench.py plan --config test-suite/config.screening.json
+python3 -B test-suite/bench.py smoke --config test-suite/config.screening.json --output runs/skillbench-screening-smoke
+python3 -B test-suite/bench.py run --config test-suite/config.screening.json
+```
+
+| Challenge | Mechanism | Independently rejected mistakes |
+|---|---|---|
+| `jq-reconcile-events` | 72 typed identities, 432 replayed revisions in six valid shards plus two rejected shards | Accepting a valid prefix of a bad shard, conflating numeric/string IDs, filtering before resolving revisions |
+| `tar-manifest-recovery` | Manifest-selected content among repeated member names, including a newline in a name | Choosing first/last revision, concatenating occurrences, publishing wrong bytes |
+| `sqlite-wal-export` | Latest committed orders and a customer join from a captured database/WAL pair | Exporting stale main-database state, adding source sidecars, wrong aggregates or types |
+
+Requests specify business/output contracts; they do not prescribe a command sequence. Correct alternative implementations remain eligible. These fixtures are bounded synthetic examples, not large-data, service, kernel, or long-session coverage.
+
+Reports now include per-case condition summaries and an explicit `baseline_at_ceiling` signal only after every planned baseline trial has passed without infrastructure gaps. Keep ceiling cases for overhead and regression measurement. Add independent task mechanisms when correctness has no measured headroom; do not tune graders to penalize successful alternatives. The three existing holdout cases can be run separately with `--allow-holdout`; once inspected for design feedback, use fresh independent confirmation families before promotion.
+
 ## Test selection and competition
 
 Set `selection.mode` to `discovery` to give the worker the ordinary task prompt. Set `catalog_size` to, for example, 8, 32, or 546 to expose the target plus distractors. `distractors` is `similar` or `random`. Explicit mode prefixes the nonbaseline task with `/skill:name`; discovery mode does not. Baseline has no advertised or mounted skill packages.
@@ -87,11 +107,11 @@ python3 -B test-suite/bench.py optimize \
   --campaign "$run_dir" --skill jq --iterations 2
 ```
 
-The optimizer gets the complete selected Markdown and bounded development result evidence. It can replace existing `SKILL.md` or reference Markdown only. It cannot change helpers, add paths, change the skill identity, delete files, edit graders, or execute commands. Responses are validated before a complete independent candidate package is written.
+The optimizer gets the complete selected Markdown and bounded development result evidence restricted to the cases selected for its evaluation. It is explicitly told that correct alternative-tool solutions are valid. It can replace existing `SKILL.md` or reference Markdown only. It cannot change helpers, add paths, change the skill identity, delete files, edit graders, or execute commands. Responses are validated before a complete independent candidate package is written. Prompts enumerate exact package-relative allowed paths. Rejected proposals retain safe path diagnostics, finish reason and available usage. The example allows 16,384 proposal output tokens with low reasoning effort, based on the initial run exhausting 8,192 tokens; this is a cap, not a guaranteed successful response.
 
-Each candidate is compared with the frozen current package on fresh matched development fixtures. All proposals start from the published package; previous candidate results provide additional development evidence. This is a bounded candidate search, not automatic production evolution. Proposal costs are recorded separately and counted toward configured aggregate token budgets when known. Failed/rejected paid proposals are retained in the accounting.
+Each candidate is compared with the frozen current package on fresh matched development fixtures. Evaluation seeds are automatically advanced beyond the source campaign and previous candidates. All proposals start from the published package; previous candidate results provide additional development evidence. This is a bounded candidate search, not automatic production evolution. Proposal costs are recorded separately and counted toward configured aggregate token budgets when known. Failed/rejected paid proposals are retained in the accounting.
 
-Candidates live under the printed optimization directory. `optimization.json` records proposals, generation usage, evaluation campaigns and comparisons. **There is no automatic promotion:** the tiny pilot cannot support a reliable general acceptance rule. Review a chosen candidate, run independent confirmation, and apply it deliberately later.
+Candidates live under the printed optimization directory. `optimization.json` records proposals, generation usage, evaluation campaigns and comparisons. An optimizer run with any rejected proposal or incomplete evaluation ends as `complete_with_errors` and exits nonzero. Budget stops also exit nonzero; inspect the journal for the reason. **There is no automatic promotion:** the tiny pilot cannot support a reliable general acceptance rule. Review a chosen candidate, run independent confirmation, and apply it deliberately later.
 
 To compare a candidate manually, set `candidate_root` to the directory containing its skill folder, choose cases for that skill, and use conditions `["baseline", "current", "candidate"]`. For confirmation, select that skill's held-out case and run with `--allow-holdout`. `optimize` refuses campaigns containing held-out cases. User-selected paths in JSON are relative to the configuration file, so keep local configuration beside the example or use absolute paths.
 

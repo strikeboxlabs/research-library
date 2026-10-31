@@ -120,6 +120,46 @@ class ControllerTests(unittest.TestCase):
         self.assertEqual(result["status"], "optimization_trial_budget")
         self.assertEqual(result["known_total_tokens"], 410)
 
+    def test_optimizer_evidence_is_scoped_to_evaluated_cases(self):
+        from skillbench.cli import development_evidence
+        self.cfg["cases"] = ["jq-exact-text", "jq-record-filter"]
+        run = create_campaign(self.cfg, {"ok": True})
+        self.run_fake(run)
+        evidence = development_evidence(run, "jq", ["jq-record-filter"])
+        self.assertTrue(evidence)
+        self.assertEqual({r["case_id"] for r in evidence}, {"jq-record-filter"})
+
+    def test_optimizer_fresh_seeds_across_candidates_and_source(self):
+        from skillbench.cli import optimize
+        self.cfg["optimizer"] = {"model": "fake"}
+        self.cfg["budgets"]["max_trials"] = 20
+        source_run = create_campaign(self.cfg, {"ok": True})
+        self.run_fake(source_run)
+        seeds = {t["seed"] for t in read_json(source_run / "manifest.json")["plan"]}
+        def propose(source, target, evidence, config):
+            copy_package(source, target)
+            return {"generation": {"usage": {"total_tokens": 10}}, "hypothesis": "test"}
+        def execute(config, allow_holdout=False):
+            run = create_campaign(config, {"ok": True})
+            new_seeds = {t["seed"] for t in read_json(run / "manifest.json")["plan"]}
+            self.assertTrue(seeds.isdisjoint(new_seeds))
+            seeds.update(new_seeds)
+            self.run_fake(run)
+            return {"run_dir": str(run), "status": "complete"}
+        with patch("skillbench.optimizer.propose_candidate", side_effect=propose), patch("skillbench.cli.execute_new", side_effect=execute):
+            result = optimize(self.cfg, "jq", source_run, 2)
+        self.assertEqual(result["status"], "complete")
+        self.assertEqual(len(result["candidates"]), 2)
+
+    def test_optimizer_rejected_proposals_are_not_successful_completion(self):
+        from skillbench.cli import optimize
+        source_run = create_campaign(self.cfg, {"ok": True})
+        self.run_fake(source_run)
+        with patch("skillbench.optimizer.propose_candidate", side_effect=ValueError("Rejected path")):
+            result = optimize(self.cfg, "jq", source_run, 1)
+        self.assertEqual(result["status"], "complete_with_errors")
+        self.assertEqual(result["worker_trials"], 0)
+
     def test_optimizer_unknown_proposal_usage_stops_before_evaluation(self):
         from skillbench.cli import optimize
         self.cfg["optimizer"] = {"model": "fake"}
@@ -171,10 +211,11 @@ class ControllerTests(unittest.TestCase):
     def test_existing_windows_lock_never_probes_with_kill(self):
         from skillbench.campaign import campaign_lock
         import socket
+        from types import SimpleNamespace
         folder = self.root / "lock-test"
         folder.mkdir()
         write_json(folder / "controller.lock", {"host": socket.gethostname(), "pid": 123})
-        with patch("skillbench.campaign.Path", side_effect=lambda p: p), patch("skillbench.campaign.os.name", "nt"), patch("skillbench.campaign.os.kill") as kill:
+        with patch("skillbench.campaign.Path", side_effect=lambda p: p), patch("skillbench.campaign.os.kill") as kill, patch("skillbench.campaign.os", SimpleNamespace(name="nt", kill=kill)):
             with self.assertRaises(ValueError):
                 with campaign_lock(folder):
                     pass

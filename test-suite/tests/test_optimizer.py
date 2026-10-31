@@ -163,6 +163,7 @@ class OptimizerTests(unittest.TestCase):
         self.config["optimizer"]["selected_resources"] = []
         payload = json.loads(optimizer.build_proposal_prompt(self.source, [], self.config)[1]["content"])
         self.assertEqual(list(payload["resources"]), ["SKILL.md"])
+        self.assertEqual(payload["allowed_paths"], ["SKILL.md"])
         self.proposal["changes"] = [{"path": "references/inspect.md", "content": "Altered"}]
         with patch.object(optimizer, "urlopen", return_value=self.response()):
             with self.assertRaisesRegex(optimizer.OptimizerError, "not supplied"):
@@ -197,6 +198,7 @@ class OptimizerTests(unittest.TestCase):
                 optimizer.propose_candidate(self.source, self.destination, [], self.config)
         self.assertEqual(caught.exception.generation["usage"]["total_tokens"], 420)
         self.assertFalse(self.destination.exists())
+        self.assertEqual(caught.exception.generation["proposed_paths"], ["../outside.md"])
 
     def test_truncated_response_rejected_even_when_json_is_parseable(self):
         response = self.response()

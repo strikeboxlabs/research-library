@@ -293,6 +293,119 @@ def _schema_gap(workspace: Path, rng: random.Random) -> dict:
     }})
 
 
+def _event_reconciliation(workspace: Path, rng: random.Random) -> dict:
+    """A replayed, unordered export; an invalid shard must contribute nothing."""
+    canonical, shards = [], [[] for _ in range(6)]
+    for index in range(72):
+        identity = str(index // 2) if index % 2 else index // 2
+        tenant = ('east', 'west', 'east:west')[(index // 2) % 3]
+        final = None
+        for revision in range(1, 4):
+            row = {'tenant': tenant, 'id': identity, 'revision': revision,
+                   'active': (True, False, None, 'true')[rng.randrange(4)],
+                   'value': f'{_token(rng)}\nvalue,{revision}'}
+            shards[rng.randrange(6)].extend([row, dict(row)])
+            final = row
+        if index < 2:
+            final['active'] = True
+            # Keep replay copies identical after forcing a type-collision control.
+            for shard in shards:
+                for replay in shard:
+                    if replay['tenant'] == tenant and type(replay['id']) is type(identity) and replay['id'] == identity and replay['revision'] == 3:
+                        replay['active'] = True
+        if final['active'] is True:
+            canonical.append(final)
+    for number, rows in enumerate(shards):
+        rng.shuffle(rows)
+        _write(workspace, f'input/part-{number}.jsonl',
+               ''.join(json.dumps(r, ensure_ascii=False) + '\n' for r in rows).encode())
+    poison = {'tenant': 'east', 'id': 0, 'revision': 999, 'active': True, 'value': 'uncommitted prefix'}
+    _write(workspace, 'input/part-6.jsonl', (json.dumps(poison) + '\n' + '{"broken":\n').encode())
+    _write(workspace, 'input/part-7.jsonl', (json.dumps(poison) + '\n[]\n').encode())
+    _write(workspace, 'input/export-contract.json', _json_bytes({
+        'shards': [f'part-{i}.jsonl' for i in range(8)],
+        'record_schema': 'Object with tenant (string), id (integer or string), revision (positive integer), active (any JSON value), value (string).',
+        'acceptance': 'A shard is accepted only if every line is valid JSON and satisfies record_schema. Rejected shards contribute zero records.',
+        'reconciliation': 'Within accepted shards, group by (tenant, id), preserving the type of id. Replays are identical. Choose the highest revision, then retain active exactly boolean true.',
+        'ordering': 'Sort by tenant, then integer IDs numerically before string IDs lexicographically.'}))
+    canonical.sort(key=lambda r: (r['tenant'], isinstance(r['id'], str), r['id']))
+    return _expected(structured={'result/records.json': canonical,
+        'result/report.json': {'accepted_shards': [f'part-{i}.jsonl' for i in range(6)],
+                              'rejected_shards': ['part-6.jsonl', 'part-7.jsonl'],
+                              'selected_count': len(canonical)}})
+
+
+def _archive_revisions(workspace: Path, rng: random.Random) -> dict:
+    paths = ['config/app.conf', 'notes/line\nbreak.txt', 'assets/-preview.bin', "docs/quote's note.txt"]
+    wanted, manifest = {}, []
+    members = []
+    for index, name in enumerate(paths):
+        versions = [f'version {v}: {_token(rng)}\n'.encode() for v in range(3)]
+        chosen = versions[1]
+        wanted['result/restored/' + name] = chosen
+        manifest.append({'path': name, 'sha256': hashlib.sha256(chosen).hexdigest()})
+        members.extend((name, value) for value in versions)
+    members.append(('unrelated/keep-out.txt', b'not part of this deployment\n'))
+    _write(workspace, 'input/history.tar', _archive(members))
+    _write(workspace, 'input/deployment.json', _json_bytes({'release': _token(rng), 'files': manifest}))
+    return _expected(wanted, {'result/report.json': {'status': 'complete', 'files': sorted(manifest, key=lambda r: r['path'])}})
+
+
+def _wal_snapshot(workspace: Path, rng: random.Random) -> dict:
+    """Freeze a coherent committed DB/WAL pair, then normalize WAL salts/checksums."""
+    import struct
+    import tempfile
+    with tempfile.TemporaryDirectory(prefix='skillbench-wal-') as tmp:
+        path = Path(tmp) / 'orders.db'
+        db = sqlite3.connect(path)
+        try:
+            db.execute('PRAGMA journal_mode=WAL')
+            db.execute('PRAGMA wal_autocheckpoint=0')
+            db.executescript('CREATE TABLE customers(id INTEGER PRIMARY KEY, name TEXT);'
+                             'CREATE TABLE orders(id INTEGER PRIMARY KEY, customer_id INTEGER, status TEXT, amount_cents INTEGER, note TEXT);')
+            customers = [(i, f'customer,{i} {_token(rng)}') for i in range(1, 7)]
+            db.executemany('INSERT INTO customers VALUES (?,?)', customers)
+            initial = [(i, 1 + i % 6, 'pending', rng.randrange(100, 9999), None) for i in range(1, 25)]
+            db.executemany('INSERT INTO orders VALUES (?,?,?,?,?)', initial)
+            db.commit()
+            db.execute('PRAGMA wal_checkpoint(TRUNCATE)')
+            rows = []
+            for i in range(1, 25):
+                status = 'paid' if i % 3 else 'cancelled'
+                note = (None, '', f'line one\nline two {_token(rng)}')[i % 3]
+                amount = rng.randrange(100, 9999)
+                db.execute('UPDATE orders SET status=?, amount_cents=?, note=? WHERE id=?', (status, amount, note, i))
+                if status == 'paid':
+                    rows.append({'id': i, 'customer': customers[i % 6][1], 'amount_cents': amount, 'note': note})
+            db.commit()
+            main, wal = path.read_bytes(), bytearray(Path(str(path) + '-wal').read_bytes())
+        finally:
+            db.close()
+    # SQLite chooses random WAL salts. Recompute the documented rolling checksum
+    # after substituting seed-derived salts so byte snapshots are reproducible.
+    magic, _, page_size = struct.unpack('>III', wal[:12])
+    order = '<' if magic == 0x377f0682 else '>'
+    salts = struct.pack('>II', rng.getrandbits(32), rng.getrandbits(32))
+    wal[16:24] = salts
+    def checksum(data, s0=0, s1=0):
+        values = struct.unpack(order + 'I' * (len(data) // 4), data)
+        for a, b in zip(values[::2], values[1::2]):
+            s0 = (s0 + a + s1) & 0xffffffff
+            s1 = (s1 + b + s0) & 0xffffffff
+        return s0, s1
+    sums = checksum(wal[:24])
+    wal[24:32] = struct.pack('>II', *sums)
+    for offset in range(32, len(wal), 24 + page_size):
+        wal[offset + 8:offset + 16] = salts
+        sums = checksum(wal[offset:offset + 8] + wal[offset + 24:offset + 24 + page_size], *sums)
+        wal[offset + 16:offset + 24] = struct.pack('>II', *sums)
+    _write(workspace, 'input/orders.db', main)
+    _write(workspace, 'input/orders.db-wal', bytes(wal))
+    return _expected(structured={'result/paid-orders.json': rows,
+        'result/report.json': {'status': 'complete', 'paid_count': len(rows),
+                              'total_cents': sum(r['amount_cents'] for r in rows)}})
+
+
 @dataclass(frozen=True)
 class Case:
     id: str
@@ -303,6 +416,7 @@ class Case:
     tools: tuple[str, ...]
     request: str
     builder: Callable[[Path, random.Random], dict]
+    tier: str = "regression"
 
     def prepare(self, workspace: Path, seed: int) -> dict:
         workspace = Path(workspace).absolute()
@@ -402,6 +516,26 @@ _CASES = (
          "the table exists, otherwise missing_table), table (records), row_count (integer if the "
          "table exists, otherwise null), and available_tables (sorted names of ordinary user tables). "
          "Use read-only inspection or an owned scratch copy.", _schema_gap),
+
+    Case("jq-reconcile-events", "jq", "json-reconciliation", "development",
+         "Reconcile replayed revisions across exports, rejecting entire bad shards.", ("jq",),
+         "Produce the current active records from the saved export in input/, following export-contract.json. "
+         "Write result/records.json as the ordered array of complete winning records and result/report.json "
+         "with exactly accepted_shards and rejected_shards (sorted filenames), and selected_count (integer).",
+         _event_reconciliation, "challenge"),
+    Case("tar-manifest-recovery", "tar", "archive-revisions", "development",
+         "Restore a deployment from repeated archive members using its integrity manifest.", ("tar",),
+         "Restore the release described by input/deployment.json from input/history.tar into result/restored/. "
+         "The deployment manifest specifies the required paths and SHA-256 values. Publish exactly those files "
+         "with matching bytes. Write result/report.json with exactly status (complete) and files (the manifest's "
+         "path/sha256 objects sorted by path). Do not execute archive content.", _archive_revisions, "challenge"),
+    Case("sqlite-wal-export", "sqlite3", "database-committed-snapshot", "development",
+         "Export the latest committed business state from a captured SQLite file set.", ("sqlite3",),
+         "The files in input/ are a coherent captured order-service database. Export its latest committed paid "
+         "orders to result/paid-orders.json, ordered by numeric order ID, with exactly id, customer (customer name), "
+         "amount_cents and note, preserving stored types. Write result/report.json with exactly status (complete), "
+         "paid_count and total_cents. The source capture must remain unchanged, including its file set.",
+         _wal_snapshot, "challenge"),
 )
 
 CASES: dict[str, Case] = {case.id: case for case in _CASES}

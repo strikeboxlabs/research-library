@@ -26,7 +26,7 @@ class CaseTests(unittest.TestCase):
         return case, workspace, oracle
 
     def test_metadata_and_private_oracles_are_serializable(self):
-        self.assertEqual(len(CASES), 7)
+        self.assertEqual(len(CASES), 10)
         for case_id, case in CASES.items():
             with self.subTest(case=case_id):
                 self.assertEqual(case.id, case_id)
