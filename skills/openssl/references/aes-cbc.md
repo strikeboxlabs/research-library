@@ -6,7 +6,7 @@ For **raw AES-128-CBC ciphertext with PKCS#7 padding**, define `ciphertext` as t
 
 ~~~bash
 umask 077
-openssl enc -d -aes-128-cbc -K "$key_hex" -iv "$iv_hex" -in "$ciphertext" -out "$plaintext" 2>"$diagnostics"
+/usr/bin/openssl enc -d -aes-128-cbc -K "$key_hex" -iv "$iv_hex" -in "$ciphertext" -out "$plaintext" 2>"$diagnostics"
 status=$?
 ~~~
 
@@ -36,7 +36,7 @@ Define `ciphertext` as the extracted bytes after that header, `key_hex`/`iv_hex`
 
 ~~~bash
 umask 077
-openssl enc -d -aes-256-cbc -nopad -K "$key_hex" -iv "$iv_hex" -in "$ciphertext" -out "$padded_plaintext" 2>"$diagnostics"
+/usr/bin/openssl enc -d -aes-256-cbc -nopad -K "$key_hex" -iv "$iv_hex" -in "$ciphertext" -out "$padded_plaintext" 2>"$diagnostics"
 status=$?
 ~~~
 
@@ -55,7 +55,7 @@ OpenSSL changed the default digest from MD5 to SHA-256 in 1.1.0. Use the indepen
 
 ~~~bash
 umask 077
-openssl enc -d -aes-256-cbc -md "$digest_name" -pass "file:$passfile" \
+/usr/bin/openssl enc -d -aes-256-cbc -md "$digest_name" -pass "file:$passfile" \
   -in "$ciphertext" -out "$plaintext" 2>"$diagnostics"
 status=$?
 ~~~
@@ -72,7 +72,7 @@ Define `base64_file` as one validated, unwrapped base64 field without JSON quote
 
 ~~~bash
 umask 077
-openssl enc -d -aes-256-cbc -a -A -md md5 -pass "file:$passfile" \
+/usr/bin/openssl enc -d -aes-256-cbc -a -A -md md5 -pass "file:$passfile" \
   -in "$base64_file" -out "$plaintext" 2>"$diagnostics"
 status=$?
 ~~~

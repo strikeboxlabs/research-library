@@ -5,12 +5,14 @@ description: Set a selected administered LDAP entry password through OpenLDAP Pa
 
 # Keep bind and target identities separate
 
+Installed invocation: `/usr/bin/ldappasswd`, version `ldappasswd: @(#) $OpenLDAP: ldappasswd 2.6.14+dfsg-2 (Aug 25 2026 00:46:58) $`.
+
 Read this entire SKILL.md before acting. Require the administered LDAP endpoint, permitted bind identity and exact target entry. No conditional resources are required. Finish with the operation result and any separately requested account check; silence alone is insufficient.
 
 Check `ldappasswd -VV`. Define `ldap_uri`, `bind_dn` and `user_dn` from the intended directory. For simple bind over required StartTLS:
 
 ~~~bash
-ldappasswd -x -ZZ -H "$ldap_uri" -D "$bind_dn" -W -S "$user_dn"
+/usr/bin/ldappasswd -x -ZZ -H "$ldap_uri" -D "$bind_dn" -W -S "$user_dn"
 status=$?
 ~~~
 

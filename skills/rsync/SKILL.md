@@ -5,12 +5,14 @@ description: Inspect a scoped rsync daemon module, retrieve a selected file or d
 
 # Inspect a module before retrieving a file
 
+Installed invocation: `/usr/bin/rsync`, version `rsync  version 3.5.1  protocol version 33`.
+
 Read this entire SKILL.md before acting. Establish the intended endpoint, existing access and selected file/tree. For a selected directory retrieved from a daemon, read [daemon directory copy](references/daemon-directory-copy.md) fully first. For an owned directory copied locally, read [local directory copy](references/local-directory-copy.md) fully first. For a local backup pushed over SSH, read [selected backup transfer](references/backup-transfer.md) fully first; otherwise use the daemon inspection/retrieval below. Finish with actual transferred or skipped files, status and destination verification. Missing access or an incomplete source leaves that step unresolved.
 
 Check `rsync --version`. Define `daemon_url` as the authorized `rsync://host:port` endpoint, without a trailing slash:
 
 ~~~bash
-rsync --list-only "$daemon_url/"
+/usr/bin/rsync --list-only "$daemon_url/"
 ~~~
 
 The result lists advertised modules, not filesystem roots. A module can be hidden from listings; a listed module can still require authentication or restrict files. A password challenge or access denial is not permission to guess credentials. Daemon users need not be system accounts.
@@ -18,7 +20,7 @@ The result lists advertised modules, not filesystem roots. A module can be hidde
 Define `module_url` from an observed module name. List its top level without archive mode or recursion:
 
 ~~~bash
-rsync --list-only "$module_url/"
+/usr/bin/rsync --list-only "$module_url/"
 ~~~
 
 An **illustrative** `-rw-r--r-- 12544 ... config-backup.tar.gz` identifies a regular-file candidate and size; it does not prove download permission or completeness. Descend into a relevant observed subdirectory explicitly.
@@ -35,7 +37,7 @@ mkdir -- "$dest" && rsync --dry-run --itemize-changes --ignore-existing "$source
 Review that the plan contains only the intended file. When retrieval is intended, use the same arguments without the dry-run flag:
 
 ~~~bash
-rsync --itemize-changes --ignore-existing "$source_url" "$dest/"
+/usr/bin/rsync --itemize-changes --ignore-existing "$source_url" "$dest/"
 ~~~
 
 Check status, diagnostics and the actual expected file. `--ignore-existing` skips an existing file, including an incomplete one; it does not skip existing directories. Success alone does not prove a new copy. Use another fresh destination after resolving a partial transfer. Compare size and an independently available digest; keep archive extraction separate.

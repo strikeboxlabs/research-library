@@ -5,12 +5,14 @@ description: Build and run a selected existing Rust CLI with Cargo, controlling 
 
 # Build the intended package and binary
 
+Installed invocation: `/usr/bin/cargo`, version `cargo 1.97.1 (c980f4866 2026-06-30) (built from a source tarball)`.
+
 Read this entire file before acting. Identify the reviewed project and intended binary before building. Finish with the manifest, profile, toolchain and build artifact or actual run result; compiling a tool does not validate what its algorithm claims.
 
 Define `manifest` as the absolute `Cargo.toml` path and `binary` as its declared binary target. For a release build using the existing lockfile:
 
 ~~~bash
-cargo build --manifest-path "$manifest" --locked --release --bin "$binary"
+/usr/bin/cargo build --manifest-path "$manifest" --locked --release --bin "$binary"
 ~~~
 
 This selects the project explicitly instead of finding an unintended parent manifest. A workspace may also need `-p PACKAGE` to select the package. `--release` chooses an optimized profile; it does not mean a historical performance claim applies to this host/input. Build warnings are not necessarily failures, but a produced executable still needs the task's functional check.
@@ -24,7 +26,7 @@ Cargo builds can execute project/dependency build scripts and compiler-time proc
 When the task separately authorizes executing the tool, `cargo run` can rebuild and then launch it. Arguments after `--` go to the program:
 
 ~~~bash
-cargo run --manifest-path "$manifest" --locked --release --bin "$binary" -- --help
+/usr/bin/cargo run --manifest-path "$manifest" --locked --release --bin "$binary" -- --help
 ~~~
 
 Even `--help` executes that program, whose implementation determines the effect. For a real operation, replace it with the reviewed tool arguments and evaluate the actual output against known inputs. A recovered candidate, timing line or successful process exit is not proof of correctness without the corresponding check.

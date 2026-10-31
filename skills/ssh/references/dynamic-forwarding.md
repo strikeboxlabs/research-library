@@ -5,7 +5,7 @@ Use this when an established SSH account permits forwarding to a selected servic
 Define `ssh_host` and `user` for that account, and `socks_port` as a free high port on the Linux client. Keep the initial connection in the foreground:
 
 ~~~bash
-ssh -N -T -o ExitOnForwardFailure=yes -D "127.0.0.1:$socks_port" "$user@$ssh_host"
+/usr/bin/ssh -N -T -o ExitOnForwardFailure=yes -D "127.0.0.1:$socks_port" "$user@$ssh_host"
 ~~~
 
 `-D` accepts SOCKS4/5 requests at the explicitly bound local loopback address. SSH then opens each requested TCP connection from the SSH server. `-N` requests no remote command; `-T` requests no terminal. A quiet connection is normal. Authentication and successful listener creation do not prove the selected destination will accept a later connection; `ExitOnForwardFailure` cannot test that future request.

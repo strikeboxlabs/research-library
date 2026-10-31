@@ -3,7 +3,7 @@
 Require the actual scoped `base_url`, expected hostname routing and fresh `headers`/`body` files. A CMS generator tag suggests the family, not an exact patch. Request the selected packaging file from the same deployment:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' \
   "$base_url/core/profiles/testing/testing.info"
 ~~~
@@ -13,7 +13,7 @@ Check transport status, HTTP response and the .info content together. Illustrati
 When clean URLs fail but the application exposes query routing, define `route` as an observed internal CMS path or alias and request it with explicit query encoding:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --get --data-urlencode "q=$route" \
   --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$base_url/"
 ~~~

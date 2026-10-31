@@ -5,14 +5,16 @@ description: Query selected local system facts with Puppet Facter and diagnose m
 
 # Query the intended fact provider
 
+Installed invocation: `/usr/bin/facter`, version `6.0.0`.
+
 Read this entire SKILL.md before acting. Identify the installed Facter version, trusted configuration and requested fact names before querying. Complete with the returned values, errors and provider/cache limits; a missing fact is not proof that the corresponding system feature is absent.
 
 Facter can load Ruby custom facts and executable external facts. Treat its configured search paths and providers as executable inputs. For ordinary local inventory, use the normal user identity and disable those providers when only built-in facts are needed. Review the selected configuration before loading it; querying one name does not make arbitrary provider code passive.
 
 ~~~bash
-facter --version
-facter --help
-facter --no-custom-facts --no-external-facts --json os.name os.release.major processors.isa
+/usr/bin/facter --version
+/usr/bin/facter --help
+/usr/bin/facter --no-custom-facts --no-external-facts --json os.name os.release.major processors.isa
 ~~~
 
 These options are documented for modern Facter; establish installed support before using them. Dot notation selects a nested field. Keep stdout and diagnostics distinct and check status before interpreting the result. An OS family or release value describes this execution environment; it is not package patch evidence or proof of the surrounding host's identity.

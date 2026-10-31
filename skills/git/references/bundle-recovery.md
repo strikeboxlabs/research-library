@@ -3,9 +3,9 @@
 Define `bundle` as the existing absolute artifact path and `destination` as a fresh repository directory. Record its fingerprint; inspect advertised refs first:
 
 ~~~bash
-git bundle list-heads "$bundle"
-git -c core.hooksPath=/dev/null clone --bare --template= "$bundle" "$destination"
-git -C "$destination" bundle verify "$bundle"
+/usr/bin/git bundle list-heads "$bundle"
+/usr/bin/git -c core.hooksPath=/dev/null clone --bare --template= "$bundle" "$destination"
+/usr/bin/git -C "$destination" bundle verify "$bundle"
 ~~~
 
 Check each status before continuing. The bare clone imports objects without materializing a working tree or recursively fetching submodules. `--template=` avoids populating hooks from an initialization template. Verify requires a repository context and checks prerequisites against that repository; do not treat invocation outside a repository as proof of corruption.

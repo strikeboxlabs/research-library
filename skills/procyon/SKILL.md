@@ -5,6 +5,8 @@ description: Inspect Java JARs and class files offline with Procyon, recover rea
 
 # Recover Java behavior from a saved artifact
 
+Installed invocation: `/usr/bin/procyon`, version `0.6.0`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Use an existing trusted Procyon installation and a preserved input copy. Check the archive and required classes, then inspect generated code and diagnostics. For plugin entrypoints, embedded connection settings or a selected-class investigation, read [plugin analysis](references/plugin-analysis.md) fully. Finish with class/method evidence and reconstruction limits; generated files alone do not establish complete coverage.
 
 Define `decompiler_jar` as the existing trusted **standalone Procyon decompiler JAR**, `artifact` as the acquired application JAR, and `source_dir`, `log`, `errors` as fresh working paths. A similarly named library JAR need not contain the CLI or its dependencies. Check the installed build's help and Java compatibility:

@@ -5,6 +5,8 @@ description: Resolve Linux users and groups through NSS when local passwd/group 
 
 # Resolve the identity the system actually uses
 
+Installed invocation: `/usr/bin/getent`, version `getent (Debian GLIBC 2.43-7) 2.43`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Query the known identity before enumerating a directory. Finish with the resolved account/group, lookup status and whether the evidence describes the directory or this process.
 
 An account can resolve through LDAP/SSSD or another Name Service Switch provider without a row in `/etc/passwd`. A large UID or home-directory name alone does not identify that provider. `getent` uses the configured NSS sources; it does not test the account's password.
@@ -12,9 +14,9 @@ An account can resolve through LDAP/SSSD or another Name Service Switch provider
 Define `account` and `group_name` as the exact observed names:
 
 ~~~bash
-getent passwd "$account"
-getent group "$group_name"
-getent initgroups "$account"
+/usr/bin/getent passwd "$account"
+/usr/bin/getent group "$group_name"
+/usr/bin/getent initgroups "$account"
 ~~~
 
 The passwd row carries the name, password placeholder, UID, primary GID, comment, home and shell. A numeric passwd key looks up a UID; a numeric group key looks up a GID. Preserve names and numbers together. The group row's member list does not necessarily enumerate users whose **primary** GID is that group; `initgroups` asks for the selected account's group list instead.

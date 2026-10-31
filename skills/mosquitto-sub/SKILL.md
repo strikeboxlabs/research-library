@@ -5,13 +5,15 @@ description: Observe a selected ordinary MQTT topic with mosquitto_sub and disti
 
 # Observe the selected MQTT topic
 
+Installed invocation: `/usr/bin/mosquitto_sub`, version `mosquitto_sub version 2.1.2 running on libmosquitto 2.1.0.`.
+
 Read this entire SKILL.md before acting. Require the approved broker, port, exact ordinary topic, authentication/TLS requirements and observation window. Review installed-version options and loaded client configuration first. Finish with connection status, selected topic, received-message evidence and time/count limits.
 
 Define `broker`, `port` and `topic` from that task. Keep credentials in the approved private configuration rather than command arguments. POSIX defaults load `$XDG_CONFIG_HOME/mosquitto_sub` or `~/.config/mosquitto_sub`; review them for additional topics, wills or other broker-changing options before subscribing. This task requires an ordinary clean subscription without retained-message deletion or will publishing.
 
 ~~~bash
-mosquitto_sub --help
-mosquitto_sub -h "$broker" -p "$port" -t "$topic" -v -C 10 -W 30
+/usr/bin/mosquitto_sub --help
+/usr/bin/mosquitto_sub -h "$broker" -p "$port" -t "$topic" -v -C 10 -W 30
 status=$?
 ~~~
 

@@ -5,6 +5,8 @@ description: Apply a reviewed text substitution, suffix correction or removal of
 
 # Make the selected transformation reviewable
 
+Installed invocation: `/usr/bin/sed`, version `/usr/bin/sed (GNU sed) 4.9`.
+
 Read this entire SKILL.md before acting. Select reviewed substitution, suffix correction or confirmed final-record removal below, establish the exact text change and record boundaries, preserve the input and review a separate candidate. No conditional resources are required. Finish with the changed bytes, status and verified transformation; a zero status does not prove any match occurred.
 
 Check `sed --version` and installed help for GNU sed. Define `input` as the existing text file and `output` as a fresh distinct path. For a format that permits removal of one comma immediately before each line ending:

@@ -8,7 +8,7 @@ Define `origin` as the exact scoped scheme/host/port plus any verified applicati
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 --path-as-is --globoff \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --path-as-is --globoff \
   --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' \
   "$origin/public/plugins/$plugin/$traversal$relative_file"
 ~~~

@@ -5,6 +5,8 @@ description: Decode a captured Group Policy Preferences cpassword locally using 
 
 # GPP cpassword decoding
 
+Installed invocation: `/usr/bin/gpp-decrypt`.
+
 Extract the complete `cpassword` attribute from the source XML, with its associated `userName`, policy path and timestamp. Preserve characters such as `/` and `+`; PDF display wrapping is not part of the value. Define `cpassword` as that exact string.
 
 Two different programs use this name. Identify the installed package before selecting syntax:

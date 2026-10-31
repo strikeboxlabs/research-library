@@ -5,14 +5,16 @@ description: Test and decompress a selected bzip2 stream while preserving its so
 
 # Recover one bzip2 layer
 
+Installed invocation: `/usr/bin/bzip2`, version `bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Establish the actual bzip2 input and a fresh output path, preserve final status and inspect the decoded object's next format. A recognizable header or some decoded bytes is not complete recovery.
 
 Define `compressed` as the existing absolute input and `decoded` as a fresh absolute file in an existing private directory. Select bzip2, not gzip, from the observed bytes/parser result:
 
 ~~~bash
 umask 077
-bzip2 --help
-bzip2 -t -- "$compressed" &&
+/usr/bin/bzip2 --help
+/usr/bin/bzip2 -t -- "$compressed" &&
 (set -C; bzip2 -dc -- "$compressed" > "$decoded") &&
 file -E -h -- "$decoded"
 ~~~

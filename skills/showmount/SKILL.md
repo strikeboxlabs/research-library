@@ -5,13 +5,15 @@ description: Query an NFS server's advertised exports with showmount. Use to dis
 
 # Inspect an NFS export advertisement
 
+Installed invocation: `/usr/sbin/showmount`, version `showmount for 3.1.1`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Query one approved server and retain status/diagnostics with the export advertisement. Finish with what MOUNT disclosed; timeout or an empty result does not establish NFSv4 absence or effective permissions.
 
 Define `server` as one approved NFS host and `listing` as a fresh local output file. Check the nfs-utils entrypoint, then query its MOUNT service:
 
 ~~~bash
-showmount --version
-showmount --exports "$server" >"$listing"
+/usr/sbin/showmount --version
+/usr/sbin/showmount --exports "$server" >"$listing"
 ~~~
 
 Check the exit status and diagnostic output before interpreting the file. An **illustrative** row `/srv/backups *` advertises that export to all client hosts in this listing; it does not prove readable contents, write access, a particular security flavor or disabled root squashing. Retain the exact export path and reported client restriction, then verify server/version/security context before a separately authorized mount.

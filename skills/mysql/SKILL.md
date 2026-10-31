@@ -5,6 +5,8 @@ description: Use mysql for explicit socket/TCP connections, database metadata an
 
 # MySQL connection and inspection
 
+Installed invocation: `/usr/bin/mysql`, version `/usr/bin/mysql from 11.8.9-MariaDB, client 15.2 for debian-linux-gnu (x86_64) using  EditL`.
+
 Read this entire SKILL.md before acting; complete current context need not be re-read. Establish the client/server and connection identity for a database task; native loadable-function metadata is covered below. Read the selected reference fully before its procedure; leave unrelated branches unloaded. Finish with the actual query/result and its scope; a denied query, empty result or client-side effect is not interchangeable with a server finding.
 
 - Joomla configuration/prefix, selected account verifiers and reuse boundaries: [Joomla account records](references/joomla-records.md).
@@ -17,7 +19,7 @@ Check `mysql --version` and local help. The command can come from MySQL or a Mar
 Define `db_host`, `db_port` and `db_user` for the intended endpoint and known account. For TCP, including an SSH-forwarded local port:
 
 ~~~bash
-mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password
+/usr/bin/mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password
 ~~~
 
 Enter the password at the prompt. On Unix, `localhost` normally selects a Unix socket and can make `-P` irrelevant; explicit `--protocol=TCP` prevents that ambiguity. For an intended socket connection, instead specify its actual `--socket` path and socket protocol. Keep the service's required TLS policy; do not treat disabling TLS as a routine login fix.
@@ -42,7 +44,7 @@ Prefer separate rows over a `GROUP_CONCAT` string when identity or completeness 
 When an interactive database shell is inconvenient, define `database` as the observed database name and `query` as one reviewed, bounded SELECT using its actual schema:
 
 ~~~bash
-mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database" --batch --execute="$query"
+/usr/bin/mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database" --batch --execute="$query"
 ~~~
 
 This still prompts for the password. Batch output is tab-separated with special characters escaped by default; it is not CSV. Check the exit status before interpreting an empty result. `--execute`/`--batch` change execution/output style, not SQL privileges or side effects. A supplied query file can still write data; avoid `SELECT *` when selected columns answer the question.

@@ -5,6 +5,8 @@ description: Enumerate supported TLS protocols, cipher suites and certificate de
 
 # sslscan TLS survey
 
+Installed invocation: `/usr/bin/sslscan`, version `[1;34m		2.1.5`.
+
 Read this entire SKILL.md before acting. Define the authorized `host`, `port` and a fresh `output` path; identify the required SNI name and whether the service uses direct TLS or STARTTLS. This scan performs active handshakes and vulnerability checks. Finish with endpoint/SNI, scan completion, negotiated protocols and ciphers, certificate observations and unresolved errors.
 
 ## Installed implementation

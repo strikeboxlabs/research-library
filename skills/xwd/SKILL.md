@@ -5,12 +5,14 @@ description: Save an owned X11 window as an XWD image with an existing authorize
 
 # Capture the selected owned X11 window
 
+Installed invocation: `/usr/bin/xwd`, version `xwd 1.0.9`.
+
 Read this entire SKILL.md before acting. Require xwd, the selected owned X11 display and its already authorized connection, a window ID observed in that session, and a fresh output in a private directory. No conditional resources are required. Finish with capture status and a decoded visual check; absent display access or an image decoder remains a prerequisite gap.
 
 Use the existing legitimate session authentication. Define `display` as that session's actual DISPLAY, `window_id` as the selected X resource ID, and `dump_file` as a fresh absolute .xwd path. Prepare the requested public/test content before capture:
 
 ~~~bash
-xwd -version
+/usr/bin/xwd -version
 test ! -e "$dump_file" && test ! -L "$dump_file" &&
   xwd -display "$display" -id "$window_id" -out "$dump_file"
 status=$?

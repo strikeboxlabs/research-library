@@ -5,19 +5,21 @@ description: Inspect wireless-tools scan results on one Linux interface. Use to 
 
 # Inspect wireless scan observations
 
+Installed invocation: `/usr/sbin/iwlist`.
+
 Read this entire SKILL.md before acting. Require the selected interface, a Wireless Extensions capable driver and permission for any requested active scan. No conditional resources are required. Finish with interface, observation time, scan mode and limitations.
 
 Define `interface` as the owned interface. Read cached results first:
 
 ~~~bash
-iwlist --version
-iwlist "$interface" scanning last
+/usr/sbin/iwlist --version
+/usr/sbin/iwlist "$interface" scanning last
 ~~~
 
 `last` retrieves previous results without initiating scanning. Their age and completeness may be unknown. When a fresh scan is required for the approved wireless diagnostic:
 
 ~~~bash
-iwlist "$interface" scanning
+/usr/sbin/iwlist "$interface" scanning
 ~~~
 
 Triggering a scan normally requires privilege and may transmit probes. Driver support determines available results; permission, busy-device or unsupported-operation errors are not evidence that no AP exists.

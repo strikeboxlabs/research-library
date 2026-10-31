@@ -5,6 +5,8 @@ description: Read the current kernel release and machine identity with GNU uname
 
 # Read kernel identity in the actual execution context
 
+Installed invocation: `/usr/bin/uname`, version `uname (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Establish which host/container/session runs the command and confirm GNU coreutils with `uname --version`; no conditional resources are required. Finish with the selected fields, command status and execution context. Missing execution evidence remains unresolved; an old banner is not a current kernel query.
 
 For the current kernel name, release and machine hardware name:

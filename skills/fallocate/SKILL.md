@@ -5,13 +5,15 @@ description: Preallocate a selected owned file with Linux util-linux fallocate. 
 
 # Allocate a fresh local file
 
+Installed invocation: `/usr/bin/fallocate`, version `fallocate from util-linux 2.42.4`.
+
 Read this entire SKILL.md before acting. Require Linux util-linux and a fresh absolute filename in a private owned directory without other writers. Select the required length and filesystem. No conditional resources are required. Finish with command status, the resulting logical size and allocation evidence; a size alone does not establish contents or physical allocation.
 
 Check `fallocate --version` and `fallocate --help`. Define `file` as that nonexistent path. For a one-MiB local fixture:
 
 ~~~bash
 umask 077
-fallocate --length 1MiB -- "$file"
+/usr/bin/fallocate --length 1MiB -- "$file"
 status=$?
 ~~~
 

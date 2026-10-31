@@ -5,6 +5,8 @@ description: Distinguish Responder name-resolution observation from active authe
 
 # Responder modes and capture evidence
 
+Installed invocation: `/usr/sbin/responder`, version `Responder 3.2.2.0`.
+
 Read this entire SKILL.md before acting; complete current context need not be re-read. Select the observation or direct-listener task below, then require the installed entrypoint, scoped interface, reviewed module configuration and private evidence location before starting. No package-local references are required. Finish with the enabled modules, bind results, observation window, actual events and remaining gaps; unavailable listeners or incomplete records are partial evidence, not a successful capture.
 
 Responder combines name-resolution responders with independent authentication servers. Check the installed entrypoint/help and the actual `Responder.conf` it loads. Upstream reads the configuration beside its installation; changing the current directory alone does not select a different file. Use a reviewed lab configuration with a private log/database location, not unexplained global defaults.
@@ -21,7 +23,7 @@ Choose the intended behavior before starting:
 Define `interface` as the verified scoped Linux interface and `log` as a fresh private transcript. Run with the lab's approved listener privileges for the selected ports:
 
 ~~~bash
-responder -I "$interface" -A -v > "$log" 2>&1
+/usr/sbin/responder -I "$interface" -A -v > "$log" 2>&1
 ~~~
 
 Inspect the startup configuration and listener diagnostics immediately. Avoid `ALL` when one interface is intended. Configured `RespondTo` filters name-response decisions; do not assume it restricts every authentication listener. Ensure the lab/network boundary also matches the collection scope. A port-bind failure can coexist with other running modules. An SMB bind failure leaves that capture path unavailable even if other modules remain running. Resolve the actual conflict before changing any services.

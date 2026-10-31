@@ -5,6 +5,8 @@ description: Convert local e-books with calibre and diagnose format selection, o
 
 # Convert with the actual format pair
 
+Installed invocation: `/usr/bin/ebook-convert`, version `ebook-convert (calibre 9.14.0)`.
+
 Identify the installed calibre build and executable used by the job; a service can use a private copy instead of the one on PATH. Define `converter` as that executable's absolute path, `input` as the reviewed source file and `output` as a fresh absolute destination ending in the intended format, such as `.epub`:
 
 ~~~bash

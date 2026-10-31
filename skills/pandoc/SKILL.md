@@ -5,14 +5,16 @@ description: Convert reviewed Markdown to an inspectable LaTeX intermediate with
 
 # Inspect the conversion stage
 
+Installed invocation: `/usr/bin/pandoc`, version `pandoc 3.11`.
+
 Read this entire SKILL.md before acting. Require the reviewed Markdown, trusted template/resources and installed converter. Finish with status, diagnostics and inspected intermediate output; rendering a PDF is a separate stage.
 
 Set `input_md`, `template`, `output_tex` and `conversion_log` to absolute paths; outputs must be fresh files in a private working directory. Inspect templates, defaults and filters before use.
 
 ~~~bash
-pandoc --version
-pandoc --list-extensions=markdown
-pandoc --from=markdown-raw_attribute --to=latex --standalone \
+/usr/bin/pandoc --version
+/usr/bin/pandoc --list-extensions=markdown
+/usr/bin/pandoc --from=markdown-raw_attribute --to=latex --standalone \
   --template="$template" --output="$output_tex" "$input_md" \
   >"$conversion_log" 2>&1
 conversion_status=$?

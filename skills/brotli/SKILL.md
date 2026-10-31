@@ -5,6 +5,8 @@ description: Test and decompress one selected local Brotli stream into a fresh o
 
 # Recover the selected compressed bytes
 
+Installed invocation: `/usr/bin/brotli`, version `brotli 1.2.0`.
+
 Read this entire SKILL.md before acting. Require the preserved local input, trusted installed CLI and a fresh output beneath an owned parent. Set an appropriate resource budget before decoding. No conditional resources are required. Finish with input identity, decoder status and inspected output or its unresolved failure.
 
 Define `brotli_bin`, `input` and `output` as their selected absolute paths:

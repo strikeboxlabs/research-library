@@ -5,6 +5,8 @@ description: Convert a known owned single-ticket Kerberos artifact offline betwe
 
 # Convert an owned Kerberos file offline
 
+Installed invocation: `/usr/bin/impacket-ticketConverter`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Require the installed Impacket ticketConverter implementation, a complete known owned artifact and a fresh private output path. Confirm this is a supported single-ticket conversion. Complete with converter status, output format and ticket-metadata checks, or an explicit parsing/coverage gap. Conversion does not authenticate to a service.
 
 The commonly packaged command is case-sensitive `impacket-ticketConverter`; upstream supplies `ticketConverter.py`. Select the installed wrapper rather than guessing its path. Set `input_file` and `output_file` to distinct real paths in an owned directory, with the intended opposite format:
@@ -13,7 +15,7 @@ The commonly packaged command is case-sensitive `impacket-ticketConverter`; upst
 umask 077
 test -s "$input_file"
 test ! -e "$output_file" && test ! -L "$output_file"
-impacket-ticketConverter "$input_file" "$output_file"
+/usr/bin/impacket-ticketConverter "$input_file" "$output_file"
 ~~~
 
 Only proceed after both checks succeed. The output contains authentication material and the implementation overwrites its destination. Keep the input intact. Raw binary KRB-CRED is required for kirbi input; a base64 string, truncated `<SNIP>` transcript or terminal screenshot is not that file.

@@ -5,6 +5,8 @@ description: Reverse characters within each complete line of a selected nonsecre
 
 # Reverse the selected text lines
 
+Installed invocation: `/usr/bin/rev`, version `rev from util-linux 2.42.4`.
+
 Read this entire SKILL.md before acting. Require installed util-linux rev, a preserved bounded nonsecret text input and its encoding/line-boundary contract. Follow the transformation below; finish with status and verified output bytes. No conditional resources are required. Reversed text does not establish a credential, decrypted value or correct earlier decoding.
 
 Check `rev --version`. Define `input` as the existing text file and `output` as a fresh distinct path. This example assumes complete newline-terminated ASCII records:

@@ -5,6 +5,8 @@ description: Inspect offline bundles, acquired Git objects, historical files, st
 
 # Git repository evidence
 
+Installed invocation: `/usr/bin/git`, version `git version 2.53.0`.
+
 Read this entire SKILL.md before acting. Choose the requested task and complete its relevant checks; report the observed evidence and remaining limits, not just command success. Use an existing trusted repository or isolated evidence copy.
 
 - Acquiring a selected upstream source: [source checkout](references/source-checkout.md). Read this reference fully before its procedure.
@@ -27,7 +29,7 @@ For an acquired Git config file, define `config_file` as its absolute working-co
 
 ~~~bash
 umask 077
-git config --file "$config_file" --no-includes --show-origin \
+/usr/bin/git config --file "$config_file" --no-includes --show-origin \
     --get-regexp '^remote\..*\.(url|pushurl)$' >"$remote_report"
 ~~~
 
@@ -44,9 +46,9 @@ A hosting platform's webhook and a local Git hook are separate events. A deploym
 For the selected trusted repository, inspect configuration and resolve the hook location without pulling:
 
 ~~~bash
-git -C "$repo" config --show-origin --get core.hooksPath
-git -C "$repo" rev-parse --git-path hooks/post-merge
-git -C "$repo" config --show-origin --get-regexp '^(pull\.rebase|branch\..*\.rebase)$'
+/usr/bin/git -C "$repo" config --show-origin --get core.hooksPath
+/usr/bin/git -C "$repo" rev-parse --git-path hooks/post-merge
+/usr/bin/git -C "$repo" config --show-origin --get-regexp '^(pull\.rebase|branch\..*\.rebase)$'
 ~~~
 
 No matching config value normally returns status 1; distinguish that from a fatal repository error. `core.hooksPath` can replace the default hooks directory. Resolve relative paths in the hook's execution context; for a non-bare repository, Git runs `post-merge` from the worktree root. Inspect the resolved script, executable bit and interpreter as files; finding it does not prove it ran.
@@ -72,8 +74,8 @@ See [hook events](https://git-scm.com/docs/githooks), [pull integration modes](h
 For an intended change to a tracked file, use the trusted `repo` and define `path` as the selected repository-root-relative file path. Define `patch` as a fresh absolute file outside the worktree:
 
 ~~~bash
-git -C "$repo" --no-pager diff --binary --full-index --no-ext-diff --no-textconv -- "$path" >"$patch"
-git -C "$repo" apply --stat "$patch"
+/usr/bin/git -C "$repo" --no-pager diff --binary --full-index --no-ext-diff --no-textconv -- "$path" >"$patch"
+/usr/bin/git -C "$repo" apply --stat "$patch"
 ~~~
 
 Check the first status before reading the patch. This comparison captures unstaged changes against the index; it omits staged-only changes and ordinary untracked files. Select `--cached` for staged changes or an explicit base revision for tracked working-tree changes relative to that revision. Inspect status and the patch's paths/hunks before treating it as the complete intended change. `--binary` includes applicable binary differences; `--full-index` also makes textual patches carry full blob IDs. A human text-conversion view is not necessarily an applicable patch.
@@ -81,7 +83,7 @@ Check the first status before reading the patch. This comparison captures unstag
 Set `base_repo` to a separate unchanged working copy of the intended base, at its root:
 
 ~~~bash
-git -C "$base_repo" apply --check "$patch"
+/usr/bin/git -C "$base_repo" apply --check "$patch"
 ~~~
 
 `--check` validates applicability without applying. Run from the intended repository root: from a subdirectory, Git can ignore patch paths outside that directory and still return zero. An empty or unexpected `--stat` report is a scope problem to resolve before accepting the check. Checking against the already-edited copy can fail because it contains the new content. Zero status does not prove behavior or authorize a CI build; a job can execute patched build scripts. A failed check needs base/path/context investigation, not an automatic `--reject` or `--unsafe-paths` retry.
@@ -91,9 +93,9 @@ A captured diff is not generally a full file. Removing every leading `+` loses u
 When application is also authorized, confirm the base working copy remains unchanged and review all touched paths, modes, links and binary changes. Establish trusted repository configuration and installed vendor patch context; an upstream release alone does not establish vulnerability status. Apply in the owned base copy with ordinary write authority:
 
 ~~~bash
-git -C "$base_repo" apply "$patch"
-git -C "$base_repo" status --short
-git -C "$base_repo" --no-pager diff --no-ext-diff --no-textconv -- "$path"
+/usr/bin/git -C "$base_repo" apply "$patch"
+/usr/bin/git -C "$base_repo" status --short
+/usr/bin/git -C "$base_repo" --no-pager diff --no-ext-diff --no-textconv -- "$path"
 ~~~
 
 Stop on failure rather than blindly adding privilege, unsafe paths or rejection hunks. Compare every actual affected file/type with the complete reviewed patch; the final single-path display above covers only its selected file. Plain apply changes the working tree without creating a commit or updating the index. Preserve unrelated edits and verify intended behavior separately before build, commit or publication.
@@ -105,8 +107,8 @@ See [diff selection](https://git-scm.com/docs/git-diff) and [apply/check semanti
 When a path looks like a plain file on one machine but a link on another, compare the index and selected revision. Use the existing isolated `repo`; define `path` as the selected root-relative file path and `revision` as the observed commit:
 
 ~~~bash
-git -C "$repo" ls-files --stage -- "$path"
-git -C "$repo" ls-tree -r "$revision" -- "$path"
+/usr/bin/git -C "$repo" ls-files --stage -- "$path"
+/usr/bin/git -C "$repo" ls-tree -r "$revision" -- "$path"
 ~~~
 
 The first describes the current index, which can differ from the revision. Stage 0 is the ordinary entry; stages 1-3 indicate an unresolved merge. Interpret the stored mode before reading content:
@@ -120,8 +122,8 @@ The first describes the current index, which can differ from the revision. Stage
 For an observed symlink blob ID, set `oid` to that ID:
 
 ~~~bash
-git -C "$repo" cat-file -p "$oid"
-git -C "$repo" show "$revision:.gitmodules"
+/usr/bin/git -C "$repo" cat-file -p "$oid"
+/usr/bin/git -C "$repo" show "$revision:.gitmodules"
 ~~~
 
 The first reads stored link text, without dereferencing the link. The second reads metadata without initializing/fetching the submodule; an absent `.gitmodules` is an evidence gap, not permission to guess its URL. With `core.symlinks=false`, checkout can produce a plain file while the index still records `120000`. Check effective configuration and actual filesystem behavior before concluding the type changed. Use `-z` listings when programmatically handling unusual filenames.

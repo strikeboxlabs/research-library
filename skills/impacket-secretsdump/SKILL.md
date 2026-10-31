@@ -5,6 +5,8 @@ description: Parse existing Windows SAM/SYSTEM, SECURITY or NTDS snapshots, perf
 
 # Impacket secretsdump
 
+Installed invocation: `/usr/bin/impacket-secretsdump`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Select offline inputs, a scoped replication query or the remote acquisition branch; retain store/account mapping, extraction status and actual artifacts. Read [offline NTDS](references/offline-ntds.md) for that snapshot task or [remote SAM acquisition](references/remote-sam.md) before live acquisition. Missing rights, partial output or unavailable inputs remain unresolved.
 
 Installed executable: `/usr/bin/impacket-secretsdump`. This image uses the `impacket-` command prefix rather than a `secretsdump.py` executable name. Presence of this entrypoint does not establish that every Impacket tool or dependency is available.

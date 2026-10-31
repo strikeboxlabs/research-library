@@ -5,10 +5,12 @@ description: Check polkit authorization for a selected owned process and known a
 
 # Check one authorization decision
 
+Installed invocation: `/usr/bin/pkcheck`.
+
 Read this entire SKILL.md before acting. Require the known `action` and an independently verified `subject` formatted as `pid,pid-start-time,uid` for the owned process. All instructions are inline. Finish with status, diagnostics and context; this check does not execute the action.
 
 ~~~bash
-pkcheck --action-id "$action" --process "$subject"
+/usr/bin/pkcheck --action-id "$action" --process "$subject"
 status=$?
 ~~~
 

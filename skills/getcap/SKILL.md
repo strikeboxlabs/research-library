@@ -5,12 +5,14 @@ description: Inspect Linux file capabilities and distinguish stored privilege me
 
 # Verify the exact file
 
+Installed invocation: `/usr/sbin/getcap`.
+
 Read this entire SKILL.md before acting. Identify the exact file and relevant execution context, inspect its metadata without launching it, and report the capability text with any observed process state or missing condition. The file inspection is required; process inspection below is conditional on an already running, readable process.
 
 Check `getcap -h` for the installed libcap options. Define `binary` as the absolute regular-file path actually used by the relevant invocation, resolving symlinks deliberately. Inspect it without launching the suspect executable:
 
 ~~~bash
-getcap -n -v "$binary"
+/usr/sbin/getcap -n -v "$binary"
 stat -c '%A %a %u:%g %n' -- "$binary"
 findmnt --target "$binary" --output TARGET,OPTIONS
 ~~~

@@ -5,6 +5,8 @@ description: Query SMB server time with Samba net, perform a selected clock corr
 
 # Compare time with the selected server
 
+Installed invocation: `/usr/bin/net`, version `Version 4.25.1-Debian-4.25.1+dfsg-1`.
+
 Read this entire SKILL.md before acting. For time queries require installed Samba net, the selected server and reachable SMB service; clock setting additionally needs local authority and an approved time source. For account metadata through an established Windows session, read [Windows account queries](references/windows-accounts.md) fully first; Windows net.exe is a separate implementation. Finish with query/status evidence and its context, or measured time after the approved change. Missing access and failed queries remain unresolved.
 
 Define `net_bin` as the actual installed Samba executable and `server` as the selected server hostname. Windows net.exe is a different implementation. Inspect the installed command before applying Samba options:

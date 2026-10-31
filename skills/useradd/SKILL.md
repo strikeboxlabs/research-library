@@ -5,12 +5,14 @@ description: Provision one approved local account with shadow-utils useradd and 
 
 # Provision the selected account
 
+Installed invocation: `/usr/sbin/useradd`.
+
 Read this entire SKILL.md before acting. Require an approved new local account, administrative authority and selected account/home/group policy. Confirm shadow-utils useradd, defaults, skeleton and configured hooks before mutation. Finish with actual account/home/group state and any incomplete step.
 
 Define `account`, `home_dir`, `primary_group` and `login_shell` as approved values; the group must already exist and the shell must be the selected installed executable. Check NSS/local collisions and parent-directory permissions first. Inspect `useradd -D` without additional options to read defaults; adding options can change those defaults.
 
 ~~~bash
-useradd --help
+/usr/sbin/useradd --help
 getent passwd "$account"
 getent group "$primary_group"
 sudo -- useradd -m -d "$home_dir" -g "$primary_group" -s "$login_shell" "$account"

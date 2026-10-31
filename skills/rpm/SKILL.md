@@ -5,13 +5,15 @@ description: Query the installed RPM database for a selected Linux package and r
 
 # Identify the installed package build
 
+Installed invocation: `/usr/bin/rpm`, version `RPM version 6.1.0`.
+
 Read this entire SKILL.md before acting. Confirm that the selected machine uses an RPM database and select the actual package name, independently of a walkthrough's prose. No conditional resources are required. Finish with the query status, complete package identity and applicable distribution advisory; unavailable metadata leaves patch status unresolved.
 
 Check `rpm --version` and installed help. Define `package` as the exact known installed package name, then query that database:
 
 ~~~bash
-rpm -q -- "$package"
-rpm -q --queryformat '%{NAME} %{EPOCH}:%{VERSION}-%{RELEASE}.%{ARCH}\n' -- "$package"
+/usr/bin/rpm -q -- "$package"
+/usr/bin/rpm -q --queryformat '%{NAME} %{EPOCH}:%{VERSION}-%{RELEASE}.%{ARCH}\n' -- "$package"
 ~~~
 
 Preserve each command's status and diagnostics. Multiple returned builds/architectures are separate installed records. An absent epoch can print `(none)`; retain it rather than silently changing the version. A failed query can mean a missing package or an inaccessible/wrong database, not proof that the host is unaffected. A container's database describes that container, not the host installation.

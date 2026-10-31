@@ -5,12 +5,14 @@ description: Run a selected trusted diagnostic with a deliberate environment usi
 
 # Control the diagnostic's environment
 
+Installed invocation: `/usr/bin/env`, version `env (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Select the trusted executable and intended environment change; retain its actual output/status and configuration differences. No conditional resources are required. A clean environment does not establish isolation, new privileges or a working terminal.
 
 Confirm `env --version` and local help. Define `program` as the verified absolute path of a trusted diagnostic executable and `argument` as its selected ordinary input argument. For the intended clean-environment comparison:
 
 ~~~bash
-env -i LC_ALL=C "$program" "$argument"
+/usr/bin/env -i LC_ALL=C "$program" "$argument"
 status=$?
 ~~~
 

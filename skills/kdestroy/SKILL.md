@@ -5,13 +5,15 @@ description: Destroy one selected MIT Kerberos credential cache after an owned t
 
 # Remove the selected task cache
 
+Installed invocation: `/usr/bin/kdestroy`.
+
 Read this entire SKILL.md before acting. Require the installed MIT implementation and exact owned cache selected for cleanup. No conditional resources are required. Finish with destruction status and a subsequent inspection of that same cache; changing a shell variable is separate from removing credentials.
 
 Check local help and identify the cache type. For one task-owned FILE cache, define `cache_path` as its absolute path. Inspect its principal/service metadata before selecting it for deletion:
 
 ~~~bash
 klist -c "FILE:$cache_path"
-kdestroy -c "FILE:$cache_path"
+/usr/bin/kdestroy -c "FILE:$cache_path"
 destroy_status=$?
 klist -c "FILE:$cache_path"
 inspection_status=$?

@@ -5,6 +5,8 @@ description: Compare a small approved hostname list with DNS records in an owned
 
 # Resolve selected fixture names
 
+Installed invocation: `/usr/bin/dnsenum`, version `dnsenum VERSION:1.3.1`.
+
 Read this entire SKILL.md before acting. Require the installed implementation/dependencies, owned fixture zone and all its DNS endpoints, a small reviewed label list and permission for the tool's automatic zone-transfer attempts. Follow the bounded procedure below; finish with records, diagnostics, completion and limits. Missing prerequisites leave the task unresolved.
 
 Review installed help against the [project overview](https://github.com/fwaeytens/dnsenum) and [actual option/operation implementation](https://github.com/fwaeytens/dnsenum/blob/master/dnsenum.pl). Run from a private disposable working directory: the tool writes a domain-named IP-list file. Its dependencies must already exist; this skill does not install them.
@@ -12,7 +14,7 @@ Review installed help against the [project overview](https://github.com/fwaeyten
 Set `zone` to the controlled fixture domain, `dns_server` to its resolver and `labels` to the existing absolute file containing only the approved hostname labels. Confirm fixture NS/MX names and endpoints beforehand. The initial server selection does not confine every operation: dnsenum also attempts AXFR against the zone's nameservers.
 
 ~~~bash
-dnsenum --dnsserver "$dns_server" --noreverse --threads 1 --nocolor --verbose -f "$labels" "$zone"
+/usr/bin/dnsenum --dnsserver "$dns_server" --noreverse --threads 1 --nocolor --verbose -f "$labels" "$zone"
 status=$?
 ~~~
 

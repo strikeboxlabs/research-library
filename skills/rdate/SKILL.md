@@ -5,6 +5,8 @@ description: Compare a selected time server with the local clock using print-onl
 
 # Measure a time mismatch before changing clocks
 
+Installed invocation: `/usr/sbin/rdate`.
+
 Confirm the installed implementation with `man rdate`. The following uses Linux OpenRdate's `-n` SNTP and `-p` print-only options. Other programs share this executable name; do not assume identical flags. Define `time_server` as the approved server whose clock matters to the failing service:
 
 ~~~bash

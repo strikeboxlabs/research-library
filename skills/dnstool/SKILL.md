@@ -6,6 +6,8 @@ description: Query, add and remove a selected AD-integrated DNS A record with kr
 
 # Work on one AD DNS record
 
+Installed invocation: `/usr/bin/dnstool`.
+
 Read this entire SKILL.md before acting. Require the selected zone/record, known identity, DC and intended change/restore state. Finish with LDAP result and DNS read-back; a successful bind or group name alone is insufficient.
 
 This is `dnstool.py` from dirkjanm's krbrelayx, not an unrelated DNS utility. Define `script` as its reviewed local path and inspect `python3 "$script" -h`. The script uses LDAP to manage AD DNS nodes; `--tcp` selects TCP for its DNS queries, not a different LDAP security policy.

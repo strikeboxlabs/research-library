@@ -6,7 +6,7 @@ Define `registry` as the approved URL, `term` as one narrow search term and `rep
 
 ~~~bash
 umask 077
-npm search --json --searchlimit=10 --registry="$registry" -- "$term" > "$report"
+/usr/bin/npm search --json --searchlimit=10 --registry="$registry" -- "$term" > "$report"
 status=$?
 ~~~
 
@@ -22,9 +22,9 @@ For a permitted existing account on a registry supporting legacy authentication,
 
 ~~~bash
 umask 077
-npm login --registry="$registry" --userconfig="$auth_config" --auth-type=legacy
+/usr/bin/npm login --registry="$registry" --userconfig="$auth_config" --auth-type=legacy
 status=$?
-npm whoami --registry="$registry" --userconfig="$auth_config"
+/usr/bin/npm whoami --registry="$registry" --userconfig="$auth_config"
 ~~~
 
 Inspect the login result before the identity query. `login` authenticates an existing account; `adduser` can create one and is a separate requested change. Saved registry credentials are sensitive and may enable publishing; an identity response alone does not prove package read/write permission. Retain only the account/registry outcome, secure or remove the temporary credentials under the task's lifecycle policy, and never copy tokens between unrelated hosts. See [login](https://docs.npmjs.com/cli/v11/commands/npm-login/).

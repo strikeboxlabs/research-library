@@ -5,7 +5,7 @@ Use this branch only for an explicitly authorized process/stream task with a tru
 Define `peer_ip` as the owned numeric listener address, `port` as its selected TCP port and `program` as the reviewed absolute executable. Traditional netcat can connect that program's standard streams after connecting:
 
 ~~~bash
-nc -n -v "$peer_ip" "$port" -e "$program"
+/usr/bin/nc -n -v "$peer_ip" "$port" -e "$program"
 ~~~
 
 This executes the program with the caller's available identity; it does not grant a new identity or authenticate the TCP peer. An interactive interpreter would expose the caller's command authority on this stream, so select that only when it is the authorized task and preserve the process/session's lifetime. A trusted marker program is useful when only invocation/transport needs confirmation. Do not place credentials on an unprotected TCP stream or assume the stream has SSH-like peer verification.

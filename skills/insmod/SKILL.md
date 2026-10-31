@@ -5,13 +5,15 @@ description: Insert an explicitly approved, compatible local kernel module with 
 
 # Insert a selected approved module
 
+Installed invocation: `/usr/sbin/insmod`, version `kmod version 34.2`.
+
 Read this entire SKILL.md before acting. Require the trusted module artifact, a compatible running kernel, its prerequisites and explicit authorization to change that kernel's loaded state. No conditional resources are required. Finish with insertion status and current module/initialization evidence; acquiring or compiling a .ko is not loading it.
 
 Define `module_file` as the exact absolute approved artifact in the intended host/guest. Preserve its identity and the observed kernel release. In an already authorized administrative session:
 
 ~~~bash
-insmod --version
-insmod "$module_file"
+/usr/sbin/insmod --version
+/usr/sbin/insmod "$module_file"
 status=$?
 ~~~
 

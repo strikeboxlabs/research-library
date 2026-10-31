@@ -5,6 +5,8 @@ description: Inspect network and handshake metadata in an existing authorized WP
 
 # Review saved wireless capture inventory
 
+Installed invocation: `/usr/bin/aircrack-ng`.
+
 Read this entire SKILL.md before acting. Require a selected authorized local capture and trusted installed binary; this task inventories saved WPA/WPA2 evidence without a dictionary or radio action. Finish with capture identity, read count, observed network/handshake labels and diagnostic limits. No conditional resources are required.
 
 Define `aircrack_bin` as the installed executable and `capture` as an existing absolute capture path. Inspect help/build identification before choosing the mode:

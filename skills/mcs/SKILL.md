@@ -5,14 +5,16 @@ description: Compile trusted local C# sources into a selected Mono managed assem
 
 # Compile a selected managed assembly
 
+Installed invocation: `/usr/bin/mcs`, version `Mono C# compiler version 6.14.1.0`.
+
 Read this entire SKILL.md before acting. Require installed Mono mcs, reviewed local `.cs` sources, any referenced assemblies and a fresh owned output path. Select the intended assembly kind and complete with compiler status/diagnostics and the resulting artifact, or the exact missing dependency. Running the result is a separate task requiring the matching runtime and platform APIs.
 
 For a small trusted console utility, supply all source files explicitly; use real paths for `source_file` and `output_file`:
 
 ~~~bash
-mcs --version
+/usr/bin/mcs --version
 test ! -e "$output_file" && test ! -L "$output_file"
-mcs -target:exe "-out:$output_file" "$source_file"
+/usr/bin/mcs -target:exe "-out:$output_file" "$source_file"
 ~~~
 
 Only compile after the destination check succeeds. The compiler writes the selected file and can replace an existing output. A managed `.exe` contains CIL; the suffix does not make it a native Linux binary or prove Windows API availability. Include all files that form the assembly, rather than expecting project discovery or incremental linking.

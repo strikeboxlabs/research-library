@@ -5,6 +5,8 @@ description: Route compatible Linux TCP clients through an explicit ProxyChains-
 
 # ProxyChains-NG routing checks
 
+Installed invocation: `/usr/bin/proxychains`.
+
 Read this entire SKILL.md before acting. Identify the selected client, proxy route and actual TCP/DNS behavior, then retain application evidence from that route. An unsupported transport or unresolved destination remains incomplete; the preload banner is not success.
 
 Identify the installed implementation and executable, commonly `proxychains4`. ProxyChains-NG hooks libc networking in dynamically linked programs using a preload library. It supports TCP; it is not a system-wide VPN and does not carry raw SYN scans, ICMP or UDP. Static binaries, privileged execution and some runtimes/subprocesses can bypass or break interception.

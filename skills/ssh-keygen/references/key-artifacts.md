@@ -8,7 +8,7 @@ Choose the key type from actual client/server policy and supported algorithms. F
 
 ~~~bash
 umask 077
-ssh-keygen -t rsa -b 3072 -f "$new_key" -C 'selected-task-key'
+/usr/bin/ssh-keygen -t rsa -b 3072 -f "$new_key" -C 'selected-task-key'
 ~~~
 
 Choose the passphrase deliberately at the prompt. Do not accept an overwrite prompt or the default home key path just to follow a screenshot. `-f` chooses the private-key path; the public counterpart is normally written to `$new_key.pub`. RSA bit size is a choice, not proof of server compatibility; Ed25519 may be the appropriate alternative where supported. Do not assume the installed default type from a historical invocation without `-t`.

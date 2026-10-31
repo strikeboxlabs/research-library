@@ -5,12 +5,14 @@ description: Read a selected acquired plaintext file with GNU cat and preserve u
 
 # Read the selected text without dropping context
 
+Installed invocation: `/usr/bin/cat`, version `cat (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the intended ordinary plaintext file and a display/capture suitable for its size and sensitivity. No conditional resources are required. Finish with complete output or the explicit read/capture gap; reading configuration does not establish that a service loaded it.
 
 Confirm `cat --version` for GNU coreutils. Define `input` as the selected existing regular text file:
 
 ~~~bash
-cat -- "$input"
+/usr/bin/cat -- "$input"
 status=$?
 ~~~
 

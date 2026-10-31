@@ -5,6 +5,8 @@ description: Inspect selected TCP packet payloads in an acquired capture with Sc
 
 # Preserve packet boundaries during offline inspection
 
+Installed invocation: `/usr/bin/scapy`.
+
 Read this entire SKILL.md before acting. Require a trusted Python environment with Scapy already installed, the saved capture and selected endpoint/port. No conditional resources are required. Finish with packet records, status and capture/reassembly limits; no match is not proof of no traffic.
 
 Define `python_bin`, `pcap`, numeric `peer` and positive TCP `port`; define `records` as a fresh private output. This reads offline and emits matching IPv4/IPv6 packet payloads without sending packets:

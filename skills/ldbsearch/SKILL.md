@@ -5,6 +5,8 @@ description: Inspect records in an offline SSSD LDB cache while preserving ident
 
 # Inspect an SSSD cache as records
 
+Installed invocation: `/usr/bin/ldbsearch`.
+
 Read this entire SKILL.md before acting. Require a consistent acquired cache and compatible parser, preserve selected record/attribute identity, and finish with query status plus supported mapping. A cache hit or recovered offline verifier does not establish a current login.
 
 Use an already acquired, consistent copy of the selected domain cache, typically `cache_<domain>.ldb` under `/var/lib/sss/db`. Confirm the actual path and SSSD version from acquisition evidence. A live-file copy made during writes may be inconsistent. Keep the original untouched; operate on a disposable working copy with compatible LDB libraries/modules. Do not clear or rebuild the service cache to make an evidence query work.
@@ -21,7 +23,7 @@ Require a successful command before interpreting the saved LDIF. Preserve comple
 For a selected record, define `user_dn` as its exact DN and `record` as a fresh private output:
 
 ~~~bash
-ldbsearch -H "$cache" -b "$user_dn" -s base '(name=*)' name uidNumber originalDN lastUpdate lastOnlineAuth >"$record"
+/usr/bin/ldbsearch -H "$cache" -b "$user_dn" -s base '(name=*)' name uidNumber originalDN lastUpdate lastOnlineAuth >"$record"
 ~~~
 
 `base` selects that record, while `sub` searches descendants as well. Missing attributes and zero matching records are different outcomes. On zero/error, check the chosen domain cache, base DN, filter, read permissions and LDB/module compatibility before declaring an identity absent. Stale data and an incomplete acquisition remain possible even with successful parsing.

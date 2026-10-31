@@ -5,12 +5,14 @@ description: Create one selected owned Linux working directory with GNU mkdir. U
 
 # Establish the selected working directory
 
+Installed invocation: `/usr/bin/mkdir`, version `mkdir (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the intended path beneath an existing owned parent and decide whether a fresh or pre-existing directory is acceptable. No conditional resources are required. Finish with creation status and actual directory metadata; successful creation does not validate its later contents.
 
 Confirm `mkdir --version` for GNU coreutils. Define `directory` as the intended new absolute child path under that verified parent:
 
 ~~~bash
-mkdir -m 700 -- "$directory"
+/usr/bin/mkdir -m 700 -- "$directory"
 status=$?
 ~~~
 

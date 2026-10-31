@@ -5,12 +5,14 @@ description: Use GNU sleep for a bounded delay between selected local checks. Us
 
 # Delay without asserting readiness
 
+Installed invocation: `/usr/bin/sleep`, version `sleep (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require a selected finite delay and the check that follows it. Confirm GNU sleep with `sleep --version`; no conditional resources are required. Finish with delay status and the actual subsequent condition, reporting an interrupted wait separately.
 
 For a short local delay:
 
 ~~~bash
-sleep 0.2
+/usr/bin/sleep 0.2
 status=$?
 ~~~
 

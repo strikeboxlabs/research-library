@@ -16,7 +16,7 @@ For an already authorized owned ticket view, define `ticket_url` as the observed
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --cookie "$ticket_jar" --cookie-jar "$ticket_jar" \
   --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$ticket_url"
 status=$?

@@ -5,6 +5,8 @@ description: Retrieve a selected HTTP/HTTPS artifact or approved FTP subtree wit
 
 # Preserve the intended artifact and inspect the response
 
+Installed invocation: `/usr/bin/wget`, version `GNU Wget 1.25.0 built on linux-gnu.`.
+
 Read this entire SKILL.md before acting. Define the requested URL and a new output path before downloading. Finish with the transfer result, file identity and any remaining integrity uncertainty; a filename extension alone is not evidence of content type.
 
 For a page captured as an owned template or relocated assets/forms, read [page capture boundaries](references/page-capture.md) fully first.
@@ -14,7 +16,7 @@ For an approved FTP directory mirror, read [FTP subtree retrieval](references/ft
 Confirm GNU Wget with `wget --version`; BusyBox and other implementations have different option sets. A Windows PowerShell `wget` can instead be an alias for Invoke-WebRequest; its `-OutFile` download argument does not establish GNU option semantics. GNU Wget's lowercase `-o` names a log file, whereas uppercase `-O`/`--output-document` names the downloaded content. Use the selected client's contract before interpreting a saved filename. Define `url`, `download_file` and a private `response_log`:
 
 ~~~bash
-wget --server-response --timeout=20 --tries=2 \
+/usr/bin/wget --server-response --timeout=20 --tries=2 \
   --output-document="$download_file" "$url" 2> "$response_log"
 ~~~
 

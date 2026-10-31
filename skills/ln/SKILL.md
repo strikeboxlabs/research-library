@@ -5,12 +5,14 @@ description: Create one selected symbolic link in an owned Linux working tree wi
 
 # Create the selected link without replacing an entry
 
+Installed invocation: `/usr/bin/ln`, version `ln (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the intended target, fresh link pathname beneath a verified owned parent and permission to create that entry. All task instructions are inline. Finish with command status, the actual symlink and its stored target; creation does not prove the referent exists or is readable.
 
 Confirm ln --version for GNU coreutils. Define target as the intended existing owned absolute file/directory and link_path as a new absolute entry, with no trailing slash:
 
 ~~~bash
-ln -s -T -- "$target" "$link_path"
+/usr/bin/ln -s -T -- "$target" "$link_path"
 status=$?
 ~~~
 

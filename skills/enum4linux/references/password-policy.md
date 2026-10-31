@@ -3,7 +3,7 @@
 Use the same classic implementation, selected `server` and intentionally permitted empty-session context as SKILL.md. Inspect installed help and confirm **polenum** is available in addition to the Samba helpers. For this metadata task:
 
 ~~~bash
-enum4linux -P "$server"
+/usr/bin/enum4linux -P "$server"
 status=$?
 ~~~
 

@@ -5,13 +5,15 @@ description: Compile a reviewed LaTeX document to PDF and diagnose engine, packa
 
 # Compile and inspect the selected document
 
+Installed invocation: `/usr/bin/pdflatex`, version `pdfTeX 3.141592653-2.6-1.40.29 (TeX Live 2026/Debian)`.
+
 Read this entire SKILL.md before acting. Require trusted TeX input, its reviewed resources and an installed LaTeX format. Complete with exit status, the engine log and an inspected fresh PDF; a partial file is not completion.
 
 Use an ordinary account in the intended build environment. Set `source_dir` to the reviewed project directory, `input_tex` to its absolute main file, `output_dir` to an existing fresh private build directory and `console_log` to a fresh absolute log path.
 
 ~~~bash
-pdflatex --version
-pdflatex --help
+/usr/bin/pdflatex --version
+/usr/bin/pdflatex --help
 (cd "$source_dir" && pdflatex -no-shell-escape -interaction=nonstopmode \
   -halt-on-error -file-line-error -output-directory="$output_dir" "$input_tex") \
   >"$console_log" 2>&1

@@ -5,6 +5,8 @@ description: Inspect Python source and metadata, diagnose owned scripts, reprodu
 
 # Python operational inspection
 
+Installed invocation: `/usr/bin/python3`, version `Python 3.14.8`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Use the source locator below for static inspection. Read the applicable reference fully before its procedure; load only the branch needed for the task. Finish with the observed source/data/query result and its limits; parsing, decoding or connection success alone is not proof of safe execution or complete coverage.
 
 - Untrusted input, validation order or a misleading rejection: [evaluation flow](references/evaluation-flow.md).

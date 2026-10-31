@@ -5,6 +5,8 @@ description: Query, start or restart one selected Linux service through the serv
 
 # Operate one selected service
 
+Installed invocation: `/usr/sbin/service`, version `service ver. 1.69+nmu3+kali1`.
+
 Read this entire SKILL.md before acting. Select the wrapper procedure below or, when the selected administration interface is an explicit SysV script, read [direct init-script actions](references/direct-init-script.md) fully first. Require the intended host, trusted selected interface and exact service/backend. Status invokes service code; start/restart additionally require the selected service's supported action, valid reviewed configuration, appropriate privileges and authorization for that change, including restart's interruption. Finish with before/after state, action result and the requested application-health check or its unresolved gap.
 
 Define `service_bin` as the selected wrapper and `service_name` as the exact init-script/unit name. Inspect the wrapper's version/help and that service's supported actions before using it:

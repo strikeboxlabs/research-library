@@ -5,6 +5,8 @@ description: Identify candidate hash formats offline and obtain Hashcat or John 
 
 # Identify a candidate format
 
+Installed invocation: `/usr/bin/hashid`, version `hashID v3.1.4 by c0re (https://github.com/psypanda/hashID)`.
+
 Read this entire SKILL.md before acting. Preserve the original record, identify candidate formats and corroborate their meaning with the producer/receiving parser. Finish with candidate evidence and unresolved ambiguity; a label is not verification of the algorithm or password.
 
 Check `hashid --version` and `hashid -h`. HashID compares strings with patterns; it does not verify a digest against a password or prove which application produced it. Preserve the complete original record, including prefix, salt, cost and separators. Separate database labels or framework wrappers only when their meaning is known.
@@ -13,7 +15,7 @@ Define `hashes` as an existing text file containing one complete record per line
 
 ~~~bash
 umask 077
-hashid -m -j <"$hashes" >"$report"
+/usr/bin/hashid -m -j <"$hashes" >"$report"
 ~~~
 
 `-m` adds Hashcat mode hints and `-j` adds John format names. Reading through stdin makes a missing file a shell error; a nonexistent positional filename can otherwise be treated as a literal hash. The report echoes input values, so it can contain sensitive authentication material.

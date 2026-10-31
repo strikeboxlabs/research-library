@@ -5,6 +5,8 @@ description: Inspect a scoped WordPress site with WPScan and interpret plugin/ve
 
 # WordPress inventory evidence
 
+Installed invocation: `/usr/bin/wpscan`, version `Version 4.1.0`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select the actual site, enumeration set and detection modes, confirm the output and access prerequisites, then preserve finding evidence and scan/API completion. No conditional resources are required. Finish with the returned inventory and confidence/coverage limits; absent annotations or a version label are not a clean security verdict.
 
 Check `wpscan --version` and `wpscan --hh`. Use the actual WordPress base URL, including any installation subdirectory and required hostname. Inspect loaded configuration for credentials, cookies and enumeration overrides before reusing a previous command.
@@ -12,7 +14,7 @@ Check `wpscan --version` and `wpscan --hh`. Use the actual WordPress base URL, i
 Define `site_url` as the authorized site and `report` as a fresh JSON output. This example selects popular-plugin enumeration with passive detection and paced requests:
 
 ~~~bash
-wpscan --url "$site_url" --enumerate p --detection-mode passive --plugins-detection passive --plugins-version-detection passive --throttle 500 --request-timeout 15 --connect-timeout 5 --format json --output "$report"
+/usr/bin/wpscan --url "$site_url" --enumerate p --detection-mode passive --plugins-detection passive --plugins-version-detection passive --throttle 500 --request-timeout 15 --connect-timeout 5 --format json --output "$report"
 ~~~
 
 Passive mode still makes HTTP requests; it is not an offline analysis. The throttle is milliseconds and forces one worker in the reviewed CLI. Request/connect timeouts limit individual operations, not total scan duration. Stop at the task's overall budget and report incomplete coverage. Check redirects before continuing to another site.

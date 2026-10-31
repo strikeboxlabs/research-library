@@ -5,13 +5,15 @@ description: Observe an owned access point and save a bounded passive wireless d
 
 # Observe an owned wireless access point
 
+Installed invocation: `/usr/sbin/airodump-ng`.
+
 Read this entire SKILL.md before acting. Require an owned monitor interface, known approved BSSID/channel and private output directory. No conditional resources are required. Finish with the observation interval, actual files and capture limitations.
 
 Define `monitor`, `bssid`, `channel` and a fresh absolute `prefix` inside that directory. Confirm local options, then capture without inducing client activity:
 
 ~~~bash
-airodump-ng --help
-airodump-ng --bssid "$bssid" --channel "$channel" --write "$prefix" --output-format pcap,csv "$monitor"
+/usr/sbin/airodump-ng --help
+/usr/sbin/airodump-ng --bssid "$bssid" --channel "$channel" --write "$prefix" --output-format pcap,csv "$monitor"
 ~~~
 
 End with Ctrl-C at the agreed time. Record the actual generated filenames; numbered suffixes change across runs. Keep captures private.

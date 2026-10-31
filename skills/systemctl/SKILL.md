@@ -5,6 +5,8 @@ description: Inspect selected systemd services and timer activations or manage a
 
 # Explain the unit state before changing it
 
+Installed invocation: `/usr/bin/systemctl`.
+
 Read this entire SKILL.md before acting. Read [timer activation](references/timer-activation.md) fully for a scheduled task and [service changes](references/service-changes.md) fully before a start, stop, reload, restart or unit-file change. Establish the exact manager/unit and required observation first. Finish with relevant state and application result; command completion alone is not service health.
 
 Use the system manager by default. For a user service, add `--user` consistently to every systemctl command and use that user's session context; a missing user bus is not evidence that the system service is absent. A container/chroot without a running systemd manager needs a different control path.
@@ -14,10 +16,10 @@ For a historical version or vulnerability claim, retain `systemctl --version` in
 Set `unit` to the exact unit name, including `.service` or the intended instance:
 
 ~~~bash
-systemctl --no-pager --full status "$unit"
-systemctl show "$unit" -p LoadState -p ActiveState -p SubState -p Result \
+/usr/bin/systemctl --no-pager --full status "$unit"
+/usr/bin/systemctl show "$unit" -p LoadState -p ActiveState -p SubState -p Result \
   -p MainPID -p ExecMainCode -p ExecMainStatus -p FragmentPath -p DropInPaths
-systemctl --no-pager cat "$unit"
+/usr/bin/systemctl --no-pager cat "$unit"
 journalctl -b -u "$unit" -n 100 --no-pager
 ~~~
 

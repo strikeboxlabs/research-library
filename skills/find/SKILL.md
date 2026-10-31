@@ -5,12 +5,14 @@ description: Locate files and interpret GNU find predicates without confusing in
 
 # Separate selection from actions
 
+Installed invocation: `/usr/bin/find`, version `find (GNU findutils) 4.11.0`.
+
 Read this entire SKILL.md before acting. Choose the search, emptiness or timestamp check, establish its root and coverage, then retain matches, status and diagnostics; a failed or bounded traversal cannot establish global absence.
 
 Confirm GNU find with `find --version`. Define `search_root` as an existing absolute directory relevant to the task, `name_pattern` as the filename/glob to match, and `matches`/`errors` as fresh files:
 
 ~~~bash
-find -P "$search_root" -xdev -type f -name "$name_pattern" -print0 > "$matches" 2> "$errors"
+/usr/bin/find -P "$search_root" -xdev -type f -name "$name_pattern" -print0 > "$matches" 2> "$errors"
 ~~~
 
 Check exit status and diagnostics before claiming absence. `-xdev` skips other filesystems and `-P` does not follow symlinks; both bound coverage. A `-type f` search can omit a symlink with the desired name. Inspect relevant link targets or mount boundaries deliberately instead of silently broadening to `/`. Suppressing all stderr conceals permission and traversal failures. Consume `-print0` output with a NUL-aware reader, not line splitting.
@@ -22,7 +24,7 @@ For a selected owner search, use `-user "$owner"` with an established account na
 For a selected group-owned-file search, define `group_name` from the target's actual group mapping and keep the same scoped root/diagnostics:
 
 ~~~bash
-find -P "$search_root" -xdev -type f -group "$group_name" -print0 > "$matches" 2> "$errors"
+/usr/bin/find -P "$search_root" -xdev -type f -group "$group_name" -print0 > "$matches" 2> "$errors"
 ~~~
 
 `-group` selects ownership, not membership or current access. Add `-perm -020` to select group-owned regular files whose group-write bit is set; the leading minus requires that bit while allowing other mode bits. A match does not establish effective write access: inspect the current identity, parent traversal, ACLs and filesystem policy before drawing that conclusion. Add `-perm -4000` only when set-user-ID files are the intended subset; inspect actual owner/mode, mount policy and execution context before claiming a privilege effect. A permission-denied path or a suppressed diagnostic leaves coverage incomplete. GNU find's `-ls` is a human listing, not the NUL-delimited evidence above.
@@ -32,7 +34,7 @@ For a group-owned Unix socket inventory, replace `-type f` with `-type s` in the
 To test whether **one directory itself** is empty, define `directory` and use:
 
 ~~~bash
-find -P "$directory" -maxdepth 0 -type d -empty -print
+/usr/bin/find -P "$directory" -maxdepth 0 -type d -empty -print
 ~~~
 
 Without `-maxdepth 0`, find also visits descendants. Without `-type d`, `-empty` can match empty regular files. No output can mean a nonempty directory, a different file type or a failed/incomplete check; retain diagnostics. A successful find exit means the traversal succeeded, not that a match was found. Testing emptiness and subsequently acting is not an atomic lock.

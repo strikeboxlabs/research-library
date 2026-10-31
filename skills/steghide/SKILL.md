@@ -5,13 +5,15 @@ description: Inspect a local JPEG, BMP, WAV or AU artifact and recover Steghide 
 
 # Recover known-passphrase embedded data
 
+Installed invocation: `/usr/bin/steghide`, version `steghide version 0.6.0`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the installed Steghide, an acquired local artifact and its known passphrase. Inspect the format, then extract to a fresh private output below. Finish with status, recovered bytes and format/integrity gaps; do not execute the recovered content.
 
 Define `artifact` as an absolute preserved-input path:
 
 ~~~bash
-steghide version
-steghide info "$artifact"
+/usr/bin/steghide version
+/usr/bin/steghide info "$artifact"
 ~~~
 
 The supported cover formats are JPEG, BMP, WAV and AU, identified from their headers rather than extensions. Info asks whether to inspect embedded data, then prompts for its passphrase. A capacity value alone does not establish a message exists.
@@ -20,7 +22,7 @@ Define `output` as a fresh absolute file under a private working directory. Ente
 
 ~~~bash
 umask 077
-steghide extract -sf "$artifact" -xf "$output"
+/usr/bin/steghide extract -sf "$artifact" -xf "$output"
 status=$?
 ~~~
 

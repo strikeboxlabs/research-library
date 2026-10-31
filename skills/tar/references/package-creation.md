@@ -5,7 +5,7 @@ Select plain tar or gzip-compressed tar from the actual consumer contract; the e
 ~~~bash
 test ! -e "$archive" && test ! -L "$archive" &&
   tar --create --verbose --file="$archive" --directory="$package_root" -- "$member1" "$member2" "$member3"
-tar --list --verbose --file="$archive"
+/usr/bin/tar --list --verbose --file="$archive"
 ~~~
 
 This produces uncompressed tar with those names at root, without an extra package directory. Verify each selected name/type and both final statuses against the requested manifest. If a gzip wrapper is required, add --gzip for creation/listing; neither layout nor a successful list verifies signatures, firmware authenticity or permission to deploy the bundle.
@@ -15,7 +15,7 @@ Require the selected trusted source tree, actual consumer format/layout and a fr
 ~~~bash
 test ! -e "$archive" && test ! -L "$archive" &&
   tar --create --gzip --verbose --file="$archive" --directory="$package_parent" -- "$package_name"
-tar --list --verbose --gzip --file="$archive"
+/usr/bin/tar --list --verbose --gzip --file="$archive"
 ~~~
 
 Check creation and final listing status separately. `--create` can overwrite an existing archive; the fresh-path condition is part of this procedure, not concurrency protection against another writer. `--gzip` produces gzip-compressed tar bytes. Changing a .zip extension to .gz does not convert its format. Put output outside the source tree rather than relying on tar's self-archive exclusion.

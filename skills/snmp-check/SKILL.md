@@ -5,13 +5,15 @@ description: Collect read-only SNMP metadata from one owned device using its pro
 
 # Read an owned device's SNMP metadata
 
+Installed invocation: `/usr/bin/snmp-check`.
+
 Read this entire SKILL.md before acting. Require one known owned device, permission for the enumerated metadata, its established read-only community and the intended management route. Complete with version, response fields, diagnostics and coverage limits. Missing access or a timeout leaves the report unresolved.
 
 Check `snmp-check -h` and `-i`; historical `snmpcheck` variants have different target/timeout syntax. For the v1.9 interface, define `device_ip`, `snmp_port`, `community` and `report` as verified inputs and a fresh private output:
 
 ~~~bash
 umask 077
-snmp-check -v 1 -p "$snmp_port" -c "$community" -t 5 -r 1 -d "$device_ip" > "$report"
+/usr/bin/snmp-check -v 1 -p "$snmp_port" -c "$community" -t 5 -r 1 -d "$device_ip" > "$report"
 report_status=$?
 ~~~
 

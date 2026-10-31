@@ -5,12 +5,14 @@ description: Verify the authorization identity returned by an OpenLDAP Who Am I 
 
 # Verify the selected LDAP bind identity
 
+Installed invocation: `/usr/bin/ldapwhoami`, version `ldapwhoami: @(#) $OpenLDAP: ldapwhoami 2.6.14+dfsg-2 (Aug 25 2026 00:46:58) $`.
+
 Read this entire SKILL.md before acting. Require the authorized LDAP endpoint, installed OpenLDAP client with GSSAPI SASL support, existing usable cache and established realm/transport settings. All steps are inline. Finish with the server's returned authorization identity and final status; a SASL startup message or local cache listing alone is incomplete.
 
 Define `ldap_uri` as one actual protocol/host/port URI, `krb_config` as the established absolute Kerberos configuration and `cache` as the existing provider-supported cache name. Use the actual service FQDN rather than guessing an IP-based principal. Check the client version without binding, then perform the selected operation:
 
 ~~~bash
-ldapwhoami -VV
+/usr/bin/ldapwhoami -VV
 KRB5_CONFIG="$krb_config" KRB5CCNAME="$cache" \
   ldapwhoami -Y GSSAPI -H "$ldap_uri" -o nettimeout=10
 status=$?

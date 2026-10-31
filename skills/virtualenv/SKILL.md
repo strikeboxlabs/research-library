@@ -5,14 +5,16 @@ description: Create a selected Python interpreter environment with the installed
 
 # Select the interpreter and environment
 
+Installed invocation: `/usr/bin/virtualenv`, version `virtualenv 21.5.1 from /usr/lib/python3/dist-packages/virtualenv/__init__.py`.
+
 Read this entire SKILL.md before acting. Require the installed virtualenv tool, the selected available interpreter and a fresh authorized environment directory. Create only that environment, verify its executable/metadata context and keep dependency installation a separately authorized change. Finish with the selected interpreter/environment and requested tool result; an activation prompt is not evidence of dependency availability or isolation.
 
 Define `python_bin` as the verified existing interpreter and `environment` as a new absolute directory. Inspect installed version/help before using version-dependent options:
 
 ~~~bash
-virtualenv --version
-virtualenv --help
-virtualenv --python "$python_bin" "$environment"
+/usr/bin/virtualenv --version
+/usr/bin/virtualenv --help
+/usr/bin/virtualenv --python "$python_bin" "$environment"
 "$environment/bin/python" -c 'import sys; print(sys.executable); print(sys.version); print(sys.prefix); print(sys.base_prefix)'
 "$environment/bin/python" -m pip --version
 ~~~

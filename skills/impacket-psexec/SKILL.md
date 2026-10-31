@@ -5,6 +5,8 @@ description: Execute a selected Windows command from Linux using Impacket's serv
 
 # Execute through the intended service-control path
 
+Installed invocation: `/usr/bin/impacket-psexec`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire file before acting. This tool uploads a service binary and creates/starts a remote service; use it when that remote execution and those artifacts are authorized. Read [failure and cleanup stages](references/failure-and-cleanup.md) for partial failures. Finish with command output/status and verified disposition of owned service/file artifacts.
 
 Check local help for `impacket-psexec` or `psexec.py`. This is the Impacket implementation, with different behavior from Microsoft's PsExec. Define `psexec_bin` as the verified executable, `domain`, `user`, `target_name` and fresh unique `service_name`/`remote_name` identifiers for this operation. Ensure the identifiers do not collide with existing resources. Omitting a password from the target identity uses the prompt in the reviewed CLI:

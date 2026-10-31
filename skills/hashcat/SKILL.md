@@ -5,6 +5,8 @@ description: Generate pattern-based candidates, select Hashcat modes and run bou
 
 # Hashcat candidates and offline checks
 
+Installed invocation: `/usr/bin/hashcat`, version `v7.1.2`.
+
 Read this entire SKILL.md before acting; complete current context need not be re-read. Complete the applicable input checks before a bounded run; preserve status and report recovered, exhausted or incomplete honestly. Candidate generation alone establishes no recovery.
 
 - A complete Django `pbkdf2_sha256$...` record: read [Django PBKDF2](references/django-pbkdf2.md) fully before mode selection or full-verifier confirmation.
@@ -58,8 +60,8 @@ Inspect `hashcat --version` and `hashcat -I` for backend/device availability. De
 
 ~~~bash
 umask 077
-hashcat -m "$mode" -a 0 "$hashes" "$wordlist" --potfile-path "$pot" --session "$session" --runtime "$seconds" --status
-hashcat -m "$mode" "$hashes" --show --potfile-path "$pot"
+/usr/bin/hashcat -m "$mode" -a 0 "$hashes" "$wordlist" --potfile-path "$pot" --session "$session" --runtime "$seconds" --status
+/usr/bin/hashcat -m "$mode" "$hashes" --show --potfile-path "$pot"
 ~~~
 
 Use the same mode and pot when showing results. An existing pot can explain an immediate already-recovered result. Keep it instead of discarding recovery evidence with `--potfile-disable`.

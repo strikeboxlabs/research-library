@@ -4,7 +4,7 @@ Use `ntds.dit` and the SYSTEM hive from the same DC/acquisition. Define `ntds`, 
 
 ~~~bash
 umask 077
-impacket-secretsdump -system "$system_hive" -ntds "$ntds" -just-dc-ntlm -outputfile "$output_prefix" LOCAL
+/usr/bin/impacket-secretsdump -system "$system_hive" -ntds "$ntds" -just-dc-ntlm -outputfile "$output_prefix" LOCAL
 ~~~
 
 This makes no live replication request. SYSTEM supplies the boot key; a SECURITY hive is not required for this NTDS-only operation. It serves different LSA-secret extraction tasks. `-just-dc-ntlm` limits extracted material, not the account count. The reviewed CLI rejects `-just-dc-user` in LOCAL mode; do not promise one-account extraction from this command.

@@ -5,12 +5,14 @@ description: Inspect selected MSRPC interface exposure with Impacket rpcmap from
 
 # Impacket RPC interface mapping
 
+Installed invocation: `/usr/bin/impacket-rpcmap`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Check `impacket-rpcmap -h`; upstream may provide `rpcmap.py`. Identify the intended DCE/RPC transport, endpoint and authentication context. An endpoint-mapper address is not interchangeable with an SMB named pipe or an arbitrary service port.
 
 Define `binding` as the scoped RPC string binding, for example `ncacn_ip_tcp:host[135]`, and `interface` as a verified UUID/version string such as `UUID,1.0`. To restrict bind probes to that interface:
 
 ~~~bash
-impacket-rpcmap "$binding" -uuid "$interface"
+/usr/bin/impacket-rpcmap "$binding" -uuid "$interface"
 ~~~
 
 Replace both values from actual endpoint/interface evidence. The reviewed implementation still queries the management interface first; `-uuid` restricts its subsequent UUID bind-probe list. Without `-uuid`, unavailable or inaccessible management information can trigger a fallback across the built-in UUID database, generating more connections than a simple inventory query suggests. Inspect diagnostics and local implementation before using unrestricted discovery.

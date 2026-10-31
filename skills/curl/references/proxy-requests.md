@@ -4,7 +4,7 @@ Use curl's native proxy support to make the route explicit. Define `proxy_url` a
 
 ~~~bash
 umask 077
-curl --proxy "$proxy_url" --noproxy '' --silent --show-error --connect-timeout 5 --max-time 20 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\nconnect=%{http_connect}\npeer=%{remote_ip}\n' "$url"
+/usr/bin/curl --proxy "$proxy_url" --noproxy '' --silent --show-error --connect-timeout 5 --max-time 20 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\nconnect=%{http_connect}\npeer=%{remote_ip}\n' "$url"
 ~~~
 
 The empty `--noproxy` deliberately overrides inherited bypass lists so this selected request uses the proxy. Without it, `NO_PROXY` can bypass even an explicitly supplied proxy, especially for loopback. A destination URL containing `127.0.0.1` is reached from the HTTP proxy's context, not the workstation's. Preserve URL hostname/port and inspect redirects before following them.

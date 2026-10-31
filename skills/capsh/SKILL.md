@@ -5,6 +5,8 @@ description: Decode a captured Linux capability mask or inspect the current exec
 
 # Read capability state in the selected context
 
+Installed invocation: `/usr/sbin/capsh`.
+
 Read this entire SKILL.md before acting. Establish which session/container executes the inspection and confirm that the selected capsh executable is the intended libcap tool. No conditional resources are required. Finish with the complete returned state, status and namespace/context limits; a capability listing is not execution evidence for a privileged operation.
 
 Use `capsh --help` to check this installation's inspection options. Run the inspection under the existing task identity, without adding sudo or changing capability sets:
@@ -12,7 +14,7 @@ Use `capsh --help` to check this installation's inspection options. Run the insp
 For a captured hexadecimal mask, define `mask` as its complete hex digits and retain the originating field/process/time separately:
 
 ~~~bash
-capsh --decode="$mask"
+/usr/sbin/capsh --decode="$mask"
 ~~~
 
 `--decode` interprets a hexadecimal capability vector, even when its digits look decimal; it does not inspect or change a process. The same names decoded from CapEff, CapPrm or CapBnd have different operational meanings. A mask in a source-code test is requested logic, not observed state. A nonzero bitwise intersection tests whether any selected bit is present; it does not establish that every required bit is present. Preserve the actual comparison and successful state acquisition before accepting a source comment that says it checks all capabilities.
@@ -20,7 +22,7 @@ capsh --decode="$mask"
 For the current process's state:
 
 ~~~bash
-capsh --print
+/usr/sbin/capsh --print
 status=$?
 ~~~
 

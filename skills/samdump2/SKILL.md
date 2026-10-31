@@ -5,6 +5,8 @@ description: Extract offline local-account hash records from matching legacy Win
 
 # Offline SAM extraction
 
+Installed invocation: `/usr/bin/samdump2`, version `samdump2 3.0.0 by Objectif Securite (http://www.objectif-securite.ch)`.
+
 Read this entire SKILL.md before acting. Require already acquired coherent hive copies, a parser version supporting their format and private output storage. Complete the selected local extraction with diagnostics and account mapping; unsupported records remain unresolved rather than evidence of an empty password. No conditional resources are required.
 
 Use existing hive copies from the same Windows installation and coherent acquisition. `samdump2` derives the boot key from SYSTEM and reads local-account records from SAM; it does not crack passwords or read Active Directory's NTDS database. Inspect `samdump2 -h` and the package version before choosing it.
@@ -15,7 +17,7 @@ Define `system_hive` and `sam_hive` as existing absolute paths, and `records` as
 
 ~~~bash
 umask 077
-samdump2 -o "$records" "$system_hive" "$sam_hive"
+/usr/bin/samdump2 -o "$records" "$system_hive" "$sam_hive"
 ~~~
 
 Check diagnostics and inspect whether complete account records were written. Preserve username, RID and both hash fields in the original output. The layout is `username:RID:LM:NT:::`; the NT field is distinct from an LM hash or captured NetNTLM challenge/response. This implementation can prefix disabled accounts with `*disabled*`; retain that acquisition-time state in the account mapping if preparing a separate cracker input.

@@ -5,6 +5,8 @@ description: Route a selected administration service through an existing SSH acc
 
 # Reach a selected service through SSH
 
+Installed invocation: `/usr/bin/sshuttle`, version `2.0.0`.
+
 Read this entire SKILL.md before acting. Require permission for the selected service, remote Python execution and temporary local firewall changes, plus an existing SSH identity. No conditional resources are required. Finish with the actual forwarded range, service response and shutdown/cleanup evidence; SSH connection alone is incomplete.
 
 Inspect `sshuttle --version` and `sshuttle --help`. Check that release's Python requirements on both ends and supported local firewall method. Remote sshuttle installation is unnecessary: its Python code is sent and executed through SSH. Local firewall management needs root/sudo; this does not grant remote root.
@@ -12,7 +14,7 @@ Inspect `sshuttle --version` and `sshuttle --help`. Check that release's Python 
 Define `ssh_host` as an existing reviewed SSH-config alias and `service_route` as the requested numeric single-host destination, preferably its `/32:port` when installed help supports port restriction. With no extra inherited SSHUTTLE_ARGS, run in the foreground:
 
 ~~~bash
-sshuttle -v -r "$ssh_host" "$service_route"
+/usr/bin/sshuttle -v -r "$ssh_host" "$service_route"
 ~~~
 
 Keep authentication in the SSH configuration; do not reconstruct a shell command from untrusted key paths. Inspect the chosen method, forwarded/excluded ranges and connection/firewall setup. Establish overlapping local routes before changing routing. A normal SSH endpoint is excluded automatically; ProxyCommand configurations require verifying the necessary explicit exclusion.

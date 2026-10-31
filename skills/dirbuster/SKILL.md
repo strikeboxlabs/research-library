@@ -5,6 +5,8 @@ description: Discover selected web directories and extensionless or suffixed fil
 
 # DirBuster without the GUI
 
+Installed invocation: `/usr/bin/dirbuster`.
+
 Read this entire SKILL.md before acting. Select the authorized base URL, starting path and readable wordlist before requests; constrain recursion and HTML parsing to the intended scope. Finish with the saved report, completion/errors and individually confirmed routes. A found name or HTTP 200 alone is not proof of the route's purpose.
 
 Use the existing `dirbuster` launcher and inspect `dirbuster -h`. The 1.0-RC1 CLI supports `-H` for headless operation; no display is needed for this branch. Some original shell launchers ignore arguments; a wrapper that does not forward them is a deployment problem, not absence of headless support. If necessary use the verified installed Java/JAR invocation, without guessing their locations or installing a runtime.
@@ -13,7 +15,7 @@ Define `base_url` as the exact scoped origin including its port, `start_path` as
 
 ~~~bash
 umask 077
-dirbuster -H -u "$base_url" -l "$wordlist" -s "$start_path" \
+/usr/bin/dirbuster -H -u "$base_url" -l "$wordlist" -s "$start_path" \
   -t "$threads" -g -P -R -r "$report"
 ~~~
 

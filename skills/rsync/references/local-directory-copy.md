@@ -5,13 +5,13 @@ Require a stable reviewed source tree containing only the intended regular files
 Set `source_dir` and `destination_dir` to the verified absolute directories. Inspect the plan:
 
 ~~~bash
-rsync -a --no-perms --no-owner --no-group --dry-run --itemize-changes -- "$source_dir/" "$destination_dir/"
+/usr/bin/rsync -a --no-perms --no-owner --no-group --dry-run --itemize-changes -- "$source_dir/" "$destination_dir/"
 ~~~
 
 After confirming its selected entries, perform the intended copy:
 
 ~~~bash
-rsync -a --no-perms --no-owner --no-group --itemize-changes -- "$source_dir/" "$destination_dir/"
+/usr/bin/rsync -a --no-perms --no-owner --no-group --itemize-changes -- "$source_dir/" "$destination_dir/"
 copy_status=$?
 ~~~
 

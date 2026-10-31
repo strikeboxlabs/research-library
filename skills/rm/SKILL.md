@@ -5,12 +5,14 @@ description: Remove one selected owned regular-file or symbolic-link entry with 
 
 # Remove the exact owned artifact entry
 
+Installed invocation: `/usr/bin/rm`, version `rm (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the identified disposable regular file or symlink, its verified owned parent and authority to remove that exact entry. All task instructions are inline. Finish with removal status and actual entry absence, including a dangling symlink; no recursive directory cleanup is covered.
 
 Confirm rm --version for GNU coreutils. Define owned_path as the verified absolute artifact entry, with no trailing slash. Inspect its type and preserve any required content before removal:
 
 ~~~bash
-rm -- "$owned_path"
+/usr/bin/rm -- "$owned_path"
 status=$?
 ~~~
 

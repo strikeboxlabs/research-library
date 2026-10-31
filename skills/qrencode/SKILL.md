@@ -5,15 +5,17 @@ description: Generate a QR image from selected local data with libqrencode qrenc
 
 # Generate the selected QR artifact
 
+Installed invocation: `/usr/bin/qrencode`, version `qrencode version 4.1.1`.
+
 Read this entire SKILL.md before acting. Require installed qrencode, the reviewed data file and a fresh output path in a private working directory; no conditional resources are required. Generate the image, check status and inspect it. Finish with the input/output identities and any decode comparison; unavailable decoding remains an explicit verification gap.
 
 Define `data` as the absolute input file, `output` as a new absolute PNG path and `diagnostics` as a fresh private log. Inspect installed version/help, including PNG support:
 
 ~~~bash
-qrencode --version
-qrencode --help
+/usr/bin/qrencode --version
+/usr/bin/qrencode --help
 umask 077
-qrencode -8 -r "$data" -t PNG -l M -s 6 -m 4 -o "$output" 2> "$diagnostics"
+/usr/bin/qrencode -8 -r "$data" -t PNG -l M -s 6 -m 4 -o "$output" 2> "$diagnostics"
 status=$?
 ~~~
 

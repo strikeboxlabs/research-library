@@ -5,6 +5,8 @@ description: Capture and interpret a narrowly scoped network observation with tc
 
 # Capture a specific network observation
 
+Installed invocation: `/usr/bin/tcpdump`, version `tcpdump version 4.99.6`.
+
 Read this entire SKILL.md before acting. Select the capture point, protocol/filter and observation window, confirm capture and output-file prerequisites, then inspect the saved capture and termination statistics. For container-side TCP, use the conditional section below before selecting the endpoint/filter. Finish with the observed packets and capture limits; a permission failure or missing traffic is not application-failure proof.
 
 Define the question first: for example, did IPv4 ICMP from a selected lab host reach this machine during a known action? Identify the relevant interface using route information and `tcpdump -D`; do not assume a VPN is always `tun0`. Check `tcpdump --version` and capture permissions.
@@ -15,7 +17,7 @@ Define `iface` as that interface, `peer` as the numeric IPv4 host, and `pcap` as
 
 ~~~bash
 umask 077
-tcpdump -i "$iface" -nn -c 20 -w "$pcap" "host $peer and icmp"
+/usr/bin/tcpdump -i "$iface" -nn -c 20 -w "$pcap" "host $peer and icmp"
 ~~~
 
 `-c 20` stops after 20 matching packets; it is **not a time limit**. Start the capture before the event and stop it with Ctrl-C after the agreed observation window if the count is not reached. Wait for termination so the file and capture statistics are complete.
@@ -27,7 +29,7 @@ Post-rotation helper execution is separate from capture and can fail after packe
 Read it separately without live capture privileges:
 
 ~~~bash
-tcpdump -nn -r "$pcap" "host $peer and icmp"
+/usr/bin/tcpdump -nn -r "$pcap" "host $peer and icmp"
 ~~~
 
 `-w` saves packet data, whereas ordinary stdout is a decoded text summary. Adding `-v` to a live `-w` capture provides capture-count reporting, not the usual per-packet decode; inspect the completed savefile with `-r`. `-nn` keeps addresses and ports numeric. Change the filter to the protocol in question; this example excludes IPv6 ICMP and TCP. Quote compound filters so the shell does not interpret parentheses/operators.
@@ -50,7 +52,7 @@ Define `iface` as the verified interface, `peer` as the selected numeric endpoin
 
 ~~~bash
 umask 077
-tcpdump -i "$iface" -nn -s 0 -w "$pcap" "host $peer and tcp port $port"
+/usr/bin/tcpdump -i "$iface" -nn -s 0 -w "$pcap" "host $peer and tcp port $port"
 ~~~
 
 Stop with Ctrl-C at the agreed deadline and retain the final drop statistics. `-s 0` selects the implementation's large default snapshot length; it is not unlimited storage or a duration bound. This capture includes both directions for the selected host/port. Check packet lengths and gaps before handing it to a TLS analyzer. More `-v` flags do not decrypt TLS or add missing bytes to a saved packet.

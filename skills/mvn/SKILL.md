@@ -5,15 +5,17 @@ description: Package a selected trusted Maven project with the required JDK and 
 
 # Package the selected Java project
 
+Installed invocation: `/usr/bin/mvn`, version `[1mApache Maven 3.9.12[m`.
+
 Read this entire SKILL.md before acting. Require a trusted reviewed checkout, its requested build outcome, compatible JDK/Maven and approved dependency access. Review the POM, parent/modules, active profiles, project Maven configuration and plugin executions before building: a build executes project-controlled code. Finish with the final build status and exact resulting artifact, or the first unresolved failure.
 
 Define `project` as the selected checkout's absolute path. From that project:
 
 ~~~bash
 cd "$project" || exit
-mvn --version
+/usr/bin/mvn --version
 java -version
-mvn package
+/usr/bin/mvn package
 status=$?
 ~~~
 

@@ -7,7 +7,7 @@ Use when the same HTTP application exposes several independent authentication ch
 For `login_url`, `selected_user` and `candidates`, this form example applies only when observed fields are `username`, `password`, `submit`, with no changing CSRF token. The user value and candidate file must already use the required form encoding; `&`, `+` and `%` are data/encoding boundaries, not harmless literal password characters:
 
 ~~~bash
-wfuzz -w "$candidates" -t 1 -s 0.5 -d "username=$selected_user&password=FUZZ&submit=Login" "$login_url"
+/usr/bin/wfuzz -w "$candidates" -t 1 -s 0.5 -d "username=$selected_user&password=FUZZ&submit=Login" "$login_url"
 ~~~
 
 Begin unfiltered; learn stable line/word/character counts from an invalid control. After observing them, `--hl N`, `--hw N` or `--hh N` can hide those counts. Do not adopt a walkthrough's values. A 302 redirect is an authentication candidate, while a 500 may be a parser/backend error; neither alone is success. Re-fetch the selected candidate with the same form/session, inspect Location/cookies and confirm a protected operation with a negative control. Expired/rotating CSRF state requires a request flow that maintains it, not a larger candidate list.
@@ -15,7 +15,7 @@ Begin unfiltered; learn stable line/word/character counts from an invalid contro
 An independent service may return HTTP 200 for both missing and incorrect cookies. If the observed gate specifically requires `password`, define its `gate_url` separately:
 
 ~~~bash
-wfuzz -w "$candidates" -t 1 -s 0.5 -H 'Cookie: password=FUZZ' "$gate_url"
+/usr/bin/wfuzz -w "$candidates" -t 1 -s 0.5 -H 'Cookie: password=FUZZ' "$gate_url"
 ~~~
 
 Retain other required cookies when applicable, without duplicating/conflicting Cookie headers. A different word count or disappearance of an access-denied message is a lead; confirm actual protected behavior. A login cookie on one service is not evidence that another service's gate has passed.
@@ -25,7 +25,7 @@ Retain other required cookies when applicable, without duplicating/conflicting C
 Only for a verified endpoint exposing a server-side TCP connection, define `socket_url` as its exact route, `cookie_value` as the selected private gate value, and `ports` as a small selected list of decimal ports. Here the observed query fields are `port` and `cmd`, and the destination host is fixed by that application:
 
 ~~~bash
-wfuzz -w "$ports" -t 1 -s 0.5 -H "Cookie: password=$cookie_value" "${socket_url}?port=FUZZ&cmd=test"
+/usr/bin/wfuzz -w "$ports" -t 1 -s 0.5 -H "Cookie: password=$cookie_value" "${socket_url}?port=FUZZ&cmd=test"
 ~~~
 
 This probes **from the web service's process/network context**. It is not the client's external scan, and its HTTP status is not a raw TCP port state. Compare refusal, timeout, application filter errors and protocol-shaped replies. HTTP 500 does not establish an open port; an empty accepted command can be silent. Confirm a promising port with a small command appropriate to the independently supported protocol.

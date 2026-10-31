@@ -5,12 +5,14 @@ description: Inspect Linux process identity, state and arguments with procps ps 
 
 # Tie process evidence to a PID and time
 
+Installed invocation: `/usr/bin/ps`, version `ps from procps-ng 4.0.7`.
+
 Read this entire SKILL.md before acting. Select the intended process set or PID in its namespace, then preserve identity/start time and complete relevant arguments. Finish with the scoped snapshot and visibility limits; a PID or displayed account name is not proof of another process's authority.
 
 Confirm the procps implementation with `ps --version`. For this user's processes, including ones without a controlling terminal, use BSD-style selectors:
 
 ~~~bash
-ps ux
+/usr/bin/ps ux
 ~~~
 
 `u` selects a user-oriented display; `x` includes this effective user's processes without a terminal. This is not every process on the machine. `ps -e` deliberately selects all visible processes instead; option personalities can differ, so don't mix dashed and BSD forms casually. A `systemd --user` row is a user's manager, not necessarily PID 1. Choose its current PID and retain start time before using it with another process-specific tool.
@@ -18,7 +20,7 @@ ps ux
 For a known decimal `pid`, take an explicit snapshot:
 
 ~~~bash
-ps -ww -p "$pid" -o pid=,ppid=,euid=,ruid=,stat=,lstart=,args=
+/usr/bin/ps -ww -p "$pid" -o pid=,ppid=,euid=,ruid=,stat=,lstart=,args=
 ~~~
 
 `-ww` avoids ordinary display-width truncation. Effective and real UID are distinct; a command containing `su user` or a session named `root` does not establish the child's current credentials. A parent shell loop can recreate a child under a new PID. Keep PID, start time and process relationship together when comparing observations; PIDs can be reused.

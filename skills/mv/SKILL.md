@@ -5,13 +5,15 @@ description: Rename a selected owned local file with GNU mv. Use when destinatio
 
 # Rename the selected local file
 
+Installed invocation: `/usr/bin/mv`, version `mv (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Confirm the requested move and select an owned regular file plus a fresh destination in trusted existing parent directories on the same filesystem, with no competing writer. Confirm GNU mv with `mv --version`. No conditional resources are required. Finish with status, source/destination observations and file identity; a skipped or ambiguous move remains unresolved.
 
 Define `source` and `destination` as distinct absolute paths. They may have different parents; verify both resolved parents and the source are on the same filesystem before this procedure. Inspect permissions on both parents before changing names. Reject a symlink source or an existing destination, including a dangling symlink. Retain the source's device/inode and relevant owner/mode:
 
 ~~~bash
 stat --printf='device=%d inode=%i mode=%a uid=%u gid=%g size=%s\n' -- "$source"
-mv -nT -- "$source" "$destination"
+/usr/bin/mv -nT -- "$source" "$destination"
 status=$?
 stat --printf='device=%d inode=%i mode=%a uid=%u gid=%g size=%s\n' -- "$destination"
 ~~~

@@ -5,7 +5,7 @@ Choose an authorized endpoint from its configuration and observed greeting. Conv
 Define `endpoint` as the selected `host:port`, `mail_host` as its expected certificate/SNI hostname, and `ca_bundle` as independently trusted CA certificates. For an interactive implicit-TLS session:
 
 ~~~bash
-openssl s_client -connect "$endpoint" -servername "$mail_host" -verify_hostname "$mail_host" -verify_return_error -CAfile "$ca_bundle" -crlf -quiet
+/usr/bin/openssl s_client -connect "$endpoint" -servername "$mail_host" -verify_hostname "$mail_host" -verify_return_error -CAfile "$ca_bundle" -crlf -quiet
 ~~~
 
 For an endpoint that starts in plaintext and upgrades using IMAP STARTTLS, use the same options with `-starttls imap` and the corresponding endpoint. Do not apply that switch to an implicit-TLS port. `-servername` selects SNI; `-verify_hostname` checks identity, and `-verify_return_error` stops on verification failure. Default diagnostic s_client behavior can continue despite verification errors. Resolve trust/hostname failures before supplying credentials.

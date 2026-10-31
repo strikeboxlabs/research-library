@@ -7,7 +7,7 @@ Follow the acquired matching binary or deployed source's input/comparison and su
 For an explicitly authorized execution, define `run_as` and `permitted_command` from the reviewed policy, then invoke the real permitted operation:
 
 ~~~bash
-sudo -u "$run_as" -- "$permitted_command"
+/usr/bin/sudo -u "$run_as" -- "$permitted_command"
 ~~~
 
 Supply its selected secret through the intended prompt, not command arguments/logged shell history. If its successful branch asks for an SSH public key, that input authorizes a persistent key-enrollment action by the program; it is not merely a harmless password check. Select the task's own public key and establish the destination account/path and append/replacement/option behavior from actual code or observed state. Do not assume the usual `authorized_keys` path just from the prompt. Use only public material, never a private key, and record the authorized change for cleanup.

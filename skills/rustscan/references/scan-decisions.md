@@ -5,7 +5,7 @@
 For installed Nmap and an authorized service-identification task, omit `-g` and explicitly use the default script mode. Set `output_prefix` to a fresh local result prefix:
 
 ~~~bash
-rustscan --no-config -a "$target" -p "$ports" -b 100 -t 3000 --tries 2 \
+/usr/bin/rustscan --no-config -a "$target" -p "$ports" -b 100 -t 3000 --tries 2 \
   --scripts default -- -sV -oA "$output_prefix"
 ~~~
 

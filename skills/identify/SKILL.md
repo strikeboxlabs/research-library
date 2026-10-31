@@ -5,15 +5,17 @@ description: Inspect one owned raster image's format, geometry, frames and metad
 
 # Inspect the selected image
 
+Installed invocation: `/usr/bin/identify`, version `Version: ImageMagick 7.1.2-31 Q16 x86_64 20260903 https://imagemagick.org`.
+
 Read this entire SKILL.md before acting. Require a trusted installed ImageMagick decoder, one owned regular raster input and the intended processing environment. No conditional resources are required. Finish with command status, relevant geometry/properties and decoding limits.
 
 For ImageMagick 6, define `input` as an absolute file path:
 
 ~~~bash
-identify -version
-identify "$input"
+/usr/bin/identify -version
+/usr/bin/identify "$input"
 summary_status=$?
-identify -verbose "$input"
+/usr/bin/identify -verbose "$input"
 detail_status=$?
 ~~~
 

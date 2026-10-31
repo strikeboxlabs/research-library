@@ -5,6 +5,8 @@ description: Cross-compile a reviewed Windows C or C++ utility from Linux with a
 
 # Build for the selected Windows target
 
+Installed invocation: `/usr/bin/x86_64-w64-mingw32-gcc`.
+
 Read this entire SKILL.md before acting. Require a reviewed local source/build contract, the intended Windows architecture and an existing matching compiler. Compilation may invoke build helpers; use the trusted project and a fresh output path. Finish with compiler identity, command/status, significant diagnostics and the actual artifact; a build does not establish successful Windows execution.
 
 Define `compiler` as the MinGW-w64 driver matching the selected source language and Windows target: commonly `x86_64-w64-mingw32-gcc` for C or `x86_64-w64-mingw32-g++` for C++. Distribution variants may append a threading-model suffix; resolve the actual executable rather than assuming the unsuffixed alias or an installation path. G++ treats a .c file as C++ unless explicitly overridden; changing the driver can change language semantics. GCC can recognize C++ suffixes but does not automatically link the C++ standard library. Preserve the reviewed project's language/build contract.

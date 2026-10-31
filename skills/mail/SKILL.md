@@ -5,6 +5,8 @@ description: Select the correct mail or mailx implementation and submit a reques
 
 # Identify the mail implementation first
 
+Installed invocation: `/usr/bin/mail`.
+
 Read this entire SKILL.md before acting. Identify the executable/implementation and selected submission task, validate the recipient/content, and retain submission evidence with delivery limits. Missing implementation or route details remain prerequisites.
 
 `mail` and `mailx` are executable names shared by incompatible programs. Inspect the resolved binary, package and local manual before copying flags from a writeup.
@@ -21,7 +23,7 @@ Do not use a send command merely to inspect configuration. It can submit through
 For **GNU Mailutils**, define `recipient` as one verified ordinary email address, `subject` as the intended single-line subject, and `body`/`attachment` as existing absolute files. When sending that message is part of the task:
 
 ~~~bash
-mail --subject="$subject" --attach="$attachment" -- "$recipient" < "$body"
+/usr/bin/mail --subject="$subject" --attach="$attachment" -- "$recipient" < "$body"
 ~~~
 
 Omit `--attach` when no attachment is wanted. Keep the subject in one argument; reject CR/LF header injection and do not assemble a command with `eval`. An unquoted subject can become additional options: Mailutils `--exec` runs mail commands and those can invoke a shell. Shell quoting does not validate recipient syntax; mail programs can also support special file/pipe recipients. The example assumes an ordinary mailbox, not an arbitrary destination string.

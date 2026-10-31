@@ -5,12 +5,14 @@ description: Query a selected DNS server for MX and address records with BIND ns
 
 # Keep resolver and answer identity
 
+Installed invocation: `/usr/bin/nslookup`, version `Server:		192.168.50.1`.
+
 Read this entire SKILL.md before acting. Require the selected name/server and retain complete replies and status. No conditional resources are required. Finish with the requested DNS evidence and unresolved routing or authority questions.
 
 Confirm BIND `nslookup -version`. Define `domain` as an absolute domain ending in a dot and `resolver` as the intended numeric DNS-server address:
 
 ~~~bash
-nslookup -timeout=3 -retry=1 -type=MX "$domain" "$resolver"
+/usr/bin/nslookup -timeout=3 -retry=1 -type=MX "$domain" "$resolver"
 status=$?
 ~~~
 
@@ -19,8 +21,8 @@ Omitting the server uses configured resolution. Supplying a server does not esta
 Retain every MX preference/hostname pair. Lower **numeric** preferences come first; lexical sorting can put 10 before 2. Preserve equal-preference alternatives. Define `exchange` as one returned absolute hostname, then inspect addresses separately:
 
 ~~~bash
-nslookup -type=A "$exchange" "$resolver"
-nslookup -type=AAAA "$exchange" "$resolver"
+/usr/bin/nslookup -type=A "$exchange" "$resolver"
+/usr/bin/nslookup -type=AAAA "$exchange" "$resolver"
 ~~~
 
 Resolver address lines are not exchange addresses. DNS results do not prove SMTP reachability or delivery.

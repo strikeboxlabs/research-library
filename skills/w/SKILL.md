@@ -5,11 +5,13 @@ description: Read Linux login-session and process snapshots with procps-ng w. Us
 
 # Read session records in their process context
 
+Installed invocation: `/usr/bin/w`, version `w from procps-ng 4.0.7`.
+
 Read this entire SKILL.md before acting. Require procps-ng w and the intended Linux namespace with readable login records and process metadata. No conditional resources are required. Finish with the timestamped snapshot, selected fields and missing-record or process-visibility limits.
 
 ~~~bash
-w --version
-w
+/usr/bin/w --version
+/usr/bin/w
 ~~~
 
 For one selected account, define `account` as its exact login name and use `w "$account"`. This filters session records; it does not authenticate that account or change the caller's identity. Preserve the header and column labels because distribution defaults can change whether FROM is printed. `-f` toggles that field rather than unconditionally enabling it.

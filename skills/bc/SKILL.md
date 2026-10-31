@@ -5,6 +5,8 @@ description: Compare bounded decimal measurements with GNU bc while distinguishi
 
 # Compare two selected decimal measurements
 
+Installed invocation: `/usr/bin/bc`, version `bc 1.07.1`.
+
 Read this entire SKILL.md before acting. Require trusted GNU bc, Bash, two selected nonsecret decimal fields and fresh result/error paths. Validate the complete fields, evaluate the fixed comparison, then check both status and output. No conditional resources are required. Finish with the operands, comparison result and diagnostics; a calculator failure is neither comparison branch.
 
 Check `bc --version`. This procedure uses GNU bc's top-level relational-expression extension; another implementation or POSIX-only mode may reject it. Define `left` and `right` as the selected measurements, and `result` and `errors` as fresh files in an owned directory. This illustrative field grammar permits up to 12 integer digits and 9 fractional digits; select narrower bounds when the producer requires them:

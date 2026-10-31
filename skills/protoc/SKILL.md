@@ -5,13 +5,15 @@ description: Decode one acquired Protocol Buffer message offline with its matchi
 
 # Decode a known-schema message
 
+Installed invocation: `/usr/bin/protoc`, version `libprotoc 3.21.12`.
+
 Read this entire SKILL.md before acting. Require the acquired body, reviewed matching schema and imports, fully qualified message type and installed protoc supporting that syntax. Finish with original identity, decoder status and supported fields or the exact schema/framing gap. This task does not call the service.
 
 Define `proto_root` as the absolute import root, `schema` as the selected absolute .proto file under it, `message_type` as its actual fully qualified type, `body` as the unframed binary message and `decoded` as a fresh private output:
 
 ~~~bash
-protoc --version
-protoc -I "$proto_root" --decode="$message_type" "$schema" < "$body" > "$decoded"
+/usr/bin/protoc --version
+/usr/bin/protoc -I "$proto_root" --decode="$message_type" "$schema" < "$body" > "$decoded"
 status=$?
 ~~~
 

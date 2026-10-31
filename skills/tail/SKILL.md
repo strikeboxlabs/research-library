@@ -5,6 +5,8 @@ description: Read a bounded log suffix, follow a selected GNU/Linux log, or extr
 
 # Read a file suffix or observe a log writer
 
+Installed invocation: `/usr/bin/tail`, version `tail (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting; reuse complete current context. For logs, identify the path, writer and observation window; stop the owned follower at completion. For binary extraction, establish the format's byte boundary and preserve the original. No conditional resources are required. Finish with relevant output/diagnostics and coverage limits; no output is not a successful job result.
 
 ## Extract from a verified byte boundary
@@ -12,7 +14,7 @@ Read this entire SKILL.md before acting; reuse complete current context. For log
 Define `source` as an acquired local file, `first_byte` as a positive one-based position justified by its format, and `suffix_file` as a fresh output path:
 
 ~~~bash
-tail -c "+$first_byte" -- "$source" > "$suffix_file"
+/usr/bin/tail -c "+$first_byte" -- "$source" > "$suffix_file"
 ~~~
 
 `-c +2` starts at byte two, skipping exactly one byte. Without the plus, `-c 2` selects the final two bytes; `-n` counts lines. Check exit status and expected output length before parsing the suffix. An offset beyond EOF can yield empty output without validating your format assumption. Avoid text decoding or shell variables for binary bytes; do not strip a header simply to force a comparison to match.
@@ -22,13 +24,13 @@ tail -c "+$first_byte" -- "$source" > "$suffix_file"
 Define `log_file` as the selected absolute file. First take a finite suffix:
 
 ~~~bash
-tail -n 40 -- "$log_file"
+/usr/bin/tail -n 40 -- "$log_file"
 ~~~
 
 For subsequent events only, keep the follower foreground and apply the worker's execution/output budget:
 
 ~~~bash
-tail -n 0 -F -- "$log_file"
+/usr/bin/tail -n 0 -F -- "$log_file"
 ~~~
 
 GNU `-F` follows the filename and retries when it disappears. Plain `-f` follows the opened descriptor, so a renamed old log can stay selected while new writes go elsewhere. Choose descriptor following deliberately when that old file is the evidence. `-n 0` omits existing lines; use the snapshot to avoid losing prior context.

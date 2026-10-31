@@ -7,13 +7,13 @@ Capture the current zone, relevant local zones and domain-insecure state using `
 For an intended forward zone that retains normal DNSSEC validation:
 
 ~~~bash
-unbound-control -c "$config" -s "$control_endpoint" forward_add "$zone" "$upstream_addr"
+/usr/sbin/unbound-control -c "$config" -s "$control_endpoint" forward_add "$zone" "$upstream_addr"
 ~~~
 
 Only when disabling validation for this exact zone is part of the intended task:
 
 ~~~bash
-unbound-control -c "$config" -s "$control_endpoint" forward_add +i "$zone" "$upstream_addr"
+/usr/sbin/unbound-control -c "$config" -s "$control_endpoint" forward_add +i "$zone" "$upstream_addr"
 ~~~
 
 `+i` also adds domain-insecure; it is not a connectivity fix. `+t` selects TLS upstream on supporting versions and needs an appropriate upstream/configuration. Neither flag configures the control channel's own TLS. Use the supported upstream-address syntax and preserve all required upstreams for a replaced rule.
@@ -25,9 +25,9 @@ If an intentionally changed policy needs a fresh answer and a zone-scoped cache 
 For a newly added zone with no previous domain-insecure rule, undo the matching change:
 
 ~~~bash
-unbound-control -c "$config" -s "$control_endpoint" forward_remove "$zone"
+/usr/sbin/unbound-control -c "$config" -s "$control_endpoint" forward_remove "$zone"
 # For a new +i rule, when its insecure state was also absent before:
-unbound-control -c "$config" -s "$control_endpoint" forward_remove +i "$zone"
+/usr/sbin/unbound-control -c "$config" -s "$control_endpoint" forward_remove +i "$zone"
 ~~~
 
 Select one removal matching the actual prior state. If forwarding was new but domain-insecure pre-existed, preserve that insecure rule instead of removing it. If a forward rule existed, restore its exact saved settings and verify them; deleting it is not restoration. A custom server lacking remove/read commands needs its separate approved recovery route. Reload/restart affects more than this zone and is not a default cleanup step.

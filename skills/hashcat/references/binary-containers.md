@@ -10,7 +10,7 @@ Define `database` as an intact working copy of the binary database:
 
 ~~~bash
 umask 077
-hashcat -m 5200 -a 0 "$database" "$wordlist" --session "$session" --runtime "$seconds" --status --outfile "$recovered" --outfile-format 2
+/usr/bin/hashcat -m 5200 -a 0 "$database" "$wordlist" --session "$session" --runtime "$seconds" --status --outfile "$recovered" --outfile-format 2
 ~~~
 
 Preserve the explicit output and final status. Verify a recovered candidate by opening a copy with a compatible Password Safe client. File-size/signature errors call for checking binary transfer and format/version, not treating the file as line-based hashes.
@@ -23,7 +23,7 @@ Define `image` as the intact binary LUKS1 image copy:
 
 ~~~bash
 umask 077
-hashcat -m 14600 -a 0 "$image" "$wordlist" --session "$session" --runtime "$seconds" --status --outfile "$recovered" --outfile-format 2
+/usr/bin/hashcat -m 14600 -a 0 "$image" "$wordlist" --session "$session" --runtime "$seconds" --status --outfile "$recovered" --outfile-format 2
 ~~~
 
 Prefer the complete image. The parser seeks to keyslot material and to the payload offset, then reads 512 bytes of encrypted payload. A header-only backup can lack required data. Arkham's `dd bs=512 count=4097` assumes that image's 4096-sector payload offset; it is not a universal extraction size. Preserve source layout and check all required byte ranges if a reduced working artifact is necessary.

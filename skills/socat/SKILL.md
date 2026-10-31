@@ -5,6 +5,8 @@ description: Forward a selected owned TCP service through an explicitly bound Li
 
 # Forward one owned TCP service
 
+Installed invocation: `/usr/bin/socat`, version `socat version 1.8.1.3 on 28 Jun 2026 14:56:45`.
+
 Read this entire SKILL.md before acting. Require one owned destination service, approved local bind/port, compatible application client and bounded session lifetime. Finish with listener/connection/application evidence and closure of the tracked parent and children; a listening socket alone does not establish destination success. No conditional resources are required.
 
 Inspect `socat -V` and `socat -hh` for this build's supported address/options. Define `socat_bin` as that verified invocation, `local_port` as a free unprivileged port, `destination_host` as the known IPv4 service address/name and `destination_port` as its port. For a local consumer, keep the relay in a tracked foreground session:

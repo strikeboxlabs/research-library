@@ -8,7 +8,7 @@ The `http-post-form` module takes a path, encoded form fields containing `^USER^
 
 ~~~bash
 form_spec='/login:username=^USER^&password=^PASS^:S=Logout'
-hydra -l "$login" -P "$candidate_file" -t 1 -W 3 -f \
+/usr/bin/hydra -l "$login" -P "$candidate_file" -t 1 -W 3 -f \
   -s "$port" -o "$results" "$target" http-post-form "$form_spec"
 ~~~
 

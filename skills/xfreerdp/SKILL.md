@@ -5,6 +5,8 @@ description: Connect to an approved RDP desktop with the FreeRDP X11 client. Use
 
 # Open the selected RDP desktop
 
+Installed invocation: `/usr/bin/xfreerdp`, version `This is FreeRDP version 3.32.2 (3.32.2)`.
+
 Read this entire SKILL.md before acting. Require a working X11 display, the installed FreeRDP client, an approved endpoint and the intended account/domain. All steps are inline. Finish with the connected host/account, requested desktop result and session cleanup; a socket, authentication success or launched window alone is incomplete.
 
 Select the installed binary as `rdp_bin`; distributions can name it `xfreerdp3` or `xfreerdp`. Confirm its own options before applying examples:

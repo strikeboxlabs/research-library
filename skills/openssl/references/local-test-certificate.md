@@ -17,8 +17,8 @@ This creates an unencrypted private key and self-signed certificate for the illu
 Check status and parse the actual outputs:
 
 ~~~bash
-openssl pkey -in "$key" -check -noout
-openssl x509 -in "$cert" -noout -subject -issuer -dates -ext subjectAltName
+/usr/bin/openssl pkey -in "$key" -check -noout
+/usr/bin/openssl x509 -in "$cert" -noout -subject -issuer -dates -ext subjectAltName
 ~~~
 
 Inspect the certificate public key against the private key's public component when association matters. Generation/parse does not establish browser trust or production issuance. Configure only the intended local test service and verify its actual presented certificate separately.

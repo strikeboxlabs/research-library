@@ -5,13 +5,13 @@ Use this when the question is which supplied origins change a known endpoint's C
 Define `url` as the scoped endpoint and `origins` as a small local file of complete origins (`scheme://host[:port]`, no path). Include a known allowed origin when available and an unrelated negative control. First inspect unfiltered results:
 
 ~~~bash
-wfuzz -w "$origins" -t 1 -s 0.5 -H 'Origin: FUZZ' "$url"
+/usr/bin/wfuzz -w "$origins" -t 1 -s 0.5 -H 'Origin: FUZZ' "$url"
 ~~~
 
 After retaining controls, the advanced filter can select responses containing the allow-origin header:
 
 ~~~bash
-wfuzz -w "$origins" -t 1 -s 0.5 -H 'Origin: FUZZ' \
+/usr/bin/wfuzz -w "$origins" -t 1 -s 0.5 -H 'Origin: FUZZ' \
   --filter "r.headers.response~'Access-Control-Allow-Origin'" "$url"
 ~~~
 

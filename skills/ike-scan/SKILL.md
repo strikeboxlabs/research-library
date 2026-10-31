@@ -5,6 +5,8 @@ description: Probe a known IKE/IPsec endpoint and interpret its initial proposal
 
 # IKE endpoint and proposal evidence
 
+Installed invocation: `/usr/bin/ike-scan`, version `ike-scan 1.9.6`.
+
 Read this entire skill before acting; current complete context need not be re-read. Use one authorised peer and retain the offered proposal, response and probe conditions. Completion is a supported statement about the response; this probe does not establish an authenticated VPN or recover a PSK.
 
 Check `ike-scan --version` and `--help` for the installed implementation. The procedure below uses the default **IKEv1 Main Mode**. It sends an initial proposal and decodes the reply without completing that exchange. An IKEv2-only peer needs a different probe; upstream labels `--ikev2` experimental with limited proposal support, so do not assume feature parity.
@@ -13,7 +15,7 @@ Define `peer` as the selected IP and `output` as a fresh private file:
 
 ~~~bash
 umask 077
-ike-scan --multiline --retry=2 "$peer" >"$output"
+/usr/bin/ike-scan --multiline --retry=2 "$peer" >"$output"
 ~~~
 
 `--retry=2` means two total attempts per host. `--multiline` separates decoded payloads. The default source and destination ports are UDP 500; binding the source may require privilege and will fail if another local process owns it. A bind error says nothing about the peer. Do not stop an existing VPN daemon to free the port. A high source port is an alternative only where the peer permits it; some require 500.

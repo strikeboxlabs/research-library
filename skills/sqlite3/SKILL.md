@@ -5,6 +5,8 @@ description: Inspect existing SQLite files with bounded queries and structured o
 
 # Inspect an existing database copy
 
+Installed invocation: `/usr/bin/sqlite3`, version `3.53.4 2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e0945alt`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Work from a coherent database copy, inspect the actual schema and retain query status with selected records. For selected historical Grafana verifier rows, read [Grafana records](references/grafana-records.md) before export/parameter interpretation. For a Rails-like user table with password_digest and role fields, read [selected authentication rows](references/auth-records.md) before exporting or mapping identities. For Firefox history or extension storage, read [browser databases](references/firefox-storage.md) before interpreting those tables. Finish with the requested rows and their supported meaning; missing tables, sidecars or decoding remain explicit limitations.
 
 For an audit comparing retained backups with a current database, read [historical snapshots](references/historical-snapshots.md) before matching accounts or interpreting changes in authentication-record formats.
@@ -12,8 +14,8 @@ For an audit comparing retained backups with a current database, read [historica
 Define `database` as an existing absolute working-copy path. Opening a misspelled filename normally creates a new empty database; use read-only mode for inspection:
 
 ~~~bash
-sqlite3 --version
-sqlite3 -init /dev/null -readonly -batch -bail -header -column "$database" "SELECT name, type FROM sqlite_schema WHERE type IN ('table','view') ORDER BY name LIMIT 50;"
+/usr/bin/sqlite3 --version
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail -header -column "$database" "SELECT name, type FROM sqlite_schema WHERE type IN ('table','view') ORDER BY name LIMIT 50;"
 ~~~
 
 `-init /dev/null` avoids executing a user's startup file. `-bail` stops on the first error, and `-readonly` prevents creating/writing the primary database. These options do not make arbitrary supplied SQL or CLI dot-commands safe: `.shell`, `.load` and extension functions can execute code. Read a dump/script before considering execution.
@@ -25,7 +27,7 @@ The schema's `rootpage` is a b-tree page number for tables/indexes, not a contig
 For export, define `query` as one reviewed, bounded SELECT with the actual schema:
 
 ~~~bash
-sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" "$query"
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" "$query"
 ~~~
 
 Parse it as CSV, not by splitting on commas or newlines. The default pipe-separated display can be ambiguous when values contain separators. JSON output is another option where the installed version supports it. Treat password-looking values according to the application's format, not column names or string length alone.
@@ -38,7 +40,7 @@ With WAL-mode databases, committed rows may still reside in `database-wal`. Pres
 Before exporting a suspected encrypted value, inspect its storage type and retain the account/domain plus a stable row identifier. For the **illustrative schema** `LDAP(Id, Uname, Domain, Pwd)`, after confirming those columns exist:
 
 ~~~bash
-sqlite3 -init /dev/null -readonly -batch -bail -header -column "$database" 'SELECT Id, Uname, Domain, typeof(Pwd) AS storage_type, length(CAST(Pwd AS BLOB)) AS stored_bytes FROM LDAP ORDER BY Id LIMIT 20;'
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail -header -column "$database" 'SELECT Id, Uname, Domain, typeof(Pwd) AS storage_type, length(CAST(Pwd AS BLOB)) AS stored_bytes FROM LDAP ORDER BY Id LIMIT 20;'
 ~~~
 
 These are stored bytes, not decoded ciphertext length. `NULL`, empty text and a BLOB are different states; none identifies a cipher. Export the required field for the selected identifier using the reviewed CSV query above, then trace the consuming application's decoding/decryption path. Unreadable decoded bytes are insufficient evidence of encryption.

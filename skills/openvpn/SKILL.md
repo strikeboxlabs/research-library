@@ -7,7 +7,7 @@ description: Use an approved OpenVPN client profile and diagnose tunnel, route a
 
 Read this entire SKILL.md before acting; reuse complete current context. Starting a VPN changes interfaces/routes and can affect the worker's connection. Use only an approved profile and existing network-administration rights. For a connection that starts but cannot reach its intended service, read [route diagnosis](references/routes.md) completely before following that branch. Finish with the tunnel state, selected route and observed service result; initialization alone is a partial result.
 
-Installed invocation: `/usr/sbin/openvpn`, version `2.7.7`. Keep a long-lived client in a retained session that supports the task duration, and record that session identifier for cleanup. Background/session APIs depend on the worker harness; do not assume a particular terminal tool or copy another profile's legacy cipher/compression settings.
+Installed invocation: `/usr/sbin/openvpn`, version `OpenVPN 2.7.8 x86_64-pc-linux-gnu [SSL (OpenSSL)] [LZO] [LZ4] [EPOLL] [PKCS11] [MH/PKTINFO`.
 
 Define `profile_dir` as the existing absolute directory containing the approved profile and its relative resources, and `profile_name` as the profile filename. Review its remote/transport, trust and client credentials, included configurations, scripts/plugins, and route/DNS directives first. A downloaded `.ovpn` file is configuration with possible executable hooks, not passive data. Preserve required server-certificate verification; do not disable it to make a connection succeed.
 

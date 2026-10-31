@@ -5,11 +5,13 @@ description: Read the Linux hostname and configured interface addresses without 
 
 # Identify the current network context
 
+Installed invocation: `/usr/bin/hostname`, version `hostname 3.25`.
+
 Read this entire SKILL.md before acting. Use the Debian/net-tools implementation's read-only forms below after checking `hostname --help`; other implementations differ. Finish with the observed name/addresses and their namespace, then verify the intended route separately before choosing a target range.
 
 ~~~bash
-hostname
-hostname -I
+/usr/bin/hostname
+/usr/bin/hostname -I
 ~~~
 
 `hostname` without an argument reads the current hostname. `-I` lists configured interface addresses, omitting loopback and IPv6 link-local addresses; output order is unspecified. It does not return prefix lengths, the default route, public/NAT address or all reachable peers. A container address such as **illustrative** `172.18.0.7` does not justify guessing a `/24` or scanning it; establish the interface prefix and authorized range first.

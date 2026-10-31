@@ -5,6 +5,8 @@ description: Apply a selected POSIX ACL change to one owned regular Linux file a
 
 # Change one selected owned file's ACL
 
+Installed invocation: `/usr/bin/setfacl`, version `setfacl 2.4.0`.
+
 Read this entire SKILL.md before acting. Require the actual owned regular file, authorized grantee/permission change, ACL-capable filesystem and installed setfacl/getfacl. Preserve its prior ACL, review the computed mask, apply only the selected change and verify effective rights. No conditional resources are required. Finish with before/after ACL and actual access evidence or the unresolved prerequisite.
 
 Confirm `setfacl --version` and local help. Define `file` as the established absolute file path without unexpected symlinks in it or its parents, `grantee_uid` as the intended validated numeric UID, and `acl_before` as a fresh private backup path. Require stable owned path components; a lexical prefix or `test -f` does not establish containment when a path resolves through links. Ownership or the appropriate existing capability is needed to change an ACL.
@@ -20,7 +22,7 @@ status=$?
 Stop on backup failure. The capture subshell unsets `POSIXLY_CORRECT`, which would suppress special-bit flags in getfacl's headers. Review the owner, group, named entries, mask and flags; a restore record missing flags can clear special bits. For the requested named-user read grant, preview the computed ACL:
 
 ~~~bash
-setfacl --test -m "u:$grantee_uid:r" -- "$file"
+/usr/bin/setfacl --test -m "u:$grantee_uid:r" -- "$file"
 status=$?
 ~~~
 
@@ -29,7 +31,7 @@ status=$?
 After a successful preview matching the intended complete ACL:
 
 ~~~bash
-setfacl -m "u:$grantee_uid:r" -- "$file"
+/usr/bin/setfacl -m "u:$grantee_uid:r" -- "$file"
 status=$?
 getfacl -p -n -e -- "$file"
 ~~~

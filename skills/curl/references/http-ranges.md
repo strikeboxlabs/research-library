@@ -4,7 +4,7 @@ Require the approved ordinary artifact URL, its established authentication/TLS c
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 --range "$range" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\nsize=%{size_download}\n' "$url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --range "$range" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\nsize=%{size_download}\n' "$url"
 ~~~
 
 `--range` (`-r`) requests that HTTP byte interval. Positions start at zero and include both endpoints: `0-499` requests 500 bytes, whereas `0-500` requests 501. `500-` requests the remainder; `-500` requests a suffix of up to 500 bytes. Keep this task to one interval; multipart responses require separate framing interpretation.

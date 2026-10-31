@@ -5,6 +5,8 @@ description: Capture HTTP evidence, request selected byte ranges and test API or
 
 # curl HTTP evidence
 
+Installed invocation: `/usr/bin/curl`, version `curl 8.22.0 (x86_64-pc-linux-gnu) libcurl/8.22.0 OpenSSL/3.6.5 zlib/1.3.2 brotli/1.2.0 zst`.
+
 Read this entire SKILL.md before acting; complete current context need not be re-read. Preserve the intended URL/route, capture status and body from the same request, and distinguish transport completion from application success. Read the applicable reference fully before its procedure; leave unrelated branches unloaded.
 
 - Selected byte-range retrieval from an approved ordinary HTTP artifact: [range responses](references/http-ranges.md).
@@ -41,7 +43,7 @@ Check `curl --version` for protocols/TLS backend and inspect local help for vers
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\npeer=%{remote_ip}\n' "$url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\npeer=%{remote_ip}\n' "$url"
 ~~~
 
 Check curl's exit status immediately. Without `--fail`/`--fail-with-body`, a completed `404` or `500` response can still return zero. Keeping the body is useful for diagnosis; `--fail-with-body` gives an HTTP-error exit while retaining it on supporting versions. Transport failure with a partial body is not a complete response.
@@ -61,7 +63,7 @@ For an authorized known Consul agent, set `url` to its `/v1/agent/services` endp
 When DNS differs from the desired server, define `host`, `port` and `target_ip` and use a URL containing that hostname:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 --resolve "$host:$port:$target_ip" --dump-header "$headers" --output "$body" "https://$host:$port/"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --resolve "$host:$port:$target_ip" --dump-header "$headers" --output "$body" "https://$host:$port/"
 ~~~
 
 `--resolve` overrides the connection address while preserving URL hostname, HTTP Host, SNI and certificate-name checking. It is more complete than setting Host against an HTTPS IP URL. Check inherited proxy settings: a proxy can change where resolution/connections happen. Use the configured CA or an explicit trusted `--cacert` bundle rather than treating `-k` as a naming repair.

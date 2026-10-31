@@ -14,7 +14,7 @@ Define `url` as the selected endpoint and `headers`/`body` as fresh private resp
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --header 'Content-Type: application/json' \
   --header 'Accept: application/graphql-response+json, application/json' \
   --data-binary "@$request_json" --dump-header "$headers" --output "$body" \

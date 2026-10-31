@@ -5,15 +5,17 @@ description: Build or inspect a selected Debian binary package with dpkg-deb. Us
 
 # Debian package archives
 
+Installed invocation: `/usr/bin/dpkg-deb`, version `Debian 'dpkg-deb' package archive backend version 1.23.11 (amd64).`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select inspection or building below. For a package with installation hooks, read [maintainer scripts](references/maintainer-scripts.md) fully before preparing or handing it to an installer. Finish with a valid archive and inspected metadata/members; building or extracting does not install it or prove its scripts ran.
 
 Check `dpkg-deb --version` and local help. Define `deb` as the selected existing absolute archive, and `control_dir` as a fresh private working directory:
 
 ~~~bash
 umask 077
-dpkg-deb --info "$deb"
-dpkg-deb --contents "$deb"
-dpkg-deb --control "$deb" "$control_dir"
+/usr/bin/dpkg-deb --info "$deb"
+/usr/bin/dpkg-deb --contents "$deb"
+/usr/bin/dpkg-deb --control "$deb" "$control_dir"
 ~~~
 
 Check each status. `--control` extracts control files, including hooks, without executing them; read those files as data. `--contents` lists the data archive, so it does not reveal every control script. `--extract` unpacks data into a chosen directory without updating the package database or running hooks; extracted executables remain untrusted. Keep extraction in a fresh ordinary-user workspace. Archive checks are not a sandbox for malformed input.
@@ -25,7 +27,7 @@ Define `tree` as a reviewed absolute staging directory and `deb` as a fresh abso
 For a tree whose data members should all be owned by root, dpkg 1.19.0+ supports an ordinary-user build:
 
 ~~~bash
-dpkg-deb --build --root-owner-group "$tree" "$deb"
+/usr/bin/dpkg-deb --build --root-owner-group "$tree" "$deb"
 ~~~
 
 This sets ownership recorded in the data archive; it does not change the builder's UID or run a root command. Do not use it for a package needing non-root member ownership. On an older build, use the image's established packaging workflow rather than claiming ordinary staging-file ownership is correct. Keep the normal metadata/script checks enabled; `--no-check` does not repair invalid content.

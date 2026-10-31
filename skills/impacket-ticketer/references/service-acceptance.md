@@ -5,7 +5,7 @@ This follows generation/inspection in the entrypoint, using the service account'
 For an explicitly supplied NT key rather than the entrypoint's keytab, the generation inputs are:
 
 ~~~bash
-impacket-ticketer -spn "$spn" -nthash "$service_nt" -domain "$domain" \
+/usr/bin/impacket-ticketer -spn "$spn" -nthash "$service_nt" -domain "$domain" \
   -domain-sid "$domain_sid" -user-id "$user_rid" -groups "$group_rids" \
   -duration 1 "$test_user"
 ~~~

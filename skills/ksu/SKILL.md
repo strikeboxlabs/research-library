@@ -5,6 +5,8 @@ description: Switch to an explicitly authorized local Linux account with MIT ksu
 
 # Verify an authorized account transition
 
+Installed invocation: `/usr/bin/ksu`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require installed MIT ksu, a known principal/cache, an explicitly permitted nonprivileged target account and the host's established Kerberos authorization policy. Perform the requested transition, verify the child identity, then exit and account for the target cache or report the precise failed stage.
 
 Inspect the installed help and actual host policy. A TGT authenticates a principal; it does not authorize every local account. Shell access can depend on the target's `.k5login`, `.k5users` or configured principal-to-login mapping. A PAM `ignore_k5login` setting alone does not establish ksu's authorization result. Missing host principal/keytab or unusable cache is a prerequisite gap, not a reason to modify authorization files.
@@ -12,7 +14,7 @@ Inspect the installed help and actual host policy. A TGT authenticates a princip
 Define `target_user` as the permitted local account, `principal` as the exact authorized Kerberos principal and `cache_path` as the existing private MIT FILE cache. Always supply the account: omitted target defaults to root. For a session that needs no copied tickets:
 
 ~~~bash
-ksu "$target_user" -n "$principal" -c "FILE:$cache_path" -Z
+/usr/bin/ksu "$target_user" -n "$principal" -c "FILE:$cache_path" -Z
 ~~~
 
 Inside the resulting shell, run `id` to retain real/effective UID and groups, then `exit`. Separate authenticated-principal, account-authorization and actual child-identity evidence. Invoking as root or selecting the source account bypasses ordinary authentication/authorization checks, so it is not a meaningful test of a different user's access.

@@ -5,6 +5,8 @@ description: Read procps uptime and distinguish Linux load averages from CPU uti
 
 # Read uptime and load in context
 
+Installed invocation: `/usr/bin/uptime`, version `uptime from procps-ng 4.0.7`.
+
 Read this entire SKILL.md before acting. Confirm procps with `uptime --version` and establish the host/container context. No conditional resources are required. Finish with the full successful observation, its time and interpretation limits; missing output is not a zero load.
 
 ~~~bash

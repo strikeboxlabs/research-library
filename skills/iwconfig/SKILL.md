@@ -5,17 +5,19 @@ description: Read legacy Wireless Extensions interface status with iwconfig. Use
 
 # Read the selected wireless status
 
+Installed invocation: `/usr/sbin/iwconfig`.
+
 Read this entire SKILL.md before acting. Require installed wireless-tools and the intended Linux namespace/interface. No conditional resources are required. Finish with observed mode/association and display limitations; missing Wireless Extensions support is not proof that the machine has no wireless device.
 
 ~~~bash
-iwconfig --version
-iwconfig
+/usr/sbin/iwconfig --version
+/usr/sbin/iwconfig
 ~~~
 
 Define `interface` as the observed selected name. A name without setting operands queries it:
 
 ~~~bash
-iwconfig "$interface"
+/usr/sbin/iwconfig "$interface"
 ~~~
 
 Master denotes the AP role; Managed denotes a client role; Monitor denotes monitoring mode. A Managed interface may still be Not-Associated. Read its Access Point field separately from its own link-layer address and the ESSID network name. An IP address alone establishes none of these wireless roles.

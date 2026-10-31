@@ -5,7 +5,7 @@ Use when varying the HTTP Host selects different applications on a known endpoin
 Check `gobuster version` and `gobuster vhost --help`. Establish whether entries are bare labels or complete hostnames. For a release supporting `--append-domain`, define `url` with the intended domain, `labels` with bare candidate labels and `report` as a fresh path:
 
 ~~~bash
-gobuster vhost -u "$url" -w "$labels" --append-domain -t 4 --delay 250ms -o "$report"
+/usr/bin/gobuster vhost -u "$url" -w "$labels" --append-domain -t 4 --delay 250ms -o "$report"
 ~~~
 
 Build the candidate list from BOTH the target's own vocabulary and infrastructure role names, not from a generic wordlist alone. A single-box engagement missed its second real application for hours because the list had thematic names (api, ingest, validator) but no `db`: that host served the database HTTP interface holding the next stage's credentials. Seed the list with at least: api www db sql database admin grafana kibana prometheus metrics monitor cache mq broker kafka redis auth sso auth-api internal staging dev test, plus service-specific names taken from response bodies, redirects and banners (e.g. a JSON status page naming its "upstreams").

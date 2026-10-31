@@ -5,6 +5,8 @@ description: Use Vim for file inspection, vi-style literal substitutions and cop
 
 # Separate inspection from recovery
 
+Installed invocation: `/usr/bin/vim`, version `VIM - Vi IMproved 9.2 (2026 Feb 14, compiled Jul 27 2026 10:11:18)`.
+
 Read this entire SKILL.md before acting. Select inspection, copied-swap recovery or the controlled substitution below, using fresh output paths and controlled startup. Finish with the actual recovered/edited content and any unresolved coverage/format gap.
 
 Record `vim --version`, including patches and build features. A command named `vi` need not be Vim; establish the implementation before using these startup flags. A historical modeline vulnerability does not establish that every current package is affected; distribution backports also matter. Avoid loading source-provided editor configuration or plugins to inspect a document.
@@ -12,7 +14,7 @@ Record `vim --version`, including patches and build features. A command named `v
 Define `artifact` as an existing absolute working-copy path. For inspection:
 
 ~~~bash
-vim -Nu NONE -i NONE -n -M --cmd 'set nomodeline' -- "$artifact"
+/usr/bin/vim -Nu NONE -i NONE -n -M --cmd 'set nomodeline' -- "$artifact"
 ~~~
 
 `-u NONE` skips startup configuration/plugins, `-i NONE` avoids viminfo, and `-n` disables swap creation. `--cmd` sets `nomodeline` **before** reading the file. An ordinary `-c` command runs later. `-M` disables modification/writing initially; `-R` alone is only read-only mode and can be overridden. These settings do not turn Vim into a security sandbox or stop explicitly requested shell commands.
@@ -22,7 +24,7 @@ For a found `.swp`/`.swo`, first determine whether the original editor is still 
 Recover a **copy** in a scratch directory. Start an empty editor with controlled startup:
 
 ~~~bash
-vim -Nu NONE -i NONE -n --cmd 'set nomodeline'
+/usr/bin/vim -Nu NONE -i NONE -n --cmd 'set nomodeline'
 ~~~
 
 At the Vim command prompt, use `:recover /absolute/path/to/copied.swp`, substituting the actual copied swap path. Inspect the recovered buffer before `:write /absolute/path/to/fresh-output`; use a new output name and no forced overwrite. Record any request for a missing original file and any recovery diagnostics. Some unchanged blocks may depend on the original file, so an isolated swap does not guarantee complete recovery.

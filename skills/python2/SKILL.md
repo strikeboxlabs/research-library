@@ -5,6 +5,8 @@ description: Use an existing Python 2.7 environment for selected legacy serving,
 
 # Legacy Python 2.7 operational tooling
 
+Installed invocation: `/usr/bin/python2`, version `Python 2.7.18`.
+
 Read this entire SKILL.md before acting. Select the known legacy application, native-reference or input-evaluation interpretation task. Use a reviewed existing interpreter/environment; a Python 2 shebang or unversioned pip install does not identify its dependencies. For signed-cookie construction read [legacy Django sessions](references/django-signed-cookies.md) fully first; for an encoded raw-pickle handler and selected execution check read [raw pickle requests](references/raw-pickle.md) fully first. These are separate request contracts. The Unix PTY branch below needs neither Django nor pickle. Finish with the generated artifact and observed validation/effect separately, or the supported static ownership/input finding; generation is not server acceptance.
 
 For selected owned files served by an existing Python2.7 environment, read [legacy file server](references/local-file-server.md) fully before that procedure; this does not need Django or pickle.

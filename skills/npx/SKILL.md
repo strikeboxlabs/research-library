@@ -5,13 +5,15 @@ description: Run a selected trusted npm package generator at an exact version in
 
 # Run the selected generator
 
+Installed invocation: `/usr/bin/npx`, version `12.2.0`.
+
 Read this entire SKILL.md before acting. Require a trusted exact package/version, reviewed generator arguments and an owned output location with permission for its effects. All instructions are inline. Finish with the resolved package, status and actual generated project; generator success alone does not establish a later build.
 
 Check `node --version`, `npm --version` and `npx --version`. This task targets npx shipped with npm 7 or later. Define `parent` as the selected owned directory, `package_spec` as the exact approved package/version and `generator_args` as a Bash array of its reviewed arguments, including the intended fresh project name where required:
 
 ~~~bash
 cd -- "$parent" || exit
-npx -- "$package_spec" "${generator_args[@]}"
+/usr/bin/npx -- "$package_spec" "${generator_args[@]}"
 status=$?
 ~~~
 

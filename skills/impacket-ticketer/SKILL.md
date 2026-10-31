@@ -5,6 +5,8 @@ description: Generate and inspect selected Kerberos service tickets with known s
 
 # Generate a scoped service ticket
 
+Installed invocation: `/usr/bin/impacket-ticketer`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Require the selected service key, exact SPN, approved identity/groups and ticket lifetime; verify the resulting cache. For an authorized service-access test, read [service acceptance](references/service-acceptance.md) fully before use. Cache generation alone is not service access.
 
 Use known service-key material for the explicitly scoped ticket-generation/access task. Check `impacket-ticketer -h`; upstream may use `ticketer.py`. Specify `-spn` explicitly: omitting it changes the operation to TGT generation. A service ticket is not a general TGT for requesting unrelated services.

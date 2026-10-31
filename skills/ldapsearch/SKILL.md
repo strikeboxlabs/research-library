@@ -5,6 +5,8 @@ description: Query LDAP directories from Linux with OpenLDAP ldapsearch. Use for
 
 # Choose the directory model before querying
 
+Installed invocation: `/usr/bin/ldapsearch`, version `1.1   no attributes`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Retain bind identity, selected naming context, returned DNs and final result status. Read the applicable reference fully before its procedure: [POSIX users/groups](references/posix-identities.md), [AD lockout policy](references/lockout-policy.md), or [AD deleted objects](references/deleted-objects.md). The discovery/SPN example below is AD-specific; omitted attributes or partial searches are not proof of absence.
 
 Use OpenLDAP `ldapsearch`; inspect `ldapsearch -VV` and installed options. `-x` selects simple bind, not NTLM. `-Y GSSAPI` selects SASL Kerberos and needs a usable ticket cache, realm/name configuration and the SASL mechanism on the client.
@@ -14,7 +16,7 @@ RootDSE is the server-specific entry with the empty DN, queried using `-b '' -s 
 Define `dc_fqdn` as the DC's verified DNS name and `bind_upn` as the known `user@domain` identity. Discover the directory base through a RootDSE base search. For password-based simple bind over required StartTLS:
 
 ~~~bash
-ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b '' -s base '(objectClass=*)' defaultNamingContext
+/usr/bin/ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b '' -s base '(objectClass=*)' defaultNamingContext
 ~~~
 
 `-W` prompts for the password. If StartTLS/certificate validation fails, resolve trust/support or use an appropriate authenticated transport; do not silently remove `-ZZ`. LDAPS uses `ldaps://` without `-ZZ`. For a Kerberos-only account, perform the same RootDSE base/filter query with GSSAPI authentication as below; simple bind is not a prerequisite.
@@ -23,7 +25,7 @@ Set `base_dn` to the returned `defaultNamingContext`. For Kerberos, select an ex
 
 ~~~bash
 filter='(&(objectCategory=person)(objectClass=user)(!(userAccountControl:1.2.840.113556.1.4.803:=2))(servicePrincipalName=*))'
-ldapsearch -LLL -Y GSSAPI -H "ldap://$dc_fqdn" -b "$base_dn" -s sub -E pr=500/noprompt -o ldif_wrap=no "$filter" sAMAccountName servicePrincipalName description
+/usr/bin/ldapsearch -LLL -Y GSSAPI -H "ldap://$dc_fqdn" -b "$base_dn" -s sub -E pr=500/noprompt -o ldif_wrap=no "$filter" sAMAccountName servicePrincipalName description
 ~~~
 
 The bitwise condition excludes disabled accounts; it does not prove they can log in. Remove the SPN condition when investigating all enabled users. Search the domain base rather than assuming every user lives under `CN=Users`. Retain DNs and multivalued attributes; LDIF `::` denotes base64 values, and grep-only output can lose their association. Paging addresses ordinary result-page limits; check final status for time/size limits or access restrictions.

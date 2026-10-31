@@ -5,13 +5,15 @@ description: Create one fresh owned Linux FIFO with GNU mknod. Use when a named 
 
 # Create the intended FIFO entry
 
+Installed invocation: `/usr/bin/mknod`, version `mknod (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require a trusted owned parent directory, a fresh exact absolute pathname and a separately selected local reader/writer task. All instructions are inline. Finish with creation status, observed FIFO type/mode and its tracked disposition; creating it does not start a producer or consumer.
 
 Confirm GNU mknod with mknod --version; shell implementations can differ. Define fifo as a new pathname beneath that parent, without a trailing slash or any existing entry, including a dangling link. For a private FIFO:
 
 ~~~bash
 umask 077
-mknod --mode=600 -- "$fifo" p
+/usr/bin/mknod --mode=600 -- "$fifo" p
 status=$?
 ~~~
 

@@ -5,16 +5,18 @@ description: Inspect or change the ELF interpreter and runtime library path of a
 
 # Select the intended loader and library path
 
+Installed invocation: `/usr/bin/patchelf`, version `patchelf 0.18.0`.
+
 Read this entire SKILL.md before acting. Require the installed PatchELF, an owned ELF copy, its preserved original and trusted ABI-compatible loader/libraries. Select inspection or the requested metadata change below. No conditional resources are required. Finish with status, before/after ELF fields and artifact identity; metadata changes do not establish runtime compatibility or authority.
 
 Define `binary` as the absolute acquired ELF path. Inspect this installation's version/options and the actual fields:
 
 ~~~bash
-patchelf --version
-patchelf --help
-patchelf --print-interpreter "$binary"
-patchelf --print-rpath "$binary"
-patchelf --print-needed "$binary"
+/usr/bin/patchelf --version
+/usr/bin/patchelf --help
+/usr/bin/patchelf --print-interpreter "$binary"
+/usr/bin/patchelf --print-rpath "$binary"
+/usr/bin/patchelf --print-needed "$binary"
 ~~~
 
 Keep each result/status separately. A static ELF can lack an interpreter or dynamic section; a failed query is not an empty, successfully inspected field. Needed names are direct dependencies, not a fully resolved runtime library inventory. These queries inspect metadata without executing the target.
@@ -22,10 +24,10 @@ Keep each result/status separately. A static ELF can lack an interpreter or dyna
 For a requested change, define `working_binary` as a separately verified owned copy outside system/application deployment paths, `loader` as the existing absolute trusted loader path and `library_dir` as the absolute trusted library directory:
 
 ~~~bash
-patchelf --set-interpreter "$loader" "$working_binary" &&
-patchelf --set-rpath "$library_dir" "$working_binary" &&
-patchelf --print-interpreter "$working_binary" &&
-patchelf --print-rpath "$working_binary"
+/usr/bin/patchelf --set-interpreter "$loader" "$working_binary" &&
+/usr/bin/patchelf --set-rpath "$library_dir" "$working_binary" &&
+/usr/bin/patchelf --print-interpreter "$working_binary" &&
+/usr/bin/patchelf --print-rpath "$working_binary"
 ~~~
 
 PatchELF edits that file in place. A second-step failure can leave the first edit applied; inspect the copy rather than assuming rollback. Retain the original fingerprint, resulting fingerprint and actual selected architecture/fields. Avoid changing a privileged/deployed executable merely to investigate an acquired artifact.

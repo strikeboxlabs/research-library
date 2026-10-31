@@ -7,7 +7,7 @@ Inspect `restic version`, `restic backup --help` and inherited `RESTIC_*` settin
 ~~~bash
 umask 077
 test ! -e "$repository" && test ! -L "$repository" &&
-restic -r "$repository" --password-file "$password_file" init
+/usr/bin/restic -r "$repository" --password-file "$password_file" init
 ~~~
 
 Check status and the created repository identity before continuing. Initialization creates encrypted repository structures; it does not back up the source. For an existing repository, use its known identity/password instead of initializing over it.
@@ -15,11 +15,11 @@ Check status and the created repository identity before continuing. Initializati
 Preview the selected directory, then run the same backup after reviewing the proposed scope:
 
 ~~~bash
-restic -r "$repository" --password-file "$password_file" backup --dry-run --verbose=2 "$source_dir"
+/usr/bin/restic -r "$repository" --password-file "$password_file" backup --dry-run --verbose=2 "$source_dir"
 ~~~
 
 ~~~bash
-restic -r "$repository" --password-file "$password_file" backup --verbose "$source_dir"
+/usr/bin/restic -r "$repository" --password-file "$password_file" backup --verbose "$source_dir"
 backup_status=$?
 ~~~
 

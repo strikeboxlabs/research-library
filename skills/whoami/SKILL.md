@@ -6,10 +6,12 @@ description: Read the effective Linux user name with GNU whoami. Use to identify
 
 # Identify the effective user
 
+Installed invocation: `/usr/bin/whoami`, version `whoami (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Run the check in the actual session being examined. Finish with its observed effective user and any unresolved name lookup; a username does not establish all permissions.
 
 ~~~bash
-whoami
+/usr/bin/whoami
 ~~~
 
 GNU whoami prints the name associated with the process's effective UID, equivalent to `id -un`. For real/effective numeric IDs, run `id -u` and `id -ru` in the same context. A lookup error is not an authentication failure. A privileged wrapper or a new shell can change identity before the command executes.

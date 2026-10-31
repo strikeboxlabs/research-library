@@ -5,12 +5,14 @@ description: Create an owned test signing identity or inspect a selected Java ke
 
 # Select or create the intended test identity
 
+Installed invocation: `/usr/bin/keytool`, version `keytool 25.0.5-ea`.
+
 Read this entire SKILL.md before acting. Require the trusted installed JDK and intended keystore/alias; generation additionally needs an authorized new test identity and fresh keystore destination. No conditional resources are required. Finish with command status, entry type, certificate fingerprint and validity; keep passwords/private-key material out of the result.
 
 Define `keystore` and `alias` as the selected store and exact entry. Inspect:
 
 ~~~bash
-keytool -list -v -keystore "$keystore" -alias "$alias"
+/usr/bin/keytool -list -v -keystore "$keystore" -alias "$alias"
 status=$?
 ~~~
 
@@ -20,7 +22,7 @@ For a new owned test key, select positive `validity_days` for the actual test li
 
 ~~~bash
 umask 077
-keytool -genkeypair -storetype PKCS12 -keystore "$keystore" -alias "$alias" \
+/usr/bin/keytool -genkeypair -storetype PKCS12 -keystore "$keystore" -alias "$alias" \
   -keyalg RSA -keysize 3072 -validity "$validity_days"
 status=$?
 ~~~

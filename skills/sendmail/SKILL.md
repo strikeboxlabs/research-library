@@ -5,6 +5,8 @@ description: Submit an explicitly requested message through the Sendmail 8 comma
 
 # Select the local submission implementation
 
+Installed invocation: `/usr/sbin/sendmail`.
+
 Read this entire SKILL.md before acting. Require an explicitly requested message and intended envelope recipient, then identify the installed implementation below and construct/review the message before submitting. No conditional resources are required. Finish with submission/queue evidence and any delivery uncertainty; a successful command is not inbox delivery.
 
 Resolve the installed `sendmail` executable and its package/manual. This name can belong to Sendmail, Postfix, Exim or a lightweight compatibility client; administrative and queue flags are not universally interchangeable. The procedure below targets the Sendmail 8 interface. It uses the configured local mail route and can submit mail without an explicit SMTP host argument.

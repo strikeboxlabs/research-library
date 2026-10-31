@@ -5,14 +5,16 @@ description: Triage binary files with GNU strings while retaining offsets and ch
 
 # GNU strings binary triage
 
+Installed invocation: `/usr/bin/strings`, version `GNU strings (GNU Binutils for Debian) 2.47`.
+
 Read this entire SKILL.md before acting. Select the actual artifact and encoding/offset options, preserve its source identity, and finish with the needed text/context and supported conclusion. For database/cache ownership, the structured-record step below is required before assigning an extracted verifier to an account; text adjacency alone is insufficient.
 
 Check `strings --version`; GNU binutils flags are not identical to Windows Sysinternals `strings.exe`. Define `binary` as an absolute path to the artifact copy, and `ascii_output`/`wide_output` as fresh private files:
 
 ~~~bash
 umask 077
-strings -a -n 6 -t x "$binary" >"$ascii_output"
-strings -a -n 6 -t x -e l "$binary" >"$wide_output"
+/usr/bin/strings -a -n 6 -t x "$binary" >"$ascii_output"
+/usr/bin/strings -a -n 6 -t x -e l "$binary" >"$wide_output"
 ~~~
 
 `-a` scans the whole file rather than depending on build-specific section defaults. `-n` sets the minimum character run, and `-t x` emits **hexadecimal file offsets**. `-e l` uses lowercase letter l for 16-bit little-endian text; it is not digit one. This second pass often matters for Windows binaries. Keep the outputs separate so encoding and offsets remain attributable.

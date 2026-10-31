@@ -3,8 +3,8 @@
 Require the preserved certificate, intended user/host purpose and expected public key. Define `certificate` as its absolute working-copy path:
 
 ~~~bash
-ssh-keygen -L -f "$certificate"
-ssh-keygen -l -E sha256 -f "$certificate"
+/usr/bin/ssh-keygen -L -f "$certificate"
+/usr/bin/ssh-keygen -l -E sha256 -f "$certificate"
 ~~~
 
 Retain status and the parsed type, public-key fingerprint, signing-CA fingerprint, serial, key ID, validity, principals, critical options and extensions. Compare the underlying public identity and signing CA with independently obtained public evidence; do not infer trust from a filename or comment. A parse failure leaves certificate interpretation incomplete.

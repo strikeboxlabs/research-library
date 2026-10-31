@@ -5,11 +5,13 @@ description: Inspect existing Linux audit logs for TTY input with aureport and c
 
 # Aureport TTY evidence
 
+Installed invocation: `/usr/sbin/aureport`, version `aureport version 4.1.2`.
+
 TTY input exists only if auditing captured it. Reading logs does not enable auditing or reconstruct earlier input. Define `audit_log` as an existing raw audit file or a directory of relevant logs, and `report` as a fresh file:
 
 ~~~bash
-aureport --version
-aureport --input "$audit_log" --tty > "$report"
+/usr/sbin/aureport --version
+/usr/sbin/aureport --input "$audit_log" --tty > "$report"
 ~~~
 
 On the original host, omitting `--input` reads the configured logs. Permission errors and unreadable rotations are coverage gaps, not evidence that no input was recorded.

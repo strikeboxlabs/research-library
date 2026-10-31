@@ -5,6 +5,8 @@ description: Plan and perform a selected package installation with APT, distingu
 
 # Install one selected APT package
 
+Installed invocation: `/usr/bin/apt-get`, version `apt 3.3.3 (amd64)`.
+
 Read this entire SKILL.md before acting. Require the intended controlled Linux image, trusted existing APT configuration/repositories and the exact package name. Simulation supports planning; installation additionally requires authorization for the proposed dependency/configuration changes and sufficient privileges. For a repository/proxy/authentication or package-identity discrepancy, read [repository evidence](references/repository-evidence.md) fully before diagnosing it. That resource is conditional. Finish with the selected transaction, actual status and installed-version evidence or the unresolved failure.
 
 Define `apt_get_bin` as the intended APT executable and `package` as one exact repository package name. Inspect this version's help and current metadata before planning:

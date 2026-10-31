@@ -5,6 +5,8 @@ description: Enumerate AD CS configuration, request selected certificates, authe
 
 # Follow the certificate operation through its stages
 
+Installed invocation: `/usr/bin/certipy-ad`, version `Certipy v5.1.0 - by Oliver Lyak (ly4k)`.
+
 Read this entire SKILL.md before acting, then the complete reference for the selected task. Require the intended directory/CA endpoints, known identity and installed supported subcommand. Use ly4k's Certipy AD CS tool, often packaged as `certipy-ad`; an executable named `certipy` can be unrelated. Define `certipy_bin` as the verified invocation and inspect its banner/subcommand help.
 
 | Task | Required working reference |

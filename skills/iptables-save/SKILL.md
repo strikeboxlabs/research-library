@@ -5,6 +5,8 @@ description: Capture an iptables ruleset and interpret chain order, owner matche
 
 # Save rules as firewall data
 
+Installed invocation: `/usr/sbin/iptables-save`, version `iptables-save v1.8.13 (nf_tables)`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the matching installed backend/family, intended namespace and existing capture rights. Save the complete ruleset before interpreting its chain order and local owner context; the restore review below is conditional on a requested restore. Finish with capture status, complete table evidence and coverage limits, rather than a claim that serializing rules changed or proved connectivity.
 
 Identify the matching backend and address family before capture. `iptables-save` and `ip6tables-save` cover IPv4 and IPv6 respectively; legacy and nft variants query different interfaces. Record the selected executable, namespace and time. A host capture does not inventory every container, and an iptables-format dump is not proof that all native nftables objects or other network controls were captured.

@@ -9,7 +9,7 @@ Define `database` as the absolute path to a coherent working copy of the selecte
 For the verified `moz_places(id,url,title)` and `moz_historyvisits(id,place_id,visit_date)` schema:
 
 ~~~bash
-sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" 'SELECT p.id, p.url, p.title, v.id AS visit_id, v.visit_date FROM moz_places AS p JOIN moz_historyvisits AS v ON v.place_id=p.id ORDER BY v.visit_date DESC, v.id DESC LIMIT 30;'
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" 'SELECT p.id, p.url, p.title, v.id AS visit_id, v.visit_date FROM moz_places AS p JOIN moz_historyvisits AS v ON v.place_id=p.id ORDER BY v.visit_date DESC, v.id DESC LIMIT 30;'
 ~~~
 
 Keep the raw `visit_date` and verify its units against the producing Firefox version before conversion. A join can return several visits to the same page; it deliberately excludes page rows without a retained visit. Empty history can reflect deletion, acquisition limits or a different profile. Do not label all `moz_places` rows as visits to compensate.
@@ -19,7 +19,7 @@ Keep the raw `visit_date` and verify its units against the producing Firefox ver
 For an IndexedDB database whose actual schema includes `object_data(object_store_id,key,data)`:
 
 ~~~bash
-sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" 'SELECT object_store_id, hex(key) AS key_hex, typeof(data) AS storage_type, length(data) AS stored_bytes, hex(substr(data,1,16)) AS prefix_hex FROM object_data ORDER BY object_store_id,key LIMIT 20;'
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" 'SELECT object_store_id, hex(key) AS key_hex, typeof(data) AS storage_type, length(data) AS stored_bytes, hex(substr(data,1,16)) AS prefix_hex FROM object_data ORDER BY object_store_id,key LIMIT 20;'
 ~~~
 
 Preserve the object-store ID and key with any selected field. SQLite can inspect and export BLOB bytes; it does not automatically interpret the application's serialization. Mozilla's implementation includes Snappy-compressed structured-clone data and out-of-line files. Decompression, where appropriate for that record/version, is not JSON parsing or vault decryption. Inspect the record's storage form and companion files before choosing a compatible decoder. A `strings`/hex hit is a locator, not a verified field association or complete extraction.

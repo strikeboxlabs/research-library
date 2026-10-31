@@ -5,6 +5,8 @@ description: Generate a bounded integer sequence with GNU seq for local work lis
 
 # Generate a finite local integer list
 
+Installed invocation: `/usr/bin/seq`, version `seq (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Confirm GNU coreutils with `seq --version`; choose finite integer bounds, a nonzero step and a fresh `numbers_file`. No conditional resources are required. Finish with the generator's status, bounds and actual record count; a generated list does not establish that later processing succeeded.
 
 Define `first`, `step` and `last` as the selected integers. Keep the result separate from any downstream operation:

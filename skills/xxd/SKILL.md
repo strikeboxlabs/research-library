@@ -5,12 +5,14 @@ description: Inspect exact bytes and reconstruct hex artifacts with xxd. Use whe
 
 # Keep byte offsets and display formats distinct
 
+Installed invocation: `/usr/bin/xxd`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Choose inspection, plain-hex rendering, normal-dump reconstruction or plain-hex decoding below, with fresh outputs for conversion. Preserve offsets, final status and resulting byte/format evidence; a parsed prefix or successful reverse exit alone is not complete recovery.
 
 Check `xxd -v` and local help; small reimplementations may support fewer options. Define `artifact` as an existing absolute working-copy path, `offset` as the observed byte offset and `length` as the number of bytes needed:
 
 ~~~bash
-xxd -g 1 -c 16 -s "$offset" -l "$length" "$artifact"
+/usr/bin/xxd -g 1 -c 16 -s "$offset" -l "$length" "$artifact"
 ~~~
 
 `-g 1` exposes individual bytes and `-s` seeks in the **file**. It does not understand a debugger's virtual address or a decoded object's internal offset. Map those address spaces explicitly before comparing output. `-l` is a maximum; a shorter file can yield fewer bytes without supplying the requested region. Inspect the last offset and actual byte count.
@@ -23,7 +25,7 @@ For a format requiring the hexadecimal representation of an already acquired byt
 
 ~~~bash
 umask 077
-xxd -p -c 256 "$artifact" > "$hex_output"
+/usr/bin/xxd -p -c 256 "$artifact" > "$hex_output"
 status=$?
 ~~~
 

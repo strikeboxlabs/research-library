@@ -5,18 +5,20 @@ description: Configure and build an existing reviewed CMake project in a separat
 
 # Configure before building the selected project
 
+Installed invocation: `/usr/bin/cmake`, version `cmake version 4.3.4`.
+
 Read this entire SKILL.md before acting. Require reviewed project/build scripts, dependencies and an available compiler/native build tool. Select explicit source/build roots, check configuration before building, and finish with actual diagnostics and artifact identity. No conditional resources are required; a successful build is separate from running or installing its outputs.
 
 Confirm `cmake --version`. For CMake3.13+ define `source_dir` as the reviewed project root containing CMakeLists.txt and `build_dir` as a fresh owned path outside its source tree:
 
 ~~~bash
-cmake -S "$source_dir" -B "$build_dir"
+/usr/bin/cmake -S "$source_dir" -B "$build_dir"
 ~~~
 
 Only after configuration succeeds:
 
 ~~~bash
-cmake --build "$build_dir"
+/usr/bin/cmake --build "$build_dir"
 ~~~
 
 Configuration creates the build tree/cache and can execute project-defined commands or fetch dependencies. The build invokes the selected native generator and project build steps. Inspect those inputs before either phase; configuration is not passive source inspection. A missing submodule/header/compiler/generator is a specific prerequisite, not permission to install arbitrary dependencies or erase a cache.

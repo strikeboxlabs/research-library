@@ -5,6 +5,8 @@ description: Query bounded SNMP subtrees and individual OIDs with Net-SNMP. Use 
 
 # Net-SNMP query interpretation
 
+Installed invocation: `/usr/bin/snmpwalk`, version `NET-SNMP version: 5.9.5.2`.
+
 Read this entire SKILL.md before acting; current complete context need not be re-read. Use the known connection parameters and a bounded OID scope, preserving types, indices and failures. For hardware inventory or serial-to-component mapping, read [hardware inventory](references/hardware-inventory.md) fully first. For selected disk rows or an existing monitoring extension, read [disk and extension evidence](references/disk-and-extensions.md) fully first; reading extension output can execute its configured program. Finish with the observed values and access/coverage limits, not inferred credentials or missing-device claims.
 
 For IPv6 address-table observations, read [IPv6 address indices](references/ipv6-address-indices.md) fully before querying/decoding. Its selected-row procedure requires the package-local [decoder](scripts/decode_ipv6_index.py), Python 3 and exactly 16 acquired address octets.
@@ -17,7 +19,7 @@ Define `agent` as the scoped endpoint, `community` as the known v2c value, `subt
 
 ~~~bash
 umask 077
-snmpwalk -v2c -c "$community" -t 2 -r 1 -On "$agent" "$subtree" >"$output"
+/usr/bin/snmpwalk -v2c -c "$community" -t 2 -r 1 -On "$agent" "$subtree" >"$output"
 ~~~
 
 `-t` is the per-request timeout and `-r` the retry count, not an overall walk deadline. Choose a small subtree before walking a large device. Without an OID, the default walk covers MIB-2; vendor objects under `.1.3.6.1.4.1` are outside that default. Select the relevant enterprise branch from device evidence rather than treating a short default walk as complete coverage.

@@ -4,7 +4,7 @@ Require one approved agent, known SNMP read context and installed Net-SNMP. Use 
 
 ~~~bash
 umask 077
-snmpwalk -v "$version" -c "$community" -t 2 -r 1 -On "$agent" .1.3.6.1.2.1.4.34.1.3 > "$output"
+/usr/bin/snmpwalk -v "$version" -c "$community" -t 2 -r 1 -On "$agent" .1.3.6.1.2.1.4.34.1.3 > "$output"
 ~~~
 
 Preserve status/stderr and complete numeric OIDs/types. This `ipAddressIfIndex` column has its address in the **OID index**; the returned integer identifies the associated interface. The suffix contains address type, length and address octets. For ordinary IPv6, the suffix starts `2.16` followed by exactly 16 decimal bytes. IPv4 (`1.4`) and zone-index-bearing address types require different parsing; do not silently trim them to 16 bytes. The remote interface index is not automatically a client's local scope/interface identifier.

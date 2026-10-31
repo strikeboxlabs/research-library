@@ -8,13 +8,13 @@ Define `container` and `blob` as the exact selected object identifiers, `metadat
 
 ~~~bash
 umask 077
-az storage blob show --container-name "$container" --name "$blob" --output json > "$metadata"
+/usr/bin/az storage blob show --container-name "$container" --name "$blob" --output json > "$metadata"
 ~~~
 
 Check status and expected size/type before downloading:
 
 ~~~bash
-az storage blob download --container-name "$container" --name "$blob" --file "$output"
+/usr/bin/az storage blob download --container-name "$container" --name "$blob" --file "$output"
 ~~~
 
 Check status, resulting size and the intended format parser. Failure can leave partial bytes. Metadata and download are separate requests; retain version/ETag differences rather than assuming a stable object. `--file` writes locally; without it download can emit data to stdout. Do not use batch recovery for a single-object task. A table listing is not a complete metadata record. Unexpected public-host routing, missing authentication or API-version errors require resolving that specific configuration/compatibility issue. Debug logs can contain credentials. See [Azure CLI blob commands](https://learn.microsoft.com/en-us/cli/azure/storage/blob).

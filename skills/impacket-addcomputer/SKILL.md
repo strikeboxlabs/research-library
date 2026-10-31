@@ -5,13 +5,15 @@ description: Create and verify a selected Active Directory computer account usin
 
 # Create the intended directory object
 
+Installed invocation: `/usr/bin/impacket-addcomputer`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Require the supported installed client, intended DC/container and known authorized identity with creation rights. Resolve the domain/container, establish that the chosen name is unused, and preserve the new object's identity after creation. Finish with its DN/SID, method and observed attributes; creating a computer account does not join a Linux machine to the domain.
 
 Check `impacket-addcomputer -h`. Define `identity` as `domain.example/user`, `dc_fqdn`, `dc_ip`, `computer_account` as the selected name including `$`, and `creation_log` as a new private file. With a matching Kerberos cache:
 
 ~~~bash
 umask 077
-impacket-addcomputer -k -no-pass -dc-host "$dc_fqdn" -dc-ip "$dc_ip" \
+/usr/bin/impacket-addcomputer -k -no-pass -dc-host "$dc_fqdn" -dc-ip "$dc_ip" \
   -method LDAPS -computer-name "$computer_account" "$identity" > "$creation_log" 2>&1
 ~~~
 

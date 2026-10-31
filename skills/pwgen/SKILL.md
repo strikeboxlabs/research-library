@@ -5,13 +5,15 @@ description: Generate a bounded set of random labels with pwgen on Linux. Use wh
 
 # Generate a label without claiming unique allocation
 
+Installed invocation: `/usr/bin/pwgen`.
+
 Read this entire SKILL.md before acting. Require the installed pwgen and select a non-secret label's length/count before generation. No conditional resource is required. Finish with successful generation and the observed shape; a random string does not reserve a filename, create a directory or prove uniqueness.
 
 Set `length` and `count` to the required small positive integers. Inspect local help, then request explicit one-per-line output:
 
 ~~~bash
-pwgen --help
-pwgen -1 "$length" "$count"
+/usr/bin/pwgen --help
+/usr/bin/pwgen -1 "$length" "$count"
 status=$?
 ~~~
 

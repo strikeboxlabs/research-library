@@ -5,6 +5,8 @@ description: Create a local backup of selected owned files, inspect an existing 
 
 # Inspect and restore selected backup data
 
+Installed invocation: `/usr/bin/restic`, version `restic 0.19.1 compiled with go1.26.4 on linux/amd64`.
+
 Read this entire SKILL.md before acting. Require the selected existing repository, its known encryption credential and any separate backend access. The inline task lists/selects a snapshot and restores reviewed paths into a fresh destination. For filesystem browsing, also read [FUSE repository browsing](references/mount-browsing.md) fully. Finish with repository/snapshot identity, operation status and the requested recovered data or browsing evidence; missing credentials, an incomplete restore or a failed mount remains unresolved.
 
 For a new local repository and a backup of an ordinary owned directory, read [selected local backup](references/local-backup.md) fully first. That branch requires a fresh repository location and a prepared password file, rather than the existing repository required by the restore task.
@@ -12,8 +14,8 @@ For a new local repository and a backup of an ordinary owned directory, read [se
 Define `repository` as the exact existing repository location and `password_file` as a private file holding its known repository password. Repository encryption credentials and backend transport credentials are separate. A Backrest web-login password or bcrypt verifier is not automatically the repository password.
 
 ~~~bash
-restic version
-restic -r "$repository" --password-file "$password_file" snapshots --json
+/usr/bin/restic version
+/usr/bin/restic -r "$repository" --password-file "$password_file" snapshots --json
 ~~~
 
 Check inherited `RESTIC_*` configuration when results or authentication are unexpected. `--password-command` and `RESTIC_PASSWORD_COMMAND` execute a local program to obtain the password, even when the requested operation looks like inspection. Do not copy that setting from an untrusted configuration. `init` creates a repository; it does not repair access to an existing one.
@@ -21,7 +23,7 @@ Check inherited `RESTIC_*` configuration when results or authentication are unex
 Choose an exact observed snapshot ID after checking host, time and saved paths. Define `snapshot` as that ID and inspect its paths:
 
 ~~~bash
-restic -r "$repository" --password-file "$password_file" ls "$snapshot"
+/usr/bin/restic -r "$repository" --password-file "$password_file" ls "$snapshot"
 ~~~
 
 Define `member` as an observed snapshot path and `destination` as a new absolute directory. Review a selected restore before writing files:

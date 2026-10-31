@@ -5,6 +5,8 @@ description: Convert captured text between explicit character encodings with ico
 
 # Decode characters after recovering the bytes
 
+Installed invocation: `/usr/bin/iconv`, version `iconv (Debian GLIBC 2.43-7) 2.43`.
+
 Read this entire SKILL.md before acting. Require the original bytes, evidence for the input encoding, the consumer's output-encoding contract and a fresh output path. Select decoding or conversion for that contract below; both require immediate status and byte/content checks. Finish with the input/output encodings, complete converted artifact and its limits, or the specific malformed/unsupported encoding gap.
 
 First separate the representation from the encoding: hex/base64 decoding recovers bytes; `iconv` interprets those bytes as characters. A Windows origin or alternating zeros is a clue, not proof of UTF-16LE. Establish the encoding from the producing format, byte-order mark or other evidence. Check supported names with `iconv -l`.

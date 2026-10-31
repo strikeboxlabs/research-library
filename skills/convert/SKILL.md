@@ -5,6 +5,8 @@ description: Convert an owned XWD capture to PNG, crop raster pixels or generate
 
 # ImageMagick 6 image operations
 
+Installed invocation: `/usr/bin/convert`, version `Version: ImageMagick 7.1.2-31 Q16 x86_64 20260903 https://imagemagick.org`.
+
 Read this entire SKILL.md before acting. Require ImageMagick 6 convert and fresh output paths. For XWD conversion below, require enabled XWD reading and PNG writing. For an owned raster crop, read [crop geometry](references/crop.md) fully before acting. For the marked PDF below, also require an available font and enabled PDF writing. Finish with command status and decoded output/geometry; missing coder/font support remains a prerequisite gap.
 
 Confirm `convert -version` identifies ImageMagick; a same-named filesystem utility is a different program. ImageMagick 7 uses `magick`, so establish its invocation separately. Use `convert -list policy` to inspect relevant coder restrictions.

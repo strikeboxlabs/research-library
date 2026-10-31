@@ -5,6 +5,8 @@ description: Mount an identified block filesystem or known SMB/NFS share for sel
 
 # Mount a selected filesystem
 
+Installed invocation: `/usr/bin/mount`, version `mount from util-linux 2.42.4 (libmount 2.42.4: selinux, smack, btrfs, verity, namespaces, `.
+
 Read this entire SKILL.md before acting; reuse complete current context. Identify the source filesystem, execution/mount namespace, requested access and free mountpoint before mounting. Finish with the selected file/read/change plus actual mount/result and cleanup status; UID 0, a device name or an existing directory is insufficient evidence of host-root access.
 
 Select the source branch: for an identified local block filesystem, follow the procedure below. For an authorized known SMB share, read [CIFS selected reads](references/cifs-read.md) fully; for a known authorized NFS export, read [NFS selected reads](references/nfs-read.md) fully. Their network-source and helper prerequisites replace the block-device prerequisite. All branches require mount attribution and the cleanup checks below.
@@ -30,7 +32,7 @@ Do not independently remount a live filesystem or repair its journal merely to m
 In the established privileged context, with the chosen source/type/options:
 
 ~~~bash
-mount -t "$fstype" -o "$options" -- "$device" "$mountpoint"
+/usr/bin/mount -t "$fstype" -o "$options" -- "$device" "$mountpoint"
 findmnt --kernel --mountpoint "$mountpoint" --output TARGET,SOURCE,FSTYPE,FSROOT,OPTIONS
 ~~~
 

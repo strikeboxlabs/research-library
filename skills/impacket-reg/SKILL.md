@@ -5,6 +5,8 @@ description: Query selected remote Windows registry keys with Impacket from Linu
 
 # Impacket remote registry queries
 
+Installed invocation: `/usr/bin/impacket-reg`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Inspect `impacket-reg -h` and `impacket-reg query -h`; upstream may install `reg.py`. This is remote registry access over SMB/RPC, not offline hive parsing or a WinRM session. Successful SMB authentication does not establish registry-key access.
 
 **Even a query can change service state.** The reviewed implementation checks RemoteRegistry, starts it when stopped, and can temporarily change a disabled start type. It attempts restoration afterward, with a named-pipe trigger fallback when service checks fail. If service changes are outside the task, choose an existing approved collection path instead. Do not describe this tool as universally read-only just because the selected registry action is `query`.
@@ -12,7 +14,7 @@ Inspect `impacket-reg -h` and `impacket-reg query -h`; upstream may install `reg
 Define `identity` as the known `domain/user@host` without a password, and `registry_key` as the exact observed key path, stored with literal backslashes:
 
 ~~~bash
-impacket-reg "$identity" query -keyName "$registry_key"
+/usr/bin/impacket-reg "$identity" query -keyName "$registry_key"
 ~~~
 
 Enter the password at the prompt. This returns the key's values and immediate subkeys. For one selected value, define `value_name` and add `-v "$value_name"`. Use `-ve` for the unnamed default value. Add recursive `-s` only when the larger subtree is needed; it can expose much more data and encounter partial access failures.

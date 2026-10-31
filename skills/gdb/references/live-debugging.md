@@ -5,7 +5,7 @@ Use a matching executable in a Linux fixture where running it is part of the tas
 Define `binary` as the fixture's absolute executable path and `sample_arg` as one controlled text argument. Omit that argument if the fixture needs none; binary data containing NUL bytes cannot be passed as an ordinary argument.
 
 ~~~bash
-gdb -q -nx -iex 'set auto-load off' --args "$binary" "$sample_arg"
+/usr/bin/gdb -q -nx -iex 'set auto-load off' --args "$binary" "$sample_arg"
 ~~~
 
 In the persistent GDB session, configure and stop at the first instruction:

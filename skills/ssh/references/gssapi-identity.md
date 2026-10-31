@@ -7,7 +7,7 @@ Select the actual cache, then use explicit authentication/delegation policy:
 ~~~bash
 export KRB5CCNAME="$cache"
 klist -c "$KRB5CCNAME"
-ssh -v -o GSSAPIAuthentication=yes -o GSSAPIDelegateCredentials=no \
+/usr/bin/ssh -v -o GSSAPIAuthentication=yes -o GSSAPIDelegateCredentials=no \
   -o PreferredAuthentications=gssapi-with-mic "$login_user@$server_fqdn"
 ~~~
 

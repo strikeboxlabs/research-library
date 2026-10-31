@@ -5,12 +5,14 @@ description: Inspect a selected Linux file's filesystem attributes with lsattr. 
 
 # Inspect attributes of the selected object
 
+Installed invocation: `/usr/bin/lsattr`, version `lsattr 1.47.4 (6-Mar-2025)`.
+
 Read this entire SKILL.md before acting. Select an existing regular file or directory in the intended mount/namespace and require an installed compatible e2fsprogs lsattr. No conditional resources are required. Finish with the exact path, returned flags, diagnostics and access limits; an unsupported query is not evidence that no attributes exist.
 
 Define `artifact` as that absolute path. Inspect this object without recursively listing a directory's contents:
 
 ~~~bash
-lsattr -V -d -- "$artifact"
+/usr/bin/lsattr -V -d -- "$artifact"
 status=$?
 ~~~
 

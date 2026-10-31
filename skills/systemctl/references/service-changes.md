@@ -18,9 +18,9 @@ For a reviewed unit-file edit, define `unit_file` as its actual path:
 
 ~~~bash
 systemd-analyze verify "$unit_file"
-systemctl daemon-reload
-systemctl restart "$unit"
-systemctl --no-pager --full status "$unit"
+/usr/bin/systemctl daemon-reload
+/usr/bin/systemctl restart "$unit"
+/usr/bin/systemctl --no-pager --full status "$unit"
 journalctl -b -u "$unit" -n 50 --no-pager
 ~~~
 

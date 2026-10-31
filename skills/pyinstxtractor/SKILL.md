@@ -5,6 +5,8 @@ description: Extract a selected owned PyInstaller executable into a fresh work a
 
 # Extract the embedded application without launching it
 
+Installed invocation: `/usr/bin/pyinstxtractor`.
+
 Read this entire SKILL.md before acting. Require the selected acquired executable, a trusted installed extractor script and a matching Python interpreter. Use an isolated disposable analysis environment with an owned fresh work directory; this parser writes files and is not a containment boundary. All instructions are inline. Finish with the archive diagnostics and identified recovered artifacts, distinguishing partial extraction from complete recovery.
 
 Define `extractor` as the verified absolute `pyinstxtractor.py` path, `artifact` as the selected absolute input, `python_bin` as the trusted interpreter and `work_directory` as the empty owned analysis directory. Preserve the input fingerprint and interpreter/extractor revision. Do not execute the acquired application to identify its packaging.

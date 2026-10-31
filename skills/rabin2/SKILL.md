@@ -5,14 +5,16 @@ description: Inspect acquired binary sections and segments with radare2's rabin2
 
 # Inspect the binary's declared layout
 
+Installed invocation: `/usr/bin/rabin2`.
+
 Read this entire SKILL.md before acting. Require the acquired file and intended format/architecture. No conditional resources are required. Finish with status and selected layout evidence; static metadata does not establish live access.
 
 Confirm `rabin2 -v` and `rabin2 -h`. Define `binary` as the working copy:
 
 ~~~bash
-rabin2 -I "$binary"
-rabin2 -S "$binary"
-rabin2 -SS "$binary"
+/usr/bin/rabin2 -I "$binary"
+/usr/bin/rabin2 -S "$binary"
+/usr/bin/rabin2 -SS "$binary"
 ~~~
 
 Keep diagnostics/status for each query. `-I` reports binary information, `-S` sections and `-SS` segments. Select the actual sub-binary when inspecting a multi-architecture container. Do not force a format to hide a parser failure.

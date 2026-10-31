@@ -7,7 +7,7 @@ Use for authorized inspection of a Mattermost MySQL/MariaDB database whose confi
 Extract the intended endpoint/account/database with a DSN-aware method or careful review of the actual format. For `tcp(host:port)`, define `db_host`, `db_port`, `db_user` and `database` from that selected endpoint and connect explicitly:
 
 ~~~bash
-mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database"
+/usr/bin/mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database"
 ~~~
 
 Enter the known database password at the prompt; keep required TLS policy. A bare `mysql -u user -p` on Unix can choose a socket even when the application's DSN names TCP. A refused endpoint, denied login and missing database require different recovery. A PostgreSQL driver needs its corresponding client/query dialect, not a forced mysql invocation.
@@ -36,7 +36,7 @@ For a known unique ID and confirmed schema, define `query` as a reviewed one-row
 
 ~~~bash
 umask 077
-mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database" \
+/usr/bin/mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database" \
   --batch --skip-column-names --execute="$query" > "$record_file"
 status=$?
 ~~~

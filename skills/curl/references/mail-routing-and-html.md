@@ -6,7 +6,7 @@ Select one controlled recipient mailbox and a unique harmless marker, define `se
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --data-urlencode 'name=controlled-mail-test' --data-urlencode "email=$reply_address" \
   --data-urlencode "recipient=$recipient" --data-urlencode "message=$marker" \
   --data-urlencode 'content=text/plain' \

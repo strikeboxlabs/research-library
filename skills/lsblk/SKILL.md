@@ -5,10 +5,12 @@ description: Inspect Linux block-device relationships and mountpoint metadata wi
 
 # Inspect block devices and their mount views
 
+Installed invocation: `/usr/bin/lsblk`, version `lsblk from util-linux 2.42.4`.
+
 Read this entire SKILL.md before acting. Confirm `lsblk --version` and supported columns in `lsblk --help`; retain status, device relationships and mount context. No conditional resources are required. This read-only inventory does not mount devices or establish host/container provenance.
 
 ~~~bash
-lsblk --json --bytes --output NAME,TYPE,MAJ:MIN,SIZE,FSTYPE,MOUNTPOINTS
+/usr/bin/lsblk --json --bytes --output NAME,TYPE,MAJ:MIN,SIZE,FSTYPE,MOUNTPOINTS
 status=$?
 ~~~
 

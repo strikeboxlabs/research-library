@@ -5,6 +5,8 @@ description: Inspect one known legacy text service with a telnet client. Use whe
 
 # Inspect a selected legacy text service
 
+Installed invocation: `/usr/bin/telnet`, version `telnet (GNU inetutils) 2.8`.
+
 Read this entire SKILL.md before acting. Require the installed client, one authorized known host/port and a selected read-only application command. Inspect local help to identify the implementation; GNU options below are conditional on that client. Complete with the endpoint, banner, actual command/response and remaining coverage, then close this session.
 
 For a version or patch question, `telnet --version` identifies this client, not the daemon at the selected endpoint. Correlate the administered listener with its actual server executable, package revision and vendor patch evidence. A port number or client/server product family alone cannot establish the daemon's implementation or vulnerability status. Retain that attribution gap instead of testing an authentication bypass.
@@ -12,7 +14,7 @@ For a version or patch question, `telnet --version` identifies this client, not 
 For GNU Inetutils, define `host` and numeric `port` and omit inherited startup commands/automatic login:
 
 ~~~bash
-telnet --no-rc --no-login "$host" "$port"
+/usr/bin/telnet --no-rc --no-login "$host" "$port"
 ~~~
 
 `Connected` establishes a TCP connection, not a login, database query or healthy application. Read the service banner and its documented read-only help/status response before choosing an operation. A custom `HELP` at the remote application's prompt differs from help at the local `telnet>` prompt. Keep the response paired with the command; an invalid-configuration error is a bounded result, not successful query execution. A directory/name returned by the application is not a local filesystem path.

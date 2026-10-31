@@ -6,6 +6,8 @@ description: Decrypt a selected OpenPGP backup or create and verify a detached s
 
 # Select the OpenPGP operation
 
+Installed invocation: `/usr/bin/gpg`, version `gpg (GnuPG) 2.4.9`.
+
 Read this entire SKILL.md before acting. For decryption, establish the ciphertext, encryption type and required key/passphrase, then finish with status evidence and validated plaintext. For an owned ordinary file's detached signature and selected public-key export, read [detached signatures](references/detached-signatures.md) fully first; finish with verification of the exact bytes and expected signer. Missing usable key material or failed validation remains unresolved.
 
 For recovery from an owned backup containing a GnuPG home, read [backup key-home recovery](references/key-home.md) fully first. Keep that branch unloaded when using the current trusted keyring or a symmetric passphrase.
@@ -15,7 +17,7 @@ Define `ciphertext` as the existing acquired encrypted-file copy before using th
 Use GnuPG's installed `gpg --version`. A `.gpg` extension or `.gnupg` directory does not identify the object's encryption type or prove a usable private key exists. For a selected working copy, inspect packet metadata when this distinction is unknown:
 
 ~~~bash
-gpg --list-packets "$ciphertext"
+/usr/bin/gpg --list-packets "$ciphertext"
 ~~~
 
 A symmetric-key encrypted session-key packet indicates a passphrase route; a public-key encrypted session-key packet identifies recipient-key requirements. Metadata inspection can still prompt or emit errors. Public-key decryption needs the matching secret key or configured token, plus its unlocking mechanism. A symmetric message does not require a private key. No exposed private key therefore does not rule out testing a known passphrase on a symmetric backup.
@@ -26,14 +28,14 @@ For an interactive known-passphrase decryption, define `plaintext` as a fresh pr
 
 ~~~bash
 umask 077
-gpg --output "$plaintext" --decrypt "$ciphertext"
+/usr/bin/gpg --output "$plaintext" --decrypt "$ciphertext"
 ~~~
 
 For an approved unattended run, define `passphrase_file` as a protected existing file containing the intended passphrase on its first line, with `status_file` and `error_file` fresh paths:
 
 ~~~bash
 umask 077
-gpg --batch --pinentry-mode loopback --passphrase-fd 3 \
+/usr/bin/gpg --batch --pinentry-mode loopback --passphrase-fd 3 \
   --status-fd 4 --output "$plaintext" --decrypt "$ciphertext" \
   3<"$passphrase_file" 4>"$status_file" 2>"$error_file"
 ~~~

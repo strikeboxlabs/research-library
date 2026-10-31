@@ -5,6 +5,8 @@ description: Generate a small patterned local text fixture with crunch. Use when
 
 # Generate a bounded owned text fixture
 
+Installed invocation: `/usr/bin/crunch`, version `crunch version 3.6`.
+
 Read this entire SKILL.md before acting. Require installed crunch, an owned fresh output and a calculated finite pattern. No conditional resources are required. Finish with status, measured records/bytes and exact pattern; interruption leaves partial output.
 
 Review installed help. For this illustrative five-character log-label fixture, define `fixture` as a fresh absolute file:

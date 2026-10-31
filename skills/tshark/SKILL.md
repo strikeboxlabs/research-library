@@ -5,6 +5,8 @@ description: Make a bounded selected network capture or analyze saved FTP, TLS o
 
 # Correlate evidence in a saved capture
 
+Installed invocation: `/usr/bin/tshark`, version `TShark (Wireshark) 4.6.9.`.
+
 Read this entire SKILL.md before acting. Choose saved-file analysis or [bounded live capture](references/live-capture.md); read that reference fully before capturing. For TLS decryption, read [TLS evidence](references/tls.md) before that task. Retain frame/conversation context and command status; finish with observed protocol evidence and coverage limits, rather than treating missing output as a successful negative finding.
 
 Use `tshark --version` and `tshark -h` to establish the installed analyzer. Define `pcap` as the existing capture to inspect and `events` as a fresh private text output path. Reading with `-r` needs file access, not live-capture privileges; omitting it can start a capture.
@@ -13,7 +15,7 @@ Extract FTP login commands and server responses while retaining frame, time, end
 
 ~~~bash
 umask 077
-tshark -n -r "$pcap" \
+/usr/bin/tshark -n -r "$pcap" \
   -Y 'ftp.request.command == "USER" || ftp.request.command == "PASS" || ftp.response.code' \
   -T fields -E header=y -E separator=/t -E quote=d \
   -e frame.number -e frame.time_epoch -e tcp.stream \
@@ -32,7 +34,7 @@ Read each stream in frame order and match request/reply direction. **Illustrativ
 Define `stream` as a nonnegative integer from the `tcp.stream` column and `transcript` as a fresh private destination:
 
 ~~~bash
-tshark -n -r "$pcap" -q -z "follow,tcp,ascii,$stream" >"$transcript"
+/usr/bin/tshark -n -r "$pcap" -q -z "follow,tcp,ascii,$stream" >"$transcript"
 ~~~
 
 The stream selector applies to this capture; stream 0 is the first TCP stream, not frame 0 or a globally stable connection ID. Following reconstructs the available byte stream and preserves direction through its node labels and indentation. ASCII presentation replaces nonprintable bytes with dots, so use hex mode and the original capture when exact bytes matter.
@@ -52,7 +54,7 @@ For the existing `pcap`, define `summary` and `detail` as fresh private text fil
 
 ~~~bash
 umask 077
-tshark -n -r "$pcap" \
+/usr/bin/tshark -n -r "$pcap" \
   -Y 'kerberos.msg_type == 10 || kerberos.msg_type == 11 || kerberos.msg_type == 30' \
   -T fields -E header=y -E separator=/t -E quote=d -E occurrence=a \
   -e frame.number -e frame.time_epoch -e tcp.stream -e udp.stream \
@@ -66,7 +68,7 @@ Use endpoints, transport conversation, time and request/reply context together. 
 Select `frame` as a numeric frame number from this capture. Preserve the decoded hierarchy:
 
 ~~~bash
-tshark -n -r "$pcap" -Y "frame.number == $frame" -V >"$detail"
+/usr/bin/tshark -n -r "$pcap" -Y "frame.number == $frame" -V >"$detail"
 ~~~
 
 Within an AS-REQ, locate PA-DATA type 2, **PA-ENC-TIMESTAMP**, and its own encrypted-data `etype` and `cipher`. Keep these with the request body's client principal and realm. The request body's supported-encryption list is a different field from the encryption type of this timestamp. A flat export of every `kerberos.etype` or `kerberos.cipher` can mix unrelated nested values; selecting the first occurrence is not a reliable correction.

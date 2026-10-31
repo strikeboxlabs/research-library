@@ -5,6 +5,8 @@ description: Extract text from an acquired PDF with Poppler pdftotext and retain
 
 # Extract and assess PDF text
 
+Installed invocation: `/usr/bin/pdftotext`.
+
 Read this entire SKILL.md before acting. Require the installed Poppler utility, the selected local PDF and fresh private text/diagnostic paths. Choose whole-document or an explicit physical-page range before extracting. Finish with extraction status, the chosen page scope and unresolved visual/text gaps; a missing tool or unreadable input is a prerequisite gap.
 
 Check `pdftotext -v` and `pdftotext -h`. Define `pdf` as the absolute input, `text` as a fresh text path and `log` as a separate fresh diagnostic path:

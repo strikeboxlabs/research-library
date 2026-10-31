@@ -5,6 +5,8 @@ description: Generate Metasploit patterns and locate observed four-byte fragment
 
 # Metasploit pattern offsets
 
+Installed invocation: `/usr/bin/msf-pattern_create`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Generate and locate using the same pattern family/length, require an exact unambiguous result and confirm its field boundary. For browser/Emscripten display corruption, read [WebAssembly fields](references/wasm-fields.md) fully first; that offset does not imply native control-flow execution.
 
 Locate the installed pair: packages may expose `msf-pattern_create` and `msf-pattern_offset`, or the framework's `tools/exploit/pattern_create.rb` and `pattern_offset.rb`. Define `pattern_create` and `pattern_offset` as their executable paths; inspect each with `-h`.

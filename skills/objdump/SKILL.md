@@ -5,13 +5,15 @@ description: Inspect object-file headers and bounded disassembly with GNU objdum
 
 # Read the right representation
 
+Installed invocation: `/usr/bin/objdump`, version `GNU objdump (GNU Binutils for Debian) 2.47`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Establish the artifact format and address space, select headers/bytes/disassembly below, and retain the bounded output supporting the requested conclusion. Missing symbols or static-only evidence must remain explicit; this procedure does not establish runtime reachability.
 
 Define `binary` as an existing artifact copy. Establish the object format and architecture before selecting disassembler options:
 
 ~~~bash
-objdump --version
-objdump -f -h "$binary"
+/usr/bin/objdump --version
+/usr/bin/objdump -f -h "$binary"
 ~~~
 
 An unsupported format/architecture may require the matching cross-binutils build. Do not force x86 decoding merely because the analysis workstation is x86. Linux tooling can inspect some foreign ELF files without being able to execute them.
@@ -28,13 +30,13 @@ The case of the option changes its meaning:
 For a known symbol, define `symbol` as its actual name:
 
 ~~~bash
-objdump -d -C --disassemble="$symbol" "$binary"
+/usr/bin/objdump -d -C --disassemble="$symbol" "$binary"
 ~~~
 
 For a stripped artifact, use observed **object virtual addresses** `start` and `stop` to bound output:
 
 ~~~bash
-objdump -d --start-address="$start" --stop-address="$stop" "$binary"
+/usr/bin/objdump -d --start-address="$start" --stop-address="$stop" "$binary"
 ~~~
 
 These are not raw file offsets. Relocation and load bias can make live addresses differ. On x86, explicitly select `-M intel` if needed and keep that choice with the report; AT&T and Intel operand ordering differ. A missing source line in `-S` output does not prove the instruction has no source-level origin.
@@ -46,8 +48,8 @@ Check actual instruction bytes, boundaries, operand widths and following instruc
 For a dynamic ELF artifact, compare symbol names and dynamic relocations with the call site and PLT stub:
 
 ~~~bash
-objdump -T -R "$binary"
-objdump -d --start-address="$start" --stop-address="$stop" "$binary"
+/usr/bin/objdump -T -R "$binary"
+/usr/bin/objdump -d --start-address="$start" --stop-address="$stop" "$binary"
 ~~~
 
 `-T` shows dynamic symbols; `-R` shows dynamic relocations. A decompiler label such as an **illustrative** `sub_1ff0` may represent a linkage stub rather than application logic. Follow the actual referenced relocation/import and inspect caller arguments and return-value handling. A PLT address, its associated GOT storage address and the function address currently stored there are different objects; static relocation output alone does not establish the loaded implementation. A grep of one address loses this relationship. Static binaries or unsupported formats may need a different symbol/import view; an absent table does not prove an absent capability.

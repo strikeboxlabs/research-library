@@ -5,6 +5,8 @@ description: Obtain a Kerberos file credential cache using known credentials wit
 
 # Impacket getTGT
 
+Installed invocation: `/usr/bin/impacket-getTGT`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Establish the selected account, credential, realm/KDC and fresh cache, then verify the issued principal and validity. For UPN/enterprise-principal mapping, read [enterprise identity selection](references/enterprise-principal.md) fully before requesting the ticket; cache creation alone is not service authorization.
 
 Check `impacket-getTGT -h`; an upstream installation may provide `getTGT.py`. Define `domain` as the AD DNS domain, `user` as the bare account name, `dc_ip` as the DC address, and `ticket_dir` as a new absolute workspace directory.

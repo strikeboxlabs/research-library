@@ -5,6 +5,8 @@ description: Test a bounded local password-candidate list against one selected L
 
 # Selected local su password check
 
+Installed invocation: `/usr/bin/sucrack`.
+
 Read this entire SKILL.md before acting; reuse complete current context. This is live local authentication through su. Select the authorized OS account, finite candidate set, attempt/time budget and applicable PAM/lockout conditions before running it. Read [build, prompts and option choices](references/build-and-prompts.md) fully if the binary is missing, statistics switches warn, prompts do not match or candidate rewriting is needed. Keep unrelated build work unloaded when the installed CLI already supports the task.
 
 Define `sucrack_bin` as the verified existing binary invocation, `account` as the selected OS account, `wordlist` as the private finite line-based candidate file, `workers` as the chosen concurrency and `log` as a fresh private result file. Inspect `"$sucrack_bin" -h` for this build. Start with one worker when actual account policy permits the selected check; increase only within the task's authentication budget.

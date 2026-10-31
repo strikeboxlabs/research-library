@@ -8,7 +8,7 @@ Define `device` as its verified absolute block-device path and `output` as a fre
 umask 077
 test -b "$device"
 blockdev --getsize64 "$device"
-dd if="$device" of="$output" bs=1M iflag=fullblock conv=excl,fsync status=progress
+/usr/bin/dd if="$device" of="$output" bs=1M iflag=fullblock conv=excl,fsync status=progress
 ~~~
 
 Proceed only after the source check and capacity query succeed, and record the returned byte capacity. `--getsize64` returns bytes; `--getsz` instead returns 512-byte sectors. `conv=excl` refuses an existing destination, and `fsync` requests output synchronization before successful completion. It does not freeze other writers. The source is opened for reading; reversing `if` and `of` would overwrite the wrong object.

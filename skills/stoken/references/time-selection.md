@@ -6,7 +6,7 @@ For a trusted test epoch, define `epoch` as Unix seconds, `rcfile` as this token
 
 ~~~bash
 umask 077
-stoken tokencode --rcfile="$rcfile" --use-time="$epoch" >"$code_file"
+/usr/bin/stoken tokencode --rcfile="$rcfile" --use-time="$epoch" >"$code_file"
 ~~~
 
 Check status before using the result. `--use-time=+30` instead adds 30 seconds to the current time at generation; a bare integer fixes an absolute instant. Do not combine `--use-time` with `--next`. This is a scoped diagnostic override, not a system clock/NTP change. A code generated for an old fixed timestamp does not remain current while an investigation continues.

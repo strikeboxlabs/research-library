@@ -5,6 +5,8 @@ description: Inspect an existing ELF's mitigation metadata with the pwntools che
 
 # Inspect ELF mitigation indicators
 
+Installed invocation: `/usr/bin/checksec`, version `checksec v2.6.0, Brian Davis, github.com/slimm609/checksec.sh, Dec 2015`.
+
 Read this entire SKILL.md before acting. This procedure uses the installed **pwntools** `pwn checksec` subcommand on an existing local artifact; standalone programs also named checksec have different argument syntax. Identify the implementation before invoking it. Finish with artifact/build identity, command status and the reported indicators, including any unreadable or unsupported fields.
 
 Define `binary` as an existing absolute ELF path. Retain its fingerprint and source/build association. Inspect the available subcommand and then the selected file:

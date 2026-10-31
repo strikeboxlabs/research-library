@@ -5,7 +5,7 @@ Use for authorized Joomla database inspection with an acquired active `configura
 Choose the actual driver/endpoint before connecting. Joomla `mysqli` indicates MySQL-compatible access. Unix `localhost` can select a socket; remote `127.0.0.1` means the application's host, not the workstation. A local listener on 3306 is a classic-protocol lead; 33060 is commonly X Protocol and is not interchangeable with the mysql CLI endpoint. A port number alone does not identify a server. Define `db_host`, `db_port`, `db_user`, `database` from the selected classic TCP endpoint:
 
 ~~~bash
-mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database"
+/usr/bin/mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database"
 ~~~
 
 For an intended local Unix socket, use its verified socket path with `--protocol=SOCKET --socket=...` instead. Prompt for the known password; keep required TLS and account-matching rules. A denied login, wrong protocol, missing socket and refused TCP listener are separate failures. A PTY may help an interactive interface, but mysql's batch operation does not inherently require an interactive Bash or script session.
@@ -34,7 +34,7 @@ To export the selected verifier, define `query` as a reviewed one-row `SELECT pa
 
 ~~~bash
 umask 077
-mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database" \
+/usr/bin/mysql --protocol=TCP --host="$db_host" --port="$db_port" --user="$db_user" --password --database="$database" \
   --batch --skip-column-names --execute="$query" > "$record_file"
 status=$?
 ~~~

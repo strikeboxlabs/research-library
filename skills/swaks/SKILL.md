@@ -5,6 +5,8 @@ description: Inspect MIME construction and diagnose a specific SMTP transaction 
 
 # Choose the SMTP stage deliberately
 
+Installed invocation: `/usr/bin/swaks`, version `swaks version 20240103.0`.
+
 Read this entire SKILL.md before acting. Select message preview, recipient-stage diagnosis or requested submission below; require the intended endpoint, addresses and transport policy. Finish with the constructed message or final SMTP phase/response and its limits. Missing TLS/authentication support remains a prerequisite gap; these tasks have no conditional resources.
 
 Check `swaks --version` and `swaks --support` for installed TLS/authentication capabilities. Define `server` as the intended SMTP hostname, `port` as its actual service port, `sender` and `recipient` as verified single addresses, `subject` as a single-line value, `body_text` as the message text, `attachment` as an existing absolute file and `preview` as a fresh private output path.
@@ -13,7 +15,7 @@ Inspect the proposed MIME message without sending it:
 
 ~~~bash
 umask 077
-swaks --server "$server" --port "$port" --from "$sender" --to "$recipient" --header "Subject: $subject" --body "$body_text" --attach "@$attachment" --dump-mail > "$preview"
+/usr/bin/swaks --server "$server" --port "$port" --from "$sender" --to "$recipient" --header "Subject: $subject" --body "$body_text" --attach "@$attachment" --dump-mail > "$preview"
 ~~~
 
 `@` explicitly selects file content for the attachment. Check status, headers, MIME boundaries, filename and encoding in the result. `--header 'Hello'` is not a complete header field; use `Name: value` syntax and reject embedded CR/LF in values. `--dump-mail` prints the constructed message instead of submitting it. Avoid using broad `--dump` as a shareable diagnostic: its configuration output can expose authentication secrets.
@@ -21,7 +23,7 @@ swaks --server "$server" --port "$port" --from "$sender" --to "$recipient" --hea
 For a server requiring STARTTLS, a separately authorized recipient-stage test can stop before DATA:
 
 ~~~bash
-swaks --server "$server" --port "$port" --from "$sender" --to "$recipient" --tls --tls-verify --quit-after RCPT
+/usr/bin/swaks --server "$server" --port "$port" --from "$sender" --to "$recipient" --tls --tls-verify --quit-after RCPT
 ~~~
 
 Use `--tls-on-connect` instead of `--tls` for implicit TLS when that is the endpoint's policy. TLS negotiation alone does not require certificate validation by default; `--tls-verify` adds CA and target-name checks. A numeric address can fail hostname verification; use the intended service identity and trusted CA configuration. Configure authentication separately when required, without putting reusable passwords in shared command logs.

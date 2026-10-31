@@ -5,18 +5,20 @@ description: Inspect a selected GlusterFS cluster's volume names and metadata wi
 
 # Inspect the selected cluster's volumes
 
+Installed invocation: `/usr/sbin/gluster`, version `glusterfs 11.2`.
+
 Read this entire SKILL.md before acting. Identify the intended cluster node and established administrative connection context. Finish with command status, observed volume metadata and any access or coverage gap.
 
 Check the installed `gluster --version` and help. Define `node` as the intended Gluster management node:
 
 ~~~bash
-gluster --remote-host="$node" volume list
+/usr/sbin/gluster --remote-host="$node" volume list
 ~~~
 
 After a successful listing, define `volume` as one exact returned name:
 
 ~~~bash
-gluster --remote-host="$node" volume info "$volume"
+/usr/sbin/gluster --remote-host="$node" volume info "$volume"
 ~~~
 
 Preserve diagnostics and the selected node/name. A failed request is not an empty cluster; volume visibility does not prove client mount permission or file access. A volume's brick locations need not be reachable through the address used for the initial request.

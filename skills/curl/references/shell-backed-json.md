@@ -16,7 +16,7 @@ python3 - "$species_value" > "$request" <<'PY' &&
 import json, sys
 json.dump({"name":"selected-probe","species":sys.argv[1]},sys.stdout)
 PY
-curl --silent --show-error --connect-timeout 5 --max-time 30 --header 'Content-Type: application/json' --data-binary "@$request" --dump-header "$headers" --output "$response" --write-out 'status=%{http_code}\n' "$url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --header 'Content-Type: application/json' --data-binary "@$request" --dump-header "$headers" --output "$response" --write-out 'status=%{http_code}\n' "$url"
 ~~~
 
 JSON encoding handles embedded quotes; shell quoting alone does not. The header is `Content-Type: application/json`, without literal quotes around its name. Capture status/body from that request, then inspect the selected record through the established read route if the POST response only acknowledges creation.

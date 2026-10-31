@@ -5,6 +5,8 @@ description: Serve a small owned HTTP form or browser-test page with the install
 
 # Flask for a controlled HTTP exercise
 
+Installed invocation: `/usr/bin/flask`, version `Python 3.14.8`.
+
 Read this entire SKILL.md before acting. Use an owned reviewed application and its existing Python/Flask environment; CLI discovery imports the application and can run its module body. For POST-field handling or browser opener tests, read [forms and browser origins](references/forms-and-origins.md) fully before serving. Finish with the route/method, received fields or browser observation and its limits, then stop the owned server. A 200 response alone proves no authentication or browser behavior.
 
 Define `python_bin` as the intended installed interpreter and `app_file` as the absolute owned application file. Inspect that environment's CLI rather than assuming the shell's `flask` wrapper uses it:

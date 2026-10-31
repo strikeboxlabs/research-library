@@ -5,6 +5,8 @@ description: Trace Linux file and network system calls to identify actual config
 
 # Trace the operation that fails
 
+Installed invocation: `/usr/bin/strace`, version `strace -- version 7.2`.
+
 Read this entire SKILL.md before acting. Choose controlled capture or review of an existing trace; capture requires the intended command/account, while offline review needs the original trace and its capture options when available. Finish with the relevant call, return value and process/descriptor context; identify truncation or missing context explicitly.
 
 For a new capture, use the installed `strace --version` and help to confirm available filters. Start by launching a short, reproducible command under the same account and environment as the failure. Tracing executes that command, including its network requests and writes; it is not a dry run.
@@ -13,7 +15,7 @@ Define `cmd` as a Bash array containing the actual executable and separate argum
 
 ~~~bash
 umask 077
-strace -f -s 256 -e trace=%file,%network -o "$trace" -- "${cmd[@]}"
+/usr/bin/strace -f -s 256 -e trace=%file,%network -o "$trace" -- "${cmd[@]}"
 ~~~
 
 `-f` follows child processes; `-o` separates trace output from the program's stdout/stderr. This filter exposes filename and network calls, not every read/write. Expand it to selected `read`, `write` or descriptor calls only when needed. `-s` limits string rendering, not trace duration or file growth.

@@ -6,7 +6,7 @@ A normal AD search hides deleted objects. Using the same verified TLS/bind conte
 
 ~~~bash
 deleted_base="CN=Deleted Objects,$base_dn"
-ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b "$deleted_base" -s one -E '!1.2.840.113556.1.4.417' -E pr=500/noprompt '(isDeleted=TRUE)' objectGUID isDeleted isRecycled sAMAccountName lastKnownParent msDS-LastKnownRDN
+/usr/bin/ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b "$deleted_base" -s one -E '!1.2.840.113556.1.4.417' -E pr=500/noprompt '(isDeleted=TRUE)' objectGUID isDeleted isRecycled sAMAccountName lastKnownParent msDS-LastKnownRDN
 ~~~
 
 The critical Show Deleted control has no value. `!` prevents silently ignoring an unsupported control. This changes visibility, not permissions: an empty result or denied container is not proof that no deletion occurred. Confirm the naming context/container and delegated list/read rights; a custom group named "AD Recycle Bin" does not by itself establish those rights or that the feature is enabled.

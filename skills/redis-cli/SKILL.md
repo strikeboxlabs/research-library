@@ -5,13 +5,15 @@ description: Inspect selected Redis keys, server metadata and persistence settin
 
 # Inspect the intended Redis data
 
+Installed invocation: `/usr/bin/redis-cli`, version `redis-cli 8.0.6`.
+
 Read this entire SKILL.md before acting. Select key inspection, server metadata or the persistence-setting check below and establish the known endpoint/transport and configured authentication. For keys, select the logical database and permitted namespace, scan within the requested bounds and match reads to the value type. Finish with the selected result and its coverage limits, then leave the session. A connection or key name alone is insufficient.
 
 Define `host`, `port`, `database` and `username` for the known endpoint, logical database and ACL account. For a password-authenticated session:
 
 ~~~bash
-redis-cli --version
-redis-cli -h "$host" -p "$port" -n "$database" --user "$username" --askpass
+/usr/bin/redis-cli --version
+/usr/bin/redis-cli -h "$host" -p "$port" -n "$database" --user "$username" --askpass
 ~~~
 
 Use the known password at the prompt. For legacy password-only authentication omit `--user`; do not invent an account. When the service requires TLS, add `--tls` and its verified `--cacert` path plus any required client credentials. Changing transport or disabling certificate verification is not an authentication fix. Redis Cluster supports database zero only; a standalone server can expose multiple logical databases.
@@ -19,7 +21,7 @@ Use the known password at the prompt. For legacy password-only authentication om
 For the configured local Unix socket, define `socket` as its actual absolute path in this namespace and replace the host/port selection:
 
 ~~~bash
-redis-cli -s "$socket" -n "$database" --user "$username" --askpass
+/usr/bin/redis-cli -s "$socket" -n "$database" --user "$username" --askpass
 ~~~
 
 `-s` overrides hostname/port. Socket filesystem access and Redis authentication/ACLs are separate requirements. Omit authentication options only when the selected service actually uses no password. A missing path or denied socket is a transport gap, not an empty database.

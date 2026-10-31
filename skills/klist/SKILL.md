@@ -6,12 +6,14 @@ description: Inspect a selected MIT Kerberos credential cache from Linux. Use to
 
 # Inspect the actual cache used by the consumer
 
+Installed invocation: `/usr/bin/klist`, version `Kerberos 5 version 1.22.1`.
+
 Read this entire SKILL.md before acting. Identify the cache implementation/type and current client environment. Finish with principal, service, validity and the selected cache path; inspection alone does not validate target acceptance or authority.
 
 For a known MIT file cache, define `cache` as its existing absolute path:
 
 ~~~bash
-klist -c "$cache"
+/usr/bin/klist -c "$cache"
 ~~~
 
 Check `Default principal`, realm, validity times and server names. `krbtgt/REALM@REALM` is a TGT; `cifs/host` or `host/host` is a service ticket. A service-only cache does not automatically allow requests for unrelated services. A future/expired ticket needs real time evidence, not a copied clock-change command.
@@ -19,7 +21,7 @@ Check `Default principal`, realm, validity times and server names. `krbtgt/REALM
 When the selected consumer requires particular ticket flags, inspect that same cache explicitly:
 
 ~~~bash
-klist -f -c "$cache"
+/usr/bin/klist -f -c "$cache"
 ~~~
 
 MIT's `F` flag means forwardable; `f` means forwarded. A plain listing without flags, or a copied `kinit -f` request, does not prove the issued ticket has the required flag. Defaults can depend on configuration and the KDC can restrict requests. Record flags for the actual relevant ticket; they do not establish delegation rights or service authorization. Check installed help when a different Kerberos implementation renders them differently.

@@ -5,12 +5,14 @@ description: Produce reproducible speech test audio with Festival text2wave. Use
 
 # Festival speech fixtures
 
+Installed invocation: `/usr/bin/text2wave`.
+
 `text2wave` synthesizes speech from text; it does not recognize speech or guarantee how a downstream recognizer transcribes it. Inspect `text2wave -help` and the installed Festival voices. Missing voice/data packages can prevent synthesis even when the executable exists.
 
 Define `text_file` as an existing UTF-8/plain-text fixture compatible with the installed voice, `wav_file` as a fresh output path, and `sample_rate` as the receiver's documented rate in Hz:
 
 ~~~bash
-text2wave -otype riff -F "$sample_rate" -o "$wav_file" "$text_file"
+/usr/bin/text2wave -otype riff -F "$sample_rate" -o "$wav_file" "$text_file"
 ~~~
 
 For one already-defined text value, pass it as data:

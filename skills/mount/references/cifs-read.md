@@ -7,7 +7,7 @@ Define `share_source` as the exact `//server/share`, `mountpoint` as that prepar
 In the established privileged context:
 
 ~~~bash
-mount -t cifs "$share_source" "$mountpoint" -o "ro,nosuid,nodev,noexec,credentials=$credential_file"
+/usr/bin/mount -t cifs "$share_source" "$mountpoint" -o "ro,nosuid,nodev,noexec,credentials=$credential_file"
 ~~~
 
 Check the immediate exit status and attribute the resulting source/type/options with `findmnt` or mountinfo as described in the entrypoint. Read only the requested relative subtree. `ro` applies to this mount; it neither freezes other writers nor prevents server-side access logging. `noexec` does not make untrusted source safe to feed to an interpreter. Server/share/file ACLs still govern actual access, separately from presented Linux ownership/modes; one root directory listing does not establish access to all children.

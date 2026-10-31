@@ -6,7 +6,7 @@ Define `mountpoint` as a new absolute private directory, outside and separate fr
 
 ~~~bash
 mkdir -m 700 "$mountpoint" &&
-restic -r "$repository" --password-file "$password_file" mount "$mountpoint"
+/usr/bin/restic -r "$repository" --password-file "$password_file" mount "$mountpoint"
 ~~~
 
 Retain actual repository-open and serving/error output. A mountpoint directory alone is not a successful mount. In another terminal, inspect its actual layout and identify the snapshot by ID, host, time and paths using the entrypoint's snapshot listing. Do not assume `latest` selects the intended backup or that a path from another transcript exists in this mount. Opening a REST backend locally also requires the correctly mapped repository directory, not merely its server data root.

@@ -5,25 +5,27 @@ description: Open an approved remote desktop from Linux with Remmina's CLI launc
 
 # Launch the selected desktop session
 
+Installed invocation: `/usr/bin/remmina`, version `org.remmina.Remmina - 1.4.43 (git n/a)`.
+
 Read this entire SKILL.md before acting. Require an available graphical session, installed protocol plugin, a known approved endpoint and the user's intended account/profile. Review profile commands and connection settings before opening it. Finish with the actual connected endpoint/account and requested desktop result; a launched window or zero CLI status alone is incomplete.
 
 Inspect the installed invocation:
 
 ~~~bash
-remmina --version
-remmina --help
+/usr/bin/remmina --version
+/usr/bin/remmina --help
 ~~~
 
 For an existing reviewed profile, define `profile` as its absolute .remmina path:
 
 ~~~bash
-remmina -c "$profile"
+/usr/bin/remmina -c "$profile"
 ~~~
 
 For a simple RDP connection, define `rdp_uri` as a reviewed URI such as the **illustrative** `rdp://operator@desktop.example.invalid`, with no password embedded:
 
 ~~~bash
-remmina -c "$rdp_uri"
+/usr/bin/remmina -c "$rdp_uri"
 ~~~
 
 `-c` connects using a profile or supported URI; `-e` edits a profile. This launcher opens a graphical client, not a headless remote command. Keep the argument quoted, and use an existing profile's explicit domain/account settings when URI interpretation would be ambiguous. Supply credentials through the approved interactive/secret-store flow.

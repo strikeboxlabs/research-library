@@ -5,6 +5,8 @@ description: Inspect Linux bridge membership or diagnose address and route selec
 
 # Explain the kernel's route choice
 
+Installed invocation: `/usr/sbin/ip`, version `ip utility, iproute2-7.2.0, libbpf 1.7.0`.
+
 Read this entire SKILL.md before acting. Require the affected process's network context. For bridge membership, use the interface section below; for a route decision, require the selected destination and use the address/rule/route observations. No conditional resources are required. Finish with observed membership or the route decision and its limits; unavailable namespace access leaves that context unresolved.
 
 Confirm `ip -Version` and `ip route help`; BusyBox and older iproute2 builds may lack `fibmatch`, JSON or other selectors. Run queries in the network namespace of the affected process. The host, a container and a router namespace can have different addresses and rules. For an already identified named namespace, `ip -n "$namespace" ...` selects it when permitted; a named-namespace listing is not a list of every container namespace.
@@ -12,11 +14,11 @@ Confirm `ip -Version` and `ip route help`; BusyBox and older iproute2 builds may
 Define `destination` as the affected IPv4 address:
 
 ~~~bash
-ip -brief -4 address show
-ip -4 rule show
-ip -4 route show table all match "$destination/32"
-ip -4 route get "$destination"
-ip -4 route get fibmatch "$destination"
+/usr/sbin/ip -brief -4 address show
+/usr/sbin/ip -4 rule show
+/usr/sbin/ip -4 route show table all match "$destination/32"
+/usr/sbin/ip -4 route get "$destination"
+/usr/sbin/ip -4 route get fibmatch "$destination"
 ~~~
 
 Address output establishes local assignments. The matching route listing shows covering prefixes across tables, including `local`; it does not by itself select a route. Rules are evaluated in ascending priority number and can select different tables or terminal actions. The ordinary lookup resolves an output path and chosen source; `fibmatch` reports the underlying matched forwarding-table route. If unsupported, use the resolved output plus the relevant rule/table listing instead of treating a syntax error as no route.
@@ -30,13 +32,13 @@ In an `inet address/prefix brd broadcast` line, the suffix after `/` is the pref
 For a locally originated flow, define `source_ip` as its actual source address:
 
 ~~~bash
-ip -4 route get "$destination" from "$source_ip"
+/usr/sbin/ip -4 route get "$destination" from "$source_ip"
 ~~~
 
 For a forwarded packet, use the observed remote source and receiving interface as `source_ip`/`incoming_interface`:
 
 ~~~bash
-ip -4 route get "$destination" from "$source_ip" iif "$incoming_interface"
+/usr/sbin/ip -4 route get "$destination" from "$source_ip" iif "$incoming_interface"
 ~~~
 
 The second command models ingress forwarding rather than local output. If the rules depend on a mark, VRF, protocol or ports, include those observed selectors using the installed help. An unqualified lookup can otherwise answer a different question. These queries do not simulate the full firewall/NAT or application processing path.
@@ -50,14 +52,14 @@ Assigning an address normally also creates local and connected-prefix routing st
 For an owned network's interface inventory, inspect device types before treating a name such as `docker0` as proof of its manager:
 
 ~~~bash
-ip -details link show type bridge
+/usr/sbin/ip -details link show type bridge
 ~~~
 
 Select an observed bridge name as `bridge`, then inspect its members and local addresses:
 
 ~~~bash
-ip -details link show master "$bridge"
-ip address show dev "$bridge"
+/usr/sbin/ip -details link show master "$bridge"
+/usr/sbin/ip address show dev "$bridge"
 ~~~
 
 An **illustrative** `vethA@if2 ... master br0` row associates that local interface with br0; `@if2` is peer-link information, not container ID 2. Veth devices are pairs and can connect namespaces without belonging to Docker. Multiple members do not establish an exact container count or active communication. A bridge address belongs to this namespace; it is not a list of peer addresses.

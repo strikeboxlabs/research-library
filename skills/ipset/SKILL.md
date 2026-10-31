@@ -5,19 +5,21 @@ description: Inspect Linux kernel IP sets and test a selected member with ipset.
 
 # IP-set evidence behind a firewall list
 
+Installed invocation: `/usr/sbin/ipset`, version `ipset v7.24, protocol version: 7`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Use the intended network namespace and sufficient existing permissions, select the observed set/type, and preserve status plus membership evidence. Finish with that set's state at the observation time; membership alone does not establish packet blocking.
 
 ~~~bash
-ipset version
-ipset list -name
+/usr/sbin/ipset version
+/usr/sbin/ipset list -name
 ~~~
 
 Choose `set_name` from the actual names and define `snapshot` as a fresh private file:
 
 ~~~bash
 umask 077
-ipset list "$set_name"
-ipset save "$set_name" >"$snapshot"
+/usr/sbin/ipset list "$set_name"
+/usr/sbin/ipset save "$set_name" >"$snapshot"
 ~~~
 
 Read the type/family/header and complete members. `save` emits restore syntax; recording it does not restore or change a set. A permission, namespace or unsupported-type error is not an empty set. Do not infer that a name containing fail2ban identifies every ban source.
@@ -25,7 +27,7 @@ Read the type/family/header and complete members. `save` emits restore syntax; r
 Define `entry` in the selected type's syntax: an address for hash:ip, an address/network for hash:net, or the required tuple for composite types. Retain the diagnostic and immediate status:
 
 ~~~bash
-ipset test "$set_name" "$entry"
+/usr/sbin/ipset test "$set_name" "$entry"
 result=$?
 printf 'ipset-test-status=%s\n' "$result"
 ~~~

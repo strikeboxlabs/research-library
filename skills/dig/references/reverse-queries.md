@@ -3,7 +3,7 @@
 Require the intended DNS server and an exact address, or a small explicit list from the owned network inventory. Define `dns_server` as its numeric endpoint and `address` as the selected IPv4/IPv6 literal:
 
 ~~~bash
-dig -r @"$dns_server" -x "$address" +time=2 +tries=1 +noall +comments +answer +authority +stats
+/usr/bin/dig -r @"$dns_server" -x "$address" +time=2 +tries=1 +noall +comments +answer +authority +stats
 status=$?
 ~~~
 

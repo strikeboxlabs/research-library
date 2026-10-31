@@ -5,13 +5,15 @@ description: Inspect ELF headers, load segments, symbols and section bytes with 
 
 # Establish the ELF layout
 
+Installed invocation: `/usr/bin/readelf`, version `GNU readelf (GNU Binutils for Debian) 2.47`.
+
 Read this entire SKILL.md before acting. Use an acquired ELF copy, establish its header/layout, then select section/address analysis or dynamic-library metadata below. Finish with artifact identity, the exact field/bytes and the address space described; missing bytes or runtime context must remain unresolved.
 
 Define `binary` as the existing ELF artifact copy:
 
 ~~~bash
-readelf --version
-readelf -W -h -l -S "$binary"
+/usr/bin/readelf --version
+/usr/bin/readelf -W -h -l -S "$binary"
 ~~~
 
 Read the class, byte order, machine and object type together. An ELF header is not a promise that the file can execute on this Linux host: a foreign OS ABI, interpreter or dependency can still differ. `ET_DYN` can describe a shared object or a position-independent executable; inspect program headers/interpreter information rather than treating that field alone as a complete classification.
@@ -23,8 +25,8 @@ Sections describe file organization; program headers describe loadable segments.
 For a named section observed in the table, define `section` and inspect its bytes:
 
 ~~~bash
-readelf -W -x "$section" "$binary"
-readelf -W -r "$binary"
+/usr/bin/readelf -W -x "$section" "$binary"
+/usr/bin/readelf -W -r "$binary"
 ~~~
 
 The hex dump is on-disk section content; `-x` does not apply relocations. It does not show bytes that the running program later writes there. A static `.data` address and a debugger memory check after input processing are distinct pieces of evidence. Do not transfer that fixed address to a rebuilt or relocated program.
@@ -32,8 +34,8 @@ The hex dump is on-disk section content; `-x` does not apply relocations. It doe
 ## Inspect shared-library metadata without loading it
 
 ~~~bash
-readelf -W -d "$binary"
-readelf -W --dyn-syms "$binary"
+/usr/bin/readelf -W -d "$binary"
+/usr/bin/readelf -W --dyn-syms "$binary"
 ~~~
 
 `NEEDED` entries name direct dependencies, not the complete resolved runtime library set. Search paths, loader configuration and preloads can affect what is loaded; an entry in an acquired `/etc/ld.so.preload` does not appear automatically in this artifact's `NEEDED` list. Correlate that configuration with the relevant host and execution context. Use static inspection on suspect copies: `ldd` is unsafe for untrusted executables because some implementations/cases may execute code.

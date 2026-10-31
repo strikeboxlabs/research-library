@@ -5,6 +5,8 @@ description: Inspect the selected OCI runtime's version and build metadata on Li
 
 # Identify the selected runtime
 
+Installed invocation: `/usr/sbin/runc`, version `runc version 1.3.6+ds1`.
+
 Read this entire SKILL.md before acting. Require the controlled Linux environment and a selected existing runc executable. Identify its path and execution context, preserve the full version output/status, then correlate it with the runtime actually used by the relevant service. No conditional resources are required. Finish with verified identity and any unresolved service or vendor-patch association.
 
 Define `runc_bin` as the verified absolute executable path in the intended host or container context:

@@ -7,7 +7,7 @@ Use for a scoped InfluxDB **v1** HTTP endpoint. This is InfluxQL's `/query` API,
 Define `base` as its exact base URL and `headers`/`body` as fresh private paths. Capture `/ping`:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$base/ping"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$base/ping"
 ~~~
 
 A successful ping and `X-Influxdb-Version` are service/version leads. They do not prove that query authentication is enabled, that a distribution lacks backports or that a particular JWT is accepted. InfluxDB v1 can run with authentication disabled; compare one permitted unauthenticated query against the same query with the selected credentials before attributing access to a token.
@@ -20,14 +20,14 @@ For an authorized test of older JWT handling: upstream **1.7.5** HMAC verificati
 
 ~~~bash
 query='SHOW DATABASES'
-curl --silent --show-error --connect-timeout 5 --max-time 30 --get --header "@$auth_headers" --data-urlencode "q=$query" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$base/query"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --get --header "@$auth_headers" --data-urlencode "q=$query" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$base/query"
 ~~~
 
 Check curl status, HTTP status **and** `results[].error`/top-level errors. Database visibility can be privilege-scoped. `_internal` is not automatically the application's database; select the database evidenced by application configuration or the returned inventory. Define `database` accordingly and use fresh response paths for each request:
 
 ~~~bash
 query='SHOW MEASUREMENTS'
-curl --silent --show-error --connect-timeout 5 --max-time 30 --get --header "@$auth_headers" --data-urlencode "db=$database" --data-urlencode "q=$query" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$base/query"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --get --header "@$auth_headers" --data-urlencode "db=$database" --data-urlencode "q=$query" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$base/query"
 ~~~
 
 `--get` puts the encoded `db` and `q` parameters in the query string; pass unescaped query text so curl encodes it once. Keep `SELECT` without `INTO` and `SHOW` discovery separate from statements that write or change users/configuration. Quote measurement/field identifiers with double quotes in InfluxQL; single quotes denote string values. Queries ordinarily use the database's default retention policy unless another is selected.

@@ -5,19 +5,21 @@ description: Boot an approved x86-64 Linux kernel and disposable raw root filesy
 
 # Boot a controlled Linux guest
 
+Installed invocation: `/usr/bin/qemu-system-x86_64`.
+
 Read this entire SKILL.md before acting. Require a trusted bootable kernel, compatible root filesystem, sufficient resources and a disposable guest task. Read [local debugging](references/local-debugging.md) fully when pausing for a debugger. Finish with actual guest kernel/boot evidence and shutdown state; a launched QEMU process is not a booted guest.
 
 Define `kernel` as the absolute boot image and `disk` as an owned disposable raw image; avoid commas in these option paths. Confirm the selected executable's supported machine/CPU/accelerator options:
 
 ~~~bash
-qemu-system-x86_64 -version
-qemu-system-x86_64 -help
+/usr/bin/qemu-system-x86_64 -version
+/usr/bin/qemu-system-x86_64 -help
 ~~~
 
 For a guest whose kernel supports the default IDE disk and ttyS0 console:
 
 ~~~bash
-qemu-system-x86_64 -kernel "$kernel" \
+/usr/bin/qemu-system-x86_64 -kernel "$kernel" \
   -drive "file=$disk,format=raw,if=ide" -snapshot \
   -nic none -nographic -append 'root=/dev/sda console=ttyS0'
 ~~~

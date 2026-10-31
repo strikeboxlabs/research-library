@@ -5,6 +5,8 @@ description: Construct and inspect JSON API requests with HTTPie's http command.
 
 # HTTPie JSON API inspection
 
+Installed invocation: `/usr/bin/httpie`, version `3.2.4`.
+
 Read this entire SKILL.md before acting. Require the installed HTTPie, the selected API contract and fresh private output paths. Construct the request offline first, then use the JSON-object or binary-response branch below for the authorized operation. Complete with command status, retained response/diagnostics and verified content; missing authentication, endpoint semantics or tool support remains a gap.
 
 Check `http --version` and `http --help`. The executable is normally `http` or `https`; `httpie` manages the CLI rather than sending these requests. Choose the endpoint and method from the API contract: a documented lookup can use POST, while other POST endpoints mutate state.

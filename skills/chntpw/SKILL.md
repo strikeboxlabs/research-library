@@ -5,6 +5,8 @@ description: List Windows local accounts and edit selected SAM account settings 
 
 # chntpw offline SAM editing
 
+Installed invocation: `/usr/sbin/chntpw`, version `all version from NT3.x to Win8.1`.
+
 Read this entire SKILL.md before acting. Define `sam` as a consistent, offline copy of the raw SAM hive, not a `.reg` text export; preserve the original. List accounts before selecting an edit and explicitly save only the intended changes. Finish with the selected RID, requested change, save outcome and post-edit listing; a successful offline edit does not prove a working login.
 
 ## Installed implementation

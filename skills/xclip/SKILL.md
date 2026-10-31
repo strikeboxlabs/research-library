@@ -5,13 +5,15 @@ description: Copy selected text to an X11 selection and read it back with xclip.
 
 # Transfer selected text through X11
 
+Installed invocation: `/usr/bin/xclip`.
+
 Read this entire SKILL.md before acting. Establish the text file, X11 display and intended selection. Finish with transfer/readback status and any display or selection limitation.
 
 Check `xclip -version` and installed help. Define `text_file` as the selected absolute file path and `readback` as a fresh output path:
 
 ~~~bash
-xclip -selection clipboard -in < "$text_file"
-xclip -selection clipboard -out > "$readback"
+/usr/bin/xclip -selection clipboard -in < "$text_file"
+/usr/bin/xclip -selection clipboard -out > "$readback"
 cmp -- "$text_file" "$readback"
 ~~~
 

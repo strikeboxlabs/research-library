@@ -5,6 +5,8 @@ description: Collapse adjacent repeated records or report adjacent-run counts wi
 
 # Compare the intended complete records
 
+Installed invocation: `/usr/bin/uniq`, version `uniq (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Establish the record delimiter, comparison identity and whether order must be retained before choosing adjacent-run filtering or global deduplication. No conditional resources are required. Finish with status, selected records and ordering/coverage limits; reduced output does not establish complete acquisition or valid account identities.
 
 Check `uniq --version` for GNU coreutils. Define `input` as the preserved existing newline-delimited file and `output` as a fresh distinct path. To collapse only consecutive equal lines:

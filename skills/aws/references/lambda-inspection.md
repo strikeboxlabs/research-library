@@ -4,7 +4,7 @@ Use the entrypoint's explicit `endpoint`, `region`, existing `profile` and `aws_
 
 ~~~bash
 umask 077
-aws "${aws_opts[@]}" lambda list-functions --max-items 25 > "$listing"
+/usr/bin/aws "${aws_opts[@]}" lambda list-functions --max-items 25 > "$listing"
 ~~~
 
 Check status and stderr before interpreting `Functions`. This is an intentionally bounded CLI paginator result. Retain a returned CLI `NextToken`; continue with `--starting-token` only when the task needs another page. A service `NextMarker` and CLI `NextToken` are different interfaces. Automatic pagination without the bound can read the full regional collection. Empty output and access denial differ; a listing is not proof of invocation rights or all versions.
@@ -12,7 +12,7 @@ Check status and stderr before interpreting `Functions`. This is an intentionall
 Select `function_name` from observed metadata and request its configuration/code descriptor:
 
 ~~~bash
-aws "${aws_opts[@]}" lambda get-function \
+/usr/bin/aws "${aws_opts[@]}" lambda get-function \
   --function-name "$function_name" > "$function_metadata"
 ~~~
 

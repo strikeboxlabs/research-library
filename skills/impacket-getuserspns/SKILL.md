@@ -5,12 +5,14 @@ description: Enumerate user-associated AD service principal names and request se
 
 # Impacket GetUserSPNs
 
+Installed invocation: `/usr/bin/impacket-GetUserSPNs`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Select directory enumeration or the separately permitted ticket request, with the known identity, DC and selected account explicit. No conditional resource is required. Finish with observed mappings, request diagnostics and actual record coverage; missing LDAP/KDC prerequisites or partial output stays unresolved.
 
 Check `impacket-GetUserSPNs -h`; upstream installations may use `GetUserSPNs.py`. Define `domain`, `user` and `dc_ip` for the in-scope AD domain, known requesting account and DC address. Start with enumeration, entering the known password at the prompt:
 
 ~~~bash
-impacket-GetUserSPNs "$domain/$user" -dc-ip "$dc_ip"
+/usr/bin/impacket-GetUserSPNs "$domain/$user" -dc-ip "$dc_ip"
 ~~~
 
 Record the SPN-to-account mapping. The default user-account query is not a complete inventory of every machine/service principal. An SPN does not by itself establish privilege, an active service or a recoverable password. An empty result after LDAP failure is not evidence of absence.
@@ -19,7 +21,7 @@ For a selected account within the ticket-request scope, define `service_user` as
 
 ~~~bash
 umask 077
-impacket-GetUserSPNs "$domain/$user" -dc-ip "$dc_ip" -request-user "$service_user" -outputfile "$output"
+/usr/bin/impacket-GetUserSPNs "$domain/$user" -dc-ip "$dc_ip" -request-user "$service_user" -outputfile "$output"
 ~~~
 
 This makes KDC requests and saves offline password-testing material. In the reviewed implementation, `-outputfile` itself enables requesting; do not add it to an intended enumeration-only command. `-request` without a user selector requests across the returned set. Multiple SPNs can map to one account, so output count need not equal the SPN count.

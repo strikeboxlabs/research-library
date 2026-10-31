@@ -5,6 +5,8 @@ description: Compare acquired directory trees or selected text files with GNU di
 
 # Compare content against the right baseline
 
+Installed invocation: `/usr/bin/diff`, version `diff (GNU diffutils) 3.12`.
+
 Read this entire SKILL.md before acting. For trees, establish corresponding roots and the baseline version/distribution before comparing recursively; for selected text files, use the hunk workflow below. Finish with the comparison scope, status, diagnostics and specific changes; a partial comparison or untrusted baseline cannot establish integrity.
 
 For application main/development backups or a newly added command/handler, read [application variants](references/application-variants.md) fully before interpreting that change.

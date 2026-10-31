@@ -5,7 +5,7 @@ Require the intended authorized serial, one owned verified APK, manifest applica
 Define `serial` as the selected device, `apk` as the local APK and `package_id` as its actual application ID. Install a new package:
 
 ~~~bash
-adb -s "$serial" install "$apk"
+/usr/bin/adb -s "$serial" install "$apk"
 status=$?
 ~~~
 
@@ -16,7 +16,7 @@ For an authorized same-package update, `install -r "$apk"` replaces the applicat
 If uninstall is explicitly part of the selected task, use the **application ID**, not an APK filename:
 
 ~~~bash
-adb -s "$serial" uninstall "$package_id"
+/usr/bin/adb -s "$serial" uninstall "$package_id"
 status=$?
 ~~~
 

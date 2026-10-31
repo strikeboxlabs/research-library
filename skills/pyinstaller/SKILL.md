@@ -5,14 +5,16 @@ description: Package a reviewed owned Python application and interpret build art
 
 # Build the selected owned Python application
 
+Installed invocation: `/usr/bin/pyinstaller`, version `6.22.2`.
+
 Read this entire SKILL.md before acting. Require reviewed application/dependency inputs, an installed PyInstaller environment and fresh owned build/output directories. Build as the ordinary owning user on the intended platform. For an existing spec or added application resources, read [spec files and resources](references/spec-files.md) fully before building. Finish with the selected artifact, build diagnostics and any actual launch result; spec creation alone is incomplete.
 
 Define `entry_script` as the reviewed absolute Python entry point, `product_name` as the approved simple output name and `build_directory`, `output_directory`, `spec_directory` as distinct fresh owned directories outside the input tree. Inspect the installed version/help before adapting options:
 
 ~~~bash
-pyinstaller --version
-pyinstaller --help
-pyinstaller --name "$product_name" --workpath "$build_directory" --distpath "$output_directory" --specpath "$spec_directory" "$entry_script"
+/usr/bin/pyinstaller --version
+/usr/bin/pyinstaller --help
+/usr/bin/pyinstaller --name "$product_name" --workpath "$build_directory" --distpath "$output_directory" --specpath "$spec_directory" "$entry_script"
 status=$?
 ~~~
 

@@ -5,12 +5,14 @@ description: Query selected Kubernetes pods/namespaces and self-permissions with
 
 # Select the cluster identity and resource scope
 
+Installed invocation: `/usr/bin/kubectl`, version `Client Version: v1.36.4`.
+
 Read this entire SKILL.md before acting. Require trusted kubectl, a trusted authorized kubeconfig and intended context/namespace. Read [pod operations](references/pod-operations.md) fully for selected pod-status inspection, approved manifest creation or an in-container diagnostic. Finish with the requested resource result, actual context/scope and status; API acceptance, runtime readiness and command execution are separate evidence.
 
 Inspect acquired kubeconfig as text before using it: credential exec plugins and referenced files can cause local execution/exposure. Use the intended trusted identity, retaining CA verification. Define `config`, `context` and `namespace` as the approved values. Check installed client help/version, then query that namespace:
 
 ~~~bash
-kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
+/usr/bin/kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
   --request-timeout=20s get pods -o wide
 status=$?
 ~~~
@@ -22,9 +24,9 @@ If the task explicitly requires the namespace catalogue, `kubectl --kubeconfig "
 For an owned identity's effective permission question, use the same trusted context and explicit namespace:
 
 ~~~bash
-kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
+/usr/bin/kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
   --request-timeout=20s auth can-i --list
-kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
+/usr/bin/kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
   --request-timeout=20s auth can-i list pods
 ~~~
 

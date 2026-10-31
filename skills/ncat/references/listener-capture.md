@@ -4,7 +4,7 @@ Select Nmap Ncat, an authorized reachable `bind_ip` and available `port`, plus f
 
 ~~~bash
 umask 077
-ncat --listen --verbose --recv-only --idle-timeout 20s "$bind_ip" "$port" \
+/usr/bin/ncat --listen --verbose --recv-only --idle-timeout 20s "$bind_ip" "$port" \
   > "$capture_file" 2> "$listener_log"
 ~~~
 
@@ -22,7 +22,7 @@ For a client that expects TLS, define `certificate` and `private_key` as existin
 
 ~~~bash
 umask 077
-ncat --listen --verbose --recv-only --ssl \
+/usr/bin/ncat --listen --verbose --recv-only --ssl \
   --ssl-cert "$certificate" --ssl-key "$private_key" \
   --idle-timeout 20s "$bind_ip" "$port" \
   > "$capture_file" 2> "$listener_log"
@@ -37,7 +37,7 @@ Use `--keep-open` only for the intended multiple-client task, with the same attr
 When the selected task requires sending commands to an already authorized remote process stream, keep stdin/stdout connected to the tracked terminal. Use the same reviewed bind address/port; omit `--recv-only` and output-file redirection:
 
 ~~~bash
-ncat --listen --verbose --idle-timeout 60s "$bind_ip" "$port"
+/usr/bin/ncat --listen --verbose --idle-timeout 60s "$bind_ip" "$port"
 ~~~
 
 The idle duration is an adjustable task choice, not a total session budget. Ordinary Ncat relays both directions; `--recv-only` would prevent your input from reaching the peer. This listener does not itself create a shell on either endpoint. Establish the separately authorized process invocation, expected peer/time and a selected command's returned output. Use `id` in an identified remote Unix shell when its identity is part of the task; a socket peer, prompt or source screenshot cannot replace that observation.

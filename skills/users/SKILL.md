@@ -5,13 +5,15 @@ description: Read GNU users login-session records for the selected host or acqui
 
 # Read the selected login records
 
+Installed invocation: `/usr/bin/users`, version `users (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Confirm GNU coreutils and choose the current host's records or an acquired compatible file. No conditional resources are required. Finish with the selected record source, time, output/status and coverage limits; an empty result is not a complete account inventory.
 
 For the current selected host:
 
 ~~~bash
-users --version
-users
+/usr/bin/users --version
+/usr/bin/users
 status=$?
 ~~~
 
@@ -20,7 +22,7 @@ The tool reports names from its configured login-record file, normally `/var/run
 For a preserved compatible acquired record file, define `records` as its absolute working-copy path:
 
 ~~~bash
-users -- "$records"
+/usr/bin/users -- "$records"
 status=$?
 ~~~
 

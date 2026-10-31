@@ -5,11 +5,13 @@ description: Inspect Linux wireless interface roles, PHY grouping and the curren
 
 # Identify the existing wireless interface
 
+Installed invocation: `/usr/sbin/iw`, version `iw version 6.17`.
+
 Read this entire SKILL.md before acting. Require the selected Linux network namespace, installed iw and a driver exposing nl80211 information. This task reads existing state; no conditional resources are required. Finish with interface/PHY/type and association evidence, preserving missing-device or unsupported-operation diagnostics.
 
 ~~~bash
-iw help
-iw dev
+/usr/sbin/iw help
+/usr/sbin/iw dev
 ~~~
 
 Record each named interface, its ifindex/wdev, local address, type and PHY group. Multiple interfaces under one PHY share that wireless device; they are not necessarily separate physical cards. A PHY can also be supplied by a simulated driver. An unnamed/non-netdev P2P-device entry is separate from a neighboring named managed interface, even under the same PHY.
@@ -19,7 +21,7 @@ Record each named interface, its ifindex/wdev, local address, type and PHY group
 For the selected managed interface, define `interface` from the listing:
 
 ~~~bash
-iw dev "$interface" link
+/usr/sbin/iw dev "$interface" link
 ~~~
 
 Read the reported peer, SSID, frequency and connection state. `Not connected` describes this interface at this observation time. A successful association does not establish DHCP, routes, DNS or application connectivity. Missing fields and permission/driver errors leave the requested fact unresolved; do not fix inspection by changing the interface type, channel or service state. Correlate the selected interface with the existing network manager's status when configuration and observed state disagree.

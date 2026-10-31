@@ -5,12 +5,14 @@ description: Inspect a selected symlink's stored target text and distinguish it 
 
 # Read the link before interpreting its referent
 
+Installed invocation: `/usr/bin/readlink`, version `readlink (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Select the exact existing local path and intended literal-target or canonicalization task, retain status/output, and report namespace and concurrent-change limits. All task instructions are inline; neither reading link text nor resolving a path authorizes reading or changing its referent.
 
 Check `readlink --version` and installed help for GNU options. Define `link_path` as the selected absolute path, with no trailing slash, whose symlink metadata may be inspected:
 
 ~~~bash
-readlink -v -- "$link_path"
+/usr/bin/readlink -v -- "$link_path"
 status=$?
 ~~~
 
@@ -19,7 +21,7 @@ With no canonicalization flag, this reports the stored target string without ope
 If the requested task instead requires an existing canonical path, define `selected_path` as that exact input:
 
 ~~~bash
-readlink -v -e -- "$selected_path"
+/usr/bin/readlink -v -e -- "$selected_path"
 status=$?
 ~~~
 

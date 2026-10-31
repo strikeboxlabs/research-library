@@ -5,6 +5,8 @@ description: Format an established epoch timestamp or a current/relative job-dat
 
 # Format the selected time value
 
+Installed invocation: `/usr/bin/date`, version `date (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Select an epoch conversion or a current/relative job label, confirm GNU coreutils with `date --version`, and establish the desired timezone. For a supplied timestamp, establish its unit and provenance first. No conditional resources are required. Finish with the input/clock context, formatted time, timezone and status; a successful query does not verify an event's timestamp.
 
 For a current job label, `LC_ALL=C TZ=UTC0 date '+%Y-%m-%d'` formats the current clock in UTC; check its status before using the value. Without `TZ`, a scheduled `date +'%Y-%m-%d'` uses its process's timezone configuration. That label identifies the query's day, not the changed files' dates, a successful backup or a synchronized clock. Preserve the zone and distinguish this branch from converting a supplied artifact timestamp below.

@@ -5,12 +5,14 @@ description: Classify the textual format of an owned checksum or digest with Bla
 
 # Classify a digest's textual form
 
+Installed invocation: `/usr/bin/hash-identifier`, version `#        \/_/\/_/\/__/\/_/\/___/    \/_/\/_/     \/_____/  \/___/  v1.2 #`.
+
 Read this entire SKILL.md before acting. Require the installed Blackploit/Zion3R Hash Identifier implementation and the complete digest text, with its origin and encoding known where possible. Complete with the candidate list and corroborating format evidence, or the specific unresolved ambiguity. No conditional resources are required for this narrow task.
 
 Start the interactive classifier and enter one owned checksum at its `HASH:` prompt:
 
 ~~~bash
-hash-identifier
+/usr/bin/hash-identifier
 ~~~
 
 Keep the value separate from a filename, username prefix, surrounding quotes, wrapped display or trailing whitespace. Preserve the original artifact rather than silently changing case or stripping a structured format's salt/delimiters. Exit the interactive loop with Ctrl-C. The reviewed implementation also accepts its first argument as a value, but interactive input avoids placing that value in shell history and process arguments.

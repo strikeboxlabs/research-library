@@ -10,7 +10,7 @@ For an observed POST field named url, define `checker_url` as its exact scoped r
 
 ~~~bash
 value="http:// $server_file_uri"
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --data-urlencode "url=$value" --dump-header "$headers" --output "$body" \
   --write-out 'status=%{http_code}\n' "$checker_url"
 ~~~
@@ -26,7 +26,7 @@ Without --fail-early, a multi-transfer curl invocation can encounter an initial 
 For an owned local marker on the worker, define `marker_uri` as that file's encoded absolute file:/// URI and `output` as a fresh destination. A direct diagnostic isolates FILE support from the web application:
 
 ~~~bash
-curl -q --proto '=file' --output "$output" "$marker_uri"
+/usr/bin/curl -q --proto '=file' --output "$output" "$marker_uri"
 ~~~
 
 This reads locally on the **worker**, not on the remote server. For a reviewed HTTP-only backend design, --proto '=http,https' constrains actual transfers and --proto-redir '=http,https' separately constrains followed redirects. Safe argv boundaries, one parsed intended URL, destination policy and control of subsequent options/configuration still matter; adding a prefix test or one shell quote is not that complete policy. Gopher/other schemes require actual build support and a separate selected protocol task, not an automatic next probe.

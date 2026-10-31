@@ -5,6 +5,8 @@ description: Search text and readable log trees with GNU grep and interpret cred
 
 # State what a selected line proves
 
+Installed invocation: `/usr/bin/grep`, version `grep (GNU grep) 3.12`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select literal/regex and record boundaries deliberately, retain producer/filter errors, and finish with the actual matches or qualified no-match result. A match in partial output does not establish that the producer completed.
 
 For readable application/system logs, backups or suspected misplaced secrets, read [log evidence and credential candidates](references/log-evidence.md) fully before recursive selection or interpreting a candidate.

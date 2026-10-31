@@ -5,14 +5,16 @@ description: Convert reviewed PostScript to PDF with the Ghostscript CLI and exp
 
 # Run the selected Ghostscript conversion
 
+Installed invocation: `/usr/bin/gs`, version `10.08.0`.
+
 Read this entire SKILL.md before acting. Require reviewed PostScript/resources, a trusted Ghostscript environment and fresh private outputs. Finish with status, diagnostics and inspected PDF content; an artifact alone does not establish successful conversion.
 
 Set `input_ps` to the absolute input path, and `output_pdf` and `conversion_log` to fresh absolute file paths. Inspect `GS_OPTIONS` and resource search settings first; they can add arguments or inputs. Use the normal build identity.
 
 ~~~bash
-gs --version
-gs --help
-gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pdfwrite \
+/usr/bin/gs --version
+/usr/bin/gs --help
+/usr/bin/gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pdfwrite \
   -sOutputFile="$output_pdf" -f "$input_ps" >"$conversion_log" 2>&1
 conversion_status=$?
 ~~~

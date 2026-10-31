@@ -5,6 +5,8 @@ description: Use Impacket GetNPUsers to check specified lab accounts for Kerbero
 
 # Impacket GetNPUsers
 
+Installed invocation: `/usr/bin/impacket-GetNPUsers`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Require the selected domain/DC, explicit account list and permitted request scope. No conditional resource is required. Finish with per-account responses and actual saved-record coverage; an unavailable entrypoint, request failure or partial file remains a gap rather than a negative password result.
 
 Check the installed executable and `-h`: distributions may name it `impacket-GetNPUsers` or `GetNPUsers.py`. Preserve the reported Impacket version. This procedure checks a supplied account list against one in-scope domain; it does not guess passwords.
@@ -13,7 +15,7 @@ Define `domain` as the AD DNS domain, `dc_ip` as its DC address, `users` as a fi
 
 ~~~bash
 umask 077
-impacket-GetNPUsers "$domain/" -dc-ip "$dc_ip" -no-pass -usersfile "$users" -format hashcat -outputfile "$output"
+/usr/bin/impacket-GetNPUsers "$domain/" -dc-ip "$dc_ip" -no-pass -usersfile "$users" -format hashcat -outputfile "$output"
 ~~~
 
 In this mode the supplied list drives requests; it is not a directory-wide account inventory. Keep `-no-pass`: omitting it can enter a different authentication path. Names inferred from document metadata are candidates, not established accounts.

@@ -5,12 +5,14 @@ description: Wait for a selected local file or directory event with Linux inotif
 
 # Observe one selected filesystem event
 
+Installed invocation: `/usr/bin/inotifywait`.
+
 Read this entire SKILL.md before acting. Require Linux inotify-tools, an existing owned file or directory and the event/window relevant to the task. Choose directory entry/write observation or the selected file's read closure below. No conditional resources are required. Finish with the observed event, status and watch coverage; an event does not guarantee a complete or stable file.
 
 Define `watch_dir` as the absolute directory. For a ten-second wait for its first relevant event:
 
 ~~~bash
-inotifywait --timeout 10 --event close_write --event moved_to --csv "$watch_dir"
+/usr/bin/inotifywait --timeout 10 --event close_write --event moved_to --csv "$watch_dir"
 status=$?
 ~~~
 
@@ -21,7 +23,7 @@ Keep stderr: `Watches established` marks readiness, while stdout carries events.
 For one existing owned file, define `watch_file` as its absolute path. To observe the first read-only handle closure within ten seconds:
 
 ~~~bash
-inotifywait --timeout 10 --event close_nowrite --csv "$watch_file"
+/usr/bin/inotifywait --timeout 10 --event close_nowrite --csv "$watch_file"
 status=$?
 ~~~
 

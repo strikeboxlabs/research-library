@@ -5,6 +5,8 @@ description: Inspect an authorized SFTP account's path namespace, retrieve a sel
 
 # Use the selected SFTP namespace
 
+Installed invocation: `/usr/bin/sftp`.
+
 Read this entire SKILL.md before acting. Require the selected SSH endpoint/account, established host-key trust and requested paths. Retrieval requires a fresh private local destination; symlink creation requires authorization for that owned remote directory entry and target. Finish with the actual listing/transfer/link result and unresolved namespace or permission limits. No conditional resources are required.
 
 Define `sftp_bin`, `server`, `ssh_port` and `account` for the intended OpenSSH client and SSH service, then use the established credential mechanism:

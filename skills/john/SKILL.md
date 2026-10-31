@@ -5,6 +5,8 @@ description: Run bounded offline checks with John the Ripper Jumbo on NT, NetNTL
 
 # John the Ripper offline checks
 
+Installed invocation: `/usr/sbin/john`.
+
 Read this entire SKILL.md before acting. Select the actual artifact/format and any applicable converter below before the bounded run. Preserve full records, use the same private pot for recovery display, and finish with loaded count/termination and supported recovery evidence. A missing conversion/key component or failed load is unresolved, not a negative password result.
 
 Check the installed build: these formats/options assume Jumbo. Inspect `john --list=build-info` and `john --list=formats`; a core-only package may not support the task. Use an existing hash artifact, not an account login endpoint.
@@ -68,8 +70,8 @@ Define `hashes` and `wordlist` as existing absolute paths, `pot` as a private ca
 
 ~~~bash
 umask 077
-john --format="$format" --wordlist="$wordlist" --pot="$pot" --session="$session" --max-run-time="$seconds" "$hashes"
-john --show --format="$format" --pot="$pot" "$hashes"
+/usr/sbin/john --format="$format" --wordlist="$wordlist" --pot="$pot" --session="$session" --max-run-time="$seconds" "$hashes"
+/usr/sbin/john --show --format="$format" --pot="$pot" "$hashes"
 ~~~
 
 The pot stores recovered values and suppresses repeated work. Reuse the same format/pot for `--show`. `john --restore="$session"` resumes saved state; do not silently launch an unlimited default attack when a bounded wordlist run ends.

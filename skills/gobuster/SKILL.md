@@ -5,6 +5,8 @@ description: Discover selected web paths or HTTP virtual hosts with Gobuster and
 
 # Gobuster web paths
 
+Installed invocation: `/usr/bin/gobuster`, version `gobuster version 3.8.2`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Establish mode, route and response controls before choosing filters. Finish with confirmed response differences and completed request scope; interrupted or filtered output cannot establish absent paths.
 
 For HTTP virtual-host candidates, read [virtual-host selection](references/virtual-hosts.md) fully before that procedure.
@@ -14,7 +16,7 @@ Choose the mode deliberately: `dir` probes URL paths, `vhost` varies HTTP hostna
 Establish the correct virtual host, application prefix and authentication context. Request a known page and several nonexistent paths to identify wildcard/default responses. Define `url` as the in-scope base URL, `wordlist` as a relevant local file, and `report` as a new output path. For a PHP application and bare filename stems:
 
 ~~~bash
-gobuster dir -u "$url" -w "$wordlist" -x php,txt -t 4 --delay 250ms -o "$report"
+/usr/bin/gobuster dir -u "$url" -w "$wordlist" -x php,txt -t 4 --delay 250ms -o "$report"
 ~~~
 
 Extensions increase requests; omit `-x` when exact filenames are already supplied. Delay is per worker, not a global requests-per-second limit. Start with a short candidate list and observe actual service behaviour. Stop or slow down on throttling and repeated server errors.

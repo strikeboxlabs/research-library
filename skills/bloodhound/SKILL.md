@@ -5,6 +5,8 @@ description: Import and inspect acquired directory evidence in BloodHound CE or 
 
 # Inspect a captured graph locally
 
+Installed invocation: `/usr/bin/bloodhound`.
+
 Read this entire SKILL.md before acting. Require an acquired reviewed collection archive and the selected prepared receiving instance. For CE, read [CE file ingestion](references/ce-file-ingest.md) fully before upload; use the Legacy procedure below only for its installed GUI and compatible prepared Neo4j instance. Import changes the receiving graph store. Finish with import completion, selected objects/edges and capture limits; unavailable runtime or format compatibility remains a prerequisite gap.
 
 Identify the installed generation and collector schema before opening the archive. This task uses the historical Linux desktop launcher, separate from the directory collector and the newer Community Edition deployment. Define `bloodhound_bin` as that installation's verified launcher:

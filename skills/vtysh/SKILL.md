@@ -5,6 +5,8 @@ description: Diagnose local FRR or Quagga BGP sessions, prefix selection and adv
 
 # Follow a prefix from BGP to forwarding
 
+Installed invocation: `/usr/bin/vtysh`.
+
 Use the existing router/container context and authorized daemon-socket access. `vtysh --help` identifies supported CLI options; `show version` identifies the routing suite. FRR and older Quagga share the executable name but differ in commands, configuration paths and defaults. A socket/permission failure is incomplete access, not an empty routing table.
 
 ## Establish the session and address family

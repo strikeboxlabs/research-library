@@ -5,12 +5,14 @@ description: Sort and deduplicate a selected line-oriented record file with GNU 
 
 # Choose what makes records equal
 
+Installed invocation: `/usr/bin/sort`, version `sort (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Establish the input's record framing, whole-line versus selected-field equality, comparison rule and fresh output path. Finish with sort's status, the retained distinct records and their count; report incomplete input or failed output separately. This task has no additional required resources.
 
 Define `input` as an existing absolute line-oriented data file and `output` as a fresh absolute path. For bytewise whole-line deduplication:
 
 ~~~bash
-sort --version
+/usr/bin/sort --version
 (set -C; LC_ALL=C sort -u -- "$input" > "$output")
 ~~~
 

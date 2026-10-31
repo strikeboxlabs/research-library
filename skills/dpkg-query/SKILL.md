@@ -5,6 +5,8 @@ description: Map an observed file to Debian/Ubuntu package records and evaluate 
 
 # Match an artifact to its package record
 
+Installed invocation: `/usr/bin/dpkg-query`, version `Debian dpkg-query package management program query tool version 1.23.11 (amd64).`.
+
 Read this entire SKILL.md before acting. Establish the intended database/filesystem view, map the exact observed path, then check full package state/version before an applicable advisory comparison. No conditional resources are required. Finish with path/database/package evidence and any unresolved mapping or advisory prerequisite; an absent database or owner match does not justify inventing a package.
 
 Use on a Debian-family system with the relevant dpkg database. Define `admindir` as its verified absolute administrative directory, normally `/var/lib/dpkg`. A container, mounted image and host can have different databases. The following operations read package records; they do not run the named helper or install anything.
@@ -12,7 +14,7 @@ Use on a Debian-family system with the relevant dpkg database. Define `admindir`
 Define `binary` as the observed absolute path, without glob metacharacters, in that database's filesystem view:
 
 ~~~bash
-dpkg-query --admindir="$admindir" -S "$binary"
+/usr/bin/dpkg-query --admindir="$admindir" -S "$binary"
 ~~~
 
 Read the matching pathname and owning package together. `-S` accepts patterns: shell quoting does not make `*`, `?` or `[` literal inside its argument. Do not split blindly at the first colon because package names can include architecture qualifiers. A missing match can mean a different symlink/merged-/usr spelling, a generated or manually installed file, or the wrong database. Resolve that discrepancy before assigning a package. Ownership records do not prove current file contents or permissions.
@@ -20,7 +22,7 @@ Read the matching pathname and owning package together. `-S` accepts patterns: s
 Define `package` as the exact returned package name, retaining an architecture qualifier when present:
 
 ~~~bash
-dpkg-query --admindir="$admindir" -W -f='${binary:Package}\t${Version}\t${Architecture}\t${Status}\t${source:Package}\t${source:Version}\n' "$package"
+/usr/bin/dpkg-query --admindir="$admindir" -W -f='${binary:Package}\t${Version}\t${Architecture}\t${Status}\t${source:Package}\t${source:Version}\n' "$package"
 ~~~
 
 The fields are binary name, binary version, architecture, status, source name and source version. Single quotes preserve dpkg's field expressions. Keep stderr and status: query exit 1 can mean an unmatched/partially matched request; 2 is a query error. A printed version alone is insufficient. An **illustrative** `deinstall ok config-files` record is residual configuration, whereas `install ok installed` identifies an installed record. Neither establishes that a running process uses those bytes.

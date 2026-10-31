@@ -5,12 +5,14 @@ description: Compile reviewed WebAssembly text into a fresh binary module with W
 
 # Compile the selected text contract
 
+Installed invocation: `/usr/bin/wat2wasm`, version `1.0.42`.
+
 Read this entire SKILL.md before acting. Require reviewed WAT, the intended module contract and a trusted installed tool. Preserve input, select a fresh output and finish with compiler diagnostics and artifact checks. No conditional resources are required; compilation does not execute the module or its host.
 
 Check `wat2wasm --version` and `--help`. Define `wat_file` as the reviewed absolute input path and `wasm_file` as a fresh output path:
 
 ~~~bash
-wat2wasm "$wat_file" -o "$wasm_file"
+/usr/bin/wat2wasm "$wat_file" -o "$wasm_file"
 status=$?
 ~~~
 

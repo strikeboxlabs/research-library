@@ -5,10 +5,12 @@ description: Identify the terminal connected to stdin with tty and compare selec
 
 # Identify stdin's terminal
 
+Installed invocation: `/usr/bin/tty`, version `tty (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Run tty in the actual selected process/session context and retain its path or status. The result describes file descriptor 0; it does not by itself identify a controlling terminal, foreground process group or the identity of another reader.
 
 ~~~bash
-tty
+/usr/bin/tty
 ~~~
 
 An **illustrative** /dev/pts/4 names this context's stdin terminal. Run it separately before and inside a selected account/session change when comparing endpoints. Equal names in the same device namespace support a shared endpoint; they do not prove parentage, ioctl permission or which shell will consume future input. A different namespace can give equal text names to different devices.
@@ -16,7 +18,7 @@ An **illustrative** /dev/pts/4 names this context's stdin terminal. Run it separ
 For a silent GNU test, inspect the status immediately:
 
 ~~~bash
-tty -s
+/usr/bin/tty -s
 status=$?
 printf 'tty_status=%s\n' "$status"
 ~~~

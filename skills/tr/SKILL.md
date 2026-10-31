@@ -5,6 +5,8 @@ description: Translate a known single-byte separator or remove confirmed line te
 
 # Translate a known separator
 
+Installed invocation: `/usr/bin/tr`, version `tr (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Select separator translation or the single-field unwrapping below, establish its actual byte contract, preserve the input and choose a fresh output path. Finish with the transformed bytes and command/format checks; a zero exit status alone does not prove the reconstructed format.
 
 Check `tr --version` for GNU coreutils. Define `input` as the acquired local file and `output` as a distinct fresh path that does not alias it. For a contract that uses literal dollar bytes as line separators:

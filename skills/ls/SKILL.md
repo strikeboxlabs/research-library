@@ -5,6 +5,8 @@ description: Inspect selected Linux directory entries and permission metadata wi
 
 # Inspect a selected directory and its entries
 
+Installed invocation: `/usr/bin/ls`, version `ls (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Select the existing directory and current namespace; confirm GNU coreutils with `ls --version`. No conditional resources are required. Finish with the listing, errors, observation time and relevant metadata limits; a failed listing is not an empty directory.
 
 Define `directory` as the selected path. Inspect that directory's own metadata separately from its entries:

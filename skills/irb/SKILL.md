@@ -5,12 +5,14 @@ description: Evaluate reviewed local Ruby expressions in IRB and inspect their a
 
 # Check a reviewed Ruby expression locally
 
+Installed invocation: `/usr/bin/irb`, version `irb 1.13.1 (2024-05-05)`.
+
 Read this entire SKILL.md before acting. Require a trusted installed IRB/Ruby environment and small reviewed nonsecret expressions; retain exact inputs and returned values. No conditional resources are required. This is local expression evaluation, not an application-console or remote-injection task.
 
 From a trusted working directory, inspect `irb --version` and `irb --help`, then start without the IRB configuration file:
 
 ~~~bash
-irb -f
+/usr/bin/irb -f
 ~~~
 
 `-f` suppresses IRB's configuration initialization, not Ruby's entire startup/environment or arbitrary code execution. Do not supply an acquired initialization script, `require` an unreviewed library or launch a Rails console just to inspect a literal expression. IRB executes entered Ruby code with the current process's authority.

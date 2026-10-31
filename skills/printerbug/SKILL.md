@@ -6,6 +6,8 @@ description: Trigger one authorized Windows spooler RPC authentication callback 
 
 # Correlate the spooler request with its callback
 
+Installed invocation: `/usr/bin/printerbug`, version `[*] Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Require the selected Windows source host, known RPC identity, callback endpoint and ready owned listener. Finish with the source/protocol/principal observed at that listener or an honest unresolved trigger; the script's final message is not callback proof.
 
 Use `printerbug.py` from dirkjanm's krbrelayx. Define `script` as its local reviewed path, `domain`, `account`, `source_host` and `callback_host` as the selected values. Inspect its installed help. This makes a remote spooler notification request and causes an outbound authentication attempt when the source/configuration permits it:

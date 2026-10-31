@@ -5,6 +5,8 @@ description: Emit one approved Upstart application event and verify the affected
 
 # Deliver the selected Upstart application event
 
+Installed invocation: `/usr/sbin/initctl`, version `Finit 4.14`.
+
 Read this entire SKILL.md before acting. Require a running Upstart daemon, its verified installed client, the selected manager and authority for the specific existing application event's effects. Review all matching existing job definitions and their trusted inputs before emission. All instructions are inline. Finish with command status and the actual application/task result; unavailable manager access or unknown event effects leaves the action blocked.
 
 Define `initctl_bin` as the verified executable, `event` as the approved application event and `job` as the known affected job. Establish system versus user/session context, including inherited UPSTART_SESSION and selected client connection options. A legacy initctl binary on a different init system does not supply a running Upstart manager.

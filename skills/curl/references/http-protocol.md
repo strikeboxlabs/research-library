@@ -4,7 +4,7 @@ Use for a selected read-only request when a product banner or requested protocol
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\nhttp_version=%{http_version}\npeer=%{remote_ip}\n' "$url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\nhttp_version=%{http_version}\npeer=%{remote_ip}\n' "$url"
 status=$?
 ~~~
 

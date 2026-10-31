@@ -20,7 +20,7 @@ The server version comes from version(), separately from psql --version. A role 
 Define `service` as the reviewed libpq service, `server_path` as the inspected absolute server destination and `line` as one reviewed text record. Supply variables through psql stdin; the quoted literal form escapes their SQL values:
 
 ~~~bash
-psql -X -w --dbname="service=$service connect_timeout=5" --set=ON_ERROR_STOP=1 --set=server_path="$server_path" --set=line="$line" <<'SQL'
+/usr/bin/psql -X -w --dbname="service=$service connect_timeout=5" --set=ON_ERROR_STOP=1 --set=server_path="$server_path" --set=line="$line" <<'SQL'
 COPY (SELECT :'line') TO :'server_path' WITH (FORMAT text);
 SQL
 ~~~

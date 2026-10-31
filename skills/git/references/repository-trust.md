@@ -7,7 +7,7 @@ Distinguish this error from filesystem access denial and from a failed global-co
 For the verified trusted `repo`, limit the exception to each intended read command:
 
 ~~~bash
-git -c safe.directory= -c safe.directory="$repo" -C "$repo" rev-parse --show-toplevel
+/usr/bin/git -c safe.directory= -c safe.directory="$repo" -C "$repo" rev-parse --show-toplevel
 status=$?
 ~~~
 

@@ -5,14 +5,16 @@ description: Change ownership of one selected Linux file with GNU chown and veri
 
 # Change the selected file's ownership
 
+Installed invocation: `/usr/bin/chown`, version `chown (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the exact path, verified intended owner/group mapping and authority to make the change. Inspect file type and prior numeric ownership; no conditional resources are required. Finish with status, resulting ownership and any required restoration.
 
 Define `file` as one verified regular file under an intended controlled directory, and `new_owner`/`new_group` as established account/group names. Retain its original metadata before the authorized change:
 
 ~~~bash
-chown --version
+/usr/bin/chown --version
 stat --format='%F %u:%g %a %n' -- "$file"
-chown --no-dereference -- "$new_owner:$new_group" "$file"
+/usr/bin/chown --no-dereference -- "$new_owner:$new_group" "$file"
 status=$?
 stat --format='%F %u:%g %a %n' -- "$file"
 ~~~

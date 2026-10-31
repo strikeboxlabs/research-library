@@ -6,7 +6,7 @@ Validate exactly one object and every selected fragment before writing. Passing 
 
 ~~~bash
 umask 077
-jq -s -e --arg field "$field" 'length == 1 and (.[0] | type == "object" and has($field) and (.[$field] | type == "array" and all(.[]; type == "string")))' "$response" > /dev/null &&
+/usr/bin/jq -s -e --arg field "$field" 'length == 1 and (.[0] | type == "object" and has($field) and (.[$field] | type == "array" and all(.[]; type == "string")))' "$response" > /dev/null &&
 (set -o noclobber; jq -j --arg field "$field" '.[$field][]' "$response" > "$extracted")
 status=$?
 ~~~

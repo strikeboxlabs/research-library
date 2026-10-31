@@ -5,19 +5,21 @@ description: Transfer a selected ordinary file with the tftp-hpa client and inte
 
 # Selected TFTP file transfer
 
+Installed invocation: `/usr/bin/tftp`, version `tftp-hpa 5.4, without readline`.
+
 Read this entire SKILL.md before acting. This procedure targets the installed **tftp-hpa** client and a known administration endpoint. Select one ordinary file and its permitted server name; identify the client before using this syntax. Finish with transfer status and available byte-integrity evidence, or the specific server/transport failure.
 
 Define `server` and decimal `port` as the intended endpoint, `remote_file` as its configured file name, and `local_file` as a fresh local destination for download or an existing owned input for upload:
 
 ~~~bash
-tftp -V
-tftp -v -l -m binary "$server" "$port" -c get "$remote_file" "$local_file"
+/usr/bin/tftp -V
+/usr/bin/tftp -v -l -m binary "$server" "$port" -c get "$remote_file" "$local_file"
 ~~~
 
 For a requested upload, use the opposite file order:
 
 ~~~bash
-tftp -v -l -m binary "$server" "$port" -c put "$local_file" "$remote_file"
+/usr/bin/tftp -v -l -m binary "$server" "$port" -c put "$local_file" "$remote_file"
 ~~~
 
 Binary mode preserves file bytes. Literal mode preserves colon-containing names; server-side path mapping remains configuration-specific. Check status and diagnostics before inspecting output. Compare size and a known digest when available; received bytes alone do not establish expected content.

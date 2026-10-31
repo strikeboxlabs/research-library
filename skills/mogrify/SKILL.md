@@ -5,6 +5,8 @@ description: Convert a selected batch of owned raster images with ImageMagick Mo
 
 # Batch image conversion
 
+Installed invocation: `/usr/bin/mogrify`, version `Version: ImageMagick 7.1.2-31 Q16 x86_64 20260903 https://imagemagick.org`.
+
 Read this entire SKILL.md before acting. Require a trusted installed ImageMagick invocation, selected ordinary raster inputs and a fresh writable output directory. Run as the ordinary user. Finish with input/output correspondence, command status and a visual check of the requested conversion; report missing coders or failed files rather than calling a partial batch complete.
 
 Choose the invocation actually installed: `mogrify_cmd=(magick mogrify)` for the ImageMagick 7 interface, or `mogrify_cmd=(mogrify)` when that executable is supplied. Do not infer its absolute location from a different machine.

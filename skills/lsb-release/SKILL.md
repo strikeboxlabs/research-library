@@ -5,6 +5,8 @@ description: Use lsb_release to identify the selected Linux userspace distributi
 
 # Distribution metadata
 
+Installed invocation: `/usr/bin/lsb_release`.
+
 Read this entire SKILL.md before acting. Select the intended local system or container and define `lsb_release_bin` as its verified trusted executable. Finish with the returned distribution fields, command status and scope; a missing executable or unavailable field is an unresolved metadata check, not proof of another distribution.
 
 ~~~bash

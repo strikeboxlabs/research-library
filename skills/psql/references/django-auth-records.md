@@ -8,7 +8,7 @@ For the confirmed illustrative `public.auth_user` schema, use a structured expor
 
 ~~~bash
 umask 077
-psql -X -w --dbname="service=$service connect_timeout=5" --set=ON_ERROR_STOP=1 \
+/usr/bin/psql -X -w --dbname="service=$service connect_timeout=5" --set=ON_ERROR_STOP=1 \
   --set=account_label="$account_label" --quiet --csv --pset=pager=off >"$output" <<'SQL'
 BEGIN READ ONLY;
 SET LOCAL statement_timeout = '5s';

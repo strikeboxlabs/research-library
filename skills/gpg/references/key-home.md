@@ -4,8 +4,8 @@ Use a private working copy of an owned GnuPG-home backup. Retain its original by
 
 ~~~bash
 umask 077
-gpg --homedir "$key_home" --no-options --with-colons --list-secret-keys
-gpg --homedir "$key_home" --no-options --no-auto-key-retrieve \
+/usr/bin/gpg --homedir "$key_home" --no-options --with-colons --list-secret-keys
+/usr/bin/gpg --homedir "$key_home" --no-options --no-auto-key-retrieve \
   --status-fd 4 --output "$plaintext" --decrypt "$ciphertext" \
   4>"$status_file" 2>"$error_file"
 ~~~

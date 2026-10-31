@@ -5,8 +5,8 @@ Work from a coherent acquired database copy. Confirm it is SQLite; an HTTP 200/l
 Define `database` as the existing absolute working-copy path. Inspect the actual schema, then a bounded set of identities and storage metadata:
 
 ~~~bash
-sqlite3 -init /dev/null -readonly -batch -bail "$database" 'PRAGMA table_info("user");'
-sqlite3 -init /dev/null -readonly -batch -bail -header -column "$database" \
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail "$database" 'PRAGMA table_info("user");'
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail -header -column "$database" \
   'SELECT id,login,typeof(password) AS verifier_type,length(password) AS verifier_chars,typeof(salt) AS salt_type,length(CAST(salt AS BLOB)) AS salt_bytes FROM "user" ORDER BY id LIMIT 20;'
 ~~~
 

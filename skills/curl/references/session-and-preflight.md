@@ -6,7 +6,7 @@ Define `token_url`, a private `jar` path for this one session, and fresh private
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --cookie "$jar" --cookie-jar "$jar" --dump-header "$token_headers" \
   --output "$token_body" --write-out 'status=%{http_code}\n' "$token_url"
 ~~~
@@ -26,7 +26,7 @@ Require exit zero and a nonempty header file; otherwise stop. Do not reuse a sta
 For the intended API operation, define the exact `url`, `method`, reviewed `request_json` and fresh `headers`/`body` files:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --cookie "$jar" --cookie-jar "$jar" --header "@$csrf_header" \
   --request "$method" --header 'Content-Type: application/json' \
   --data-binary "@$request_json" --dump-header "$headers" \
@@ -42,7 +42,7 @@ Keep cookies, localStorage and the server's authorization result separate. local
 For a scoped policy check, define `origin` as the caller's origin (`scheme://host[:port]`, no path), `url` as the destination and `method` as the proposed method. This example proposes a JSON request with a CSRF header:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --request OPTIONS --header "Origin: $origin" \
   --header "Access-Control-Request-Method: $method" \
   --header 'Access-Control-Request-Headers: content-type,x-csrf-token' \

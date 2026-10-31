@@ -5,13 +5,15 @@ description: Discover scoped web paths with Feroxbuster while controlling recurs
 
 # Bounded web-path discovery
 
+Installed invocation: `/usr/bin/feroxbuster`, version `feroxbuster 2.13.1`.
+
 Read this entire SKILL.md before acting. Require the approved base URL, selected wordlist and installed Feroxbuster; no conditional resources are required. Select the bounded request/filter settings below before starting, then finish with the complete report, status and scoped coverage limits. Missing inputs or interrupted retrieval remain gaps rather than evidence that paths are absent.
 
 Define `url` as one approved base URL with the intended hostname and path, `wordlist` as a selected local list, and `report` as a fresh private output path. Check `feroxbuster --version` and `--help`: options and automatic link extraction differ across releases. Review loaded configuration and startup settings for inherited headers, proxies, methods, extensions and collection features.
 
 ~~~bash
 umask 077
-feroxbuster --url "$url" --wordlist "$wordlist" --threads 4 --scan-limit 1 --rate-limit 5 --time-limit 2m --no-recursion --dont-extract-links --json --output "$report"
+/usr/bin/feroxbuster --url "$url" --wordlist "$wordlist" --threads 4 --scan-limit 1 --rate-limit 5 --time-limit 2m --no-recursion --dont-extract-links --json --output "$report"
 ~~~
 
 This limits the run to one active directory scan, five requests/second per directory and two minutes. `--threads` controls concurrent work within a scan; it is not a request-rate setting. `--no-recursion` and `--dont-extract-links` control different expansions. Avoid inheriting `--smart`/`--thorough` collection behavior when assessing this bounded run. Do not substitute `--depth 0`: zero means unlimited recursion. For an approved recursive follow-up, choose a finite depth and account for per-directory limits across concurrent scans.

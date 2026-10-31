@@ -5,6 +5,8 @@ description: Download one selected ordinary artifact with Axel, controlling conn
 
 # Download one selected artifact
 
+Installed invocation: `/usr/bin/axel`, version `Axel 2.17.14 (linux-gnu)`.
+
 Read this entire SKILL.md before acting. Require the intended existing Axel binary, one approved public or owned HTTP(S) URL, a fresh output path in an owned directory and independently known expected bytes or digest. Review this binary's help and effective configuration before transfer. No conditional resources are required. Finish with command status, actual destination and integrity evidence; missing prerequisites or interrupted bytes remain incomplete.
 
 Define `axel_bin` as the installed executable and inspect `"$axel_bin" --version` and `"$axel_bin" --help`. Inspect the installed system configuration location and the invoking process's actual home configuration, plus proxy and authentication settings. The packaged manual describes `/etc/axelrc` and `~/.axelrc`, but system locations can vary. Do not infer a privileged wrapper's HOME or configuration from the login account alone.

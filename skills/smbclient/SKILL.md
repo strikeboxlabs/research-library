@@ -5,12 +5,14 @@ description: List SMB shares and retrieve selected files with Samba smbclient. U
 
 # Samba smbclient
 
+Installed invocation: `/usr/bin/smbclient`, version `Version 4.25.1-Debian-4.25.1+dfsg-1`.
+
 Read this entire SKILL.md before acting. Select the intended server/share and explicit authentication context, distinguish discovery from the requested file operation, and preserve its result. Kerberos, bulk retrieval and replacement below are conditional tasks; finish with identity/share/path, transfer status and content evidence or a concrete access/coverage gap.
 
 This is Samba's `smbclient`, not Impacket's differently shaped SMB shell. Check `smbclient --version`. Define `server` as the target hostname/IP. An explicit empty-user, empty-password share-list attempt is:
 
 ~~~bash
-smbclient -L "$server" -U '%' -N
+/usr/bin/smbclient -L "$server" -U '%' -N
 ~~~
 
 `-N` alone only suppresses the password prompt; it does not select an empty username. A share listing does not establish access to its contents. A trailing `SMB1 disabled -- no workgroup available` message can follow a successful share listing; assess that output before changing protocols.
@@ -18,7 +20,7 @@ smbclient -L "$server" -U '%' -N
 Define `share` from the listing and `domain`/`user` for the chosen known identity. Open the share interactively and enter the password at the prompt:
 
 ~~~bash
-smbclient "//$server/$share" -U "$domain/$user"
+/usr/bin/smbclient "//$server/$share" -U "$domain/$user"
 ~~~
 
 For an anonymous connection, replace `-U "$domain/$user"` with `-U '%' -N`. For an explicitly intended guest account with an empty password, use `-U "$domain/guest%" -N`. These are different requests. Omitting `-U` can select a local environment/cache identity, and a prior NetExec login is not inherited. A server may also map a request to guest; successful listing alone does not prove which identity it granted. Inside the SMB prompt, use `ls`, `cd` and `get` for selected remote files; `lcd` sets their local destination. Quote names containing spaces. Record the remote share/path alongside downloaded files.
@@ -30,7 +32,7 @@ For metadata on one selected file, use `allinfo "name with spaces.txt"` at the S
 For an existing Kerberos file cache, define `cache` as its absolute path and `server` as the service's correct DNS name. On versions supporting these switches:
 
 ~~~bash
-smbclient "//$server/$share" --use-krb5-ccache="FILE:$cache" -N
+/usr/bin/smbclient "//$server/$share" --use-krb5-ccache="FILE:$cache" -N
 ~~~
 
 That option requires Kerberos rather than silently falling back. Use `-I "$server_ip"` if an explicit connection address is needed while retaining the service hostname. Check cache identity/expiry and name resolution before treating authentication failure as an incorrect password. Do not infer write access from successful reads.

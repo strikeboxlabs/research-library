@@ -3,7 +3,7 @@
 Establish the scoped URL prefix, correct hostname/TLS route, HTTP method and session state. Define `path_wordlist` as a bounded list of relevant names containing known positive and random-negative controls, and `url_template` as the exact URL with a single `FUZZ` replacement at the intended path position:
 
 ~~~bash
-wfuzz -w "$path_wordlist" -t 2 -s 0.5 "$url_template"
+/usr/bin/wfuzz -w "$path_wordlist" -t 2 -s 0.5 "$url_template"
 ~~~
 
 Start without filters. Inspect status, redirect destinations and line/word/character counts for the controls. `--hl N` hides a line count, `--hh N` hides characters and `--hc 404` hides a status; they are presentation filters, not proof that every hidden response was irrelevant. A dynamic error can share a count with a genuine route. Apply only observed stable filters, recheck representative hidden responses, and preserve processed versus filtered totals. Authentication expiry can turn every candidate into the same login response.

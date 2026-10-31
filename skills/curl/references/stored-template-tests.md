@@ -11,7 +11,7 @@ Create a distinctive benign marker through the observed form and find it in the 
 Define `post_url`/`render_url` as the observed routes, `title_field`/`content_field` as the actual form parameter names, `field_file` as a fresh UTF-8 file holding the selected title bytes, `marker` as a benign identifying content value, and `cookie_jar` as the current private session jar. Use distinct fresh response files for each probe. For a form POST:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --cookie "$cookie_jar" --cookie-jar "$cookie_jar" \
   --data-urlencode "$title_field@$field_file" \
   --data-urlencode "$content_field=$marker" \
@@ -24,7 +24,7 @@ Supply the observed CSRF parameter/header when required. Do not infer parameter 
 Retrieve the alternate rendering with the same routing and session:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --cookie "$cookie_jar" --dump-header "$render_headers" \
   --output "$render_body" --write-out 'status=%{http_code}\n' "$render_url"
 ~~~

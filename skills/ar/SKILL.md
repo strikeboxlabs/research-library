@@ -5,12 +5,14 @@ description: List an acquired GNU ar archive and extract one selected ordinary m
 
 # Extract a selected archive member
 
+Installed invocation: `/usr/bin/ar`, version `GNU ar (GNU Binutils for Debian) 2.47`.
+
 Read this entire SKILL.md before acting. Require the acquired archive, full member listing, a unique selected ordinary basename and a new private output directory. No conditional resources are required. Finish with the archive/member identity, extraction status and resulting bytes; this does not install or execute package content.
 
 Confirm `ar --version` and installed help. Define `archive` as the absolute local archive path, then list all members:
 
 ~~~bash
-ar t "$archive"
+/usr/bin/ar t "$archive"
 status=$?
 ~~~
 

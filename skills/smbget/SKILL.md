@@ -5,6 +5,8 @@ description: Retrieve a selected SMB file or approved directory subtree with Sam
 
 # Retrieve one SMB file
 
+Installed invocation: `/usr/bin/smbget`, version `Version 4.25.1-Debian-4.25.1+dfsg-1`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the authorized URL, intended known account/domain and fresh private local destination. For an approved directory subtree, read [recursive retrieval](references/recursive-retrieval.md) fully before that procedure. Otherwise use the single-file task below. Check installed options, perform the selected transfer and finish with its status, remote path and local content evidence or the concrete failure.
 
 Use Samba's `smbget --version` and `smbget --help`. Historical releases used different short switches: current Samba uses `--workgroup` (`-W`) and `--recursive`, while `-R` selects name resolution. Choose supported long options rather than copying an old `-w ... -R` command.
@@ -14,7 +16,7 @@ Define `domain` and `user` as the intended identity, `url` as the exact `smb://s
 ~~~bash
 umask 077
 test ! -e "$output" || exit 1
-smbget --workgroup="$domain" --user="$user" --outputfile="$output" "$url"
+/usr/bin/smbget --workgroup="$domain" --user="$user" --outputfile="$output" "$url"
 status=$?
 ~~~
 

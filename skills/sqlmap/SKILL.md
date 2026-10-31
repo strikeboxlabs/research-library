@@ -5,6 +5,8 @@ description: Test one authorized HTTP parameter from a captured request with req
 
 # Preserve the request and scope the test
 
+Installed invocation: `/usr/bin/sqlmap`, version `1.10.10#stable`.
+
 Read this entire SKILL.md before acting. Require the selected endpoint's authorization for the actual test and any metadata/row retrieval, a complete current request and the bounded settings below. No conditional resources are required. Finish with confirmed versus heuristic findings and retrieval coverage; missing authentication, unstable responses or an interrupted run remain unresolved.
 
 On the controlled Linux image, use `/usr/bin/sqlmap` (1.10.10#stable). Its extended help, `/usr/bin/sqlmap -hh`, includes `--delay`, `--time-limit` and `--disable-hashing`; recheck the version/options when the image changes or observed behavior differs. This procedure actively changes HTTP parameters and sends repeated requests; choose an endpoint approved for that testing. Risk level 1 is not a guarantee against application side effects.

@@ -3,8 +3,8 @@
 Require the selected daemon/container and reviewed configuration change. Define `container`, absolute local `config` and exact container `destination`. Inspect its existing path/backup and the image's configuration contract first:
 
 ~~~bash
-docker inspect --format '{{.State.Status}}' "$container"
-docker cp "$config" "$container:$destination"
+/usr/bin/docker inspect --format '{{.State.Status}}' "$container"
+/usr/bin/docker cp "$config" "$container:$destination"
 status=$?
 ~~~
 
@@ -13,7 +13,7 @@ Copying works with stopped or running containers. An existing destination file i
 For the selected stopped service:
 
 ~~~bash
-docker start -a "$container"
+/usr/bin/docker start -a "$container"
 status=$?
 ~~~
 

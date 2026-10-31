@@ -7,7 +7,7 @@ description: Discover scoped TCP and selected UDP responders with Masscan, prese
 
 Read this entire SKILL.md before acting. Review effective scope/interface/rate before sending probes; preserve per-host/protocol discovery and follow-up evidence. Finish with completed coverage and separately confirmed services or the specific route/loss gap.
 
-Installed invocation: `/usr/bin/masscan`, version `1.3.2`. For a tunneled destination, compare the adapter in the `--echo` preview with the selected route before interpreting an empty scan. Define the interface from current route evidence rather than assuming `tun0`; validate a small approved known-listening port selection before expanding to the requested range.
+Installed invocation: `/usr/bin/masscan`, version `Masscan version 1.3.2 ( https://github.com/robertdavidgraham/masscan )`.
 
 Masscan sends raw packets using its own network stack. Use it for port discovery; a responsive port still needs protocol confirmation. Check the installed version and raw-packet privileges. Targets are IP addresses/ranges, not DNS names. A working TCP connection through a VPN or proxy does not establish that Masscan's selected adapter can send and receive raw probes there.
 

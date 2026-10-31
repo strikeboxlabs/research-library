@@ -5,19 +5,21 @@ description: Inspect Linux System V shared-memory metadata and distinguish keys,
 
 # Inspect shared-memory metadata
 
+Installed invocation: `/usr/bin/ipcs`, version `ipcs from util-linux 2.42.4`.
+
 Use util-linux `ipcs` when a reviewed program calls `shmget`/`shmat`, or logs a System V shared-memory key. This inspects metadata; it does not read or modify segment contents. Check `ipcs --version` because other implementations differ.
 
 ~~~bash
-ipcs -m
+/usr/bin/ipcs -m
 ~~~
 
 Find the relevant row using the observed key and capture time. A key is the lookup input to `shmget`; the returned `shmid` is the segment identifier. Neither is the attached virtual address. Define `shmid` from the current table's ID column, then inspect:
 
 ~~~bash
-ipcs -m -i "$shmid"
-ipcs -m -c
-ipcs -m -p
-ipcs -m -t
+/usr/bin/ipcs -m -i "$shmid"
+/usr/bin/ipcs -m -c
+/usr/bin/ipcs -m -p
+/usr/bin/ipcs -m -t
 ~~~
 
 Keep creator/owner, PID and time views separate: only the last output-format option takes effect. Correlate the selected ID across them, accounting for removal and recreation between calls. For shared memory, the last-operation PID concerns attach/detach, not necessarily the last writer. PIDs can be reused; metadata alone cannot prove which process changed a value.

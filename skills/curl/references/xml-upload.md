@@ -22,7 +22,7 @@ Define `url` as the verified upload route, `file_field` as its actual multipart 
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --form "$file_field=@$xml_file;type=text/xml" \
   --dump-header "$headers" --output "$body" \
   --write-out 'status=%{http_code}\n' "$url"

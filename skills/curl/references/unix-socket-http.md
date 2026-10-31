@@ -4,7 +4,7 @@ Identify the observed socket's service and documented read-only endpoint. Define
 
 ~~~bash
 umask 077
-curl --silent --show-error --max-time 20 --unix-socket "$socket" \
+/usr/bin/curl --silent --show-error --max-time 20 --unix-socket "$socket" \
   --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
 ~~~
 

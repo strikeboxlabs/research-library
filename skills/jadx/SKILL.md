@@ -5,13 +5,15 @@ description: Use the jadx CLI to inspect APK resources and DEX call paths withou
 
 # Follow packaged data into code
 
+Installed invocation: `/usr/bin/jadx`, version `1.5.6`.
+
 Read this entire SKILL.md before acting. Use the export and resource-to-call procedure below for static APK inspection; use the incomplete-decompilation section when a relevant class or method is uncertain. Require the selected local APK, an installed jadx with its supported Java runtime and fresh private output locations. Finish with the specific code relationship, export diagnostics and any unresolved path; if the input or runtime is missing, report that prerequisite before claiming an inspection.
 
 Use `jadx`, the CLI entrypoint, on the selected APK; `jadx-gui` is optional. Inspect `jadx --version` and `jadx --help` for installed flags. Define `apk` as its absolute path, `out` as a fresh private output directory and `log` as a separate private log:
 
 ~~~bash
 umask 077
-jadx -j 2 -d "$out" "$apk" >"$log" 2>&1
+/usr/bin/jadx -j 2 -d "$out" "$apk" >"$log" 2>&1
 status=$?
 ~~~
 
@@ -30,7 +32,7 @@ Review only the relevant files privately. Record resource identifier, location, 
 For a class of interest, define `class_name` as its fully qualified raw name or recognized alias and `class_out` as a fresh output location:
 
 ~~~bash
-jadx --single-class "$class_name" --single-class-output "$class_out" "$apk"
+/usr/bin/jadx --single-class "$class_name" --single-class-output "$class_out" "$apk"
 ~~~
 
 Decompiled Java reconstructs bytecode; it is not the original source. A skipped method or inconsistent block prevents a confident conclusion about that path even if other classes exported successfully. On supporting versions, use `--decompilation-mode simple` or `fallback`, then compare disputed instructions with smali/control-flow evidence. `--show-bad-code` exposes an uncertain reconstruction; it does not correct it. For renamed/inlined classes, check mapping and inlining options before declaring code absent. Reduce `-j` when memory pressure interrupts export and repeat into a fresh directory. The [upstream troubleshooting guide](https://github.com/skylot/jadx/wiki/Troubleshooting-Q%26A) explains these recovery branches.

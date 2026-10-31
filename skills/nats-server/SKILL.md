@@ -5,17 +5,19 @@ description: Run an owned foreground NATS server on loopback for a bounded clien
 
 # Run a local connection fixture
 
+Installed invocation: `/usr/sbin/nats-server`, version `nats-server: v2.15.1`.
+
 Read this entire SKILL.md before acting. Require the installed server, an unused approved local port and ownership of the foreground process. For a message exchange, also require an installed client, a reviewed local-only client context and an approved synthetic subject. Finish with listener address, actual client result, errors and confirmation that the owned process stopped.
 
 ~~~bash
-nats-server --version
-nats-server --help
+/usr/sbin/nats-server --version
+/usr/sbin/nats-server --help
 ~~~
 
 `-V` enables trace logging; lowercase `-v`/`--version` prints version. Define `port` as the selected unused nonprivileged port. In the owned terminal:
 
 ~~~bash
-nats-server -a 127.0.0.1 -p "$port"
+/usr/sbin/nats-server -a 127.0.0.1 -p "$port"
 ~~~
 
 The explicit bind keeps this unauthenticated fixture on loopback. Default broad binding, existing production configuration, JetStream persistence and cluster routes have different effects and are outside this fixture. Startup readiness establishes a listener, not successful client authentication or message delivery. An address-in-use error is a failed start; do not stop another service to reclaim its port.

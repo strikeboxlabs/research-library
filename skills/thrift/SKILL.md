@@ -5,6 +5,8 @@ description: Generate Apache Thrift bindings from a reviewed IDL and diagnose co
 
 # Generate bindings from the actual contract
 
+Installed invocation: `/usr/bin/thrift`, version `Thrift version 0.23.0`.
+
 Check `thrift -version` and `thrift -help`; this is the Apache Thrift compiler, separate from the language runtime library. Obtain the service's actual reviewed `.thrift` file and its includes. Preserve method names, argument field IDs/types, result types and declared exceptions. In `string ReadLogFile(1: string filePath)`, `1` is the argument's field ID, not a method number or TCP port. A namespace selects a language package; it does not select a network endpoint.
 
 Define `idl` as the absolute contract path, `include_dir` as its reviewed include root and `generated` as a fresh nonexistent output directory. For Go bindings:

@@ -5,6 +5,8 @@ description: Obtain MIT Kerberos tickets in a dedicated credential cache with a 
 
 # MIT kinit and cache selection
 
+Installed invocation: `/usr/bin/kinit`.
+
 Read this entire SKILL.md before acting. Require the exact authorized principal, installed MIT client and established realm/KDC configuration. The password workflow, conditional provisioned-keytab and PKINIT workflows and conditional TCP-proxy settings are inline; select only the applicable branches. Finish with command status and the cache's principal, service and validity evidence, then its intended consumer/cleanup state. Missing credentials, client mechanism or trust remain explicit gaps.
 
 Check the installed Kerberos implementation and `kinit`/`klist` help; MIT and Heimdal options differ. Establish the principal, realm, reachable KDC, DNS and clock state before treating authentication failure as a wrong password.

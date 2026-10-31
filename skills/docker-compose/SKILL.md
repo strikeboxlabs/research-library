@@ -5,6 +5,8 @@ description: Resolve and run a selected Docker Compose project with explicit fil
 
 # Resolve the project that will actually run
 
+Installed invocation: `/usr/bin/docker-compose`, version `Docker Compose version 2.40.3-3`.
+
 Read this entire SKILL.md before acting. Establish the daemon, Compose implementation and project inputs, inspect the resolved model, then run only the selected reviewed services. Read [capabilities and wrappers](references/capabilities-and-wrappers.md) fully when a privilege wrapper or unusual capability grant affects execution. Finish with actual service/exit evidence and the intended cleanup; configuration validity alone is not successful startup.
 
 Use an invocation array `compose=(docker compose)` for the plugin, or `compose=("$compose_bin")` for a verified standalone `docker-compose` executable. Check `"${compose[@]}" version` and relevant command help; current plugin flags need not exist in the older Python implementation. Define absolute `compose_file`, `project_dir`, a unique owned `project`, the selected `service`, and a fresh private `resolved` file. Inspect build sources, images, mounts, credentials and any `.env`/env-file inputs first.

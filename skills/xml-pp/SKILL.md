@@ -5,6 +5,8 @@ description: Format bounded, trusted XML with the XML::Twig xml_pp CLI while pre
 
 # Format XML without losing the original evidence
 
+Installed invocation: `/usr/bin/xml_pp`.
+
 This is Perl XML::Twig's `xml_pp`. Check `xml_pp -h` and the installed package version; similarly named formatters may use different parsers. Use a bounded, trusted local input. Define `input` as its absolute filename and `formatted`/`errors` as new, distinct output paths:
 
 ~~~bash

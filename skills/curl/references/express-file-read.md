@@ -6,7 +6,7 @@ Define `origin` as the scoped origin, `route` as the exact observed download pre
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 15 --path-as-is --globoff --cookie "$cookie_file" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$origin$route$encoded_relative"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 15 --path-as-is --globoff --cookie "$cookie_file" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$origin$route$encoded_relative"
 ~~~
 
 Do not add --location while classifying the response. A redirect/login page, an Nginx-generated 400 and an application 404 represent different boundaries. A failed deep traversal does not prove a shallow relative read is denied; encoding and normalization can differ at the client, front proxy, router and file API. --path-as-is controls curl dot normalization, not downstream decoding or authorization. Preserve the transmitted spelling when comparing controls.

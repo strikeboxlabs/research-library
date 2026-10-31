@@ -5,6 +5,8 @@ description: Resolve shared-library dependencies of trusted Linux ELF programs w
 
 # Trace a trusted program's dependencies
 
+Installed invocation: `/usr/bin/ldd`, version `ldd (Debian GLIBC 2.43-7) 2.43`.
+
 Read this entire SKILL.md before acting. Establish that the executable, interpreter and candidate libraries are trusted for loader-based inspection. Finish with the exact artifact, host/launch context and resolved or missing dependency; a trace does not prove that a function ran or that a privileged launch uses the same mapping.
 
 For untrusted artifacts, use static `readelf -W -d "$binary"` or `objdump -p "$binary"` instead. They show direct dependency names without resolving the whole tree. Some ldd implementations/interpreters can execute the program; even ordinary tracing involves the loader and dependencies. Do not run it as root just to inspect a suspect executable.
@@ -12,8 +14,8 @@ For untrusted artifacts, use static `readelf -W -d "$binary"` or `objdump -p "$b
 Define `binary` as the selected trusted absolute ELF path and `report` as a fresh output file:
 
 ~~~bash
-ldd --version
-ldd "$binary" > "$report" 2>&1
+/usr/bin/ldd --version
+/usr/bin/ldd "$binary" > "$report" 2>&1
 ~~~
 
 Check status and the full report. **Illustrative** distinctions:

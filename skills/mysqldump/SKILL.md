@@ -5,6 +5,8 @@ description: Create a selected MySQL logical backup and diagnose incomplete comp
 
 # Check the dump, compression and recovery separately
 
+Installed invocation: `/usr/bin/mysqldump`, version `/usr/bin/mysqldump from 11.8.9-MariaDB, client 10.20 for debian-linux-gnu (x86_64)`.
+
 Read this entire SKILL.md before acting. Require the selected database/connection, existing backup authority, engine/change-window conditions and fresh outputs. Follow the dump/status, stream-integrity and scoped recovery checks below; no conditional resources are required. Finish with those distinct results and required object coverage. A missing restore fixture leaves restorability unverified rather than invalidating an otherwise supported dump task.
 
 Inspect `mysqldump --version` and `--help`, the server version and the job's existing option files. MariaDB may provide `mariadb-dump` or a compatibility name; verify its options independently. The procedure below covers an explicitly selected MySQL database, not full-server disaster recovery.

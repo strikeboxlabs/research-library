@@ -5,14 +5,16 @@ description: Install selected trusted local Debian archives, remove an explicitl
 
 # Check the selected package state
 
+Installed invocation: `/usr/bin/dpkg`, version `Debian 'dpkg' package management program version 1.23.11 (amd64).`.
+
 Read this entire SKILL.md before acting. Require installed dpkg, the intended live Debian-family package database and exact package name. For an authorized local archive installation, read [selected local installation](references/local-install.md) fully first. For removal, establish the selected installed package and permitted removal effects before the branch below. Finish with state, version, audit findings and query status; missing records or failed transactions leave the requested state unverified.
 
 Confirm `dpkg --version` and help. Define `package` as the established package name, retaining an architecture qualifier when needed:
 
 ~~~bash
-dpkg --status "$package"
+/usr/bin/dpkg --status "$package"
 status=$?
-dpkg --audit "$package"
+/usr/bin/dpkg --audit "$package"
 audit_status=$?
 ~~~
 
@@ -25,9 +27,9 @@ If reviewing `dpkg -l` output, its first columns are desired action, current sta
 For removal of that explicitly selected owned package, preserve its prior state and use the permitted administrative context:
 
 ~~~bash
-dpkg --remove "$package"
+/usr/bin/dpkg --remove "$package"
 remove_status=$?
-dpkg --status "$package"
+/usr/bin/dpkg --status "$package"
 ~~~
 
 Removal runs maintainer scripts/triggers and removes installed files while normally retaining conffiles; it is not purge or deletion of every user-created artifact. Dependencies can prevent removal. Retain diagnostics and the resulting config-files/not-installed state or absence of a record; do not force removal or select all pending packages to hide a failure. An acquired .deb remains readable independently of the installed application's removal.

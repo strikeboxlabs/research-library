@@ -5,6 +5,8 @@ description: Mount one acquired WIM image read-only on Linux with wimlib, inspec
 
 # Open one WIM image as a read-only view
 
+Installed invocation: `/usr/bin/wimmount`, version `wimlib-imagex 1.14.5-1+b2 (using wimlib 1.14.5-1+b2)`.
+
 Read this entire SKILL.md before acting. Require the acquired WIM, selected image index, Linux wimlib with FUSE support and an empty private owned mount directory. Finish with the selected image/path evidence, mount result and verified unmount; missing resources or failed reads leave that evidence incomplete. No conditional resources are required.
 
 Inspect installed `wimmount --help`, `wiminfo --help` and `wimunmount --help`; installations may instead expose `wimlib-imagex mount/info/unmount`. These are different subcommands of the same library, not generic disk mounts. Define `wim_file` as the absolute intact acquired file:
@@ -18,7 +20,7 @@ Without rename/property/boot options this displays metadata rather than changing
 Define `mount_dir` as an existing empty private directory with no active mount. Preserve the acquired file's identity/digest before mounting:
 
 ~~~bash
-wimmount "$wim_file" "$image_index" "$mount_dir" --check
+/usr/bin/wimmount "$wim_file" "$image_index" "$mount_dir" --check
 status=$?
 ~~~
 

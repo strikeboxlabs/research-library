@@ -5,6 +5,8 @@ description: Join existing owned passwd and shadow snapshots into a private offl
 
 # Join an existing account snapshot pair
 
+Installed invocation: `/usr/sbin/unshadow`.
+
 Read this entire SKILL.md before acting. Establish the already acquired authorized passwd/shadow pair from the same host and capture interval, plus a fresh private output path. No additional resources are required. Finish with the actual join status and record-alignment findings; report a missing input or implementation instead of substituting a live protected-file acquisition.
 
 Define `passwd_snapshot` and `shadow_snapshot` as existing absolute input paths and `joined` as a nonexistent absolute output path in a private directory. The installed John/Openwall `unshadow` helper takes passwd first and shadow second, even though its implementation reads the shadow input first. Keep account hashes and output out of logs:

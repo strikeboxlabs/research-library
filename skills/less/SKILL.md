@@ -6,6 +6,8 @@ description: Inspect an existing Linux text artifact interactively with less whi
 
 # Inspect literal text before interpreting it
 
+Installed invocation: `/usr/bin/less`.
+
 Read this entire SKILL.md before acting. Use an existing working copy; identify what configuration/history is in scope. For a selected pager shell/privilege assessment, read [pager process context](references/process-context.md) fully before that action. Finish with the needed source lines or actual child identity and its context, not a conclusion drawn from a wrapped display or parent prompt.
 
 Define `file` as the selected path. For plain configuration text with possible long lines:

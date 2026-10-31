@@ -30,7 +30,7 @@ HOOK
 chmod 0755 "$tree/DEBIAN/postinst"
 chmod 0644 "$tree/DEBIAN/control"
 chmod 0755 "$tree/DEBIAN"
-dpkg-deb --build --root-owner-group "$tree" "$deb"
+/usr/bin/dpkg-deb --build --root-owner-group "$tree" "$deb"
 ~~~
 
 Use the entrypoint's archive/control inspection afterward. The chosen tree must be dedicated and fresh; these writes replace its selected control files. Installing this package still changes the package database even though the hook only prints evidence. Hand it to the explicitly selected installer only within that task's authorization, retain the archive identity and collect the installer/job result. A marker without the same job/package association is weak evidence; a permission denial or missing hook output is not a completed privilege test.

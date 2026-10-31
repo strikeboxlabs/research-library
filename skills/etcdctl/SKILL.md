@@ -5,6 +5,8 @@ description: Write and verify one selected nonsecret configuration key in an own
 
 # Change one configuration key
 
+Installed invocation: `/usr/bin/etcdctl`, version `3.5.30`.
+
 Read this entire SKILL.md before acting. Require the selected owned endpoint, configured authentication/TLS, one exact nonsecret key/value and permission for its downstream effects. Follow the write/readback procedure; finish with both statuses, the observed value/revision and any requested consumer result. Missing consumer evidence remains unresolved.
 
 Select `endpoints`, `key` and `value` explicitly. Inspect the existing exact key first and identify consumers watching its namespace. A harmless-looking string can trigger a file rewrite or service restart. This workflow uses a controlled fixture key; it does not broaden into namespace discovery or secret retrieval. Keep configured credentials private and retain TLS verification.

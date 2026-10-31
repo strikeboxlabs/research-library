@@ -5,7 +5,7 @@ Use when an approved HTTP origin is reachable from the Chisel server's namespace
 Define `proxy_port` and `upstream_origin` as the selected port and an HTTP(S) origin URL without a path prefix. Start the owned server in the foreground:
 
 ~~~bash
-chisel server --host 127.0.0.1 --port "$proxy_port" --proxy "$upstream_origin"
+/usr/bin/chisel server --host 127.0.0.1 --port "$proxy_port" --proxy "$upstream_origin"
 ~~~
 
 In v1.7.6, server `--proxy` and `--backend` address the same setting. Later help may expose a different spelling. Client `--proxy` instead selects a proxy for the client's transport connection; it does not create this fallback. The fallback sends ordinary HTTP requests upstream from the server's namespace. Its upstream director changes the origin and Host while retaining the request path, so do not assume an upstream URL path becomes a prefix.

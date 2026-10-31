@@ -5,12 +5,14 @@ description: Reverse records in an owned text file with GNU tac. Use when line o
 
 # Reverse selected text records
 
+Installed invocation: `/usr/bin/tac`, version `tac (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the installed GNU implementation, one ordinarily readable owned input and its record delimiter. All instructions are inline. Finish with the input, selected delimiter, command status and checked record order; a successful read is not proof of byte-preserving recovery or expanded privileges.
 
 Check `tac --version` and `tac --help`. Define `input` as the selected absolute text-file path. Default newline records are written last first:
 
 ~~~bash
-tac -- "$input"
+/usr/bin/tac -- "$input"
 status=$?
 ~~~
 
@@ -19,7 +21,7 @@ This reverses records, not characters within each line. Multiple file operands a
 For a known nonempty literal delimiter, define `separator` and select it explicitly:
 
 ~~~bash
-tac --separator="$separator" -- "$input"
+/usr/bin/tac --separator="$separator" -- "$input"
 status=$?
 ~~~
 

@@ -5,6 +5,8 @@ description: Select known delimiter-separated fields from acquired local text wi
 
 # Project fields under the actual text contract
 
+Installed invocation: `/usr/bin/cut`, version `cut (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Establish the record delimiter, field delimiter and selected field before transforming the preserved input. No conditional resources are required. Finish with the selected data, status and format/coverage limits; cut does not validate records or their acquisition.
 
 Check `cut --version` for GNU coreutils. Define `input` as an existing local text file and `output` as a fresh distinct path. For records whose first field precedes a literal slash:

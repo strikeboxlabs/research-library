@@ -5,6 +5,8 @@ description: Inspect/extract archives or supported disk images and diagnose 7-Zi
 
 # 7-Zip archive triage
 
+Installed invocation: `/usr/bin/7z`, version `7-Zip 26.03 (x64) : Copyright (c) 1999-2026 Igor Pavlov : 2026-09-03`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select the installed implementation and requested archive task, retain its status/listing and distinguish readable output from a complete valid backup. For backup creation, @listfile arguments or symlink-related diagnostics, read [backup argument parsing](references/backup-arguments.md) fully before that procedure. Keep it unloaded for ordinary archive extraction.
 
 Select the installed implementation: distributions may provide legacy p7zip `7za`/`7z` or upstream `7zz`, with different format support. Define `sevenzip` as its executable name/path and `archive` as the absolute input path. Read the version banner and supported formats:

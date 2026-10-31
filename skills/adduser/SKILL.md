@@ -5,6 +5,8 @@ description: Provision one approved local Linux account with Debian/Ubuntu addus
 
 # Create the selected account
 
+Installed invocation: `/usr/sbin/adduser`, version `adduser version 3.159`.
+
 Read this entire SKILL.md before acting. Require an explicit account-provisioning task, an approved account name and administrative authority on the selected Linux image. Confirm the installed implementation and local account policy before changing it; BusyBox adduser is a different interface. Finish with the resulting account, home and groups, or the exact incomplete step.
 
 Define `account` as the approved new local account name. Inspect `adduser --version`, the local manual, `/etc/adduser.conf`, configured skeleton files and any local provisioning hook. A build or backup containing similarly named files does not configure this system. Check whether the account and same-named group already resolve:

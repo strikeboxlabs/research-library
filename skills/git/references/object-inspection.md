@@ -3,10 +3,10 @@
 Use this when a preserved object store exists but worktree files or refs are incomplete. Define `repo` as an isolated acquired repository and `oid` as a complete observed object ID, not an assumed hash from a filename. Establish repository object format and inspect the type before content:
 
 ~~~bash
-git -C "$repo" rev-parse --show-object-format
-git -C "$repo" cat-file -t "$oid"
-git -C "$repo" cat-file -s "$oid"
-git -C "$repo" cat-file -p "$oid"
+/usr/bin/git -C "$repo" rev-parse --show-object-format
+/usr/bin/git -C "$repo" cat-file -t "$oid"
+/usr/bin/git -C "$repo" cat-file -s "$oid"
+/usr/bin/git -C "$repo" cat-file -p "$oid"
 ~~~
 
 Check each result separately. A commit's content names its tree and parents. A tree lists modes, names and child IDs. A blob holds file bytes; its ID does not encode a pathname. Follow only the selected acquired IDs and record missing children rather than claiming the whole source tree was recovered. For a selected tree, `git -C "$repo" ls-tree -z "$oid"` provides NUL-framed entries without extracting or following stored links.

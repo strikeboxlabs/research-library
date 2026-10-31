@@ -4,12 +4,12 @@ Require trusted Node/npm, the intended existing global prefix, trusted registry/
 
 ~~~bash
 node --version
-npm --version
-npm prefix --global
-npm ls --global --depth=0 -- "$package_name"
-npm install --global -- "$package_spec"
+/usr/bin/npm --version
+/usr/bin/npm prefix --global
+/usr/bin/npm ls --global --depth=0 -- "$package_name"
+/usr/bin/npm install --global -- "$package_spec"
 status=$?
-npm ls --global --depth=0 -- "$package_name"
+/usr/bin/npm ls --global --depth=0 -- "$package_name"
 ~~~
 
 Inspect engine requirements, existing package state and prefix permissions before installation. Global mode changes this prefix's package tree and CLI links; it can run lifecycle code. Do not add sudo or change the prefix as a silent repair for denied access. A historical unscoped package name does not establish equivalence to a newer scoped replacement.

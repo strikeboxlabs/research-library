@@ -5,6 +5,8 @@ description: Set or change a selected Linux account's password interactively wit
 
 # Change the selected password
 
+Installed invocation: `/usr/bin/passwd`.
+
 Read this entire SKILL.md before acting. Require an explicitly requested password change, exact local account, installed implementation and authority for that account. Use the approved interactive terminal and local password policy; keep secrets out of arguments, transcripts and reports. Finish with command status and selected account status.
 
 For an administrator changing the approved existing `account`:

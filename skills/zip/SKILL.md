@@ -5,6 +5,8 @@ description: Create a selected Linux archive or update one reviewed Office packa
 
 # Package a selected tree
 
+Installed invocation: `/usr/bin/zip`, version `This is Zip 3.0 (July 5th 2008), by Info-ZIP.`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select the intended source tree and exclusions, create a fresh archive outside that tree, and inspect its members and integrity before handing it to a consumer. ZIP packaging does not establish source trust or executable compatibility.
 
 For a reviewed WordprocessingML tree that must become a DOCX package without an extra enclosing directory, read [document packaging](references/document-packaging.md) fully before that procedure.

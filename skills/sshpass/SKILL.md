@@ -5,6 +5,8 @@ description: Supply one authorized SSH password noninteractively with sshpass an
 
 # Password input for a selected SSH account
 
+Installed invocation: `/usr/bin/sshpass`, version `sshpass 1.10`.
+
 Read this entire SKILL.md before acting. Require an authorized selected account/endpoint, an independently verified host key and a private password source. Use the actual installed sshpass/OpenSSH options below. Finish with the SSH result and observed remote identity or requested command outcome; a supplied password and connection banner alone do not prove the intended access.
 
 `sshpass` runs the SSH client through a dedicated terminal and recognizes its password prompt. It does not discover passwords or make a database/CMS credential valid for an OS account. Confirm the actual account separately; `/etc/passwd` is an account record, not an authentication result. A single evidenced reuse test differs from trying an entire username list against a login.

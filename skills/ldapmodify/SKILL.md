@@ -5,6 +5,8 @@ description: Replace one authorized LDAP contact attribute with OpenLDAP ldapmod
 
 # Change one selected contact field
 
+Installed invocation: `/usr/bin/ldapmodify`, version `ldapmodify: @(#) $OpenLDAP: ldapmodify 2.6.14+dfsg-2 (Aug 25 2026 00:46:58) $`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the exact owned entry DN, authorization for its contact-field change, a preserved prior value, a reviewed one-entry LDIF file and the known bind/transport context. Preview the input, apply only the intended change and read it back with the same identity; missing bind, permission or post-change evidence remains unresolved.
 
 Check `ldapmodify -VV` and installed options. It defaults to SASL, not anonymous or simple bind; explicitly select the intended mechanism. For Kerberos, require a usable selected cache and the client's GSSAPI mechanism, correct service FQDN/SPN and established TLS trust. Define `uri` as that `ldap://` endpoint and `entry_dn` as the exact observed DN. Capture the existing mobile value first:
@@ -28,13 +30,13 @@ mobile: +45 5555 0100
 Preview and inspect status/diagnostics:
 
 ~~~bash
-ldapmodify -n -v -f "$changes"
+/usr/bin/ldapmodify -n -v -f "$changes"
 ~~~
 
 `-n` suppresses modification; it does not establish online permissions or successful application. Once the selected change is authorized and the preview is correct:
 
 ~~~bash
-ldapmodify -Y GSSAPI -ZZ -H "$uri" -f "$changes"
+/usr/bin/ldapmodify -Y GSSAPI -ZZ -H "$uri" -f "$changes"
 status=$?
 ~~~
 

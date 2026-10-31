@@ -5,6 +5,8 @@ description: Mount a selected SMB share for Linux file inspection or an intended
 
 # Mount a selected SMB share
 
+Installed invocation: `/usr/sbin/mount.cifs`, version `mount.cifs version: 7.9`.
+
 Read this entire SKILL.md before acting. Require the exact selected share, a dedicated empty mountpoint, intended authentication and Linux CIFS support/mount privileges. Follow the mount verification and unmount steps below; for a remote timestamp question, also read that section. Finish with the observed share/options and requested file evidence, then confirmed unmount, or identify the failed stage.
 
 A mount is useful when several local programs need normal filesystem access. A large file alone does not require one: an SMB client can transfer it directly. `mount.cifs` needs the cifs-utils helper, kernel CIFS support and mount privileges; it creates host mount state.
@@ -12,7 +14,7 @@ A mount is useful when several local programs need normal filesystem access. A l
 Define `share` as the observed `//server/share`, `mountpoint` as a dedicated empty directory, and `credentials` as an existing private absolute file containing `username=`, `password=` and, when required, `domain=` on separate lines. Keep this file out of logs and repositories. For file inspection:
 
 ~~~bash
-mount.cifs -V
+/usr/sbin/mount.cifs -V
 sudo mount -t cifs "$share" "$mountpoint" -o "ro,nosuid,nodev,noexec,credentials=$credentials"
 findmnt --mountpoint "$mountpoint" -o TARGET,SOURCE,FSTYPE,OPTIONS
 ~~~

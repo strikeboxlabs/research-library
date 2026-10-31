@@ -5,6 +5,8 @@ description: Debug a controlled remote Linux program through gdbserver and GDB. 
 
 # Treat the debug connection as process control
 
+Installed invocation: `/usr/bin/gdbserver`, version `GNU gdbserver (Debian 18.1-3) 18.1`.
+
 Confirm local GDB and remote gdbserver versions/architecture support. Match the local executable and debug symbols to the remote build; a filename match is insufficient. Running or attaching gdbserver starts or stops a real process and needs that specific debugging task to be in scope.
 
 Gdbserver has no built-in authentication. Its documented TCP `host:port` form currently ignores the host component: spelling `127.0.0.1:port` is not a reliable loopback bind restriction. An exposed debugger is process-control access with the server account's privileges, not merely a version-specific exploit hypothesis. Prefer a verified SSH transport for an owned fixture.

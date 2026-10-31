@@ -8,9 +8,9 @@ For a selected dependency addition, define `project` as its absolute directory a
 
 ~~~bash
 node --version
-npm --version
+/usr/bin/npm --version
 cd -- "$project" || exit
-npm install --save-exact -- "$package_spec"
+/usr/bin/npm install --save-exact -- "$package_spec"
 status=$?
 ~~~
 
@@ -19,7 +19,7 @@ Preserve diagnostics and inspect status before building. Installation changes de
 For the selected project's actual reviewed `build` script, including any prebuild/postbuild hooks:
 
 ~~~bash
-npm run build
+/usr/bin/npm run build
 status=$?
 ~~~
 

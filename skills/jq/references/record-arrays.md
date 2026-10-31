@@ -6,8 +6,8 @@ For one top-level array of objects whose selected text field is `name`, validate
 
 ~~~bash
 umask 077
-jq -s -e 'length == 1 and (.[0] | type == "array" and all(.[]; type == "object" and (.name | type == "string")))' "$response" > /dev/null &&
-jq '[.[].name]' "$response" > "$extracted"
+/usr/bin/jq -s -e 'length == 1 and (.[0] | type == "array" and all(.[]; type == "object" and (.name | type == "string")))' "$response" > /dev/null &&
+/usr/bin/jq '[.[].name]' "$response" > "$extracted"
 status=$?
 ~~~
 
@@ -17,8 +17,8 @@ For a response whose records are instead in `hits.hits` and whose selected text 
 
 ~~~bash
 umask 077
-jq -s -e 'length == 1 and (.[0] | type == "object" and (.hits.hits | type == "array" and all(.[]; type == "object" and (._source.quote | type == "string"))))' "$response" > /dev/null &&
-jq '[.hits.hits[]._source.quote]' "$response" > "$extracted"
+/usr/bin/jq -s -e 'length == 1 and (.[0] | type == "object" and (.hits.hits | type == "array" and all(.[]; type == "object" and (._source.quote | type == "string"))))' "$response" > /dev/null &&
+/usr/bin/jq '[.hits.hits[]._source.quote]' "$response" > "$extracted"
 status=$?
 ~~~
 

@@ -5,12 +5,14 @@ description: Start a selected owned Android AVD with explicit DNS server setting
 
 # Select the owned AVD and resolver
 
+Installed invocation: `/usr/bin/emulator`, version `INFO         | Android emulator version 37.1.11.0 (build_id 15917651) (CL:N/A)`.
+
 Read this entire SKILL.md before acting. Require the installed Android emulator, existing owned AVD and reachable permitted DNS server. No conditional resources are required. Finish with the actual AVD/build, startup result and observed DNS request/reply; launch alone does not establish app connectivity.
 
 Check `emulator -version`, `emulator -help-dns-server` and `emulator -list-avds`. Define `avd` as one listed device and `dns_servers` as the intended comma-separated server IP list:
 
 ~~~bash
-emulator -avd "$avd" -dns-server "$dns_servers"
+/usr/bin/emulator -avd "$avd" -dns-server "$dns_servers"
 ~~~
 
 This is a startup option: stop the selected existing instance before relaunching with it. The documented option accepts up to four servers. An AVD runs guest code and writes its state; preserve existing settings/data rather than using -wipe-data as a networking retry.

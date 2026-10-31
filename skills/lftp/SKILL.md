@@ -5,6 +5,8 @@ description: Use lftp for explicit FTPS listings and selected file transfers. Di
 
 # lftp for protected FTP transfers
 
+Installed invocation: `/usr/bin/lftp`, version `LFTP | Version 4.9.3 | Copyright (c) 1996-2020 Alexander V. Lukyanov`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Establish the endpoint, known account and certificate trust before login. Finish with the selected operation's completion status and acquired file evidence, or the exact failed stage. For server-side account/root discrepancies when configuration is available, read [vsftpd identity and access](references/vsftpd-access.md) fully; otherwise keep that branch unloaded.
 
 Check `lftp --version` for TLS support. Explicit FTPS upgrades an FTP connection, commonly on port 21; implicit FTPS starts with TLS, commonly on 990. SFTP uses SSH and is a different protocol. A server reply requiring encryption calls for the matching transport, not password guessing. After a `421` disconnect, open a fresh connection.

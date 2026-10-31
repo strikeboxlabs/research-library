@@ -3,7 +3,7 @@
 For FTP that upgrades its control connection, define `endpoint` as the authorized host/IP and port, `ftp_host` as its expected TLS hostname, and `ca_bundle` as independently trusted CA certificates. Define `transcript` as a fresh private file. This handshake sends no account credentials:
 
 ~~~bash
-openssl s_client -connect "$endpoint" -starttls ftp -servername "$ftp_host" \
+/usr/bin/openssl s_client -connect "$endpoint" -starttls ftp -servername "$ftp_host" \
   -verify_hostname "$ftp_host" -verify_return_error -CAfile "$ca_bundle" \
   -showcerts </dev/null >"$transcript" 2>&1
 status=$?

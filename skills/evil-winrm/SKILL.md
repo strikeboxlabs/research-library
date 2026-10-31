@@ -5,6 +5,8 @@ description: Open an owned Windows WinRM session from Linux with a provisioned p
 
 # Evil-WinRM sessions
 
+Installed invocation: `/usr/bin/evil-winrm`, version `v4.1`.
+
 Read this entire SKILL.md before acting. Require the selected endpoint/account and credential mechanism, then confirm the actual remote identity and requested action/transfer. Read [service inspection](references/service-inspection.md) fully for selected Windows service evidence, [AD computer metadata](references/ad-computer-metadata.md) fully for one selected directory computer and its name-resolution evidence, or [policy and registry evidence](references/policy-and-registry-evidence.md) fully for stored GPO settings, registry SDDL or selected current registry metadata. These references are conditional; other session tasks use this entrypoint. Missing WinRM permission or incomplete evidence remains unresolved, regardless of another protocol's login result.
 
 A valid SMB or web-portal login does not establish WinRM permission. Confirm the Windows endpoint, listener transport/port, WSMan route and intended account. An open TCP 5985 or an HTTPAPI/IIS banner alone does not establish a working WinRM listener. An HTTP 404 with missing authentication headers can concern the route or service; it does not by itself prove a bad password. Inspect `evil-winrm -h` and `evil-winrm -V`; packaged releases can differ from current upstream.
@@ -12,7 +14,7 @@ A valid SMB or web-portal login does not establish WinRM permission. Confirm the
 Define `server` as the intended hostname/IP and `account` as the account identity accepted by that endpoint. For its normal HTTP listener, omit `-p` to enter the known password at the hidden prompt:
 
 ~~~bash
-evil-winrm -i "$server" -u "$account"
+/usr/bin/evil-winrm -i "$server" -u "$account"
 ~~~
 
 For an HTTPS listener, use `-S` (default port 5986); HTTP defaults to 5985. A custom `-P` is a port, whereas lowercase `-p` supplies a password. In the reviewed client, SSL sets the default port during option parsing, so place an explicit `-P` after `-S`. This implementation disables TLS peer-certificate verification; `-S` alone does not authenticate the server's certificate.
@@ -20,7 +22,7 @@ For an HTTPS listener, use `-S` (default port 5986); HTTP defaults to 5985. A cu
 For a provisioned client-certificate identity on the owned HTTPS listener, require the issued certificate, its matching private key and the administrator-established WinRM account mapping. Define `client_cert` and `client_key` as their existing protected absolute PEM paths:
 
 ~~~bash
-evil-winrm -i "$server" -S -c "$client_cert" -k "$client_key"
+/usr/bin/evil-winrm -i "$server" -S -c "$client_cert" -k "$client_key"
 ~~~
 
 `-c` supplies a certificate, not a bare public-key file or PFX bundle; `-k` supplies its private key. The reviewed certificate branch does not require `-u` or a password prompt: the server's mapping determines the account. Both files and HTTPS are required; providing one path or omitting `-S` is not a usable certificate connection. Confirm the installed release's flags and consumer support for the key's encryption before connection. A key-passphrase/loading failure is separate from server mapping or WinRM authorization; do not remove key protection as an automatic retry.

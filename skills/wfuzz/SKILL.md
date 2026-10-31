@@ -5,6 +5,8 @@ description: Use Wfuzz for controlled HTTP path, virtual-host, Origin-policy, fo
 
 # Wfuzz HTTP comparison
 
+Installed invocation: `/usr/bin/wfuzz`, version `3.1.0`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Establish the endpoint, negative/positive controls and bounded request set before filtering. Finish with confirmed response distinctions and completed coverage; a filtered display or status code alone does not prove a valid host, parameter or identity.
 
 For form/cookie gates or a service-side TCP test endpoint, read [form, cookie and socket comparisons](references/form-cookie-and-socket-tests.md) fully first. For scoped paths, API routes or a selected alias-mapping hypothesis, read [path discovery](references/path-discovery.md) fully first. For Origin allowlist comparisons, read [Origin policy](references/origin-policy.md) fully before that procedure. Keep unrelated references unloaded.
@@ -14,7 +16,7 @@ This procedure varies HTTP's Host header against one known server. It does not p
 Define `target_ip` as the scoped numeric IPv4 server, `domain` as the intended DNS suffix, and `wordlist` as a local file of bare labels. Include a deliberately nonexistent label and a known valid label when available. Start **without result filters**:
 
 ~~~bash
-wfuzz -w "$wordlist" -t 2 -s 0.5 -H "Host: FUZZ.$domain" "http://$target_ip/"
+/usr/bin/wfuzz -w "$wordlist" -t 2 -s 0.5 -H "Host: FUZZ.$domain" "http://$target_ip/"
 ~~~
 
 `FUZZ` marks the replacement location; a list of complete hostnames instead needs `Host: FUZZ`. Check both the destination and generated header. The example is plain HTTP. For HTTPS, an HTTP Host header alone does not change the TLS SNI hostname; first establish the correct TLS routing and certificate context.

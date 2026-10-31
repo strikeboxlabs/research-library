@@ -5,12 +5,14 @@ description: Inspect Linux clock, timezone and time-service state with timedatec
 
 # Inspect the host's time arrangement
 
+Installed invocation: `/usr/bin/timedatectl`.
+
 Read this entire SKILL.md before acting. Require the intended systemd host and reachable timedated service. No conditional resources are required. Finish with observed clock/timezone/service fields, status and unresolved offset evidence.
 
 Confirm `timedatectl --version` and help, then query without changing the clock:
 
 ~~~bash
-timedatectl --no-pager status
+/usr/bin/timedatectl --no-pager status
 status=$?
 ~~~
 

@@ -5,9 +5,9 @@ A remote `script -q -e -c /bin/bash /dev/null` or reviewed Python PTY child supp
 For a manual Bash session with job control, suspend the known relay using its local suspend key while local signal processing still works. Inspect `jobs -l` and choose that exact job. In the same parent shell, define `relay_job` as its job specification and use the saved `tty_state` from SKILL.md:
 
 ~~~bash
-stty raw -echo </dev/tty
+/usr/bin/stty raw -echo </dev/tty
 fg "$relay_job"
-stty "$tty_state" </dev/tty
+/usr/bin/stty "$tty_state" </dev/tty
 ~~~
 
 The restore command runs when the foreground job returns. Keep a recovery route to the local terminal: in raw mode Ctrl-C/Ctrl-Z can become bytes delivered to the remote child rather than signals controlling the local relay. Do not put `fg` inside a subshell or run this recipe in a worker shell with no jobs; it requires the original interactive shell's job table. If the relay ends with a damaged terminal, execute the saved restoration command in that local shell (carriage return may be necessary); use `stty sane` only when the saved state is unavailable. A separate session can use `stty -F "$owned_tty_device" "$tty_state"` for the explicitly identified same device, if permitted.

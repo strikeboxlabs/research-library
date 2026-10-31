@@ -7,8 +7,8 @@ Set `project` to the intended absolute project directory. Inspect `composer.json
 For a deployment that intentionally excludes developer packages and project hooks:
 
 ~~~bash
-composer --working-dir="$project" --no-plugins --no-scripts --no-interaction install --no-dev
-composer --working-dir="$project" --no-plugins --no-scripts check-platform-reqs --no-dev
+/usr/bin/composer --working-dir="$project" --no-plugins --no-scripts --no-interaction install --no-dev
+/usr/bin/composer --working-dir="$project" --no-plugins --no-scripts check-platform-reqs --no-dev
 ~~~
 
 `install` uses locked versions when a lockfile exists and writes dependencies/autoload files. It may need network access even when versions are locked. `update` resolves dependencies and rewrites the lockfile; that is a different task. `--no-dev` is appropriate for a selected deployment, not a default for developing or testing every project.
@@ -20,8 +20,8 @@ Suppressing scripts/plugins may omit application initialization the project requ
 List script names without running them, inspect their definitions and referenced files, then set `script_name` to the requested one:
 
 ~~~bash
-composer --working-dir="$project" --no-plugins run-script --list
-composer --working-dir="$project" --no-plugins run-script "$script_name"
+/usr/bin/composer --working-dir="$project" --no-plugins run-script --list
+/usr/bin/composer --working-dir="$project" --no-plugins run-script "$script_name"
 ~~~
 
 This second command executes the script. Do not add `--no-scripts` and then assume a desired script ran. Scripts can call other scripts or external programs; the effect is defined by the project, not the friendly script name. Additional arguments after `--` are passed to the script and can change its behavior.

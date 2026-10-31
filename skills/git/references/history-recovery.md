@@ -5,9 +5,9 @@ Use this when removed/replaced content, a misleading diff or incomplete history 
 Define `repo` as its absolute path and `path` as one repository-root-relative file path:
 
 ~~~bash
-git -C "$repo" status --short
-git -C "$repo" rev-parse --is-shallow-repository
-git -C "$repo" --no-pager log --all --follow --format='%H %ad %s' --date=iso-strict -- "$path"
+/usr/bin/git -C "$repo" status --short
+/usr/bin/git -C "$repo" rev-parse --is-shallow-repository
+/usr/bin/git -C "$repo" --no-pager log --all --follow --format='%H %ad %s' --date=iso-strict -- "$path"
 ~~~
 
 `--follow` follows one file across detected renames, not an entire directory. `--all` traverses locally available refs, not every remote commit or deleted unreachable object. Shallow/partial clones can limit results; a partial clone may fetch missing objects on demand. Record the repository state before treating an empty history as evidence that content never existed.
@@ -16,7 +16,7 @@ Choose `revision` from an observed commit and `historical_path` as the path at t
 
 ~~~bash
 umask 077
-git -C "$repo" show "$revision:$historical_path" >"$output_file"
+/usr/bin/git -C "$repo" show "$revision:$historical_path" >"$output_file"
 ~~~
 
 This reads a blob without checking out the old revision, changing branches or disturbing uncommitted files. Verify exit status and output before using it. A missing path can mean the file was renamed/deleted at that commit; inspect the parent or the commit's path changes rather than assuming the repository is corrupt.
@@ -28,7 +28,7 @@ When a known code line remains but its value changed, search changed lines rathe
 ~~~bash
 umask 077
 marker_regex='Encoding[.]ASCII[.]GetBytes'
-git -C "$repo" --no-pager log --all --follow -n 20 -p \
+/usr/bin/git -C "$repo" --no-pager log --all --follow -n 20 -p \
   --no-ext-diff --no-textconv -G "$marker_regex" -- "$path" >"$patch_file"
 ~~~
 
@@ -41,7 +41,7 @@ A historical secret proves it was stored at that revision, not that it is curren
 If a branch was reset or replaced, inspect available local reflogs before assuming the old tip disappeared:
 
 ~~~bash
-git -C "$repo" --no-pager reflog show --all --date=iso-strict
+/usr/bin/git -C "$repo" --no-pager reflog show --all --date=iso-strict
 ~~~
 
 Reflogs record local reference updates, including HEAD switches. They are not a remote audit trail and need not survive acquisition, cloning or expiry. A revert normally creates another commit reversing a change; it does not inherently hide the original commit from ancestry. Distinguish the actual ref movement from a commit message's description.
@@ -55,10 +55,10 @@ Select a full observed commit ID as `revision`, confirm it with `git -C "$repo" 
 For a selected ordinary non-merge commit, inspect its parent and path changes, then compare that parent with the commit:
 
 ~~~bash
-git -C "$repo" --no-pager show --no-patch --format='%H %P %s' "$revision"
-git -C "$repo" --no-pager diff --name-status --no-ext-diff --no-textconv \
+/usr/bin/git -C "$repo" --no-pager show --no-patch --format='%H %P %s' "$revision"
+/usr/bin/git -C "$repo" --no-pager diff --name-status --no-ext-diff --no-textconv \
   "${revision}^1" "$revision" --
-git -C "$repo" --no-pager diff --no-ext-diff --no-textconv \
+/usr/bin/git -C "$repo" --no-pager diff --no-ext-diff --no-textconv \
   "${revision}^1" "$revision" -- "$path"
 ~~~
 

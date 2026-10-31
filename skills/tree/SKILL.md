@@ -5,12 +5,14 @@ description: Inspect the layout of a selected owned directory with bounded depth
 
 # Read the selected directory layout
 
+Installed invocation: `/usr/bin/tree`, version `tree v2.3.2 (c) 1996 - 2026 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser,`.
+
 Read this entire SKILL.md before acting. Require installed tree, the exact owned directory and permission to inspect its entries. No conditional resources are required. Finish with the directory, options/depth, status and visible paths or access gaps; a layout is not an artifact-integrity or build-success check.
 
 Check `tree --version`. Define `directory` as the selected absolute directory:
 
 ~~~bash
-tree -a -L 2 -- "$directory"
+/usr/bin/tree -a -L 2 -- "$directory"
 status=$?
 ~~~
 

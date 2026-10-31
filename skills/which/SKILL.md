@@ -5,12 +5,14 @@ description: Locate a selected executable on the current PATH with the installed
 
 # Resolve the selected executable name
 
+Installed invocation: `/usr/bin/which`, version `GNU which v2.21, Copyright (C) 1999 - 2015 Carlo Wood.`.
+
 Read this entire SKILL.md before acting. Require the intended shell/environment and a known simple executable name. Check the installed which implementation's help; this task uses Debianutils-compatible PATH search. No conditional resources are required. Finish with status, returned path and the unresolved version/behavior questions.
 
 Define `program` as the intended name, for example an interpreter name selected by the task:
 
 ~~~bash
-which -- "$program"
+/usr/bin/which -- "$program"
 status=$?
 ~~~
 

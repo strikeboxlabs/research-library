@@ -5,10 +5,12 @@ description: Attach the Java command-line debugger to an existing JDWP endpoint,
 
 # jdb attached JVM inspection
 
+Installed invocation: `/usr/bin/jdb`.
+
 Use the JDK's `jdb`, not a native debugger for Java stacks. Record `jdb -version` and inspect `jdb -listconnectors`. Define `jdwp_host` and `jdwp_port` as the existing authorized JDWP endpoint, often a local forwarded port:
 
 ~~~bash
-jdb -attach "$jdwp_host:$jdwp_port"
+/usr/bin/jdb -attach "$jdwp_host:$jdwp_port"
 ~~~
 
 Passing a main class instead launches a different debugging workflow. Do not enable a new public JDWP listener as an attachment repair: this interface controls the JVM, and a reachable port is not an authentication boundary. Confirm which process/environment the forward reaches.

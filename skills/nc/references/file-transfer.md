@@ -14,7 +14,7 @@ Use the entrypoint's alternative listener syntax if that implementation is tradi
 On a sender supporting OpenBSD-style -N, define `receiver_ip`, the same `port`, the absolute `source_file` and a fresh `sender_log`:
 
 ~~~bash
-nc -n -v -N -w 10 "$receiver_ip" "$port" <"$source_file" 2>"$sender_log"
+/usr/bin/nc -n -v -N -w 10 "$receiver_ip" "$port" <"$source_file" 2>"$sender_log"
 ~~~
 
 The input redirection reads that local file; a same-named file in another working directory is different evidence. -N shuts down sending after input EOF. Traditional -q behavior differs; choose its installed contract instead of deleting the EOF option reflexively. The sender's idle/connect timeout is not a total transfer deadline, and -w does not bound the receiver's initial listen wait.

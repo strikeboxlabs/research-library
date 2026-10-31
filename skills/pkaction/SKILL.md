@@ -5,18 +5,20 @@ description: Inspect registered polkit action identifiers and defaults on the lo
 
 # Inspect the registered action
 
+Installed invocation: `/usr/bin/pkaction`.
+
 Read this entire SKILL.md before acting. Require the intended local system bus and installed polkit tools. All instructions are inline. Finish with the selected action's metadata or the observed lookup error; registration is separate from authorization.
 
 List the registered identifiers:
 
 ~~~bash
-pkaction
+/usr/bin/pkaction
 ~~~
 
 Choose the exact identifier relevant to the application's documented operation. Define `action` as that identifier, then inspect its details:
 
 ~~~bash
-pkaction --action-id "$action" --verbose
+/usr/bin/pkaction --action-id "$action" --verbose
 ~~~
 
 Retain status and diagnostics. Success is status zero; an error or unavailable authority leaves the lookup incomplete. An empty selection is not evidence that the application needs no authorization.

@@ -5,6 +5,8 @@ description: Report restart requirements after updates on an owned Linux system 
 
 # Report restart requirements
 
+Installed invocation: `/usr/sbin/needrestart`, version `needrestart 3.11 - Restart daemons after library updates.`.
+
 Read this entire SKILL.md before acting. Require the maintained distribution package, trusted administrator-managed configuration and the intended process namespace. Use the established permitted invocation; system-wide process inspection needs sufficient privileges. No conditional resources are required. Finish with findings, command status and visibility limits; a successful scan does not prove the system is fully patched.
 
 Verify the installed package revision against the distribution's security status before a privileged scan. An upstream version banner alone can miss backported fixes. Configuration and scanning hooks are executable inputs, so do not load an acquired configuration to inspect it or broaden a restricted grant.

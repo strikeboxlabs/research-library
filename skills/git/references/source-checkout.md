@@ -3,9 +3,9 @@
 Use this when the task calls for an upstream source checkout. Define `source_url` as the intended repository and `checkout` as a new owned path. To fetch objects before materializing the working tree:
 
 ~~~bash
-git clone --no-checkout -- "$source_url" "$checkout"
-git -C "$checkout" rev-parse HEAD
-git -C "$checkout" remote get-url origin
+/usr/bin/git clone --no-checkout -- "$source_url" "$checkout"
+/usr/bin/git -C "$checkout" rev-parse HEAD
+/usr/bin/git -C "$checkout" remote get-url origin
 ~~~
 
 Check clone status before interpreting the revision. A failed clone may leave a partial directory; do not reuse it as a complete source or delete an unrelated destination. The default branch can move between runs. Record the actual commit and remote identity; a matching repository name is not proof of a trusted publisher or reviewed code.
@@ -13,9 +13,9 @@ Check clone status before interpreting the revision. A failed clone may leave a 
 For a requested usable working tree, select `revision` from the intended reviewed commit/tag, inspect inherited Git configuration and checkout effects, then:
 
 ~~~bash
-git -C "$checkout" checkout --detach "$revision"
-git -C "$checkout" status --short
-git -C "$checkout" rev-parse HEAD
+/usr/bin/git -C "$checkout" checkout --detach "$revision"
+/usr/bin/git -C "$checkout" status --short
+/usr/bin/git -C "$checkout" rev-parse HEAD
 ~~~
 
 Use this only in the new owned checkout; do not reset an existing working tree containing unrelated edits. Materializing files can involve configured filters, hooks and large-file handling. Submodules are separate repositories/URLs; fetching them is a separate intended step, not an automatic clone repair. Missing submodule content or a shallow/partial history needs to remain explicit.

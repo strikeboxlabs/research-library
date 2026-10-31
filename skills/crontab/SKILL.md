@@ -5,6 +5,8 @@ description: Read the current user's installed cron table and distinguish a list
 
 # Read the current user's cron table
 
+Installed invocation: `/usr/bin/crontab`, version `file	(default operation is replace, per 1003.2)`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the installed crontab implementation and the intended current account. Use the read-only listing below, preserving status and diagnostics. Finish with that account's reported entries and scope gaps; a listed entry is configuration evidence, not observed execution.
 
 Define `report` and `errors` as fresh private file paths:

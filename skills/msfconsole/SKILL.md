@@ -5,6 +5,8 @@ description: Use Metasploit Framework modules, jobs and sessions from the Linux 
 
 # Select and configure a Framework module
 
+Installed invocation: `/usr/bin/msfconsole`, version `Framework Version: 6.5.7-dev`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the trusted installed Framework, selected permitted module task and explicit endpoint/observation scope. For handlers and session lifecycle, read [handlers and sessions](references/handlers-and-sessions.md) fully before that task; other console tasks use this entrypoint. Finish with the module/options used, its observed result and remaining jobs/sessions; loading a module is not executing it successfully. Missing module behavior, prerequisites or result evidence remains unresolved.
 
 Start `msfconsole -q`. Review startup resources and global datastore values in an existing workspace; old global target/credential settings can affect a new module. A database is useful for organizing results but is not required for every console module.

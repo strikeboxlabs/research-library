@@ -21,7 +21,7 @@ Check each command before continuing. The blank line prevents joining onto a pri
 Back on the intended client, define `key` as the corresponding private identity and `ssh_host`, `ssh_port`, `user` as the verified SSH endpoint/account. Keep host-key verification and inspect unfamiliar client helper/configuration behavior. For the separately authorized login/result check:
 
 ~~~bash
-ssh -p "$ssh_port" -i "$key" -o IdentitiesOnly=yes "$user@$ssh_host" id
+/usr/bin/ssh -p "$ssh_port" -i "$key" -o IdentitiesOnly=yes "$user@$ssh_host" id
 ~~~
 
 Observed authentication and returned remote identity establish this request's access; file write/read-back alone does not. A password fallback, partial authentication or failure requires checking the offered fingerprint, account/path permissions, effective server policy and endpoint, not overwriting the file again. A restricted/forced-command key may deliberately reject `id` despite key authentication.

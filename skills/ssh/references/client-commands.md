@@ -3,7 +3,7 @@
 Read unfamiliar configuration as text before invoking SSH with it. Includes and `Match exec` can select or execute local material even while `ssh -G` evaluates settings. Once `config` is an absolute path to a fully reviewed configuration (including its includes and match conditions), and `destination` is the intended host alias, inspect effective options without connecting:
 
 ~~~bash
-ssh -G -F "$config" "$destination"
+/usr/bin/ssh -G -F "$config" "$destination"
 ~~~
 
 Check the actual `user`, `hostname`, `port`, `proxycommand`, `localcommand` and `permitlocalcommand` settings that are present. `-F` selects that configuration instead of the normal user configuration and causes the system configuration to be ignored. This output establishes evaluated options, not authentication, execution of a connection-time helper or a working forward.

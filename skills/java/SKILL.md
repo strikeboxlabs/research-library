@@ -5,6 +5,8 @@ description: Launch an existing Java program with an explicit runtime, classpath
 
 # Select the runtime and entry class
 
+Installed invocation: `/usr/bin/java`, version `openjdk 25.0.5-ea 2026-10-20`.
+
 Read this entire SKILL.md before acting. Establish the reviewed program's entry class or executable JAR, required dependencies and intended file effects. Finish with the exit status and actual application result; class loading alone does not prove the task succeeded.
 
 Define `java_bin` as the selected runtime, `classpath` as its existing classes/dependencies, `main_class` as the fully qualified entry class and `input_file` as the intended application argument:

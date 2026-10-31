@@ -5,6 +5,8 @@ description: Use pwntools for framed process/TCP exchanges, cyclic offsets and e
 
 # Pwntools protocol exchanges and bytes
 
+Installed invocation: `/usr/bin/pwn`, version `[*] Pwntools v4.15.0`.
+
 Read this entire SKILL.md before acting. For an exchange, establish the endpoint, framing and complete-response condition; for cyclic lookup or packing, establish the generating parameters or actual field layout first. Finish with the verified response, offset or exact bytes and length; timeout, missing layout or partial output remains unresolved.
 
 Use Python 3 and the installed pwntools environment. A local `process` launches the supplied program; `remote` connects to the selected endpoint. Choose from the actual task, rather than turning a failed connection into a different execution mode. Set explicit timeouts and keep binary protocol data as `bytes`.

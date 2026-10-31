@@ -6,7 +6,7 @@ Define `seed_file` as an existing private newline-delimited file containing the 
 
 ~~~bash
 umask 077
-hashcat -a 0 --stdout -r "$rules" "$seed_file" > "$candidates" 2> "$generation_log"
+/usr/bin/hashcat -a 0 --stdout -r "$rules" "$seed_file" > "$candidates" 2> "$generation_log"
 status=$?
 ~~~
 

@@ -13,7 +13,7 @@ Define `url` as the selected exact list URL, `username` as its provisioned accou
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 --user "$username" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --user "$username" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
 ~~~
 
 Check transport status, HTTP status and the plain-text body's `OK`/`FAIL` result together. Retain the virtual-host context. A running application entry does not establish its HTTP health or complete deployment provenance. Distinguish an incomplete transfer or a login/error body from a complete list.

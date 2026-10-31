@@ -5,6 +5,8 @@ description: Validate JSON fields, filter saved object records, extract account 
 
 # Preserve JSON types and extracted text
 
+Installed invocation: `/usr/bin/jq`, version `jq-1.8.2`.
+
 Read this entire SKILL.md before acting. For decoded username-to-value objects, read [account-map extraction](references/account-maps.md) fully first. For top-level or nested record arrays in an acquired response, read [record-array extraction](references/record-arrays.md) fully first. For text already split into an array of strings, read [text-array reconstruction](references/text-arrays.md) fully first. Saved object-record selection/counting and other API/configuration tasks are below. Keep the original, validate the selected structure and finish with correctly framed extracted data or an explicit parse/schema gap.
 
 Check `jq --version`. Save the HTTP status, headers and body separately before parsing; `curl ... | jq` can hide curl's failure behind jq's exit status. Valid JSON is not proof of a successful API operation.
@@ -13,8 +15,8 @@ Define `response` as an existing JSON response and `extracted` as a fresh output
 
 ~~~bash
 umask 077
-jq -s -e 'length == 1 and (.[0] | type == "object" and (.file | type == "string"))' "$response" > /dev/null &&
-jq -j '.file' "$response" > "$extracted"
+/usr/bin/jq -s -e 'length == 1 and (.[0] | type == "object" and (.file | type == "string"))' "$response" > /dev/null &&
+/usr/bin/jq -j '.file' "$response" > "$extracted"
 ~~~
 
 Plain `.file` prints a JSON string with quotes and escapes. `-r` emits the decoded string but appends a newline; `-j` avoids adding one. This matters when reconstructing source/configuration files or comparing exact text. JSON strings represent Unicode text, not arbitrary original binary bytes; a binary API needs its defined encoding and integrity checks. Keep originals on parse/transfer failure.
@@ -24,8 +26,8 @@ Extraction cannot undo server-side transformations. If an application reads line
 For a saved API object carrying Base64, define `encoded` as a fresh file. Validate the encoding and string type, then extract the decoded JSON string without deleting quote characters by hand:
 
 ~~~bash
-jq -s -e 'length == 1 and (.[0] | type == "object" and .encoding == "base64" and (.content | type == "string"))' "$response" > /dev/null &&
-jq -j '.content' "$response" > "$encoded"
+/usr/bin/jq -s -e 'length == 1 and (.[0] | type == "object" and .encoding == "base64" and (.content | type == "string"))' "$response" > /dev/null &&
+/usr/bin/jq -j '.content' "$response" > "$encoded"
 ~~~
 
 This produces encoded text, not the original binary. Check the subsequent Base64 decoder's status and expected byte count/container. A listing response can have null content; an abbreviated field cannot be reconstructed by removing its omission marker.
@@ -35,7 +37,7 @@ An absent field normally becomes `null`. Use `has("field")` when distinguishing 
 To construct a JSON body containing an existing UTF-8 text file, define `source_text` and a fresh `request` path:
 
 ~~~bash
-jq -n --rawfile content "$source_text" '{file: $content}' > "$request"
+/usr/bin/jq -n --rawfile content "$source_text" '{file: $content}' > "$request"
 ~~~
 
 This escapes embedded quotes, backslashes and newlines without search-and-replace chains. Use `--arg` for literal strings and `--argjson` for validated JSON values: `"true"` and `true` are different. Never interpolate external text into the jq program itself. Constructing a request file does not submit it; verify the intended fields and HTTP operation before use.
@@ -47,7 +49,7 @@ This escapes embedded quotes, backslashes and newlines without search-and-replac
 `gsub` replaces non-overlapping matches in the input once; it does not keep applying the rule to newly formed text. This harmless example distinguishes one pass from two:
 
 ~~~bash
-jq -n '"aabb" | {once:gsub("ab"; ""), twice:(gsub("ab"; "") | gsub("ab"; ""))}'
+/usr/bin/jq -n '"aabb" | {once:gsub("ab"; ""), twice:(gsub("ab"; "") | gsub("ab"; ""))}'
 ~~~
 
 The **illustrative** result is `{"once":"ab","twice":""}`. Removing substrings is not path canonicalization, and a string prefix cannot establish containment through `..` or symlinks.
@@ -62,7 +64,7 @@ For an acquired stream of JSON objects, define `records` as the original and `se
 
 ~~~bash
 umask 077
-jq -c 'if type != "object" then error("expected object record") else select(.selected == true) end' \
+/usr/bin/jq -c 'if type != "object" then error("expected object record") else select(.selected == true) end' \
   "$records" > "$selected" 2> "$parser_log" &&
 wc -l < "$selected"
 ~~~

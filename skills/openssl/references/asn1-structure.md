@@ -3,7 +3,7 @@
 Define `object` as a complete acquired raw artifact and establish its expected DER/PEM encoding. For a DER object:
 
 ~~~bash
-openssl asn1parse -inform DER -in "$object" -i
+/usr/bin/openssl asn1parse -inform DER -in "$object" -i
 ~~~
 
 Retain status and diagnostics. The offsets refer to the supplied input, while depth, header length, content length and tag describe nested structure. A parsed prefix is insufficient when trailing bytes or a length error remain. A raw section may contain a certificate, a signed container, unrelated ASN.1 or multiple objects; identify the format before choosing another decoder.

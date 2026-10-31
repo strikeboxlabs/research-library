@@ -5,6 +5,8 @@ description: Survey a scoped web server for configuration and vulnerability cand
 
 # Nikto web server survey
 
+Installed invocation: `/usr/bin/nikto`, version `Nikto 2.6.1 (LW 2.5)`.
+
 Read this entire SKILL.md before acting. Select the authorized scheme, host, port and test categories before sending requests. Preserve the report and distinguish candidates from independently confirmed findings. Finish with the target, selected categories, scan completion or time limit, and supporting request/response evidence for any confirmed finding.
 
 ## Installed implementation

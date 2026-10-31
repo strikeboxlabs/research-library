@@ -5,6 +5,8 @@ description: Read an owned ChromeDriver service's WebDriver status and distingui
 
 # Read the existing driver's status
 
+Installed invocation: `/usr/bin/chromedriver`, version `ChromeDriver 156.0.8078.47 (1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775-refs/branch-heads/807`.
+
 Read this entire SKILL.md before acting. Require the owner's exact existing driver endpoint and approved read access. Finish with the actual HTTP status, parsed readiness/message and available driver metadata; preserve connection or parsing failures as unresolved. No conditional resources are required.
 
 Define `driver_url` as the approved service base URL without a trailing slash. A common port or an unknown-command response at `/` is only a lead; request its actual status route. Use a fresh private capture directory:

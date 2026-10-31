@@ -5,6 +5,8 @@ description: Inspect static strings and their file and virtual addresses in a se
 
 # Static radare2 string metadata
 
+Installed invocation: `/usr/bin/r2`, version `6.0.5  r2`.
+
 Read this entire SKILL.md before acting. Require a bounded binary identified as an executable object, a trusted r2 launch environment and a fresh report path; do not open a project file as the input. Finish with parser status, selected string metadata and address-space limits. This task reads the object without executing or modifying it.
 
 Define `binary` as the absolute acquired object path and `strings_report` as a nonexistent file in a private working directory. Record the input size/hash. Check `r2 -v` and `r2 -h`; use a trusted launch environment without an inherited `R2_ARGS` override, since it can replace command-line arguments.

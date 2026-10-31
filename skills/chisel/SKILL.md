@@ -5,6 +5,8 @@ description: Build and diagnose Chisel port forwards, reverse SOCKS connections 
 
 # Chisel tunnel direction
 
+Installed invocation: `/usr/bin/chisel`, version `1.13.0-0kali1`.
+
 Read this entire SKILL.md before acting. Select transport/listener/destination roles and the needed authentication before starting the applicable forward. Finish with actual listener and application-response evidence, then stop the owned client/server and verify their listeners close; transport connection alone is incomplete.
 
 For a listener on the client that must reach a server-side receiver (including an application callback), read [normal forward and callback routing](references/normal-forward.md) fully first. Reverse SOCKS below solves a different direction.
@@ -16,13 +18,13 @@ Check both binaries' versions and `server --help`/`client --help`. Identify wher
 Define `listen_ip` as the server interface reachable from the client, `transport_port` as a free unprivileged port, and `auth_file` as an existing private JSON map of the form `{"user:password":["^R:127\\.0\\.0\\.1:18631$"]}`, with real private credentials and the intended port. Reverse entries match `R:<bind-address>:<port>`, not the eventual target. Start in the foreground:
 
 ~~~bash
-chisel server --host "$listen_ip" --port "$transport_port" --reverse --authfile "$auth_file"
+/usr/bin/chisel server --host "$listen_ip" --port "$transport_port" --reverse --authfile "$auth_file"
 ~~~
 
 Record the server fingerprint through the trusted setup channel. On the client, define `server_url`, `fingerprint`, `forward_port`, `destination_host` and `destination_port`. Supply the matching `user:password` in the client process's `AUTH` environment rather than literal command history:
 
 ~~~bash
-chisel client --fingerprint "$fingerprint" "$server_url" "R:127.0.0.1:$forward_port:$destination_host:$destination_port"
+/usr/bin/chisel client --fingerprint "$fingerprint" "$server_url" "R:127.0.0.1:$forward_port:$destination_host:$destination_port"
 ~~~
 
 The forward listens on the **server's** loopback and connects to the destination **from the client**. Choose a high local port even if the destination uses a privileged port. Explicit loopback avoids the all-interface default for ordinary port forwards. A destination of `127.0.0.1` means the client's loopback in this reverse example.

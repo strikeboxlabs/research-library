@@ -5,6 +5,8 @@ description: List and extract a reviewed ordinary cpio archive with GNU cpio int
 
 # Selected archive copy-in
 
+Installed invocation: `/usr/bin/cpio`, version `cpio (GNU cpio) 2.15`.
+
 Read this entire SKILL.md before acting. Require an uncompressed ordinary archive and the permitted destination. Define `cpio_bin` as the verified trusted GNU executable and `archive` as its absolute input. Finish with the selected members, extraction status and observed output; an archive listing does not execute its contents.
 
 ~~~bash

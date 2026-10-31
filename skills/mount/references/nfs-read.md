@@ -5,7 +5,7 @@ Require Linux NFS kernel support, the installed mount.nfs helper, authority to c
 An export advertisement permits no conclusion about every file's access. Establish the administrator-approved client-visible path and protocol/security requirements separately; NFSv4 paths may differ from server filesystem paths. Define `export_source` as the exact `server:/export/path` and `mountpoint` as that prepared directory. In the established privileged context, for selected reads:
 
 ~~~bash
-mount -t nfs -o ro,nosuid,nodev,noexec "$export_source" "$mountpoint"
+/usr/bin/mount -t nfs -o ro,nosuid,nodev,noexec "$export_source" "$mountpoint"
 ~~~
 
 Check the immediate result, then attribute the actual source/type/options through findmnt or mountinfo as described in the entrypoint. Record the negotiated version/security context. Add `vers=N` or `sec=...` only when required by the established configuration and supported client; an old walkthrough is not a reason to downgrade either. A failed mount can leave an ordinary local directory at the mountpoint.

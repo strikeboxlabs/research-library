@@ -5,13 +5,15 @@ description: Add local Readline editing to an existing interactive CLI with rlwr
 
 # Wrap the selected local interactive client
 
+Installed invocation: `/usr/bin/rlwrap`, version `rlwrap 0.47`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select the already authorized program/arguments, require a real local input terminal and decide whether its input may be saved. Finish with the wrapped command's result and terminal/session state, not a claim that the remote peer gained a PTY.
 
 Define `program` as the verified local executable. Append its reviewed arguments after it; options before the command belong to rlwrap:
 
 ~~~bash
-rlwrap --version
-rlwrap -H /dev/null -- "$program"
+/usr/bin/rlwrap --version
+/usr/bin/rlwrap -H /dev/null -- "$program"
 ~~~
 
 `-H` selects the history file; `/dev/null` avoids keeping input in rlwrap's ordinary per-command history file. It does not erase shell/peer logs or provide secret input handling. For deliberately retained history, use an existing private directory and selected history path; don't silently reuse a sensitive previous command's file. Output logging with `-l` can also capture echoed input.

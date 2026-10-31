@@ -6,7 +6,7 @@ After confirming exactly one ordinary member at the name below, define `output` 
 
 ~~~bash
 umask 077
-unzip -p "$archive" 'BOOT-INF/classes/application.properties' >"$output"
+/usr/bin/unzip -p "$archive" 'BOOT-INF/classes/application.properties' >"$output"
 ~~~
 
 Check status before consuming output; a missing member is not an empty valid configuration. This selects the one member without expanding the whole archive. Duplicate names can concatenate bytes, and a CRC failure can leave output behind. Do not treat either as a valid properties file. Use the actual listed path for another profile/configuration format; a broad wildcard can silently combine several files.

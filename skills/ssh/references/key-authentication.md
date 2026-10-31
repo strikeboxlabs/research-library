@@ -5,7 +5,7 @@ Define `key` as the authorized private key's local working-copy path, and `ssh_h
 For an intended interactive login with that key:
 
 ~~~bash
-ssh -p "$ssh_port" -i "$key" -o IdentitiesOnly=yes "$user@$ssh_host"
+/usr/bin/ssh -p "$ssh_port" -i "$key" -o IdentitiesOnly=yes "$user@$ssh_host"
 ~~~
 
 `-p` selects the SSH service, not a forwarded application port. Two SSH listeners on the same IP can be different services with different accounts and host keys. Keep host-key verification; a Git-hosting SSH endpoint need not provide an ordinary OS shell.
@@ -35,7 +35,7 @@ An authorized_keys comment such as `name@machine` is an editable label; OpenSSH 
 Require the intended certificate, its corresponding authorized private key and verified endpoint/account. Inspect the certificate's type, underlying key, CA, principals, validity and restrictions before the connection. Define `certificate` as the selected absolute path:
 
 ~~~bash
-ssh -p "$ssh_port" -i "$key" -o "CertificateFile=$certificate" -o IdentitiesOnly=yes "$user@$ssh_host"
+/usr/bin/ssh -p "$ssh_port" -i "$key" -o "CertificateFile=$certificate" -o IdentitiesOnly=yes "$user@$ssh_host"
 ~~~
 
 `CertificateFile` selects the certificate separately from the private identity. Without an explicit certificate setting, OpenSSH normally tries the identity path with `-cert.pub` appended. That convention does not require all artifacts to share a directory. A downloaded response named `.pub` may instead be an API error; parsing and key association remain prerequisites.

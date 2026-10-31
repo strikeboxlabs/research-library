@@ -5,6 +5,8 @@ description: Generate TOTP from an authorised known secret and diagnose encoding
 
 # TOTP generation and mismatch diagnosis
 
+Installed invocation: `/usr/bin/oathtool`, version `oathtool (OATH Toolkit) 2.6.14`.
+
 Read this entire SKILL.md before acting. Use only the task's authorized known enrollment, confirm its parameters and keep its secret/code private. No conditional resources are required. Finish with the local calculation or specific parameter/tool gap; server acceptance is a separate result.
 
 Check `oathtool --version` and `--help`. Confirm the provisioning parameters: TOTP or HOTP, secret encoding, MAC algorithm, digits and period. Oathtool defaults to HOTP and hexadecimal keys; those defaults do not match a typical Base32 TOTP enrollment.
@@ -12,7 +14,7 @@ Check `oathtool --version` and `--help`. Confirm the provisioning parameters: TO
 For an authorised enrollment using SHA1, six digits and a 30-second period, define `secret_file` as a private file containing only its Base32 secret:
 
 ~~~bash
-oathtool --totp=SHA1 --base32 --digits=6 --time-step-size=30s - < "$secret_file"
+/usr/bin/oathtool --totp=SHA1 --base32 --digits=6 --time-step-size=30s - < "$secret_file"
 ~~~
 
 `-` reads the key from stdin, keeping its value out of process arguments. The file must not contain an entire provisioning URI, account label, recovery-code list or authentication configuration. Preserve leading zeroes in the resulting code. Avoid `--verbose` with a real enrollment: it prints the key in multiple encodings. The code itself is authentication material; keep it out of shared transcripts.
@@ -24,7 +26,7 @@ If a service rejects the code, distinguish local calculation from server accepta
 Use this **public RFC 6238 reference vector**, not a real secret, to check deterministic calculation:
 
 ~~~bash
-oathtool --totp=SHA1 --digits=8 --time-step-size=30s \
+/usr/bin/oathtool --totp=SHA1 --digits=8 --time-step-size=30s \
   --now='1970-01-01 00:00:59 UTC' \
   3132333435363738393031323334353637383930
 ~~~

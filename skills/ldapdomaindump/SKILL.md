@@ -5,6 +5,8 @@ description: Export an authorized Active Directory inventory with ldapdomaindump
 
 # Export a directory inventory
 
+Installed invocation: `/usr/bin/ldapdomaindump`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require authorization for the domain-wide inventory, a verified LDAP endpoint/transport, a known bind identity and a fresh private output directory. Check the installed implementation, collect the reports and finish with bind/query status, artifact coverage and unresolved visibility limits.
 
 This CLI queries the discovered default naming context for users, computers, groups, policy and trusts. It is useful when those reports are the requested artifact; use a query tool with a selected base/filter when the task permits only a narrower subtree. Read `ldapdomaindump --help` for the deployed version and select its approved LDAP transport/authentication configuration before sending credentials. An `ldaps://` spelling alone does not establish the client's certificate-validation policy.
@@ -14,7 +16,7 @@ Define `identity` as the known `DOMAIN\username` and `endpoint` as the verified 
 ~~~bash
 umask 077
 mkdir -- "$output_dir" || exit 1
-ldapdomaindump -u "$identity" --minimal -o "$output_dir" "$endpoint"
+/usr/bin/ldapdomaindump -u "$identity" --minimal -o "$output_dir" "$endpoint"
 status=$?
 ~~~
 

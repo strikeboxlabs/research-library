@@ -5,13 +5,15 @@ description: Resize one selected owned regular file with GNU truncate and verify
 
 # Resize the selected file
 
+Installed invocation: `/usr/bin/truncate`, version `truncate (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the exact existing regular file and authority to discard or extend its bytes. Preserve required original contents first and coordinate any writer; no conditional resources are required. Finish with status and actual size, reporting discarded bytes as unrecoverable through this operation.
 
 For an explicitly requested reset of one disposable owned file, define `file` as its verified absolute path in a controlled directory, with no unexpected symlink:
 
 ~~~bash
-truncate --version
-truncate --no-create --size=0 -- "$file"
+/usr/bin/truncate --version
+/usr/bin/truncate --no-create --size=0 -- "$file"
 status=$?
 stat --format='%F %s %n' -- "$file"
 ~~~

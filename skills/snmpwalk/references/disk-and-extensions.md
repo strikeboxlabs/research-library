@@ -3,7 +3,7 @@
 Require the owned agent, established access view and known connection options. Use existing deployment v3 settings when required. For the UCD-SNMP disk task, use the entrypoint's agent/community variables and a bounded subtree:
 
 ~~~bash
-snmpwalk -v2c -c "$community" -t 2 -r 1 -On "$agent" .1.3.6.1.4.1.2021.9
+/usr/bin/snmpwalk -v2c -c "$community" -t 2 -r 1 -On "$agent" .1.3.6.1.4.1.2021.9
 status=$?
 ~~~
 

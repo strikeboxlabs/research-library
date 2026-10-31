@@ -5,6 +5,8 @@ description: Review saved DNS, HTTP, SMTP or authentication traffic in Wireshark
 
 # Inspect saved protocol evidence
 
+Installed invocation: `/usr/bin/wireshark`, version `Wireshark 4.6.9.`.
+
 Read this entire SKILL.md before acting. Require an existing authorized capture, trusted installed analyzer and usable graphical session. For a captured HTTP request/response or transferred source file, read [HTTP stream evidence](references/http-streams.md) fully before that review. DNS, SMTP and authentication tasks below require no additional resources. Keep the original capture and selected frame/conversation identity; finish with observed protocol/field evidence and capture limits.
 
 Define `wireshark_bin` as the installed executable and `capture` as the absolute path to the selected local pcap/pcapng. Launch saved-file review without starting live capture:

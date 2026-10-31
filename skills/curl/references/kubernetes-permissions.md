@@ -9,7 +9,7 @@ Define `api` as the verified HTTPS API base without a trailing slash, `ca_file` 
 ~~~
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --cacert "$ca_file" --request POST \
   --header "@$auth_headers" --header 'Content-Type: application/json' \
   --data-binary "@$request_json" --dump-header "$headers" --output "$body" \

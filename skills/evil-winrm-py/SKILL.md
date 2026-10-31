@@ -5,6 +5,8 @@ description: Open an authorized Windows WinRM session using an existing Kerberos
 
 # Verify a selected WinRM session
 
+Installed invocation: `/usr/bin/evil-winrm-py`, version `|_|   |__/  v1.7.0`.
+
 Read this entire SKILL.md before acting. Require the installed Python implementation, an approved Windows endpoint/account, a current owned Kerberos cache/configuration and permission for the selected remote reads. Follow connection, identity and requested metadata steps; finish with returned evidence or the exact unresolved prerequisite. This is a remote execution session, even when selected commands only read data.
 
 Check `evil-winrm-py --version` and `--help`; Ruby evil-winrm has a different interface. Verify this installation's Kerberos dependencies: the reviewed build can continue with its NTLM default when those imports are unavailable, despite `-k`. Treat that as a missing prerequisite. Define `host`, `port` and `uri` as the approved endpoint, `service_host` as its registered lowercase service hostname, `krb_config` and `cache` as the selected absolute local paths. Check cache principal/expiry and realm/KDC/time configuration. A ticket does not prove WinRM authorization.

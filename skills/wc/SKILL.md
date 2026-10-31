@@ -5,6 +5,8 @@ description: Count bytes or newlines in a selected local artifact with GNU wc. U
 
 # Count the selected artifact
 
+Installed invocation: `/usr/bin/wc`, version `wc (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Select the existing regular file and the representation to count; confirm GNU coreutils with `wc --version`. No conditional resources are required. Finish with the measured count, selected input, exit status and relevant limits; a failed read is not a zero-byte file.
 
 Define `file` as the selected path. Read it directly, without an extra text conversion:

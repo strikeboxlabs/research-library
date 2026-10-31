@@ -5,6 +5,8 @@ description: Classify downloaded or recovered artifacts with file while distingu
 
 # Treat the label as a format finding
 
+Installed invocation: `/usr/bin/file`, version `file-5.47`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Classify the preserved file with deliberate link handling, then use the relevant format reader before claiming integrity or runtime compatibility. Finish with the label, corroborating result and any unresolved limitation; a missing or partial input is not a verified artifact.
 
 Check `file --version`, including the magic database location. Identify the exact captured artifact and preserve its origin, size and checksum. A download named `.dll` might contain an HTTP error page; an executable-looking header does not establish that the full transfer completed.
@@ -12,7 +14,7 @@ Check `file --version`, including the magic database location. Identify the exac
 Define `artifact` as the existing working-copy path:
 
 ~~~bash
-file -E -h -- "$artifact"
+/usr/bin/file -E -h -- "$artifact"
 ~~~
 
 `-h` inspects a symbolic link itself. Use `-L` deliberately when the intended input is its target; the default can change with `POSIXLY_CORRECT`. `-E` makes filesystem errors fail instead of merely printing diagnostics with an otherwise successful exit. Retain stderr and the reported type; a zero status is not an integrity check.

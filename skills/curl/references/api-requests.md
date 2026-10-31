@@ -6,7 +6,7 @@ For an intended JSON request, define `url`, `method` (such as `POST` or `PUT`), 
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 --request "$method" --header "@$auth_headers" --header 'Content-Type: application/json' --data-binary "@$request_json" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --request "$method" --header "@$auth_headers" --header 'Content-Type: application/json' --data-binary "@$request_json" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
 ~~~
 
 Omit the authentication-header option for an unauthenticated endpoint. Construct JSON with a serializer; replacing quotes and newlines manually can corrupt backslashes, control characters and embedded text. `--data-binary @file` preserves the file's bytes; `--data @file` strips carriage returns, newlines and NULs. On supporting versions, `--json` supplies JSON headers but does not validate JSON.
@@ -20,7 +20,7 @@ For an acquired MCP trace, distinguish a JSON-RPC method such as `tools/list` fr
 For a documented form login, define `login_url`, the known `username` and a private `password_file` containing the exact password bytes without an accidental trailing newline. Choose fresh response files:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 --data-urlencode "username=$username" --data-urlencode "password@$password_file" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$login_url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --data-urlencode "username=$username" --data-urlencode "password@$password_file" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$login_url"
 ~~~
 
 This selects POST with form encoding; do not add a JSON Content-Type. Curl URL-encodes the value once. If a verified backend requires an extra decoding layer, put exactly one pre-encoded value in a private field file and use `--data-urlencode "username@$field_file"`; percent signs are then encoded by the outer form pass. Compare captured wire bytes and controls before adding that pass: `%252A` becomes literal `%2A` after one form decode, whereas `%2A` becomes `*`. Ordinary credentials or base64 fields should not be pre-encoded by default. Check curl's exit status, HTTP status and response body before parsing a token. Keep token-bearing files private; avoid verbose traces that retain credentials.
@@ -42,7 +42,7 @@ For an authorized upload, use the endpoint's actual field names, authentication 
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --form "$file_field=@$upload_file" --form-string "$note_field=$note" \
   --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
 ~~~
@@ -58,7 +58,7 @@ A per-part `;type=...` only labels the content; it neither converts nor verifies
 For an authorized file replacement, define `upload_file` as the exact local file (without upload-glob metacharacters) and `url` as the complete destination URL including its filename. Use fresh `headers`/`body` response files and the endpoint's required authentication:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 --upload-file "$upload_file" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --upload-file "$upload_file" --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$url"
 ~~~
 
 For HTTP(S), `--upload-file` selects PUT. A trailing-slash URL instead lets curl append the local filename. `-X PUT` changes the method word; it does not repair body transformations. In Bash, `"$(cat file)"` loses trailing newlines before curl sees the value. Use a file-based upload for exact bytes.

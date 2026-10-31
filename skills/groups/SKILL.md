@@ -6,10 +6,12 @@ description: Inspect the current Linux process group names or a selected account
 
 # Read the group context that matters
 
+Installed invocation: `/usr/bin/groups`, version `groups (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Choose current process membership or a named-account lookup deliberately. Finish with that context and observed groups; membership alone does not prove login or sudo authority.
 
 ~~~bash
-groups
+/usr/bin/groups
 ~~~
 
 With no account arguments, GNU groups reports primary/supplementary groups of the current process. `groups "$account"` instead looks up that account through the configured name service. Newly changed directory groups need not appear in an existing session; an NSS lookup and the process's inherited group list can legitimately differ. Use `id -G` for numeric IDs when names are ambiguous.

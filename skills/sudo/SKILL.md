@@ -5,13 +5,15 @@ description: Interpret sudo policy, RunAs identities, helper paths, authenticato
 
 # Understand the permitted operation
 
+Installed invocation: `/usr/bin/sudo`, version `Sudo version 1.9.17p2`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Establish the exact RunAs identity, command/argument restrictions and authentication tags. For scripts, helpers, environment-dependent children, Git hooks, SSH client commands or Python module presets, read [permitted-program behavior](references/permitted-programs.md) fully before attributing privilege. For a permitted password-gated program with a public-key enrollment branch, read [authenticator inputs and effects](references/authenticator-inputs.md) fully before invoking it. Finish with the policy and supported effects; listing a command is not an executed result.
 
 Read the effective listing before selecting an elevated command:
 
 ~~~bash
-sudo -l
-sudo -ll
+/usr/bin/sudo -l
+/usr/bin/sudo -ll
 ~~~
 
 Listing may require authentication. For unattended inspection, `sudo -n -l` fails instead of prompting; that failure does not by itself mean no policy entry exists. Record the target RunAs user/group, command path, argument restrictions and tags together. `(dev_admin : dev_admin)` is a permitted target identity, not a root grant.
@@ -39,7 +41,7 @@ sudoedit -u "$run_as" -- "$file"
 For an explicitly authorized matching command, define `run_as` as the permitted target identity and `permitted_command` as its actual allowed executable path, with any permitted arguments selected from the effective policy. Execute that operation rather than treating the policy listing as its result:
 
 ~~~bash
-sudo -u "$run_as" -- "$permitted_command"
+/usr/bin/sudo -u "$run_as" -- "$permitted_command"
 ~~~
 
 This invocation has no additional arguments; add only the reviewed ones the task requires. If the selected grant permits a shell, verify `id` within that elevated shell and perform only the requested work before exiting. A root RunAs grant and successful UID-zero observation differ from a grant to another named administrator account. Do not infer unlimited shell authority from a restricted program entry, or universal host authority from a UID-zero process in a constrained namespace.

@@ -5,13 +5,15 @@ description: Compare SMTP recipient responses using smtp-user-enum without treat
 
 # Compare the protocol responses
 
+Installed invocation: `/usr/bin/smtp-user-enum`, version `smtp-user-enum v1.2 ( http://pentestmonkey.net/tools/smtp-user-enum )`.
+
 This skill targets pentestmonkey's Perl `smtp-user-enum`. Confirm local help and implementation before using a similarly named program. Choose the SMTP method that the server actually permits; disabled VRFY is not evidence that a user is absent.
 
 Define `server` and `port` for the authorized SMTP endpoint, `sender` as a permitted envelope sender, `candidate` as one address under investigation, and `control` as a deliberately nonexistent address in the same domain. Use bare addresses in those variables; the command supplies literal angle brackets required by this implementation:
 
 ~~~bash
-smtp-user-enum -M RCPT -m 1 -t "$server" -p "$port" -f "<$sender>" -u "<$candidate>"
-smtp-user-enum -M RCPT -m 1 -t "$server" -p "$port" -f "<$sender>" -u "<$control>"
+/usr/bin/smtp-user-enum -M RCPT -m 1 -t "$server" -p "$port" -f "<$sender>" -u "<$candidate>"
+/usr/bin/smtp-user-enum -M RCPT -m 1 -t "$server" -p "$port" -f "<$sender>" -u "<$control>"
 ~~~
 
 This performs two targeted protocol probes, not message delivery. `-m 1` bounds concurrency; it does not set a request rate or prove absence of server throttling. Keep the sender, domain and connection conditions comparable. Do not turn a single uncertain result into a large username-list run.

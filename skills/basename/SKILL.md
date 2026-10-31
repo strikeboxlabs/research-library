@@ -5,12 +5,14 @@ description: Extract a pathname's final component or remove an exact selected su
 
 # Derive the selected path component
 
+Installed invocation: `/usr/bin/basename`, version `basename (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require GNU basename and a selected pathname string; no conditional resources are required. Finish with the derived component and its intended mapping, separately from filesystem existence or access.
 
 Define `path` as the complete path value and preserve it as one argument:
 
 ~~~bash
-basename -- "$path"
+/usr/bin/basename -- "$path"
 status=$?
 ~~~
 

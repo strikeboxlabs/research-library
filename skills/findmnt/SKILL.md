@@ -5,18 +5,20 @@ description: Identify the filesystem backing a path and inspect mount roots in t
 
 # Distinguish a path's filesystem from an exact mountpoint
 
+Installed invocation: `/usr/bin/findmnt`, version `findmnt from util-linux 2.42.4`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Query the path in the relevant namespace and distinguish a covering filesystem from an exact mountpoint. Finish with the observed mount/source and any unresolved host-path or access interpretation.
 
 Check `findmnt --version` and the available columns in `findmnt --help`. Define `path` as an existing absolute path in the namespace being examined:
 
 ~~~bash
-findmnt --kernel --target "$path" --output TARGET,SOURCE,FSTYPE,FSROOT,OPTIONS
+/usr/bin/findmnt --kernel --target "$path" --output TARGET,SOURCE,FSTYPE,FSROOT,OPTIONS
 ~~~
 
 `--target` finds the covering filesystem, searching parent paths when necessary. It does not prove the selected path is itself a mountpoint. For that question, use an exact mountpoint query:
 
 ~~~bash
-findmnt --kernel --mountpoint "$path" --output TARGET,SOURCE,FSTYPE,FSROOT,OPTIONS
+/usr/bin/findmnt --kernel --mountpoint "$path" --output TARGET,SOURCE,FSTYPE,FSROOT,OPTIONS
 ~~~
 
 No match can produce status 1, which also covers errors; inspect diagnostics before deciding the path has no separate mount. An unsupported column is a compatibility error, not absence of a mount. Explicit columns avoid relying on changing default output.

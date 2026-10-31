@@ -5,12 +5,14 @@ description: Compute or compare exact local file bytes with GNU SHA-1 checksums,
 
 # Compare a selected legacy checksum
 
+Installed invocation: `/usr/bin/sha1sum`, version `sha1sum (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the existing regular file and exact byte representation; confirm GNU coreutils with `sha1sum --version`. No conditional resources are required. Finish with input identity, digest/comparison, status and unresolved errors. SHA-1 consistency is not strong collision-resistant authenticity evidence.
 
 Define `artifact` as the selected absolute path:
 
 ~~~bash
-sha1sum --binary -- "$artifact"
+/usr/bin/sha1sum --binary -- "$artifact"
 ~~~
 
 Keep status and diagnostics. The digest has 40 hex digits; the mode marker and filename are separate output fields. Hash the completed archive itself when comparing package metadata, not its filename, printed hex or decoded contents. A changing file or failed producer can invalidate the intended comparison.

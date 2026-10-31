@@ -3,7 +3,7 @@
 Require an approved FTP directory URL with a trailing slash and a fresh local destination. Confirm GNU Wget. Anonymous access being available does not expand the selected subtree. Define `ftp_url`, `mirror_dir` and `transfer_log`:
 
 ~~~bash
-wget --mirror --no-parent --timeout=20 --tries=2 \
+/usr/bin/wget --mirror --no-parent --timeout=20 --tries=2 \
   --directory-prefix="$mirror_dir" --output-file="$transfer_log" \
   -- "$ftp_url"
 status=$?

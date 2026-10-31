@@ -8,13 +8,13 @@ Use the actual form route/field names and a session authorized for that task. De
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 --cookie "$cookie_jar" --cookie-jar "$cookie_jar" --dump-header "$headers" --output "$form_body" "$form_url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --cookie "$cookie_jar" --cookie-jar "$cookie_jar" --dump-header "$headers" --output "$form_body" "$form_url"
 ~~~
 
 Require a complete response from the expected session. Select its current authenticity_token using an HTML parser; preserve that exact value in a private `token_file`. Define `path_file` as the exact selected report path/input without an accidental newline. On an observed form with these names:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 --cookie "$cookie_jar" --data-urlencode "authenticity_token@$token_file" --data-urlencode "report_log@$path_file" --dump-header "$headers" --output "$body" "$report_url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --cookie "$cookie_jar" --data-urlencode "authenticity_token@$token_file" --data-urlencode "report_log@$path_file" --dump-header "$headers" --output "$body" "$report_url"
 ~~~
 
 Use fresh header/body paths for each request. Curl encodes the raw field values once; do not pre-percent-encode them. A valid CSRF token does not grant an application role. Hidden form fields are still client-supplied; hiding the path does not establish a server allowlist. Compare a known accessible report/control to a selected known file before inferring arbitrary access. A 200 login/error page is not that file; status 500 after a process request does not prove the process never ran.

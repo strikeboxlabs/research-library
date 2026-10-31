@@ -5,6 +5,8 @@ description: Launch an existing JD-GUI to inspect reconstructed Java classes in 
 
 # Inspect the selected Java archive
 
+Installed invocation: `/usr/bin/jd-gui`.
+
 Read this entire SKILL.md before acting. Require a trusted installed JD-GUI, its compatible Java runtime, an available graphical session and a preserved input copy. No conditional resources are required. Finish with the archive identity, exact member/class/method reviewed and reconstruction gaps; opening a class does not establish deployed behavior.
 
 JD-GUI is a graphical decompiler, not a headless batch CLI. A distribution may provide a `jd-gui` launcher, but do not assume its path or install it during inspection. The upstream Java launcher works with the existing trusted tool archive. Define `java_bin` as that runtime and `jd_gui_jar` as JD-GUI itself:

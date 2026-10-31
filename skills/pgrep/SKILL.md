@@ -5,12 +5,14 @@ description: Find visible Linux processes by a selected name pattern with procps
 
 # Interpret a process-name lookup
 
+Installed invocation: `/usr/bin/pgrep`, version `pgrep from procps-ng 4.0.7`.
+
 Read this entire SKILL.md before acting. Confirm procps with `pgrep --version`, select the current PID namespace and establish the intended process-name pattern. No conditional resources are required. Finish with matched PIDs, status, observation time and visibility limits; a name match does not establish application health.
 
 Define `name_pattern` as the selected extended regular expression, deliberately escaping regex characters when matching a literal name. Inspect names together with PIDs:
 
 ~~~bash
-pgrep -l -x -- "$name_pattern"
+/usr/bin/pgrep -l -x -- "$name_pattern"
 status=$?
 ~~~
 

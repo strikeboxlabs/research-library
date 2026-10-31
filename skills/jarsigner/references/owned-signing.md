@@ -3,7 +3,7 @@
 Require the owned reviewed archive, authorized signing identity and its actual private-key keystore alias. Define `archive`, `keystore`, `alias` and `signed` as the intended input, key store, selected identity and a fresh private output. Preserve the original; omitting -signedjar would overwrite it. Choose algorithms from the actual key/build contract and installed JDK policy.
 
 ~~~bash
-jarsigner -keystore "$keystore" -signedjar "$signed" "$archive" "$alias"
+/usr/bin/jarsigner -keystore "$keystore" -signedjar "$signed" "$archive" "$alias"
 status=$?
 ~~~
 

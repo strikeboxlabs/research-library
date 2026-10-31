@@ -5,6 +5,8 @@ description: Identify a selected Ruby/Psych environment, check source syntax or 
 
 # Establish the actual Ruby runtime and input contract
 
+Installed invocation: `/usr/bin/ruby`, version `ruby 3.3.8 (2025-04-09 revision b200bad6cd) [x86_64-linux-gnu]`.
+
 Read this entire SKILL.md before acting. Require the selected trusted Ruby environment and the selected task's inputs. For YAML-consuming code, read [YAML inputs and working directory](references/yaml-inputs.md) fully; for an owned WinRM endpoint with an already issued client certificate, read [certificate session](references/winrm-certificate-session.md) fully before its fixed identity check. Otherwise use the local runtime/syntax steps below. Finish with actual provenance and selected task evidence, or the failed stage and missing dependency.
 
 Define `ruby_bin` as the actual executable selected by the application or permitted invocation. A shell's default Ruby can differ from an absolute interpreter or a Bundler-managed runtime:

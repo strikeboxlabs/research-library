@@ -6,6 +6,8 @@ description: Relay a selected Kerberos authentication exchange to an AD CS web e
 
 # Select the Kerberos relay and certificate outcome
 
+Installed invocation: `/usr/bin/krbrelayx`.
+
 Read this entire SKILL.md and [SMB-to-AD-CS relay](references/smb-to-adcs.md) before starting this task. Require the source machine, authorized enrollment target, DNS/SPN prerequisites and owned listener route. Finish with the actual relayed principal, issued certificate/private key and any separately requested authentication result; HTTP 200 or a PFX filename alone is insufficient.
 
 Use dirkjanm's `krbrelayx.py`, with its compatible installed Impacket dependency. This package supports the relay task, not every unconstrained-delegation key/export mode in that toolkit. Define `script` as the reviewed local path and inspect `python3 "$script" -h`. Omitting account keys selects relay mode; supplying unconstrained-delegation keys changes the mode and evidence requirements.

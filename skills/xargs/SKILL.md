@@ -5,12 +5,14 @@ description: Run a reviewed command over an explicit item list with GNU xargs, p
 
 # Run an explicit batch and assess its children
 
+Installed invocation: `/usr/bin/xargs`, version `xargs (GNU findutils) 4.11.0`.
+
 Read this entire SKILL.md before acting. Require GNU xargs, the reviewed command and a list whose item encoding and scope are known. Choose a finite concurrency and independent child task; finish with selected items, child/aggregate results and any incomplete batch. Missing command/list or uncertain shared-state effects must be resolved before running.
 
 Inspect `xargs --version` and `xargs --help`. Define `list` as an existing NUL-delimited file of selected absolute local file paths. This **illustrative** read-only task obtains byte counts, at most two children at a time:
 
 ~~~bash
-xargs -0 -r -n 1 -P 2 -a "$list" -- wc -c --
+/usr/bin/xargs -0 -r -n 1 -P 2 -a "$list" -- wc -c --
 status=$?
 ~~~
 

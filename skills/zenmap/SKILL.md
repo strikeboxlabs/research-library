@@ -5,6 +5,8 @@ description: Open saved Nmap results in the Zenmap GUI and inspect the actual sc
 
 # Inspect an existing scan in Zenmap
 
+Installed invocation: `/usr/bin/zenmap`, version `zenmap 7.991`.
+
 Read this entire SKILL.md before acting. Require a trusted existing Zenmap installation, graphical session and selected saved Nmap XML or Zenmap results file. Finish with original scan command, host/state observations, completion and display limits. No conditional resources are required.
 
 Define `zenmap_bin` as the installed executable and `results` as the existing absolute results path:

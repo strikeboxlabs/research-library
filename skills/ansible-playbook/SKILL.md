@@ -5,6 +5,8 @@ description: Check a selected reviewed local Ansible playbook and interpret pars
 
 # Check the selected local playbook
 
+Installed invocation: `/usr/bin/ansible-playbook`, version `ansible-playbook [core 2.22.0b2]`.
+
 Read this entire SKILL.md before acting. Require a reviewed playbook, its roles/includes and a trusted Ansible configuration and plugin environment. For a copy/archive/cleanup definition, read [backup semantics](references/backup-semantics.md) fully before interpreting it. Finish with the actual check status and unresolved dependency or parse error; syntax acceptance does not establish task execution.
 
 From the reviewed working directory, inspect `ansible-playbook --version` and `ansible-playbook --help` for executable/interpreter/configuration and supported options. Loading untrusted plugins or lookups is executable behavior even when task execution is disabled. Keep acquired definitions as text until those dependencies are understood.

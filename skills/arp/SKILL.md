@@ -5,12 +5,14 @@ description: Read the Linux net-tools IPv4 neighbor cache for one interface. Use
 
 # Read existing IPv4 neighbor mappings
 
+Installed invocation: `/usr/sbin/arp`, version `net-tools 2.10`.
+
 Read this entire SKILL.md before acting. Require Linux net-tools arp and the intended network namespace/interface. No conditional resources are required. Finish with the observed mappings and their limits; this task does not populate or modify the cache.
 
 Define `interface` as the selected observed name:
 
 ~~~bash
-arp -n -a -i "$interface"
+/usr/sbin/arp -n -a -i "$interface"
 ~~~
 
 `-n` avoids name lookups, `-a` selects BSD-style display and `-i` limits entries to this interface. Keep address, hardware address, interface and incomplete-entry state together. An incomplete entry has no resolved hardware mapping at that moment.

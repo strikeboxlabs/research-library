@@ -3,7 +3,7 @@
 Require a stable completed regular file, authorized existing SSH access, matching rsync availability at both ends and a known destination directory. Define `source_file` as the selected absolute local path and `destination` as `user@host:/absolute/directory/`, retaining the trailing slash. Review any configured transport wrapper before use.
 
 ~~~bash
-rsync --dry-run --itemize-changes --ignore-existing -t -- "$source_file" "$destination"
+/usr/bin/rsync --dry-run --itemize-changes --ignore-existing -t -- "$source_file" "$destination"
 ~~~
 
 After reviewing the plan, repeat without `--dry-run` when transfer is intended. Retain status/diagnostics and verify the destination bytes against the source. A dry run may contact/authenticate to the remote endpoint; it makes no transfer changes.

@@ -5,7 +5,7 @@ Use when a selected Linux caller needs a reviewed C shared object. Establish its
 Define `source` as the reviewed source, `library` as a fresh output, and `soname` as the caller's observed bare dependency name:
 
 ~~~bash
-gcc -Wall -Wextra -shared -fPIC -Wl,-soname,"$soname" "$source" -o "$library"
+/usr/bin/gcc -Wall -Wextra -shared -fPIC -Wl,-soname,"$soname" "$source" -o "$library"
 readelf -W -h -d --dyn-syms "$library"
 ~~~
 

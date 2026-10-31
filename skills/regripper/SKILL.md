@@ -5,6 +5,8 @@ description: Parse an acquired Windows registry hive with RegRipper on Linux and
 
 # Read a selected hive and plugin
 
+Installed invocation: `/usr/bin/regripper`, version `Rip v.3.0 - CLI RegRipper tool`.
+
 Read this entire SKILL.md before acting. Establish the hive's source user/system, acquisition time and hash, then select a trusted installed plugin matching that hive. Finish with the parsed key/value evidence, diagnostics and coverage limits; a filename or last-write timestamp alone does not prove a document's complete path or opening time.
 
 Define `rr_bin` as the verified Linux RegRipper launcher. Packages may expose `regripper` or `rip`; upstream also supplies `rip.pl`, which requires Perl and its registry modules. Check the actual launcher and plugin directory rather than assuming a Windows executable or an arbitrary script is interchangeable. Listing plugins loads their Perl code, so use trusted installed plugins.

@@ -5,12 +5,14 @@ description: Apply a reviewed Terraform configuration in an existing initialized
 
 # Apply the selected configuration
 
+Installed invocation: `/usr/bin/terraform`, version `Terraform v1.6.3-dev`.
+
 Read this entire SKILL.md before acting. Require the initialized workspace, reviewed configuration/providers, selected backend/workspace and permission for the proposed effects. All task instructions are inline. Finish with status, diagnostics, resource changes and the requested resulting artifact/state; an output pathname alone does not prove its contents.
 
 Define `directory` as the selected existing absolute root-module directory. Confirm `terraform version`. Review the complete configuration, effective inputs, backend and executable provider context before applying. `main.tf` is only a conventional filename; other module files also contribute. Missing initialization or unknown infrastructure ownership is a prerequisite gap.
 
 ~~~bash
-terraform -chdir="$directory" apply
+/usr/bin/terraform -chdir="$directory" apply
 status=$?
 ~~~
 

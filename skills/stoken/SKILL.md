@@ -5,16 +5,18 @@ description: Import an authorized RSA SecurID-compatible software token and gene
 
 # Software-token state and tokencodes
 
+Installed invocation: `/usr/bin/stoken`, version `stoken 0.93 - software token for Linux/UNIX systems`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Establish the selected token, required device/password/PIN inputs and configuration destination. Preserve import/generation status; a generated code is not proof of server acceptance. For a suspected clock mismatch, read [explicit time selection](references/time-selection.md) fully before that procedure.
 
 Define `token_file` as the private acquired token file and `rcfile` as a fresh absolute configuration path in an existing private directory. Use the installed stoken, not a TOTP generator:
 
 ~~~bash
 umask 077
-stoken version
-stoken import --file="$token_file" --rcfile="$rcfile"
-stoken show --rcfile="$rcfile"
-stoken tokencode --rcfile="$rcfile"
+/usr/bin/stoken version
+/usr/bin/stoken import --file="$token_file" --rcfile="$rcfile"
+/usr/bin/stoken show --rcfile="$rcfile"
+/usr/bin/stoken tokencode --rcfile="$rcfile"
 ~~~
 
 Import accepts a raw 81-digit compressed token format (CTF), supported token URI or SDTID XML. A matching length is only a format lead: import must validate it. `--file` reads raw token material; `--rcfile` selects stoken's state file, including saved PIN data. They are not interchangeable. Default import writes `~/.stokenrc`; the explicit fresh path separates this token from an existing one. Do not add `--force` to resolve an unexpected overwrite or expiry failure.

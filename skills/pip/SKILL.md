@@ -5,6 +5,8 @@ description: Inspect, retrieve or install Python distributions in a selected Lin
 
 # Match the interpreter before installing
 
+Installed invocation: `/usr/bin/pip`, version `pip 26.1.2 from /usr/lib/python3/dist-packages/pip (python 3.14)`.
+
 Read this entire SKILL.md before acting. Identify the intended interpreter and select environment inspection, distribution retrieval or installation. For retrieval without installation, read [reviewed wheel retrieval](references/wheel-retrieval.md) completely before its procedure. Installation below requires an authorized change in the selected reproduction environment, with reviewed package inputs. Finish with the selected metadata/artifact/dependency result and the relevant application check separately; retrieval or installation success is not application compatibility.
 
 Call pip through the intended Python interpreter. A bare `pip` or `pip3` may belong to another environment; installing successfully there does not resolve imports in the program's actual interpreter. A sudo permission naming one pip3 path does not establish that package inputs are trusted or that installation completed.

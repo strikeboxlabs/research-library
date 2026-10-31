@@ -5,7 +5,7 @@ Establish the authorized address range from actual interface prefix/routing evid
 Define `targets` as the deliberately bounded permitted range and `discovery` as a fresh output prefix:
 
 ~~~bash
-nmap -sn --reason -oA "$discovery" "$targets"
+/usr/bin/nmap -sn --reason -oA "$discovery" "$targets"
 ~~~
 
 `-sn` skips the port scan after host discovery. It does not identify every listening service or prove that silent addresses are absent. Probe behavior depends on local/raw-socket authority and link type: privileged local Ethernet discovery commonly uses ARP; unprivileged Unix discovery uses TCP connect probes. Preserve the responding addresses and reasons, then select individual hosts/ports for service investigation. On an independently reachable selected host, `-Pn` can avoid a mismatched discovery probe; it does not establish that all addresses in a range are online.

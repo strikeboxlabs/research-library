@@ -5,12 +5,14 @@ description: Salvage readable regions of an owned damaged gzip stream with gzrt.
 
 # Recover partial gzip data
 
+Installed invocation: `/usr/bin/gzrecover`, version `gzrecover 0.90`.
+
 Read this entire SKILL.md before acting. Require an owned preserved compressed input, a trusted gzrt executable and fresh outputs in a private working directory. Finish with the recovered artifact, diagnostics and explicitly identified integrity gaps; readable text alone is not a complete recovered backup.
 
 Define `compressed`, `recovered` and `diagnostics` as absolute paths, with the latter two nonexistent. Retain the original's size and SHA-256. Check help/version together before recovery:
 
 ~~~bash
-gzrecover -V -h
+/usr/bin/gzrecover -V -h
 (umask 077; set -C; gzrecover -v -p "$compressed" > "$recovered" 2> "$diagnostics")
 ~~~
 

@@ -5,13 +5,15 @@ description: Reinitialize a selected owned interactive terminal with ncurses res
 
 # Recover the selected interactive terminal
 
+Installed invocation: `/usr/bin/reset`, version `ncurses 6.6.20260608`.
+
 Read this entire SKILL.md before acting. Require the identified owned terminal, installed ncurses reset and a supported description of the actual terminal emulator. All instructions are inline. Finish with usable display/input and observed terminal settings; missing TTY or terminfo remains unresolved.
 
 Run in the terminal being repaired. Define `terminal_type` from its established emulator/terminfo, rather than assuming every relay is xterm:
 
 ~~~bash
-reset -V
-reset "$terminal_type"
+/usr/bin/reset -V
+/usr/bin/reset "$terminal_type"
 stty -a </dev/tty
 ~~~
 

@@ -5,12 +5,14 @@ description: Change selected Linux file mode bits and verify the resulting owner
 
 # Change the intended file's mode
 
+Installed invocation: `/usr/bin/chmod`, version `chmod (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Confirm the selected path, file type, owner and intended access before changing its mode. Choose the regular-file restriction, owner execute/search change or explicit setuid experiment below; retain prior permissions when restoration is required. Finish with the observed mode and relevant access result; chmod does not establish credential validity or server acceptance.
 
 For GNU chmod, inspect `chmod --version` and local help. Define `file` as the actual selected **regular file**, verify it is not an unexpected symbolic link, and retain the prior mode/ownership if restoration is part of the task. For a private key or secret file that its owner must read and write:
 
 ~~~bash
-chmod 600 -- "$file" && stat --format='%a %U:%G %n' -- "$file"
+/usr/bin/chmod 600 -- "$file" && stat --format='%a %U:%G %n' -- "$file"
 ~~~
 
 Octal `600` gives owner read/write and removes group/other read, write and execute bits on a regular file. Check the result rather than suppressing errors. A reported `600` file owned by another user can still be unreadable to the intended client. chmod changes mode bits, not ownership, and normally requires ownership or appropriate privilege; permission denied calls for correcting the task's access context.
@@ -24,7 +26,7 @@ For a selected reviewed program that needs owner execute permission, `chmod u+x 
 For an explicitly intended access repair to a directory owned by the selected user, define `directory` as that verified directory and preserve its original mode. Owner search permission allows traversing it and addressing entries by name; it does not supply directory listing/read permission or access through inaccessible parents:
 
 ~~~bash
-chmod u+x -- "$directory" && stat --format='%a %U:%G %F %n' -- "$directory"
+/usr/bin/chmod u+x -- "$directory" && stat --format='%a %U:%G %F %n' -- "$directory"
 ~~~
 
 Check the intended access separately. A remaining denial can come from a parent, entry permissions, ACL or security policy. Changing a home directory's search bit can also affect application startup/history files; a denied history-file write is different from a failed database connection. Restore the original mode if this was a temporary diagnostic.

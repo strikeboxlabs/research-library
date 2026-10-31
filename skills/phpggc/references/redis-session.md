@@ -5,9 +5,9 @@ Establish the deployed dependency version/classes, Redis session driver/database
 Inspect the installed chain's information first. For a matching authorized fixture with Laravel/RCE10's function-call parameters, define `payload_file` as a fresh private path:
 
 ~~~bash
-phpggc -i Laravel/RCE10
+/usr/bin/phpggc -i Laravel/RCE10
 umask 077
-phpggc Laravel/RCE10 system id > "$payload_file"
+/usr/bin/phpggc Laravel/RCE10 system id > "$payload_file"
 ~~~
 
 The generation command creates bytes; it does not call `id` on the target. The upstream chain uses a `__toString` vector, so deserialization alone need not trigger it. Verify the actual application path exercises that object use. The broad chain catalogue version label is a lead, not proof that every later release or configured application is compatible.

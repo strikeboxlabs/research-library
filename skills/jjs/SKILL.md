@@ -5,6 +5,8 @@ description: Run a selected trusted legacy Nashorn JavaScript task and diagnose 
 
 # Run the selected legacy script
 
+Installed invocation: `/usr/bin/jjs`.
+
 Read this entire SKILL.md before acting. Require the trusted script/task and a verified ordinary-user jjs installation from the selected image. Nashorn/jjs was removed from JDK 15; a java executable alone does not establish availability. No conditional resources are required. Finish with the actual engine, requested script result and unresolved errors rather than treating an interpreter prompt as success.
 
 Define `jjs_bin` as the verified executable invocation and inspect its `-h` and `-version` output. Account for the selected Java environment/classpath. An unfamiliar set-user-ID interpreter is a configuration finding to report, not the normal runner for this task.

@@ -5,12 +5,14 @@ description: Inspect Linux listeners and connections with iproute2 ss. Use to di
 
 # Find the actual listener
 
+Installed invocation: `/usr/bin/ss`, version `ss utility, iproute2-7.2.0`.
+
 Read this entire SKILL.md before acting. Select the namespace, protocol and endpoint; finish with observed binding/state/visible ownership and its limits, not a reachability claim from a wildcard address.
 
 Use `ss -V` to identify iproute2. With no options, `ss` does not show the listener inventory wanted here. Start with numeric TCP/UDP listeners:
 
 ~~~bash
-ss -lntup
+/usr/bin/ss -lntup
 ~~~
 
 Read **Local Address:Port**, not the peer wildcard. A local `127.0.0.1:8080` listener is bound to IPv4 loopback. `0.0.0.0:8080` means all local IPv4 addresses, but does not establish firewall or remote reachability. `[::]:8080` is an IPv6 wildcard; IPv4 acceptance also depends on socket/kernel configuration. Test the required family rather than inferring it from this row.
@@ -20,8 +22,8 @@ A local `[::ffff:127.0.0.1]:8080` row represents an IPv4-mapped loopback address
 For a specific observed TCP port, define `port` as its decimal number:
 
 ~~~bash
-ss -lntp "sport = :$port"
-ss -ntp state established "( sport = :$port or dport = :$port )"
+/usr/bin/ss -lntp "sport = :$port"
+/usr/bin/ss -ntp state established "( sport = :$port or dport = :$port )"
 ~~~
 
 The first command checks local listeners. The second checks established connections involving that port; it is not a substitute for the first. A UDP `UNCONN` row is not evidence of a failed TCP-style handshake.

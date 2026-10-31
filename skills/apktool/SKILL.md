@@ -5,6 +5,8 @@ description: Decode Android APK resources and rebuild an authorized edited copy 
 
 # Decode the part needed for the task
 
+Installed invocation: `/usr/bin/apktool`, version `2.7.0-dirty`.
+
 Read this entire SKILL.md before acting. Require an acquired APK copy and the installed Apktool/Java pair. Select decode-only or an authorized edited-copy rebuild; framework registration is conditional on a matching missing resource package. Finish with status/diagnostics, the selected resource or new artifact and separate signature/installability evidence. No package-local conditional resources are required.
 
 Define `apk` as the selected absolute APK path, `decoded` as a fresh output directory, `frames` as a task-local framework directory and `log` as a separate private log. Preserve the original APK. Check the installed help/version: 2.x uses `apktool --version`; 3.x documents `apktool version`. A verified standalone distribution can be invoked as `java -jar "$apktool_jar"` in place of `apktool`.
@@ -13,7 +15,7 @@ For manifest/resource inspection without disassembling DEX:
 
 ~~~bash
 umask 077
-apktool d -s "$apk" -p "$frames" -o "$decoded" >"$log" 2>&1
+/usr/bin/apktool d -s "$apk" -p "$frames" -o "$decoded" >"$log" 2>&1
 status=$?
 ~~~
 
@@ -28,7 +30,7 @@ Keep `compileSdkVersion`, `targetSdkVersion` and `minSdkVersion` separate: build
 If a vendor resource package is missing, obtain the matching framework from the authorized device/firmware and register it only in the task-local cache:
 
 ~~~bash
-apktool if "$framework_apk" -p "$frames"
+/usr/bin/apktool if "$framework_apk" -p "$frames"
 ~~~
 
 Then retry into a fresh directory with the same `-p`. AOSP defaults do not supply every vendor framework. Unresolved/dummy resources make a decode incomplete; forcing broken resources is not a validated repair. See [framework handling](https://apktool.org/wiki/in-depth/frameworks/).
@@ -38,7 +40,7 @@ Then retry into a fresh directory with the same `-p`. AOSP defaults do not suppl
 After reviewing an authorized resource change, define `rebuilt` as a new absolute APK path and `build_log` as a fresh log:
 
 ~~~bash
-apktool b "$decoded" -p "$frames" -o "$rebuilt" >"$build_log" 2>&1
+/usr/bin/apktool b "$decoded" -p "$frames" -o "$rebuilt" >"$build_log" 2>&1
 status=$?
 ~~~
 

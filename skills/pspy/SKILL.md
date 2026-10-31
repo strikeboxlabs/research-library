@@ -5,6 +5,8 @@ description: Observe short-lived Linux commands and scheduled jobs without root 
 
 # pspy process observation
 
+Installed invocation: `/usr/bin/pspy`, version `pspy - version: 1.2.1 - Commit SHA: kali`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select the process or filesystem observation below, establish the time window and visibility, then retain the transcript and supported identities/events. Missing process details remain unknown; a file event alone cannot complete an execution/UID claim.
 
 Choose a build matching the machine's architecture. Upstream `pspy64`/`pspy32` are the larger static builds; the `s` suffix marks smaller libc-dependent builds, not the static ones. An executable-format or loader error calls for checking architecture/build, not adding privileges. Define `pspy_bin` as the verified local executable and check its `--help`.

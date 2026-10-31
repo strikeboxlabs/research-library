@@ -5,10 +5,12 @@ description: Convert local Outlook PST or supported OST files into searchable ma
 
 # Readpst mail extraction
 
+Installed invocation: `/usr/bin/readpst`, version `ReadPST / LibPST v0.6.76`.
+
 Define `pst` as the source PST's absolute path (or an OST format supported by the installed libpst) and `destination` as a new output directory. For email inspection with one `.eml` file per message:
 
 ~~~bash
-readpst -V
+/usr/bin/readpst -V
 mkdir -m 700 "$destination" && readpst -e -t e -o "$destination" "$pst"
 ~~~
 

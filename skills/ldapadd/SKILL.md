@@ -5,13 +5,15 @@ description: Add reviewed LDIF entries to an administered LDAP directory with Op
 
 # Add the selected entries
 
+Installed invocation: `/usr/bin/ldapadd`, version `ldapadd: @(#) $OpenLDAP: ldapmodify 2.6.14+dfsg-2 (Aug 25 2026 00:46:58) $`.
+
 Read this entire SKILL.md before acting. Require the administered endpoint, permitted bind identity, exact new DNs and reviewed LDIF/schema. No conditional resources are required. Finish with per-entry outcomes and read-back; a preview is not a server change.
 
 Check `ldapadd -VV`. Define `ldap_uri` as the selected LDAP URI, `bind_dn` as the known administrator DN and `ldif` as the reviewed local file. For simple bind over required StartTLS:
 
 ~~~bash
-ldapadd -n -v -x -ZZ -H "$ldap_uri" -D "$bind_dn" -W -f "$ldif"
-ldapadd -x -ZZ -H "$ldap_uri" -D "$bind_dn" -W -f "$ldif"
+/usr/bin/ldapadd -n -v -x -ZZ -H "$ldap_uri" -D "$bind_dn" -W -f "$ldif"
+/usr/bin/ldapadd -x -ZZ -H "$ldap_uri" -D "$bind_dn" -W -f "$ldif"
 status=$?
 ~~~
 

@@ -5,6 +5,8 @@ description: Run a pinned Linux tool environment, configure an owned service con
 
 # Reproduce the tool environment
 
+Installed invocation: `/usr/bin/docker`, version `Docker version 28.5.2+dfsg4, build 9cc6dea35e9a963f281434761c656fba4ac43aed`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select the intended daemon and image or existing container for the task before execution. For a selected registry image, source acquisition or its approved inspection shell, read [registry and source inspection](references/registry-source.md) fully. For commands in an existing container, a restricted sudo `exec` grant or exposed-device access, read [exec and filesystem access](references/exec-and-device-access.md) fully before that procedure. Read [inspection](references/inspection.md) fully for a provisioned TLS daemon connection, network metadata, local image inventory, mounts or configured environment values, [service configuration](references/service-configuration.md) for copying owned configuration and selecting start versus restart, or [image archives](references/image-archives.md) for layer history, exports and offline image transfer. Finish with the requested artifact or daemon observation and its status; an image, container UID or mount path alone does not prove host access.
 
 Separate the tool's runtime from the system being investigated. A legacy Python/Java image may reproduce artifact generation without reproducing the target application's runtime, dependencies or mitigations. Record the image ID/digest, architecture, tool version and invocation; a mutable tag alone is weak reproduction evidence.
@@ -20,7 +22,7 @@ Access to a rootful Docker daemon can confer root-level control over the **daemo
 For an already prepared image with Python 3, define `image` as its pinned reference, `inputs` as a dedicated existing absolute directory containing reviewed `job.py` and required data, and `outputs` as a dedicated existing writable absolute directory:
 
 ~~~bash
-docker run --rm --network none --user "$(id -u):$(id -g)" \
+/usr/bin/docker run --rm --network none --user "$(id -u):$(id -g)" \
     --mount "type=bind,src=$inputs,dst=/input,readonly" \
     --mount "type=bind,src=$outputs,dst=/output" \
     --workdir /output --entrypoint python3 "$image" /input/job.py

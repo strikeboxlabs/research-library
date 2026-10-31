@@ -5,12 +5,14 @@ description: Read or change the owner SID of a selected Active Directory object 
 
 # Read, change and verify one owner SID
 
+Installed invocation: `/usr/bin/impacket-owneredit`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire file before acting. Resolve the target and capture its original owner before a write. Finish with before/after owner SIDs and any unresolved restoration; a zero exit status alone is insufficient.
 
 Use the installed `impacket-owneredit` wrapper, or its verified Python script invocation. Check `-h`. Define `identity` as `domain.example/user`, `dc_fqdn`, `dc_ip` and `target_dn`. With an appropriate `KRB5CCNAME` cache:
 
 ~~~bash
-impacket-owneredit -k -no-pass -use-ldaps -dc-host "$dc_fqdn" -dc-ip "$dc_ip" \
+/usr/bin/impacket-owneredit -k -no-pass -use-ldaps -dc-host "$dc_fqdn" -dc-ip "$dc_ip" \
   -target-dn "$target_dn" -action read "$identity"
 ~~~
 
@@ -19,7 +21,7 @@ Retain the resolved object and original owner SID. The tool reads the owner port
 For a selected authorized change, set `new_owner_sid` and use the same target/connection:
 
 ~~~bash
-impacket-owneredit -k -no-pass -use-ldaps -dc-host "$dc_fqdn" -dc-ip "$dc_ip" \
+/usr/bin/impacket-owneredit -k -no-pass -use-ldaps -dc-host "$dc_fqdn" -dc-ip "$dc_ip" \
   -target-dn "$target_dn" -new-owner-sid "$new_owner_sid" -action write "$identity"
 ~~~
 

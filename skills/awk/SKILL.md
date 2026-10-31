@@ -5,6 +5,8 @@ description: Filter text with awk while separating data, regular expressions and
 
 # Keep the program fixed and choose the match semantics
 
+Installed invocation: `/usr/bin/awk`, version `GNU Awk 5.3.2, API 4.0, PMA Avon 8-g1, (GNU MPFR 4.2.2, GNU MP 6.3.0)`.
+
 Read this entire SKILL.md before acting. Establish the implementation, text encoding and record format, then choose literal or regex matching below. No conditional resources are required. Finish with the selected records, status and bounded coverage; reconstructed text needs independent format validation.
 
 Identify the implementation before using extensions: `awk` may be gawk, mawk or another implementation. Match the actual data format, not its filename suffix.

@@ -5,6 +5,8 @@ description: Change an owned account's known password through Impacket's SAMR cl
 
 # Change one owned account password
 
+Installed invocation: `/usr/bin/impacket-changepasswd`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the installed supported Impacket client, one explicitly authorized account/DC, its known current password and the approved new password/lifecycle. Perform one selected change, inspect the server outcome and verify the account through its intended approved consumer or report the unresolved result.
 
 Inspect `impacket-changepasswd -h`; installations may expose `changepasswd.py`. Define `changer` as the verified invocation, `domain` as the account domain, `account` as the owned account and `server` as the intended DC. For a supported SMB/SAMR password-change path:

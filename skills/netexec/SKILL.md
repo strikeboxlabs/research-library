@@ -5,6 +5,8 @@ description: Validate known SMB or SQL login credentials, inventory approved sha
 
 # NetExec credential checks
 
+Installed invocation: `/usr/bin/netexec`, version `1.5.1 - Yippie-Ki-Yay - Kali Linux -`.
+
 Read this entire SKILL.md before acting. Keep known credential pairs, endpoints and attempt budget explicit; require protocol/status evidence for the selected query. For LDAP signing/channel binding or AD CS endpoint discovery, read [LDAP policy and certificate endpoints](references/ldap-policy-and-adcs.md) fully before probing; SMB authentication/signing does not settle those questions.
 
 For a provisioned SQL login, use the MSSQL section below; the main credential example uses SMB. Keep the selected protocol and authentication mode explicit.

@@ -5,13 +5,15 @@ description: Join acquired line records into a delimiter-separated line with GNU
 
 # Join the selected records
 
+Installed invocation: `/usr/bin/paste`, version `paste (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the complete selected text records, their known boundaries and the consumer's delimiter contract. All instructions are inline. Finish with paste's status and the exact joined records; incomplete producer output cannot become a complete inventory through joining.
 
 Define `records` as the existing one-record-per-line file and `joined` as a fresh output path. For one comma-separated line:
 
 ~~~bash
-paste --version
-paste -s -d ',' -- "$records" > "$joined"
+/usr/bin/paste --version
+/usr/bin/paste -s -d ',' -- "$records" > "$joined"
 status=$?
 ~~~
 

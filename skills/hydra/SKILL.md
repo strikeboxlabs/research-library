@@ -5,6 +5,8 @@ description: Run scoped online authentication tests with THC Hydra. Use to choos
 
 # Test the intended authentication path
 
+Installed invocation: `/usr/bin/hydra`, version `Hydra v9.7 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or `.
+
 Read this entire file before acting. Read [HTTP forms and attempt control](references/forms-and-attempts.md) for form authentication, multiple accounts or retry planning. Establish the authorized accounts, candidate set and attempt budget before sending logins; finish with verified protocol outcomes and actual coverage.
 
 Hydra performs online attempts, unlike offline hash tools. Inspect `hydra -h` and `hydra -U SERVICE` for the installed module. A supported service name does not guarantee the build includes its dependencies. Choose the real protocol/port: SSH, FTP and an application's web form are different authentication paths.
@@ -13,7 +15,7 @@ For one selected account, set `target`, `port`, `login`, `candidate_file` and a 
 
 ~~~bash
 umask 077
-hydra -l "$login" -P "$candidate_file" -t 1 -W 3 -w 10 -f \
+/usr/bin/hydra -l "$login" -P "$candidate_file" -t 1 -W 3 -w 10 -f \
   -s "$port" -o "$results" "$target" ssh
 ~~~
 

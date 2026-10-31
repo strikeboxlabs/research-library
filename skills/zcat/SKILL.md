@@ -5,6 +5,8 @@ description: Expand a selected compressed ordinary file to stdout with GNU zcat,
 
 # Decompression to a separate stream
 
+Installed invocation: `/usr/bin/zcat`, version `zcat (gzip) 1.14`.
+
 Read this entire SKILL.md before acting. Require the selected ordinary input, a fresh output and sufficient bounded storage. Define `zcat_bin` as the verified trusted GNU executable, `compressed` as the absolute input and `expanded` as the fresh absolute output. Finish with status, diagnostics and the resulting data's format; partial output is not a completed artifact.
 
 ~~~bash

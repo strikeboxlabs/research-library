@@ -5,6 +5,8 @@ description: Inspect installed RubyGems versions or install one selected gem in 
 
 # Resolve local Ruby dependency inventory
 
+Installed invocation: `/usr/bin/gem`, version `4.0.22`.
+
 Read this entire SKILL.md before acting. Require a trusted existing Ruby/RubyGems environment and the selected gem name; inspect local metadata before deciding whether the application's dependency requirement is met. For a requested installation, read [selected user installation](references/user-install.md) fully before changing that environment. Finish with environment, observed versions, requirement and any unresolved load/build issue.
 
 Define `gem_bin` as the executable associated with the application's intended Ruby and `gem_name` as the exact distribution name from its reviewed dependency declaration. Confirm this installation's options:

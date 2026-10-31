@@ -5,12 +5,14 @@ description: Send one benign message to an owned local syslog path and verify it
 
 # Verify one local log message
 
+Installed invocation: `/usr/bin/logger`, version `logger from util-linux 2.42.4`.
+
 Read this entire SKILL.md before acting. Require an owned logging path, a reviewed facility/level and permission to add a clearly identified diagnostic message. All instructions are inline. Finish with the submitted marker, time, client status and matching destination record; missing downstream evidence leaves delivery unconfirmed.
 
 Identify util-linux logger with `logger --version` and its installed help. Review the local receiver's routing first, including forwarding and automated actions. Choose a harmless message without secrets or control characters. Define `priority` as the intended facility.level, `tag` as a short diagnostic label and `marker` as a unique short text identifying this check. For example, user.notice is suitable only when that route is the intended one.
 
 ~~~bash
-logger --socket-errors=on --priority "$priority" --tag "$tag" -- "$marker"
+/usr/bin/logger --socket-errors=on --priority "$priority" --tag "$tag" -- "$marker"
 status=$?
 ~~~
 

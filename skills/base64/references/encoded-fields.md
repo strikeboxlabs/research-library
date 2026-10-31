@@ -23,7 +23,7 @@ For an `application/x-www-form-urlencoded` capture, parse the actual body and se
 For an authorized endpoint that expects a base64 value in a form field named `data`, define `payload` as the exact reviewed input file, `encoded` as a fresh file, `url` as the endpoint, and `headers`/`response` as fresh response files:
 
 ~~~bash
-base64 --wrap=0 "$payload" > "$encoded" &&
+/usr/bin/base64 --wrap=0 "$payload" > "$encoded" &&
 curl --silent --show-error --connect-timeout 5 --max-time 30 --data-urlencode "data@$encoded" --dump-header "$headers" --output "$response" "$url"
 ~~~
 

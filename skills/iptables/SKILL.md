@@ -5,6 +5,8 @@ description: Inspect Linux packet-filter rules with explicit backend, table, cha
 
 # Identify the ruleset being inspected
 
+Installed invocation: `/usr/sbin/iptables`, version `iptables v1.8.13 (nf_tables)`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Identify the backend, family, namespace and packet path before listing rules; use the actual ports and state of the flow when interpreting them. Finish with applicable ordered rules/counters and any unverified configuration or traffic assumptions.
 
 Check `iptables --version` and the actual selected executable. The version identifies `legacy` versus `nf_tables`; these are different kernel interfaces. Do not switch alternatives to make a listing look familiar. `iptables` covers IPv4, while `ip6tables` covers IPv6. Commands inspect the current network namespace, which may differ between host and container.
@@ -12,8 +14,8 @@ Check `iptables --version` and the actual selected executable. The version ident
 With the existing firewall-administration rights, define `table` and `chain` from the relevant packet path, for example `filter` and `INPUT` for traffic delivered locally:
 
 ~~~bash
-iptables -w 5 -t "$table" -S "$chain"
-iptables -w 5 -t "$table" -L "$chain" -n -v -x --line-numbers
+/usr/sbin/iptables -w 5 -t "$table" -S "$chain"
+/usr/sbin/iptables -w 5 -t "$table" -L "$chain" -n -v -x --line-numbers
 ~~~
 
 `-S` preserves rule specifications and chain policies. The numeric verbose listing exposes interfaces and exact counters without name resolution. Filter is only the default table; it is not the whole firewall. Forwarded packets use a different path from local INPUT/OUTPUT, and NAT/other hooks can affect the result. Correlate with the actual flow and other applicable rulesets.

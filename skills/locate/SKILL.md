@@ -5,13 +5,15 @@ description: Find candidate Linux paths in an existing locate database and verif
 
 # Treat the index as a path lead
 
+Installed invocation: `/usr/bin/locate`, version `plocate 1.1.25`.
+
 Read this entire SKILL.md before acting. Require the existing database accessible to the current account and a selected nonsecret filename fragment. Check the installed implementation/options with `locate --version` and `locate --help`; all instructions are inline. Finish with query status and the verified current selected entry, or the precise index/access gap.
 
 Define `name_fragment` as a known literal filename component without glob metacharacters, and `matches` as a fresh private output file:
 
 ~~~bash
 umask 077
-locate -0 -- "$name_fragment" > "$matches"
+/usr/bin/locate -0 -- "$name_fragment" > "$matches"
 status=$?
 ~~~
 

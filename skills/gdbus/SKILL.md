@@ -5,12 +5,14 @@ description: Read a known D-Bus capability result with GLib gdbus on Linux. Use 
 
 # Read logind capability evidence
 
+Installed invocation: `/usr/bin/gdbus`.
+
 Read this entire SKILL.md before acting. Require an authorized session on the owned Linux host, its system bus and systemd-logind. All instructions are inline. This selected task calls only `CanReboot`; finish with the returned value, calling identity/session, host, time and command status. It does not reboot the host.
 
 Check `gdbus call --help` and confirm timeout support. Run in the intended user's existing session without sudo changing the caller:
 
 ~~~bash
-gdbus call --system --dest org.freedesktop.login1 \
+/usr/bin/gdbus call --system --dest org.freedesktop.login1 \
   --object-path /org/freedesktop/login1 \
   --method org.freedesktop.login1.Manager.CanReboot --timeout 10
 status=$?

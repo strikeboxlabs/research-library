@@ -5,6 +5,8 @@ description: Collect words from selected website content for an authorised offli
 
 # CeWL website wordlists
 
+Installed invocation: `/usr/bin/cewl`, version `CeWL 6.2.1 (More Fixes) Robin Wood (robin@digi.ninja) (https://digi.ninja/)`.
+
 Read this entire SKILL.md before acting. Establish the selected site's crawl boundary and output format before collecting words. No conditional resources are required. Finish with crawl status, reviewed source content and the candidate-file format; a failed crawl or unverified response leaves collection incomplete.
 
 Use CeWL when the relevant vocabulary comes from a known website. It collects words; it does not establish a username, recover a password or verify that a candidate works.
@@ -13,7 +15,7 @@ Check `cewl --help` for the installed options. Define `url` as one approved page
 
 ~~~bash
 umask 077
-cewl -d 0 -m 5 --with-numbers -w "$words" "$url" > "$log" 2>&1
+/usr/bin/cewl -d 0 -m 5 --with-numbers -w "$words" "$url" > "$log" 2>&1
 ~~~
 
 `-d 0` limits collection to the starting page. If linked pages are needed, deliberately raise depth after checking scope. Depth is not a request budget or a URL-path boundary. Leave `--offsite` off for same-site collection; review redirects and the collected content before treating the output as in-scope evidence. CeWL does not enforce robots.txt as a crawl boundary.

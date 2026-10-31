@@ -5,14 +5,16 @@ description: Convert an existing authorized PuTTY private key to an OpenSSH file
 
 # Convert the existing key
 
+Installed invocation: `/usr/bin/puttygen`, version `puttygen: Release 0.85`.
+
 Read this entire SKILL.md before acting. Establish the authorized input key, its known passphrase if encrypted, the required output format and a fresh destination in a private directory. Finish with the conversion status, readable output and matching public fingerprint; report missing format support separately.
 
 Define `key` as the existing absolute PPK path and `output` as a different, unused absolute path in a directory controlled by the worker:
 
 ~~~bash
-puttygen --version
-puttygen --help
-puttygen "$key" -l -E sha256
+/usr/bin/puttygen --version
+/usr/bin/puttygen --help
+/usr/bin/puttygen "$key" -l -E sha256
 umask 077
 if [ ! -e "$output" ] && [ ! -L "$output" ]; then
     puttygen "$key" -O private-openssh -o "$output"

@@ -5,13 +5,15 @@ description: Convert a reviewed DVI intermediate to an explicit PostScript file 
 
 # Convert the selected DVI
 
+Installed invocation: `/usr/bin/dvips`, version `This is dvips(k) 2026.1 (TeX Live 2026)  Copyright 2026 Radical Eye Software`.
+
 Read this entire SKILL.md before acting. Require the reviewed DVI and associated fonts/resources, trusted configuration and a fresh private output destination. Complete with status, diagnostics and checked PostScript output; PDF creation is a later operation.
 
 Set `work_dir` to the reviewed staging directory, `input_dvi` to its ordinary relative DVI filename and `output_ps` and `conversion_log` to fresh relative filenames there. Use names without leading option or command characters. Keep required resources in the approved relative layout.
 
 ~~~bash
-dvips --version
-dvips --help
+/usr/bin/dvips --version
+/usr/bin/dvips --help
 (cd "$work_dir" && dvips -R2 -o "$output_ps" "$input_dvi") \
   >"$work_dir/$conversion_log" 2>&1
 conversion_status=$?

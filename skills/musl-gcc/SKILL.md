@@ -5,6 +5,8 @@ description: Build a reviewed C utility against musl with its GCC wrapper. Use w
 
 # Select the musl toolchain before compiling
 
+Installed invocation: `/usr/bin/musl-gcc`, version `x86_64-linux-gnu-gcc (Debian 16.2.0-3) 16.2.0`.
+
 Read this entire SKILL.md before acting. Require the installed wrapper, backend compiler, matching musl headers/libraries and reviewed C source. No conditional resource is required. Finish with the source/build identity, diagnostics and inspected artifact; compilation alone does not establish target execution or universal portability.
 
 Define `compiler` as the verified musl-gcc executable and `source`/`output` as the reviewed C file and a fresh absolute output path. Check its package/wrapper configuration and backend before compiling:

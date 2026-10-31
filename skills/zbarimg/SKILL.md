@@ -5,6 +5,8 @@ description: Decode barcodes and QR codes from selected local images with ZBar z
 
 # Decode the acquired image
 
+Installed invocation: `/usr/bin/zbarimg`, version `0.23.93`.
+
 Read this entire SKILL.md before acting. Require installed zbarimg and the selected readable image working copy; no conditional resources are required. Preserve decoded data and diagnostics separately, then finish with symbol type/data, source image and status. Missing image support or no detected symbol remains a stated result, not a fabricated decode.
 
 Check `zbarimg --version` and `zbarimg --help`. Define `image` as the absolute acquired raster-image path, `decoded` and `diagnostics` as fresh private files:

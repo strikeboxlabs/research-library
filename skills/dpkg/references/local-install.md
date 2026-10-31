@@ -5,7 +5,7 @@ Require the controlled Debian-family system, its permitted administrative contex
 Define `archives` as a Bash array of the exact inspected absolute archive paths, including any deliberately selected dependency archives. Record existing package state before changing it. In the intended privileged context:
 
 ~~~bash
-dpkg --install "${archives[@]}"
+/usr/bin/dpkg --install "${archives[@]}"
 install_status=$?
 ~~~
 
@@ -14,8 +14,8 @@ Installation can run maintainer scripts, replace files, configure packages and p
 For each selected package, define its exact `package` name, with an architecture qualifier when necessary:
 
 ~~~bash
-dpkg --status "$package"
-dpkg --audit "$package"
+/usr/bin/dpkg --status "$package"
+/usr/bin/dpkg --audit "$package"
 ~~~
 
 Retain both query statuses. Compare installed version/architecture with the intended artifacts. Then verify the requested executable separately: configured package state does not prove application behavior.

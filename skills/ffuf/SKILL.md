@@ -7,7 +7,7 @@ description: Compare HTTP paths or virtual hosts with ffuf using measured baseli
 
 Read this entire SKILL.md before acting; reuse complete current context. For new requests, select a bounded candidate set and controls before filtering. For an acquired result, use the saved-format guidance below without making another request. For username candidates derived from CMS profile aliases, read [account alias comparisons](references/account-aliases.md) fully before that procedure. Finish with confirmed response differences or the supported saved-result interpretation, retaining completed versus interrupted coverage; a result list alone does not establish route validity.
 
-Installed invocation: `/usr/bin/ffuf`, version `2.1.0-dev`. Available wordlists include `/usr/share/wordlists/dirb/common.txt`, `/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt` and `/usr/share/wordlists/rockyou.txt.gz`; choose a list appropriate to the requested task rather than treating its presence as scope.
+Installed invocation: `/usr/bin/ffuf`, version `Fuzz Faster U Fool - v2.3.0`.
 
 Check `/usr/bin/ffuf -V` and `/usr/bin/ffuf -h`; inspect any automatically loaded ffufrc for inherited headers, proxies or filters. Define `base_url` as the scoped scheme/authority without a trailing slash, `wordlist` as a small file of path candidates, and `results` as a fresh JSON output path. Start without filters:
 

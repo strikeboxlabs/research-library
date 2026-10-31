@@ -5,13 +5,15 @@ description: Explain Linux POSIX ACL permissions and directory access failures w
 
 # Read the ACL for the failing identity and path
 
+Installed invocation: `/usr/bin/getfacl`, version `getfacl 2.4.0`.
+
 Read this entire SKILL.md before acting. Establish the exact path and process identity, inspect access entries and applicable masks, and inspect parents or default entries only when traversal or inheritance is the question. Finish with the supported access explanation or the specific missing identity/path evidence.
 
 Define `path` as the exact absolute file or directory involved. Record the relevant process's effective UID and groups; `id` without an argument describes the current shell, which may differ from a service or an existing session after group changes.
 
 ~~~bash
 id
-getfacl -p -n -e -- "$path"
+/usr/bin/getfacl -p -n -e -- "$path"
 ~~~
 
 `-p` retains the absolute path, `-n` keeps numeric identities and `-e` displays effective-rights comments. Preserve owner/group headers and diagnostics. On a filesystem without POSIX ACL support, basic mode-derived entries do not prove an extended ACL exists. An unreadable path is incomplete evidence.
@@ -39,7 +41,7 @@ Directory `x` permits traversal/search; `r` permits listing names. Reaching a fi
 Inspect inheritance separately when that is the question:
 
 ~~~bash
-getfacl -p -n -e -d -- "$path"
+/usr/bin/getfacl -p -n -e -d -- "$path"
 ~~~
 
 A directory's `default:` ACL influences new children, subject to creation-mode rules; it does not grant access to the directory itself or retrofit existing children. Do not infer an absent default ACL solely from ordinary output when `POSIXLY_CORRECT` is set; `-d` explicitly requests it.

@@ -5,12 +5,14 @@ description: Query Windows/Samba RPC identities or server metadata and perform a
 
 # Resolve the object through the intended RPC service
 
+Installed invocation: `/usr/bin/rpcclient`, version `Version 4.25.1-Debian-4.25.1+dfsg-1`.
+
 Read this entire SKILL.md before acting. For account changes read [SAMR password changes](references/samr-password-changes.md) fully. Finish with the server/domain, resolved object or metadata and RPC result; successful login does not establish rights for every RPC method.
 
 Check `rpcclient --help`. Set `server` to the selected hostname and `identity` to `DOMAIN/user`; omit the password from argv to use the prompt:
 
 ~~~bash
-rpcclient -U "$identity" "$server"
+/usr/bin/rpcclient -U "$identity" "$server"
 ~~~
 
 Within the console, start with the required lookup rather than broad enumeration:
@@ -30,7 +32,7 @@ For a repeatable read, `-c 'lsaquery'` supplies a command without an interactive
 For server metadata in the same selected authentication context:
 
 ~~~bash
-rpcclient -U "$identity" "$server" -c 'srvinfo'
+/usr/bin/rpcclient -U "$identity" "$server" -c 'srvinfo'
 ~~~
 
 Retain the returned platform/version/type fields as server-reported metadata. They are not an authenticated package inventory or a reliable Samba patch level. Establish installed package/build evidence separately before assessing an advisory; another service's banner cannot date Samba's installation or prove its configuration.

@@ -5,6 +5,8 @@ description: Page through one selected Linux text file with util-linux more. Use
 
 # Read the selected text file
 
+Installed invocation: `/usr/bin/more`, version `more from util-linux 2.42.4`.
+
 Read this entire SKILL.md before acting. Require a readable selected text artifact and an interactive terminal for paging. Finish with the requested content and actual coverage or read failure; quitting the pager is not proof that the whole file was read. No conditional resources are required.
 
 Check `more --version` and help for util-linux. Windows more is a different implementation; do not copy its switches here. Define `text_file` as the selected absolute path and account for existing MORE option settings:

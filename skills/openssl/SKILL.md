@@ -5,6 +5,8 @@ description: Inspect and package owned keys, certificates, PKCS#12 and ASN.1 art
 
 # OpenSSL inspection
 
+Installed invocation: `/usr/bin/openssl`, version `OpenSSL 3.6.5 29 Sep 2026 (Library: OpenSSL 3.6.5 29 Sep 2026)`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Identify the object/protocol and required trust inputs, then read the selected conditional reference fully. Finish with parsing/verification status and the requested identity or recovered-artifact evidence; missing trust or incomplete output remains unresolved. Keep unrelated references unloaded.
 
 Record `openssl version` and inspect subcommand help. Identify whether the input is a CSR, certificate, private key or bundle; a `.cer` extension alone does not distinguish DER from PEM. Work on copies and choose fresh output paths.
@@ -40,8 +42,8 @@ For FTP control-channel TLS, read [FTPS handshake diagnosis](references/ftp-tls.
 Define `csr` as an existing PEM request and `cert` as an issued PEM certificate:
 
 ~~~bash
-openssl req -in "$csr" -noout -text -verify
-openssl x509 -in "$cert" -noout -text -fingerprint -sha256
+/usr/bin/openssl req -in "$csr" -noout -text -verify
+/usr/bin/openssl x509 -in "$cert" -noout -text -fingerprint -sha256
 ~~~
 
 CSR verification checks the request's signature against its included public key. It does not establish CA issuance, trust, identity authorization or that the requested extensions were granted. Inspect the **issued certificate's** subject, SAN, EKU, key usage, validity and issuer separately. Preserve extension context instead of grepping one matching name and assuming its meaning.
@@ -51,7 +53,7 @@ Retain the verification diagnostic as well as status: `req -verify` only gained 
 For an observed DER certificate, define `der_cert` and a new `pem_cert`:
 
 ~~~bash
-openssl x509 -inform DER -in "$der_cert" -outform PEM -out "$pem_cert"
+/usr/bin/openssl x509 -inform DER -in "$der_cert" -outform PEM -out "$pem_cert"
 ~~~
 
 Use a separate `-noout -text` inspection when needed; do not mix a textual dump into the file intended as a clean PEM trust input. A parser error calls for checking object type, encoding and transfer completeness before regenerating keys or requests.
@@ -61,7 +63,7 @@ For a trust-directory layout explicitly requiring the old subject hash, use `ope
 Define `ca_bundle` as independently trusted CA certificates and `intermediates` as the supplied intermediate chain:
 
 ~~~bash
-openssl verify -CAfile "$ca_bundle" -untrusted "$intermediates" "$cert"
+/usr/bin/openssl verify -CAfile "$ca_bundle" -untrusted "$intermediates" "$cert"
 ~~~
 
 Omit `-untrusted` if no intermediate file is needed. Choose the intended verification purpose/hostname options when applicable; a generic chain check does not establish that Kerberos, TLS client authentication or a specific service will accept the certificate. An `OK` result is relative to the configured trust inputs and verification options, not proof that a CA is trustworthy. Revocation checking also needs explicit applicable data/options.

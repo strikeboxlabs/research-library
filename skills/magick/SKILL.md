@@ -5,6 +5,8 @@ description: Inspect a selected image with ImageMagick 7 and identify its truste
 
 # Inspect the selected ImageMagick 7 runtime and image
 
+Installed invocation: `/usr/bin/magick`, version `Version: ImageMagick 7.1.2-31 Q16 x86_64 20260903 https://imagemagick.org`.
+
 Read this entire SKILL.md before acting. Require a trusted installed ImageMagick 7 executable; define `magick_bin` as that selected invocation. Select runtime inventory or one reviewed ordinary-image inspection below. Use an owned trusted working directory and known configuration/loader environment for either task. No conditional resources are required. Finish with observed build/options or image properties, status and the remaining service-context or decoding gaps.
 
 ~~~bash

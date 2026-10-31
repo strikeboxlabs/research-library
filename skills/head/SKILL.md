@@ -5,12 +5,14 @@ description: Preview the beginning of selected local text files with GNU head wh
 
 # Preview selected text without claiming full coverage
 
+Installed invocation: `/usr/bin/head`, version `head (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require GNU head and the explicit local files to preview. Establish whether the task needs lines or bytes and retain input identity. Finish with candidate files and any read failures; previewing the beginning does not complete a document review.
 
 Check `head --version`. Define `file_a` and `file_b` as selected absolute text-file paths. This first-line preview forces headers even when the selected set later contains just one file:
 
 ~~~bash
-head -v -n 1 -- "$file_a" "$file_b"
+/usr/bin/head -v -n 1 -- "$file_a" "$file_b"
 status=$?
 ~~~
 

@@ -13,14 +13,14 @@ On the source daemon, define `image` as the approved image already present, and 
 
 ~~~bash
 (set -o pipefail; docker image inspect "$image" | jq -er '.[0] | [.Id, .Os, .Architecture] | @tsv')
-docker image save --output "$archive" "$image"
+/usr/bin/docker image save --output "$archive" "$image"
 sha256sum "$archive"
 ~~~
 
 After an approved transfer, verify the same archive checksum on the destination. With permission to import into the intended destination daemon, load the archive, then define `loaded_ref` as the restored tag or image ID reported by that operation:
 
 ~~~bash
-docker image load --input "$archive"
+/usr/bin/docker image load --input "$archive"
 (set -o pipefail; docker image inspect "$loaded_ref" | jq -er '.[0] | [.Id, .Os, .Architecture] | @tsv')
 ~~~
 

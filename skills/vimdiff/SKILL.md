@@ -5,12 +5,14 @@ description: Compare two acquired text files side by side with Vim diff mode and
 
 # Inspect both sides of a source difference
 
+Installed invocation: `/usr/bin/vimdiff`, version `VIM - Vi IMproved 9.2 (2026 Feb 14, compiled Jul 27 2026 10:11:18)`.
+
 Read this entire SKILL.md before acting. Require two identified existing absolute text-file working copies and their source/revision identities. All instructions are inline. Finish with the relevant differences and surrounding context, retaining missing-file, decoding or comparison limits; this does not establish which source built a deployed binary.
 
 Check `vimdiff --version` for Vim and its `+diff` feature. Define `left` and `right` as the two working copies:
 
 ~~~bash
-vimdiff -Nu NONE -i NONE -n -M --cmd 'set nomodeline' -- "$left" "$right"
+/usr/bin/vimdiff -Nu NONE -i NONE -n -M --cmd 'set nomodeline' -- "$left" "$right"
 ~~~
 
 If only the Vim executable exists, use `vim -d` with the same arguments. `-u NONE` skips configuration/plugins, `-i NONE` avoids viminfo, `-n` avoids swap creation and `-M` initially disables changes/writes. The early command disables modelines before file loading. These settings are not a sandbox and can be changed explicitly inside Vim.

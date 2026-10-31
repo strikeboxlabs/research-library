@@ -5,6 +5,8 @@ description: Compile a selected Java CLI source with a controlled output directo
 
 # Compile the selected source for its runtime
 
+Installed invocation: `/usr/bin/javac`, version `javac 25.0.5-ea`.
+
 Read this entire SKILL.md before acting. Select the trusted compiler, reviewed source/dependencies and intended target runtime, then inspect errors and newly produced classes. Compilation does not run the application's main method or establish its operational result.
 
 Define `javac_bin`, `source_file`, `classes_dir` (a fresh owned output directory) and `dependency_classpath` (existing reviewed dependencies). For a plain source not requiring annotation processing:

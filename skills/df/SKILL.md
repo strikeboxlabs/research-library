@@ -5,6 +5,8 @@ description: Inspect space reported by the filesystem containing a selected Linu
 
 # Inspect the selected path's filesystem capacity
 
+Installed invocation: `/usr/bin/df`, version `df (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Select an existing path in the intended mount namespace and confirm GNU coreutils with `df --version`. No conditional resources are required. Finish with the filesystem, mount, units, available space and status; a failed lookup is not zero capacity.
 
 Define `path` as that selected path. Request explicit fields and byte units:

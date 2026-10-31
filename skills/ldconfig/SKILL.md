@@ -5,6 +5,8 @@ description: Inspect and deliberately refresh Linux shared-library caches with l
 
 # Shared-library cache and directory decisions
 
+Installed invocation: `/usr/sbin/ldconfig`, version `ldconfig (Debian GLIBC 2.43-7) 2.43`.
+
 Read this entire SKILL.md before acting. Select cache inspection or a deliberate update; ordinary `-v` can change cache and links. For a writable-directory or privileged-load test, read [cache selection and controlled loading](references/cache-and-load-tests.md) fully first. Finish with observed cache/resolution evidence and, if requested, actual controlled execution plus restoration; directory order alone is insufficient.
 
 Define `ldconfig_bin` as the verified installed invocation, `cache_report` and `scan_report` as fresh files. Inspect the existing cache and configured directories without rebuilding it or updating links:

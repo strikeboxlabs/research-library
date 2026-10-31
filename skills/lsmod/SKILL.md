@@ -5,11 +5,13 @@ description: Inspect currently loaded Linux kernel modules with kmod lsmod. Use 
 
 # Read loaded module state
 
+Installed invocation: `/usr/sbin/lsmod`, version `kmod version 34.2`.
+
 Read this entire SKILL.md before acting. Require access to the actual kernel's module inventory in the intended host/guest context. No conditional resources are required. Finish with the complete query status, selected module row and context; unavailable inventory is unresolved evidence.
 
 ~~~bash
-lsmod --version
-lsmod
+/usr/sbin/lsmod --version
+/usr/sbin/lsmod
 status=$?
 ~~~
 

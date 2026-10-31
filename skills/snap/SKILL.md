@@ -5,15 +5,17 @@ description: Inspect snap state or install one selected Store package on the con
 
 # Establish installed state and execution scope
 
+Installed invocation: `/usr/bin/snap`.
+
 Read this entire SKILL.md before acting. Require the controlled Linux image with an existing working snapd service. Choose installed-state review or the selected Store installation below; local package/mode review is a separate conditional decision. No additional resources are required. Finish with active revision/channel, interfaces and relevant change/task results; an installation result does not establish application compatibility. Installing this skill does not install snapd or an application.
 
 Define `package` as the observed snap name. Inspect the installed revisions and connected interfaces:
 
 ~~~bash
-snap version
-snap list --all "$package"
-snap connections "$package"
-snap changes
+/usr/bin/snap version
+/usr/bin/snap list --all "$package"
+/usr/bin/snap connections "$package"
+/usr/bin/snap changes
 ~~~
 
 Distinguish the CLI/snapd version, application version, revision and tracking channel. `--all` includes retained disabled revisions; their presence does not mean they are active. `snap info "$package"` adds publisher/store information, which is not itself proof of the locally active revision or permissions.
@@ -21,11 +23,11 @@ Distinguish the CLI/snapd version, application version, revision and tracking ch
 For one intended Store installation, define `package` as an exact approved snap name and `channel` as the selected track/risk channel. Check `snap help install` and `snap info "$package"`; review publisher, available channel/version, confinement and the intended application before the permitted privileged transaction:
 
 ~~~bash
-sudo snap install --channel="$channel" "$package"
+sudo /usr/bin/snap install --channel="$channel" "$package"
 status=$?
-snap list --all "$package"
-snap connections "$package"
-snap changes
+/usr/bin/snap list --all "$package"
+/usr/bin/snap connections "$package"
+/usr/bin/snap changes
 ~~~
 
 Keep the install status separately from later inspection commands. Installation can add required base/dependency snaps and run hooks or start services. A copied request to install core/snapd is not proof that those changes are required on this image. A channel is a moving update stream, not an immutable version pin; stable does not mean the application's globally newest version. If the package is already installed, a refresh or channel switch is a separate requested change.
@@ -45,7 +47,7 @@ Review local package metadata and `meta/hooks/` contents before an installation 
 For an observed change, define `change_id` from `snap changes`:
 
 ~~~bash
-snap tasks "$change_id"
+/usr/bin/snap tasks "$change_id"
 ~~~
 
 Read individual task states and errors. A submitted change, an in-progress task and a completed installation are different outcomes. A failing hook does not justify blindly reinstalling or assuming every external side effect was undone. Diagnose missing interfaces versus application failures from the relevant task/log evidence; enabling devmode changes the test's behavior.

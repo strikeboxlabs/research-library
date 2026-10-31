@@ -5,6 +5,8 @@ description: Replace one owned text file from a fully staged transformation usin
 
 # Commit a staged text transformation
 
+Installed invocation: `/usr/bin/sponge`.
+
 Read this entire SKILL.md before acting. Require an owned ordinary regular file, preserved original backup, stable source and fresh staging file. Confirm the installed moreutils implementation. Finish with both transformation and replacement status and the verified output.
 
 Define `input` as the selected absolute path, `stage` as a fresh file outside the input, and `backup` as the separately preserved original. For an explicitly requested lexical sort:

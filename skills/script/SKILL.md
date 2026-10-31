@@ -5,6 +5,8 @@ description: Use util-linux script to allocate a pseudoterminal or capture termi
 
 # util-linux script and PTYs
 
+Installed invocation: `/usr/bin/script`, version `script from util-linux 2.42.4`.
+
 Read this entire SKILL.md before acting. Select the intended child shell/program, transcript policy and util-linux version before allocating a PTY. Finish with the observed child/terminal behavior and exit status, preserving any intended transcript and exiting the child. Local relay settings and remote dimensions remain separate prerequisites when applicable.
 
 Check `script --version` and `script --help`: BSD and util-linux syntax differ. `script` runs a child through a pseudoterminal. It can help an application requiring a TTY, but does not repair the surrounding network transport, forward signals reliably across every relay or choose correct terminal dimensions automatically.
@@ -12,7 +14,7 @@ Check `script --version` and `script --help`: BSD and util-linux syntax differ. 
 For an interactive Bash under a local PTY without a transcript:
 
 ~~~bash
-script -q -e -c /bin/bash /dev/null
+/usr/bin/script -q -e -c /bin/bash /dev/null
 ~~~
 
 The token after `-c` is the command; the final positional path is the transcript. Reversing `/bin/bash` and `/dev/null` attempts to execute the null device and can create an unintended log file.
@@ -23,7 +25,7 @@ For a terminal-dependent program, define `transcript` as a fresh private output 
 
 ~~~bash
 umask 077
-script -q -e -c /bin/bash "$transcript"
+/usr/bin/script -q -e -c /bin/bash "$transcript"
 ~~~
 
 `-e` propagates the child's exit status; without it, script's status is not a reliable substitute for the program's result. `-q` suppresses start/end announcements. A `-c` command is interpreted as shell command text, so do not splice untrusted arguments into it.

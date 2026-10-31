@@ -5,14 +5,16 @@ description: Trace dynamic library calls in a trusted Linux program to diagnose 
 
 # Observe a selected library-call path
 
+Installed invocation: `/usr/bin/ltrace`, version `ltrace 0.7.91`.
+
 Read this entire SKILL.md before acting. Use a trusted, unprivileged executable with reviewed effects and a benign input that reaches the selected path. Finish with the invocation, observed call/result and trace limitations, or the missing permission/runtime condition.
 
 Define `program` as that executable's absolute path and `trace` as a fresh private output file. Add only the reviewed arguments required by the program:
 
 ~~~bash
-ltrace --version
+/usr/bin/ltrace --version
 umask 077
-ltrace -s 128 -o "$trace" -- "$program"
+/usr/bin/ltrace -s 128 -o "$trace" -- "$program"
 ~~~
 
 This launches the program. `-s` limits displayed string length; trace output can contain application data. Check stderr and termination status before treating an empty trace as absence of calls. Use `-e 'malloc+free'` when those are the selected calls; quote filters against shell expansion. Use `-f` only when child behavior is part of the task.

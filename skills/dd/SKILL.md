@@ -5,13 +5,15 @@ description: Acquire a selected offline block-device image or extract exact byte
 
 # Copy an explicitly measured extent
 
+Installed invocation: `/usr/bin/dd`, version `dd (coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. For a regular-file extent, establish the format, measured byte range and fresh regular-file destination, then use the procedure below. For acquisition from an identified offline block source, read [block-device acquisition](references/block-device-acquisition.md) completely before that procedure. Finish with status, exact size, identity and consistency limits; a short copy or missing prerequisite remains incomplete.
 
 Use ordinary file copying for a whole file. `dd` earns its place when a format identifies an exact byte range. Define `image` as an existing regular working file, `output` as a new regular-file destination, `offset` as a nonnegative byte offset and `length` as the positive number of bytes required. Verify the range against the source length and actual format first.
 
 ~~~bash
-dd --version
-dd --help
+/usr/bin/dd --version
+/usr/bin/dd --help
 stat -c '%s' -- "$image"
 test -f "$image" && dd if="$image" of="$output" bs=1M skip="${offset}B" count="${length}B" iflag=fullblock conv=excl status=progress &&
 stat -c '%s' -- "$output"

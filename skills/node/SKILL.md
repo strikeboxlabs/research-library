@@ -5,6 +5,8 @@ description: Use Node.js for CommonJS resolution, an owned HTTP server, selected
 
 # CommonJS lookup and application contracts
 
+Installed invocation: `/usr/bin/node`, version `v24.21.0`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Establish the trusted Node runtime and inspected launch environment, then select the task and read its conditional reference fully. For CommonJS lookup below, resolve from the actual requiring file and retain the selected path or concrete error; predicted resolution does not establish application execution. For launching an owned HTTP server, read [owned server execution](references/owned-http-server.md) fully first and finish with its actual listener/response and cleanup. For a module execution/identity demonstration, read [module precedence and a controlled canary](references/module-precedence.md) fully before changing or running that selected job.
 
 For an application using Socket.IO events, read [a selected event with an existing client](references/socketio-event.md) fully before that procedure; it requires an installed compatible socket.io-client and the observed subscription/session contract. Keep this branch unloaded for ordinary resolution.

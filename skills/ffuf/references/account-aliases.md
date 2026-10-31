@@ -5,7 +5,7 @@ Use for an authorized comparison of a known CMS profile-route pattern. Backdrop'
 Require a scoped `base_url`, bounded `usernames` file containing reviewed URL-safe name candidates and known absent/positive controls where available. Start without a status filter:
 
 ~~~bash
-ffuf -w "$usernames:FUZZ" -u "$base_url/?q=accounts/FUZZ" \
+/usr/bin/ffuf -w "$usernames:FUZZ" -u "$base_url/?q=accounts/FUZZ" \
   -mc all -t 2 -rate 5 -timeout 10 -maxtime 120 -of json -o "$results"
 ~~~
 

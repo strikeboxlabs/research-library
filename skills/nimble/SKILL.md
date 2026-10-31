@@ -5,11 +5,13 @@ description: Inspect and provision selected dependencies for an existing Nim too
 
 # Resolve the intended Nim dependencies
 
+Installed invocation: `/usr/bin/nimble`, version `nimble v0.24.1 compiled at 2026-09-09 09:06:02`.
+
 Read this entire file before acting. Inspect the tool's package requirements and installed Nim/Nimble versions. Finish with the selected versions and resulting package/build evidence; installation success does not establish that a tool's generated artifact works.
 
 ~~~bash
-nimble -v
-nimble list --installed
+/usr/bin/nimble -v
+/usr/bin/nimble list --installed
 ~~~
 
 Use the installation context belonging to the worker/build identity. A package installed under a different user or Nimble directory may not be available to this build. The installed package list describes local versions; a registry search result does not prove installation.
@@ -17,7 +19,7 @@ Use the installation context belonging to the worker/build identity. A package i
 When dependency installation is an authorized task, define `package_spec` as the reviewed name/version specification and install that selection:
 
 ~~~bash
-nimble install "$package_spec"
+/usr/bin/nimble install "$package_spec"
 ~~~
 
 For example, the syntax `package@VERSION` selects a version; substitute a real requirement instead of inventing a pin. An unpinned installation can select a newer release than the source project used. Review package origin and build hooks; installation can fetch dependencies and compile code. It is a separate state-changing operation, not a routine side effect of reading this skill.

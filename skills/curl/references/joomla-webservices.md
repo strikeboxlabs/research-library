@@ -6,7 +6,7 @@ Define `base_url` as the scoped Joomla application URL without a trailing slash,
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' \
   "$base_url/administrator/manifests/files/joomla.xml"
 ~~~
@@ -18,11 +18,11 @@ Require transport completion and an actual Joomla XML manifest before interpreti
 Where this specific information-disclosure check is in scope, choose fresh captures for an unauthenticated baseline without query/authentication, then a second request with the known query:
 
 ~~~bash
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --dump-header "$baseline_headers" --output "$baseline_body" \
   --write-out 'status=%{http_code}\n' \
   "$base_url/api/index.php/v1/config/application"
-curl --silent --show-error --connect-timeout 5 --max-time 30 \
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 \
   --dump-header "$test_headers" --output "$test_body" \
   --write-out 'status=%{http_code}\n' \
   "$base_url/api/index.php/v1/config/application?public=true"

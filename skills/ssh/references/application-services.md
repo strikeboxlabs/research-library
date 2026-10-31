@@ -5,7 +5,7 @@ Use when an SSH-protocol endpoint presents a chat/application interface rather t
 Define `host`, `port` and `nickname` for that scoped application:
 
 ~~~bash
-ssh -p "$port" -l "$nickname" "$host"
+/usr/bin/ssh -p "$port" -l "$nickname" "$host"
 ~~~
 
 Read the welcome and actual help interface. A Devzat-style service can expose slash commands for users, rooms and command descriptions. Use the supported `/help` and command-list/help command shown by **that build**; historical `/commands` and current upstream `/cmds`/`/man` are not interchangeable promises. Do not send shell commands simply because the transport is SSH. Text pasted into chat may be published to other participants.
@@ -13,7 +13,7 @@ Read the welcome and actual help interface. A Devzat-style service can expose sl
 For an observed `no matching host key type found` failure offering only `ssh-rsa`, and an authorized compatibility exception for this endpoint:
 
 ~~~bash
-ssh -oHostKeyAlgorithms=+ssh-rsa -p "$port" -l "$nickname" "$host"
+/usr/bin/ssh -oHostKeyAlgorithms=+ssh-rsa -p "$port" -l "$nickname" "$host"
 ~~~
 
 The `+` appends to defaults rather than replacing them. `ssh-rsa` here is the RSA/SHA-1 **signature** algorithm; RSA keys can also use SHA-2 and need not be regenerated merely because SHA-1 is disabled. This option addresses host-key negotiation, not user-authentication signature policy, password failure or a changed host key. Keep the exception confined to this selected connection, verify server identity and prefer a stronger supported algorithm when available.

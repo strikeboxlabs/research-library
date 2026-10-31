@@ -14,16 +14,16 @@ Inspect status/body and follow scoped pagination links when required. Authentica
 Define `image_ref` as the selected approved repository/tag or digest reference and `image_metadata` as a fresh private output.
 
 ~~~bash
-docker pull "$image_ref"
-docker image inspect "$image_ref" > "$image_metadata"
+/usr/bin/docker pull "$image_ref"
+/usr/bin/docker image inspect "$image_ref" > "$image_metadata"
 ~~~
 
 Check each status and read metadata before choosing execution. For selected source inspection without starting the image, define a unique `inspection_name`, an existing private `destination` directory and known absolute `container_path`:
 
 ~~~bash
-container_id=$(docker create --name "$inspection_name" --entrypoint /bin/true "$image_ref") || exit
-docker cp "$container_id:$container_path" "$destination/"
-docker rm "$container_id"
+container_id=$(/usr/bin/docker create --name "$inspection_name" --entrypoint /bin/true "$image_ref") || exit
+/usr/bin/docker cp "$container_id:$container_path" "$destination/"
+/usr/bin/docker rm "$container_id"
 ~~~
 
 `create` creates container state without running its entrypoint; it can still create volume state. Match the image's declared volumes and record which filesystem was copied. `cp` extracts files through the daemon: keep acquisition isolated and inspect artifacts rather than executing recovered PHP/bootstrap code. Compare `composer.lock`, actual vendored package metadata and application call paths. A composer constraint such as `^9.1.8` is not the deployed patch version. Route code, hardcoded API credentials and environment-driven credentials are distinct evidence.

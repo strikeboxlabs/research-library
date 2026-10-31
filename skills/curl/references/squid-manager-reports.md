@@ -4,7 +4,7 @@ Require an owned known manager endpoint, its current ACL/action policy and an al
 
 ~~~bash
 umask 077
-curl --noproxy '*' --user "$manager_user" --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\npeer=%{remote_ip}\n' "$manager_base/menu"
+/usr/bin/curl --noproxy '*' --user "$manager_user" --silent --show-error --connect-timeout 5 --max-time 30 --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\npeer=%{remote_ip}\n' "$manager_base/menu"
 report_status=$?
 ~~~
 

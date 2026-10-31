@@ -5,12 +5,14 @@ description: Build a selected existing Linux tool with GNU make and interpret co
 
 # Build an existing configured tool
 
+Installed invocation: `/usr/bin/make`, version `GNU Make 4.4.1`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Use reviewed source/build instructions, select the intended target and bounded parallelism, and require both build completion and the expected artifact. For an Autotools project or feature missing from a produced binary, read [configured builds](references/configured-builds.md) fully before configuration or rebuilding. An installed working binary does not need a source build.
 
 Check `make --version` for the implementation. Define `build_dir` as the existing absolute configured build directory, `target` as the actual project's intended target, `jobs` as a positive chosen worker count, and `build_log` as a fresh private log:
 
 ~~~bash
-make -C "$build_dir" -j "$jobs" "$target" > "$build_log" 2>&1
+/usr/bin/make -C "$build_dir" -j "$jobs" "$target" > "$build_log" 2>&1
 status=$?
 ~~~
 

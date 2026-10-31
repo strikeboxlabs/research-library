@@ -6,8 +6,8 @@ Define `input_file` as the authorized password-list input, `salt` as the observe
 
 ~~~bash
 umask 077
-openssl passwd -help
-openssl passwd -1 -salt "$salt" -in "$input_file" >"$records"
+/usr/bin/openssl passwd -help
+/usr/bin/openssl passwd -1 -salt "$salt" -in "$input_file" >"$records"
 ~~~
 
 Check status before using records. File input is a password list, so multiple input lines can produce multiple records. Match the actual producer options; table mode can include cleartext and must not be added to ordinary evidence. Keep input/records private.

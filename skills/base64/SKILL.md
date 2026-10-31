@@ -5,6 +5,8 @@ description: Decode transferred binary artifacts and encode digest bytes or base
 
 # Preserve the bytes behind the encoding
 
+Installed invocation: `/usr/bin/base64`, version `base64 (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Identify and isolate the encoding container, then check decode status and recovered bytes. For digest bytes, base64url or HTTP form fields, read [encoded fields](references/encoded-fields.md) fully before that procedure. Finish with the recovered artifact or field and its integrity/coverage limits; missing or abbreviated source bytes cannot be repaired by decoding.
 
 Base64 describes a representation, not encryption or a password-hash algorithm. Preserve the captured input and identify its container before decoding. Do not run decoding over an entire JSON object, mail message or terminal transcript; extract the actual field/body first.
@@ -12,7 +14,7 @@ Base64 describes a representation, not encryption or a password-hash algorithm. 
 To compare an acquired binary artifact with an encoded field, first establish whether that field represents the whole file or a format-defined byte range. Define `binary_file` as that exact input and `encoded_file` as a fresh private output path:
 
 ~~~bash
-base64 --wrap=0 -- "$binary_file" > "$encoded_file"
+/usr/bin/base64 --wrap=0 -- "$binary_file" > "$encoded_file"
 ~~~
 
 GNU `--wrap=0` disables inserted line breaks. Check status and compare complete representations, or decode both and compare bytes. A one-byte header changes the encoding from the start; removing the first encoded character does not remove the first decoded byte. Preserve any justified binary extraction separately from the original.

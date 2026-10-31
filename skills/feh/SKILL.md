@@ -5,13 +5,15 @@ description: View a selected saved image from the Linux CLI with feh. Use when a
 
 # Inspect the selected picture
 
+Installed invocation: `/usr/bin/feh`, version `feh version 3.13.1`.
+
 Read this entire SKILL.md before acting. Select the saved image and display context; finish with the observed content or the specific decoder/display limitation.
 
 Check `feh --version` and installed help. Define `image` as the absolute saved-file path:
 
 ~~~bash
-feh --loadable -- "$image"
-feh -- "$image"
+/usr/bin/feh --loadable -- "$image"
+/usr/bin/feh -- "$image"
 ~~~
 
 The first command checks Imlib2 loadability; false status indicates a failed image load. It does not prove what the picture shows. The second opens a window and requires a usable X11 display/session. A missing display is distinct from corrupt image data. With no operands feh can enumerate the current directory, so keep the selected operand explicit.

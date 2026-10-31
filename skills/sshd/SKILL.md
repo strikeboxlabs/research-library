@@ -5,6 +5,8 @@ description: Check a reviewed OpenSSH server configuration and run a temporary o
 
 # Check and observe an owned SSH daemon
 
+Installed invocation: `/usr/sbin/sshd`, version `OpenSSH_10.6p1 Debian-1, OpenSSL 3.6.5 29 Sep 2026`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the verified installed daemon, a reviewed task configuration/host key, approved listener/account scope and the necessary existing administration rights. Check configuration before starting, retain listener/login evidence, then stop the owned daemon; a parse result alone is not a live server result.
 
 Define `sshd_bin` as its verified absolute executable, `config` as the existing absolute reviewed configuration and `effective` as a fresh private output. For its supported test modes:

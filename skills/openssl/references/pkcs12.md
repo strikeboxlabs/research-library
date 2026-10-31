@@ -3,7 +3,7 @@
 Use an existing authorized PFX/P12 copy. Define `bundle` as its absolute path. Inspect its structure without outputting keys or certificates:
 
 ~~~bash
-openssl pkcs12 -in "$bundle" -info -noout
+/usr/bin/openssl pkcs12 -in "$bundle" -info -noout
 ~~~
 
 Enter the actual import password at the prompt. A particular tool may have created a bundle with an empty password; do not assume every bundle has one. Keep MAC verification enabled. A wrong password, corrupt file and unavailable legacy cipher are different failures.
@@ -14,8 +14,8 @@ Define `cert_out` and `key_out` as fresh files in a private directory, then extr
 
 ~~~bash
 umask 077
-openssl pkcs12 -in "$bundle" -clcerts -nokeys -out "$cert_out"
-openssl pkcs12 -in "$bundle" -nocerts -out "$key_out"
+/usr/bin/openssl pkcs12 -in "$bundle" -clcerts -nokeys -out "$cert_out"
+/usr/bin/openssl pkcs12 -in "$bundle" -nocerts -out "$key_out"
 ~~~
 
 The first command selects certificates associated with the identity rather than CA certificates and omits keys. The second omits certificates and normally prompts for a **new output PEM passphrase** as well as the bundle's import password. Keep key output encrypted. `-noenc` (older `-nodes`) removes that output encryption and is not needed for ordinary inspection. Add a legacy compatibility flag only if the earlier diagnosis required it.
@@ -28,8 +28,8 @@ Use the intended issued certificate and its owned matching private key, with any
 
 ~~~bash
 umask 077
-openssl pkcs12 -export -in "$cert" -inkey "$key" -certfile "$chain" -out "$bundle_out"
-openssl pkcs12 -in "$bundle_out" -info -noout
+/usr/bin/openssl pkcs12 -export -in "$cert" -inkey "$key" -certfile "$chain" -out "$bundle_out"
+/usr/bin/openssl pkcs12 -in "$bundle_out" -info -noout
 ~~~
 
 Check export success before inspection. Omit `-certfile` if no additional certificates are required. It includes supplied certificates; it does not grant trust or verify a service's mapping. Enter the key's existing passphrase and a distinct intended bundle export password at their prompts. Export creates a bundle, not a new CA-issued identity. Retain the issued certificate fingerprint, bundle path and integrity/inspection result. Diagnose a consumer's supported algorithms before changing export compatibility settings.

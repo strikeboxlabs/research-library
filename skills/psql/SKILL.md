@@ -5,6 +5,8 @@ description: Connect to a known PostgreSQL database, inspect schema, export sele
 
 # Establish the PostgreSQL connection
 
+Installed invocation: `/usr/bin/psql`, version `psql (PostgreSQL) 18.6 (Debian 18.6-3)`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Establish the actual server/database/role, inspect the selected schema and retain query status with bounded results. A failed reconnect or export remains incomplete; do not infer permissions or database identity from a prompt alone.
 
 For a selected server-file write through COPY, including a scoped shell-startup reproduction, read [COPY server-file boundaries](references/copy-server-files.md) fully first. It requires an inspected absolute server destination and recoverable intended file change; a write result is separate from execution.
@@ -14,7 +16,7 @@ For a legacy Django/Sentry database or a wrapped authentication record, read [se
 Check `psql --version` separately from the server version. Define `service` as an existing reviewed libpq service name with the intended host, port, database, role and TLS policy. Use known credentials through its protected password file; on Linux, a password file with group/world access is ignored.
 
 ~~~bash
-psql -X -w --dbname="service=$service connect_timeout=5" --set=ON_ERROR_STOP=1 --pset=pager=off -c '\conninfo' -c 'SELECT current_database(), session_user, current_user, version();'
+/usr/bin/psql -X -w --dbname="service=$service connect_timeout=5" --set=ON_ERROR_STOP=1 --pset=pager=off -c '\conninfo' -c 'SELECT current_database(), session_user, current_user, version();'
 ~~~
 
 `-X` skips system/user psql startup files. `-w` suppresses password prompts; it does not bypass authentication. For an interactive known-password login, replace it with `-W`. The latter forces a prompt, not password authentication at the server. Keep passwords out of command arguments.
@@ -45,7 +47,7 @@ After verifying the illustrative schema and columns below, define `account_label
 
 ~~~bash
 umask 077
-psql -X -w --dbname="service=$service connect_timeout=5" --set=ON_ERROR_STOP=1 --set=account_label="$account_label" --quiet --csv --pset=pager=off >"$output" <<'SQL'
+/usr/bin/psql -X -w --dbname="service=$service connect_timeout=5" --set=ON_ERROR_STOP=1 --set=account_label="$account_label" --quiet --csv --pset=pager=off >"$output" <<'SQL'
 BEGIN READ ONLY;
 SET LOCAL statement_timeout = '5s';
 SELECT id, username

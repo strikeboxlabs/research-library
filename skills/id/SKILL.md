@@ -5,18 +5,20 @@ description: Inspect current Linux process real/effective user and group IDs wit
 
 # Establish the current execution identity
 
+Installed invocation: `/usr/bin/id`, version `id (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Run the identity check in the actual session/process context being examined, and distinguish it from a named-account database lookup. Finish with numeric real/effective IDs and relevant group context; UID zero alone does not establish every requested capability or another process's identity.
 
 For the current shell's execution context:
 
 ~~~bash
-id --version
-id
-id -u
-id -ru
-id -g
-id -rg
-id -G
+/usr/bin/id --version
+/usr/bin/id
+/usr/bin/id -u
+/usr/bin/id -ru
+/usr/bin/id -g
+/usr/bin/id -rg
+/usr/bin/id -G
 ~~~
 
 GNU `-u` and `-g` print the effective user and primary group IDs; `-r` selects their real IDs. `-G` lists group IDs, including supplementary membership. Check each status and preserve numeric output. Names can depend on account lookup and namespace; `-n` chooses names for these selectors, not a stronger identity check. A shell-launch wrapper may change IDs before id runs, so correlate a discrepancy with that launch rather than claiming the parent has identical IDs.

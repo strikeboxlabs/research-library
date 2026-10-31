@@ -5,8 +5,8 @@ Start with the entrypoint's coherent read-only database copy and actual table sc
 For a schema actually exposing `users(id, username, password_digest, role, ...)`, define `database` as the acquired copy:
 
 ~~~bash
-sqlite3 -init /dev/null -readonly -batch -bail "$database" '.schema users'
-sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" 'SELECT id, username, role, typeof(password_digest) AS storage_type, length(password_digest) AS stored_length FROM users ORDER BY id LIMIT 20;'
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail "$database" '.schema users'
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" 'SELECT id, username, role, typeof(password_digest) AS storage_type, length(password_digest) AS stored_length FROM users ORDER BY id LIMIT 20;'
 ~~~
 
 This bounded metadata view keeps role/account/storage facts together before selecting sensitive records. Confirm the columns in this database; do not transplant the query to another schema without adapting it. A record absent from this snapshot differs from a query/schema failure. Role labels such as administrator are application authority, not OS group membership or UID.
@@ -15,7 +15,7 @@ For a selected numeric row identifier, retain its complete verifier and identity
 
 ~~~bash
 umask 077
-sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" 'SELECT id, username, role, password_digest FROM users WHERE id = 2 LIMIT 1;' >"$records"
+/usr/bin/sqlite3 -init /dev/null -readonly -batch -bail -header -csv "$database" 'SELECT id, username, role, password_digest FROM users WHERE id = 2 LIMIT 1;' >"$records"
 ~~~
 
 Define records as a fresh private CSV file. Check query status and parse CSV properly; default pipe-separated `SELECT *` loses explicit column association and can be ambiguous. Preserve the original full verifier without rewrapping, stripping its prefix or assuming a fixed cost from the field name. An observed complete `$2a$12$...` record is a bcrypt-family candidate with its embedded revision/cost; verify the consumer and installed offline loader instead of treating every Rails record as identical.

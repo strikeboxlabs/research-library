@@ -5,6 +5,8 @@ description: Resolve a bounded Windows RID range to account and group names with
 
 # Bounded SID lookup
 
+Installed invocation: `/usr/bin/impacket-lookupsid`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Require the selected server, permitted session, SID scope and bounded RID interval. No conditional resource is required. Finish with resolved principal types, the complete lookup/error log and any incomplete interval; a successful exit alone does not establish coverage.
 
 Check the installed entrypoint (`impacket-lookupsid` or `lookupsid.py`) and its `-h`. This is LSA name lookup over SMB, requiring a permitted session and policy lookup access. It does not validate passwords for the names returned.

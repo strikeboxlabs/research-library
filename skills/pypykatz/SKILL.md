@@ -5,13 +5,15 @@ description: Inspect existing LSASS minidumps or derive a known-password NT valu
 
 # Inspect an existing LSASS minidump
 
+Installed invocation: `/usr/bin/pypykatz`, version `0.6.13`.
+
 Use an existing process minidump from the authorised acquisition. Preserve its hash, source machine and capture time; a filename such as `lsass.DMP` alone does not establish its process or format. Extract an archive into a separate working directory before selecting the actual dump. A full-system memory image requires a different reader.
 
 Check `pypykatz lsa -h` for this release's input, package and output options. Define `dump` as the absolute working-copy filename, `report` as a fresh private JSON filename and `log` as a fresh diagnostic filename. For an MSV-focused inspection:
 
 ~~~bash
 umask 077
-pypykatz lsa minidump "$dump" --packages msv --json --outfile "$report" --halt-on-error >"$log" 2>&1
+/usr/bin/pypykatz lsa minidump "$dump" --packages msv --json --outfile "$report" --halt-on-error >"$log" 2>&1
 ~~~
 
 This parses local bytes; it neither acquires a live process nor authenticates to another machine. `--packages msv` limits package coverage. Choose additional packages only when the task needs their material; omitted packages cannot support a negative conclusion. `--halt-on-error` makes detected parsing failures stop the run. Check diagnostics, exit status and the newly written report together; a file's existence alone is insufficient.
@@ -36,7 +38,7 @@ The [upstream project](https://github.com/skelsec/pypykatz) and [LSA CLI impleme
 `pypykatz crypto nt` computes the NT hash of its password argument locally. For an explicitly public fixture value:
 
 ~~~bash
-pypykatz crypto nt 'Example-Only-Password!'
+/usr/bin/pypykatz crypto nt 'Example-Only-Password!'
 ~~~
 
 The calculation is MD4 of the exact password encoded as UTF-16LE, without a terminator; case and characters matter. It does not contact AD or confirm any account accepts the text. The output is a 16-byte value rendered as 32 hexadecimal characters. In RC4-HMAC Kerberos, this is the password-derived key; it is not an AES service key, a Kerberoast record or a captured NetNTLMv2 response.

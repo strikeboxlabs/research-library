@@ -5,6 +5,8 @@ description: Signal one identified owned process or Bash job and verify its term
 
 # Stop the selected owned job
 
+Installed invocation: `/usr/bin/kill`, version `kill from procps-ng 4.0.7`.
+
 Read this entire SKILL.md before acting. Require ownership/stop authority and a current process or job identity. This procedure uses Bash's builtin; inspect `type kill` and `help kill` to confirm it. No conditional resources are required. Finish with signal status and verified exit, including any unresolved children.
 
 For an owned job in this interactive shell:
@@ -16,7 +18,7 @@ jobs -l
 Define `job` as the exact observed jobspec, for example `%1` only if that row is the intended collector. Then:
 
 ~~~bash
-kill -s TERM -- "$job"
+/usr/bin/kill -s TERM -- "$job"
 signal_status=$?
 wait -f "$job"
 exit_status=$?

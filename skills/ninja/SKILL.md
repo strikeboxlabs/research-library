@@ -5,21 +5,23 @@ description: Build a selected target from an existing generated Ninja graph and 
 
 # Build a generated target
 
+Installed invocation: `/usr/bin/ninja`, version `1.13.2`.
+
 Read this entire SKILL.md before acting. Require a reviewed source tree, its generated build.ninja and the intended configuration/compiler. No conditional resources are required. Finish with the target, status and resulting artifact identity; compilation is separate from running tests or installing the program.
 
 Define `build_dir` as the absolute generated directory, `target` as its actual target, `jobs` as a chosen positive concurrency limit and `build_log` as a fresh log. Inspect the installed implementation and graph:
 
 ~~~bash
-ninja --version
-ninja -h
-ninja -C "$build_dir" -t targets all
-ninja -C "$build_dir" -t query "$target"
+/usr/bin/ninja --version
+/usr/bin/ninja -h
+/usr/bin/ninja -C "$build_dir" -t targets all
+/usr/bin/ninja -C "$build_dir" -t query "$target"
 ~~~
 
 Check statuses and use the graph's exact target name. Ninja consumes a generated graph; it does not choose debug/release mode or discover missing compiler dependencies. Configure those through the project's generator first. A missing build.ninja means the directory or generation step is wrong, rather than a reason to create an improvised file.
 
 ~~~bash
-ninja -C "$build_dir" -j "$jobs" "$target" >"$build_log" 2>&1
+/usr/bin/ninja -C "$build_dir" -j "$jobs" "$target" >"$build_log" 2>&1
 status=$?
 ~~~
 

@@ -17,7 +17,7 @@ Define `config_file` as the complete reviewed config with only the intended tran
 
 ~~~bash
 umask 077
-curl -q --config "$config_file" --connect-timeout 5 --max-time 30 \
+/usr/bin/curl -q --config "$config_file" --connect-timeout 5 --max-time 30 \
   --dump-header "$headers" --write-out 'status=%{http_code}\n'
 ~~~
 
@@ -34,7 +34,7 @@ This confirms the transfer/destination boundary under that observed identity. It
 For a task requiring a local-file transfer, establish FILE protocol support and define `source_uri` as the fully encoded absolute `file:///...` URI of the selected authorized file, and `destination` as a fresh owned output:
 
 ~~~bash
-curl -q --proto '=file' --output "$destination" "$source_uri"
+/usr/bin/curl -q --proto '=file' --output "$destination" "$source_uri"
 ~~~
 
 The read and write use curl's running identity and filesystem access; a valid URI does not grant privileges. This is local acquisition, not an HTTP exchange. FILE URIs, HTTP 200 output, source permissions and a privileged scheduler are different facts. For an HTTP-only job, inspect the actual allowed protocol policy; merely adding an allowlist before untrusted config options is not a sandbox.

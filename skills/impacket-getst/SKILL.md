@@ -5,6 +5,8 @@ description: Request a Kerberos service ticket with Impacket getST and inspect t
 
 # Request the ticket for the intended service
 
+Installed invocation: `/usr/bin/impacket-getST`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Require the known requesting identity, KDC, exact service principal and any existing delegation selected by the task. No conditional resource is required. Finish with the actual cache's identity, service, flags and lifetime plus request errors; ticket issuance and application authorization remain separate outcomes.
 
 Check `impacket-getST -h`; upstream also ships `getST.py`. Define `getst_bin` as the installed executable, `identity` as the known `domain/account`, `dc_ip` as the intended KDC address, `spn` as the exact registered service/hostname, and `out` as a new private directory:

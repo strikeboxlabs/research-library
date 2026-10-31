@@ -5,6 +5,8 @@ description: Copy selected Linux files or directories with deliberate path and m
 
 # Copy paths and preserve the intended metadata
 
+Installed invocation: `/usr/bin/cp`, version `cp (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Select the exact source/destination and intended ownership/mode treatment; finish with verified bytes, resulting metadata and any partial-copy limits.
 
 This guidance targets GNU `cp`; check `cp --version`. Use it for a bounded, reviewed directory copy. A live application's files may change during traversal; cp alone does not produce a consistent database or application snapshot.

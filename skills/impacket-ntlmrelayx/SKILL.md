@@ -5,6 +5,8 @@ description: Configure a selected NTLM relay with Impacket and distinguish inbou
 
 # Select the destination and post-authentication action
 
+Installed invocation: `/usr/bin/impacket-ntlmrelayx`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire file and [relay stages](references/relay-stages.md) before starting a listener. For a selected LDAP DNS-record action or an AD CS HTTP authentication mismatch, also read [LDAP record and enrollment destinations](references/ldap-dns-and-adcs.md) fully. Require the authorized source client, listener network and destination. Finish with the actual principal, protocol, destination result and action evidence; captured challenge-response material alone is not a successful relay.
 
 Inspect `impacket-ntlmrelayx -h` for the installed build. This tool can perform actions after authentication; default behavior is not necessarily passive collection. Select a target and action explicitly. An omitted target can select reflection, and a target-file watcher can expand destinations after startup.
@@ -12,7 +14,7 @@ Inspect `impacket-ntlmrelayx -h` for the installed build. This tool can perform 
 For a controlled SMB relay whose selected outcome is an interactive SMB client rather than an automatic dump, define `target_host` and `listen_ip`. A current build with the shown server controls can restrict ingress to its SMB listener:
 
 ~~~bash
-impacket-ntlmrelayx -t "smb://$target_host" -ip "$listen_ip" -smb2support -i \
+/usr/bin/impacket-ntlmrelayx -t "smb://$target_host" -ip "$listen_ip" -smb2support -i \
   --no-http-server --no-wcf-server --no-raw-server --no-rpc-server \
   --no-winrm-server --no-mssql-server --no-rdp-server
 ~~~

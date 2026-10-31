@@ -5,6 +5,8 @@ description: Generate a selected OpenSSH key pair, inspect key identity and vali
 
 # Establish key identity before changing format
 
+Installed invocation: `/usr/bin/ssh-keygen`.
+
 Read this entire SKILL.md before acting; reuse complete current context. For a new selected key pair or a key recovered through a text transport, read [key creation and transfer](references/key-artifacts.md) fully before the applicable procedure. Finish with the intended artifact and observed parse/fingerprint result; key identity, key generation and server authorization are separate conclusions.
 
 For an already issued SSH certificate whose identity, principals or validity are disputed, read [certificate evidence](references/certificate-evidence.md) fully before inspection. It requires the selected certificate and independently obtained public identity/policy evidence; no CA private key is needed.

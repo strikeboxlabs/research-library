@@ -5,6 +5,8 @@ description: Build reviewed Go CLI projects and inspect Go binary evidence. Use 
 
 # Go build and binary evidence
 
+Installed invocation: `/usr/bin/go`, version `go version go1.27.3 linux/amd64`.
+
 Read this entire skill before acting; complete current context need not be re-read. Select a reviewed source build or static inspection of an owned binary. Before building, establish the module, required toolchain and dependency inputs below. For embedded metadata, decompiler output, random-number APIs or decoder evidence, read [static binary evidence](references/static-binary-evidence.md) fully; it is conditional on that task. Complete with the build exit status, output identity and toolchain, or the static findings and remaining evidence gaps. A build result does not establish execution.
 
 ## Establish the module before building

@@ -5,13 +5,15 @@ description: Connect to one approved IRC service with Irssi and inspect registra
 
 # Inspect an IRC registration reply
 
+Installed invocation: `/usr/bin/irssi`, version `irssi 1.4.5 (20231003 1405)`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the installed Irssi, a terminal, an approved server/port and a chosen nickname. Use a trusted profile whose startup scripts and connection settings are understood. Establish one connection below, retain its reply and close the owned session; a version string is a server claim, not patch verification.
 
 Define `nickname` as the chosen IRC nickname. Start without configured automatic connections:
 
 ~~~bash
-irssi --version
-irssi --noconnect --nick "$nickname"
+/usr/bin/irssi --version
+/usr/bin/irssi --noconnect --nick "$nickname"
 ~~~
 
 In Irssi, inspect `/help connect`. Replace SERVER and PORT with the chosen values in this client command; these are placeholders, not shell variables:

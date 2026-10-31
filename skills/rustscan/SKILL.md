@@ -5,6 +5,8 @@ description: Discover TCP ports quickly with RustScan and hand selected results 
 
 # Discover ports, then identify services
 
+Installed invocation: `/usr/bin/rustscan`, version `rustscan 2.3.0`.
+
 Read this entire file before acting. For Nmap handoff or incomplete results, also read [scan decisions](references/scan-decisions.md). Finish with the addresses/port range actually tested, discovered ports and follow-up evidence; an empty result is not proof that no service exists.
 
 `rustscan` is not available on the worker PATH. Treat that as a missing prerequisite for the commands below; do not plan a RustScan-first workflow or install it implicitly. For an authorized TCP discovery task, the installed `/usr/bin/nmap` is an alternative, with its own scope and completion evidence.
@@ -14,7 +16,7 @@ RustScan is useful independently of another scanner skill. Its default scripting
 Set `target` to one authorized IP and `ports` to a comma-separated numeric list. Start with deliberate scope and moderate concurrency:
 
 ~~~bash
-rustscan --no-config -a "$target" -p "$ports" -b 100 -t 3000 --tries 2 -g
+/usr/bin/rustscan --no-config -a "$target" -p "$ports" -b 100 -t 3000 --tries 2 -g
 ~~~
 
 `-g` suppresses the Nmap stage. `-b` controls concurrent socket work, while `-t` is a connection timeout in milliseconds. Neither is a requests-per-second guarantee. `--no-config` avoids inherited scan/script settings. If all TCP ports are in scope, replace `-p "$ports"` with `-r 1-65535`; do not silently widen a selected-port request.

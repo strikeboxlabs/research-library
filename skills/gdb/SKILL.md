@@ -5,6 +5,8 @@ description: Examine Linux native core dumps or a controlled live reproduction w
 
 # GDB native analysis
 
+Installed invocation: `/usr/bin/gdb`, version `GNU gdb (Debian 18.1-3) 18.1`.
+
 Read this entire SKILL.md before acting. Select offline core inspection or the conditional live procedure below, and read that reference fully before executing a target. Finish with build/stop context and supporting state, not a backtrace or discovered string alone.
 
 For missing external/library symbols, read [matching separate debug files](references/separate-debug-files.md) fully before selecting or relocating debug artifacts.
@@ -18,7 +20,7 @@ For an existing core, establish that it and the executable come from the same bu
 In the same shell invocation, define `binary` and `core` as the actual absolute artifact paths, and `report` as a fresh output file. Record `gdb --version` with the investigation.
 
 ~~~bash
-gdb -q -nx -batch -iex 'set auto-load off' -ex 'info files' -ex 'info threads' -ex 'thread apply all bt 12' "$binary" "$core" > "$report" 2>&1
+/usr/bin/gdb -q -nx -batch -iex 'set auto-load off' -ex 'info files' -ex 'info threads' -ex 'thread apply all bt 12' "$binary" "$core" > "$report" 2>&1
 ~~~
 
 This reads the artifacts and writes the report without attaching to or restarting a process. Startup and automatic script loading are disabled for a predictable inspection. Check the exit status and saved report. The 12-frame limit is a starting point; expand a relevant stack if it omits a needed caller.
@@ -38,7 +40,7 @@ Program terminated with signal SIGABRT, Aborted.
 The library frame locates the abort mechanism. Select the application frame to inspect the failed condition. Define `thread_id` and `frame_id` from the actual report (1 and 3 in this illustration), and `detail_report` as a new output:
 
 ~~~bash
-gdb -q -nx -batch -iex 'set auto-load off' -ex "thread $thread_id" -ex "frame $frame_id" -ex 'info args' -ex 'info locals' -ex 'list' "$binary" "$core" > "$detail_report" 2>&1
+/usr/bin/gdb -q -nx -batch -iex 'set auto-load off' -ex "thread $thread_id" -ex "frame $frame_id" -ex 'info args' -ex 'info locals' -ex 'list' "$binary" "$core" > "$detail_report" 2>&1
 ~~~
 
 With matching source and available values confirming `length=4`, `index=4` and the assertion, the supported conclusion is that the index equals the length at this check. This explains the assertion failure; it does not establish how the index acquired that value. Follow the source and the next relevant caller frame to investigate its origin. Repeated batch calls against an offline core need no persistent session.

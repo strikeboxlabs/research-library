@@ -5,14 +5,16 @@ description: Create, test or decompress GNU gzip streams while preserving the se
 
 # Recover the selected gzip stream
 
+Installed invocation: `/usr/bin/gzip`, version `gzip 1.14`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select recovery below or source-preserving compression in the final section, establish input/output paths, and retain final status and artifact checks. Filename or header recognition alone cannot complete either task.
 
 Define `compressed` as the existing absolute input and `decoded` as a fresh absolute output in an existing private directory:
 
 ~~~bash
 umask 077
-gzip --version
-gzip -t -- "$compressed" &&
+/usr/bin/gzip --version
+/usr/bin/gzip -t -- "$compressed" &&
 (set -C; gzip -dc -- "$compressed" > "$decoded") &&
 file -E -h -- "$decoded"
 ~~~

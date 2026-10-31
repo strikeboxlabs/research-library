@@ -5,7 +5,7 @@ Require the complete reviewed `.spec`, application sources/hooks and the permitt
 Define `spec_file` as its absolute path and fresh owned `build_directory` and `output_directory` outside the input tree:
 
 ~~~bash
-pyinstaller --workpath "$build_directory" --distpath "$output_directory" "$spec_file"
+/usr/bin/pyinstaller --workpath "$build_directory" --distpath "$output_directory" "$spec_file"
 status=$?
 ~~~
 

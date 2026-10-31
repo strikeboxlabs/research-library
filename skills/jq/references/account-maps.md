@@ -23,7 +23,7 @@ Do not apply this to text already decoded by a browser/HTML parser. An HTML wrap
 Define `records` as the decoded JSON file. Require exactly one object with string values before treating it as this account map:
 
 ~~~bash
-jq -s -e 'length == 1 and (.[0] | type == "object" and all(.[]; type == "string"))' "$records" > /dev/null
+/usr/bin/jq -s -e 'length == 1 and (.[0] | type == "object" and all(.[]; type == "string"))' "$records" > /dev/null
 ~~~
 
 Check that result before extraction. A different schema requires a different selector, not a grep/awk split on quotes. Duplicate JSON keys can be collapsed by parsers; a full JSON parser check does not prove original row uniqueness. Preserve acquisition evidence when that matters.
@@ -32,15 +32,15 @@ For `accounts` as a fresh private username-list path, require nonempty keys with
 
 ~~~bash
 umask 077
-jq -e 'all(keys[]; length > 0 and (test("[\\r\\n]") | not))' "$records" > /dev/null &&
-jq -r 'keys[]' "$records" > "$accounts"
+/usr/bin/jq -e 'all(keys[]; length > 0 and (test("[\\r\\n]") | not))' "$records" > /dev/null &&
+/usr/bin/jq -r 'keys[]' "$records" > "$accounts"
 ~~~
 
 Other consumers may strip whitespace or restrict names; validate their contract too. For a selected `user` and `digest_file`, preserve the account association and reject absence/type mismatch:
 
 ~~~bash
-jq -e --arg user "$user" 'has($user) and (.[$user] | type == "string" and length > 0 and (test("[\\r\\n]") | not))' "$records" > /dev/null &&
-jq -r --arg user "$user" '.[$user]' "$records" > "$digest_file"
+/usr/bin/jq -e --arg user "$user" 'has($user) and (.[$user] | type == "string" and length > 0 and (test("[\\r\\n]") | not))' "$records" > /dev/null &&
+/usr/bin/jq -r --arg user "$user" '.[$user]' "$records" > "$digest_file"
 ~~~
 
 Before feeding a one-line hash consumer, validate this selected value's encoding, delimiters and newline limits. A 32-character hex value fits several formats; report a format hypothesis separately from a recovered candidate and any actual login. Missing account keys or an expired cache entry are incomplete leads, not proof that the OS account is absent.

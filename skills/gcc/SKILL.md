@@ -5,12 +5,14 @@ description: Compile a selected C utility or ABI-matched shared library with GCC
 
 # Diagnose the build stage before changing flags
 
+Installed invocation: `/usr/bin/gcc`, version `gcc (Debian 16.2.0-3) 16.2.0`.
+
 Read this entire SKILL.md before acting. For a diagnostic shared object or an existing caller ABI, read [shared-library builds](references/shared-libraries.md) fully first. Identify the reviewed source, target architecture and required libraries. Finish with the build command, diagnostics and artifact identity; successful compilation does not establish that running the program is appropriate or correct.
 
 Define `source` as the intended C file and `output` as a new output path. For a debuggable build:
 
 ~~~bash
-gcc -Wall -Wextra -Og -g "$source" -o "$output"
+/usr/bin/gcc -Wall -Wextra -Og -g "$source" -o "$output"
 ~~~
 
 `-g` supplies debug information; optimization still affects variable visibility and stepping. Do not remove warnings or disable protections reflexively to get a historical program to build. Compiler errors may expose obsolete APIs or actual defects that need source review.
@@ -22,9 +24,9 @@ An implicit function declaration can conceal a wrong return type, including an i
 Separate stages when the error is unclear:
 
 ~~~bash
-gcc -E "$source" -o "$preprocessed"
-gcc -Wall -Wextra -c "$source" -o "$object"
-gcc "$object" -o "$output"
+/usr/bin/gcc -E "$source" -o "$preprocessed"
+/usr/bin/gcc -Wall -Wextra -c "$source" -o "$object"
+/usr/bin/gcc "$object" -o "$output"
 ~~~
 
 Define the additional paths first. `-E` stops after preprocessing, `-c` produces an object without linking, and the last command links it. A missing header points to include paths/development headers; an undefined reference points to definitions, libraries or link order. Libraries generally belong after the objects that reference them, for example `gcc "$object" -lm -o "$output"` when the source needs the math library. Use `g++` for C++ linking rather than assuming `gcc` adds its runtime libraries.

@@ -5,6 +5,8 @@ description: Use OpenSSH for selected-account/key/certificate logins, SSH applic
 
 # SSH connections and local forwarding
 
+Installed invocation: `/usr/bin/ssh`, version `OpenSSH_10.6p1 Debian-1, OpenSSL 3.6.5 29 Sep 2026`.
+
 `ssh -V` reports the invoked local client version, not the remote server or an acquired `sshd` binary. A matching advertised version does not establish daemon provenance or intact authentication code; compare the selected artifact with trusted package/build evidence before relying on it.
 
 Read this entire SKILL.md before acting; reuse complete current context. Map the client, SSH server and destination before connecting. If options/configuration can execute local helpers or a privileged launcher is involved, read [client commands](references/client-commands.md) fully first. For an authorized public-key installation through an established filesystem write, read [selected authorized-key change](references/authorized-key-change.md) fully first. For a selected private key, issued certificate or confusing password prompt, read [key authentication](references/key-authentication.md) fully first. For a selected Kerberos/GSSAPI login or name-mapping discrepancy, read [GSSAPI identity and delegation](references/gssapi-identity.md) fully first. Finish with observed authentication/tunnel behavior or the supported configuration finding; authenticated transport alone is not destination success.
@@ -22,7 +24,7 @@ For an acquired SSH login message, PAM/MOTD configuration or unexplained login d
 For an authorized interactive login, define `ssh_host`, `ssh_port` and `user` as the verified SSH endpoint and selected OS account. Confirm its host key through the established trust process, then use the intended credential mechanism:
 
 ~~~bash
-ssh -p "$ssh_port" "$user@$ssh_host"
+/usr/bin/ssh -p "$ssh_port" "$user@$ssh_host"
 ~~~
 
 A password obtained from a database setup file is a candidate for that database account, not automatically this Linux account. An authentication failure is specific to the endpoint, account, method and attempt; it does not disprove a separately evidenced reuse with another selected account. Check the server authentication trace before attributing the failure to the secret. Do not put a password in the command line; use the approved prompt/credential mechanism. An authenticated session and observed remote identity establish the login result; a changed prompt alone does not.
@@ -32,7 +34,7 @@ Map both ends before connecting: the listener is on the Linux client; the destin
 Define `ssh_host` and `user` for the known SSH account, `local_port` as a free client port, and `remote_port` as the observed service port on the SSH server. Confirm the server's host key through the established trust process. Keep the first tunnel in the foreground:
 
 ~~~bash
-ssh -N -T -o ExitOnForwardFailure=yes -L "127.0.0.1:$local_port:127.0.0.1:$remote_port" "$user@$ssh_host"
+/usr/bin/ssh -N -T -o ExitOnForwardFailure=yes -L "127.0.0.1:$local_port:127.0.0.1:$remote_port" "$user@$ssh_host"
 ~~~
 
 `-N` requests no remote command; `-T` avoids allocating a terminal. Explicit local loopback binding avoids exposing the forwarded service on every client interface. For a destination on a different authorized host, replace the destination loopback with the name/address reachable **from the SSH server**.

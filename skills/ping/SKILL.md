@@ -5,12 +5,14 @@ description: Use Linux iputils ping for a bounded ICMP echo check to one selecte
 
 # Check one selected echo path
 
+Installed invocation: `/usr/bin/ping`.
+
 Read this entire SKILL.md before acting. Require the permitted numeric peer and intended network namespace. Confirm iputils with `ping -V`; Windows/BusyBox options differ. No conditional resources are required. Finish with counts, timing, status and scope.
 
 Define `peer` as the selected IPv4 address:
 
 ~~~bash
-ping -4 -n -c 3 -w 5 "$peer"
+/usr/bin/ping -4 -n -c 3 -w 5 "$peer"
 status=$?
 ~~~
 

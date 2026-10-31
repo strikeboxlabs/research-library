@@ -5,6 +5,8 @@ description: Change one known account's SMB password with Samba smbpasswd from L
 
 # Distinguish password change from a login test
 
+Installed invocation: `/usr/bin/smbpasswd`.
+
 Confirm Samba's `smbpasswd` and its local help. `STATUS_PASSWORD_MUST_CHANGE` means the account requires a password change before logon; it is distinct from `STATUS_PASSWORD_EXPIRED` and a generic authentication failure. Preserve the exact response. Do not collapse it into a wrong-password result or retry many candidates.
 
 A password change is a persistent account operation, not harmless validation. Use this workflow when changing the named account is part of the task and the current credential is known. An administrator resetting another account's password is a different operation with different permissions and consequences.
@@ -12,7 +14,7 @@ A password change is a persistent account operation, not harmless validation. Us
 Run as an ordinary local user. Define `server` as the intended writable SMB/domain password endpoint, `domain` as the verified account domain and `account` as the exact account name:
 
 ~~~bash
-smbpasswd -r "$server" -U "$domain/$account"
+/usr/bin/smbpasswd -r "$server" -U "$domain/$account"
 ~~~
 
 Enter the old password and the selected new password twice at the prompts. Without `-r`, the default target is local; under root, smbpasswd also supports direct local account-database administration. Do not add `sudo`, `-a`, `-x` or `-n` to repair a remote change failure. Those options can add, delete or clear local SMB account credentials rather than solve the remote operation.

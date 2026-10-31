@@ -3,8 +3,8 @@
 For an existing private working-copy `key`, check the key without printing its private components:
 
 ~~~bash
-openssl pkey -in "$key" -noout -check
-openssl pkey -in "$key" -noout -text_pub
+/usr/bin/openssl pkey -in "$key" -noout -check
+/usr/bin/openssl pkey -in "$key" -noout -text_pub
 ~~~
 
 Retain the first command's status and diagnostic. An encrypted input can prompt for its passphrase; an unreadable/encrypted/unsupported object is not necessarily an invalid key pair. `-text_pub` exposes only public components; plain `-text` would expose private ones. Successful consistency checking does not establish the key owner's identity or application compatibility.
@@ -23,7 +23,7 @@ Define `pvk` as the owned RSA PVK copy and `pem_key` as a fresh output in a priv
 
 ~~~bash
 umask 077
-openssl rsa -inform PVK -in "$pvk" -outform PEM -aes256 -out "$pem_key"
+/usr/bin/openssl rsa -inform PVK -in "$pvk" -outform PEM -aes256 -out "$pem_key"
 ~~~
 
 Enter any required input passphrase and the new PEM passphrase at their prompts. Keep the output encrypted and check the conversion status before running `openssl pkey -in "$pem_key" -noout -check`. Compare public components with the original key or intended issued certificate when a matching identity matters. Conversion preserves key material; it does not grant access to encrypted files, install a certificate, or establish trust. PVK output flags such as `-pvk-none` do not request encrypted PEM output.

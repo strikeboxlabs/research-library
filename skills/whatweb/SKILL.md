@@ -5,13 +5,15 @@ description: Fingerprint a selected web endpoint with WhatWeb and interpret tech
 
 # Web technology evidence
 
+Installed invocation: `/usr/bin/whatweb`, version `WhatWeb version 0.6.4 ( https://morningstarsecurity.com/research/whatweb/ )`.
+
 Read this entire skill before acting; complete current context need not be re-read. Start with the exact scoped URL and bounded request behavior. Finish with observed matches, their evidence and uncertainty; a fingerprint is a lead for the next task, not confirmation of installation, exploitability or access.
 
 Check `whatweb --version` and `--help`. Define `url` with its intended scheme, hostname, port and path, and `report` as a fresh private log file:
 
 ~~~bash
 umask 077
-whatweb --aggression=1 --follow-redirect=never \
+/usr/bin/whatweb --aggression=1 --follow-redirect=never \
   --open-timeout=5 --read-timeout=10 --log-verbose="$report" "$url"
 ~~~
 

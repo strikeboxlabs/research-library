@@ -5,12 +5,14 @@ description: Check or align one owned Android APK with SDK zipalign. Use when na
 
 # Verify alignment before changing the copy
 
+Installed invocation: `/usr/bin/zipalign`.
+
 Read this entire SKILL.md before acting. Require the installed SDK Build Tools implementation, owned APK and its intended signing path. No conditional resources are required. Finish with alignment status and separate final signature evidence; alignment alone does not prove installability.
 
 Define `apk` as the selected file. Check installed help for -P support:
 
 ~~~bash
-zipalign -c -P 16 -v 4 "$apk"
+/usr/bin/zipalign -c -P 16 -v 4 "$apk"
 status=$?
 ~~~
 
@@ -19,7 +21,7 @@ status=$?
 If alignment is needed, define `aligned` as a fresh output:
 
 ~~~bash
-zipalign -P 16 -v 4 "$apk" "$aligned"
+/usr/bin/zipalign -P 16 -v 4 "$apk" "$aligned"
 status=$?
 ~~~
 

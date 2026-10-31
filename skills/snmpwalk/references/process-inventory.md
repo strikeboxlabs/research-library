@@ -6,7 +6,7 @@ Define `agent`, `community` and a fresh private `names` output as in the entrypo
 
 ~~~bash
 umask 077
-snmpwalk -v2c -c "$community" -t 2 -r 1 -On "$agent" .1.3.6.1.2.1.25.4.2.1.2 >"$names"
+/usr/bin/snmpwalk -v2c -c "$community" -t 2 -r 1 -On "$agent" .1.3.6.1.2.1.25.4.2.1.2 >"$names"
 ~~~
 
 Use the established v3 configuration instead when that is the deployment's contract. Inspect status/errors and complete rows. For one observed integer `index`, inspect its corresponding name and path, without assuming output order:

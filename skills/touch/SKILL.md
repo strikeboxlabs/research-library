@@ -5,13 +5,15 @@ description: Create a selected empty local marker or update access/modification 
 
 # Establish what the marker or timestamp means
 
+Installed invocation: `/usr/bin/touch`, version `touch (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Choose creation versus timestamp update, establish the exact owned path and preserve prior metadata when restoration matters. No conditional resources are required. Finish with status, observed file type/size/timestamps and the intended result; a name or timestamp alone does not establish file provenance or a shared host namespace.
 
 Check `touch --version` for GNU coreutils. Define `marker` as a fresh selected absolute path in an existing owned directory; inspect the parent and confirm no file or symbolic link already occupies that name. For an ordinary empty marker:
 
 ~~~bash
 umask 077
-touch -- "$marker"
+/usr/bin/touch -- "$marker"
 status=$?
 stat --format='%F %s %u:%g %n' -- "$marker"
 ~~~

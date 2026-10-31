@@ -5,13 +5,15 @@ description: Inspect the installed Ansible Galaxy CLI and selected local role di
 
 # Inspect local Ansible roles
 
+Installed invocation: `/usr/bin/ansible-galaxy`, version `ansible-galaxy [core 2.22.0b2]`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Use an installed `ansible-galaxy` under the intended account and trusted configuration. This task requires an existing selected role-parent directory and fresh private report/error paths. Inspect version/configuration and local role-list diagnostics below. Finish with the actual search paths, reported role versions and coverage gaps; no role installation or playbook run is part of this inventory.
 
 Establish which executable, interpreter and configuration this invocation reports:
 
 ~~~bash
-ansible-galaxy --version
-ansible-galaxy role list --help
+/usr/bin/ansible-galaxy --version
+/usr/bin/ansible-galaxy role list --help
 ~~~
 
 Use the installed help to confirm the role-list options. A wrapper, another account or a different working directory can select a different configuration or interpreter. Do not transfer this invocation's paths to a privileged wrapper without separate evidence. An Ansible/plugin error mentioning both system packages and a different Python/Jinja2 environment calls for resolving those exact versions and paths, rather than assuming every role is broken.

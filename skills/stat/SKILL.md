@@ -5,6 +5,8 @@ description: Inspect modification timestamps of a selected local artifact with G
 
 # Inspect the selected object's modification time
 
+Installed invocation: `/usr/bin/stat`, version `stat (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Select the existing file or symlink and decide whether the link itself or its referent is relevant; confirm GNU coreutils with `stat --version`. No conditional resources are required. Finish with the selected object, timestamp, status and interpretation limits; a failed query is not an epoch-zero timestamp.
 
 Define `file` as that path. Inspect both integer epoch seconds and the displayed modification timestamp in UTC:

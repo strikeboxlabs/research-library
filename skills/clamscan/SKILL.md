@@ -5,14 +5,16 @@ description: Scan selected owned files with ClamAV and interpret detections, err
 
 # Preserve scan scope and the actual result
 
+Installed invocation: `/usr/bin/clamscan`, version `ClamAV 1.4.6/28157/Sun Oct 18 02:24:14 2026`.
+
 Read this entire SKILL.md before acting. Require a trusted scanner, approved signature database and readable selected artifacts. Establish scope and private outputs first; use the approved isolated analysis context with ordinary file access. Finish with status, detections, errors/skipped files and engine/database coverage.
 
 Define `artifact` as the selected absolute regular-file path and `scan_log` as a fresh private output file:
 
 ~~~bash
 umask 077
-clamscan --version
-clamscan -- "$artifact" >"$scan_log" 2>&1
+/usr/bin/clamscan --version
+/usr/bin/clamscan -- "$artifact" >"$scan_log" 2>&1
 scan_status=$?
 printf 'scan status: %s\n' "$scan_status"
 ~~~
@@ -22,7 +24,7 @@ Read the relevant whole report. Status 0 means no virus found, 1 detections, 2 e
 For a reviewed list of owned inputs, define `file_list` as one absolute path per line; handle newline filenames separately:
 
 ~~~bash
-clamscan --file-list="$file_list" >"$scan_log" 2>&1
+/usr/bin/clamscan --file-list="$file_list" >"$scan_log" 2>&1
 scan_status=$?
 ~~~
 

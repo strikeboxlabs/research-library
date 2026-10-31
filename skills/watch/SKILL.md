@@ -5,12 +5,14 @@ description: Observe repeated read-only directory or systemd timer output with p
 
 # Observe the selected read-only command
 
+Installed invocation: `/usr/bin/watch`, version `watch from procps-ng 4.0.7`.
+
 Read this entire SKILL.md before acting. Select the known directory or timer, read-only command and observation window. Require installed procps-ng watch and an interactive terminal; timer observation also requires the intended running systemd manager. There are no conditional resources. Finish with observed samples and timing/visibility limits; an unavailable terminal or failed command leaves an evidence gap.
 
 Check `watch --help` for this implementation. Define `directory` as an absolute directory you are authorized to observe:
 
 ~~~bash
-watch -n 2 -d -x ls -la -- "$directory"
+/usr/bin/watch -n 2 -d -x ls -la -- "$directory"
 ~~~
 
 `-x` passes arguments directly to the command, avoiding another shell parse. The invoking shell expands the quoted variable once; watch does not expand wildcards, pipelines or redirections in this mode. Without `-x`, the command is interpreted through a shell on every run, so choose that behavior explicitly before adding shell syntax.
@@ -22,7 +24,7 @@ End the observation with Ctrl-C. Record the interval, selected path and actual o
 For a selected scheduled task, define `timer` as the exact `.timer` unit and use the intended system manager:
 
 ~~~bash
-watch -n 2 -d -x systemctl --no-pager --full list-timers --all "$timer"
+/usr/bin/watch -n 2 -d -x systemctl --no-pager --full list-timers --all "$timer"
 ~~~
 
 For a user manager, add `--user` to the systemctl arguments in the selected user's session. Preserve UNIT and ACTIVATES separately: the timer is not the service it triggers. NEXT/LAST describe trigger timing, not completed backup/application work. The displayed gap between samples does not establish the configured recurrence. Follow the selected unit's configuration, service result and output separately; do not start it to improve a read-only observation. See [systemctl timer fields](https://github.com/systemd/systemd/blob/main/man/systemctl.xml).

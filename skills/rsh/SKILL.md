@@ -5,12 +5,14 @@ description: Use a GNU Inetutils rsh client for a selected legacy remote command
 
 # Select command execution or remote login deliberately
 
+Installed invocation: `/usr/bin/rsh`.
+
 Read this entire file before acting. Confirm the installed implementation with `rsh --version` and `rsh --help`; this recipe describes GNU Inetutils. Finish with the actual client/protocol, selected host/user and observed command result.
 
 For an authorized command on an existing legacy service, define `server` and `remote_user`:
 
 ~~~bash
-rsh -n -l "$remote_user" "$server" 'id'
+/usr/bin/rsh -n -l "$remote_user" "$server" 'id'
 ~~~
 
 `-n` supplies no standard input, avoiding an unintended wait for input from the local terminal or pipeline. Omit it only when the remote command should consume stdin. Quote the remote command as one local-shell argument. For example, redirection inside the quoted command occurs remotely; redirection outside it writes on the local machine.

@@ -5,13 +5,15 @@ description: Open a KeePass copy with known unlock material, inspect its group i
 
 # Inspect a KeePass copy or recover a selected attachment
 
+Installed invocation: `/usr/bin/kpcli`.
+
 Read this entire SKILL.md before acting. Establish the authorized database copy, known master password and any required key file, plus the installed kpcli/backend format support. The inventory task below needs no other resource. For a selected nonsecret attachment, read [attachment export](references/attachment-export.md) completely before its procedure. Finish with the actual open result and requested inventory or verified exported artifact; report a specific missing prerequisite instead of claiming recovery.
 
 Keep the original unchanged and define `database` as an existing absolute working-copy path. Review the installed options, then start a session that prevents database edits and does not persist command history:
 
 ~~~bash
-kpcli --help
-kpcli --readonly --histfile /dev/null --kdb "$database"
+/usr/bin/kpcli --help
+/usr/bin/kpcli --readonly --histfile /dev/null --kdb "$database"
 ~~~
 
 When this database requires a known key file, add `--key "$key_file"`, defining that variable as its existing absolute path. Enter the master password at the console prompt; keep it out of command arguments and logs.

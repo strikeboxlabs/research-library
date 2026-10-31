@@ -5,12 +5,14 @@ description: Start a selected local Linux account session with su and a known cr
 
 # Selected local account session
 
+Installed invocation: `/usr/bin/su`, version `su from util-linux 2.42.4`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select the actual OS account and intended session, authenticate through the prompt, and verify the resulting process identity before reporting access. A password recovered for an application account is only a reuse candidate for an OS account.
 
 Check `su --version` and `su --help` to identify the installed implementation. The procedure below targets util-linux su. Define `account` as the selected local account whose session is authorized:
 
 ~~~bash
-su --login "$account"
+/usr/bin/su --login "$account"
 ~~~
 
 Enter the known password at the prompt. Once the new shell opens, run:

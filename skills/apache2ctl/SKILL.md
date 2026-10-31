@@ -5,6 +5,8 @@ description: Check a trusted owned Apache HTTP Server configuration with its ins
 
 # Check the intended Apache configuration
 
+Installed invocation: `/usr/sbin/apache2ctl`, version `AH00558: apache2: Could not reliably determine the server's fully qualified domain name, u`.
+
 Read this entire SKILL.md before acting. Require a trusted installed wrapper and an owned configuration whose includes, modules and environment files are reviewed. All instructions are inline. Finish with the binary/version, effective configuration root, command status and diagnostics; missing modules, environment or file access remain explicit context gaps.
 
 Identify the actual wrapper and service configuration on the controlled image. The name may be apache2ctl or apachectl; do not infer its executable location from a displayed process command line. The wrapper can set variables and select a different server binary. Check its installed help and configuration before invoking it, including environment overrides. A copied configuration tree may still refer to files outside that tree.

@@ -3,9 +3,9 @@
 Use the environment's established capture permissions. Define `iface` as the actual capture-point interface, `peer` as the selected endpoint visible there, `port` as its decimal TCP port and `pcap` as a fresh private file. List available interfaces if needed:
 
 ~~~bash
-tshark -D
+/usr/bin/tshark -D
 umask 077
-tshark -n -i "$iface" -f "host $peer and tcp port $port" -a duration:15 -w "$pcap"
+/usr/bin/tshark -n -i "$iface" -f "host $peer and tcp port $port" -a duration:15 -w "$pcap"
 ~~~
 
 This observes that flow for fifteen seconds; adapt the window to the requested event. Start before the event and retain termination status, stderr and capture statistics. `-f` is a capture filter, while `-Y` filters dissected display output. A capture can contain sensitive application bytes; keep the file private.

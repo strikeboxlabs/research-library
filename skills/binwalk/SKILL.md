@@ -5,6 +5,8 @@ description: Identify embedded signatures, inspect entropy and extract selected 
 
 # Binwalk signature scan and extraction
 
+Installed invocation: `/usr/bin/binwalk`.
+
 Read this entire SKILL.md before acting. Define `input` as the acquired file; preserve it and use a fresh `outdir` for extraction. Scan first, then extract only the selected matches when required. Finish with offsets, verified file types, produced artifacts and any extraction failures; a signature match alone does not establish a valid embedded structure.
 
 ## Installed implementation

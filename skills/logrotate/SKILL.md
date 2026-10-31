@@ -5,14 +5,16 @@ description: Diagnose logrotate decisions without rotating logs. Use for custom 
 
 # Diagnose a rotation job
 
+Installed invocation: `/usr/sbin/logrotate`, version `logrotate 3.22.0`.
+
 Check `logrotate --version` and local help. Establish the actual executable, invocation UID, configuration arguments in order, state-file option and scheduler command. A process using a private configuration does not establish that `/etc/logrotate.conf` or its includes apply. If those inputs are unreadable, record the missing evidence; another configuration cannot explain that job.
 
 Define `config` as the observed readable configuration and `report` as a fresh local report path:
 
 ~~~bash
-logrotate --version
+/usr/sbin/logrotate --version
 umask 077
-logrotate --debug "$config" >"$report" 2>&1
+/usr/sbin/logrotate --debug "$config" >"$report" 2>&1
 rotation_status=$?
 ~~~
 

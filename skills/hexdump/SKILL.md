@@ -5,12 +5,14 @@ description: Inspect a selected binary region with util-linux hexdump in canonic
 
 # Inspect bytes at their file offsets
 
+Installed invocation: `/usr/bin/hexdump`, version `hexdump from util-linux 2.42.4`.
+
 Read this entire SKILL.md before acting. Require the acquired ordinary file and selected byte region. No conditional resources are required. Finish with status, actual covered offsets and the format-supported interpretation; a partial region cannot establish a whole object.
 
 Check `hexdump --version` and local options. Define `artifact` as the working-copy path, `offset` as a nonnegative byte offset and `length` as the positive byte budget:
 
 ~~~bash
-hexdump -C -v -s "$offset" -n "$length" -- "$artifact"
+/usr/bin/hexdump -C -v -s "$offset" -n "$length" -- "$artifact"
 status=$?
 ~~~
 

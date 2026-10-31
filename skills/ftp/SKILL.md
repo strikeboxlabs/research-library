@@ -5,6 +5,8 @@ description: Transfer selected files with a traditional Linux ftp client and dis
 
 # FTP file transfers
 
+Installed invocation: `/usr/bin/ftp`.
+
 Read this entire skill before acting; complete current context need not be re-read. Establish the intended server, known credentials and selected transfer before connecting. For an authorised upload and HTTP publication check, read [upload-to-web mapping](references/upload-web-mapping.md) fully first. Completion requires transfer/content evidence for the requested task; login success alone is insufficient.
 
 Identify the installed implementation through its package/version and interactive `help`. GNU inetutils, tnftp and other clients differ in passive-mode defaults and switches. `sftp` is a different protocol, not a spelling of FTP.

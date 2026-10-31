@@ -5,12 +5,14 @@ description: Bound an owned foreground command with GNU timeout and retain parti
 
 # Bound the selected process
 
+Installed invocation: `/usr/bin/timeout`, version `timeout (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Require the reviewed command and intended duration/termination behavior. No conditional resources are required. Finish with status, captured result and termination evidence; a timeout is incomplete observation.
 
 Confirm GNU `timeout --version`. Define `seconds` as a positive task budget, `command` as the reviewed executable and `output`/`errors` as fresh private paths. Add its selected arguments explicitly:
 
 ~~~bash
-timeout --signal=TERM --kill-after=2s "${seconds}s" "$command" >"$output" 2>"$errors"
+/usr/bin/timeout --signal=TERM --kill-after=2s "${seconds}s" "$command" >"$output" 2>"$errors"
 status=$?
 ~~~
 

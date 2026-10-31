@@ -5,13 +5,15 @@ description: Sign an owned JAR copy or inspect signature coverage and certificat
 
 # Read verification evidence, not just the exit code
 
+Installed invocation: `/usr/bin/jarsigner`, version `jarsigner 25.0.5-ea`.
+
 Read this entire SKILL.md before acting. Require the selected archive and trusted installed JDK; choose verification or owned-copy signing. For signing with the intended keystore identity, read [owned archive signing](references/owned-signing.md) fully. Finish with actual signed-entry coverage, signer evidence and diagnostics, or the new signed copy plus independent verification. APK acceptance additionally requires the Android-aware check below.
 
 Define `archive` as the selected absolute JAR/ZIP path and `log` as a fresh verification transcript. Select the intended JDK's `jarsigner`; retain its Java version because disabled-algorithm policy changes between releases.
 
 ~~~bash
 umask 077
-jarsigner -verify -strict -verbose -certs "$archive" >"$log" 2>&1
+/usr/bin/jarsigner -verify -strict -verbose -certs "$archive" >"$log" 2>&1
 status=$?
 ~~~
 

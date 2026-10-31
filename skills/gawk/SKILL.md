@@ -5,13 +5,15 @@ description: Remove exact duplicate text lines in one owned file with GNU awk's 
 
 # Rewrite one text file with GNU awk
 
+Installed invocation: `/usr/bin/gawk`, version `GNU Awk 5.3.2, API 4.0, PMA Avon 8-g1, (GNU MPFR 4.2.2, GNU MP 6.3.0)`.
+
 Read this entire SKILL.md before acting. Require one owned ordinary regular text file, a stable original and a fresh backup suffix. Confirm GNU awk and its trusted installed inplace extension; this is not a portable awk option. Finish with rewrite status, preserved original and the actual resulting line semantics.
 
 Define `input` as the absolute file path. Check it is not a symbolic link and that `${input}.bak` is absent before the selected rewrite:
 
 ~~~bash
-gawk --version
-gawk -i inplace -v inplace::suffix=.bak '!seen[$0]++' "$input"
+/usr/bin/gawk --version
+/usr/bin/gawk -i inplace -v inplace::suffix=.bak '!seen[$0]++' "$input"
 status=$?
 ~~~
 

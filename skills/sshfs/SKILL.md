@@ -5,13 +5,15 @@ description: Mount an owned SFTP directory for Linux file inspection with SSHFS 
 
 # Inspect a selected SFTP directory through a mount
 
+Installed invocation: `/usr/bin/sshfs`, version `fusermount3 version: 3.18.3`.
+
 Read this entire SKILL.md before acting. Require trusted installed SSHFS/FUSE support, the exact owned SSH/SFTP account and directory, verified host key and an empty owned mountpoint. Follow connection, mount verification and unmount steps below. No conditional resources are required. Finish with the selected remote path, requested file evidence and confirmed unmount, or the failed stage.
 
 Define `remote_spec` as the exact `user@host:/absolute/remote/path`, `ssh_port` as the intended port and `mountpoint` as a dedicated empty absolute directory owned by the mounting user. A shell login alone does not establish SFTP subsystem availability. Review the intended SSH client configuration/authentication; inherited ProxyCommand or other helpers can execute locally.
 
 ~~~bash
-sshfs --version
-sshfs -p "$ssh_port" "$remote_spec" "$mountpoint" -o ro,default_permissions,StrictHostKeyChecking=yes
+/usr/bin/sshfs --version
+/usr/bin/sshfs -p "$ssh_port" "$remote_spec" "$mountpoint" -o ro,default_permissions,StrictHostKeyChecking=yes
 findmnt --mountpoint "$mountpoint" -o TARGET,SOURCE,FSTYPE,OPTIONS
 ~~~
 

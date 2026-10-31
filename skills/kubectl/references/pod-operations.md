@@ -3,7 +3,7 @@
 Require trusted kubeconfig/context, approved namespace and the actual requested operation. For creation, require a reviewed local manifest identifying one intended Pod, its exact name, intended image, command, volumes and security settings. `create -f` changes the cluster and can launch the workload; file/YAML validity is separate from permission/admission and runtime behavior. Match any explicit manifest namespace to the selected one. Define `config`, `context`, `namespace`, `manifest` and `pod` from those inputs.
 
 ~~~bash
-kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
+/usr/bin/kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
   --request-timeout=20s create -f "$manifest"
 status=$?
 ~~~
@@ -13,10 +13,10 @@ Record the actual result before continuing. AlreadyExists requires inspecting th
 After successful creation, inspect this exact Pod. When Ready is the required runtime condition:
 
 ~~~bash
-kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
+/usr/bin/kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
   wait --for=condition=Ready "pod/$pod" --timeout=60s
 wait_status=$?
-kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
+/usr/bin/kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
   --request-timeout=20s get pod "$pod" -o json
 ~~~
 
@@ -25,7 +25,7 @@ Creation/Running/Ready answer different questions. On timeout retain phase, cond
 For read-only diagnosis of this selected existing pod, creation is not required. The same context/name query can be supplemented with:
 
 ~~~bash
-kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
+/usr/bin/kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
   --request-timeout=20s describe pod "$pod"
 ~~~
 
@@ -34,7 +34,7 @@ Compare intended image/command, reported imageID, node and container state with 
 For an approved diagnostic on an existing owned pod, define `container` as its actual intended container. An **illustrative** ordinary OS-release read is:
 
 ~~~bash
-kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
+/usr/bin/kubectl --kubeconfig "$config" --context "$context" -n "$namespace" \
   exec "$pod" -c "$container" -- cat /etc/os-release
 status=$?
 ~~~

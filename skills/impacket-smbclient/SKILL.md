@@ -5,12 +5,14 @@ description: Browse SMB shares and transfer selected files with Impacket's Linux
 
 # Select the share, then verify the transfer
 
+Installed invocation: `/usr/bin/impacket-smbclient`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Require the selected server, established authentication context, permitted share/path and fresh owned local destination; all instructions are inline. Finish with the selected paths, transfer status and actual artifact evidence, preserving failed or partial downloads. Successful SMB login does not establish access to every share.
 
 Check `impacket-smbclient -h`. Set `server` to the real server name and `identity` to `domain.example/user`. With a matching `KRB5CCNAME` cache:
 
 ~~~bash
-impacket-smbclient -k -no-pass "$identity@$server"
+/usr/bin/impacket-smbclient -k -no-pass "$identity@$server"
 ~~~
 
 For password authentication, omit `-k -no-pass` and the password from the target string to use the prompt. `-no-pass` is not a request for privileged or anonymous access. Kerberos requires the proper server identity, realm and time; replacing the hostname with an IP can select the wrong service principal.

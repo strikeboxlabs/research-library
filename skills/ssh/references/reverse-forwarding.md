@@ -5,7 +5,7 @@ Require an administrative forwarding task, approved SSH account/server, trusted 
 Define `ssh_target` as the known SSH alias or user@host, `server_port` as a free unprivileged server-side port and `client_service_port` as the observed client service port. Review effective configuration for additional forwards/local helpers and persistent multiplexing first. Keep the initial connection in the foreground:
 
 ~~~bash
-ssh -N -T -o ExitOnForwardFailure=yes -R "127.0.0.1:$server_port:127.0.0.1:$client_service_port" "$ssh_target"
+/usr/bin/ssh -N -T -o ExitOnForwardFailure=yes -R "127.0.0.1:$server_port:127.0.0.1:$client_service_port" "$ssh_target"
 ~~~
 
 `-N` requests no command and `-T` no terminal. Explicit server loopback is the intended scope; verify the actual listener because server GatewayPorts policy can affect binding. A shell set to /bin/false alone is insufficient to infer forwarding rejection; authentication/PAM and forwarding policy still apply. Do not change those policies to force a failed task.

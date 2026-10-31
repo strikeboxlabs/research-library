@@ -5,6 +5,8 @@ description: Write the same input to a selected file and stdout with tee, includ
 
 # Write the selected stream
 
+Installed invocation: `/usr/bin/tee`, version `tee (GNU coreutils) 9.10`.
+
 Read this entire SKILL.md before acting. Establish the selected destination, append versus replacement, writer identity and intended bytes. Finish with tee's status and the actual file content; seeing echoed input on stdout does not prove a successful write.
 
 GNU tee copies stdin to each selected file and stdout. Without -a it truncates an existing file; -a appends. It is not an editor, duplicate detector or atomic update. Define `file` as the inspected destination and `line` as the exact single record, without an embedded newline. For an ordinary owned file:
@@ -18,7 +20,7 @@ Check the pipeline status immediately: in the usual shell it is the final tee st
 When the task explicitly requires a privileged write and the selected sudo policy permits it:
 
 ~~~bash
-printf '%s\n' "$line" | sudo tee -a -- "$file"
+printf '%s\n' "$line" | sudo /usr/bin/tee -a -- "$file"
 ~~~
 
 Here tee opens the file under sudo. In `sudo printf ... >>file`, the calling shell opens the redirection before sudo, so that spelling does not grant the file open additional rights. Conversely, a sudo permission to run tee can have consequential file-write scope; it is not limited to the producing command. Preserve the existing file and its content/ownership when restoration is required. For a hosts-file record, confirm the intended name/address and existing mapping before appending; a successful write is separate from actual resolver behavior.

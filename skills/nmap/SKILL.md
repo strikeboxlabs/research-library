@@ -7,7 +7,7 @@ description: Discover services on scoped Linux or Windows lab hosts with Nmap an
 
 Read this entire SKILL.md before acting; complete current context need not be re-read. Select the scoped host, protocol and useful port range before probing. For an unexpected option-denial message, follow the wrapper attribution below before interpreting upstream behavior. Retain scan completion, vantage and confirmed versus uncertain services; a skipped or interrupted scan is incomplete evidence.
 
-Installed invocation: `/usr/bin/nmap`, version `7.99`. `/usr/bin/masscan` version `1.3.2` is also present; `rustscan` is not available on the worker PATH. Tool availability does not establish equivalent probe behavior or completeness across a VPN.
+Installed invocation: `/usr/bin/nmap`, version `Nmap version 7.991 ( https://nmap.org )`.
 
 For scoped subnet discovery from a container/internal namespace or a transferred static binary, read [network vantage and host discovery](references/network-vantage.md) fully first.
 

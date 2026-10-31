@@ -5,12 +5,14 @@ description: Run one selected trusted Windows executable with Wine on Linux in a
 
 # Selected application in its Wine prefix
 
+Installed invocation: `/usr/bin/wine`, version `wine-10.0 (Debian 10.0~repack-11+b1)`.
+
 Read this entire SKILL.md before acting. Require the trusted executable, reviewed arguments and an existing compatible prefix on the controlled image. Run in that prefix as its ordinary owning user and finish with the application's requested result or specific startup/runtime gap. No conditional resources are required.
 
 Define `prefix` as its initialized absolute Wine-prefix directory, `program` as the approved executable's absolute Unix path, and `program_args` as a Bash array of its actual arguments; an empty array means none:
 
 ~~~bash
-wine --version
+/usr/bin/wine --version
 program_args=()
 WINEPREFIX="$prefix" wine "$program" "${program_args[@]}"
 status=$?

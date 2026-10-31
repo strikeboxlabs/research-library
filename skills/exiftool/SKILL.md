@@ -5,13 +5,15 @@ description: Inspect image, document and media metadata with ExifTool while reta
 
 # ExifTool metadata inspection
 
+Installed invocation: `/usr/bin/exiftool`, version `ExifTool Version Number         : 13.55`.
+
 Read this entire SKILL.md before acting. Require the installed ExifTool, selected original artifact and fresh private report path. Use the read-only inspection below, retaining source identity and relevant tag groups. Finish with reported fields, parser/status gaps and the supported interpretation; missing input/tool is not a successful metadata review.
 
 Inspect the original downloaded bytes; screenshots and re-exported documents may have different metadata. Define `artifact` as an absolute file path and `report` as a fresh JSON path.
 
 ~~~bash
-exiftool -ver
-exiftool -a -G1 -s "$artifact"
+/usr/bin/exiftool -ver
+/usr/bin/exiftool -a -G1 -s "$artifact"
 (set -o noclobber; exiftool -j -G1:4 "$artifact" > "$report")
 status=$?
 ~~~

@@ -5,13 +5,15 @@ description: Build an ISO9660 image from an owned selected directory and verify 
 
 # Build the intended filesystem image
 
+Installed invocation: `/usr/bin/genisoimage`, version `genisoimage 1.1.11 (Linux)`.
+
 Read this entire SKILL.md before acting. Require a trusted installed builder, stable reviewed input and an authorized output path. Establish the consumer's format requirements first. Finish with builder status, image metadata and checked content; file creation alone is not compatibility.
 
 Define `source_dir` as a bounded absolute directory, `image` as a fresh output file outside it, and `volume` as the approved identifier. Review effective .genisoimagerc settings and input names, links and confidential metadata.
 
 ~~~bash
-genisoimage -version
-genisoimage -R -V "$volume" -o "$image" "$source_dir"
+/usr/bin/genisoimage -version
+/usr/bin/genisoimage -R -V "$volume" -o "$image" "$source_dir"
 ~~~
 
 Check status/diagnostics; failure can leave incomplete output. Rock Ridge retains POSIX names, modes, ownership and symlinks. Choose normalized metadata only for a consumer/task requirement. Adding `-f` follows links and changes input scope. Keep the input stable or report snapshot uncertainty.

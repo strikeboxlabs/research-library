@@ -5,14 +5,14 @@ Use the selected OpenLDAP connection: `dc_fqdn` is the verified DC DNS name, `bi
 Use the established authenticated connection and domain `base_dn`. Define `user_dn` as the exact DN of the selected user. Query the domain defaults and the user's resultant password-settings object separately:
 
 ~~~bash
-ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b "$base_dn" -s base '(objectClass=*)' lockoutThreshold lockoutDuration lockOutObservationWindow
-ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b "$user_dn" -s base '(objectClass=*)' sAMAccountName msDS-ResultantPSO
+/usr/bin/ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b "$base_dn" -s base '(objectClass=*)' lockoutThreshold lockoutDuration lockOutObservationWindow
+/usr/bin/ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b "$user_dn" -s base '(objectClass=*)' sAMAccountName msDS-ResultantPSO
 ~~~
 
 If `msDS-ResultantPSO` returns a DN, set `pso_dn` to that exact value and inspect its settings:
 
 ~~~bash
-ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b "$pso_dn" -s base '(objectClass=*)' msDS-LockoutThreshold msDS-LockoutDuration msDS-LockoutObservationWindow
+/usr/bin/ldapsearch -LLL -x -ZZ -H "ldap://$dc_fqdn" -D "$bind_upn" -W -b "$pso_dn" -s base '(objectClass=*)' msDS-LockoutThreshold msDS-LockoutDuration msDS-LockoutObservationWindow
 ~~~
 
 **Illustrative:** domain `lockoutThreshold: 0` alongside a selected user's resultant `msDS-LockoutThreshold: 5` means the domain-default observation did not settle that user's policy. Zero disables count-based lockout for the policy in question; it does not establish unlimited retries across applications or permission to try credentials. An omitted/denied attribute is not zero. If no resultant PSO is returned, establish successful object/attribute visibility before falling back to domain defaults; keep unresolved visibility as a limitation.

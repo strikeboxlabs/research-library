@@ -5,12 +5,14 @@ description: Connect to SQL Server using known credentials or an existing Kerber
 
 # Impacket SQL Server client
 
+Installed invocation: `/usr/bin/impacket-mssqlclient`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select the intended SQL instance, known authentication method and required identity, database/table metadata, configuration or linked-server inspection. For a requested inventory of one known local service directory, read [selected directory listing](references/selected-directory.md) fully before that operation. These tasks require the installed client, network access and credentials/cache authorized for the selected inspection; complete them with actual results and their visibility limits. Connection errors or inaccessible metadata remain evidence gaps.
 
 Check `impacket-mssqlclient -h`; upstream installations may expose `mssqlclient.py`. Define `domain`, `user`, `server` (the service FQDN), `server_ip` and `port` for the intended SQL instance. Windows authentication with a known password entered at the prompt:
 
 ~~~bash
-impacket-mssqlclient -windows-auth -target-ip "$server_ip" -port "$port" "$domain/$user@$server"
+/usr/bin/impacket-mssqlclient -windows-auth -target-ip "$server_ip" -port "$port" "$domain/$user@$server"
 ~~~
 
 Omitting `-windows-auth` in this password flow selects SQL authentication. A domain password is not automatically a SQL login password. For an existing authorized file cache, define `cache` as its absolute path and inspect its principal, service and lifetime before connecting:

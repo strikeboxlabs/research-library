@@ -5,12 +5,14 @@ description: List, extract or package selected owned PDF attachments with qpdf. 
 
 # Work with selected PDF attachments
 
+Installed invocation: `/usr/bin/qpdf`, version `qpdf version 12.4.2`.
+
 Read this entire SKILL.md before acting. Require installed qpdf, an authorized PDF working copy and selected attachment/output scope; no conditional resources are required. Use ordinary filesystem permissions and fresh private outputs. Finish with the observed attachment key, output identity and status/diagnostics; missing passwords, unreadable inputs or incomplete output remain unresolved.
 
 Check `qpdf --version` and `qpdf --help=attachments`. Define `pdf` as the absolute working-copy path:
 
 ~~~bash
-qpdf "$pdf" --list-attachments --verbose
+/usr/bin/qpdf "$pdf" --list-attachments --verbose
 status=$?
 ~~~
 

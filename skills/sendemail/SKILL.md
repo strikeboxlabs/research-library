@@ -5,6 +5,8 @@ description: Submit an explicitly requested message with a selected attachment t
 
 # Submit a reviewed message to its intended relay
 
+Installed invocation: `/usr/bin/sendemail`, version `[1msendemail-1.56 by Brandon Zehm <caspian@dotconf.net>[0m`.
+
 Read this entire SKILL.md before acting. Require explicit authorization to send the chosen message, its sender/recipient, reviewed body/attachment and the configured relay's transport policy. No conditional resources are required. Finish with the submission status and acceptance evidence or the failed/uncertain stage; acceptance does not prove inbox delivery or opening.
 
 Confirm the installed SendEmail implementation with `sendemail --help`, `sendemail --help message` and `sendemail --help networking`; executable capitalization can differ. This client is distinct from the local Sendmail command interface. Missing relay/client capability is a prerequisite gap, not a reason to install tools or change mail configuration automatically.
@@ -13,7 +15,7 @@ Define `smtp_server` as the intended `host:port`, `sender` and `recipient` as si
 
 ~~~bash
 umask 077
-sendemail -s "$smtp_server" -f "$sender" -t "$recipient" -u "$subject" \
+/usr/bin/sendemail -s "$smtp_server" -f "$sender" -t "$recipient" -u "$subject" \
   -o message-file="$body" -o message-content-type=text -o message-charset=us-ascii \
   -o tls="$tls_mode" -a "$attachment" > "$submission_log" 2>&1
 status=$?

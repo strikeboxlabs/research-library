@@ -5,12 +5,14 @@ description: Read recent journal entries for one selected systemd service with j
 
 # Read the selected service journal
 
+Installed invocation: `/usr/bin/journalctl`.
+
 Read this entire SKILL.md before acting. Require a trusted installed journalctl, the exact service unit and permitted journal access. No conditional resources are required. Finish with selected filters, returned entries, diagnostics/status and coverage gaps; a short excerpt is not complete service history.
 
 Confirm `journalctl --version` and local help. Set `unit` to the observed service name, including `.service`, without wildcard patterns. Read a finite recent slice:
 
 ~~~bash
-journalctl --no-pager --unit="$unit" --lines=5
+/usr/bin/journalctl --no-pager --unit="$unit" --lines=5
 status=$?
 ~~~
 

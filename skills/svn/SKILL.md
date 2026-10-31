@@ -5,14 +5,16 @@ description: Acquire a selected Subversion source revision and interpret reposit
 
 # Acquire the selected Subversion revision
 
+Installed invocation: `/usr/bin/svn`, version `svn, version 1.14.5 (r1922182)`.
+
 Read this entire SKILL.md before acting. Require the approved repository URL, legitimate access and a fresh owned destination. No conditional resources are required. Finish with the selected URL/revision, checkout status and explicit omissions; acquiring source does not run it.
 
 Define `url` as the trusted project URL. Inspect installed help and a bounded history:
 
 ~~~bash
-svn --version --quiet
-svn help checkout
-svn log --limit 10 --verbose "$url"
+/usr/bin/svn --version --quiet
+/usr/bin/svn help checkout
+/usr/bin/svn log --limit 10 --verbose "$url"
 ~~~
 
 Remote history queries need repository access; a checkout is not a complete offline history mirror. A URL's default history starts at HEAD, while a local path's default starts at its BASE. The limit makes this a sample, not exhaustive history. Commit messages are author-supplied descriptions; verbose changed paths provide separate evidence.
@@ -20,15 +22,15 @@ Remote history queries need repository access; a checkout is not a complete offl
 Choose numeric `revision` from the intended release/history and define `destination` as a nonexistent absolute directory in an owned parent:
 
 ~~~bash
-svn checkout --ignore-externals -r "$revision" "$url@$revision" "$destination"
+/usr/bin/svn checkout --ignore-externals -r "$revision" "$url@$revision" "$destination"
 status=$?
 ~~~
 
 The peg revision identifies the path at that revision; `-r` selects the requested content revision. Keep external dependencies excluded until independently selected. Check status and the final revision receipt, then:
 
 ~~~bash
-svn info "$destination"
-svn status "$destination"
+/usr/bin/svn info "$destination"
+/usr/bin/svn status "$destination"
 ~~~
 
 Keep repository UUID/URL and working-copy revision distinct from Last Changed Rev. Interruptions, conflicts or obstructing files leave incomplete results; do not force checkout over an unrelated directory. A partial owned checkout can be resumed with the same pinned command after checking its identity and local edits. Do not build or execute downloaded scripts merely to validate acquisition.

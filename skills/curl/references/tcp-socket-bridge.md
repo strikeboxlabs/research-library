@@ -6,7 +6,7 @@ Define `socket_url` as the exact authorized route, `backend_port` as its selecte
 
 ~~~bash
 umask 077
-curl --silent --show-error --connect-timeout 5 --max-time 30 --get --cookie "$cookie_file" --data-urlencode "port=$backend_port" --data-urlencode 'cmd=stats slabs' --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$socket_url"
+/usr/bin/curl --silent --show-error --connect-timeout 5 --max-time 30 --get --cookie "$cookie_file" --data-urlencode "port=$backend_port" --data-urlencode 'cmd=stats slabs' --dump-header "$headers" --output "$body" --write-out 'status=%{http_code}\n' "$socket_url"
 ~~~
 
 Check transport status and the application body. HTTP 200 can contain access denial or socket failure. Curl's total timeout bounds the HTTP operation; it does not prove the backend task was cancelled. The server's socket timeout/framing can truncate a result.

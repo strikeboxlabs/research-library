@@ -4,7 +4,7 @@ Use an existing approved capture; this procedure does not create traffic or obta
 
 ~~~bash
 umask 077
-tshark -n -r "$pcap" -Y 'tls.handshake' -V >"$handshake_report"
+/usr/bin/tshark -n -r "$pcap" -Y 'tls.handshake' -V >"$handshake_report"
 ~~~
 
 Inspect the selected ServerHello version/cipher, not just the TLS record-layer version or the certificate's signature algorithm. An RSA certificate can authenticate an ephemeral (EC)DHE exchange without enabling decryption by that certificate's private key. Record the TCP stream and whether the handshake is complete. For a verified TLS service on an observed nonstandard `port`, add `-d "tcp.port==$port,tls"`; a wrong protocol guess is not a missing-key diagnosis.
@@ -17,7 +17,7 @@ Choose the secret input that actually matches the captured session:
 For a selected HTTP/1 investigation, define `requests` as a fresh private output:
 
 ~~~bash
-tshark -n -2 -r "$pcap" -o "$secret_option" \
+/usr/bin/tshark -n -2 -r "$pcap" -o "$secret_option" \
   -Y 'http.request || http.response' \
   -T fields -E header=y -E separator=/t -E quote=d \
   -e frame.number -e tcp.stream -e http.request.method \
@@ -29,7 +29,7 @@ tshark -n -2 -r "$pcap" -o "$secret_option" \
 Once the relevant `stream` is identified, define `transcript` as a new private file and inspect its decrypted application bytes:
 
 ~~~bash
-tshark -n -r "$pcap" -o "$secret_option" \
+/usr/bin/tshark -n -r "$pcap" -o "$secret_option" \
   -q -z "follow,tls,ascii,$stream" >"$transcript"
 ~~~
 

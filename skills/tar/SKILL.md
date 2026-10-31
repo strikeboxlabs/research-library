@@ -5,13 +5,15 @@ description: Create GNU tar plain or gzip packages with verified member layout, 
 
 # Inspect before restoring files
 
+Installed invocation: `/usr/bin/tar`, version `tar (GNU tar) 1.35`.
+
 Read this entire SKILL.md before acting; reuse complete current context. For creation or a ZIP-unavailable installer, read [package creation](references/package-creation.md) fully first. For extraction, list the archive and select exact members before using a fresh directory. If expected mounted content is absent, read [backup boundaries](references/backup-boundaries.md). Finish with selected members, final status and whether coverage is complete or partial.
 
 Define `archive` as an existing absolute local path. Inspect actual member names and types before choosing an extraction:
 
 ~~~bash
-tar --version
-tar --list --verbose --file="$archive"
+/usr/bin/tar --version
+/usr/bin/tar --list --verbose --file="$archive"
 ~~~
 
 GNU tar normally recognizes compression when reading an archive file; a filename ending in `.tar.gz` alone does not prove its format. An early listing followed by a decompression/truncation error is incomplete coverage. Check the final status. For stream input, confirm the required decompressor/options separately.

@@ -6,12 +6,14 @@ description: Run selected Windows commands through the Service Control Manager w
 
 # Execute through SCM with explicit output handling
 
+Installed invocation: `/usr/bin/impacket-smbexec`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire SKILL.md before acting. Require the selected host, known administrative identity or cache, permitted command and service/output cleanup scope. Finish with observed command output and identity plus residual-state checks; SMB authentication alone is incomplete.
 
 Inspect `impacket-smbexec -h`; upstream also supplies `smbexec.py`. Define `domain`, `account` and `server` as the exact identity and Windows host. For the default SHARE output mode, prompt for the known password:
 
 ~~~bash
-impacket-smbexec -mode SHARE -share 'C$' "$domain/$account@$server"
+/usr/bin/impacket-smbexec -mode SHARE -share 'C$' "$domain/$account@$server"
 ~~~
 
 For an existing verified file cache, select its absolute path in `KRB5CCNAME`, use the service's FQDN and prevent password fallback:

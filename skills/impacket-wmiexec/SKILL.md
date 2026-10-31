@@ -5,12 +5,14 @@ description: Execute a selected Windows command from Linux using Impacket WMI/DC
 
 # Separate process creation from output retrieval
 
+Installed invocation: `/usr/bin/impacket-wmiexec`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire file before acting. For failures, output handling or cleanup read [execution stages](references/execution-stages.md) fully. Finish with the chosen host/identity, command result, output evidence and unresolved effects; a connected session alone is not successful execution.
 
 Check `impacket-wmiexec -h`. Define `identity` as `domain.example/user`, `server` as the actual hostname and `server_ip` as its address. With a matching Kerberos cache:
 
 ~~~bash
-impacket-wmiexec -k -no-pass -target-ip "$server_ip" "$identity@$server" 'whoami'
+/usr/bin/impacket-wmiexec -k -no-pass -target-ip "$server_ip" "$identity@$server" 'whoami'
 ~~~
 
 This executes a real remote process. The selected account needs WMI/DCOM rights and the normal output path needs SMB access, usually to `ADMIN$`. Without Kerberos, omitting credentials from argv lets the client prompt. Do not substitute an arbitrary hostname merely to satisfy the syntax.

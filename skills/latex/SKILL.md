@@ -5,13 +5,15 @@ description: Build a reviewed LaTeX document for a DVI-based workflow and interp
 
 # Produce the intended DVI intermediate
 
+Installed invocation: `/usr/bin/latex`, version `pdfTeX 3.141592653-2.6-1.40.29 (TeX Live 2026/Debian)`.
+
 Read this entire SKILL.md before acting. Require reviewed TeX/resources, the installed latex format and a deliberate DVI output requirement. Complete with status, log and the newly produced DVI; later conversion stages need their own results.
 
 Set `source_dir` to the trusted project directory, `input_tex` to its absolute main file, `output_dir` to an existing fresh private directory and `console_log` to a fresh absolute path. Use the normal build identity.
 
 ~~~bash
-latex --version
-latex --help
+/usr/bin/latex --version
+/usr/bin/latex --help
 (cd "$source_dir" && latex -no-shell-escape -interaction=nonstopmode \
   -halt-on-error -file-line-error -output-directory="$output_dir" "$input_tex") \
   >"$console_log" 2>&1

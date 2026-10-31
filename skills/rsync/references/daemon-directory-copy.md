@@ -12,7 +12,7 @@ mkdir -- "$destination" && rsync -rt --dry-run --itemize-changes -- "$source_url
 Confirm the intended filenames and scope, including dotfiles. Then copy:
 
 ~~~bash
-rsync -rt --itemize-changes -- "$source_url/" "$destination/"
+/usr/bin/rsync -rt --itemize-changes -- "$source_url/" "$destination/"
 copy_status=$?
 ~~~
 
