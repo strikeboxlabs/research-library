@@ -1,5 +1,7 @@
 # Check whether a skill helps
 
+An executable pilot is now in [test-suite](../test-suite/README.md): isolated Pi/GLM comparisons, seeded CLI fixtures, independent artifact graders, usage reports and bounded candidate generation. Its current coverage and Linux acceptance gaps are explicit. The authoring conventions below remain hypotheses, not grading requirements.
+
 Scale checks to the change. A short correction may need one focused example; a diagnostic procedure needs a realistic outcome and an incomplete-evidence case when that tests an important decision. The [case template](case.template.md) is optional.
 
 ## Check the procedure

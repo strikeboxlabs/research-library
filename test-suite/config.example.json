@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "library_root": "..",
+  "runs_root": "../runs/skillbench",
+  "runtime": {
+    "image": "research-library-skillbench:local",
+    "provider": "zai",
+    "model": "glm-5.3-flash",
+    "base_url": "https://api.z.ai/api/paas/v4",
+    "thinking": "high",
+    "context_window": 131072,
+    "max_tokens": 8192,
+    "api_key_env": "ZAI_API_KEY",
+    "timeout_seconds": 180,
+    "max_output_bytes": 8388608,
+    "memory": "1g",
+    "cpus": 1,
+    "pids_limit": 128
+  },
+  "cases": ["jq-exact-text", "jq-record-filter", "tar-selected-members", "sqlite-typed-export"],
+  "conditions": ["baseline", "current"],
+  "repetitions": 3,
+  "seed": 1701,
+  "selection": {"mode": "explicit", "catalog_size": 1, "distractors": "similar"},
+  "budgets": {"max_trials": 100, "max_campaign_seconds": 7200, "max_total_tokens": null},
+  "optimizer": {
+    "endpoint": "https://api.z.ai/api/paas/v4/chat/completions",
+    "model": "glm-5.3-flash",
+    "api_key_env": "ZAI_API_KEY",
+    "max_tokens": 8192,
+    "timeout_seconds": 180
+  }
+}
