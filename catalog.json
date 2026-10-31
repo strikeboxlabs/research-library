@@ -178,8 +178,8 @@
       "id": "apktool",
       "path": "skills/apktool",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:reverse-engineering"
       ],
       "requires": [
         "apktool"
@@ -427,8 +427,8 @@
       "id": "binwalk",
       "path": "skills/binwalk",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:reverse-engineering"
       ],
       "requires": [
         "binwalk"
@@ -587,8 +587,8 @@
       "id": "checksec",
       "path": "skills/checksec",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:reverse-engineering"
       ],
       "requires": [
         "checksec"
@@ -1594,8 +1594,8 @@
       "id": "ghidra",
       "path": "skills/ghidra",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:reverse-engineering"
       ],
       "requires": [
         "ghidra"
@@ -2405,8 +2405,8 @@
       "id": "jadx",
       "path": "skills/jadx",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:reverse-engineering"
       ],
       "requires": [
         "jadx"
@@ -4070,8 +4070,8 @@
       "id": "procyon",
       "path": "skills/procyon",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:reverse-engineering"
       ],
       "requires": [
         "procyon"
@@ -4351,8 +4351,8 @@
       "id": "r2",
       "path": "skills/r2",
       "tags": [
-        "classification:unreviewed",
-        "execution:linux"
+        "execution:linux",
+        "task:reverse-engineering"
       ],
       "requires": [
         "r2"
@@ -4378,6 +4378,17 @@
       ],
       "requires": [
         "rdate"
+      ]
+    },
+    {
+      "id": "rea",
+      "path": "skills/rea",
+      "tags": [
+        "execution:linux",
+        "task:reverse-engineering"
+      ],
+      "requires": [
+        "rea"
       ]
     },
     {

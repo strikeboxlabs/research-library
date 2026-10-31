@@ -416,6 +416,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [r2](skills/r2/SKILL.md) | Inspect static strings and distinguish file addresses from loader virtual addresses. |
 | [rabin2](skills/rabin2/SKILL.md) | Inspect binary sections/segments while separating physical offsets and declared virtual layout from runtime state. |
 | [rdate](skills/rdate/SKILL.md) | Diagnose clock skew with print-only SNTP queries and distinguish protocol, timezone and synchronization issues. |
+| [rea](skills/rea/SKILL.md) | Reverse-engineer applications and native binaries with an evidence-backed agent CLI over Ghidra and static JavaScript analysis. |
 | [readelf](skills/readelf/SKILL.md) | Map ELF layouts and inspect dynamic dependencies/symbols while separating artifact metadata from runtime behavior. |
 | [readlink](skills/readlink/SKILL.md) | Inspect stored symlink target text and distinguish canonical paths, missing components and changing referents. |
 | [readpst](skills/readpst/SKILL.md) | Convert PST/supported OST mail while accounting for MIME, image attachments and conversion limits. |
