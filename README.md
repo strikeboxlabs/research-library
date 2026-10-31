@@ -20,6 +20,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [aircrack-ng](skills/aircrack-ng/SKILL.md) | Inspect saved WPA/WPA2 network and handshake metadata without dictionary or radio actions. |
 | [airmon-ng](skills/airmon-ng/SKILL.md) | Manage an owned wireless monitor interface and restore its state |
 | [airodump-ng](skills/airodump-ng/SKILL.md) | Capture bounded passive diagnostics for an owned wireless access point |
+| [amass](skills/amass/SKILL.md) | Map externally-visible assets for an authorized domain with OWASP Amass, choosing passive or explicitly authorized active collection. |
 | [ansible-galaxy](skills/ansible-galaxy/SKILL.md) | Inspect selected local role paths, reported versions, configuration and inventory gaps. |
 | [ansible-parallel](skills/ansible-parallel/SKILL.md) | Run explicit independent playbooks concurrently; retain each host recap and diagnose input/status gaps. |
 | [ansible-playbook](skills/ansible-playbook/SKILL.md) | Check one reviewed local playbook and interpret parse failures, collection resolution and copy/archive/cleanup evidence. |
@@ -141,6 +142,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [forge](skills/forge/SKILL.md) | Diagnose Foundry builds with explicit project/compiler context and correctly interpreted helper trace logs. |
 | [freepbx](skills/freepbx/SKILL.md) | Existing FreePBX package; outside this continuation review. |
 | [ftp](skills/ftp/SKILL.md) | Transfer selected files, diagnose data channels and verify an authorised upload-to-web mapping without inferring code execution. |
+| [gau](skills/gau/SKILL.md) | Fetch known URLs for a domain from wayback, commoncrawl, otx and urlscan with match/filter and date-window controls. |
 | [gawk](skills/gawk/SKILL.md) | Deduplicate one owned text file with GNU inplace, first-seen order and a preserved backup. |
 | [gcc](skills/gcc/SKILL.md) | Compile selected C tools/shared libraries; distinguish build stages, ABI, declarations and runtime compatibility. |
 | [gclient](skills/gclient/SKILL.md) | Synchronize a selected trusted modular checkout while preserving dependency revisions and partial errors. |
@@ -169,6 +171,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [gzip](skills/gzip/SKILL.md) | Preserve sources while creating, testing or decoding gzip streams; distinguish log labels from coverage. |
 | [gzrecover](skills/gzrecover/SKILL.md) | Salvage owned damaged gzip streams while retaining corruption and completeness limits. |
 | [h2csmuggler](skills/h2csmuggler/SKILL.md) | Distinguish h2c upgrade acceptance, tunneled application replies and actual access-control differences. |
+| [hakrawler](skills/hakrawler/SKILL.md) | Crawl authorized live URLs from stdin with depth control and per-URL source attribution. |
 | [hash-identifier](skills/hash-identifier/SKILL.md) | Classify checksum format candidates and distinguish heuristic ordering from a proven algorithm. |
 | [hashcat](skills/hashcat/SKILL.md) | Bound offline checks/candidate generation and preserve Django/Grafana/Gitea PBKDF2, salts, binary inputs and result limits. |
 | [hashid](skills/hashid/SKILL.md) | Identify candidate hash formats offline and handle ambiguous matches, unsupported prefixes and format hints. |
@@ -177,6 +180,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [hg](skills/hg/SKILL.md) | Inspect bounded Mercurial history and selected changesets in a trusted local repository. |
 | [hostname](skills/hostname/SKILL.md) | Identify configured namespace-local addresses and distinguish DNS, address order and reachability. |
 | [httpie](skills/httpie/SKILL.md) | Construct JSON API requests offline and interpret selected lookups with explicit input and status handling. |
+| [httpx](skills/httpx/SKILL.md) | Probe host lists for live HTTP services with ProjectDiscovery httpx, capturing status, title and technology per endpoint. |
 | [hydra](skills/hydra/SKILL.md) | Perform scoped protocol/form authentication tests with bounded attempts and verified response classification. |
 | [iconv](skills/iconv/SKILL.md) | Convert captured text with explicit encodings; distinguish UTF-16 byte order, terminators and lossy recovery. |
 | [id](skills/id/SKILL.md) | Verify real/effective user/group IDs in the current context and distinguish named-account lookup from execution privilege. |
@@ -238,6 +242,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [journalctl](skills/journalctl/SKILL.md) | Read a finite selected-service journal slice with explicit pager, status and coverage checks. |
 | [jq](skills/jq/SKILL.md) | Preserve JSON types, select decoded account maps and construct requests/config transformations without corrupting evidence. |
 | [jwt-tool](skills/jwt-tool/SKILL.md) | Inspect/check/sign controlled JWTs, including scoped InfluxDB v1 HMAC candidates, without conflating claims and application access. |
+| [katana](skills/katana/SKILL.md) | Crawl live web endpoints at a chosen depth including JavaScript and known files, emitting discovered URLs for downstream tools. |
 | [kdestroy](skills/kdestroy/SKILL.md) | Destroy one selected owned MIT credential cache and verify that same cache without confusing cleanup with session revocation. |
 | [keepassxc-cli](skills/keepassxc-cli/SKILL.md) | Inspect a database with known unlock factors and retrieve exact entries/fields without broad disclosure. |
 | [kerbrute](skills/kerbrute/SKILL.md) | Check a bounded candidate username list against a selected KDC and interpret incomplete results. |
@@ -338,6 +343,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [nslookup](skills/nslookup/SKILL.md) | Query a selected DNS resolver and preserve MX preference, address and answer context. |
 | [nsupdate](skills/nsupdate/SKILL.md) | Add and remove one fresh owned A record with authenticated conditional DNS updates and authoritative verification. |
 | [ntpdate](skills/ntpdate/SKILL.md) | Query a selected time server and distinguish observed offset, timing noise and clock-changing operations. |
+| [nuclei](skills/nuclei/SKILL.md) | Run template-based checks against authorized live endpoints, filtered by severity and tags; matches are leads needing confirmation. |
 | [oathtool](skills/oathtool/SKILL.md) | Generate known-secret TOTP and diagnose encoding, parameter and clock mismatches. |
 | [objcopy](skills/objcopy/SKILL.md) | Extract a named ELF section into a fresh artifact without accidentally modifying the input object. |
 | [objdump](skills/objdump/SKILL.md) | Inspect headers, imported-call linkage/ABI and bounded disassembly while separating static and runtime evidence. |
@@ -479,6 +485,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [strongswan-ipsec](skills/strongswan-ipsec/SKILL.md) | Inspect existing VPN SAs and diagnose selector, transport-mode and application-path mismatches. |
 | [stty](skills/stty/SKILL.md) | Inspect/save/restore terminal state and manage local relay echo/raw mode separately from a remote PTY. |
 | [su](skills/su/SKILL.md) | Selected local account sessions with known credentials; login environment, PAM/terminal handling and effective-identity verification. |
+| [subfinder](skills/subfinder/SKILL.md) | Passively enumerate subdomains for in-scope domains before HTTP probing, with source-coverage honesty. |
 | [sucrack](skills/sucrack/SKILL.md) | Bounded local su candidate checks; worker/rewrite choices, build features, prompt detection and independent account verification. |
 | [sudo](skills/sudo/SKILL.md) | Interpret effective policy, program/helpers, authenticator/key-enrollment inputs and elevated operation results. |
 | [svn](skills/svn/SKILL.md) | Acquire a pinned Subversion revision and interpret checkout/history evidence. |
@@ -528,6 +535,7 @@ Skills supply tool selection and on-demand operational knowledge for capable CLI
 | [wasm-decompile](skills/wasm-decompile/SKILL.md) | Inspect acquired Wasm as decompiler text; distinguish exports, inferred representations and later host actions. |
 | [wat2wasm](skills/wat2wasm/SKILL.md) | Compile reviewed WAT to a fresh module and separate type/feature checks from host/runtime effects. |
 | [watch](skills/watch/SKILL.md) | Observe selected read-only command output and distinguish sampled changes from a complete event log. |
+| [waybackurls](skills/waybackurls/SKILL.md) | Fetch archived historical URLs for a domain from the Wayback Machine including parameters and unlinked paths. |
 | [wc](skills/wc/SKILL.md) | Count selected artifact bytes or newlines and distinguish representation size from integrity or record count. |
 | [wfuzz](skills/wfuzz/SKILL.md) | HTTP path/host/Origin, form/cookie and server-side socket comparisons with meaningful controls and coverage. |
 | [wget](skills/wget/SKILL.md) | Retrieve selected HTTP artifacts or approved FTP subtrees with transfer identity, mirror and page-capture evidence. |

@@ -92,6 +92,17 @@
       ]
     },
     {
+      "id": "amass",
+      "path": "skills/amass",
+      "tags": [
+        "execution:linux",
+        "task:asset-discovery"
+      ],
+      "requires": [
+        "amass"
+      ]
+    },
+    {
       "id": "ansible-galaxy",
       "path": "skills/ansible-galaxy",
       "tags": [
@@ -1390,6 +1401,17 @@
       ]
     },
     {
+      "id": "gau",
+      "path": "skills/gau",
+      "tags": [
+        "execution:linux",
+        "task:recon-pipeline"
+      ],
+      "requires": [
+        "gau"
+      ]
+    },
+    {
       "id": "gawk",
       "path": "skills/gawk",
       "tags": [
@@ -1706,6 +1728,17 @@
       "requires": []
     },
     {
+      "id": "hakrawler",
+      "path": "skills/hakrawler",
+      "tags": [
+        "execution:linux",
+        "task:recon-pipeline"
+      ],
+      "requires": [
+        "hakrawler"
+      ]
+    },
+    {
       "id": "hash-identifier",
       "path": "skills/hash-identifier",
       "tags": [
@@ -1791,6 +1824,17 @@
       ],
       "requires": [
         "httpie"
+      ]
+    },
+    {
+      "id": "httpx",
+      "path": "skills/httpx",
+      "tags": [
+        "execution:linux",
+        "task:recon-pipeline"
+      ],
+      "requires": [
+        "httpx-toolkit"
       ]
     },
     {
@@ -2461,6 +2505,17 @@
       ],
       "requires": [
         "jwt-tool"
+      ]
+    },
+    {
+      "id": "katana",
+      "path": "skills/katana",
+      "tags": [
+        "execution:linux",
+        "task:recon-pipeline"
+      ],
+      "requires": [
+        "katana"
       ]
     },
     {
@@ -3534,6 +3589,17 @@
       ],
       "requires": [
         "ntpdate"
+      ]
+    },
+    {
+      "id": "nuclei",
+      "path": "skills/nuclei",
+      "tags": [
+        "execution:linux",
+        "task:recon-pipeline"
+      ],
+      "requires": [
+        "nuclei"
       ]
     },
     {
@@ -5064,6 +5130,17 @@
       ]
     },
     {
+      "id": "subfinder",
+      "path": "skills/subfinder",
+      "tags": [
+        "execution:linux",
+        "task:asset-discovery"
+      ],
+      "requires": [
+        "subfinder"
+      ]
+    },
+    {
       "id": "sucrack",
       "path": "skills/sucrack",
       "tags": [
@@ -5594,6 +5671,17 @@
       ],
       "requires": [
         "watch"
+      ]
+    },
+    {
+      "id": "waybackurls",
+      "path": "skills/waybackurls",
+      "tags": [
+        "execution:linux",
+        "task:recon-pipeline"
+      ],
+      "requires": [
+        "waybackurls"
       ]
     },
     {
