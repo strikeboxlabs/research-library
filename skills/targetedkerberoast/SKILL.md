@@ -5,6 +5,8 @@ description: Request selected Kerberos service-ticket material with targetedKerb
 
 # Select existing-SPN or temporary-SPN behavior
 
+Installed invocation: `/usr/local/bin/targetedkerberoast`.
+
 Read this entire file before acting. Read [temporary SPN changes](references/temporary-spn.md) before permitting directory writes. Finish with the selected account, complete ticket record, actual directory state and any unresolved cleanup; a generated record is not a recovered password.
 
 The tool can modify `servicePrincipalName` by default for users without one. Use `--no-abuse` when the task only requests material for existing SPNs. Define `script` as the verified installed targetedKerberoast script and inspect `python3 "$script" -h`; options differ across snapshots.

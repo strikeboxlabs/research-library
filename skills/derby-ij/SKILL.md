@@ -5,6 +5,8 @@ description: Inspect an existing Apache Derby database copy using the ij SQL CLI
 
 # Inspect a Derby working copy with ij
 
+Installed invocation: `/usr/bin/ij`.
+
 Use a consistent copy acquired while the database was shut down, or through Derby's supported online backup procedure. An ordinary archive of a live database may mix incompatible states. Preserve the acquisition and inspect a separate writable working copy: even a read-only SQL connection can require database boot/recovery and filesystem writes. Embedded Derby opens local files; Derby also supports network-server operation, so an absent listening port is not a universal product property.
 
 Launch the installed `ij` from a trusted Derby distribution with its matching libraries and compatible JDK. Its startup banner identifies the version. A missing JDBC driver or unsupported Java class version calls for checking the launcher/classpath/JDK, not modifying the database or switching the system-wide Java default.

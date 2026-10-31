@@ -5,6 +5,8 @@ description: Generate username candidates from known names using username-anarch
 
 # Preserve names and choose candidate formats
 
+Installed invocation: `/usr/local/bin/username-anarchy`, version `Author: Andrew Horton (urbanadventurer). Version: 0.6`.
+
 Read this entire file before acting. Choose formats using known naming evidence. Finish with the candidate file, input assumptions and selected formats; generation does not verify account existence.
 
 Set `tool` to the installed executable script; use its verified Ruby interpreter invocation if it is not executable. Inspect its supported plugins:

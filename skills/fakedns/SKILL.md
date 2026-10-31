@@ -5,6 +5,8 @@ description: Serve scoped synthetic DNS answers with Crypt0s FakeDns and reprodu
 
 # Supply a controlled DNS answer
 
+Installed invocation: `/usr/local/bin/fakedns`, version `fakedns version 1.1`.
+
 Read this entire SKILL.md before acting. Select the Crypt0s implementation, rules and intended listener; finish with captured queries/answers and their scope. For changing answers after a query threshold, read [rebinding and cache interpretation](references/rebinding.md) fully first. A configured rule or startup message does not prove that the application used that answer.
 
 Define `python_bin` and `fakedns_script` as the existing trusted interpreter/script, `rules` as a reviewed configuration file, and `bind_ip`/`dns_port` as an available address and UDP port on the intended test interface. Inspect that implementation's help:

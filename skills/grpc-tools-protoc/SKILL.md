@@ -5,6 +5,8 @@ description: Generate Python Protocol Buffer and gRPC bindings from a selected l
 
 # Generate bindings from the selected local schema
 
+Installed invocation: `/usr/bin/python3 -m grpc_tools.protoc` (module python3-grpc-tools 1.14.1; no standalone binary).
+
 Read this entire SKILL.md before acting. Require a reviewed local schema with its imports, a trusted Python environment already containing grpcio-tools, and a fresh existing output directory. No conditional resources are required. Finish with compiler status, generated paths and schema/runtime gaps; generation alone does not establish compatibility with a deployed service.
 
 Define `python_bin` as that interpreter, `proto_root` as the absolute import root, `schema` as the selected absolute .proto file beneath it and `output_dir` as the fresh directory. Confirm the module's local options/version, then generate both layers:

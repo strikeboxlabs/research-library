@@ -5,6 +5,8 @@ description: Inspect bounded CloudWatch log pages and selected Secrets Manager/K
 
 # Inspect the selected LocalStack service
 
+Installed invocation: `/usr/local/bin/awslocal`, version `aws-cli/2.36.17 Python/3.14.8 Linux/7.1.5+kali-amd64 source/x86_64.kali.2026`.
+
 Read this entire SKILL.md before acting. Establish the owned emulator endpoint, region, local credential namespace and installed wrapper/AWS CLI combination. Use the log task below; for secret/key metadata or artifact verification, read [service metadata and signatures](references/service-metadata.md) completely first. Finish with actual service status, selected resource and bounded coverage or the specific missing prerequisite.
 
 `awslocal` wraps AWS CLI rather than implementing all its service operations. Its maintainer now marks it deprecated in favor of `lstk aws`; retain this procedure for an already installed compatible wrapper. Check `awslocal --version`, `awslocal -h` and the installed operation help. Do not install or replace a CLI as part of inspection.

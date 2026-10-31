@@ -5,6 +5,8 @@ description: Inspect existing strongSwan VPN sessions and diagnose established I
 
 # Inspect an existing strongSwan connection
 
+Installed invocation: `/usr/sbin/ipsec`, version `Linux strongSwan U6.1.0/K7.1.5+kali-amd64`.
+
 Read this entire skill before acting, plus the applicable reference; complete current context need not be re-read. Identify the installed strongSwan control interface and intended connection before interpreting status. Finish with the observed IKE/CHILD state and evidence for the requested traffic, or the specific missing access/evidence. This workflow inspects an existing deployment; it does not configure credentials or restart it.
 
 When a CHILD SA is present but the application fails, or a legacy transport-mode configuration needs interpretation, read [traffic selectors and packet path](references/traffic-selectors.md) fully before its procedure.
@@ -12,7 +14,7 @@ When a CHILD SA is present but the application fails, or a legacy transport-mode
 Use the existing deployment's interface. An executable named `ipsec` alone does not identify strongSwan; other implementations use that name too. Confirm with `ipsec --version`. For a strongSwan starter/stroke deployment, set `connection` to its configured connection name:
 
 ~~~bash
-ipsec statusall "$connection"
+/usr/sbin/ipsec statusall "$connection"
 ~~~
 
 For a deployment using swanctl/VICI instead, define `ike_name` as the intended IKE connection name:

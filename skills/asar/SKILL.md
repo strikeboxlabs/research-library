@@ -5,12 +5,14 @@ description: List an acquired Electron ASAR archive and extract selected source 
 
 # Inspect the acquired Electron archive
 
+Installed invocation: `/usr/local/bin/asar`, version `v3.2.0`.
+
 Read this entire SKILL.md before acting. Require the acquired archive, trusted installed ASAR CLI/runtime and fresh private extraction directory. No conditional resources are required. Finish with archive/member identity, command status and extracted source coverage; extraction does not launch the application or establish server behavior.
 
 Check `asar --version` and `asar --help`. Current `@electron/asar` requires Node 22.12.0 or later; the historical unscoped `asar` package is a different installation identity. Installing either is a separate task. Define `archive` as the absolute acquired file path:
 
 ~~~bash
-asar list "$archive"
+/usr/local/bin/asar list "$archive"
 status=$?
 ~~~
 
@@ -32,7 +34,7 @@ This CLI writes the member's basename into the current directory, not its entire
 For a known ordinary archive with complete entry paths and link metadata reviewed for confinement to the destination, use a fresh `output_dir` for whole extraction:
 
 ~~~bash
-asar extract "$archive" "$output_dir"
+/usr/local/bin/asar extract "$archive" "$output_dir"
 status=$?
 ~~~
 

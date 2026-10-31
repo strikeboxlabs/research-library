@@ -5,6 +5,8 @@ description: Use the installed PEDA GDB extension to correlate x86 registers, di
 
 # PEDA execution context
 
+Installed invocation: `/usr/bin/gdb` with PEDA loaded from `/usr/share/gdb-peda/peda.py` (package gdb-peda 1.2).
+
 Read this entire SKILL.md before acting. Select the installed trusted PEDA entry script and matching executable before loading the extension. Starting/stepping runs the target; finish with the same-session stop, actual bytes/arguments and the supported branch or call conclusion. Neither a pretty stack string nor a debugger launch proves normal setuid behavior.
 
 PEDA is a Python extension loaded inside GDB, not an independent executable. Require a compatible Python-enabled GDB and the installed PEDA folder with its resources. Define `peda_entry` as its verified absolute `peda.py` path and `binary` as the reviewed x86 executable in an approved fixture. Load it explicitly for this session rather than appending source-provided paths to global `.gdbinit`:

@@ -5,6 +5,8 @@ description: Transfer a selected ordinary file through an already established pw
 
 # Transfer one selected fixture artifact
 
+Installed invocation: `/usr/local/bin/pwncat-cs`, version `0.5.4`.
+
 Read this entire SKILL.md before acting. Require the Caleb Stewart pwncat-cs implementation, an already established authorized session to the controlled fixture and exact nonsecret source/destination paths. No conditional resources are required. Finish with the transfer result and independently compared file identity; a progress bar alone is insufficient.
 
 Confirm the installed implementation and its local command help. Packages named `pwncat` can refer to different software; a historical apt installation line does not establish that it supplies the `pwncat-cs` command. Identify the active session and its remote identity before selecting files. This task uses an existing session and does not create listeners or run enumeration/escalation modules.

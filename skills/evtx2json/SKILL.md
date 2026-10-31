@@ -5,6 +5,8 @@ description: Convert one acquired Windows EVTX log into selected, normalized JSO
 
 # Export selected EVTX records
 
+Installed invocation: `/usr/local/bin/evtx2json`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Require the installed Silv3rHorn implementation, its Python dependencies/resources and one acquired EVTX copy. Confirm the installed help and platform-specific resource paths below before conversion. Finish with original identity, selected channel, exported record coverage and unresolved parsing/translation gaps; this export is not a complete raw-event copy.
 
 Define `python` as the verified interpreter, `tool_dir` as this implementation's installed directory and `converter` as its absolute evtx2json.py path. Do not assume another identically named converter has these options:

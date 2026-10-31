@@ -38,7 +38,7 @@ module_dirs:
 Define `preset_file` as its absolute filename, `target` as a scoped DNS name and fresh `scan_name`/`out_dir`. The directory must contain the matching module file and be readable by the executing identity:
 
 ~~~bash
-bbot -p "$preset_file" -t "$target" --no-deps -n "$scan_name" -o "$out_dir"
+/usr/local/bin/bbot -p "$preset_file" -t "$target" --no-deps -n "$scan_name" -o "$out_dir"
 ~~~
 
 A typo between the saved preset filename and `-p` selects a different or missing file. Diagnose preset lookup, module directory, filename/class, syntax, dependency and setup errors separately. `--force` cannot turn an invalid function definition into a valid module. If no event marker appears, check whether the target generated the watched event and whether the module loaded; a scan-start banner alone proves neither.

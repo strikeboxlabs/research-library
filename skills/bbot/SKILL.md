@@ -5,6 +5,8 @@ description: Use BBOT presets and event-driven modules for scoped reconnaissance
 
 # BBOT reconnaissance and module execution
 
+Installed invocation: `/usr/local/bin/bbot`, version `3.0.2`.
+
 Read this entire SKILL.md before acting; reuse complete current context. Select the target scope, trusted preset/modules and output location before a scan. For custom Python modules, unexpected loading failures or a privileged BBOT grant, read [custom modules and execution authority](references/custom-modules.md) fully first. Finish with the actual enabled/failed modules and requested observations or execution marker; a banner or empty output is insufficient.
 
 BBOT is an event-driven reconnaissance engine. Presets select modules, configuration and scope; discovered events can feed further modules. Visualization is an optional output use, not the tool's identity. Prefer its existing discovery capabilities over building a replacement collector.
@@ -12,11 +14,11 @@ BBOT is an event-driven reconnaissance engine. Presets select modules, configura
 Inspect the installed interface and relevant module options:
 
 ~~~bash
-bbot --version
-bbot --help
-bbot -lp
-bbot -l
-bbot -mh crt
+/usr/local/bin/bbot --version
+/usr/local/bin/bbot --help
+/usr/local/bin/bbot -lp
+/usr/local/bin/bbot -l
+/usr/local/bin/bbot -mh crt
 ~~~
 
 `-lp` lists presets, `-l` lists modules, and `-mh` selects module help on current versions. Check local help on 2.x deployments: module APIs, names and configuration changed in 3.x. Do not apply a current preset to an older installation without checking its selected modules/options.
@@ -24,7 +26,7 @@ bbot -mh crt
 For subdomain discovery, define `target` as the authorized domain, `scan_name` as a fresh unique run name and `out_dir` as the chosen evidence directory. Review the built-in preset and selected module requirements; on supporting versions:
 
 ~~~bash
-bbot -t "$target" -p subdomain-enum -rf passive --no-deps -n "$scan_name" -o "$out_dir"
+/usr/local/bin/bbot -t "$target" -p subdomain-enum -rf passive --no-deps -n "$scan_name" -o "$out_dir"
 ~~~
 
 `-rf passive` retains modules bearing that flag; it does not promise zero network traffic. Public data services and internal DNS processing can still be contacted. Domain targets normally include subdomains; `--strict-scope` changes that to exact matches and can defeat a subdomain-discovery task. Use the supported blacklist/exclusions for actual scope boundaries rather than treating an output filter as a traffic restriction.

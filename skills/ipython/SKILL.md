@@ -5,6 +5,8 @@ description: Inspect an owned IPython launcher's version and acquired profile/st
 
 # Inspect the selected IPython startup context
 
+Installed invocation: `/usr/bin/ipython3`, version `9.11.0`.
+
 Read this entire SKILL.md before acting. Identify the selected trusted launcher/environment and its version, then inspect the acquired launch/profile inputs as text. No conditional resources are required. Finish with the supported version/profile association and unresolved startup-code effects; a version string alone does not establish the code loaded by a different process.
 
 Define `ipython_bin` as the actual trusted installed launcher, not an acquired executable. From an owned trusted working directory:

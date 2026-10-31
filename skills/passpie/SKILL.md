@@ -5,6 +5,8 @@ description: Export an owned initialized Passpie vault with a known master passp
 
 # Export an owned password vault
 
+Installed invocation: `/usr/local/bin/passpie`, version `passpie, version 1.6.1`.
+
 Read this entire SKILL.md before acting. Require an authorized initialized local vault, its existing GnuPG key material, a known master passphrase and trusted Passpie/GnuPG dependencies. Read the selected vault and user configuration before invoking a database command. Finish with the selected vault, export status, format and verified record count; keep credential values out of the report. A missing key/passphrase is an unresolved prerequisite.
 
 Use installed `passpie --version`, `passpie --help` and `passpie export --help` to confirm its interface. Select the vault with `-D` before the subcommand. Inspect effective path, recipient/keyring and `autopull` configuration: a local vault's configuration can override supplied settings, and automatic Git retrieval can occur during database setup. Require the intended local path and no automatic remote synchronization for this export task. A `.passpie` directory or public-key block alone does not establish usable decryption material.

@@ -5,14 +5,16 @@ description: Install a selected .NET Framework 4.8 runtime into an explicit Wine
 
 # Supply the selected Wine runtime
 
+Installed invocation: `/usr/bin/winetricks`.
+
 Read this entire SKILL.md before acting. Require the trusted installed Winetricks/Wine versions, an existing initialized prefix owned by the current user, and an approved application requirement for .NET Framework4.8. Read that installed version's dotnet48 verb before changing the prefix; finish with installation evidence and a separate application compatibility result. No package-local references are required.
 
 Define `prefix` as the selected absolute prefix directory. Record versions, confirm that this build offers dotnet48 and inspect the selected prefix's installed-verb record:
 
 ~~~bash
-winetricks --version
+/usr/bin/winetricks --version
 wine --version
-winetricks dlls list
+/usr/bin/winetricks dlls list
 WINEPREFIX="$prefix" winetricks list-installed
 ~~~
 

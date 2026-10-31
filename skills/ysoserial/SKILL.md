@@ -5,6 +5,8 @@ description: Select and generate Java serialization fixtures with ysoserial for 
 
 # Match the generator to the observed consumer
 
+Installed invocation: `/usr/local/bin/ysoserial`, version `AspectJWeaver       @Jang                                  aspectjweaver:1.9.2, commons-co`.
+
 Read this entire SKILL.md before acting. Require the installed Java generator/runtime and selected fixture's consumer-format/dependency contract. The workflow is inline with no conditional package resources. Finish with producer status and intact artifact evidence; transport and consumer effects require their separate observations.
 
 This package covers Java ysoserial. ysoserial.net/ysoserial.exe and .NET BinaryFormatter use a different generator, formats and dependencies; their names do not make the Java command applicable.

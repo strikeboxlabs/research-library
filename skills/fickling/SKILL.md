@@ -5,6 +5,8 @@ description: Statically inspect local Python pickle streams and extracted model 
 
 # Inspect pickle behavior without loading the object
 
+Installed invocation: `/usr/local/bin/fickling`, version `0.1.12`.
+
 Use the static CLI on an acquired file. `fickling.load()` and `pickle.load()` are different operations: they can deserialize and execute code. Do not use them to discover whether a file is safe. Check `fickling --version` and `fickling --help` because supported formats and analysis rules change.
 
 ## Select the actual input
@@ -16,7 +18,7 @@ Define `pickle` as that existing nonempty raw input. Define `report` and `log` a
 ~~~bash
 umask 077
 scan_status=0
-fickling --check-safety --print-results --json-output "$report" "$pickle" > "$log" 2>&1 || scan_status=$?
+/usr/local/bin/fickling --check-safety --print-results --json-output "$report" "$pickle" > "$log" 2>&1 || scan_status=$?
 printf 'Fickling exit status: %s
 ' "$scan_status"
 ~~~
@@ -38,7 +40,7 @@ The current CLI distinguishes unsafe findings from parser errors, but an uncaugh
 For a supported input, the default CLI decompiles symbolically. Define fresh `decompiled` and `diagnostics` paths:
 
 ~~~bash
-fickling "$pickle" > "$decompiled" 2> "$diagnostics"
+/usr/local/bin/fickling "$pickle" > "$decompiled" 2> "$diagnostics"
 ~~~
 
 Inspect imports, calls and unused results as text; do not run the generated Python. Unsupported opcodes or interpretation errors limit the conclusion. Normal tensor reconstruction can produce findings, but expected library names do not make every call benign. Successful inference or plausible model accuracy also does not prove that loading had no side effects.

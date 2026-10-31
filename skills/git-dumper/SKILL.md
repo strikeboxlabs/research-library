@@ -5,6 +5,8 @@ description: Recover an authorized exposed Git repository over HTTP with arthaud
 
 # Check the acquisition boundary
 
+Installed invocation: `/usr/local/bin/git-dumper`.
+
 Read this entire SKILL.md before acting. Establish the approved endpoint and disposable isolated acquisition environment before downloading; the downloader automatically checks out recovered Git content. Complete the acquisition and object checks below, retaining logs and gaps. Finish with the recovered commit/path coverage and observed checkout/object status, not downloader exit status alone.
 
 Use arthaud's `git-dumper`, not similarly named shell scripts. Inspect installed `git-dumper --help`; newer options such as `--branch`, `--method` and `--any-status` may be absent from older packages. The source-script entrypoint is `git_dumper.py`.

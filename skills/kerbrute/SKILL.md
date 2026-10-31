@@ -5,6 +5,8 @@ description: Check a bounded list of candidate AD usernames against a selected K
 
 # Kerbrute username checks
 
+Installed invocation: `/usr/local/bin/kerbrute`, version `Built: 10/31/26 with go1.27.3`.
+
 Read this entire SKILL.md before acting. Require the selected KDC/domain, small reviewed candidate list and request budget. No conditional resources are required. Finish with actual tested counts, result categories and untested/error cases; missing scope or endpoint information prevents this task, rather than justifying discovery against other servers.
 
 Inspect `kerbrute version` and `kerbrute userenum --help`. This skill covers `userenum`; `passwordspray`, `bruteuser` and `bruteforce` perform different authentication attempts and are not automatic follow-ups.
@@ -13,7 +15,7 @@ Define `domain` as the full domain/realm, `dc` as the intended reachable KDC, `u
 
 ~~~bash
 umask 077
-kerbrute userenum -d "$domain" --dc "$dc" --delay 500 --safe -v -o "$log" "$users_file"
+/usr/local/bin/kerbrute userenum -d "$domain" --dc "$dc" --delay 500 --safe -v -o "$log" "$users_file"
 ~~~
 
 The delay is milliseconds and makes the reviewed implementation use one thread. Verify local support and choose a request budget appropriate to the list. `--safe` stops when a locked account is reported; it is not proof that an operation is silent or harmless. Avoid the encryption-downgrade switch for routine inventory.

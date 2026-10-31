@@ -5,6 +5,8 @@ description: Retrieve one known repository's legacy image blobs with the install
 
 # Retrieve the selected legacy repository
 
+Installed invocation: `/usr/local/bin/drg`.
+
 Read this entire SKILL.md before acting. Require a reviewed installed drg.py/Python dependency environment, one known repository on an owned loopback registry, and a fresh private working directory. Confirm the installed revision's tag/manifest behavior before downloading. Finish with status, selected tag/manifest evidence and verified blob coverage; downloaded files are not a reconstructed runtime filesystem. No conditional resources are required.
 
 The upstream implementation disables TLS verification, clears HTTP_PROXY/HTTPS_PROXY, follows authentication challenges and has no explicit request timeout. This task is therefore scoped to an already prepared loopback fixture with no sensitive credentials. For a remote registry or required peer verification, use an approved registry client that satisfies that transport contract. Do not use a failed challenge as a reason to follow an unrelated authentication realm.

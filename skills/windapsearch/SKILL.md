@@ -5,6 +5,8 @@ description: Inspect AD users, groups and selected attributes with the legacy Py
 
 # Select the implementation and directory view
 
+Installed invocation: `/usr/local/bin/windapsearch`.
+
 Read this entire SKILL.md before acting. Select the implementation, permitted bind view and user/group or selected-object task below; use full attributes only for the selected-object task. Required prerequisites are the installed script/Python LDAP dependencies, reachable directory and permitted search view. Finish with returned DNs, attributes, status and diagnostics or the concrete transport/access prerequisite gap.
 
 These commands target ropnop's Python `windapsearch.py`; the Go rewrite has a different interface. Define `windap_script` as the installed script path and `dc_ip` as the selected DC. Read `python3 "$windap_script" --help` before applying these flags. The [Python project](https://github.com/ropnop/windapsearch) points to the separate Go implementation.

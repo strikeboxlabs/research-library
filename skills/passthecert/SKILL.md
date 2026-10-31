@@ -5,6 +5,8 @@ description: Authenticate to LDAP with a certificate using the Python PassTheCer
 
 # Establish the mapped LDAP identity
 
+Installed invocation: `/usr/local/bin/passthecert`, version `Impacket v0.13.1 - Copyright Fortra, LLC and its affiliated companies`.
+
 Read this entire file before acting. Read [selected delegation changes](references/delegation-changes.md) fully before writing RBCD. Finish with the mapped identity, selected DC/object and verified result; a certificate filename or SAN is not proof of the server's account mapping.
 
 Set `script` to the installed `Python/passthecert.py`, `cert_file` and `key_file` to a matching PEM certificate/private-key pair, and define `domain`, `dc_fqdn` and `dc_ip`. Inspect `python3 "$script" -h`. This package covers the Python LDAP client, not the separate Windows implementation.

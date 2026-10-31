@@ -5,12 +5,14 @@ description: Generate search-engine URLs with Searchor's CLI and inspect its loc
 
 # Generate a search URL
 
+Installed invocation: `/usr/local/bin/searchor`.
+
 Read this entire file before acting. Verify the installed Searchor build and supported engine name. Finish with the generated URL and any local history or optional browser/clipboard effects; URL generation is not a completed web search.
 
 The documented CLI is `searchor search ENGINE QUERY`. Inspect `searchor --help` and `searchor search --help`; engine names are case-sensitive identifiers in the reviewed implementation. With `engine` and `query` defined:
 
 ~~~bash
-searchor search "$engine" "$query"
+/usr/local/bin/searchor search "$engine" "$query"
 ~~~
 
 For example, `searchor search Google 'site:example.org incident response'` generates an engine URL. Keep a multiword query as one shell argument. Let the engine implementation perform its expected encoding; do not pre-encode without checking whether this would double-encode the query. The URL identifies the requested search, not the existence, relevance or trustworthiness of results.

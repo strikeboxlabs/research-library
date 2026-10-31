@@ -5,7 +5,7 @@ description: Read metadata from a selected trusted local font with FontForge's P
 
 # Inspect one trusted font
 
-Installed invocation: `/usr/bin/fontforge`, version `(fontforge:183689): Gtk-WARNING **: 05:24:04.358: cannot open display:`.
+Installed invocation: `/usr/bin/fontforge`, version `(fontforge:302686): Gtk-WARNING **: 07:18:47.810: cannot open display:`.
 
 Read this entire SKILL.md before acting. Require a trusted FontForge installation with Python support and trusted startup scripts/plugins, one known ordinary TTF/OTF file, and permission to parse it. No conditional resources are required. Finish with the selected input, build, metadata, diagnostics and process status; an unavailable parser or unknown input provenance leaves the check incomplete.
 

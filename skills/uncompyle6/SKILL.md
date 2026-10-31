@@ -5,6 +5,8 @@ description: Recover candidate Python source from one acquired supported pyc or 
 
 # Decompile one selected bytecode artifact
 
+Installed invocation: `/usr/local/bin/uncompyle6`, version `uncompyle6, version 3.9.3`.
+
 Read this entire SKILL.md before acting. Require a preserved acquired bytecode file, a trusted installed decompiler/runtime and a disposable private analysis environment. Establish the bytecode version separately from the interpreter running the decompiler. Finish with status, diagnostics, recovered scope and unresolved semantics; missing support leaves decompilation incomplete.
 
 Inspect the installed help and package version. Upstream support includes released bytecode through Python3.8; a modern host interpreter does not imply support for its own bytecode. Select the release/environment compatible with the tool's host requirements and the artifact's magic number. For a PyInstaller input, extract the selected member first and retain any skipped-PYZ or repaired-header warning; do not pass the executable itself to this bytecode procedure.

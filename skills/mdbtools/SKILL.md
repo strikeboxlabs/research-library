@@ -5,6 +5,8 @@ description: Inspect Microsoft Access database files on Linux with mdb-tables an
 
 # MDB Tools table inspection
 
+Installed invocation: the mdb-tools suite under `/usr/bin` (`mdb-tables`, `mdb-schema`, `mdb-export`), version `1.0.1` (package mdbtools).
+
 Use a local database copy. Define `database` as its absolute path; confirm the actual file format rather than trusting `.mdb`. List tables one per line:
 
 ~~~bash
