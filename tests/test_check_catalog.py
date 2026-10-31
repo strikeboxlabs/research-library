@@ -64,6 +64,22 @@ class CatalogChecks(unittest.TestCase):
         for expected in ("duplicate skill id", "duplicate tags", "duplicate requirements"):
             self.assertTrue(any(expected in error for error in errors), expected)
 
+    def test_execution_facet_rules(self):
+        self.catalog["skills"][0]["tags"] = ["task:source-review", "execution:linux", "execution:windows"]
+        self.assertTrue(any("exactly one execution" in error for error in self.check()["errors"]))
+        self.catalog["skills"][0]["tags"] = ["task:source-review", "execution:windows"]
+        self.assertEqual(self.check()["errors"], [])
+        self.catalog["skills"][0]["tags"] = ["task:source-review", "execution:cloud"]
+        self.assertTrue(any("unsupported execution value" in error for error in self.check()["errors"]))
+
+    def test_reviewed_entries_need_task_tags(self):
+        self.catalog["skills"][0]["tags"] = ["execution:linux"]
+        self.assertTrue(any("at least one task tag" in error for error in self.check()["errors"]))
+
+    def test_requires_entries_are_command_names(self):
+        self.catalog["skills"][0]["requires"] = ["/usr/bin/example"]
+        self.assertTrue(any("command names, not paths" in error for error in self.check()["errors"]))
+
     def test_paths_cannot_use_traversal_absolute_paths_or_wrong_folders(self):
         for path in ("../example", "/skills/example", "C:/skills/example", "skills/other"):
             with self.subTest(path=path):

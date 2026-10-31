@@ -96,17 +96,26 @@ def check_catalog(root):
                 errors.append(f"{label}: duplicate tags")
             if any(tag != UNREVIEWED and not TAG.fullmatch(tag) for tag in tags):
                 errors.append(f"{label}: unsupported tag facet or value")
+            execution = [tag for tag in tags if tag.startswith("execution:")]
+            if len(execution) != 1:
+                errors.append(f"{label}: exactly one execution tag is required")
+            elif execution[0] not in {"execution:linux", "execution:windows", "execution:cross"}:
+                errors.append(f"{label}: unsupported execution value")
             if UNREVIEWED in tags:
                 report["catalog_unreviewed"] += 1
                 if "execution:linux" not in tags:
                     errors.append(f"{label}: unreviewed classification needs execution:linux")
                 if any(tag.startswith("task:") for tag in tags):
                     errors.append(f"{label}: unreviewed classification cannot claim task tags")
+            elif not any(tag.startswith("task:") for tag in tags):
+                errors.append(f"{label}: reviewed classification needs at least one task tag")
         requirements = entry.get("requires")
         if (not isinstance(requirements, list)
                 or any(not isinstance(value, str) or not value.strip()
                        or value != value.strip() for value in requirements)):
             errors.append(f"{label}: requires must be a list of nonempty trimmed strings")
+        elif any("/" in value or value.startswith(".") for value in requirements):
+            errors.append(f"{label}: requires entries must be command names, not paths")
         elif len(requirements) != len(set(requirements)):
             errors.append(f"{label}: duplicate requirements")
 
